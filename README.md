@@ -1,7 +1,7 @@
 # python-causality-handbook
 Studies teachings about causality in Python
 
-I like to think of this entire series is a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what is keeping me sane during this though year of 2020.
+I like to think of this entire series is a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what is keeping me sane during this tough year of 2020.
 * [Cross-Section Econometrics](https://www.aeaweb.org/conference/cont-ed/2017-webcasts)
 * [Mastering Mostly Harmless Econometrics](https://www.aeaweb.org/conference/cont-ed/2020-webcasts)
 
