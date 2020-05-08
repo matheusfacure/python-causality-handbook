@@ -13,3 +13,14 @@ I'll also like to reference the amazing books from Angrist. They have shown me t
 My final reference is Miguel Hernan and Jamie Robins' book. It has been my trustworthy companion in the most thorny causal questions I had to answer.
 
 * [Causal Inference Book](https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/)
+
+# Tutorials
+1. [Introduction To Causality](https://github.com/matheusfacure/python-causality-handbook/blob/master/1-Introduction-To-Causality.ipynb)
+2. [Randomised Experiments](https://github.com/matheusfacure/python-causality-handbook/blob/master/2-Randomised-Experiments.ipynb)
+3. [Stats Review: The Most Dangerous Equation](https://github.com/matheusfacure/python-causality-handbook/blob/master/3-Stats-Review-The-Most-Dangerous-Equation.ipynb)
+4. [The Unreasonable Effectiveness of Linear Regression](https://github.com/matheusfacure/python-causality-handbook/blob/master/4-The-Unreasonable-Effectiveness-of-Linear-Regression.ipynb)
+5. [Grouped and Dummy Regression](https://github.com/matheusfacure/python-causality-handbook/blob/master/5-Grouped-and-Dummy-Regression.ipynb)
+6. [Beyond Confounders Controls](https://github.com/matheusfacure/python-causality-handbook/blob/master/6-Beyond-Confounders-Controls.ipynb)
+7. [Instrumental Variables](https://github.com/matheusfacure/python-causality-handbook/blob/master/7-Instrumental-Variables.ipynb)
+8. [Non Compliance and LATE](https://github.com/matheusfacure/python-causality-handbook/blob/master/8-Non-Compliance-and-LATE.ipynb)
+9. [Matching](https://github.com/matheusfacure/python-causality-handbook/blob/master/9-Matching.ipynb)
