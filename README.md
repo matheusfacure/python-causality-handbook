@@ -24,3 +24,4 @@ My final reference is Miguel Hernan and Jamie Robins' book. It has been my trust
 7. [Instrumental Variables](https://github.com/matheusfacure/python-causality-handbook/blob/master/7-Instrumental-Variables.ipynb)
 8. [Non Compliance and LATE](https://github.com/matheusfacure/python-causality-handbook/blob/master/8-Non-Compliance-and-LATE.ipynb)
 9. [Matching](https://github.com/matheusfacure/python-causality-handbook/blob/master/9-Matching.ipynb)
+10. [Propensity Score](https://github.com/matheusfacure/python-causality-handbook/blob/master/10-Propensity-Score.ipynb)
