@@ -1,5 +1,7 @@
 # Causal Inference for The Brave and True
 
+![img](./img/brave-and-true.png)
+
 A lightheaded yet rigorous approach to learning impact estimation and sensitivity analysis. Everything in Python and with as many memes as I could find.
 
 
@@ -21,13 +23,14 @@ My final reference is Miguel Hernan and Jamie Robins' book. It has been my trust
 1. [Introduction To Causality](https://github.com/matheusfacure/python-causality-handbook/blob/master/1-Introduction-To-Causality.ipynb)
 2. [Randomised Experiments](https://github.com/matheusfacure/python-causality-handbook/blob/master/2-Randomised-Experiments.ipynb)
 3. [Stats Review: The Most Dangerous Equation](https://github.com/matheusfacure/python-causality-handbook/blob/master/3-Stats-Review-The-Most-Dangerous-Equation.ipynb)
-4. [The Unreasonable Effectiveness of Linear Regression](https://github.com/matheusfacure/python-causality-handbook/blob/master/5-The-Unreasonable-Effectiveness-of-Linear-Regression.ipynb)
-5. [Grouped and Dummy Regression](https://github.com/matheusfacure/python-causality-handbook/blob/master/6-Grouped-and-Dummy-Regression.ipynb)
-6. [Beyond Confounders](https://github.com/matheusfacure/python-causality-handbook/blob/master/7-Beyond-Confounders.ipynb)
-7. [Instrumental Variables](https://github.com/matheusfacure/python-causality-handbook/blob/master/8-Instrumental-Variables.ipynb)
-8. [Non Compliance and LATE](https://github.com/matheusfacure/python-causality-handbook/blob/master/9-Non-Compliance-and-LATE.ipynb)
-9. [Matching](https://github.com/matheusfacure/python-causality-handbook/blob/master/10-Matching.ipynb)
-10. [Propensity Score](https://github.com/matheusfacure/python-causality-handbook/blob/master/11-Propensity-Score.ipynb)
+4. [Graphical Causal Models](https://github.com/matheusfacure/python-causality-handbook/blob/master/4-Graphical-Causal-Models.ipynb)
+5. [The Unreasonable Effectiveness of Linear Regression](https://github.com/matheusfacure/python-causality-handbook/blob/master/5-The-Unreasonable-Effectiveness-of-Linear-Regression.ipynb)
+6. [Grouped and Dummy Regression](https://github.com/matheusfacure/python-causality-handbook/blob/master/6-Grouped-and-Dummy-Regression.ipynb)
+7. [Beyond Confounders](https://github.com/matheusfacure/python-causality-handbook/blob/master/7-Beyond-Confounders.ipynb)
+8. [Instrumental Variables](https://github.com/matheusfacure/python-causality-handbook/blob/master/8-Instrumental-Variables.ipynb)
+9. [Non Compliance and LATE](https://github.com/matheusfacure/python-causality-handbook/blob/master/9-Non-Compliance-and-LATE.ipynb)
+10. [Matching](https://github.com/matheusfacure/python-causality-handbook/blob/master/10-Matching.ipynb)
+11. [Propensity Score](https://github.com/matheusfacure/python-causality-handbook/blob/master/11-Propensity-Score.ipynb)
 12. [Doubly Robust Estimation](https://github.com/matheusfacure/python-causality-handbook/blob/master/12-Doubly-Robust-Estimation.ipynb)
 13. [Panel Data and Fixed-Effects](https://github.com/matheusfacure/python-causality-handbook/blob/master/13-Panel-Data-and-Fixed-Effects.ipynb)
 14. [Difference-in-Difference](https://github.com/matheusfacure/python-causality-handbook/blob/master/14-Difference-in-Difference.ipynb)
