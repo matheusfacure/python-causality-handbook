@@ -36,3 +36,5 @@ My final reference is Miguel Hernan and Jamie Robins' book. It has been my trust
 14. [Difference-in-Difference](https://github.com/matheusfacure/python-causality-handbook/blob/master/14-Difference-in-Difference.ipynb)
 15. [Synthetic Control](https://github.com/matheusfacure/python-causality-handbook/blob/master/15-Synthetic-Control.ipynb)
 16. [Regression Discontinuity Design](https://github.com/matheusfacure/python-causality-handbook/blob/master/16-Regression-Discontinuity-Design.ipynb)
+
+If the notebooks won't load or you just want something better formated, I've uploaded all these tutorials to [my blog](https://matheusfacure.github.io/econtutorials/)
