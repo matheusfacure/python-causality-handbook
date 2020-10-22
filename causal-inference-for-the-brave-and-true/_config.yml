@@ -1,0 +1,4 @@
+# in _config.yml
+title: "Causal Inference for the Branve and True"
+execute:
+  execute_notebooks: "off"
