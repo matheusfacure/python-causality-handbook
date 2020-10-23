@@ -1,0 +1,976 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stats Review: The Most Dangerous Equation &#8212; Causal Inference for the Brave and True</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Graphical Causal Models" href="04-Graphical-Causal-Models.html" />
+    <link rel="prev" title="Randomised Experiments" href="02-Randomised-Experiments.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
+   Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html">
+   Three Billboards in the South of Brazil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#did-estimator">
+   DID Estimator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#non-parallel-trends">
+   Non Parallel Trends
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#references">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/03-Stats-Review-The-Most-Dangerous-Equation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F03-Stats-Review-The-Most-Dangerous-Equation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/03-Stats-Review-The-Most-Dangerous-Equation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-standard-error-of-our-estimates">
+   The Standard Error of Our Estimates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#confidence-intervals">
+   Confidence Intervals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hypothesis-testing">
+   Hypothesis Testing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#p-values">
+   P-values
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#keys-ideas">
+   Keys Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="stats-review-the-most-dangerous-equation">
+<h1>Stats Review: The Most Dangerous Equation<a class="headerlink" href="#stats-review-the-most-dangerous-equation" title="Permalink to this headline">¶</a></h1>
+<p>In his famous article of 2007, Howard Wainer writes about very dangerous equations:</p>
+<p>“Some equations  are  dangerous  if you  know them, and others are dangerous if you do not. The first category may  pose  danger  because the secrets  within its bounds open  doors  behind which lies terrible peril. The obvious winner in this is Einstein’s ionic equation \(E = MC^2\), for it  provides  a  measure of  the  enormous energy hidden  within  ordinary  matter. […] Instead I am interested in equations that unleash their danger not when we know about them, but rather when we do not. Kept close at hand, these equations allow us to understand things clearly, but their absence leaves us dangerously ignorant.”</p>
+<p>The equation he talks about is the Moivre’s equation:</p>
+<p><span class="math notranslate nohighlight">\(
+SE = \dfrac{\sigma}{\sqrt{n}} 
+\)</span></p>
+<p>where \(SE\) is the standard error of the mean, \(\sigma\) is the standard deviation and \(n\) is the sample size. Sounds like a piece of math the brave and true should master, so let’s get to it.</p>
+<p>To see why not knowing this equation is very dangerous, let’s take a look at some education data. I’ve compiled data on ENEM scores (Brazilian standardised high school scores, similar to SAT) from different schools for a period of 3 years. I also did some cleaning on the data to keep only the information relevant to us. The original data can be downloaded in the <a class="reference external" href="http://portal.inep.gov.br/web/guest/microdados">Inep website</a>.</p>
+<p>If we look at the top performing school, something catches the eye: those schools have a fairly small number of students.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;fivethirtyeight&quot;</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/enem_scores.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;avg_score&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>school_id</th>
+      <th>number_of_students</th>
+      <th>avg_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>16670</th>
+      <td>2007</td>
+      <td>33062633</td>
+      <td>68</td>
+      <td>82.97</td>
+    </tr>
+    <tr>
+      <th>16796</th>
+      <td>2007</td>
+      <td>33065403</td>
+      <td>172</td>
+      <td>82.04</td>
+    </tr>
+    <tr>
+      <th>16668</th>
+      <td>2005</td>
+      <td>33062633</td>
+      <td>59</td>
+      <td>81.89</td>
+    </tr>
+    <tr>
+      <th>16794</th>
+      <td>2005</td>
+      <td>33065403</td>
+      <td>177</td>
+      <td>81.66</td>
+    </tr>
+    <tr>
+      <th>10043</th>
+      <td>2007</td>
+      <td>29342880</td>
+      <td>43</td>
+      <td>80.32</td>
+    </tr>
+    <tr>
+      <th>18121</th>
+      <td>2007</td>
+      <td>33152314</td>
+      <td>14</td>
+      <td>79.82</td>
+    </tr>
+    <tr>
+      <th>16781</th>
+      <td>2007</td>
+      <td>33065250</td>
+      <td>80</td>
+      <td>79.67</td>
+    </tr>
+    <tr>
+      <th>3026</th>
+      <td>2007</td>
+      <td>22025740</td>
+      <td>144</td>
+      <td>79.52</td>
+    </tr>
+    <tr>
+      <th>14636</th>
+      <td>2007</td>
+      <td>31311723</td>
+      <td>222</td>
+      <td>79.41</td>
+    </tr>
+    <tr>
+      <th>17318</th>
+      <td>2007</td>
+      <td>33087679</td>
+      <td>210</td>
+      <td>79.38</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Looking at it from another angle, we can separate only the 1% top schools and study them. What are they like? Perhaps we can learn something from the best and replicate it elsewhere. And sure enough, if we look at the top 1% schools, we figure out they have, on average, a smaller number of students.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
+             <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">top_school</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">],</span> <span class="o">.</span><span class="mi">99</span><span class="p">))</span>
+             <span class="p">[[</span><span class="s2">&quot;top_school&quot;</span><span class="p">,</span> <span class="s2">&quot;number_of_students&quot;</span><span class="p">]]</span>
+             <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;number_of_students&lt;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;number_of_students&#39;</span><span class="p">],</span> <span class="o">.</span><span class="mi">98</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span> <span class="c1"># remove outliers</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;top_school&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;number_of_students&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">plot_data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Number of Students of 1% Top Schools (Right)&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_3_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_3_0.png" />
+</div>
+</div>
+<p>One natural conclusion that follows is that small schools lead to higher academic performance. This makes intuitive sense, since we believe that less students per teacher allows the teacher to give focused attention to each student. But what does this have to do with Moivre’s equation? And why is it dangerous?</p>
+<p>Well, it becomes dangerous once people start to make important and expensive decisions based on this information. In his article, Howard continues:</p>
+<p>“In the 1990s, it became popular to champion reductions in the size of schools. Numerous philanthropic organisations and government agencies funded the division of larger schools based on the fact that students at small schools are over represented in groups with high test scores.”</p>
+<p>What people forgot to do was to look also at the bottom 1% of schools. If we do that, lo and behold! They also have very few students!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_99</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">],</span> <span class="o">.</span><span class="mi">99</span><span class="p">)</span>
+<span class="n">q_01</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">],</span> <span class="o">.</span><span class="mi">01</span><span class="p">)</span>
+
+<span class="n">plot_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
+             <span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+             <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Group</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">q_99</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">q_01</span><span class="p">],</span>
+                                                 <span class="p">[</span><span class="s2">&quot;Top&quot;</span><span class="p">,</span> <span class="s2">&quot;Bottom&quot;</span><span class="p">],</span> <span class="s2">&quot;Middle&quot;</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;avg_score&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;number_of_students&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Group&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">plot_data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;ENEM Score by Number of Students in the School&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_5_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_5_0.png" />
+</div>
+</div>
+<p>What we are seeing above is exactly what is expected according to the Moivre’s equation. As the number of students grow, the average score becomes more and more precise. Schools with very few samples can have very high and very low scores simply due to chance. This is harder to occur with large schools. Moivre’s equation talks about a fundamental fact about the reality of information and records in the form of data: it is always imprecise. The question then becomes how much imprecise.</p>
+<p>Statistics is the science that deals with these imprecisions so they don’t catch us off-guard. As Taleb puts it in his book, Fooled by Randomness:</p>
+<blockquote>
+<div><p>Probability is not a mere computation of odds on the dice or more complicated variants; it is the acceptance of the lack of certainty in our knowledge and the development of methods for dealing with our ignorance.</p>
+</div></blockquote>
+<p>One way to quantify our uncertainty is the <strong>variance of our estimates</strong>. Variance tells us how much observation deviates from their central and most probably value. As pointed by the Moivre’s equation, this uncertainty shrinks as the amount of data that we observe increases. This makes sense right? If we see lots and lots of students performing excellent at a school, we can be more confident that this is indeed a good school. However, if we see a school with only 10 students and 8 of them perform well, we need to be more suspicious. It could be that, by chance, that school got some above average students.</p>
+<p>The  beautiful triangular plot we see above tells exactly this story. It shows us how our estimates of the school performance has a huge variance when the sample sizes are small. It also shows that variance shrinks as the sample size increases. This is true for the average score in a school, but it is also true about any summary statistics that we have, including the ATE we so often want to estimate.</p>
+<div class="section" id="the-standard-error-of-our-estimates">
+<h2>The Standard Error of Our Estimates<a class="headerlink" href="#the-standard-error-of-our-estimates" title="Permalink to this headline">¶</a></h2>
+<p>Since this is just a review on statistics, I’ll take the liberty to go a bit faster now. If you are not familiar with distributions, variance and standard errors, please, do read on, but keep in mind that you might need some additional resources. I suggest you google any MIT course on introduction to statistics. They are usually quite good.</p>
+<p>In the previous section, we estimated the average treatment effect \(E[Y_1-Y_0]\) as the difference in the means between the treated and the untreated \(E[Y|T=1]-E[Y|T=0]\). As our motivating example, we figured out the \(ATE\) for online classes. We also saw that it was a negative impact, that is, online classes made students perform about 5 points worse than the students with face to face classes. Now, we get to see if this impact is statistically significant.</p>
+<p>To do so, we need to estimate the \(SE\). We already have \(n\), our sample size. To get the estimate for the standard deviation we can do the following</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{\sigma}=\frac{1}{N-1}\sum_{i=0}^N (x-\bar{x})^2
+\)</span></p>
+<p>where \(\bar{x}\) is the mean of \(x\). Fortunately for us, most programming software already implements this. In Pandas, we can use the method <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.std.html">std</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/online_classroom.csv&quot;</span><span class="p">)</span>
+<span class="n">online</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;format_ol==1&quot;</span><span class="p">)[</span><span class="s2">&quot;falsexam&quot;</span><span class="p">]</span>
+<span class="n">face_to_face</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;format_ol==0 &amp; format_blended==0&quot;</span><span class="p">)[</span><span class="s2">&quot;falsexam&quot;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">se</span><span class="p">(</span><span class="n">y</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">y</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SE for Online:&quot;</span><span class="p">,</span> <span class="n">se</span><span class="p">(</span><span class="n">online</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SE for Face to Face:&quot;</span><span class="p">,</span> <span class="n">se</span><span class="p">(</span><span class="n">face_to_face</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SE for Online: 1.5371593973041635
+SE for Face to Face: 0.8723511456319106
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="confidence-intervals">
+<h2>Confidence Intervals<a class="headerlink" href="#confidence-intervals" title="Permalink to this headline">¶</a></h2>
+<p>The standard error of our estimate is a measure of confidence. To understand exactly what it means, we need to go into turbulent and polemic statistical waters. For one view of statistics, the frequentist view, we would say that the data we have is nothing more than a manifestation of a true data generating process. This process is abstract and ideal. It is governed by true parameters that are unchanging but also unknown to us. In the context of the students test, if we could run multiple experiments and collect multiple datasets, all would resemble the true underlying data generating process, but wouldn’t be exactly like it. This is very much alike Plato’s writing on the Forms:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Each</span> <span class="p">[</span><span class="n">of</span> <span class="n">the</span> <span class="n">essential</span> <span class="n">forms</span><span class="p">]</span> <span class="n">manifests</span> <span class="n">itself</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">great</span> <span class="n">variety</span> <span class="n">of</span> <span class="n">combinations</span><span class="p">,</span> <span class="k">with</span> <span class="n">actions</span><span class="p">,</span> <span class="k">with</span> <span class="n">material</span> <span class="n">things</span><span class="p">,</span> <span class="ow">and</span> <span class="k">with</span> <span class="n">one</span> <span class="n">another</span><span class="p">,</span> <span class="ow">and</span> <span class="n">each</span> <span class="n">seems</span> <span class="n">to</span> <span class="n">be</span> <span class="n">many</span>
+</pre></div>
+</div>
+<p>To better grasp this, let’s suppose we have a true abstract distribution of students’ test score. This is a normal distribution with true mean of 74 and true standard deviation of 2. From this distribution, we can run 10000 experiments. On each one, we collect 500 samples. Some experiment data will have a mean lower than the true one, some will be higher. If we plot them in a histogram, we can see that the true mean is where most of the experiments’ mean fall in.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_std</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">true_mean</span> <span class="o">=</span> <span class="mi">74</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="k">def</span> <span class="nf">run_experiment</span><span class="p">():</span> 
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">true_mean</span><span class="p">,</span><span class="n">true_std</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">freq</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">run_experiment</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Experiment&#39;s Mean&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">true_mean</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">freq</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True Mean&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_9_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_9_0.png" />
+</div>
+</div>
+<p>Notice that we are talking about the mean of means here. So, by chance, we could have an experiment where the mean is somewhat below or above the true mean. This is to say that we can never be sure that the mean of our experiment matches the true platonic and ideal mean. However, <strong>with the standard error, we can create an interval that will contain the true mean 95% of the time</strong>.</p>
+<p>In real life, we don’t have the luxury of simulating the same experiment with multiple datasets. We often only have one. But we can drawn on the intuition above to construct what we call <strong>confidence intervals</strong>. Confidence intervals come with a probability attached to them. The most common one is 95%. This probability tells us how many of the hypothetical confidence intervals we would build from different studies contains the true mean. For example, the 95% confidence intervals computed from many similar studies would contain the true mean 95% of the time.</p>
+<p>To calculate the confidence interval, we use what is called the <strong>central limit theorem</strong>. This theorem states that <strong>means of experiments are normally distributed</strong>. From statistical theory, we know that 95% of the mass of a normal distribution is between 2 standard deviations above and below the mean. Technically, 1.96, but 2 is close enough.</p>
+<p><img alt="normal_density" src="_images/normal_dist.jpeg" /></p>
+<p>The Standard Error of the mean serves as our estimate for the means’ distribution of our experiments. So, if we multiply it by 2 and add and subtract it from one of our experiment’s mean, we will construct a 95% confidence interval.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">321</span><span class="p">)</span>
+<span class="n">exp_data</span> <span class="o">=</span> <span class="n">run_experiment</span><span class="p">()</span>
+<span class="n">exp_se</span> <span class="o">=</span> <span class="n">exp_data</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">exp_data</span><span class="p">))</span>
+<span class="n">exp_mu</span> <span class="o">=</span> <span class="n">exp_data</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">ci</span> <span class="o">=</span> <span class="p">(</span><span class="n">exp_mu</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">exp_se</span><span class="p">,</span> <span class="n">exp_mu</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">exp_se</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ci</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(73.82718114045632, 74.17341543460314)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">exp_mu</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">exp_se</span><span class="p">,</span> <span class="n">exp_mu</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">exp_se</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">exp_mu</span><span class="p">,</span> <span class="n">exp_se</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;95% CI&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_12_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_12_0.png" />
+</div>
+</div>
+<p>Of course, we don’t need to restrict ourselves to the 95% confidence interval. We could generate the 99% interval by finding how many times do we need to multiply the standard deviation so the interval contains 99% of the mass of a normal distribution.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">ppf</span></code> in python gives us the inverse of the CDF. So, <code class="docutils literal notranslate"><span class="pre">ppf(0.5)</span></code> will return 0.0, saying that 50% of the mass of the standard normal distribution is below 0.0. By the same token, if we plug 99.5%, we will have the value <code class="docutils literal notranslate"><span class="pre">z</span></code>, such that 99.5% of the distribution mass falls below this value. In other words, 0.05% of the mass falls above this value. We will take this value from above and below the distribution, which will result in 99% if the distribution falls between them. Here is the 99% interval.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">995</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">ci</span> <span class="o">=</span> <span class="p">(</span><span class="n">exp_mu</span> <span class="o">-</span> <span class="n">z</span> <span class="o">*</span> <span class="n">exp_se</span><span class="p">,</span> <span class="n">exp_mu</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span> <span class="n">exp_se</span><span class="p">)</span>
+<span class="n">ci</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.5758293035489004
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(73.7773381773405, 74.22325839771896)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">exp_mu</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">exp_se</span><span class="p">,</span> <span class="n">exp_mu</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">exp_se</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">exp_mu</span><span class="p">,</span> <span class="n">exp_se</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;99% CI&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_15_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_15_0.png" />
+</div>
+</div>
+<p>Back to our classroom experiment, we can construct the confidence interval for the mean exam score for both the online and face to face students’ group</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ci</span><span class="p">(</span><span class="n">y</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">se</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">se</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;95% CI for Online:&quot;</span><span class="p">,</span> <span class="n">ci</span><span class="p">(</span><span class="n">online</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;95</span><span class="si">% f</span><span class="s2">or Face to Face:&quot;</span><span class="p">,</span> <span class="n">ci</span><span class="p">(</span><span class="n">face_to_face</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% CI for Online: (70.56094429049804, 76.7095818797147)
+95% for Face to Face: (76.80278229206951, 80.29218687459715)
+</pre></div>
+</div>
+</div>
+</div>
+<p>What we can see is that the 95% CI of the groups don’t overlap. The lower end of the CI for Face to Face class is above the upper end of the CI for online classes. This is evidence that our result is not by chance. There is a significant causal decrease in academic performance once you switch from face to face to online classes.</p>
+<p>As a recap, confidence intervals are a way to place uncertainty around our estimates. The smaller the sample size, the larger the standard error and the wider the confidence interval. Finally, you should always be suspicious of measurements without any uncertainty metric attached to it. Since they are super easy to compute, lack of confidence intervals signals either some bad intentions or simply lack of knowledge, which is equally concerning.</p>
+<p><img alt="img" src="_images/ci_xkcd.png" /></p>
+<p>One final word of caution here. Confidence Intervals are trickier to interpret than they look at first. For instance, I <strong>shouldn’t</strong> say that this particular 95% confidence interval contains the true population mean with 95% chance. That’s because in frequentist statistics, the one that uses confidence intervals, the population mean is regarded as a true population constant. So it either is or isn’t in our particular confidence interval. In other words, our particular confidence interval either contains or not the true mean. If it does, the chance of containing it would be 100%, not 95%. If it doesn’t, the chance would be 0%. Rather, in confidence intervals, the 95% refers to the frequency that such confidence intervals, computed in many many studies, contain the true mean. 95% is our confidence in the algorithm used to compute the 95% CI, not on the particular interval itself.</p>
+<p>Now, having said that, as an Economist (statisticians, please look away now), I think this purism is not very useful. In practice, you will see people saying that the particular confidence interval contains the true mean 95% of the time. Although wrong, this is not very harmful, as it still places a precise degree of uncertainty in our estimates. Moreover, if we switch to Bayesian statistics and use probable intervals instead of confidence intervals, we would be able to say that the interval contains the distribution mean 95% of the time. Also, from what I’ve seen in practice, with decent sample sizes, bayesian probability intervals are more similar to confidence intervals than both bayesian and frequentists would like to admit. So, if my word counts for anything, feel free to say whatever you want about your confidence interval. I don’t care if you say they contain the true mean 95% of the time. Just, please, never forget to place them around your estimates, otherwise you will look silly.</p>
+</div>
+<div class="section" id="hypothesis-testing">
+<h2>Hypothesis Testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">¶</a></h2>
+<p>Another way to incorporate uncertainty is to state a hypothesis test: is the difference in means statistically different from zero (or any other value)? To do so, we will recall that the sum or difference of 2 normal distributions is also a normal distribution. The resulting mean will be the sum or difference between the two distribution, while the variance will always be the sum of the variance:</p>
+<p><span class="math notranslate nohighlight">\(
+N(\mu_1, \sigma_1^2) - N(\mu_2, \sigma_2^2) = N(\mu_1 - \mu_2, \sigma_1^2 + \sigma_2^2)
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(
+N(\mu_1, \sigma_1^2) + N(\mu_2, \sigma_2^2) = N(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)
+\)</span></p>
+<p>If you don’t recall, its OK. We can always use code and simulated data to check:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">n1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">30000</span><span class="p">)</span>
+<span class="n">n2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">30000</span><span class="p">)</span>
+<span class="n">n_diff</span> <span class="o">=</span> <span class="n">n2</span> <span class="o">-</span> <span class="n">n1</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;N(2,3)&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">n2</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;N(1,4)&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">n_diff</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;N(4,3) - N(1,4) = N(-1, 5)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_19_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_19_0.png" />
+</div>
+</div>
+<p>If we take the distribution of the means of our 2 groups and subtract one from the other, we will have a third distribution. The mean of this final distribution will be the difference in the means and the standard deviation of this distribution will be the square root of the sum of the standard deviations.</p>
+<p><span class="math notranslate nohighlight">\(
+\mu_{diff} = \mu_1 + \mu_2
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(
+SE_{diff} = \sqrt{SE_1 + SE_2} = \sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}
+\)</span></p>
+<p>Let’s return to our classroom example. We will construct this distribution of the diference. Of course, once we have it, building the 95% CI is very easy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff_mu</span> <span class="o">=</span> <span class="n">online</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">face_to_face</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">diff_se</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">face_to_face</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">face_to_face</span><span class="p">)</span> <span class="o">+</span> <span class="n">online</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">online</span><span class="p">))</span>
+<span class="n">ci</span> <span class="o">=</span> <span class="p">(</span><span class="n">diff_mu</span> <span class="o">-</span> <span class="mf">1.96</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="n">diff_mu</span> <span class="o">+</span> <span class="mf">1.96</span><span class="o">*</span><span class="n">diff_se</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ci</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-8.376410208363385, -1.4480327880905248)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">diff_mu</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="n">diff_mu</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">diff_mu</span><span class="p">,</span> <span class="n">diff_se</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=.</span><span class="mi">05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=.</span><span class="mi">05</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;95% CI&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_22_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_22_0.png" />
+</div>
+</div>
+<p>With this at hand, we can say that we are 95% confident that the true difference between the online and face to face group falls between -8.37 and -1.44. We can also construct a <strong>z statistic</strong> by dividing the difference in mean by the \(SE\) of the differences.</p>
+<p><span class="math notranslate nohighlight">\(
+z = \dfrac{\mu_{diff} - H_{0}}{SE_{diff}} = \dfrac{(\mu_1 - \mu_2) - H_{0}}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}}
+\)</span></p>
+<p>Where \(H_0\) is the value which we want to test our difference against.</p>
+<p>The z statistic is a measure of how extreme the observed difference is. To test our hypothesis that the difference in the means is statistically different from zero, we will use contradiction. We will assume that the opposite is true, that is, we will assume that the difference is zero. This is called a null hypothesis, or \(H_0\). Then, we will ask ourselves “is it likely that we would observe such a difference if the true difference were indeed zero?” In statistical math terms, we can translate this question to checking how far from zero is our z statistic.</p>
+<p>Under \(H_0\), the z statistic follows a standard normal distribution. So, if the difference is indeed zero, we would see the z statistic between 2 standard deviation of the mean 95% of the time. The direct consequence of this is that if z falls above or below 2 standard deviations, we can reject the null hypothesis with 95% confidence.</p>
+<p>Let’s see how this looks like in our classroom example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">diff_mu</span> <span class="o">/</span> <span class="n">diff_se</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.7792810791031224
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Standard Normal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=.</span><span class="mi">05</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Z statistic&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_25_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_25_0.png" />
+</div>
+</div>
+<p>This looks like a pretty extreme value. Indeed, it is above 2, which means there is less than a 95% chance that we would see such an extreme value if there were no difference in the groups. This again leads us to conclude that switching from face to face to online classes causes a statistically significant drop in academic performance.</p>
+<p>One final interesting thing about hypothesis tests is that it is less conservative than checking if the 95% CI from the treated and untreated group overlaps. In other words, if the confidence intervals in the two groups overlap, it can still be the case that the result is statistically significant. For example, let’s pretend that the face-to-face group has an average score of 74 and standard error of 7 and the online group has an average score of 71 with a standard error of 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cont_mu</span><span class="p">,</span> <span class="n">cont_se</span> <span class="o">=</span>  <span class="p">(</span><span class="mi">71</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">test_mu</span><span class="p">,</span> <span class="n">test_se</span> <span class="o">=</span> <span class="p">(</span><span class="mi">74</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="n">diff_mu</span> <span class="o">=</span> <span class="n">test_mu</span> <span class="o">-</span> <span class="n">cont_mu</span>
+<span class="n">diff_se</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cont_se</span> <span class="o">+</span> <span class="n">cont_se</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Control 95% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">cont_mu</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">cont_se</span><span class="p">,</span> <span class="n">cont_mu</span><span class="o">+</span><span class="mf">1.96</span><span class="o">*</span><span class="n">cont_se</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test 95% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">test_mu</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">test_se</span><span class="p">,</span> <span class="n">test_mu</span><span class="o">+</span><span class="mf">1.96</span><span class="o">*</span><span class="n">test_se</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Diff 95% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">diff_mu</span><span class="o">-</span><span class="mf">1.96</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="n">diff_mu</span><span class="o">+</span><span class="mf">1.96</span><span class="o">*</span><span class="n">diff_se</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Control 95% CI: (69.04, 72.96)
+Test 95% CI: (60.28, 87.72)
+Diff 95% CI: (0.22814141774873375, 5.771858582251266)
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we construct the confidence intervals for these groups, they overlap. The upper bound for the 95% CI of the online group is 72.96 and the lower bound for the face-to-face group is 60.28. However, once we compute the 95% confidence interval for the difference between the groups, we can see that it does not contain zero. In summary, even though the individual confidence intervals overlap, the difference can still be statistically different from zero.</p>
+</div>
+<div class="section" id="p-values">
+<h2>P-values<a class="headerlink" href="#p-values" title="Permalink to this headline">¶</a></h2>
+<p>I’ve said previously that there is less than 95% chance that we would observe such an extreme value if the difference between online and face to face groups were actually zero. But can we estimate exactly what is that chance? How likely are we to observe such an extreme value? Enters P-Values!</p>
+<p>Just like with confidence intervals (and most frequentist statistics, as a matter of fact) the true definition of P-values can be very confusing. So, to not take any risks, I’ll copy the definition from Wikipedia: “the p-value is the probability of obtaining test results at least as extreme as the results actually observed during the test, assuming that the null hypothesis is correct”. Don’t let this complexity fool you. In practical terms, they are pretty straightforward to use.</p>
+<p><img alt="p_value" src="_images/p_value.png" /></p>
+<p>To get the p-value, we need to compute the area under the standard normal distribution before or after the z statistic. Fortunately, we have a computer to do this calculation for us. We can simply plug the z statistic in the CDF of the standard normal distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P-value:&quot;</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P-value: 0.0027239680835563383
+</pre></div>
+</div>
+</div>
+</div>
+<p>This means that there is only a 0.2% chance of observing this extreme z statistic if the difference was zero. Notice how the P-value is interesting because it avoids us having to specify a confidence level, like 95% or 99%. But, if we wish to report one, from the p-value, we know exactly which confidence will our test pass or fail. For instance, with a p-value of 0.0027, we know that we have significance up to the 0.2% level. So, while the 95% CI for the difference and the 99% CI will neither contain zero, the 99.9% CI will.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff_mu</span> <span class="o">=</span> <span class="n">online</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">face_to_face</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">diff_se</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">face_to_face</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">face_to_face</span><span class="p">)</span> <span class="o">+</span> <span class="n">online</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">online</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;95% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">diff_mu</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">975</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="n">diff_mu</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">975</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;99% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">diff_mu</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">995</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="n">diff_mu</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">995</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;99.9% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">diff_mu</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">9995</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="n">diff_mu</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">9995</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% CI: (-8.376346553082909, -1.4480964433710017)
+99% CI: (-9.46485353526404, -0.3595894611898709)
+99.9% CI: (-10.728040658245558, 0.9035976617916459)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="keys-ideas">
+<h2>Keys Ideas<a class="headerlink" href="#keys-ideas" title="Permalink to this headline">¶</a></h2>
+<p>We’ve seen how important it is to know the Moivre’s equation and we used it to place a degree of certainty around our estimates. Namely, we figured out that the online classes cause a decrease in academic performance compared to face to face classes. We also saw that this was a statistically significant result. We did it by comparing the Confidence Intervals of the means for the 2 groups, by looking at the confidence interval for the difference, by doing a hypothesis test and by looking at the p-value. Let’s wrap everything up in a single function that does A/B testing comparison like the one we did above</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">AB_test</span><span class="p">(</span><span class="n">test</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">control</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">h0</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">mu1</span><span class="p">,</span> <span class="n">mu2</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">control</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">se1</span><span class="p">,</span> <span class="n">se2</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="p">)),</span> <span class="n">control</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">control</span><span class="p">))</span>
+    
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">mu1</span> <span class="o">-</span> <span class="n">mu2</span>
+    <span class="n">se_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="p">)</span> <span class="o">+</span> <span class="n">control</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">control</span><span class="p">))</span>
+    
+    <span class="n">z_stats</span> <span class="o">=</span> <span class="p">(</span><span class="n">diff</span><span class="o">-</span><span class="n">h0</span><span class="p">)</span><span class="o">/</span><span class="n">se_diff</span>
+    <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">z_stats</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">critial</span><span class="p">(</span><span class="n">se</span><span class="p">):</span> <span class="k">return</span> <span class="o">-</span><span class="n">se</span><span class="o">*</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">confidence</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test </span><span class="si">{</span><span class="n">confidence</span><span class="o">*</span><span class="mi">100</span><span class="si">}</span><span class="s2">% CI: </span><span class="si">{</span><span class="n">mu1</span><span class="si">}</span><span class="s2"> +- </span><span class="si">{</span><span class="n">critial</span><span class="p">(</span><span class="n">se1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Control </span><span class="si">{</span><span class="n">confidence</span><span class="o">*</span><span class="mi">100</span><span class="si">}</span><span class="s2">% CI: </span><span class="si">{</span><span class="n">mu2</span><span class="si">}</span><span class="s2"> +- </span><span class="si">{</span><span class="n">critial</span><span class="p">(</span><span class="n">se2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test-Control </span><span class="si">{</span><span class="n">confidence</span><span class="o">*</span><span class="mi">100</span><span class="si">}</span><span class="s2">% CI: </span><span class="si">{</span><span class="n">diff</span><span class="si">}</span><span class="s2"> +- </span><span class="si">{</span><span class="n">critial</span><span class="p">(</span><span class="n">se_diff</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z Statistic </span><span class="si">{</span><span class="n">z_stats</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-Value </span><span class="si">{</span><span class="n">p_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+<span class="n">AB_test</span><span class="p">(</span><span class="n">online</span><span class="p">,</span> <span class="n">face_to_face</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test 95.0% CI: 73.63526308510637 +- 3.0127770572134565
+Control 95.0% CI: 78.54748458333333 +- 1.7097768273108005
+Test-Control 95.0% CI: -4.912221498226955 +- 3.4641250548559537
+Z Statistic -2.7792810791031224
+P-Value 0.0027239680835563383
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since our function is generic enough, we can test other null hypotheses. For instance, can we try to reject that the difference between online and face to face class performance is -1. With the results we get, we can say with 95% confidence that the difference is greater than -1. But we can’t say it with 99% confidence:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AB_test</span><span class="p">(</span><span class="n">online</span><span class="p">,</span> <span class="n">face_to_face</span><span class="p">,</span> <span class="n">h0</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test 95.0% CI: 73.63526308510637 +- 3.0127770572134565
+Control 95.0% CI: 78.54748458333333 +- 1.7097768273108005
+Test-Control 95.0% CI: -4.912221498226955 +- 3.4641250548559537
+Z Statistic -2.2134920404560883
+P-Value 0.013431870694630114
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>I like to think of this entire series as a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what is keeping me sane during this tough year of 2020.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2017-webcasts">Cross-Section Econometrics</a></p></li>
+<li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2020-webcasts">Mastering Mostly Harmless Econometrics</a></p></li>
+</ul>
+<p>I’ll also like to reference the amazing books from Angrist. They have shown me that Econometrics, or ‘Metrics as they call it, is not only extremely useful but also profoundly fun.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.mostlyharmlesseconometrics.com/">Mostly Harmless Econometrics</a></p></li>
+<li><p><a class="reference external" href="https://www.masteringmetrics.com/">Mastering ‘Metrics</a></p></li>
+</ul>
+<p>My final reference is Miguel Hernan and Jamie Robins’ book. It has been my trustworthy companion in the most thorny causal questions I had to answer.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">Causal Inference Book</a></p></li>
+</ul>
+<p>In this particular section, I’ve also referenced The <a class="reference external" href="https://www.researchgate.net/publication/255612702_The_Most_Dangerous_Equation">Most Dangerous Equation</a>, by Howard Wainer.</p>
+<p>Finally, if you are curious about the correct interpretation of the statistical concepts we’ve discussed here, I recommend reading the paper by Greenland et al, 2016: <a class="reference external" href="https://link.springer.com/content/pdf/10.1007/s10654-016-0149-3.pdf">Statistical tests, P values, confidence intervals, and power: a guide to misinterpretations</a>.</p>
+<p><img alt="img" src="_images/poetry.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="02-Randomised-Experiments.html" title="previous page">Randomised Experiments</a>
+    <a class='right-next' id="next-link" href="04-Graphical-Causal-Models.html" title="next page">Graphical Causal Models</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,1306 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Synthetic Control &#8212; Causal Inference for the Brave and True</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Regression Discontinuity Design" href="16-Regression-Discontinuity-Design.html" />
+    <link rel="prev" title="Three Billboards in the South of Brazil" href="14-Difference-in-Difference.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
+   Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html">
+   Three Billboards in the South of Brazil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#did-estimator">
+   DID Estimator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#non-parallel-trends">
+   Non Parallel Trends
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#references">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/15-Synthetic-Control.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F15-Synthetic-Control.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/15-Synthetic-Control.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#one-amazing-math-trick-to-learn-what-cant-be-known">
+   One Amazing Math Trick to Learn What can’t be Known
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#we-have-time">
+   We have Time
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#synthetic-control-as-linear-regression">
+   Synthetic Control as Linear Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#don-t-extrapolate">
+   Don’t Extrapolate
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-inference">
+   Making Inference
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="synthetic-control">
+<h1>Synthetic Control<a class="headerlink" href="#synthetic-control" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="one-amazing-math-trick-to-learn-what-cant-be-known">
+<h2>One Amazing Math Trick to Learn What can’t be Known<a class="headerlink" href="#one-amazing-math-trick-to-learn-what-cant-be-known" title="Permalink to this headline">¶</a></h2>
+<p>When we looked at difference-in-difference, we had data on multiple customers from 2 different cities: Porto Alegre and Florianópolis. The data span 2 different time periods: before and after a marketing intervention was done in Porto Alegre to boost customer deposits. To estimate the treatment effect, we ran a regression that gave us the difference-in-difference estimator and its standard error.</p>
+<p>For that case, we had a lot of samples, because data was disaggregated. But what if all we have is aggregated data on the city level? For instance, let’s pretend all we have is the average level of deposits in both cities before and after the intervention.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>city</p></th>
+<th class="head"><p>before</p></th>
+<th class="head"><p>after</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FL</p></td>
+<td><p>171.64</p></td>
+<td><p>206.16</p></td>
+</tr>
+<tr class="row-odd"><td><p>POA</p></td>
+<td><p>46.01</p></td>
+<td><p>87.06</p></td>
+</tr>
+</tbody>
+</table>
+<p>We would still be able to compute the Diff-in-Diff estimator</p>
+<p><span class="math notranslate nohighlight">\(
+(E[Y(1)|D=1] - E[Y(1)|D=0]) - (E[Y(0)|D=1] - E[Y(0)|D=0]) = (87.06 - 206.16) - (46.01 - 171.64) = 6.53
+\)</span></p>
+<p>However, note that the sample size here is 4, which is also the number of parameters in our Diff-in-Diff models. In this case, the standard error is not well defined, so what should we do? Another problem is that Florianopolis might not be as similar to Porto Alegre as we would want to. For instance, Florianopolis is known for its beautiful beaches and easy going people while Porto Alegre is more famous for its barbecue and the traditional gaucho. The problem is that you can’t never know for sure if you are using an appropriate control group.</p>
+<p>To solve this problem, we will use what is known as <a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/jep.31.2.3"><strong>“the most important innovation in the policy evaluation literature in the last few years”</strong></a>, Synthetic Controls. It is based on a simple, yet powerful idea. We don’t need to find any single unit in the untreated that is very similar to the treated. Instead, we can forge our own as a combination of multiple untreated units, creating what is effectively a synthetic control. Synthetic control is so effective yet so intuitive that it even got an article published, not on a scientific journal, but on the <a class="reference external" href="https://www.washingtonpost.com/news/wonk/wp/2015/10/30/how-to-measure-things-in-a-world-of-competing-claims/">Washington Post</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_columns&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;fivethirtyeight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To see it in action, consider the problem of estimating the effect of cigarette taxation on its consumption. To give a bit of context, this is a question that had been debated for a long time in economics. One side of the argument says that taxes will increase the cost of cigars, which will lower its demand. The other side argues that since cigarettes cause addiction, change in their price won’t change their demand by much. In economic terms, we would say that the demand for cigarettes is inelastic on price, and an increase in taxation is just a way to increase government income at the cost of smokers. To settle things, we will look at some US data regarding the matter.</p>
+<p>In 1988, California passed a famous Tobacco Tax and Health Protection Act, which became known as <a class="reference external" href="https://en.wikipedia.org/wiki/1988_California_Proposition_99">Proposition 99</a>. “Its primary effect is to impose a 25-cent per pack state excise tax on the sale of tobacco cigarettes within California, with approximately equivalent excise taxes similarly imposed on the retail sale of other commercial tobacco products, such as cigars and chewing tobacco. Additional restrictions placed on the sale of tobacco include a ban on cigarette vending machines in public areas accessible by juveniles, and a ban on the individual sale of single cigarettes. Revenue generated by the act was earmarked for various environmental and health care programs, and anti-tobacco advertisements.”</p>
+<p>To evaluate its effect, we can gather data on cigarette sales from multiple states and across a number of years. In our case, we got data from the year 1970 to 2000 from 39 states. Other states had similar Tobacco control programs and were dropped from the analysis. Here is what our data looks like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cigar</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/smoking.csv&quot;</span><span class="p">)</span>
+         <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lnincome&quot;</span><span class="p">,</span><span class="s2">&quot;beer&quot;</span><span class="p">,</span> <span class="s2">&quot;age15to24&quot;</span><span class="p">]))</span>
+
+<span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>year</th>
+      <th>cigsale</th>
+      <th>retprice</th>
+      <th>california</th>
+      <th>after_treatment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>62</th>
+      <td>3</td>
+      <td>1970</td>
+      <td>123.000000</td>
+      <td>38.799999</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>3</td>
+      <td>1971</td>
+      <td>121.000000</td>
+      <td>39.700001</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>3</td>
+      <td>1972</td>
+      <td>123.500000</td>
+      <td>39.900002</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>3</td>
+      <td>1973</td>
+      <td>124.400002</td>
+      <td>39.900002</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>3</td>
+      <td>1974</td>
+      <td>126.699997</td>
+      <td>41.900002</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We have <code class="docutils literal notranslate"><span class="pre">state</span></code> as the state index, where California is the number 3. Our covariates are <code class="docutils literal notranslate"><span class="pre">retprice</span></code>, the cigarette retail price, and <code class="docutils literal notranslate"><span class="pre">cigsale</span></code>, the per-capita sales of cigarettes in packs. Our outcome variable of interest is <code class="docutils literal notranslate"><span class="pre">cigsale</span></code>. Finally, we have boolean helper variables to signal the state of California and the post intervention period. If we plot the sales of cigarettes for California and other states across time, this is what we would get.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">cigar</span>
+ <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">california</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cigar</span><span class="p">[</span><span class="s2">&quot;california&quot;</span><span class="p">],</span> <span class="s2">&quot;California&quot;</span><span class="p">,</span> <span class="s2">&quot;Other States&quot;</span><span class="p">))</span>
+ <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;california&quot;</span><span class="p">])</span>
+ <span class="p">[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span>
+ <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+ <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+ <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;california&quot;</span><span class="p">,</span> <span class="s2">&quot;cigsale&quot;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">)))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">140</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Proposition 99&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cigarette Sales Trend&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Gap in per-capita cigarette sales (in packs)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-Synthetic-Control_5_0.png" src="_images/15-Synthetic-Control_5_0.png" />
+</div>
+</div>
+<p>During the time for which we have data, people in California apparently bought less cigarettes than the national average. Also, it appears to be a decreasing movement in cigarette consumption after the 80s. It looks like after Proposition 99 the decreasing trend accelerated for California, compared to other states, but we can’t say that for sure. It is just a guess that we have by examining the plot.</p>
+<p>To answer the question of whether Proposition 99 had an effect on cigarette consumption, we will use the pre-intervention period to build a synthetic control. We will combine the other states to <strong>build a fake state that resembles very closely the trend of California</strong>. Then, we will see how this synthetic control behaves after the intervention.</p>
+</div>
+<div class="section" id="we-have-time">
+<h2>We have Time<a class="headerlink" href="#we-have-time" title="Permalink to this headline">¶</a></h2>
+<p>To make matters a little bit more formal suppose that we have J+1 units. Without loss of generality, assume that unit 1 is the unit that gets affected by an intervention. Units \(j=2,…,J+1\) are a collection of untreated units that we will refer to as the “donor pool”. Also assume that the data we have span T time periods, whith \(T_0\) periods before the intervention. For each unit j and each time t, we observe the outcome \(Y_{jt}\). For each unit j and period t, define \(Y^N_{jt}\) as the potential outcome without intervention and \(Y^I_{jt}\), the potential outcome with intervention. Then, the effect for the treated unit \(j=1\) at time t, for \(t&gt;T_0\) is defined as</p>
+<p><span class="math notranslate nohighlight">\(
+\tau_{1t} = Y^I_{jt} - Y^N_{jt}
+\)</span></p>
+<p>Since unit \(j=1\) is the treated one, \(Y^I_{jt}\) is factual but \(Y^N_{jt}\) is not. The challenge then becomes how do we estimate \(Y^N_{jt}\). Note how the treatment effect is defined for each period, which means it can change in time. It doesn’t need to be instantaneous. It can accumulate or dissipate. To put it in a picture, the problem of estimating the treatment effect boils down to the problem of estimating what would have happened to the outcome of unit \(j=1\) if it had not been treated.</p>
+<p><img alt="img" src="_images/synth_img.png" /></p>
+<p>To estimate \(Y^N_{jt}\), we remember that a combination of units in the donor pool may approximate the characteristics of the treated unit much better than any untreated unit alone. Thus, a synthetic control is defined as a weighted average of the units in the control pool. Given the weights \(\pmb{W}=(w_2, …, w_{J+1})\), the synthetic control estimate of \(Y^N_{jt}\) is</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{Y}^N_{jt} = \sum^{J+1}_{j=2} w_j Y_{jt}
+\)</span></p>
+<p>If all this math makes your head hurt, you are not alone. But don’t worry, we got lots of examples to make it more intuitive. For once, I like to think about synthetic control as an upside down way of doing regression. As we know, linear regression is also a way of getting the prediction as a weighted average of the variables. Think about those regressions like the one in the diff-in-diff example where each variable is a dummy for a time period. In this case, regression can be represented as the following matrix multiplication</p>
+<p><img alt="img" src="_images/regr_time.png" /></p>
+<p>On the synthetic control case, we don’t have lots of units, but we do have lots of time periods. So what we do is flip the input matrix around. Then, the units become the “variables” and we represent the outcome as a weighted average of the units, like in the following matrix multiplication.</p>
+<p><img alt="img" src="_images/regr_space.png" /></p>
+<p>If we have more than one feature per time period, we can pile up the features like this. The important thing is to make it so that the regression is trying to “predict” the treated unit 1 by using the other units. This way, we can choose the weights in some optimal way to achieve this proximity we want. We can even scale features differently to give different importance to them.</p>
+<p><img alt="img" src="_images/regr_space_x.png" /></p>
+<p>So, if synthetic control can be viewed as a linear regression, it also means that we can estimate the weights with OLS right? Yup! In fact, let’s do this now.</p>
+</div>
+<div class="section" id="synthetic-control-as-linear-regression">
+<h2>Synthetic Control as Linear Regression<a class="headerlink" href="#synthetic-control-as-linear-regression" title="Permalink to this headline">¶</a></h2>
+<p><img alt="img" src="_images/allways.png" /></p>
+<p>To estimate the treatment effect with synthetic control, we will try to build a “fake unit” that resembles the treated unit before the intervention period. Then, we will see how this “fake unit” behaves after the intervention. The difference between the synthetic control and the unit that it mimics is the treatment effect.</p>
+<p>To do this with linear regression, we will find the weight using OLS. We will minimise the square distance between the weighted average of the units in the donor pool and the treated unit for the pre-intervention period.</p>
+<p>To do so, the first thing we need is to convert the units (in our case, the states) into the columns and the time into the rows. Since we have 2 features, <code class="docutils literal notranslate"><span class="pre">cigsale</span></code> and <code class="docutils literal notranslate"><span class="pre">retprice</span></code>, we will pile them on top of each other like we did in the picture above. We will build a synthetic control that looks a lot like California in the pre intervention period and see how it would behave in the post intervention period. For this reason, it is important that we select only the pre-intervention period. Here, the features seem to be on a similar scale, so we won’t do anything to them. If features are in different scales, one in the thousands and another in the decimals, the bigger feature will be the most important when minimizing the difference. To avoid this, it’s important to scale them first.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">,</span> <span class="s2">&quot;retprice&quot;</span><span class="p">]</span>
+
+<span class="n">inverted</span> <span class="o">=</span> <span class="p">(</span><span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;~after_treatment&quot;</span><span class="p">)</span> <span class="c1"># filter pre-intervention period</span>
+            <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">)[</span><span class="n">features</span><span class="p">]</span> <span class="c1"># make one column per year and one row per state</span>
+            <span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="c1"># flip the table to have one column per state</span>
+
+<span class="n">inverted</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>...</th>
+      <th>37</th>
+      <th>38</th>
+      <th>39</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">cigsale</th>
+      <th>1970</th>
+      <td>89.800003</td>
+      <td>100.300003</td>
+      <td>123.000000</td>
+      <td>...</td>
+      <td>114.500000</td>
+      <td>106.400002</td>
+      <td>132.199997</td>
+    </tr>
+    <tr>
+      <th>1971</th>
+      <td>95.400002</td>
+      <td>104.099998</td>
+      <td>121.000000</td>
+      <td>...</td>
+      <td>111.500000</td>
+      <td>105.400002</td>
+      <td>131.699997</td>
+    </tr>
+    <tr>
+      <th>1972</th>
+      <td>101.099998</td>
+      <td>103.900002</td>
+      <td>123.500000</td>
+      <td>...</td>
+      <td>117.500000</td>
+      <td>108.800003</td>
+      <td>140.000000</td>
+    </tr>
+    <tr>
+      <th>1973</th>
+      <td>102.900002</td>
+      <td>108.000000</td>
+      <td>124.400002</td>
+      <td>...</td>
+      <td>116.599998</td>
+      <td>109.500000</td>
+      <td>141.199997</td>
+    </tr>
+    <tr>
+      <th>1974</th>
+      <td>108.199997</td>
+      <td>109.699997</td>
+      <td>126.699997</td>
+      <td>...</td>
+      <td>119.900002</td>
+      <td>111.800003</td>
+      <td>145.800003</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 39 columns</p>
+</div></div></div>
+</div>
+<p>Now, we can define our Y variable as the state of California and the X as the other states</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">inverted</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># state of california</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">inverted</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># other states</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we run a regression. Having an intercept is equivalent to adding another state where every row is 1. You can do that, but I think it’s more complicated and I’ll just leave it out. The regression will return the set of weights that minimize the square difference between the treated unit and the units in the donor pool.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="n">weights_lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">weights_lr</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.436, -1.038,  0.679,  0.078,  0.339,  1.213,  0.143,  0.555,
+       -0.295,  0.052, -0.529,  1.235, -0.549,  0.437, -0.023, -0.266,
+       -0.25 , -0.667, -0.106, -0.145,  0.109,  0.242, -0.328,  0.594,
+        0.243, -0.171, -0.02 ,  0.14 , -0.811,  0.362,  0.519, -0.304,
+        0.805, -0.318, -1.246,  0.773, -0.055, -0.032])
+</pre></div>
+</div>
+</div>
+</div>
+<p>These weights show us how to build the synthetic control. We will multiply the outcome of state 1 by -0.436, of state 2 by -1.038, of state 4 by 0.679 and so on. We can achieve this with a dot product between the matrix from the states in the pool and the weights.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calif_synth_lr</span> <span class="o">=</span> <span class="p">(</span><span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;~california&quot;</span><span class="p">)</span>
+                  <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;state&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span>
+                  <span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">weights_lr</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have our synthetic control, we can plot it with the outcome variable of the State of California.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;California&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">calif_synth_lr</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Synthetic Control&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">140</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Proposition 99&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Gap in per-capita cigarette sales (in packs)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-Synthetic-Control_15_0.png" src="_images/15-Synthetic-Control_15_0.png" />
+</div>
+</div>
+<p>OK… Something seems off. What grabs your attention in this picture? First, after the intervention, the synthetic control  has more cigarette sales than California. This is an indicative that the intervention was successful in lowering cigarette demand. Second, notice how the pre-intervention period is fitted perfectly. The synthetic control is able to match the state of California exactly. This is a sign that our synthetic control model is probably overfitting the data. Another sign of this is the huge variance on the outcome variable of the synthetic control after the intervention. Notice how it doesnt follow smooth patterns. Instead, it goes up and down and up and down.</p>
+<p><img alt="img" src="_images/out-of-sample.png" /></p>
+<p>If we think about why this is happening, remember that we have 38 states in our donor pool. So our linear regression has 38 parameters to play with in order to make the pretreatment pool match the treatment as close as it can. This is the case where even if T is large, N is also large, which gives too much flexibility to our linear regression. If you are familiar with regularized models, know that you could use Ridge or Lasso regression to fix this. Here, we will look at another more traditional way to avoid overfitting.</p>
+</div>
+<div class="section" id="don-t-extrapolate">
+<h2>Don’t Extrapolate<a class="headerlink" href="#don-t-extrapolate" title="Permalink to this headline">¶</a></h2>
+<p>Suppose you have data like in this table below and are asked to build a synthetic control to reproduce the treated unit using any linear combination of the control units.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>unit</p></th>
+<th class="head"><p>sales</p></th>
+<th class="head"><p>price</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>control 1</p></td>
+<td><p>8</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>control 2</p></td>
+<td><p>8</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>control 3</p></td>
+<td><p>4</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>treated</p></td>
+<td><p>2</p></td>
+<td><p>10</p></td>
+</tr>
+</tbody>
+</table>
+<p>Since there are 3 units and only 2 attributes 2 match, there are multiple exact solutions to this problem, but a nice one is multiplying the first control by 2.25, multiplying the second by -2 and adding both. Notice how the second multiplication creates a fake unit with sales of -16 and price of -8. This multiplication is extrapolating the control 2 unit to a region of the data that doesn’t make a lot of sense, since negative price and sales are almost impossible. The first multiplication is also an extrapolation, since it takes the first unit to a region where sales and price are 18. These numbers are much higher than anything we have in our data, hence the extrapolation.</p>
+<p>This is what regression is doing when we ask it to create a synthetic control. Extrapolation is not technically wrong, but it’s dangerous in practice. We are making assumptions that the data we have never seen behaves like the data that we have.</p>
+<p>One way to play safer is to constrain our synthetic control to only do interpolation. To do so, we will restrict the weights to be positive and sum to one. Now, the synthetic control will be a convex combination of the units in the donor pool. When doing interpolation, we will project the treated unit in the convex hull defined by the untreated unit, much like in the picture below.</p>
+<p><img alt="img" src="_images/extrapolation.png" /></p>
+<p>Notice 2 things here. First, interpolation won’t be able to create a perfect match of the treated unit in this case. This is because the treat is the unit with the smallest number of sales and the highest price. Convex combinations can only replicate exactly features that are in between the control units. Another thing to notice is that interpolation is sparse. We will project the treated unit on a wall of the convex hull and this wall is defined only by a few units. For this reason, interpolation will assign weight zero to many of the units.</p>
+<p>This is the general idea, now let’s formalize it a little bit. The synthetic control is still defined as</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{Y}^N_{jt} = \sum^{J+1}_{j=2} w_j Y_{jt}
+\)</span></p>
+<p>but now, we will use weights \(\pmb{W}=(w_2, …, w_{J+1})\) that minimises</p>
+<p><span class="math notranslate nohighlight">\(
+||\pmb{X}_1 - \pmb{X}_0 \pmb{W}|| = \bigg(\sum^k_{h=1}v_h \bigg(X_{h1} - \sum^{J+1}_{j=2} w_j X_{hj} \bigg)^2 \bigg)^{\frac{1}{2}}
+\)</span></p>
+<p>subject to the restriction that \(w_2, …, w_{J+1}\) are positive and sum to one. Notice that \(v_h\) reflect the importance of each variable when minimising the difference between the treated and the synthetic control. Different \(v\)s would give different optimal weights. One way to choose \(V\) is to make it so that each variable has mean zero and unit variance. A more complex way is to choose \(V\) in such a way that variables that help to predict \(Y\) better get higher importance. Since we want to keep the code simple, we will simply give the same importance for each variable.</p>
+<p>To implement this, first, define the above loss function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span>
+<span class="kn">from</span> <span class="nn">toolz</span> <span class="kn">import</span> <span class="n">reduce</span><span class="p">,</span> <span class="n">partial</span>
+
+<span class="k">def</span> <span class="nf">loss_w</span><span class="p">(</span><span class="n">W</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">treated</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">controls</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">],</span> <span class="n">V</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">treated</span> <span class="o">-</span> <span class="n">reduce</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">w</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">controls</span><span class="p">,</span> <span class="n">W</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">diff</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># I&#39;m using the mean instead of the sum, but it doesn&#39;t matter much</span>
+
+<span class="k">def</span> <span class="nf">loss_w</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">W</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we are using the same importance for every feature, we don’t need to worry about v.</p>
+<p>Now, to get the optimal weights, we will use the quadratic programming optimisation of scipy. We will constrain the weights to sum to 1 with</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Also, we will set optimization bounds to be between 0 and 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fmin_slsqp</span>
+
+<span class="k">def</span> <span class="nf">get_w</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    
+    <span class="n">w_start</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">*</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">fmin_slsqp</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">loss_w</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">),</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">w_start</span><span class="p">),</span>
+                         <span class="n">f_eqcons</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+                         <span class="n">bounds</span><span class="o">=</span><span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">w_start</span><span class="p">),</span>
+                         <span class="n">disp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">weights</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With this implemented, let’s get the weights that define the synthetic control</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calif_weights</span> <span class="o">=</span> <span class="n">get_w</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sum:&quot;</span><span class="p">,</span> <span class="n">calif_weights</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">calif_weights</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sum: 1.000000000000173
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.    , 0.    , 0.    , 0.0852, 0.    , 0.    , 0.    , 0.    ,
+       0.    , 0.    , 0.    , 0.    , 0.    , 0.    , 0.    , 0.    ,
+       0.    , 0.    , 0.    , 0.113 , 0.1051, 0.4566, 0.    , 0.    ,
+       0.    , 0.    , 0.    , 0.    , 0.    , 0.    , 0.    , 0.    ,
+       0.2401, 0.    , 0.    , 0.    , 0.    , 0.    ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, with this weight, we are multiplying states 1,2, and 4 by zero, state 5 by 0.0852 and so on. Notice how the weights are sparse, exactly as we’ve predicted. Also, all weights sum to one and are between 0 and 1, satisfying our convex combination constraint.</p>
+<p>Now, to get the synthetic control, we can multiply those weights by the states exactly as we did before with the regression weights.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calif_synth</span> <span class="o">=</span> <span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;~california&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;state&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">calif_weights</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we plot the outcome of the synthetic control now, we get a much smoother trend. Also note that the synthetic control doesn’t reproduce the treated exactly in the pre intervention period. This is a good sign, as it indicates that we are not overfitting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;California&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">calif_synth</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Synthetic Control&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">140</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Proposition 99&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Per-capita cigarette sales (in packs)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-Synthetic-Control_25_0.png" src="_images/15-Synthetic-Control_25_0.png" />
+</div>
+</div>
+<p>With the synthetic control at hand, we can estimate the treatment effect as the gap between the outcome in the treated and the synthetic control outcome.</p>
+<p><span class="math notranslate nohighlight">\(
+\tau_{1t} = Y^I_{jt} - Y^N_{jt}
+\)</span></p>
+<p>In this case, the effect gets bigger and bigger as time passes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">calif_synth</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s2">&quot;California Effect&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=-</span><span class="mi">30</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Proposition 99&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">1970</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;State - Synthetic Across Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Gap in per-capita cigarette sales (in packs)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-Synthetic-Control_27_0.png" src="_images/15-Synthetic-Control_27_0.png" />
+</div>
+</div>
+<p>By the year 2000, it looks like Proposition 99 has reduced the sales in cigarettes by 25 packs. That is very cool and all, but something you might be asking yourself if: how can I know if this is statistically significant?</p>
+</div>
+<div class="section" id="making-inference">
+<h2>Making Inference<a class="headerlink" href="#making-inference" title="Permalink to this headline">¶</a></h2>
+<p>Since our sample size is very small (39), we will have to be a bit smarter when figuring out if our result is statistically significant and not just due to random luck. Here, we will use the idea of Fisher’s Exact Test. It’s intuition is very simple. We permute the treated and control exhaustively. Since we only have one treated unit, this would mean that, for each unit, we pretend it is the treated while the others are the control.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>iteration</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>…</p></th>
+<th class="head"><p>39</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>treated</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>0</p></td>
+<td><p>treated</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>39</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>treated</p></td>
+</tr>
+</tbody>
+</table>
+<p>In the end, we will have one synthetic control and effect estimates for each state. So what this does is it pretends the treatment actually happened for another state, not California, and see what would be the estimated effect for this treatment that didn’t happen. Then, we see if the treatment in Califórnia is sufficiently larger when compared to the other fake treatment.</p>
+<p>To implement this, I’ve built this function that takes as input a state and estimate the synthetic control for that state. This function returns a data frame with one column for the state, one for the year, one for the outcome <code class="docutils literal notranslate"><span class="pre">cigsale</span></code> and the synthetic outcome for that state.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">synthetic_control</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pool</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+    
+    <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">,</span> <span class="s2">&quot;retprice&quot;</span><span class="p">]</span>
+    
+    <span class="n">inverted</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;~after_treatment&quot;</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">)[</span><span class="n">features</span><span class="p">]</span>
+                <span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    
+    <span class="n">y</span> <span class="o">=</span> <span class="n">inverted</span><span class="p">[</span><span class="n">state</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># treated</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">inverted</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="c1"># donor pool</span>
+
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">get_w</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">synthetic</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;~(state==</span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+                 <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;state&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span>
+                 <span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">weights</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">data</span>
+            <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;state==</span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)[[</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;cigsale&quot;</span><span class="p">,</span> <span class="s2">&quot;after_treatment&quot;</span><span class="p">]]</span>
+            <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">synthetic</span><span class="o">=</span><span class="n">synthetic</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is the result of it when we apply it to the first state.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">control_pool</span> <span class="o">=</span> <span class="n">cigar</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="n">synthetic_control</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">control_pool</span><span class="p">,</span> <span class="n">cigar</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>year</th>
+      <th>cigsale</th>
+      <th>after_treatment</th>
+      <th>synthetic</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1970</td>
+      <td>89.800003</td>
+      <td>False</td>
+      <td>95.029419</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1971</td>
+      <td>95.400002</td>
+      <td>False</td>
+      <td>99.118199</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1972</td>
+      <td>101.099998</td>
+      <td>False</td>
+      <td>101.881329</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1973</td>
+      <td>102.900002</td>
+      <td>False</td>
+      <td>103.938655</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1974</td>
+      <td>108.199997</td>
+      <td>False</td>
+      <td>107.038473</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To get the result for all the state, we parallelize the computation across 8 processes. If your computer has more or less cores, you can use a different number. This code will return a list of data frames like the one above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+
+<span class="n">parallel_fn</span> <span class="o">=</span> <span class="n">delayed</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">synthetic_control</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span><span class="n">control_pool</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">cigar</span><span class="p">))</span>
+
+<span class="n">sinthetic_states</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">8</span><span class="p">)(</span><span class="n">parallel_fn</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">control_pool</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sinthetic_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>year</th>
+      <th>cigsale</th>
+      <th>after_treatment</th>
+      <th>synthetic</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1970</td>
+      <td>89.800003</td>
+      <td>False</td>
+      <td>95.029419</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1971</td>
+      <td>95.400002</td>
+      <td>False</td>
+      <td>99.118199</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1972</td>
+      <td>101.099998</td>
+      <td>False</td>
+      <td>101.881329</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1973</td>
+      <td>102.900002</td>
+      <td>False</td>
+      <td>103.938655</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1974</td>
+      <td>108.199997</td>
+      <td>False</td>
+      <td>107.038473</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>With the synthetic control for all the states, we can estimate the gap between the synthetic and the true state for all states. For California, this is the treatment effect. For the other states, this is like a placebo effect, where we estimate the synthetic control treatment effect where the treatment didn’t actually happen. If we plot all the placebo effects along with the California treatment effect, we get the following figure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">sinthetic_states</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;synthetic&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C5&quot;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">calif_synth</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;California&quot;</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=-</span><span class="mi">50</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Proposition 99&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">1970</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Gap in per-capita cigarette sales (in packs)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;State - Synthetic Across Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-Synthetic-Control_36_0.png" src="_images/15-Synthetic-Control_36_0.png" />
+</div>
+</div>
+<p>Two aspects of this figure jump to the eyes. First, we can see that the variance after the intervention is higher than the variance before the intervention. This is expected, since the synthetic control is designed to minimize the difference in the pre-intervention period. Another interesting aspect is that there are some units we can’t fit very well even in the pre-intervention period. This is also to be expected. For example, if some state have very high cigarette consumption, no convex combination of the other states will ever match it.</p>
+<p>Since those units are so poorly fit, it is a good idea to remove them from the analysis. One way to do it objectively is to set a threshold for pre-intervention error</p>
+<p><span class="math notranslate nohighlight">\(
+MSE = \frac{1}{N}\sum\bigg(Y_t - \hat{Y}^{Synth}_t\bigg)^2
+\)</span></p>
+<p>and remove those usints with high error. If we proceed like this and plot the same figure, this is what we get.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pre_treatment_error</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="n">pre_treat_error</span> <span class="o">=</span> <span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;~after_treatment&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span> 
+                       <span class="o">-</span> <span class="n">state</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;~after_treatment&quot;</span><span class="p">)[</span><span class="s2">&quot;synthetic&quot;</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">pre_treat_error</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">sinthetic_states</span><span class="p">:</span>
+    
+    <span class="c1"># remove units with mean error above 80.</span>
+    <span class="k">if</span> <span class="n">pre_treatment_error</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">80</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;synthetic&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C5&quot;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">calif_synth</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;California&quot;</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=-</span><span class="mi">50</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Proposition 99&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">1970</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Gap in per-capita cigarette sales (in packs)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribution of Effects&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;State - Synthetic Across Time (Large Pre-Treatment Errors Removed)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-Synthetic-Control_38_0.png" src="_images/15-Synthetic-Control_38_0.png" />
+</div>
+</div>
+<p>Removing the noise, we can see how extreme of a value is the effect in the state of California. This image shows us that if we pretend the treatment had happened to any other state, we would almost never get an effect so extreme as the one we got with California.</p>
+<p>This picture alone is a form of inference, but we can also derive a P-value from these results. All we have to do is see how many times the effects that we’ve got is below the effect of California.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calif_number</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">effects</span> <span class="o">=</span> <span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;year==2000&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">state</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;year==2000&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;synthetic&quot;</span><span class="p">]</span>
+           <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">sinthetic_states</span>
+           <span class="k">if</span> <span class="n">pre_treatment_error</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">80</span><span class="p">]</span> <span class="c1"># filter out noise</span>
+
+<span class="n">calif_effect</span> <span class="o">=</span> <span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california &amp; year==2000&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">calif_synth</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;California Treatment Effect for the Year 2000&quot;</span><span class="p">,</span> <span class="n">calif_effect</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">effects</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>California Treatment Effect for the Year 2000 -24.830159734493144
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  5.79715889,   0.89458996, -24.83015973,  -7.16628124,
+       -10.92204853,  37.1164056 , -15.06971531,  -0.49805123,
+       -18.45795059,  21.13366451,  12.57782765,  -1.47547827,
+        10.49627367, -11.67012352,   4.29850816,   8.04811405,
+        14.02322411,   8.2500273 ,   0.32576356,  -8.40826887,
+        -2.12402716,  -7.4286503 ,   2.96157551,  24.10478098,
+         4.25211766, -17.75844593,   7.93334015,   2.81640129,
+        12.64955979, -17.47677516, -25.16040937, -12.26469123,
+        24.69067377,  10.36299584,  -8.5988036 ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>if we want to test the one sided hypothesis that the effect in California is below zero, we can estimate the P-value as the proportion of time the effect in California is bigger than all the estimated effects.</p>
+<p><span class="math notranslate nohighlight">\(
+PV=\frac{1}{N}\sum \mathcal{1}\{\hat{\tau}_{Calif} &gt; \hat{\tau}_j\}
+\)</span></p>
+<p>As it turns out, the treatment effect for California in the year 2000 is -24.8, meaning that the intervention reduced the consumption of cigarettes by almost 25 packs. Out of all the other 34 placebo effects that we’ve estimated, only one is higher than the effect we found in California. So the p-value would be 1/35.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">effects</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">calif_effect</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.02857142857142857
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can show the distribution of effects just to get a sense of how extreme the value of the effect in California really is.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">effects</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C5&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">calif_effect</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;California&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frquency&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribution of Effects&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/15-Synthetic-Control_44_0.png" src="_images/15-Synthetic-Control_44_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<p>We’ve learned that if we only have aggregated level data on entities like cities or states, diff-in-diff won’t allow us to do inference. Also, it has some other limitations, since it has to define a control unit and one single control unit might not be a very good representation of the counterfactual of the treated unit.</p>
+<p>To correct for that, we learned that we can build a synthetic control that combines multiple control units to make them resemble the treated unit. With this synthetic control, we were able to see what would have happened to our treated unit in the absence of a treatment.</p>
+<p>Finally, we saw how we could use Fisher’s Exact Tests to do inference with synthetic control. Namely, we’ve pretended that the non-treated units were actually the treated and computed their effect. There was the placebo effect: the effects we would observe even without a treatment. Then, whe saw how extreme of a value the true treatment effect was compared to the placebo.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>I like to think of this entire series as a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what is keeping me sane during this tough year of 2020.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2017-webcasts">Cross-Section Econometrics</a></p></li>
+<li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2020-webcasts">Mastering Mostly Harmless Econometrics</a></p></li>
+</ul>
+<p>I’ll also like to reference the amazing books from Angrist. They have shown me that Econometrics, or ‘Metrics as they call it, is not only extremely useful but also profoundly fun.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.mostlyharmlesseconometrics.com/">Mostly Harmless Econometrics</a></p></li>
+<li><p><a class="reference external" href="https://www.masteringmetrics.com/">Mastering ‘Metrics</a></p></li>
+</ul>
+<p>Other important reference is Miguel Hernan and Jamie Robins’ book. It has been my trustworthy companion in the most thorny causal questions I had to answer.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">Causal Inference Book</a></p></li>
+</ul>
+<p>Finally, I’d also like to compliment Scott Cunningham and his brilliant work mingling Causal Inference and Rap quotes:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.scunning.com/mixtape.html">Causal Inference: The Mixtape</a></p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="14-Difference-in-Difference.html" title="previous page">Three Billboards in the South of Brazil</a>
+    <a class='right-next' id="next-link" href="16-Regression-Discontinuity-Design.html" title="next page">Regression Discontinuity Design</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

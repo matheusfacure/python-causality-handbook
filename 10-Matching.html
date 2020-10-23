@@ -1,0 +1,1535 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matching &#8212; Causal Inference for the Brave and True</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Propensity Score" href="11-Propensity-Score.html" />
+    <link rel="prev" title="Non Compliance and LATE" href="09-Non-Compliance-and-LATE.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
+   Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html">
+   Three Billboards in the South of Brazil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#did-estimator">
+   DID Estimator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#non-parallel-trends">
+   Non Parallel Trends
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#references">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/10-Matching.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F10-Matching.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/10-Matching.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-regression-doing-after-all">
+   What is Regression Doing After All?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-subclassification-estimator">
+   The Subclassification Estimator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matching-estimator">
+   Matching Estimator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matching-bias">
+   Matching Bias
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-curse-of-dimensionality">
+   The Curse of Dimensionality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="matching">
+<h1>Matching<a class="headerlink" href="#matching" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-regression-doing-after-all">
+<h2>What is Regression Doing After All?<a class="headerlink" href="#what-is-regression-doing-after-all" title="Permalink to this headline">¶</a></h2>
+<p>As we’ve seen so far, regression does an amazing job at controlling for additional variables when we do a test vs control comparison. If we have independence, \((Y_0, Y_1)\perp T | X\), then regression can identify the ATE by controlling for X. The way regression does this is kind of magical. To get some intuition about it, let’s remember the case when all variables X are dummy variables. If that is the case, regression partitions the data into the dummy cells and computes the mean difference between test and control. This difference in means keeps the Xs constant, since we are doing it in a fixed cell of X dummy. It is as if we were doing \(E[Y|T=1] - E[Y|T=0] | X=x\), where \(x\) is a dummy cell (all dummies set to 1, for example).  Regression then combines the estimate in each of the cells to produce a final ATE. The way it does this is by applying weights to the cell proportional to the variance of the treatment on that group.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+
+<span class="kn">import</span> <span class="nn">graphviz</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;fivethirtyeight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To give an example, let’s suppose I’m trying to estimate the effect of a drug and I have 6 men and 4 women. My response variable is days hospitalised and I hope my drug can lower that. On man, the true causal effect is -3, so the drug lowers the stay period by 3 days. On women, it is -2. To make matters more interesting, men are much more affected by this illness and stay longer at the hospital. They also get much more of the drug. Only 1 out of the 6 men does not get the drug. On the other hand, women are more resistant to this illness, so they stay less at the hospital. 50% of the women get the drug.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drug_example</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">sex</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;M&quot;</span><span class="p">,</span><span class="s2">&quot;M&quot;</span><span class="p">,</span><span class="s2">&quot;M&quot;</span><span class="p">,</span><span class="s2">&quot;M&quot;</span><span class="p">,</span><span class="s2">&quot;M&quot;</span><span class="p">,</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;W&quot;</span><span class="p">,</span><span class="s2">&quot;W&quot;</span><span class="p">,</span><span class="s2">&quot;W&quot;</span><span class="p">,</span><span class="s2">&quot;W&quot;</span><span class="p">],</span>
+    <span class="n">drug</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">days</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that simple comparison of treatment and control yields a negatively biased effect, that is, the drug seems less effective than it truly is. This is expected, since we’ve omitted the sex confounder. In this case, the estimated ATE is smaller than the true one because men get more of the drug and are more affected by the illness.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drug_example</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;drug==1&quot;</span><span class="p">)[</span><span class="s2">&quot;days&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">drug_example</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;drug==0&quot;</span><span class="p">)[</span><span class="s2">&quot;days&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.1904761904761898
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since the true effect for man is -3 and the true effect for woman is -2, the ATE should be</p>
+<p><span class="math notranslate nohighlight">\(
+ATE=\dfrac{(-3*6) + (-2*4)}{10}=-2.6
+\)</span></p>
+<p>This estimate is done by 1) partitioning the data into confounder cells, in this case, man and women, 2) estimating the effect on each cell and 3) combining the estimate with a weighted average, where the weight is the sample size of the cell or covariate group. If we had exactly the same size of man and woman in the data, the ATE estimate would be right in the middle of the ATE of the 2 groups, -2.5. Since there are more men than women in our dataset, the ATE estimate is a little bit closer to the man’s ATE. This is called a non-parametric estimate, since it places no assumption on how the data was generated.</p>
+<p>If we control for sex using regression, we will add the assumption of linearity. Regression will also partition the data into man and woman and estimate the effect on both of these groups. So far, so good. However, when it comes to combining the effect on each group, it does not weigh them by the sample size. Instead, regression uses weights that are proportional to the variance of the treatment in that group. In our case, the variance of the treatment in men is smaller than in women, since only one man is in the control group. To be exact, the variance of T for man is \(0.139=1/6*(1 - 1/6)\) and for women is \(0.25=2/4*(1 - 2/4)\). So regression will give a higher weight women in our example and the ATE will be a little closer to the women’s ATE of -2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;days ~ drug + C(sex)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">drug_example</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<tr>
+       <td></td>          <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>   <td>    7.5455</td> <td>    0.188</td> <td>   40.093</td> <td> 0.000</td> <td>    7.100</td> <td>    7.990</td>
+</tr>
+<tr>
+  <th>C(sex)[T.W]</th> <td>   -3.3182</td> <td>    0.176</td> <td>  -18.849</td> <td> 0.000</td> <td>   -3.734</td> <td>   -2.902</td>
+</tr>
+<tr>
+  <th>drug</th>        <td>   -2.4545</td> <td>    0.188</td> <td>  -13.042</td> <td> 0.000</td> <td>   -2.900</td> <td>   -2.010</td>
+</tr>
+</table></div></div>
+</div>
+<p>This result is more intuitive with dummy variables, but, in its own weird way, regression also keeps continuous variables constant while estimating the effect. Also with continuous variables, the ATE will pend to the direction where covariates have more variance.</p>
+<p>So we’ve seen that regression has its idiosyncrasies. It is linear, parametric, likes high variance features… This can be good or bad, depending on the context. Because of this, it’s important to be aware of other techniques we can use to control for confounders. Not only are they an extra tool in your causal tool belt, but understanding different ways to deal with confounding expands our understanding of the problem. For this reason, I present you now the <strong>Subclassification Estimator!</strong></p>
+</div>
+<div class="section" id="the-subclassification-estimator">
+<h2>The Subclassification Estimator<a class="headerlink" href="#the-subclassification-estimator" title="Permalink to this headline">¶</a></h2>
+<p><img alt="img" src="_images/explain.png" /></p>
+<p>If there is some causal effect we want to estimate, like the effect of job training on earnings, <strong>and</strong> the treatment is not randomly assigned, we need to watch out for confounders. It could be that only more motivated people do the training and they would have higher earnings regardless of the training. We need to estimate the effect of the training program within small groups of individuals that are roughly the same in motivation level and any other confounders we may have.</p>
+<p>More generally, if there is some causal effect we want to estimate but it is hard to do so because of confounding of some variables X, what we need to do is make the treatment vs control comparison within small groups where X is the same. If we have conditional independence \((Y_0, Y_1)\perp T | X\), then we can write the ATE as follows.</p>
+<p><span class="math notranslate nohighlight">\(
+ATE = \int(E[Y|X, T=1] - E[Y|X, T=0])dP(x)
+\)</span></p>
+<p>What this integral does is it goes through all the space of the distribution of features X, computes the difference in means for all those tiny spaces and combines everything into the ATE. Another way to see this is to think about a discrete set of features. In this case, we can say that the features X takes on K different cells \({X_1, X_2, …, X_k}\) and what we are doing is computing the treatment effect in each cell and combining them into the ATE. In this discrete case, converting the integral to a sum, we can derive the subclassifications estimator</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{ATE} = \sum^K_{i=0}(\bar{Y}_{k1} - \bar{Y}_{k0}) * \dfrac{N_k}{N}
+\)</span></p>
+<p>where \(\bar{Y}<em>{k1}\) is the mean outcome for the treated in cell k, \(\bar{Y}</em>{k0}\) is mean outcome for the untreated in cell k and \(N_{k}\) is the number of observations in cell k. As you can see, we are computing a local ATE for each cell and combining them using a weighted average, where the weights are the sample size of the cell. In our medicine example above, this would be the first estimate, which gave us −2.6.</p>
+</div>
+<div class="section" id="matching-estimator">
+<h2>Matching Estimator<a class="headerlink" href="#matching-estimator" title="Permalink to this headline">¶</a></h2>
+<p><img alt="img" src="_images/its-a-match.png" /></p>
+<p>The subclassification estimator isn’t used much in practice (we will see why shortly, it is because of the course of dimensionality) but it gives us a nice intuition of what a causal inference estimator should do, how it should control for confounders. This allows us to explore other kinds of estimators, such as the Matching Estimator.</p>
+<p>The idea is very similar. Since some sort of confounder X makes it so that treated and untreated are not initially comparable, I can make them so by <strong>matching each treated unit with a similar untreated unit</strong>. It is like I’m finding an untreated twin for every treated unit. By making such comparisons, treated and untreated become again comparable.</p>
+<p>As an example, let’s suppose we are trying to estimate the effect of a trainee program on earnings. Here is what the trainees looks like</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainee</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/trainees.csv&quot;</span><span class="p">)</span>
+<span class="n">trainee</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;trainees==1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>unit</th>
+      <th>trainees</th>
+      <th>age</th>
+      <th>earnings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>28</td>
+      <td>17700</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>34</td>
+      <td>10200</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>29</td>
+      <td>14400</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>25</td>
+      <td>20800</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>1</td>
+      <td>29</td>
+      <td>6100</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>1</td>
+      <td>23</td>
+      <td>28600</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>1</td>
+      <td>33</td>
+      <td>21900</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>1</td>
+      <td>27</td>
+      <td>28800</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>1</td>
+      <td>31</td>
+      <td>20300</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>1</td>
+      <td>26</td>
+      <td>28100</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>1</td>
+      <td>25</td>
+      <td>9400</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>1</td>
+      <td>27</td>
+      <td>14300</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>13</td>
+      <td>1</td>
+      <td>29</td>
+      <td>12500</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>14</td>
+      <td>1</td>
+      <td>24</td>
+      <td>19700</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15</td>
+      <td>1</td>
+      <td>25</td>
+      <td>10100</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>16</td>
+      <td>1</td>
+      <td>43</td>
+      <td>10700</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>17</td>
+      <td>1</td>
+      <td>28</td>
+      <td>11500</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>18</td>
+      <td>1</td>
+      <td>27</td>
+      <td>10700</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>19</td>
+      <td>1</td>
+      <td>28</td>
+      <td>16300</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>And here are the non-trainees:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainee</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;trainees==0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>unit</th>
+      <th>trainees</th>
+      <th>age</th>
+      <th>earnings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>19</th>
+      <td>20</td>
+      <td>0</td>
+      <td>43</td>
+      <td>20900</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>21</td>
+      <td>0</td>
+      <td>50</td>
+      <td>31000</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>22</td>
+      <td>0</td>
+      <td>30</td>
+      <td>21000</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>23</td>
+      <td>0</td>
+      <td>27</td>
+      <td>9300</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>24</td>
+      <td>0</td>
+      <td>54</td>
+      <td>41100</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>25</td>
+      <td>0</td>
+      <td>48</td>
+      <td>29800</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>26</td>
+      <td>0</td>
+      <td>39</td>
+      <td>42000</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>27</td>
+      <td>0</td>
+      <td>28</td>
+      <td>8800</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>28</td>
+      <td>0</td>
+      <td>24</td>
+      <td>25500</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>29</td>
+      <td>0</td>
+      <td>33</td>
+      <td>15500</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>31</td>
+      <td>0</td>
+      <td>26</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>32</td>
+      <td>0</td>
+      <td>31</td>
+      <td>26600</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>33</td>
+      <td>0</td>
+      <td>26</td>
+      <td>16500</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>34</td>
+      <td>0</td>
+      <td>34</td>
+      <td>24200</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>35</td>
+      <td>0</td>
+      <td>25</td>
+      <td>23300</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>36</td>
+      <td>0</td>
+      <td>24</td>
+      <td>9700</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>37</td>
+      <td>0</td>
+      <td>29</td>
+      <td>6200</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>38</td>
+      <td>0</td>
+      <td>35</td>
+      <td>30200</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>39</td>
+      <td>0</td>
+      <td>32</td>
+      <td>17800</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>40</td>
+      <td>0</td>
+      <td>23</td>
+      <td>9500</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>41</td>
+      <td>0</td>
+      <td>32</td>
+      <td>25900</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>If I do a simple comparison in means, we get that the trainees earn less money than those that didn’t go through the program.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainee</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;trainees==1&quot;</span><span class="p">)[</span><span class="s2">&quot;earnings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">trainee</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;trainees==0&quot;</span><span class="p">)[</span><span class="s2">&quot;earnings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-4297.49373433584
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, if we look at the table above, we notice that trainees are much younger than non trainees, which indicates that age is probably a confounder. Let’s use matching on age to try to correct that. We will take unit 1 from the treated and pair it with unit 27, since both are 28 years old. Unit 2 we will pair it with unit 34, unit 3 with unit 37, unit 4 we will pair it with unit 35… When it comes to unit 5, we need to find someone with age 29 from the non treated, but that is unit 37, which is already paired. This is not a problem, since we can use the same unit multiple times. If more than 1 unit is a match, we can choose randomly between them.</p>
+<p>This is what the matched dataset looks like for the first 7 units</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make dataset where no one has the same age</span>
+<span class="n">unique_on_age</span> <span class="o">=</span> <span class="p">(</span><span class="n">trainee</span>
+                 <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;trainees==0&quot;</span><span class="p">)</span>
+                 <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">))</span>
+
+<span class="n">matches</span> <span class="o">=</span> <span class="p">(</span><span class="n">trainee</span>
+           <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;trainees==1&quot;</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">unique_on_age</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;_t_1&quot;</span><span class="p">,</span> <span class="s2">&quot;_t_0&quot;</span><span class="p">))</span>
+           <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">t1_minuts_t0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;earnings_t_1&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;earnings_t_0&quot;</span><span class="p">]))</span>
+
+<span class="n">matches</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>unit_t_1</th>
+      <th>trainees_t_1</th>
+      <th>age</th>
+      <th>earnings_t_1</th>
+      <th>unit_t_0</th>
+      <th>trainees_t_0</th>
+      <th>earnings_t_0</th>
+      <th>t1_minuts_t0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>28</td>
+      <td>17700</td>
+      <td>27</td>
+      <td>0</td>
+      <td>8800</td>
+      <td>8900</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>34</td>
+      <td>10200</td>
+      <td>34</td>
+      <td>0</td>
+      <td>24200</td>
+      <td>-14000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>29</td>
+      <td>14400</td>
+      <td>37</td>
+      <td>0</td>
+      <td>6200</td>
+      <td>8200</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>25</td>
+      <td>20800</td>
+      <td>35</td>
+      <td>0</td>
+      <td>23300</td>
+      <td>-2500</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>1</td>
+      <td>29</td>
+      <td>6100</td>
+      <td>37</td>
+      <td>0</td>
+      <td>6200</td>
+      <td>-100</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>1</td>
+      <td>23</td>
+      <td>28600</td>
+      <td>40</td>
+      <td>0</td>
+      <td>9500</td>
+      <td>19100</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>1</td>
+      <td>33</td>
+      <td>21900</td>
+      <td>29</td>
+      <td>0</td>
+      <td>15500</td>
+      <td>6400</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Notice how the last column has the difference in earnings between the treated and its matched untreated unit. If we take the mean of this last column we get the ATET estimate while controlling for age. Notice how the estimate is now very positive, compared to the previous one where we used a simple difference in means.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matches</span><span class="p">[</span><span class="s2">&quot;t1_minuts_t0&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2457.8947368421054
+</pre></div>
+</div>
+</div>
+</div>
+<p>But this was a very contrived example, just to introduce matching. In reality, we usually have more than one feature and units don’t match perfectly. In this case, we have to define some measurement of proximity to compare how units are close to each other. One common metric for this is the euclidean norm \(||X_i - X_j||\). This difference, however, is not invariant to the scale of the features. This means that features like age, that take values on the tenths, will be much less important when computing this norm compared to features like income, which take the order of hundreds. For this reason, before applying the norm, we need to scale the features so that they are on roughly the same scale.</p>
+<p>Having defined a distance measure, we can now define the match as the nearest neighbour to that sample we wish to match. In math terms, we can write the matching estimator the following way</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{ATE} = \frac{1}{N} \sum^N_{i=0} (2T_i - 1)\big(Y_i - Y_{jm}(i)\big)
+\)</span></p>
+<p>Where \(Y_{jm}(i)\) is the sample from the other treatment group which is most similar to \(Y_i\). We do this \(2T_i - 1\) to match both ways: treated with controls and controls with the treatment.</p>
+<p>To test this estimator, let’s consider a medicine example. Once again, we want to find the effect of a medication on days until recovery. Unfortunately, this effect is confounded by severity, sex and age. We have reasons to believe that patients with more severe conditions have a higher chance of receiving the medicine.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">med</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/medicine_impact_recovery.csv&quot;</span><span class="p">)</span>
+<span class="n">med</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sex</th>
+      <th>age</th>
+      <th>severity</th>
+      <th>medication</th>
+      <th>recovery</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>35.049134</td>
+      <td>0.887658</td>
+      <td>1</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>41.580323</td>
+      <td>0.899784</td>
+      <td>1</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>28.127491</td>
+      <td>0.486349</td>
+      <td>0</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>36.375033</td>
+      <td>0.323091</td>
+      <td>0</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>25.091717</td>
+      <td>0.209006</td>
+      <td>0</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>If we look at a simple difference in means, \(E[Y|T=1]-E[Y|T=0]\), we get that the treatment takes, on average, 16.9 more days to recover than the untreated. This is probably due to confounding, since we don’t expect the medicine to cause harm to the patient.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">med</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;medication==1&quot;</span><span class="p">)[</span><span class="s2">&quot;recovery&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">med</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;medication==0&quot;</span><span class="p">)[</span><span class="s2">&quot;recovery&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.895799546498726
+</pre></div>
+</div>
+</div>
+</div>
+<p>To correct for this bias, we will control for X using matching. First, we need to remember to scale our features, otherwise, features like age will have higher importance than features like severity when we compute the distance between points. To do so, we can standardise the features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># scale features</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;severity&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;sex&quot;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;recovery&quot;</span>
+
+<span class="n">med</span> <span class="o">=</span> <span class="n">med</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">f</span><span class="p">:</span> <span class="p">(</span><span class="n">med</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">-</span> <span class="n">med</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">/</span><span class="n">med</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">X</span><span class="p">})</span>
+<span class="n">med</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sex</th>
+      <th>age</th>
+      <th>severity</th>
+      <th>medication</th>
+      <th>recovery</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.996980</td>
+      <td>0.280787</td>
+      <td>1.459800</td>
+      <td>1</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.002979</td>
+      <td>0.865375</td>
+      <td>1.502164</td>
+      <td>1</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.002979</td>
+      <td>-0.338749</td>
+      <td>0.057796</td>
+      <td>0</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.002979</td>
+      <td>0.399465</td>
+      <td>-0.512557</td>
+      <td>0</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.996980</td>
+      <td>-0.610473</td>
+      <td>-0.911125</td>
+      <td>0</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now, to the matching itself. Instead of coding a matching function, we will use the K nearest neighbour algorithm from <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsRegressor.html">Sklearn</a>. This algorithm makes predictions by finding the nearest data point in an estimation or training set.</p>
+<p>For matching, we will need 2 of those. One, <code class="docutils literal notranslate"><span class="pre">mt0</span></code>, will store the untreated points and will find matches in the untreated when asked to do so. The other, <code class="docutils literal notranslate"><span class="pre">mt1</span></code>, will store the treated point and will find matches in the treated when asked to do so. After this fitting step, we can use these KNN models to make predictions, which will be our matches.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
+
+<span class="n">treated</span> <span class="o">=</span> <span class="n">med</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;medication==1&quot;</span><span class="p">)</span>
+<span class="n">untreated</span> <span class="o">=</span> <span class="n">med</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;medication==0&quot;</span><span class="p">)</span>
+
+<span class="n">mt0</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">untreated</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">untreated</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="n">mt1</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">treated</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">treated</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+
+<span class="n">predicted</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+    <span class="c1"># find matches for the treated looking at the untreated knn model</span>
+    <span class="n">treated</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="n">mt0</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">treated</span><span class="p">[</span><span class="n">X</span><span class="p">])),</span>
+    
+    <span class="c1"># find matches for the untreated looking at the treated knn model</span>
+    <span class="n">untreated</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="n">mt1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">untreated</span><span class="p">[</span><span class="n">X</span><span class="p">]))</span>
+<span class="p">])</span>
+
+<span class="n">predicted</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sex</th>
+      <th>age</th>
+      <th>severity</th>
+      <th>medication</th>
+      <th>recovery</th>
+      <th>match</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.996980</td>
+      <td>0.280787</td>
+      <td>1.459800</td>
+      <td>1</td>
+      <td>31</td>
+      <td>39.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.002979</td>
+      <td>0.865375</td>
+      <td>1.502164</td>
+      <td>1</td>
+      <td>49</td>
+      <td>52.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>-0.996980</td>
+      <td>1.495134</td>
+      <td>1.268540</td>
+      <td>1</td>
+      <td>38</td>
+      <td>46.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1.002979</td>
+      <td>-0.106534</td>
+      <td>0.545911</td>
+      <td>1</td>
+      <td>34</td>
+      <td>45.0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>-0.996980</td>
+      <td>0.043034</td>
+      <td>1.428732</td>
+      <td>1</td>
+      <td>30</td>
+      <td>39.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>With the matches, we can now apply the matching estimator formula</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{ATE} = \frac{1}{N} \sum^N_{i=0} (2T_i - 1)\big(Y_i - Y_{jm}(i)\big)
+\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">predicted</span><span class="p">[</span><span class="s2">&quot;medication&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">predicted</span><span class="p">[</span><span class="s2">&quot;recovery&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">predicted</span><span class="p">[</span><span class="s2">&quot;match&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.9954
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using this sort of matching, we can see that the effect of the medicine is not positive anymore. This means that, controlling for X, the medicine reduces the recovery time by about 1 day, on average. This is already a huge improvement on top of the biased estimate that predicted a 16.9 increase in recovery time.</p>
+<p>However, we can still do better.</p>
+</div>
+<div class="section" id="matching-bias">
+<h2>Matching Bias<a class="headerlink" href="#matching-bias" title="Permalink to this headline">¶</a></h2>
+<p>It turns out the matching estimator as we’ve designed above is biased. To see this, let’s consider the ATET estimator, instead of the ATE, just because it is simpler to write. The intuition will apply to the ATE as well.</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{ATET} = \frac{1}{N_1}\sum (Y_i - Y_j(i))
+\)</span></p>
+<p>where \(N_1\) is the number of treated individuals and \(Y_j(i)\) is the untreated match of treated unit i. To check for bias, what we do is hope we can apply the Central Limit Theorem so that this down there converges to a normal distribution with mean zero.</p>
+<p><span class="math notranslate nohighlight">\(
+\sqrt{N_1}(\hat{ATET} - ATET)
+\)</span></p>
+<p>However, this doesn’t alway happen. If we define the mean outcome for the untreated given X, \(\mu_0(x)=E[Y|X=x, T=0]\), we will have that (btw, I’ve omitted the proof for that because it’s a little beyond the point here).</p>
+<p><span class="math notranslate nohighlight">\(
+E[\sqrt{N_1}(\hat{ATET} - ATET)] = E[\sqrt{N_1}(\mu_0(X_i) - \mu_0(X_j(i)))]
+\)</span></p>
+<p>Now, \(\mu_0(X_i) - \mu_0(X_j(i))\) is not so simple to understand, so let’s look at it more carefully. \(\mu_0(X_i)\) is the outcome Y value of a treated unit i had it not been treated. So, it is the counterfactual outcome \(Y_0\) for unit i. \(\mu_0(X_j(i))\) is the outcome of the untreated unit j that is the match of unit i. So, it is also the \(Y_0\) , but for unit j now. Only this time, it is a factual outcome, because j is in the non treated group. Now, because j and i are only similar, but not the same, this will likely not be zero. In other words, \(X_i \approx X_j \). So, \(Y_{0i} \approx Y_{0j} \).</p>
+<p>As we increase the sample size, there will be more units to match, so the difference between unit i and its match j will also get smaller. But this difference converges to zero slowly. As a result \(E[\sqrt{N_1}(\mu_0(X_i) - \mu_0(X_j(i)))]\) may not converge to zero, because the \(\sqrt{N_1}\) grows faster than \((\mu_0(X_i) - \mu_0(X_j(i)))\) diminishes.</p>
+<p>Bias arises when the matching discrepancies are huge. Fortunately, we know how to correct it. Each observation contributes \((\mu_0(X_i) - \mu_0(X_j(i)))\) to the bias so all we need to do is subtract this quantity from each matching comparison in our estimator. To do so, we can replace \(\mu_0(X_j(i))\) with some sort of estimate of this quantity \(\hat{\mu_0}(X_j(i))\), which can be obtained with models like linear regression. This updates the ATET estimator to the following equation</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{ATET} = \frac{1}{N_1}\sum \big((Y_i - Y_{j(i)}) - (\hat{\mu_0}(X_i) - \hat{\mu_0}(X_{j(i)}))\big)
+\)</span></p>
+<p>where \(\hat{\mu_0}(x)\) is some estimative of \(E[Y|X, T=0]\), like a linear regression fitted only on the untreated sample.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1"># fit the linear regression model to estimate mu_0(x)</span>
+<span class="n">ols0</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">untreated</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">untreated</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+<span class="n">ols1</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">treated</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">treated</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
+
+<span class="c1"># find the units that match to the treated</span>
+<span class="n">treated_match_index</span> <span class="o">=</span> <span class="n">mt0</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">treated</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+<span class="c1"># find the units that match to the untreatd</span>
+<span class="n">untreated_match_index</span> <span class="o">=</span> <span class="n">mt1</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">untreated</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+<span class="n">predicted</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+    <span class="p">(</span><span class="n">treated</span>
+     <span class="c1"># find the Y match on the other group</span>
+     <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="n">mt0</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">treated</span><span class="p">[</span><span class="n">X</span><span class="p">]))</span> 
+     
+     <span class="c1"># build the bias correction term</span>
+     <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">bias_correct</span><span class="o">=</span><span class="n">ols0</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">treated</span><span class="p">[</span><span class="n">X</span><span class="p">])</span> <span class="o">-</span> <span class="n">ols0</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">untreated</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">treated_match_index</span><span class="p">][</span><span class="n">X</span><span class="p">]))),</span>
+    <span class="p">(</span><span class="n">untreated</span>
+     <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="n">mt1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">untreated</span><span class="p">[</span><span class="n">X</span><span class="p">]))</span>
+     <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">bias_correct</span><span class="o">=</span><span class="n">ols1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">untreated</span><span class="p">[</span><span class="n">X</span><span class="p">])</span> <span class="o">-</span> <span class="n">ols1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">treated</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">untreated_match_index</span><span class="p">][</span><span class="n">X</span><span class="p">])))</span>
+<span class="p">])</span>
+
+<span class="n">predicted</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sex</th>
+      <th>age</th>
+      <th>severity</th>
+      <th>medication</th>
+      <th>recovery</th>
+      <th>match</th>
+      <th>bias_correct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.996980</td>
+      <td>0.280787</td>
+      <td>1.459800</td>
+      <td>1</td>
+      <td>31</td>
+      <td>39.0</td>
+      <td>4.404034</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.002979</td>
+      <td>0.865375</td>
+      <td>1.502164</td>
+      <td>1</td>
+      <td>49</td>
+      <td>52.0</td>
+      <td>12.915348</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>-0.996980</td>
+      <td>1.495134</td>
+      <td>1.268540</td>
+      <td>1</td>
+      <td>38</td>
+      <td>46.0</td>
+      <td>1.871428</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1.002979</td>
+      <td>-0.106534</td>
+      <td>0.545911</td>
+      <td>1</td>
+      <td>34</td>
+      <td>45.0</td>
+      <td>-0.496970</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>-0.996980</td>
+      <td>0.043034</td>
+      <td>1.428732</td>
+      <td>1</td>
+      <td>30</td>
+      <td>39.0</td>
+      <td>2.610159</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>One immediate question that arises is: doesn’t this defeat the point of matching? If I have to run a linear regression anyway, why don’t I use only that, instead of this complicated model. That’s a fair point, so I should take some time to answer it.</p>
+<p><img alt="img" src="_images/ubiquitous-ols.png" /></p>
+<p>First of all, this linear regression that we are fitting doesn’t extrapolate on the treatment dimension to get the treatment effect. Instead, its purpose is just to correct bias. Linear regression here is local, in the sense that it doesn’t try to see how the treated would be if it looked like the untread. It does none of that extrapolation. This is left to the matching part. The meat of the estimator is still the matching component. The point I want to make here is that OLS is secondary to this estimator.</p>
+<p>The second point is that matching is a non-parametric estimator. It doesn’t assume linearity or any kind of parametric model. As such, it is more flexible than linear regression and can work in situations where linear regression will not, namely, those where non linearity is very strong.</p>
+<p>Does this mean that you should only use matching? Well, that’s a tough question. Alberto Abadie makes a case that yes, you should. It’s more flexible and, once you have the code, equally simple to run. I’m not entirely convinced by that. For once, Abadie spent a lot of time studying and developing the estimator (yes, he is one of the scientists that contributes to matching being what it is), so he obviously is personally invested in the method. Second, there is something about linear regression’s simplicity that you don’t see in matching. The partial derivative math of “holding everything else constant” is much easier to grasp with linear regression than with matching. But that’s just my preference. To be honest, there is no clear answer to this question. Anyway, back to our example.</p>
+<p>With the bias correction formula, I get the following ATE estimation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">predicted</span><span class="p">[</span><span class="s2">&quot;medication&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">((</span><span class="n">predicted</span><span class="p">[</span><span class="s2">&quot;recovery&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">predicted</span><span class="p">[</span><span class="s2">&quot;match&quot;</span><span class="p">])</span><span class="o">-</span><span class="n">predicted</span><span class="p">[</span><span class="s2">&quot;bias_correct&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-7.36266090614141
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of course, we also need to place a confidence interval around this measurement, but enough of math theory now. In practice, we can simply use someone else’s code and just import a matching estimator. Here is one from the library <a class="reference external" href="https://github.com/laurencium/causalinference">causalinference</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">causalinference</span> <span class="kn">import</span> <span class="n">CausalModel</span>
+
+<span class="n">cm</span> <span class="o">=</span> <span class="n">CausalModel</span><span class="p">(</span>
+    <span class="n">Y</span><span class="o">=</span><span class="n">med</span><span class="p">[</span><span class="s2">&quot;recovery&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+    <span class="n">D</span><span class="o">=</span><span class="n">med</span><span class="p">[</span><span class="s2">&quot;medication&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+    <span class="n">X</span><span class="o">=</span><span class="n">med</span><span class="p">[[</span><span class="s2">&quot;severity&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;sex&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="p">)</span>
+
+<span class="n">cm</span><span class="o">.</span><span class="n">est_via_matching</span><span class="p">(</span><span class="n">matches</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias_adj</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">estimates</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Treatment Effect Estimates: Matching
+
+                     Est.       S.e.          z      P&gt;|z|      [95% Conf. int.]
+--------------------------------------------------------------------------------
+           ATE     -7.709      0.609    -12.649      0.000     -8.903     -6.514
+           ATC     -6.665      0.246    -27.047      0.000     -7.148     -6.182
+           ATT     -9.679      1.693     -5.717      0.000    -12.997     -6.361
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can say with confidence that our medicine does indeed lower the time someone spends at the hospital. The ATE estimate is just a little bit lower than mine, so probably my code is not perfect, so here is another reason to import someone else’s code instead of building it your own.</p>
+<p>Before we close this topic, I just wanted to address the cause of bias in matching a little bit more. We saw that matching is biased when the unit and its match are not so similar. But what causes them to be so different?</p>
+</div>
+<div class="section" id="the-curse-of-dimensionality">
+<h2>The Curse of Dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h2>
+<p>As it turns out, the answer is quite simple and intuitive. It is easy to find people that mach on a few characteristics, like sex. But if we add more characteristics, like age, income, city of birth and so on, it becomes harder and harder to find matches. In more general terms, the more features we have, the higher will be the distance between units and their matches.</p>
+<p>This is not something that hurts only the matching estimator. It ties back to the subclassification estimator we saw earlier. Early on, in that contrived medicine example where with man and woman, it was quite easy to build the subclassification estimator. That was because we only had 2 cells: man and woman. But what would happen if we had more? Let’s say we have 2 continuous features like age and income and we manage to discretise them into 5 buckets each. This will give us 25 cells, or \(5^2\). And what if we had 10 covariates with 3 buckets each? Doesn’t seem like a lot right? Well, this would give us 59049 cells, or \(3^{10}\). It’s easy to see how this can blow out of proportion pretty quickly. This is a phenomena pervasive in all data science, which is called the <strong>The Curse of Dimensionality</strong>!!!</p>
+<p><img alt="img" src="_images/curse-of-dimensionality.jpg" />
+Image Source: https://deepai.org/machine-learning-glossary-and-terms/curse-of-dimensionality</p>
+<p>Despite its scary and pretentious name, this only means that the number of data points required to fill a feature space grows exponentially with the number of features, or dimensions. So, if it takes X data points to fill the space of, say, 3 feature spaces, it takes exponentially more points to fill in the space of 4 features.</p>
+<p>In the context of the subclassification estimator, the curse of dimensionality means that it will suffer if we have lots of features. Lots of features imply multiple cells in X. If there are multiple cells, some of them will have very few data. Some of them might even have only treated or only control, so it won’t be possible to estimate the ATE there, which would break our estimator. In the matching context, this means that the feature space will be very space and units will be very far from each other. This will increase the distance between matches and cause bias problems.</p>
+<p>As for linear regression, it actually handles this problem quite well. What it does is project all the features X into a single one, the Y dimension. It then makes treatment and control comparison on that projection. So, in some way, linear regression performs some sort of dimensionality reduction to estimate the ATE. It’s quite elegant.</p>
+<p>Most causal models also have some way to deal with the curse of dimensionality. I won’t keep repeating myself, but it is something you should keep in mind when looking at them. For instance, when we deal with propensity scores in the following section, try to see how it solves this problem.</p>
+</div>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<p>We’ve started this section understanding what linear regression does and how it can help us identify causal relationships. Namely, we understood that regression can be seen as partitioning the dataset into cells, computing the ATE in each cell and then combining the cell’s ATE into a single ATE for the entire dataset.</p>
+<p>From there, we’ve derived a very general causal inference estimator with subclassification. We saw how that estimator is not very useful in practice but it gave us some interesting insights on how to tackle the problem of causal inference estimation. That gave us the opportunity to talk about the matching estimator.</p>
+<p>Matching controls for the confounders by looking at each treated unit and finding an untreated pair that is very similar to it and similarly for the untreated units. We saw how to implement this method using the KNN algorithm and also how to debiase it using regression. Finally, we discussed the difference between matching and linear regression. We saw how matching is a non parametric estimator that doesn’t rely on linearity the way linear regression does.</p>
+<p>Finally, we’ve delved into the problem of high dimensional datasets and we saw how causal inference methods can suffer from it.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>I like to think of this entire series as a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what is keeping me sane during this tough year of 2020.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2017-webcasts">Cross-Section Econometrics</a></p></li>
+<li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2020-webcasts">Mastering Mostly Harmless Econometrics</a></p></li>
+</ul>
+<p>I’ll also like to reference the amazing books from Angrist. They have shown me that Econometrics, or ‘Metrics as they call it, is not only extremely useful but also profoundly fun.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.mostlyharmlesseconometrics.com/">Mostly Harmless Econometrics</a></p></li>
+<li><p><a class="reference external" href="https://www.masteringmetrics.com/">Mastering ‘Metrics</a></p></li>
+</ul>
+<p>My final reference is Miguel Hernan and Jamie Robins’ book. It has been my trustworthy companion in the most thorny causal questions I had to answer.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">Causal Inference Book</a></p></li>
+</ul>
+<p><img alt="img" src="_images/poetry.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="09-Non-Compliance-and-LATE.html" title="previous page">Non Compliance and LATE</a>
+    <a class='right-next' id="next-link" href="11-Propensity-Score.html" title="next page">Propensity Score</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

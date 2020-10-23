@@ -1,0 +1,973 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Unreasonable Effectiveness of Linear Regression &#8212; Causal Inference for the Brave and True</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Grouped and Dummy Regression" href="06-Grouped-and-Dummy-Regression.html" />
+    <link rel="prev" title="Graphical Causal Models" href="04-Graphical-Causal-Models.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
+   Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html">
+   Three Billboards in the South of Brazil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#did-estimator">
+   DID Estimator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#non-parallel-trends">
+   Non Parallel Trends
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#references">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/05-The-Unreasonable-Effectiveness-of-Linear-Regression.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F05-The-Unreasonable-Effectiveness-of-Linear-Regression.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/05-The-Unreasonable-Effectiveness-of-Linear-Regression.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#all-you-need-is-regression">
+   All You Need is Regression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-theory">
+   Regression Theory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-for-non-random-data">
+   Regression For Non-Random Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#omitted-variable-or-confounding-bias">
+   Omitted Variable or Confounding Bias
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="the-unreasonable-effectiveness-of-linear-regression">
+<h1>The Unreasonable Effectiveness of Linear Regression<a class="headerlink" href="#the-unreasonable-effectiveness-of-linear-regression" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="all-you-need-is-regression">
+<h2>All You Need is Regression<a class="headerlink" href="#all-you-need-is-regression" title="Permalink to this headline">¶</a></h2>
+<p>When dealing with causal inference, we saw how there are two potential outcomes for each individual: \(Y_0\) is the outcome the individual would have if he or she didn’t take the treatment and \(Y_1\) is the outcome if he or she took the treatment. The act of setting the treatment \(T\) to 0 or 1 materializes one of the potential outcomes and makes it impossible for us to ever know the other one. This leads to the fact that the individual treatment effect \(\tau_i = Y_{1i} - Y_{0i}\) is unknowable.</p>
+<p><span class="math notranslate nohighlight">\(
+Y_i = Y_{0i} + T_i(Y_{1i} - Y_{0i}) = Y_{0i}(1-T_i) + T_i Y_{1i}
+\)</span></p>
+<p>So, for now, let’s focus, on the simpler task of estimating the average causal effect. With this in mind, we are accepting the fact that some people respond better than others to the treatment, but we are also accepting that we can’t know who they are. Instead, we will just try to see if the treatment works, <strong>on average</strong>.</p>
+<p><span class="math notranslate nohighlight">\(
+ATE = E[Y_1 - Y_0]
+\)</span></p>
+<p>This will give us a simplified model, with a constant treatment effect \(Y_{1i} = Y_{0i} + \kappa\). If \(\kappa\) is positive, we will say that the treatment has, on average, a positive effect. Even if some people will respond badly to it, on average, the impact will be positive.</p>
+<p>Let’s also recall that we can’t simply estimate \(E[Y_1 - Y_0]\) with the difference in mean \(E[Y|T=1] - E[Y|T=0]\) due to bias. Bias often arises when the treated and untreated are different for reasons other than the treatment itself. One way to see this is on how they differ in the potential outcome \(Y_0\)</p>
+<p><span class="math notranslate nohighlight">\(
+E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_0|T=1] - E[Y_0|T=0]\}}_{BIAS}
+\)</span></p>
+<p>Previously, we saw how we can eliminate bias with Random Experiments, or <strong>Randomised Controlled Trial</strong> (RCT) as they are sometimes called. RCT forces the treated and the untreated to be equal and that’s why the bias vanishes. We also saw how to place uncertainty levels around our estimates for the treatment effect. Namely, we looked at the case of online versus face-to-face classrooms, where \(T=0\) represent face-to-face lectures and \(T=1\) represent online ones. Students were randomly assigned to one of those 2 types of lectures and then their performance on an exam was evaluated. We’ve built an A/B testing function that could compare both groups, provide the average treatment effect and even place a confidence interval around it.</p>
+<p>Now, it’s time to see that we can do all of that with the workhorse of causal inference: <strong>Linear Regression</strong>! Think of it this way. If comparing treated and untreated means where an apple for dessert, linear regression would be cold and creamy tiramisu. Or if comparing treated and untreated is a sad and old loaf of white wonder bread, linear regression would be a crusty, soft crumb country loaf sourdough baked by Chad Robertson himself.</p>
+<p><img alt="img" src="_images/you_vs.png" /></p>
+<p>Lets see how this beauty works. In the code below, we want to run the exact same analysis of comparing online vs face-to-face classes. But instead of doing all that math of confidence intervals, we just run a regression. More specifically, we estimate the following model:</p>
+<p><span class="math notranslate nohighlight">\(
+exam_i = \beta_0 + \kappa \ Online_i + u_i
+\)</span></p>
+<p>Notice that \(Online\) is our treatment indication and hence, a dummy variable. It is zero when the treatment is face to face and 1 if it’s online. With that in mind, we can see that linear regression will recover \(E[Y|T=0] = \beta_0\) and \(E[Y|T=1] = \beta_0 + \kappa \). \(\kappa\) will be our ATE.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">import</span> <span class="nn">graphviz</span> <span class="k">as</span> <span class="nn">gr</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/online_classroom.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;format_blended==0&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;falsexam ~ format_ol&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>   78.5475</td> <td>    1.113</td> <td>   70.563</td> <td> 0.000</td> <td>   76.353</td> <td>   80.742</td>
+</tr>
+<tr>
+  <th>format_ol</th> <td>   -4.9122</td> <td>    1.680</td> <td>   -2.925</td> <td> 0.004</td> <td>   -8.223</td> <td>   -1.601</td>
+</tr>
+</table></div></div>
+</div>
+<p>That’s quite amazing. We are not only able to estimate the ATE, but we also get, for free, confidence intervals and P-Values out of it! More than that, we can see that regression is doing exactly what it supposed to do: comparing \(E[Y|T=0]\) and \(E[Y|T=1]\). The intercept is exactly the sample mean when \(T=0\), \(E[Y|T=0]\), and the coefficient of the online format is exactly the sample difference in means \(E[Y|T=1] - E[Y|T=0]\). Don’t trust me? No problem. You can see for yourself:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">data</span>
+ <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;format_ol&quot;</span><span class="p">)</span>
+ <span class="p">[</span><span class="s2">&quot;falsexam&quot;</span><span class="p">]</span>
+ <span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>format_ol
+0    78.547485
+1    73.635263
+Name: falsexam, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected. If you add to the intercept the ATE, that is, the parameter estimate of online format, you get the sample mean for the treated: \(78.5475 + (-4.9122) = 73.635263\).</p>
+</div>
+<div class="section" id="regression-theory">
+<h2>Regression Theory<a class="headerlink" href="#regression-theory" title="Permalink to this headline">¶</a></h2>
+<p>I don’t intend to dive too deep into how linear regression is constructed and estimated. However, a little bit of theory will go a long way in explaining its power in causal inference. First of all, regression solves a theoretical best linear prediction problem. Let \(\beta^*\) be a vector of parameters:</p>
+<p><span class="math notranslate nohighlight">\(
+\beta^* =\underset{\beta}{argmin} \ E[(Y_i - X_i'\beta)^2]
+\)</span></p>
+<p>Linear regression finds the parameters that minimise the mean squared error (MSE).</p>
+<p>If you differentiate it and set it to zero, you will find that the linear solution to this problem is given by</p>
+<p><span class="math notranslate nohighlight">\(
+\beta^* = E[X_i'X_i]^{-1}E[X_i' Y_i]
+\)</span></p>
+<p>We can estimate this beta using the sample equivalent:</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{\beta} = (X'X)^{-1}X' Y
+\)</span></p>
+<p>But don’t take my word for it. If you are one of those that understand code better than formulas, try for yourself:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;format_ol&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">intercep</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;falsexam&quot;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">regress</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+<span class="n">beta</span> <span class="o">=</span> <span class="n">regress</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="n">beta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-4.9122215 , 78.54748458])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The formulas above are pretty general. However, it pays off to study the case where we only have one regressor. In causal inference, we often want to estimate the causal impact of a variable \(T\) on an outcome \(y\). So, we use regression with this single variable to estimate this effect. Even if we include other variables in the model, they are usually just auxiliary. Adding other variables can help us estimate the causal effect of the treatment, but we are not very interested in estimating their parameters.</p>
+<p>With a single regressor variable \(T\), the parameter associated to it will be given by</p>
+<p><span class="math notranslate nohighlight">\(
+\beta_1 = \dfrac{Cov(Y_i, T_i)}{Var(T_i)} 
+\)</span></p>
+<p>If \(T\) is randomly assigned, \(\beta_1\) is the ATE.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kapa</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;falsexam&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;format_ol&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;format_ol&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+<span class="n">kapa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-4.91222149822695
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we have more than one regressor, we can extend the following formula to accommodate that. Let’s say those other variables are just auxiliary and that we are truly interested only in estimating the parameter \(\kappa\) associated to \(T\).</p>
+<p><span class="math notranslate nohighlight">\(
+y_i = \beta_0 + \kappa T_i + \beta_1 X_{1i} + ... +\beta_k X_{ki} + u_i
+\)</span></p>
+<p>\(\kappa\) can be obtained with the following formula</p>
+<p><span class="math notranslate nohighlight">\(
+\kappa = \dfrac{Cov(Y_i, \tilde{T_i})}{Var(\tilde{T_i})} 
+\)</span></p>
+<p>where \(\tilde{T_i}\) is the residual from a regression of all other covariates \(X_{1i} + … + X_{ki}\) on \(T_i\). Now, let’s appreciate how cool this is. It means that the coefficient of a multivariate regression is the bivariate coefficient of the same regressor <strong>after accounting for the effect of other variables in the model</strong>. In causal inference terms, \(\kappa\) is the bivariate coeficiente of \(T\) after having used all other variables to predict it.</p>
+<p>This has a nice intuition behind it. If we can predict \(T\) using other variables, it means it’s not random. However, we can make it so that \(T\) is as good as random once we control for other available variables. To do so, we use linear regression to predict it from the other variables and then we take the residuals of that regression \(\tilde{T}\). By definition, \(\tilde{T}\) cannot be predicted by the other variables \(X\) that we’ve already used to predict \(T\). Quite elegantly, \(\tilde{T}\) is a version of the treatment that is not associated with any other variable in \(X\).</p>
+<p>By the way, this is also a property of linear regression. The residual always orthogonal or uncorrelated with any of the variables in the model that created it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Orthogonality imply that the dot product is zero:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">X</span><span class="p">))</span>
+<span class="n">X</span><span class="p">[[</span><span class="s2">&quot;format_ol&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">e</span><span class="o">=</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Orthogonality imply that the dot product is zero: [-5.54223334e-13 -1.84741111e-12]
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>format_ol</th>
+      <th>e</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>format_ol</th>
+      <td>1.000000e+00</td>
+      <td>1.963734e-16</td>
+    </tr>
+    <tr>
+      <th>e</th>
+      <td>1.963734e-16</td>
+      <td>1.000000e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>And what is even cooler is that these properties don’t depend on nothing! They are mathematical truths, regardless of how your data look like.</p>
+</div>
+<div class="section" id="regression-for-non-random-data">
+<h2>Regression For Non-Random Data<a class="headerlink" href="#regression-for-non-random-data" title="Permalink to this headline">¶</a></h2>
+<p>So far, we worked with random experiment data but, as we know, those are hard to come by. Experiments are very expensive to conduct or simply infeasible. It’s very hard to convince McKinsey &amp; Co. to randomly provide their services free of charge so that we can, once and for all, distinguish the value their consulting services brings from the fact that those firms that can afford to pay them are already very well off.</p>
+<p>For this reason, we shall now delve into non random or observational data. In the following example, we will try to estimate the impact of an additional year of education in hourly wage. As you might have guessed, it is extremely hard to conduct an experiment with education. You can’t simply randomize people to 4, 8 or 12 years of education. In this case observational data is all we have.</p>
+<p>First, let’s estimate a very simple model. We will regress log hourly wages on years of education. We use logs here so that our parameter estimates have a percentage interpretation. With it, we will be able to say that 1 extra year of education yields a wage increase of x%.</p>
+<p><span class="math notranslate nohighlight">\(
+log(hwage)_i = \beta_0 + \beta_1 educ_i + u_i
+\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wage</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/wage.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">model_1</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;np.log(wage) ~ educ&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wage</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">model_1</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>    5.9995</td> <td>    0.094</td> <td>   63.640</td> <td> 0.000</td> <td>    5.814</td> <td>    6.185</td>
+</tr>
+<tr>
+  <th>educ</th>      <td>    0.0596</td> <td>    0.007</td> <td>    8.757</td> <td> 0.000</td> <td>    0.046</td> <td>    0.073</td>
+</tr>
+</table></div></div>
+</div>
+<p>The estimate of \(\beta_1\) is 0.0529, with a 95% confidence interval of (0.040, 0.066). This means that this model predicts that wages will increase about 5.3% for every additional year of education. This percentage increase is inline with the belief that education impacts wages in an exponential fashion: we expect that going from 8 to 9 years of education to be more rewarding than going from 2 to 3 years.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;fivethirtyeight&quot;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">2.2954</span> <span class="o">+</span> <span class="mf">0.0529</span> <span class="o">*</span> <span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Years of Education&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Hourly Wage&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Impact of Education on Hourly Wage&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/05-The-Unreasonable-Effectiveness-of-Linear-Regression_13_0.png" src="_images/05-The-Unreasonable-Effectiveness-of-Linear-Regression_13_0.png" />
+</div>
+</div>
+<p>Of course, it is not because we can estimate this simple model that it’s correct. Notice how I was carefully with my words saying it <strong>predicts</strong> wage from education. I never said that this prediction was causal. In fact, by now, you probably have very serious reasons to believe this model is biased. Since our data didn’t come from a random experiment, we don’t know if those that got more education are comparable to those who got less. Going even further, from our understanding of how the world works, we are very certain that they are not comparable. Namely, we can argue that those with more years of education probably have richer parents, and that the increase we are seeing in wages as we increase education is just a reflection of how the family wealth is associated with more years of education. Putting it in math terms, we think that \(E[Y_0|T=0] &lt; E[Y_0|T=1]\), that is, those with more education would have higher income anyway, even without so many years of education. If you are really grim about education, you can argue that it can even <em>reduce</em> wages by keeping people out of the workforce and lowering their experience.</p>
+<p>Fortunately, in our data, we have access to lots of other variables. We can see the parents’ education <code class="docutils literal notranslate"><span class="pre">meduc</span></code>, <code class="docutils literal notranslate"><span class="pre">feduc</span></code>, the <code class="docutils literal notranslate"><span class="pre">IQ</span></code> score for that person, the number of years of experience <code class="docutils literal notranslate"><span class="pre">exper</span></code> and the tenure of the person in his or her current company <code class="docutils literal notranslate"><span class="pre">tenure</span></code>. We even have some dummy variables for marriage and black ethnicity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wage</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>wage</th>
+      <th>hours</th>
+      <th>lhwage</th>
+      <th>IQ</th>
+      <th>educ</th>
+      <th>exper</th>
+      <th>tenure</th>
+      <th>age</th>
+      <th>married</th>
+      <th>black</th>
+      <th>south</th>
+      <th>urban</th>
+      <th>sibs</th>
+      <th>brthord</th>
+      <th>meduc</th>
+      <th>feduc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>769</td>
+      <td>40</td>
+      <td>2.956212</td>
+      <td>93</td>
+      <td>12</td>
+      <td>11</td>
+      <td>2</td>
+      <td>31</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>8.0</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>825</td>
+      <td>40</td>
+      <td>3.026504</td>
+      <td>108</td>
+      <td>14</td>
+      <td>11</td>
+      <td>9</td>
+      <td>33</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>14.0</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>650</td>
+      <td>40</td>
+      <td>2.788093</td>
+      <td>96</td>
+      <td>12</td>
+      <td>13</td>
+      <td>7</td>
+      <td>32</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>4</td>
+      <td>3.0</td>
+      <td>12.0</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>562</td>
+      <td>40</td>
+      <td>2.642622</td>
+      <td>74</td>
+      <td>11</td>
+      <td>14</td>
+      <td>5</td>
+      <td>34</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>10</td>
+      <td>6.0</td>
+      <td>6.0</td>
+      <td>11.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>600</td>
+      <td>40</td>
+      <td>2.708050</td>
+      <td>91</td>
+      <td>10</td>
+      <td>13</td>
+      <td>0</td>
+      <td>30</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>8.0</td>
+      <td>8.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can include all those extra variables in a model and estimate it:</p>
+<p><span class="math notranslate nohighlight">\(
+log(hwage)_i = \beta_0 + \kappa \ educ_i + \pmb{\beta}X_i + u_i
+\)</span></p>
+<p>To understand how this helps with the bias problem, let’s recap the bivariate breakdown of multivariate linear regression.</p>
+<p><span class="math notranslate nohighlight">\(
+\kappa = \dfrac{Cov(Y_i, \tilde{T_i})}{Var(\tilde{T_i})} 
+\)</span></p>
+<p>This formula says that we can predict <code class="docutils literal notranslate"><span class="pre">educ</span></code> from mother and father education, from IQ, from experience and so on. After we do that, we’ll be left with a version of <code class="docutils literal notranslate"><span class="pre">educ</span></code>, \(\tilde{educ}\), which is uncorrelated with all the variables included previously. This will break down arguments such as “people that have more years of education have it because they have higher IQ. It is not the case that education leads to higher wages. It is just the case that it is correlated with IQ, which is what drives waged”. Well, if we include IQ in our model, then \(\kappa\) becomes the return of an additional year of education while keeping IQ fixed. Pause a little bit to understand what this implies. Even if we can’t use randomised controlled trials to keep other factors equal between treated and untreated, regression can do this by including those same factors in the model, even if the data is not random!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">controls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;IQ&#39;</span><span class="p">,</span> <span class="s1">&#39;exper&#39;</span><span class="p">,</span> <span class="s1">&#39;tenure&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;married&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;south&#39;</span><span class="p">,</span> <span class="s1">&#39;urban&#39;</span><span class="p">,</span> <span class="s1">&#39;sibs&#39;</span><span class="p">,</span> <span class="s1">&#39;brthord&#39;</span><span class="p">,</span> <span class="s1">&#39;meduc&#39;</span><span class="p">,</span> <span class="s1">&#39;feduc&#39;</span><span class="p">]</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">wage</span><span class="p">[</span><span class="n">controls</span><span class="p">]</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">intercep</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">wage</span><span class="p">[</span><span class="s2">&quot;educ&quot;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">wage</span><span class="p">[</span><span class="s2">&quot;lhwage&quot;</span><span class="p">]</span>
+
+<span class="n">beta_aux</span> <span class="o">=</span> <span class="n">regress</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="n">t_tilde</span> <span class="o">=</span> <span class="n">t</span> <span class="o">-</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta_aux</span><span class="p">)</span>
+
+<span class="n">kappa</span> <span class="o">=</span> <span class="n">t_tilde</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">t_tilde</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+<span class="n">kappa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.04114719101005262
+</pre></div>
+</div>
+</div>
+</div>
+<p>This coefficient we’ve just estimated tells us that, for people with the same IQ, experience, tenure, age and so on, we should expect an additional year of education to be associated with a 4.11% increase in hourly wage. This confirms our suspicion that the first simple model with only <code class="docutils literal notranslate"><span class="pre">educ</span></code> was biases. It also confirms that this bias was overestimating the impact of education. Once we controlled for other factors, the estimated impact of education fell.</p>
+<p>If we are wiser and use software that other people wrote instead of coding everything yourself, we can even place a confidence interval around this estimate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;lhwage ~ educ +&#39;</span><span class="o">+</span><span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">controls</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">wage</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">model_2</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>    1.1156</td> <td>    0.232</td> <td>    4.802</td> <td> 0.000</td> <td>    0.659</td> <td>    1.572</td>
+</tr>
+<tr>
+  <th>educ</th>      <td>    0.0411</td> <td>    0.010</td> <td>    4.075</td> <td> 0.000</td> <td>    0.021</td> <td>    0.061</td>
+</tr>
+<tr>
+  <th>IQ</th>        <td>    0.0038</td> <td>    0.001</td> <td>    2.794</td> <td> 0.005</td> <td>    0.001</td> <td>    0.006</td>
+</tr>
+<tr>
+  <th>exper</th>     <td>    0.0153</td> <td>    0.005</td> <td>    3.032</td> <td> 0.003</td> <td>    0.005</td> <td>    0.025</td>
+</tr>
+<tr>
+  <th>tenure</th>    <td>    0.0094</td> <td>    0.003</td> <td>    2.836</td> <td> 0.005</td> <td>    0.003</td> <td>    0.016</td>
+</tr>
+<tr>
+  <th>age</th>       <td>    0.0086</td> <td>    0.006</td> <td>    1.364</td> <td> 0.173</td> <td>   -0.004</td> <td>    0.021</td>
+</tr>
+<tr>
+  <th>married</th>   <td>    0.1795</td> <td>    0.053</td> <td>    3.415</td> <td> 0.001</td> <td>    0.076</td> <td>    0.283</td>
+</tr>
+<tr>
+  <th>black</th>     <td>   -0.0801</td> <td>    0.063</td> <td>   -1.263</td> <td> 0.207</td> <td>   -0.205</td> <td>    0.044</td>
+</tr>
+<tr>
+  <th>south</th>     <td>   -0.0397</td> <td>    0.035</td> <td>   -1.129</td> <td> 0.259</td> <td>   -0.109</td> <td>    0.029</td>
+</tr>
+<tr>
+  <th>urban</th>     <td>    0.1926</td> <td>    0.036</td> <td>    5.418</td> <td> 0.000</td> <td>    0.123</td> <td>    0.262</td>
+</tr>
+<tr>
+  <th>sibs</th>      <td>    0.0065</td> <td>    0.009</td> <td>    0.722</td> <td> 0.470</td> <td>   -0.011</td> <td>    0.024</td>
+</tr>
+<tr>
+  <th>brthord</th>   <td>   -0.0080</td> <td>    0.013</td> <td>   -0.604</td> <td> 0.546</td> <td>   -0.034</td> <td>    0.018</td>
+</tr>
+<tr>
+  <th>meduc</th>     <td>    0.0089</td> <td>    0.007</td> <td>    1.265</td> <td> 0.206</td> <td>   -0.005</td> <td>    0.023</td>
+</tr>
+<tr>
+  <th>feduc</th>     <td>    0.0069</td> <td>    0.006</td> <td>    1.113</td> <td> 0.266</td> <td>   -0.005</td> <td>    0.019</td>
+</tr>
+</table></div></div>
+</div>
+</div>
+<div class="section" id="omitted-variable-or-confounding-bias">
+<h2>Omitted Variable or Confounding Bias<a class="headerlink" href="#omitted-variable-or-confounding-bias" title="Permalink to this headline">¶</a></h2>
+<p>The question that remains is: this parameter we’ve estimated is causal? Unfortunately, we can’t say for sure. We can argue that the first simple model that regress wage on education probably isn’t. It omits important variables that are correlated both with education and with wages. Without controlling for them, the estimated impact of education is also capturing the impact of those other variables that were not included in the model.</p>
+<p>To better understand how this bias work, let’s suppose the true model for how education affect wage looks a bit like this</p>
+<p><span class="math notranslate nohighlight">\(
+Wage_i = \alpha + \kappa \ Educ_i + A_i'\beta + u_i
+\)</span></p>
+<p>wage is affected by education, which is measured by the size of \(\kappa\) and by additional ability factors, denoted as the vector \(A\). If we omit ability from our model, our estimate for \(\kappa\) will look like this:</p>
+<p><span class="math notranslate nohighlight">\(
+\dfrac{Cov(Wage_i, Educ_i)}{Var(Educ_i)} = \kappa + \beta'\delta_{Ability}
+\)</span></p>
+<p>where \(\delta_{A}\) is the vector of coefficients from the regression of \(A\) on \(Educ\)</p>
+<p>The key point here is that it won’t be exactly the \(\kappa\) that we want. Instead, it comes with this extra annoying term \(\beta’\delta_{A}\). This term is the impact of the omitted \(A\) on \(Wage\), \(\beta\) times the impact of the omitted on the included \(Educ\). This is important for economists that Joshua Angrist made a mantra out of it so that the students can recite it in meditation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Short equals long </span>
+<span class="n">plus</span> <span class="n">the</span> <span class="n">effect</span> <span class="n">of</span> <span class="n">omitted</span> 
+<span class="n">times</span> <span class="n">the</span> <span class="n">regression</span> <span class="n">of</span> <span class="n">omitted</span> <span class="n">on</span> <span class="n">included</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Here, the short regression is the one that omits variables, while the long is the one that includes them. This formula or mantra gives us further insight into the nature of bias. First, the bias term will be zero if the omitted variables have no impact on the dependent variable \(Y\). This makes total sense. I don’t need to control for stuff that is irrelevant for wages when trying to understand the impact of education on it (like how tall the lilies of the field). Second, the bias term will also be zero if the omitted variables have no impact on the treatment variable. This also makes intuitive sense. If everything that impacts education has been included in the model, there is no way the estimated impact of education is mixed with a correlation from education on something else that also impacts wages.</p>
+<p><img alt="img" src="_images/confused_cat.png" /></p>
+<p>To put it more succinctly, we say that <strong>there is no OVB if all the confounding variables are accounted for in the model</strong>. We can also leverage our knowledge about causal graphs here. A confounding variable is one that <strong>causes both the treatment and the outcome</strong>. In the wage example, IQ is a confounder. People with high IQ tend to complete more years of education because it’s easier for them, so we can say that IQ causes education. People with high IQ also tend to be naturally more productive and consequently have higher wages, so IQ also causes wage. Since confounders are variables that affect both the treatment and the outcome, we mark them with an arrow going to T and Y. Here, I’ve denoted them with \(W\). I’ve also marked positive causation with red and negative causation with blue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;W&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">),</span> <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;W&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">),</span> <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;IQ&quot;</span><span class="p">,</span> <span class="s2">&quot;Educ&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">),</span> <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;IQ&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">),</span> <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Crime&quot;</span><span class="p">,</span> <span class="s2">&quot;Police&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">),</span> <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Crime&quot;</span><span class="p">,</span> <span class="s2">&quot;Violence&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">),</span> 
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Police&quot;</span><span class="p">,</span> <span class="s2">&quot;Violence&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+
+<span class="n">g</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/05-The-Unreasonable-Effectiveness-of-Linear-Regression_21_0.svg" src="_images/05-The-Unreasonable-Effectiveness-of-Linear-Regression_21_0.svg" /></div>
+</div>
+<p>Causal graphs are excellent to depict our understanding of the world and understand how confounding bias works. In our first example, we have a graph where education causes wage: more education leads to higher wages. However, IQ also causes wage and it also causes education: high IQ causes both more education and wage. If we don’t account for IQ in our model, some of its effect on wage will flow through the correlation with education. That will make the impact of education look higher than it actually is. This is an example of positive bias.</p>
+<p>Just to give another example, but with negative bias, consider the causal graph about the effect of police on city violence. What we usually see in the world is that cities with higher police force also have more violence. Does this mean that the police are causing the violence? Well, it could be, I don’t think it’s worth getting into that discussion here. But, there is also a strong possibility that there is a confounding variable causing us to see a biased version of the impact of police on violence. It could be that increasing police force decreases violence. But, a third variable crime, causes both more violence and more police force. If we don’t account for it, the impact of crime on violence will flow through police force, making it look like it increases violence. This is an example of negative bias.</p>
+<p>Causal graphs can also show us how both regression and randomized control trials are correct for confounding bias. RCT does so by severing the connection of the confounder to the treatment variable. By making \(T\) random, by definition, nothing can cause it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;W&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">),</span> <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;IQ&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">),</span> <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="n">g</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/05-The-Unreasonable-Effectiveness-of-Linear-Regression_23_0.svg" src="_images/05-The-Unreasonable-Effectiveness-of-Linear-Regression_23_0.svg" /></div>
+</div>
+<p>Regression, on the other hand, does so by comparing the effect of \(T\) while maintaining the confounder \(W\) set to a fixed level. With regression, it is not the case that W cease to cause T and Y. It is just that it is held fixed, so it can’t influence changes on T and Y.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;W=w&quot;</span><span class="p">),</span> <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s2">&quot;IQ=x&quot;</span><span class="p">),</span> <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="n">g</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/05-The-Unreasonable-Effectiveness-of-Linear-Regression_25_0.svg" src="_images/05-The-Unreasonable-Effectiveness-of-Linear-Regression_25_0.svg" /></div>
+</div>
+<p>Now, back to our question, is the parameter we’ve estimated for the impact of <code class="docutils literal notranslate"><span class="pre">educ</span></code> on wage casual? I’m sorry to bring it to you, but that will depend on our ability to argue in favor or against that fact that all confounders have been included in the model. Personally, I think they haven’t. For instance, we haven’t included family wealth. Even if we included family education, that can only be seen as a proxy for wealth. We’ve also not accounted for factors like personal ambition. It could be that ambition is what causes both more years of education and higher wage, so it is a confounder. This is to show that <strong>causal inference with non-random or observational data should always be taken with a grain of salt</strong>. We can never be sure that all confounders were accounted for.</p>
+</div>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<p>We’ve covered a lot of ground with regression. We saw how regression can be used to perform A/B testing and how it conveniently gives us confidence intervals. Then, we moved to study how regression solves a prediction problem and it is the best linear approximation to the CEF. We’ve also discussed how, in the bivariate case, the regression treatment coefficient is the covariance between the treatment and the outcome divided by the variance of the treatment. Expanding to the multivariate case, we figured out how regression gives us a partialling out interpretation of the treatment coefficient: it can be interpreted as how the outcome would change with the treatment while keeping all other included variables constant. This is what economists love to refer as <em>ceteris paribus</em>.</p>
+<p>Finally, we took a turn to understanding bias. We saw how <code class="docutils literal notranslate"><span class="pre">Short</span> <span class="pre">equals</span> <span class="pre">long</span> <span class="pre">plus</span> <span class="pre">the</span> <span class="pre">effect</span> <span class="pre">of</span> <span class="pre">omitted</span> <span class="pre">times</span> <span class="pre">the</span> <span class="pre">regression</span> <span class="pre">of</span> <span class="pre">omitted</span> <span class="pre">on</span> <span class="pre">included</span></code>. This shed some light to how bias comes to be. We discovered that the source of omitted variable bias is confounding: a variable that affects both the treatment and the outcome. Lastly, we used causal graphs to see how RCT and regression fixes confounding.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>I like to think of this entire series as a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what is keeping me sane during this tough year of 2020.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2017-webcasts">Cross-Section Econometrics</a></p></li>
+<li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2020-webcasts">Mastering Mostly Harmless Econometrics</a></p></li>
+</ul>
+<p>I’ll also like to reference the amazing books from Angrist. They have shown me that Econometrics, or ‘Metrics as they call it, is not only extremely useful but also profoundly fun.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.mostlyharmlesseconometrics.com/">Mostly Harmless Econometrics</a></p></li>
+<li><p><a class="reference external" href="https://www.masteringmetrics.com/">Mastering ‘Metrics</a></p></li>
+</ul>
+<p>My final reference is Miguel Hernan and Jamie Robins’ book. It has been my trustworthy companion in the most thorny causal questions I had to answer.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">Causal Inference Book</a></p></li>
+</ul>
+<p><img alt="img" src="_images/poetry.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="04-Graphical-Causal-Models.html" title="previous page">Graphical Causal Models</a>
+    <a class='right-next' id="next-link" href="06-Grouped-and-Dummy-Regression.html" title="next page">Grouped and Dummy Regression</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

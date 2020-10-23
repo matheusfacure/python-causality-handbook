@@ -1,0 +1,1087 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel Data and Fixed Effects &#8212; Causal Inference for the Brave and True</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Difference-in-Difference" href="14-Difference-in-Difference.html" />
+    <link rel="prev" title="Doubly Robust Estimation" href="12-Doubly-Robust-Estimation.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html">
+   Difference-in-Difference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/13-Panel-Data-and-Fixed-Effects.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F13-Panel-Data-and-Fixed-Effects.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/13-Panel-Data-and-Fixed-Effects.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#controlling-what-you-cannot-see">
+   Controlling What you Cannot See
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fixed-effects">
+   Fixed Effects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualizing-fixed-effects">
+   Visualizing Fixed Effects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-effects">
+   Time Effects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#when-panel-data-won-t-help-you">
+   When Panel Data Won’t Help You
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="panel-data-and-fixed-effects">
+<h1>Panel Data and Fixed Effects<a class="headerlink" href="#panel-data-and-fixed-effects" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="controlling-what-you-cannot-see">
+<h2>Controlling What you Cannot See<a class="headerlink" href="#controlling-what-you-cannot-see" title="Permalink to this headline">¶</a></h2>
+<p>Methods like propensity score, linear regression and matching are very good at controlling for confounding in non-random data, but they rely on a key assumption: conditional unconfoundedness</p>
+<p><span class="math notranslate nohighlight">\(
+(Y_0, Y_1) \perp T | X
+\)</span></p>
+<p>To put it in words, they require that all the confounders are known and measured, so that we can condition on them and make the treatment as good as random. One major issue with this is that sometimes we simply can’t measure a confounder. For instance, take a classical labor economics problem of figuring out the impact of marriage on men’s earnings. It’s a well known fact in Economics that married men earn more than single men. What is not as clear is if this relationship is causal or not. It could be that more educated people are both more likely to marry and more likely to have a high earnings job, which would mean that education is a confounder of the effect of marriage on earnings. For this confounder, we could measure the education of the person in the study and run a regression controlling for that. But another confounder could be beauty. It could be that more handsome men are both more likely to get married and more likely to have a high paying job. Unfortunately, beauty is one of those characteristics like intelligence. It’s something we can’t measure very well.</p>
+<p>This puts us in a difficult situation, because if we have unmeasured confounders, we have bias. One way to deal with this is with instrumental variables, like we’ve seen before. But coming up with good instruments it’s no easy task and requires a lot of creativity. Here, let’s look at an alternative that takes advantage of time or the temporal structure of data.</p>
+<p>The idea is to use <strong>panel data</strong>. Panel data is when we have <strong>observations on the same individual for multiple periods of time</strong>. Panel data formats are very common in the industry, where they keep records of customer behavior for the same customer and for multiple time periods. The reason we can leverage panel data is because we can compare the same unit before and after the treatment, and see how they behave with it. Before we dive in the math, let’s see how this makes intuitive sense.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">import</span> <span class="nn">graphviz</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="kn">from</span> <span class="nn">linearmodels.panel</span> <span class="kn">import</span> <span class="n">PanelOLS</span>
+
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_columns&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;fivethirtyeight&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First, let’s take a look at the causal graph that we have once we include multiple observations of the same unit across time. Suppose we have a situation where marriage at the first time causes mariage also at the first time. This is also true for times 2 and 3. Also, suppose that beauty is the same across all time periods (a bold statement, but reasonable if time is just a few years) and it causes both marriage and income.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Marriage_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_1&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Marriage_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Marriage_2&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Marriage_2&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_2&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Marriage_2&quot;</span><span class="p">,</span> <span class="s2">&quot;Marriage_3&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Marriage_3&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_3&quot;</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Beauty&quot;</span><span class="p">,</span> <span class="s2">&quot;Marriage_1&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Beauty&quot;</span><span class="p">,</span> <span class="s2">&quot;Marriage_2&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Beauty&quot;</span><span class="p">,</span> <span class="s2">&quot;Marriage_3&quot;</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Beauty&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_1&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Beauty&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_2&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Beauty&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_3&quot;</span><span class="p">)</span>
+
+<span class="n">g</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/13-Panel-Data-and-Fixed-Effects_3_0.svg" src="_images/13-Panel-Data-and-Fixed-Effects_3_0.svg" /></div>
+</div>
+<p>Remember that we cannot control beauty, since we can’t measure it. But we can still use the panel structure so it is not a problem anymore. The idea is that we can see beauty - and any other attribute that is constant across time - as the defining aspects of a person. And although we can’t control them directly, we can control for the individual itself.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Marriage_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_1&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Marriage_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Marriage_2&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Marriage_2&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_2&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Marriage_2&quot;</span><span class="p">,</span> <span class="s2">&quot;Marriage_3&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Marriage_3&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_3&quot;</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Person (Beauty, Ingeligence...)&quot;</span><span class="p">,</span> <span class="s2">&quot;Marriage_1&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Person (Beauty, Ingeligence...)&quot;</span><span class="p">,</span> <span class="s2">&quot;Marriage_2&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Person (Beauty, Ingeligence...)&quot;</span><span class="p">,</span> <span class="s2">&quot;Marriage_3&quot;</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Person (Beauty, Ingeligence...)&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_1&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Person (Beauty, Ingeligence...)&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_2&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Person (Beauty, Ingeligence...)&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_3&quot;</span><span class="p">)</span>
+
+<span class="n">g</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/13-Panel-Data-and-Fixed-Effects_5_0.svg" src="_images/13-Panel-Data-and-Fixed-Effects_5_0.svg" /></div>
+</div>
+<p>Think about it. We don’t know the attributes like beauty and intelligence, but we know that person is the same individual. So, we can create a dummy variable indicating that person and add that to a linear model. This is what we mean when we say we can control for the person itself. When estimating the effect of marriage on income with this person dummy in our model, what regression does is it finds the effect of marriage <strong>while keeping the person variable fixed</strong>. Adding this entity dummy is what we call a fixed effect model.</p>
+</div>
+<div class="section" id="fixed-effects">
+<h2>Fixed Effects<a class="headerlink" href="#fixed-effects" title="Permalink to this headline">¶</a></h2>
+<p>To make matters more formal, let’s first take a look at the data that we have. Following our example, we will try to estimate the effect of marriage on income. Our data contains those 2 variables, <code class="docutils literal notranslate"><span class="pre">married</span></code> and <code class="docutils literal notranslate"><span class="pre">lwage</span></code>, on multiple individuals (<code class="docutils literal notranslate"><span class="pre">nr</span></code>) for multiple years. Note that wage is in log form. In addition to this, we have other controls, like number of hours worked that year, years of education and so on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">linearmodels.datasets</span> <span class="kn">import</span> <span class="n">wage_panel</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">wage_panel</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>nr</th>
+      <th>year</th>
+      <th>black</th>
+      <th>...</th>
+      <th>lwage</th>
+      <th>expersq</th>
+      <th>occupation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>13</td>
+      <td>1980</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1.197540</td>
+      <td>1</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>13</td>
+      <td>1981</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1.853060</td>
+      <td>4</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>13</td>
+      <td>1982</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1.344462</td>
+      <td>9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>13</td>
+      <td>1983</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1.433213</td>
+      <td>16</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>13</td>
+      <td>1984</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1.568125</td>
+      <td>25</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 12 columns</p>
+</div></div></div>
+</div>
+<p>Generally, the fixed effect model is defined as</p>
+<p><span class="math notranslate nohighlight">\(
+y_{it} = \beta X_{it} + \gamma U_i + e_{it}
+\)</span></p>
+<p>where \(y_{it}\) is the outcome of individual \(i\) at time \(t\), \(X_{it}\) is the vector of variables for individual \(i\) at time \(t\), \(U_i\) is a set of unobservables for individual \(i\) that are unchanging through time, hence the lack of the time subscript, and \(e_{it}\) is the error term. For the education example, \(y_{it}\) is log wages,  \(X_{it}\) are the observable variables that change in time, like marriage and experience and \(U_i\) are the variables that are not observed but constant for each individual, like beauty and intelligence.</p>
+<p>Now, remember how I’ve said that using panel data with a fixed effect model is as simple as adding a dummy for the entities. It’s true, but in practice, we don’t actually do it. Imagine a dataset where we have 1 million customers. If we add one dummy for each of them, we would end up with 1 million columns, which is probably not a good idea. Instead, we use the trick of partitioning the linear regression into 2 separate models. We’ve seen this before, but now is a good time to recap it. Suppose you have a linear regression model with a set of features \(X_1\) and another set of features \(X_2\).</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{Y} = \hat{\beta_1} X_1 + \hat{\beta_2} X_2
+\)</span></p>
+<p>You can get the exact same \(\hat{\beta_1}\) parameter by doing</p>
+<ol class="simple">
+<li><p>regress the the outcome \(y\) on the second set of features \(\hat{y^*} = \hat{\gamma_1} X_2\)</p></li>
+<li><p>regress the first set of features on the second \(\hat{X_1} = \hat{\gamma_2} X_2\)</p></li>
+<li><p>obtain the residuals \(\tilde{X}_1 = X_1 - \hat{X_1}\) and \(\tilde{y}_1 = y_1 - \hat{y^*}\)</p></li>
+<li><p>regress the residuals of the outcome on the residuals of the features \(\hat{y} = \hat{\beta_1} \tilde{X}_1\)</p></li>
+</ol>
+<p>The parameter from this last regression will be exactly the same as running the regression with all the features. But how exactly does this help us? Well, we can break the estimation of the model with the entity dummies into 2. First, we use the dummies to predict the outcome and the feature. These are steps 1 and 2 above.</p>
+<p>Now, remember how running a regression on a dummy variable is as simple as estimating the mean for that dummy? If you don’t, let’s use our data to show how this is true. Let’s run a model where we predict wages as a function of the year dummy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;lwage ~ C(year)&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">mod</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<tr>
+         <td></td>            <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>       <td>    1.3935</td> <td>    0.022</td> <td>   63.462</td> <td> 0.000</td> <td>    1.350</td> <td>    1.437</td>
+</tr>
+<tr>
+  <th>C(year)[T.1981]</th> <td>    0.1194</td> <td>    0.031</td> <td>    3.845</td> <td> 0.000</td> <td>    0.059</td> <td>    0.180</td>
+</tr>
+<tr>
+  <th>C(year)[T.1982]</th> <td>    0.1782</td> <td>    0.031</td> <td>    5.738</td> <td> 0.000</td> <td>    0.117</td> <td>    0.239</td>
+</tr>
+<tr>
+  <th>C(year)[T.1983]</th> <td>    0.2258</td> <td>    0.031</td> <td>    7.271</td> <td> 0.000</td> <td>    0.165</td> <td>    0.287</td>
+</tr>
+<tr>
+  <th>C(year)[T.1984]</th> <td>    0.2968</td> <td>    0.031</td> <td>    9.558</td> <td> 0.000</td> <td>    0.236</td> <td>    0.358</td>
+</tr>
+<tr>
+  <th>C(year)[T.1985]</th> <td>    0.3459</td> <td>    0.031</td> <td>   11.140</td> <td> 0.000</td> <td>    0.285</td> <td>    0.407</td>
+</tr>
+<tr>
+  <th>C(year)[T.1986]</th> <td>    0.4062</td> <td>    0.031</td> <td>   13.082</td> <td> 0.000</td> <td>    0.345</td> <td>    0.467</td>
+</tr>
+<tr>
+  <th>C(year)[T.1987]</th> <td>    0.4730</td> <td>    0.031</td> <td>   15.232</td> <td> 0.000</td> <td>    0.412</td> <td>    0.534</td>
+</tr>
+</table></div></div>
+</div>
+<p>Notice how this model is predicting the average income in 1980 to be 1.3935, in 1981 to be 1.3935 (1.3935+0.1194) and so on. Now, if we compute the average by year, we get the exact same result (add the intercept to the parameters of the other years to get the mean for the year).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)[</span><span class="s2">&quot;lwage&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year
+1980    1.393477
+1981    1.512867
+1982    1.571667
+1983    1.619263
+1984    1.690295
+1985    1.739410
+1986    1.799719
+1987    1.866479
+Name: lwage, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>This means that if we get the average for every person in our panel, we are essentially regressing the individual dummy on the other variables. This motivates the following estimation procedure:</p>
+<ol class="simple">
+<li><p>Create time-demeaned variables by subtracting the mean for the individual:<br />
+\(\ddot{Y}<em>{it} = Y</em>{it} -  \bar{Y}<em>i\)<br />
+\(\ddot{X}</em>{it} = X_{it} -  \bar{X}_i\)</p></li>
+<li><p>Run regress \(\ddot{Y}<em>{it}\) on \(\ddot{X}</em>{it}\)</p></li>
+</ol>
+<p>Notice that when we do so, the unobserved \(U_i\) vanishes, since \(\bar{U_i}=U_i\):</p>
+<p>\begin{align}
+Y_{it} &amp; = \beta X_{it} + \gamma U_i + e_{it} \
+\bar{Y}<em>{i} &amp; = \beta \bar{X}</em>{it} + \gamma U_i + \bar{e}<em>{it} \
+(Y</em>{it} - \bar{Y}<em>{i}) &amp; = (\beta X</em>{it} - \beta \bar{X}<em>{it}) + (\gamma U_i - \gamma U_i) + (e</em>{it}-\bar{e}<em>{it}) \
+(Y</em>{it} - \bar{Y}<em>{i}) &amp; = \beta(X</em>{it} - \bar{X}<em>{it}) + (e</em>{it}-\bar{e}<em>{it}) \
+\ddot{Y}</em>{it} &amp; = \beta \ddot{X}<em>{it} + \ddot{e}</em>{it} \
+\end{align}</p>
+<p>To be honest, not only do the unobserved variables that are constant in time vanish. This happens to all the variables that are constant in time. For this reason, you can’t include any variables that are constant across time, as they would be a linear combination of the dummy variables and the model wouldn’t run.</p>
+<p><img alt="img" src="_images/demeaned.png" /></p>
+<p>To check which variables are those, we can group our data by individual and get the sum of the standard deviations. If it is zero, it means the variable isn’t changing for the same individual.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;nr&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year            1334.971910
+black              0.000000
+exper           1334.971910
+hisp               0.000000
+hours         203098.215649
+married          140.372801
+educ               0.000000
+union            106.512445
+lwage            173.929670
+expersq        17608.242825
+occupation       739.222281
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>For our data, we need to remove entinicity dummies, <code class="docutils literal notranslate"><span class="pre">black</span></code> and <code class="docutils literal notranslate"><span class="pre">hisp</span></code>, since they are constant for the individual. Also, we need to remove education. We will also not use occupation, since this is probably mediating the effect of marriage on wage (it could be that single men are able to take more time demanding positions).</p>
+<p>To run our fixed effect model, first, let’s get our mean data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="s2">&quot;lwage&quot;</span>
+<span class="n">T</span> <span class="o">=</span> <span class="s2">&quot;married&quot;</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;expersq&quot;</span><span class="p">,</span> <span class="s2">&quot;union&quot;</span><span class="p">,</span> <span class="s2">&quot;hours&quot;</span><span class="p">]</span>
+
+<span class="n">mean_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;nr&quot;</span><span class="p">)[</span><span class="n">X</span><span class="o">+</span><span class="p">[</span><span class="n">Y</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>married</th>
+      <th>expersq</th>
+      <th>union</th>
+      <th>hours</th>
+      <th>lwage</th>
+    </tr>
+    <tr>
+      <th>nr</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>0.000</td>
+      <td>25.5</td>
+      <td>0.125</td>
+      <td>2807.625</td>
+      <td>1.255652</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0.000</td>
+      <td>61.5</td>
+      <td>0.000</td>
+      <td>2504.125</td>
+      <td>1.637786</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>1.000</td>
+      <td>61.5</td>
+      <td>0.000</td>
+      <td>2350.500</td>
+      <td>2.034387</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>0.125</td>
+      <td>35.5</td>
+      <td>0.250</td>
+      <td>2225.875</td>
+      <td>1.773664</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>0.500</td>
+      <td>77.5</td>
+      <td>0.125</td>
+      <td>2108.000</td>
+      <td>2.055129</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To demean the data, we need to set the index of the original data to be the individual identifier, <code class="docutils literal notranslate"><span class="pre">nr</span></code>. Then, we can simply subtract one data frame from the mean data frame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deamed_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span>
+               <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;nr&quot;</span><span class="p">)</span> <span class="c1"># set the index as the person indicator</span>
+               <span class="p">[</span><span class="n">X</span><span class="o">+</span><span class="p">[</span><span class="n">Y</span><span class="p">]]</span>
+               <span class="o">-</span> <span class="n">mean_data</span><span class="p">)</span> <span class="c1"># subtract the mean data</span>
+
+<span class="n">deamed_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>married</th>
+      <th>expersq</th>
+      <th>union</th>
+      <th>hours</th>
+      <th>lwage</th>
+    </tr>
+    <tr>
+      <th>nr</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>13</th>
+      <td>0.0</td>
+      <td>-24.5</td>
+      <td>-0.125</td>
+      <td>-135.625</td>
+      <td>-0.058112</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.0</td>
+      <td>-21.5</td>
+      <td>0.875</td>
+      <td>-487.625</td>
+      <td>0.597408</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.0</td>
+      <td>-16.5</td>
+      <td>-0.125</td>
+      <td>132.375</td>
+      <td>0.088810</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.0</td>
+      <td>-9.5</td>
+      <td>-0.125</td>
+      <td>152.375</td>
+      <td>0.177561</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.0</td>
+      <td>-0.5</td>
+      <td>-0.125</td>
+      <td>263.375</td>
+      <td>0.312473</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Finally, we can run our fixed effect model on the time-demeaned data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Y</span><span class="si">}</span><span class="s2"> ~ </span><span class="si">{</span><span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">deamed_data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">mod</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>-8.327e-17</td> <td>    0.005</td> <td>-1.64e-14</td> <td> 1.000</td> <td>   -0.010</td> <td>    0.010</td>
+</tr>
+<tr>
+  <th>married</th>   <td>    0.1147</td> <td>    0.017</td> <td>    6.756</td> <td> 0.000</td> <td>    0.081</td> <td>    0.148</td>
+</tr>
+<tr>
+  <th>expersq</th>   <td>    0.0040</td> <td>    0.000</td> <td>   21.958</td> <td> 0.000</td> <td>    0.004</td> <td>    0.004</td>
+</tr>
+<tr>
+  <th>union</th>     <td>    0.0784</td> <td>    0.018</td> <td>    4.261</td> <td> 0.000</td> <td>    0.042</td> <td>    0.115</td>
+</tr>
+<tr>
+  <th>hours</th>     <td> -8.46e-05</td> <td> 1.25e-05</td> <td>   -6.744</td> <td> 0.000</td> <td>   -0.000</td> <td>   -6e-05</td>
+</tr>
+</table></div></div>
+</div>
+<p>If we were to believe that fixed effect eliminates the all omitted variable bias, this model is telling us that marriage increases a man’s wage by 11%. This result is very significant. One detail here is that for fixed effect models, the standard errors need to be clustered. So, instead of doing all our estimation by hand (which is only nice for pedagogical reasons), we can use the library <code class="docutils literal notranslate"><span class="pre">linearmodels</span></code> and set the argument <code class="docutils literal notranslate"><span class="pre">cluster_entity</span></code> to True.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">linearmodels.panel</span> <span class="kn">import</span> <span class="n">PanelOLS</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">PanelOLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s2">&quot;lwage ~ expersq+union+married+hours+EntityEffects&quot;</span><span class="p">,</span>
+                            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;nr&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">]))</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s1">&#39;clustered&#39;</span><span class="p">,</span> <span class="n">cluster_entity</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>Parameter Estimates</caption>
+<tr>
+     <td></td>     <th>Parameter</th> <th>Std. Err.</th> <th>T-stat</th>  <th>P-value</th> <th>Lower CI</th>  <th>Upper CI</th> 
+</tr>
+<tr>
+  <th>expersq</th>  <td>0.0040</td>    <td>0.0002</td>   <td>16.552</td>  <td>0.0000</td>   <td>0.0035</td>    <td>0.0044</td>  
+</tr>
+<tr>
+  <th>union</th>    <td>0.0784</td>    <td>0.0236</td>   <td>3.3225</td>  <td>0.0009</td>   <td>0.0322</td>    <td>0.1247</td>  
+</tr>
+<tr>
+  <th>married</th>  <td>0.1147</td>    <td>0.0220</td>   <td>5.2213</td>  <td>0.0000</td>   <td>0.0716</td>    <td>0.1577</td>  
+</tr>
+<tr>
+  <th>hours</th>   <td>-8.46e-05</td> <td>2.22e-05</td>  <td>-3.8105</td> <td>0.0001</td>   <td>-0.0001</td> <td>-4.107e-05</td>
+</tr>
+</table></div></div>
+</div>
+<p>Notice how the parameter estimates are identical to the ones we’ve got with time-demeaned data. The only difference is that the standard errors are a bit larger. Now, compare this to the simple OLS model that doesn’t take the time structure of the data into account. For this model, we add back the variables that are constant in time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;lwage ~ expersq+union+married+hours+black+hisp+educ&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">mod</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>    0.2654</td> <td>    0.065</td> <td>    4.103</td> <td> 0.000</td> <td>    0.139</td> <td>    0.392</td>
+</tr>
+<tr>
+  <th>expersq</th>   <td>    0.0032</td> <td>    0.000</td> <td>   15.750</td> <td> 0.000</td> <td>    0.003</td> <td>    0.004</td>
+</tr>
+<tr>
+  <th>union</th>     <td>    0.1829</td> <td>    0.017</td> <td>   10.598</td> <td> 0.000</td> <td>    0.149</td> <td>    0.217</td>
+</tr>
+<tr>
+  <th>married</th>   <td>    0.1410</td> <td>    0.016</td> <td>    8.931</td> <td> 0.000</td> <td>    0.110</td> <td>    0.172</td>
+</tr>
+<tr>
+  <th>hours</th>     <td> -5.32e-05</td> <td> 1.34e-05</td> <td>   -3.978</td> <td> 0.000</td> <td>-7.94e-05</td> <td> -2.7e-05</td>
+</tr>
+<tr>
+  <th>black</th>     <td>   -0.1347</td> <td>    0.024</td> <td>   -5.679</td> <td> 0.000</td> <td>   -0.181</td> <td>   -0.088</td>
+</tr>
+<tr>
+  <th>hisp</th>      <td>    0.0132</td> <td>    0.021</td> <td>    0.632</td> <td> 0.528</td> <td>   -0.028</td> <td>    0.054</td>
+</tr>
+<tr>
+  <th>educ</th>      <td>    0.1057</td> <td>    0.005</td> <td>   22.550</td> <td> 0.000</td> <td>    0.097</td> <td>    0.115</td>
+</tr>
+</table></div></div>
+</div>
+<p>This model is saying that marriage increases the man’s wage by 14%. A somewhat larger effect than the one we found with the fixed effect model. This suggests some omitted variable bias due to fixed individual factors, like intelligence and beauty not being added to the model.</p>
+</div>
+<div class="section" id="visualizing-fixed-effects">
+<h2>Visualizing Fixed Effects<a class="headerlink" href="#visualizing-fixed-effects" title="Permalink to this headline">¶</a></h2>
+<p>To expand our intuition about how fixed effect models work, let’s diverge a little to another example. Suppose you work for a big tech company and you want to estimate the impact of a billboard marketing campaign on in-app purchase. When you look at data from the past, you see that the marketing department tends to spend more to place billboards on cities where the purchase level is lower. This makes sense right? They wouldn’t need to do lots of marketing if sales were skyrocketing. If you run a regression model on this data, it looks like higher cost in marketing leads to less in-app purchase.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">toy_panel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;mkt_costs&quot;</span><span class="p">:[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">3.5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+    <span class="s2">&quot;purchase&quot;</span><span class="p">:[</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mf">7.5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">6.5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span><span class="mf">14.5</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:[</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="s2">&quot;C2&quot;</span><span class="p">,</span><span class="s2">&quot;C2&quot;</span><span class="p">,</span><span class="s2">&quot;C2&quot;</span><span class="p">,</span><span class="s2">&quot;C2&quot;</span><span class="p">,</span> <span class="s2">&quot;C1&quot;</span><span class="p">,</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="s2">&quot;C3&quot;</span><span class="p">,</span><span class="s2">&quot;C3&quot;</span><span class="p">,</span><span class="s2">&quot;C3&quot;</span><span class="p">,</span><span class="s2">&quot;C3&quot;</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;purchase ~ mkt_costs&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">toy_panel</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">toy_panel</span><span class="o">.</span><span class="n">mkt_costs</span><span class="p">,</span> <span class="n">toy_panel</span><span class="o">.</span><span class="n">purchase</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">toy_panel</span><span class="o">.</span><span class="n">mkt_costs</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;C5&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Regression Line&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Marketing Costs (in 1000)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;In-app Purchase (in 1000)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simple OLS Model&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/13-Panel-Data-and-Fixed-Effects_25_0.png" src="_images/13-Panel-Data-and-Fixed-Effects_25_0.png" />
+</div>
+</div>
+<p>Knowing a lot about causal inference, you decide to run a fixed effect model, adding the cities indicator as a dummy variable to your model. The fixed effect model controls for city specific characteristics that are constant in time, so if a city is less open to your product, it will capture that. When you run that model, you can finally see that more marketing costs leads to higher in-app purchase.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fe</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;purchase ~ mkt_costs + C(city)&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">toy_panel</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">fe_toy</span> <span class="o">=</span> <span class="n">toy_panel</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">y_hat</span> <span class="o">=</span> <span class="n">fe</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">toy_panel</span><span class="o">.</span><span class="n">mkt_costs</span><span class="p">,</span> <span class="n">toy_panel</span><span class="o">.</span><span class="n">purchase</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">toy_panel</span><span class="o">.</span><span class="n">city</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">city</span> <span class="ow">in</span> <span class="n">fe_toy</span><span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">plot_df</span> <span class="o">=</span> <span class="n">fe_toy</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;city==&#39;</span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_df</span><span class="o">.</span><span class="n">mkt_costs</span><span class="p">,</span> <span class="n">plot_df</span><span class="o">.</span><span class="n">y_hat</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;C5&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Fixed Effect Model&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Marketing Costs (in 1000)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;In-app Purchase (in 1000)&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/13-Panel-Data-and-Fixed-Effects_27_0.png" src="_images/13-Panel-Data-and-Fixed-Effects_27_0.png" />
+</div>
+</div>
+<p>Take a minute to appreciate the figure above and let it tell you what fixed effect is doing. Notice that fixed effect is fitting <strong>one regression line per city</strong>. Also notice that the lines are parallel. The slope of the line is the effect of marketing costs on in-app purchase. So the <strong>fixed effect is assuming that the causal effect is constants across all entities</strong>, which are cities in this case. This can be a weakness or an advantage, depending on how you see it. It is a weakness if you are interested in finding the causal effect per city. Since the FE model assumes this effect is constant across entities, you won’t find any difference in the causal effect. However, if you want to find the overall impact of marketing on in-app purchase, the panel structure of the data is a very useful leverage that fixed effects can explore.</p>
+</div>
+<div class="section" id="time-effects">
+<h2>Time Effects<a class="headerlink" href="#time-effects" title="Permalink to this headline">¶</a></h2>
+<p>Just like we did a fixed effect for the individual level, we could design a fixed effect for the time level. If adding a dummy for each individual controls for fixed individual characteristics, adding a time dummy would control for variables that are fixed across time. One example of such a variable is inflation. Prices and salary tend to go up with time. If the wage marriage proportion also changes with time, we would have time as a confounder. To give a more concrete example, suppose that marriage is increasing with time. Since inflation also makes salary increase with time, some of the positive association we see between marriage and wage would be simply because both are increasing with time. To correct for that, we can add a dummy variable for each time period. In <code class="docutils literal notranslate"><span class="pre">linear</span> <span class="pre">models</span></code>, this is as simple as adding <code class="docutils literal notranslate"><span class="pre">TimeEffects</span></code> to our formula and setting the <code class="docutils literal notranslate"><span class="pre">cluster_time</span></code> to ture.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">PanelOLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s2">&quot;lwage ~ expersq+union+married+hours+EntityEffects+TimeEffects&quot;</span><span class="p">,</span>
+                            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;nr&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">]))</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s1">&#39;clustered&#39;</span><span class="p">,</span> <span class="n">cluster_entity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cluster_time</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>Parameter Estimates</caption>
+<tr>
+     <td></td>     <th>Parameter</th> <th>Std. Err.</th> <th>T-stat</th>  <th>P-value</th> <th>Lower CI</th>  <th>Upper CI</th> 
+</tr>
+<tr>
+  <th>expersq</th>  <td>-0.0062</td>   <td>0.0008</td>   <td>-8.1479</td> <td>0.0000</td>   <td>-0.0077</td>   <td>-0.0047</td> 
+</tr>
+<tr>
+  <th>union</th>    <td>0.0727</td>    <td>0.0228</td>   <td>3.1858</td>  <td>0.0015</td>   <td>0.0279</td>    <td>0.1174</td>  
+</tr>
+<tr>
+  <th>married</th>  <td>0.0476</td>    <td>0.0177</td>   <td>2.6906</td>  <td>0.0072</td>   <td>0.0129</td>    <td>0.0823</td>  
+</tr>
+<tr>
+  <th>hours</th>    <td>-0.0001</td>  <td>3.546e-05</td> <td>-3.8258</td> <td>0.0001</td>   <td>-0.0002</td> <td>-6.614e-05</td>
+</tr>
+</table></div></div>
+</div>
+<p>In this new model, the effect of marriage on wage decreased significantly from <code class="docutils literal notranslate"><span class="pre">0.1147</span></code> to <code class="docutils literal notranslate"><span class="pre">0.0476</span></code>. Still, this result is significant at a 99% level, so man could still expect an increase in earnings from marriage.</p>
+</div>
+<div class="section" id="when-panel-data-won-t-help-you">
+<h2>When Panel Data Won’t Help You<a class="headerlink" href="#when-panel-data-won-t-help-you" title="Permalink to this headline">¶</a></h2>
+<p>Using panel data and fixed effects models is an extremely powerful tool for causal inference. When you don’t have random data nor good instruments, the fixed effect is as convincing as it gets for causal inference with non experimental data. Still, it is worth mentioning that it is not a panacea. There are situations where even panel data won’t help you.</p>
+<p>The most obvious one is when you have confounders that are changing in time. Fixed Effects can only eliminate bias from attributes that are constant for each individual. For instance, suppose that you can increase your intelligence level by reading books and eating lots of good fats. This causes you to get a higher paying job and a wife. Fixed effect won’t be able to remove this bias due to unmeasured intelligence confounding because, in this example, intelligence is changing in time.</p>
+<p><img alt="img" src="_images/time-travel.png" /></p>
+<p>Another less obvious case when fixed effect fails is when you have <strong>reversed causality</strong>. For instance, let’s say that it isn’t marriage that causes you to earn more. Is earning more that increases your chances of getting married. In this case, it will appear that they have a positive correlation but earnings come first. They would change in time and in the same direction, so fixed effects wouldn’t be able to control for that.</p>
+</div>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<p>Here, we saw how to use panel data, data where we have multiple measurements of the same individuals across multiple time periods. When that is the case, we can use a fixed effect model that controls for the entity, holding all individual, time constant attributes fixed. This is a powerful and very convincing way of controlling for confounding and it is as good as it gets with non random data.</p>
+<p>Finally, we saw that FE is not a panacea. We understood two situations where it doesn’t work: when we have reverse causality and when the unmeasured confounding is changing in time.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>I like to think of this entire series as a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what is keeping me sane during this tough year of 2020.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2017-webcasts">Cross-Section Econometrics</a></p></li>
+<li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2020-webcasts">Mastering Mostly Harmless Econometrics</a></p></li>
+</ul>
+<p>I’ll also like to reference the amazing books from Angrist. They have shown me that Econometrics, or ‘Metrics as they call it, is not only extremely useful but also profoundly fun.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.mostlyharmlesseconometrics.com/">Mostly Harmless Econometrics</a></p></li>
+<li><p><a class="reference external" href="https://www.masteringmetrics.com/">Mastering ‘Metrics</a></p></li>
+</ul>
+<p>Another important reference is Miguel Hernan and Jamie Robins’ book. It has been my trustworthy companion in the most thorny causal questions I had to answer.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">Causal Inference Book</a></p></li>
+</ul>
+<p>Finally, I’d also like to compliment Scott Cunningham and his brilliant work mingling Causal Inference and Rap quotes:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.scunning.com/mixtape.html">Causal Inference: The Mixtape</a></p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="12-Doubly-Robust-Estimation.html" title="previous page">Doubly Robust Estimation</a>
+    <a class='right-next' id="next-link" href="14-Difference-in-Difference.html" title="next page">Difference-in-Difference</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

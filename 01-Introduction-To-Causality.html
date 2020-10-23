@@ -1,0 +1,773 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction To Causality &#8212; Causal Inference for the Brave and True</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Randomised Experiments" href="02-Randomised-Experiments.html" />
+    <link rel="prev" title="Causal Inference for The Brave and True" href="landing-page.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
+   Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html">
+   Three Billboards in the South of Brazil
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#did-estimator">
+   DID Estimator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#non-parallel-trends">
+   Non Parallel Trends
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html#references">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/01-Introduction-To-Causality.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F01-Introduction-To-Causality.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/01-Introduction-To-Causality.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-bother">
+   Why Bother?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-science-is-not-what-it-used-to-be-or-it-finally-is">
+   Data Science is Not What it Used to Be (or it Finally Is).
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#answering-a-different-kind-of-question">
+   Answering a Different Kind of Question
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#when-association-is-causation">
+   When Association IS Causation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bias">
+   Bias
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-causality">
+<h1>Introduction To Causality<a class="headerlink" href="#introduction-to-causality" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="why-bother">
+<h2>Why Bother?<a class="headerlink" href="#why-bother" title="Permalink to this headline">¶</a></h2>
+<p>First and foremost, you might be wondering: what’s in it for me? Here is what:</p>
+</div>
+<div class="section" id="data-science-is-not-what-it-used-to-be-or-it-finally-is">
+<h2>Data Science is Not What it Used to Be (or it Finally Is).<a class="headerlink" href="#data-science-is-not-what-it-used-to-be-or-it-finally-is" title="Permalink to this headline">¶</a></h2>
+<p>Data Scientist has been labeled <a class="reference external" href="https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century">The Sexiest Job of the 21st Century</a> by Harvard Business Review. This was no empty statement. For a decade now, Data Scientist has been at the spotlight. AI experts had <a class="reference external" href="https://www.economist.com/business/2016/04/02/million-dollar-babies">salaries that rivaled those of sports superstars</a>. In the search for fame and fortune, hundreds of young professionals entered into what seemed a frenetic golden rush to get the Data Science title as quickly as possible. Whole new industries sprang around the hype. Miraculous teaching methods could make you a Data Scientist without requiring you to look at a single math formula. Consulting specialists promised millions if your company could unlock the potential of data. AI or, Machine Learning, has been called the new electricity and data, the new oil.</p>
+<p>Meanwhile, we kind of forgot about those that have been doing “old fashioned” science with data all along. During all this time, economists were trying to answer what is the true impact of education on one’s earnings, biostatisticians were trying to understand if saturated fat led to higher chance of heart attack and psychologists were trying to understand if words of affirmation led indeed to a happier marriage. If we were to be completely honest, data scientist is not a recent field. We are simply aware of it just now due to the massive amount of free marketing the media has provided.</p>
+<p>To use a Jim Collins analogy, think about pouring yourself an ice cold cup of your favorite beer. If you do this the right way, most of the cup will be beer but there will be a 1 finger thick layer of foam at the top. This cup is just like Data Science.</p>
+<ol class="simple">
+<li><p>It’s the bear. The statistical foundations, the scientific curiosity, the passion for difficult problems. All of this was proven very valuable throughout hundreds of years.</p></li>
+<li><p>It’s the foam. The fluffy stuff built on unrealistic expectations that will eventually go away.</p></li>
+</ol>
+<p>This foam might come down crashing faster than you think. As The Economist puts it</p>
+<blockquote>
+<div><p>The same consultants who predict that AI will have a world-altering impact also report that real managers in real companies are finding AI hard to implement, and that enthusiasm for it is cooling. Svetlana Sicular of Gartner, a research firm, says that 2020 could be the year AI falls onto the downslope of her firm’s well-publicised “hype cycle”. Investors are beginning to wake up to bandwagon-jumping: a survey of European AI startups by MMC, a venture-capital fund, found that 40% did not seem to be using any AI at all.</p>
+</div></blockquote>
+<p>In the midst of all this craze, what should we, as Data Scientists - or better yet, as “just” Scientists - do? As a starter, if you are smart, you will learn to ignore the foam. We are in it for the beer. Math and statistics has been useful since forever and it is unlikely it will stop now. Second, learn what makes your work valuable and useful, not the latest shining tool that no one figured out how to use.</p>
+<p>Last but not least, remember that there are no shortcuts. Knowledge in Math and Statistics are valuable precisely because they are hard to acquire. If everyone could do it, excess supply would drive its price down. So <strong>toughen up</strong>! Learn them as well as you can. And heck, why not? have fun along the way as we embark on this quest only <strong>for the Brave and True</strong>.</p>
+<p><img alt="img" src="_images/tougher-up-cupcake1.jpg" /></p>
+</div>
+<div class="section" id="answering-a-different-kind-of-question">
+<h2>Answering a Different Kind of Question<a class="headerlink" href="#answering-a-different-kind-of-question" title="Permalink to this headline">¶</a></h2>
+<p>The type of question Machine Learning is currently very good at answering is of the prediction kind. As Ajay Agrawal, Joshua Gans and Avi Goldfarb puts it in the book Prediction Machines, “the new wave of artificial intelligence does not actually bring us intelligence but instead a critical component of intelligence - prediction”. We can do all sorts of wonderful things with machine learning. The only requirement is that we frame our problems as prediction ones. Want to translate from english to portuguese? Then build a ML model that predicts portuguese sentences when given english sentences. Want to recognize faces? Then build a ML model that predicts the presence of a face in a subsection of a picture. Want to build a self driving car? Then build one ML model to predict the direction of the wheel and the pressure on the brakes and accelerator when presented with images and sensors from the surroundings of a car.</p>
+<p>However, ML is not a panacea. It can perform wonders under very strict boundaries and still fail miserably if the data it’s using deviates a little from what the model is accustomed to. To give another example from Prediction Machines, “in many industries, low prices are associated with low sales. For example, in the hotel industry, prices are low outside the tourist season, and prices are high when demand is highest and hotels are full. Given that data, a naive prediction might suggest that increasing the price would lead to more rooms sold.”</p>
+<p>ML is notoriously bad at this inverse causality type of problems. They require us to answer “what if” questions, what Economists call counterfactuals. What would happen if instead of this price I’m currently asking for my merchandise, I use another price? What would happen if instead of this low fat diet I’m in, I do a low sugar one? If you work in a bank, giving credit, you will have to figure out how changing the customer line changes you’r revenue. Or if you work at the local government, you might be asked to figure out how to make the schooling system better. Should you give tablets to every kid because the era of digital knowledge tells you to? Or should you build an old fashioned library?</p>
+<p>At the heart of these questions there is a causal inquiry we wish to know the answer. Causal questions permeate everyday problems, like figuring out how to make sales go up, but they also play an important role on dilemmas that are very personal and dear to us: do I have to go to an expensive school to be successful in life (does education cause earnings)? Does imigration lowers my chances of getting a job (does imigration causes unemployment to go up)? Does money transfer to the poor lower the crime rate? It doesn’t matter the field you are in, it is very likely you had or will have to answer some type of causal question. Unfortunately for ML, we can’t rely on correlation type predictions to tackle them.</p>
+<p>Answering this kind of question is tougher than most people appreciate. Your parents have probably repeated to you that “association is not causation”, “association is not causation”. But actually explaining why that is the case is a bit more involved. This is what this introduction to causal inference is all about. The rest of this series is dedicated to <strong>figuring how to make association be causation</strong>.</p>
+</div>
+<div class="section" id="when-association-is-causation">
+<h2>When Association IS Causation<a class="headerlink" href="#when-association-is-causation" title="Permalink to this headline">¶</a></h2>
+<p>Intuitively, we kind of know why association is not causation. If someone tells you that schools that give tablets to its students perform better than those who don’t, you can quickly point out that it is probably the case that those schools with the tablets are richer. As such, they would do better than average even without the tablets. Because of this, we can’t conclude that giving tablets to kids during classes will cause an increase in their academic performance. We can only say that tablets in school are associated with high academic performance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">expit</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;fivethirtyeight&quot;</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">tuition</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+<span class="n">tablet</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">expit</span><span class="p">((</span><span class="n">tuition</span> <span class="o">-</span> <span class="n">tuition</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">tuition</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">enem_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">200</span> <span class="o">-</span> <span class="mi">50</span> <span class="o">*</span> <span class="n">tablet</span> <span class="o">+</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="n">tuition</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">enem_score</span> <span class="o">=</span> <span class="p">(</span><span class="n">enem_score</span> <span class="o">-</span> <span class="n">enem_score</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="n">enem_score</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">enem_score</span> <span class="o">*=</span> <span class="mi">1000</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">enem_score</span><span class="o">=</span><span class="n">enem_score</span><span class="p">,</span> <span class="n">Tuition</span><span class="o">=</span><span class="n">tuition</span><span class="p">,</span> <span class="n">Tablet</span><span class="o">=</span><span class="n">tablet</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;enem_score&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Tablet&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ENEM score by Tablet in Class&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/01-Introduction-To-Causality_2_0.png" src="_images/01-Introduction-To-Causality_2_0.png" />
+</div>
+</div>
+<p>To get beyond simple intuition, let’s first establish some notation. This will be our common language to speak about causality. Think of it as the common tongue we will use to identify other brave and true causal warriors and that will compose our cry in the many battles to come.</p>
+<p>Let’s call \(T_i\) the treatment intake for unit i.</p>
+<p><span class="math notranslate nohighlight">\(
+T_i=\begin{cases}
+1 \ \text{if unit i received the treatment}\\
+0 \ \text{otherwise}\\
+\end{cases}
+\)</span></p>
+<p>The treatment here doesn’t need to be a medicine or anything from the medical field. Istead, it is just a term we will use to denote some intervention for which we want to know the effect. In our case, the treatment is giving tablets to students. As a side note, you might sometimes see \(D\) instead of \(T\) to denote the treatment.</p>
+<p>Now, let’s call \(Y_i\) the observed outcome variable for unit i.</p>
+<p><span class="math notranslate nohighlight">\(
+Y_i
+\)</span></p>
+<p>The outcome is our variable of interest. We want to know if the treatment has any influence in it. In our tablet example, it would be the academic performance.</p>
+<p>Here is where things get interesting. The <strong>fundamental problem of causal inference</strong> is that we can never observe the same unit with and without treatment. It is as if we have two diverging roads and we can only know what lies ahead of the one we take. As in Robert Frost poem:</p>
+<blockquote>
+<div><p>Two roads diverged in a yellow wood,<br />
+And sorry I could not travel both<br />
+And be one traveler, long I stood<br />
+And looked down one as far as I could<br />
+To where it bent in the undergrowth;</p>
+</div></blockquote>
+<p>To wrap our heads around this, we will talk a lot in term of <strong>potential outcomes</strong>. They are potential because they didn’t actually happen. Instead they denote <strong>what would have happened</strong> in the case some treatment was taken. We sometimes call the potential outcome that happened, factual, and the one that didn’t happen, counterfactual.</p>
+<p>As for the notation, we use an additional subscript:</p>
+<p>\(Y_{0i}\) is the potential outcome for unit i without the treatment.</p>
+<p>\(Y_{1i}\) is the potential outcome for <strong>the same</strong> unit i with the treatment.</p>
+<p>Sometimes you might see potential outcomes represented as functions \(Y_i(t)\), so beware. \(Y_{0i}\) could be \(Y_i(0)\) and \(Y_{1i}\) could be \(Y_i(1)\). Here, we will use the subscript notation most of the time.</p>
+<p><img alt="img" src="_images/potential_outcomes.png" /></p>
+<p>Back to our example, \(Y_{1i}\) is the academic performance for student i if he or she has tablets at the classroom. Whether this is or not the case, it doesn’t matter for \(Y_{1i}\). It is the same regardless. If student i gets the tablet, we can observe \(Y_{1i}\). If not, we can observe \(Y_{0i}\). Notice how in this last case, \(Y_{1i}\) is still defined, we just can’t see it. In this case, it is a counterfactual potential outcome.</p>
+<p>With potential outcomes, we can define the individual treatment effect:</p>
+<p>\(Y_{1i} - Y_{0i}\)</p>
+<p>Of course, due to the fundamental problem of causal inference, we can never know the individual treatment effect because we only observe one of the potential outcomes. For the time being, let’s focus on something easier than estimating the individual treatment effect. Instead, lets focus on the <strong>average treatment effect</strong>, which is defined as follows.</p>
+<p>\(ATE = E[Y_1 - Y_0]\)</p>
+<p>Another easier quantity to estimate is the <strong>average treatment effect on the treated</strong>:</p>
+<p>\(ATET = E[Y_1 - Y_0 | T=1]\)</p>
+<p>Now, I know we can’t see both potential outcomes, but just for the sake of the argument, let’s suppose we could. Pretend that the causal inference deity is pleased with the many statistical battles that we fought and has rewarded us with godlike powers to see the alternative potential outcomes. With that power, say we collect data on 4 schools. We know if they gave tablets to its students and their score on some annual academic test. Here, tablets are the treatment, so \(T=1\) if the school gives tablets to its kids. \(Y\) will be the test score.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">i</span><span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+    <span class="n">y0</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">800</span><span class="p">,</span><span class="mi">700</span><span class="p">],</span>
+    <span class="n">y1</span><span class="o">=</span><span class="p">[</span><span class="mi">450</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">750</span><span class="p">],</span>
+    <span class="n">t</span><span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">750</span><span class="p">],</span>
+    <span class="n">te</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span><span class="mi">50</span><span class="p">],</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>i</th>
+      <th>y0</th>
+      <th>y1</th>
+      <th>t</th>
+      <th>y</th>
+      <th>te</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>500</td>
+      <td>450</td>
+      <td>0</td>
+      <td>500</td>
+      <td>-50</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>600</td>
+      <td>600</td>
+      <td>0</td>
+      <td>600</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>800</td>
+      <td>600</td>
+      <td>1</td>
+      <td>600</td>
+      <td>-200</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>700</td>
+      <td>750</td>
+      <td>1</td>
+      <td>750</td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The \(ATE\) here would be the mean of the last column, that is, of the treatment effect:</p>
+<p>\(ATE=(-50 + 0 - 200 + 50)/4 = -50\)</p>
+<p>This would mean that tablets reduced the academic performance of students, on average, by 50 points. The \(ATET\) here would be the mean of the last column when \(T=1\):</p>
+<p>\(ATET=(- 200 + 50)/2 = -75\)</p>
+<p>This is saying that, for the schools that were treated, the tablets reduced the academic performance of students, on average, by 75 points. Of course we can never know this. In reality, the table above would look like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">i</span><span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+    <span class="n">y0</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span>
+    <span class="n">y1</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">750</span><span class="p">],</span>
+    <span class="n">t</span><span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">750</span><span class="p">],</span>
+    <span class="n">te</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>i</th>
+      <th>y0</th>
+      <th>y1</th>
+      <th>t</th>
+      <th>y</th>
+      <th>te</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>500.0</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>500</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>600.0</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>600</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>NaN</td>
+      <td>600.0</td>
+      <td>1</td>
+      <td>600</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>NaN</td>
+      <td>750.0</td>
+      <td>1</td>
+      <td>750</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This is surely not ideal, you might say, but can’t I still take the mean of the treated and compare it to the mean of the untreated? In other words, can’t I just do \(ATE=(600+750)/2  - (500 + 600)/2  = -75\)? Well, no! Notice how different the results are. That’s because you’ve just committed the gravest sin of mistaking association for causation. To understand why, let’s take a look into the main enemy of causal inference.</p>
+</div>
+<div class="section" id="bias">
+<h2>Bias<a class="headerlink" href="#bias" title="Permalink to this headline">¶</a></h2>
+<p>Bias is what makes association different from causation. Fortunately, it too can be easily understood with our intuition. Let’s recap our tablets in the classroom example. When confronted with the claim that schools that give tablets to their kids do better on tests score, we can rebut it by saying those schools will probably do better anyway, even without the tables. That is because they probably have more money than the other schools, and hence can pay better teachers, afford better classrooms, and so on. In other words, it is the case that treated schools (with tablets) are not comparable with untreated schools.</p>
+<p>To say this in potential outcome notation is to say that \(Y_0\) of the treated is different from the \(Y_0\) of the untreated. Remember that the \(Y_0\) of the treated <strong>is counterfactual</strong>. We can’t observe it, but we can reason about it. In this particular case, we can even leverage our understanding of how the world works to go even further. We can say that, probably, \(Y_0\) of the treated is bigger than \(Y_0\) of the untreated schools. That is because schools that can afford to give tablets to their kids can also afford other factors that contribute to better test scores. Let this sink in for a moment. It takes some time to get used to talking about potential outcomes. Read this paragraph again and make sure you understand it.</p>
+<p>With this in mind, we can show with very simple math why is it the case that association is not causation. Association is measured by \(E[Y|T=1] - E[Y|T=0]\). In our example, this is the average test score for the schools with tablets minus the average test score for those without it. On the other hand, causation is measured by \(E[Y_1 - Y_0]\).</p>
+<p>To see how they relate, let’s take the association measurement and replace the observed outcomes with the potential outcomes. For the treated, the observed outcome is \(Y_1\). For the untreated, the observed outcome is \(Y_0\).</p>
+<p><span class="math notranslate nohighlight">\(
+E[Y|T=1] - E[Y|T=0] = E[Y_1|T=1] - E[Y_0|T=0]
+\)</span></p>
+<p>Now, let’s add and subtract \(E[Y_0|T=1]\). This is a counterfactual outcome. It tells what would have been the outcome of the treated, had they not received the treatment.</p>
+<p><span class="math notranslate nohighlight">\(
+E[Y|T=1] - E[Y|T=0] = E[Y_1|T=1] - E[Y_0|T=0] + E[Y_0|T=1] - E[Y_0|T=1]
+\)</span></p>
+<p>Finally, we reorder the terms, merge some expectations, and lo and behold:</p>
+<p><span class="math notranslate nohighlight">\(
+E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_0|T=1] - E[Y_0|T=0] \}}_{BIAS}
+\)</span></p>
+<p>This simple piece of math encompasses all the problems we will encounter in causal questions. I cannot stress how important it is that you understand every aspect of it. If you’re ever forced to tattoo something on your arm, this equation should be a good candidate for it. It’s something to hold onto very dearly and really understand what is telling us, like some sacred text that can be interpreted 100 different ways. In fact, let’s take a deeper look. Let’s break it down into some of its implications. First, this equation tells why association is not causation. As we can see, association is equal to the treatment effect on the treated plus a bias term. <strong>The bias is given by how the treated and control group differ before the treatment, that is, in case neither of them has received the treatment</strong>. We can now say precisely why we are suspicious when someone tells us that tablets in the classroom boost academic performance. We think that, is this example, \(E[Y_0|T=0] &lt; E[Y_0|T=1]\), that is, schools that can afford to give tablets to their kids are better than those that can’t, <strong>regardless of the tablets treatment</strong>.</p>
+<p>Why does this happen? We will talk more about that once we enter confounding, but for now you can think of bias arising because many things we can’t control are changing together with the treatment. As a result, the treated and untreated schools don’t differ only on the tablets. They also differ on the tuition cost, location, teachers…
+For us to say that tablets in the classroom increase academic performance, we would need for schools with and without them to be, on average, similar to each other.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Tuition&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;enem_score&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Tablet&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">70</span><span class="p">)</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ENEM score by Tuition Cost&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/01-Introduction-To-Causality_8_0.png" src="_images/01-Introduction-To-Causality_8_0.png" />
+</div>
+</div>
+<p>Now that we understand the problem, let’s look at the solution. We can also say what would be necessary to make association equal to causation. <strong>If \(E[Y_0|T=0] = E[Y_0|T=1]\), then, association IS CAUSATION!</strong> Understanding this is not just remembering the equation. There is a strong intuitive argument here. To say that \(E[Y_0|T=0] = E[Y_0|T=1]\) is to say that treatment and control group are comparable before the treatment. Or, in the case that the treated had not been treated, if we could observe its \(Y_0\), then its outcome would be the same as the untreated. Mathematically, the bias term would vanish:</p>
+<p><span class="math notranslate nohighlight">\(
+E[Y|T=1] - E[Y|T=0] = E[Y_1 - Y_0|T=1]
+\)</span></p>
+<p>Also, if the treated and the untreated only differ on the treatment itself, that is,  \(E[Y_0|T=0] = E[Y_0|T=1]\)</p>
+<p>We have that the causal impact on the treated is the same as in the untreated (because they are very similar).</p>
+<p><span class="math notranslate nohighlight">\(
+\begin{align}
+E[Y_1 - Y_0|T=1] &amp;= E[Y_1|T=1] - E[Y_0|T=1] \\
+&amp;= E[Y_1|T=1] - E[Y_0|T=0] \\
+&amp;= E[Y|T=1] - E[Y|T=0]
+\end{align}
+\)</span></p>
+<p>Hence, in this case, the <strong>difference in means BECOMES the causal effect</strong>:</p>
+<p><span class="math notranslate nohighlight">\(
+E[Y|T=1] - E[Y|T=0] = ATE = ATET
+\)</span></p>
+<p>Once again, this is so important that I think it is worth going over it again, now with pretty pictures. If we do a simple average comparison between the treatment and the untreated group, this is what we get (blue dots didn’t receive the treatment, that is, the tablet):</p>
+<p><img alt="img" src="_images/anatomy1.png" /></p>
+<p>Notice how the difference in outcomes between the two groups can have two causes:</p>
+<ol class="simple">
+<li><p>The treatment effect. The increase in test score that is caused by giving kids tablets.</p></li>
+<li><p>Other differences between the treatment and untreated that are NOT the treatment itself. In this case, treated and untreated differ in the sense that the treated have a much higher tuition price. Some of the difference in test scores can be due to the effect of tuition price on better education.</p></li>
+</ol>
+<p>The true treatment effect can only be obtained if we had godlike powers to observe the potential outcome, like in the left figure below. The individual treatment effect is the difference between the unit’s outcome and another theoretical outcome that the same unit would have in case it got the alternative treatment. These are the counterfactual outcomes and are denoted in light color.</p>
+<p><img alt="img" src="_images/anatomy2.png" /></p>
+<p>In the left plot, we depicted what is the bias that we’ve talked about before. We get the bias if we set everyone to not receive the treatment. In this case, we are only left with the \(T_0\) potential outcome. Then, we see how the treated and untreated groups differ. If they do, it means that something other than the treatment is causing the treated and untreated to be different. This something is the bias and is what shadows the true treatment effect.</p>
+<p>Now, contrast this with a hypothetical situation where there is no bias. Suppose that tablets are randomly assigned to schools. In this situation, rich and poor schools have the same chance of receiving the treatment. Treatment would be well distributed across all the tuition spectrum.</p>
+<p><img alt="img" src="_images/anatomy3.png" /></p>
+<p>In this case, the difference in the outcome between treated and untreated IS the average causal effect. This happens because there is no other source of difference between treatment and untreated other than the treatment itself. All the differences we see must be attributed to it. Another way to say this is that there is no bias.</p>
+<p><img alt="img" src="_images/anatomy4.png" /></p>
+<p>If we set everyone to not receive the treatment in such a way that we only observe the \(Y_0\)s, we would find no difference between the treated and untreated groups.</p>
+<p>This is the herculean task causal inference is all about. It is about finding clever ways of removing bias, of making the treated and the untreated comparable so that all the difference we see between them is only the average treatment effect. Ultimately, causal inference is about figuring out how the world really works, stripped of all delusions and misinterpretations. And now that we understand this, we can move forward to mastering some of the most powerful methods to remove bias, the weapons of the Brave and True to identify the causal effect.</p>
+</div>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<p>So far, we’ve seen that association is not causation. Most importantly, we’ve seen precisely why it isn’t and how can we make association be causation. We’ve also introduced the potential outcome notation as a way to wrap our head around causal reasoning. With it, we saw statistics as two potential realities: one in which the treatment is given and another in which it is not. But, unfortunately, we can only measure one of them, and that is where the fundamental problem of causal inference lies.</p>
+<p>Moving forward, we will see some of the basic techniques to estimate causal effect, starting with the golden standard of a randomised trial. I’ll also review some statistical concepts as we go. I’ll end with a quote often used in causal inference classes, taken from a kung-fu series:</p>
+<blockquote>
+<div><p>‘What happens in a man’s life is already written. A man must move through life as his destiny wills.’ -Caine<br />
+‘Yes, yet each man is free to live as he chooses. Though they seem opposite, both are true.’ -Old Man</p>
+</div></blockquote>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>I like to think of this entire series as a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what’s keeping me sane during this tough year of 2020.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2017-webcasts">Cross-Section Econometrics</a></p></li>
+<li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2020-webcasts">Mastering Mostly Harmless Econometrics</a></p></li>
+</ul>
+<p>I’ll also like to reference the amazing books from Angrist. They have shown me that Econometrics, or ‘Metrics as they call it, is not only extremely useful but also profoundly fun.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.mostlyharmlesseconometrics.com/">Mostly Harmless Econometrics</a></p></li>
+<li><p><a class="reference external" href="https://www.masteringmetrics.com/">Mastering ‘Metrics</a></p></li>
+</ul>
+<p>My final reference is Miguel Hernan and Jamie Robins’ book. It has been my trustworthy companion in the most thorny causal questions I had to answer.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">Causal Inference Book</a></p></li>
+</ul>
+<p>The beer analogy was taken from the awesome <a class="reference external" href="https://jlcollinsnh.com/2012/04/15/stocks-part-1-theres-a-major-market-crash-coming-and-dr-lo-cant-save-you/">Stock Series</a>, by JL Colins. This is an absolute must read for all of those wanting to learn how to productively invest their money.</p>
+<p><img alt="img" src="_images/poetry.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="landing-page.html" title="previous page">Causal Inference for The Brave and True</a>
+    <a class='right-next' id="next-link" href="02-Randomised-Experiments.html" title="next page">Randomised Experiments</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
