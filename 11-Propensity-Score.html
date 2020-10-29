@@ -354,6 +354,7 @@
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">from</span> <span class="nn">causalinference</span> <span class="kn">import</span> <span class="n">CausalModel</span>
 
 <span class="kn">import</span> <span class="nn">graphviz</span> <span class="k">as</span> <span class="nn">gr</span>
 
@@ -970,9 +971,7 @@ ATE 0.38851416181896176
 <p>This is a huge improvement on top of the matching estimator, since it deals with the curse of dimensionality. Also, if a feature is unimportant for the treatment assignment, the propensity score model will learn that and give low importance to it when fitting the treatment mechanism. Matching on the features, on the other hand, would still try to find matches where individuals are similar on this unimportant feature.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">causalinference</span> <span class="kn">import</span> <span class="n">CausalModel</span>
-
-<span class="n">cm</span> <span class="o">=</span> <span class="n">CausalModel</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">CausalModel</span><span class="p">(</span>
     <span class="n">Y</span><span class="o">=</span><span class="n">data_ps</span><span class="p">[</span><span class="s2">&quot;achievement_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
     <span class="n">D</span><span class="o">=</span><span class="n">data_ps</span><span class="p">[</span><span class="s2">&quot;intervention&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
     <span class="n">X</span><span class="o">=</span><span class="n">data_ps</span><span class="p">[[</span><span class="s2">&quot;propensity_score&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
@@ -985,16 +984,13 @@ ATE 0.38851416181896176
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">21</span><span class="o">-</span><span class="n">c42033fbe920</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">causalinference</span> <span class="kn">import</span> <span class="n">CausalModel</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> 
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">cm</span> <span class="o">=</span> <span class="n">CausalModel</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">Y</span><span class="o">=</span><span class="n">data_ps</span><span class="p">[</span><span class="s2">&quot;achievement_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">D</span><span class="o">=</span><span class="n">data_ps</span><span class="p">[</span><span class="s2">&quot;intervention&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Treatment Effect Estimates: Matching
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;causalinference&#39;
+                     Est.       S.e.          z      P&gt;|z|      [95% Conf. int.]
+--------------------------------------------------------------------------------
+           ATE      0.384      0.025     15.232      0.000      0.334      0.433
+           ATC      0.382      0.028     13.767      0.000      0.328      0.437
+           ATT      0.387      0.027     14.476      0.000      0.334      0.439
 </pre></div>
 </div>
 </div>
@@ -1010,7 +1006,7 @@ ATE 0.38851416181896176
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<p>I like to think of this entire series is a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what is keeping me sane during this tough year of 2020.</p>
+<p>I like to think of this entire book is a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what is keeping me sane during this tough year of 2020.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2017-webcasts">Cross-Section Econometrics</a></p></li>
 <li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2020-webcasts">Mastering Mostly Harmless Econometrics</a></p></li>

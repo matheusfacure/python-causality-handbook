@@ -787,7 +787,9 @@ Diff 95% CI: (0.22814141774873375, 5.771858582251266)
 <div class="section" id="p-values">
 <h2>P-values<a class="headerlink" href="#p-values" title="Permalink to this headline">¶</a></h2>
 <p>I’ve said previously that there is less than 95% chance that we would observe such an extreme value if the difference between online and face to face groups were actually zero. But can we estimate exactly what is that chance? How likely are we to observe such an extreme value? Enters P-Values!</p>
-<p>Just like with confidence intervals (and most frequentist statistics, as a matter of fact) the true definition of P-values can be very confusing. So, to not take any risks, I’ll copy the definition from Wikipedia: “the p-value is the probability of obtaining test results at least as extreme as the results actually observed during the test, assuming that the null hypothesis is correct”. Don’t let this complexity fool you. In practical terms, they are pretty straightforward to use.</p>
+<p>Just like with confidence intervals (and most frequentist statistics, as a matter of fact) the true definition of P-values can be very confusing. So, to not take any risks, I’ll copy the definition from Wikipedia: “the p-value is the probability of obtaining test results at least as extreme as the results actually observed during the test, assuming that the null hypothesis is correct”.</p>
+<p>To put it more succinctly, the P-value is the probability of seeing such a data, given that the null-hypothesis is true. It measures how unlikely it is that measurement you are seeing if the null-hypothesis is true. Naturally, this often gets confused with the probability of the null-hypothesis being true. Note the difference here. The P-value is NOT \(P(H_0|data)\), but rather \(P(data|H_0)\).</p>
+<p>But don’t let this complexity fool you. In practical terms, they are pretty straightforward to use.</p>
 <p><img alt="p_value" src="_images/p_value.png" /></p>
 <p>To get the p-value, we need to compute the area under the standard normal distribution before or after the z statistic. Fortunately, we have a computer to do this calculation for us. We can simply plug the z statistic in the CDF of the standard normal distribution.</p>
 <div class="cell docutils container">
@@ -879,7 +881,7 @@ P-Value 0.013431870694630114
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<p>I like to think of this entire series as a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what is keeping me sane during this tough year of 2020.</p>
+<p>I like to think of this entire book as a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what is keeping me sane during this tough year of 2020.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2017-webcasts">Cross-Section Econometrics</a></p></li>
 <li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2020-webcasts">Mastering Mostly Harmless Econometrics</a></p></li>
