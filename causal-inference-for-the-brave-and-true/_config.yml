@@ -1,0 +1,13 @@
+# in _config.yml
+title: "Causal Inference for the Brave and True"
+author: Matheus Facure Alves
+
+execute:
+  execute_notebooks: "off"
+
+repository:
+  url: https://github.com/matheusfacure/python-causality-handbook
+html:
+  use_issues_button: true
+
+exclude_patterns: [_build, .DS_Store, "**.ipynb_checkpoints"]

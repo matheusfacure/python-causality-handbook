@@ -1,0 +1,33 @@
+- file: landing-page
+
+- file: 01-Introduction-To-Causality.ipynb
+
+- file: 02-Randomised-Experiments.ipynb
+  
+- file: 03-Stats-Review-The-Most-Dangerous-Equation.ipynb
+
+- file: 04-Graphical-Causal-Models.ipynb
+
+- file: 05-The-Unreasonable-Effectiveness-of-Linear-Regression.ipynb
+
+- file: 06-Grouped-and-Dummy-Regression.ipynb
+
+- file: 07-Beyond-Confounders.ipynb
+
+- file: 08-Instrumental-Variables.ipynb
+
+- file: 09-Non-Compliance-and-LATE.ipynb
+
+- file: 10-Matching.ipynb
+
+- file: 11-Propensity-Score.ipynb
+
+- file: 12-Doubly-Robust-Estimation.ipynb
+
+- file: 13-Panel-Data-and-Fixed-Effects.ipynb
+
+- file: 14-Difference-in-Difference.ipynb
+
+- file: 15-Synthetic-Control.ipynb
+
+- file: 16-Regression-Discontinuity-Design.ipynb
