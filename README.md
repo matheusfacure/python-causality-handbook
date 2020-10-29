@@ -1,6 +1,6 @@
 # Causal Inference for The Brave and True
 
-![img](./data/img/brave-and-true.png)
+![img](./causal-inference-for-the-brave-and-true/data/img/brave-and-true.png)
 
 A light-hearted yet rigorous approach to learning impact estimation and sensitivity analysis. Everything in Python and with as many memes as I could find.
 
