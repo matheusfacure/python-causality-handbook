@@ -426,7 +426,7 @@
 <p>5 rows × 13 columns</p>
 </div></div></div>
 </div>
-<p>Although the study was randomised, it doesn’t seem to be the case that this data is free from confounding. One possible reason for this is that the treatment variable is measured by the student’s receipt of the seminar. So, although the opportunity to participate was random, participation is not. We are here dealing with a case of non-compliance here. One evidence of this is how the student’s success expectation is correlated with the participation in the seminar. Students with higher self-reported participation are more likely to have joined the growth mindset seminar.</p>
+<p>Although the study was randomised, it doesn’t seem to be the case that this data is free from confounding. One possible reason for this is that the treatment variable is measured by the student’s receipt of the seminar. So, although the opportunity to participate was random, participation is not. We are dealing with a case of non-compliance here. One evidence of this is how the student’s success expectation is correlated with the participation in the seminar. Students with higher self-reported participation are more likely to have joined the growth mindset seminar.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;success_expect&quot;</span><span class="p">)[</span><span class="s2">&quot;intervention&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -447,7 +447,7 @@ Name: intervention, dtype: float64
 </div>
 </div>
 </div>
-<p>Since we will use linear methods (linear regression and logistic regression), we need to convert the categorical variables to dummies.</p>
+<p>As we know by now, we could adjust for this using a linear regression or by estimating a propensity score model with a logistic regression. Before we do that, however, we need to convert the categorical variables to dummies.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categ</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ethnicity&quot;</span><span class="p">,</span> <span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;school_urbanicity&quot;</span><span class="p">]</span>
@@ -477,8 +477,8 @@ Name: intervention, dtype: float64
 <p><span class="math notranslate nohighlight">\(
 \hat{ATE} = \frac{1}{N}\sum \bigg( \dfrac{T_i(Y_i - \hat{\mu_1}(X_i))}{\hat{P}(X_i)} + \hat{\mu_1}(X_i) \bigg) - \frac{1}{N}\sum \bigg( \dfrac{(1-T_i)(Y_i - \hat{\mu_0}(X_i))}{1-\hat{P}(X_i)} + \hat{\mu_0}(X_i) \bigg)
 \)</span></p>
-<p>where \(\hat{P}(x)\) is an estimation of the propensity score (using logistic regression, for example), \(\hat{\mu_1}(x)\) is an estimation of \(E[Y|X, T=1]\) (using linear regression, for example), and \(\hat{\mu_1}(x)\) is an estimation of \(E[Y|X, T=0]\). As you might have already guessed, the first part of the doubly robust estimator estimates \(E[Y_1]\) and the second part estimates \(E[Y_0]\). Let’s examine the first part, as all the intuition will also apply to the second part by analogy.</p>
-<p>But first, let’s see it in practice.</p>
+<p>where \(\hat{P}(x)\) is an estimation of the propensity score (using logistic regression, for example), \(\hat{\mu_1}(x)\) is an estimation of \(E[Y|X, T=1]\) (using linear regression, for example), and \(\hat{\mu_0}(x)\) is an estimation of \(E[Y|X, T=0]\). As you might have already guessed, the first part of the doubly robust estimator estimates \(E[Y_1]\) and the second part estimates \(E[Y_0]\). Let’s examine the first part, as all the intuition will also apply to the second part by analogy.</p>
+<p>Since I know that this formula is scary at first (but don’t worry, you will see it is super simple), I will first show how to code this estimator. I have the feeling that some people are less frightened by code than by formulas. Let’s see how this estimator works in practice, shall we?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span><span class="p">,</span> <span class="n">LinearRegression</span>
@@ -552,11 +552,11 @@ Name: intervention, dtype: float64
 <img alt="_images/12-Doubly-Robust-Estimation_13_0.png" src="_images/12-Doubly-Robust-Estimation_13_0.png" />
 </div>
 </div>
-<p>Now, let’s examine why the doubly robust estimator is so great. It is called doubly robust because it only requires one of the models, \(\hat{P}(x)\) or \(\hat{\mu}(x)\), to be correctly specified. To see this, take the first part that estimates \(E[Y_1]\) and take a good look at it.</p>
+<p>Now that we got a taste of the doubly robust estimator, let’s examine why it is so great. First, it is called doubly robust because it only requires one of the models, \(\hat{P}(x)\) or \(\hat{\mu}(x)\), to be correctly specified. To see this, take the first part that estimates \(E[Y_1]\) and take a good look at it.</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{E}[Y_1] = \frac{1}{N}\sum \bigg( \dfrac{T_i(Y_i - \hat{\mu_1}(X_i))}{\hat{P}(X_i)} + \hat{\mu_1}(X_i) \bigg)
 \)</span></p>
-<p>First, assume that \(\hat{\mu_1}(x)\) is correct. If the propensity score model is wrong, we wouldn’t need to worry. Because if \(\hat{\mu_1}(x)\) is correct, then \(E[T_i(Y_i - \hat{\mu_1}(X_i))]=0\). That is because the multiplication by \(T_i\) selects only the treated and the residual of \(\hat{\mu_1}\) on the treated have, by definition, mean zero. This causes the whole thing to reduce to \(\hat{\mu_1}(X_i)\), which is correctly estimated \(E[Y_1]\) by assumption. So, you see that by being correct, \(\hat{\mu_1}(X_i)\) wipes out the relevance of the propensity score model. We can apply the same reasoning to understand the estimator of \(E[Y_0]\).</p>
+<p>Assume that \(\hat{\mu_1}(x)\) is correct. If the propensity score model is wrong, we wouldn’t need to worry. Because if \(\hat{\mu_1}(x)\) is correct, then \(E[T_i(Y_i - \hat{\mu_1}(X_i))]=0\). That is because the multiplication by \(T_i\) selects only the treated and the residual of \(\hat{\mu_1}\) on the treated have, by definition, mean zero. This causes the whole thing to reduce to \(\hat{\mu_1}(X_i)\), which is correctly estimated \(E[Y_1]\) by assumption. So, you see, that by being correct, \(\hat{\mu_1}(X_i)\) wipes out the relevance of the propensity score model. We can apply the same reasoning to understand the estimator of \(E[Y_0]\).</p>
 <p>But don’t take my word for it. Let the code show you the way! In the following estimator, I’ve replaced the logistic regression that estimates the propensity score by a random uniform variable that goes from 0.1 to 0.9 (I don’t want very small weights to blow up my propensity score variance). Since this is random, there is no way it is a good propensity score model, but we will see that the doubly robust estimator still manages to produce an estimation that is very close to when the propensity score was estimated with logistic regression.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -625,8 +625,8 @@ Name: intervention, dtype: float64
 <p><span class="math notranslate nohighlight">\(
 \hat{E}[Y_1] = \frac{1}{N}\sum \bigg( \dfrac{T_iY_i}{\hat{P}(X_i)} - \bigg(\dfrac{T_i - \hat{P}(X_i)}{\hat{P}(X_i)}\bigg) \hat{\mu_1}(X_i) \bigg)
 \)</span></p>
-<p>Now, assume that the propensity score \(\hat{P}(X_i)\) is correctly specified. In this case, \(E[T_i - \hat{P}(X_i)]=0\), which wipes out the part dependent on \(\hat{\mu_1}(X_i)\). This makes the doubly robust estimator reduce to the propensity score weighting estimator \(\frac{T_iY_i}{\hat{P}(X_i)}\), which is correct by assumption. So even if the \(\hat{\mu_1}(X_i)\) is wrong, the estimator will still be correct, provided that the propensity score is correctly specified.</p>
-<p>Once again, if you believe more in code than in formulas, here it is the practical verification. In the code below, we’ve replaced both regression models with a random normal variable. So, no doubt that \(\hat{\mu}(X_i)\) is not correctly specified. Still, we will see that doubly robust estimation still manages to recover the same \(\hat{ATE\) of about 0.38 that we’ve seen before.</p>
+<p>Now, assume that the propensity score \(\hat{P}(X_i)\) is correctly specified. In this case, \(E[T_i - \hat{P}(X_i)]=0\), which wipes out the part dependent on \(\hat{\mu_1}(X_i)\). This makes the doubly robust estimator reduce to the propensity score weighting estimator \(\frac{T_iY_i}{\hat{P}(X_i)}\), which is correct by assumption. So, even if the \(\hat{\mu_1}(X_i)\) is wrong, the estimator will still be correct, provided that the propensity score is correctly specified.</p>
+<p>Once again, if you believe more in code than in formulas, here it is the practical verification. In the code below, I’ve replaced both regression models with a random normal variable. There is no doubt that \(\hat{\mu}(X_i)\) is <strong>not correctly specified</strong>. Still, we will see that doubly robust estimation still manages to recover the same \(\hat{ATE}\) of about 0.38 that we’ve seen before.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span><span class="p">,</span> <span class="n">LinearRegression</span>
@@ -682,7 +682,8 @@ Name: intervention, dtype: float64
 </div>
 </div>
 </div>
-<p>In practice, what ends up happening is that neither the propensity score nor the outcome model are 100% correct. They are both wrong, but in different ways. Doubly robust estimation can combine those two wrong models to make them less wrong.</p>
+<p>I hope I’ve convinced you about the power of doubly robust estimation. Its magic happens because in causal inference, there are two ways to remove bias from our causal estimates: you either model the treatment mechanism or the outcome mechanism. If either of these models are correct, you are good to go</p>
+<p>However, in practice, it’s very hard to model precisely either of those. What ends up happening is that neither the propensity score nor the outcome model are 100% correct. They are both wrong, but in different ways. Still, doubly robust estimation can combine those two wrong models to make them less wrong. It’s like one model corrects the error of the other, providing an end result that is better than each one individually.</p>
 </div>
 <div class="section" id="keys-ideias">
 <h2>Keys Ideias<a class="headerlink" href="#keys-ideias" title="Permalink to this headline">¶</a></h2>
