@@ -343,7 +343,7 @@
 <p><span class="math notranslate nohighlight">\(
 log(hwage)_i = \beta_0 + \kappa \ educ_i + \pmb{\beta}Ability_i + u_i
 \)</span></p>
-<p>To figure out the causal effect of education \(\kappa\) on \(log(hwage)\), we need to control for ability factors \(Ability_i\). If we don’t, we would likely have some bias. After all, ability is probably a confounder, causing both the treatment, education, and the outcome, earnings.</p>
+<p>To figure out the causal effect of education \(\kappa\) on \(log(hwage)\) we need to control for ability factors \(Ability_i\). If we don’t, we would likely have some bias, after all, ability is probably a confounder, causing both the treatment, education, and the outcome, earnings.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
@@ -357,6 +357,7 @@ log(hwage)_i = \beta_0 + \kappa \ educ_i + \pmb{\beta}Ability_i + u_i
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
 <span class="kn">import</span> <span class="nn">graphviz</span> <span class="k">as</span> <span class="nn">gr</span>
+<span class="kn">from</span> <span class="nn">linearmodels.iv</span> <span class="kn">import</span> <span class="n">IV2SLS</span>
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
@@ -417,8 +418,8 @@ Cov(Z,Y) = Cov(Z,\beta_0 + \kappa\ T_i + v_i) = \kappa Cov(Z,T) + Cov(Z, v) = \k
 <p><span class="math notranslate nohighlight">\(
 \kappa = \dfrac{Cov(Y_i, Z_i)/V(Z_i)}{Cov(T_i, Z_i)/V(Z_i)} = \dfrac{\text{Reduced Form}}{\text{1st Stage}} 
 \)</span></p>
-<p>Notice that both the numerator and the denominator are regression coefficients (covariates divided by variances). The numerator is the result from the regression of Y on Z. In other words, it’s the “impact” of Z on Y. Remember that this is not to say that Z causes Y, since we have a requirement that Z impacts Y only through T. Rather, it is only capturing how big is this effect of Z on Y through T. This numerator is so famous it has its own name: the reduced form.</p>
-<p>The denominator is also a regression coefficient. This time, it is the regression of T on Z. This regression captures what is the impact of Z on T and it is also so famous that it is called the 1st Stage.</p>
+<p>Notice that both the numerator and the denominator are regression coefficients (covariances divided by variances). The numerator is the result from the regression of Y on Z. In other words, it’s the “impact” of Z on Y. Remember that this is not to say that Z causes Y, since we have a requirement that Z impacts Y only through T. Rather, it is only capturing how big is this effect of Z on Y through T. This numerator is so famous it has its own name: the reduced form coefficient.</p>
+<p>The denominator is also a regression coefficient. This time, it is the regression of T on Z. This regression captures what is the impact of Z on T and it is also so famous that it is called the 1st Stage coefficient.</p>
 <p>Another cool way to look at this equation is in terms of partial derivatives. We can show that the impact of T on Y is equal to the impact of Z on Y, scaled by the impact of Z on T:</p>
 <p><span class="math notranslate nohighlight">\(
 \kappa = \dfrac{\frac{\partial y}{\partial z}}{\frac{\partial T}{\partial z}} = \dfrac{\partial y}{\partial z} * \dfrac{\partial z}{\partial T} =  \dfrac{\partial y}{\partial T}
@@ -564,8 +565,8 @@ Cov(Z,Y) = Cov(Z,\beta_0 + \kappa\ T_i + v_i) = \kappa Cov(Z,T) + Cov(Z, v) = \k
     <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Years of Education by Quarter of Birth (first stage)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year or Birth&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Years or Schooling&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year of Birth&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Years of Schooling&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -573,7 +574,7 @@ Cov(Z,Y) = Cov(Z,\beta_0 + \kappa\ T_i + v_i) = \kappa Cov(Z,T) + Cov(Z, v) = \k
 <img alt="_images/08-Instrumental-Variables_11_0.png" src="_images/08-Instrumental-Variables_11_0.png" />
 </div>
 </div>
-<p>Remarkably, there is a seasonal pattern on the years of schooling that follows the quarter of the year. Visually, we can see that those born in the first quarter of the year have almost always more education than those born in the last quarter (once we control for the year of birth, after all, those born in later years have more education, in general).</p>
+<p>Remarkably, there is a seasonal pattern on the years of schooling that follows the quarter of the year. Visually, we can see that those born in the first quarter of the year have almost always less education than those born in the last quarter (once we control for the year of birth, after all, those born in later years have more education, in general).</p>
 <p>To be a bit more rigorous, we can run the 1st stage as a linear regression. We will first convert the quarter of birth to dummy variables:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -667,8 +668,8 @@ Cov(Z,Y) = Cov(Z,\beta_0 + \kappa\ T_i + v_i) = \kappa Cov(Z,T) + Cov(Z, v) = \k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>q4 parameter estimate:,  0.10085809272785928
-q4 p-value:,  5.4648294166376076e-15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>q4 parameter estimate:,  0.10085809272786578
+q4 p-value:,  5.4648294166163044e-15
 </pre></div>
 </div>
 </div>
@@ -691,7 +692,7 @@ q4 p-value:,  5.4648294166376076e-15
     <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Average Weekly Wage by Quarter of Birth (reduced form)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year or Birth&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year of Birth&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Log Weekly Earnings&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -711,8 +712,8 @@ q4 p-value:,  5.4648294166376076e-15
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>q4 parameter estimate:,  0.008603484260138794
-q4 p-value:,  0.0014949127183682181
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>q4 parameter estimate:,  0.008603484260140015
+q4 p-value:,  0.0014949127183659584
 </pre></div>
 </div>
 </div>
@@ -721,7 +722,7 @@ q4 p-value:,  0.0014949127183682181
 </div>
 <div class="section" id="instrumental-variables-by-hand">
 <h2>Instrumental Variables by Hand<a class="headerlink" href="#instrumental-variables-by-hand" title="Permalink to this headline">¶</a></h2>
-<p>Having both our reduced form and our 1st stage, we can now scale the effect of the first stage by the reduced form. Since the reduced form was something like 0.1, this will multiply the effect of the reduced form by almost 10. This will give us our unbiased IV estimate of the average causal effect:</p>
+<p>Having both our reduced form and our 1st stage, we can now scale the effect of the first stage by the reduced form. Since the first stage coefficient was something like 0.1, this will multiply the effect of the reduced form coefficient by almost 10. This will give us our unbiased IV estimate of the average causal effect:</p>
 <p><span class="math notranslate nohighlight">\(
 ATE_{IV} = \dfrac{\text{Reduced Form}}{\text{1st Stage}} 
 \)</span></p>
@@ -732,7 +733,7 @@ ATE_{IV} = \dfrac{\text{Reduced Form}}{\text{1st Stage}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.08530286492084653
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.08530286492085315
 </pre></div>
 </div>
 </div>
@@ -759,19 +760,17 @@ log(wage)_i = \beta_0 + \beta_1 [\gamma_0 + \gamma_1 * q4_i + \gamma_2 yob_i + \
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.08530286492117334
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0853028649208674
 </pre></div>
 </div>
 </div>
 </div>
-<p>As you can see, the parameters are exactly the same. This second way of looking at IV can be useful for the intuition it gives. In IV, the first stage creates a new version of the treatment that is purged from omitted variable bias. We then use this purged version of the treatment, the fitted values of the 1st stage, in a linear regression.</p>
+<p>As you can see, the parameters are exactly the same. This second way of looking at IV can be useful for the intuition it gives. In 2SLS, the first stage creates a new version of the treatment that is purged from omitted variable bias. We then use this purged version of the treatment, the fitted values of the 1st stage, in a linear regression.</p>
 <p>In practice, however, we don’t do IV by hand. Not because it is troublesome, but because the standard errors we get from this second stage are a bit off. Instead, we should always let the machine do the job for us. In Python, we can use the library <a class="reference external" href="https://bashtage.github.io/linearmodels/">linearmodels</a> to run 2SLS the right way.</p>
 <p>The formula for 2SLS is a bit different. We should add the first stage between [ ] inside the formula. In our case, we add <code class="docutils literal notranslate"><span class="pre">years_of_schooling</span> <span class="pre">~</span> <span class="pre">q4</span></code>. Additional controls don’t need to be added to the first stage because the computer will do this automatically if we include them in the second stage. For this reason, we add <code class="docutils literal notranslate"><span class="pre">year_of_birth</span></code> and <code class="docutils literal notranslate"><span class="pre">state_of_birth</span></code> outside the formula of the 1st stage.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">linearmodels.iv</span> <span class="kn">import</span> <span class="n">IV2SLS</span>
-
-<span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="s2">&quot;years_of_schooling&quot;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="s2">&quot;years_of_schooling&quot;</span><span class="p">):</span>
     <span class="n">param</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="n">exog</span><span class="p">]</span>
     <span class="n">se</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">std_errors</span><span class="p">[</span><span class="n">exog</span><span class="p">]</span>
     <span class="n">p_val</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">pvalues</span><span class="p">[</span><span class="n">exog</span><span class="p">]</span>
@@ -787,10 +786,10 @@ log(wage)_i = \beta_0 + \beta_1 [\gamma_0 + \gamma_1 * q4_i + \gamma_2 yob_i + \
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameter: 0.08530286491100014
-SE: 0.025540812813751597
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameter: 0.0853028649580665
+SE: 0.02554081280759766
 95 CI: [0.03524287 0.13536286]
-P-value: 0.0008381914672166424
+P-value: 0.0008381914592261452
 </pre></div>
 </div>
 </div>
@@ -809,8 +808,8 @@ P-value: 0.0008381914672166424
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameter: 0.10769370488765162
-SE: 0.019557149009699855
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameter: 0.10769370488924324
+SE: 0.0195571490089523
 95 CI: [0.06936169 0.14602572]
 P-value: 3.657974678716869e-08
 </pre></div>
@@ -827,8 +826,8 @@ P-value: 3.657974678716869e-08
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameter: 0.06732572817659044
-SE: 0.0003883998439048642
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameter: 0.067325728176578
+SE: 0.00038839984390487046
 95 CI: [0.06656446 0.06808699]
 P-value: 0.0
 </pre></div>
@@ -1014,7 +1013,7 @@ Name: T, dtype: float64
 <p>Besides knowing how this bias behaves, a final piece of advice is to avoid some <strong>common mistakes when doing IV</strong>:</p>
 <ol class="simple">
 <li><p>Doing IV by hand. As we’ve seen, IV by hand will result in wrong standard errors, even if the parameter estimates are right. The SE won’t be completely off. Still, why do it if you can use software and get the right SE?</p></li>
-<li><p>Using anything other than OLS on the 1st stage. Lots of Data Science encounter IV and think they can do better. For example, they see a dummy treatment and think about replacing the 1st stage by a logistic regression, after all, they are predicting a dummy variable, right?. The problem is that this is plain wrong. The consistency of IV relies on a property that only OLS can give, which is the orthogonality of the residuals, so anything different than OLS on the 1st stage will yield something biased. (OBS: there are some modern techniques that use Machine Learning for IV, but their results have been, at best, questionable).</p></li>
+<li><p>Using anything other than OLS on the 1st stage. Lots of Data Scientist encounter IV and think they can do better. For example, they see a dummy treatment and think about replacing the 1st stage by a logistic regression, after all, they are predicting a dummy variable, right?. The problem is that this is plain wrong. The consistency of IV relies on a property that only OLS can give, which is the orthogonality of the residuals, so anything different than OLS on the 1st stage will yield something biased. (OBS: there are some modern techniques that use Machine Learning for IV, but their results have been, at best, questionable).</p></li>
 </ol>
 </div>
 <div class="section" id="key-ideas">

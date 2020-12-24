@@ -571,7 +571,7 @@
 </tr>
 </table></div></div>
 </div>
-<p>Notice how the parameter estimate of <code class="docutils literal notranslate"><span class="pre">educ</span></code> in the grouped model is exactly the same as the one in the ungrouped data. Also, even with only 10 data points, we’ve managed to get a statistically significant coefficient. That’s because, although we have fear points, grouping also lowers the variance by a lot. Also notice how the standard error is a bit larger, as is the t statistics. That’s because some information about the variance is lost, so we have to be more conservative. Once we group the data, we don’t know how large the variance is within each group. Compare the results above with what we would have with the non weighted model below.</p>
+<p>Notice how the parameter estimate of <code class="docutils literal notranslate"><span class="pre">educ</span></code> in the grouped model is exactly the same as the one in the ungrouped data. Also, even with only 10 data points, we’ve managed to get a statistically significant coefficient. That’s because, although we have fewer points, grouping also lowers the variance by a lot. Also notice how the standard error is a bit larger, as is the t statistics. That’s because some information about the variance is lost, so we have to be more conservative. Once we group the data, we don’t know how large the variance is within each group. Compare the results above with what we would have with the non weighted model below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_3</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;lhwage ~ educ&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">group_wage</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -790,7 +790,7 @@
 </table></div></div>
 </div>
 <p>In this case, when the person hasn’t completed 12th grade (dummy off), the average income is 19.9. Whe he or she has completed 12th grade (dummy on), the predicted value or the average income is 24.8449 (19.9405 + 4.9044). Hence, the dummy coefficient captures the difference in means, which is 4.9044 in our case.</p>
-<p>More formality, when the dependent variable is binary, as is often the case with treatment indicators, regression captures the ATE perfectly. That is because regression is a linear approximation to the conditional expectation function \(E[Y|X]\) and, in this particular case, the CEF IS linear. Namely, we can define \(E[Y_i|T_i=0]=\alpha\) and \(E[Y_i|T_i=1] = \alpha + \beta\), which leads to the following CEF</p>
+<p>More formally, when the dependent variable is binary, as is often the case with treatment indicators, regression captures the ATE perfectly. That is because regression is a linear approximation to the conditional expectation function \(E[Y|X]\) and, in this particular case, the CEF IS linear. Namely, we can define \(E[Y_i|T_i=0]=\alpha\) and \(E[Y_i|T_i=1] = \alpha + \beta\), which leads to the following CEF</p>
 <p><span class="math notranslate nohighlight">\(
 E[Y_i|T_i] =  E[Y_i|T_i=0] + \beta T_i = \alpha + \beta T_i
 \)</span></p>
