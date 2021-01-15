@@ -279,11 +279,6 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Regression Discontinuity Design
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#is-alcohol-killing-you">
    Is Alcohol Killing You?
   </a>
@@ -335,8 +330,6 @@
                 
   <div class="section" id="regression-discontinuity-design">
 <h1>Regression Discontinuity Design<a class="headerlink" href="#regression-discontinuity-design" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>Regression Discontinuity Design<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>We don’t stop to think about it much, but it is impressive how smooth nature is. You can’t grow a tree without first getting a bud, you can’t teleport from one place to another, a wound takes its time to heal. Even in the social realm, smoothness seems to be the norm. You can’t grow a business in one day, consistency and hard work are required to build wealth and it takes years before you learn how linear regression works. Under normal circumstances, nature is very cohesive and doesn’t jump around much.</p>
 <blockquote>
 <div><p>When the intelligent and animal souls are held together in one embrace, they can be kept from separating.</p>
@@ -351,12 +344,11 @@ D_i = \mathcal{1}\{R_i&gt;c\}
 <p>In other words, this is saying that treatment is zero when \(R\) is below a threshold \(c\) and one otherwise. This means that we get to observe \(Y_1\) when \(R&gt;c\) and \(Y_0\) when \(R&lt;c\). To wrap our head around this, think about the potential outcomes as 2 functions that we can’t observe entirely. Both \(Y_0(R)\) and \(Y_1(R)\) are there, we just can’t see that. The threshold acts as a switch that allows us to see one or the other of those function, but never both, much like in the image below:</p>
 <p><img alt="img" src="_images/rdd.png" /></p>
 <p>The idea of regression discontinuity is to compare the outcome just above and just below the threshold to identify the treatment effect at the threshold. This is called a <strong>sharp RD</strong> design, since the probability of getting the treatment jumps from 0 to 1 at the threshold, but we could also think about a <strong>fuzzy RD</strong> design, where the probability also jumps, but is a less dramatic manner.</p>
-</div>
 <div class="section" id="is-alcohol-killing-you">
 <h2>Is Alcohol Killing You?<a class="headerlink" href="#is-alcohol-killing-you" title="Permalink to this headline">¶</a></h2>
 <p>A very relevant public policy question is what should be the minimal drinking age. Most countries, Brazil included, set it to be 18 year, but in the US (most states) it is currently 21. So, is it the case that the US is being overly prudent and that they should lower their minimal drinking age? Or is it the case that other countries should make their legal drinking age higher?</p>
 <p>One way to look at this question is from a <a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/app.1.1.164">mortality rate perspective (Carpenter and Dobkin, 2009)</a>. From the public policy standpoint, one could argue that we should lower the mortality rate as much as possible. If alcohol consumption increases the mortality rate by a lot, we should avoid lowering the minimum drinking age. This would be consistent with the objective of lowering deaths caused by alcohol consumption.</p>
-<p>To estimate the impacts of alcohol, we could use the fact that legal drinking age imposes a discontinuity on nature. In the US, those just under 21 years don’t drink (or drink much less) while those just older than 21 do drink. This means that the probability of drinking jumps at 21 years and that is something we can explore with an RDD.</p>
+<p>To estimate the impacts of alcohol on death, we could use the fact that legal drinking age imposes a discontinuity on nature. In the US, those just under 21 years don’t drink (or drink much less) while those just older than 21 do drink. This means that the probability of drinking jumps at 21 years and that is something we can explore with an RDD.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
@@ -376,7 +368,7 @@ D_i = \mathcal{1}\{R_i&gt;c\}
 </div>
 </div>
 </div>
-<p>To do so we can grab some mortality data aggregated data by age. Each row is a has the average age of a group of people and the average mortality by all causes (<code class="docutils literal notranslate"><span class="pre">all</span></code>), by moving veiche accident (<code class="docutils literal notranslate"><span class="pre">mva</span></code>) and by suicide (<code class="docutils literal notranslate"><span class="pre">suicide</span></code>).</p>
+<p>To do so we can grab some mortality data aggregated by age. Each row is the average age of a group of people and the average mortality by all causes (<code class="docutils literal notranslate"><span class="pre">all</span></code>), by moving veiche accident (<code class="docutils literal notranslate"><span class="pre">mva</span></code>) and by suicide (<code class="docutils literal notranslate"><span class="pre">suicide</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drinking</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/drinking.csv&quot;</span><span class="p">)</span>
@@ -449,7 +441,7 @@ D_i = \mathcal{1}\{R_i&gt;c\}
 </table>
 </div></div></div>
 </div>
-<p>Just to aid visibility, and for another important reason we will see later, we will centralize the running variable <code class="docutils literal notranslate"><span class="pre">agecell</span></code> at the threshold 21.</p>
+<p>Just to aid visibility (and for another important reason we will see later) we will centralize the running variable <code class="docutils literal notranslate"><span class="pre">agecell</span></code> at the threshold 21.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drinking</span><span class="p">[</span><span class="s2">&quot;agecell&quot;</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">21</span>
@@ -457,7 +449,7 @@ D_i = \mathcal{1}\{R_i&gt;c\}
 </div>
 </div>
 </div>
-<p>If we plot the multiple outcome variables (<code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">mva</span></code>, <code class="docutils literal notranslate"><span class="pre">suicide</span></code>) with the runing variable on the x axis, we get some visual cue that there is also a jump in mortality as we cross the legal drinking age.</p>
+<p>If we plot the multiple outcome variables (<code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">mva</span></code>, <code class="docutils literal notranslate"><span class="pre">suicide</span></code>) with the runing variable on the x axis, we get some visual cue about some sort of jump in mortality as we cross the legal drinking age.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
@@ -493,14 +485,14 @@ D_i = \mathcal{1}\{R_i&gt;c\}
 =&amp; E[Y_{1i} - Y_{0i}|R_i=r]
 \end{align}</p>
 <p>This is, in its own way, a sort of Local Average Treatment Effect (LATE), since we can only know it at the threshold. In this setting, we can think of RDD as a local randomized trial. For those at the threshold, the treatment could have gone either way and, by chance, some people fell below the threshold, and some people fell above. In our example, at the same point in time, some people are just above 21 years and some people are just below 21. What determines this is if someone was born some days later or not, which is pretty random. For this reason, RDD provides a very compelling causal story. It is not the golden standard of RCT, but it is close.</p>
-<p>Now, to estimate the treatment effect at the threshold, all we need to do is estimate both of the limits in the formula above and compare them. The simplest way to do that is running a linear regression</p>
+<p>Now, to estimate the treatment effect at the threshold, all we need to do is estimate both of the limits in the formula above and compare them. The simplest way to do that is by running a linear regression</p>
 <p><img alt="img" src="_images/ols.png" /></p>
 <p>To make it work, we interact a dummy for being above the threshold with the running variable</p>
 <p><span class="math notranslate nohighlight">\(
 y_i = \beta_0 + \beta_1 r_i + \beta_2 \mathcal{1}\{r_i&gt;c\} + \beta_3 \mathcal{1}\{r_i&gt;c\} r_i
 \)</span></p>
-<p>What this is doing is fitting a linear regression above the threshold and another below it. The parameter \(\beta_0\) is the intercept of the regression below the threshold and \(\beta_0+\beta_2\) is the intercept for the regression above the threshold.</p>
-<p>Here is where the trick of centering the running variable at the threshold comes in play. After this pre-processing step, the threshold becomes zero. This causes the intercept \(\beta_0\) to be the predicted value at the threshold, for the regression below it. In other words, \(\beta_0=\lim_{r \to c^-} E[Y_{ti}|R_i=r]\). By the same reasoning, \(\beta_0+\beta_2\) is the limit of the outcome from above. Wich means, that</p>
+<p>Essentially, this is the same as fitting a linear regression above the threshold and another below it. The parameter \(\beta_0\) is the intercept of the regression below the threshold and \(\beta_0+\beta_2\) is the intercept for the regression above the threshold.</p>
+<p>Here is where the trick of centering the running variable at the threshold comes into play. After this pre-processing step, the threshold becomes zero. This causes the intercept \(\beta_0\) to be the predicted value at the threshold, for the regression below it. In other words, \(\beta_0=\lim_{r \to c^-} E[Y_{ti}|R_i=r]\). By the same reasoning, \(\beta_0+\beta_2\) is the limit of the outcome from above. Wich means, that</p>
 <p><span class="math notranslate nohighlight">\(
 \lim_{r \to c^+} E[Y_{ti}|R_i=r] - \lim_{r \to c^-} E[Y_{ti}|R_i=r]=\beta_2=E[ATE|R=c]
 \)</span></p>
@@ -535,7 +527,7 @@ y_i = \beta_0 + \beta_1 r_i + \beta_2 \mathcal{1}\{r_i&gt;c\} + \beta_3 \mathcal
 </table></div></div>
 </div>
 <p>This model is telling us that mortality increases by 7.6627 points with the consumption of alcohol. Another way of putting this is that alcohol increases the chance of death by all causes by 8% ((7.6627+93.6184)/93.6184). Notice that this also gives us standard errors for our causal effect estimate. In this case, the effect is statistically significant, since the p-value is below 0.01.</p>
-<p>If we want to verify this model visually, we can show the predicted values on the data that we have. You can see that it is as though we have 2 regression models: one for those above the threshold and one for below it.</p>
+<p>If we want to verify this model visually, we can show the predicted values on the data that we have. You can see that it is as though we had 2 regression models: one for those above the threshold and one for below it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">drinking</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;agecell&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
@@ -573,11 +565,11 @@ y_i = \beta_0 + \beta_1 r_i + \beta_2 \mathcal{1}\{r_i&gt;c\} + \beta_3 \mathcal
 <div class="section" id="kernel-weighting">
 <h3>Kernel Weighting<a class="headerlink" href="#kernel-weighting" title="Permalink to this headline">¶</a></h3>
 <p>Regression Discontinuity relies heavily on the extrapolations properties of linear regression. Since we are looking at the values at the beginning and end of 2 regression lines, we better get those limits right. What can happen is that regression might focus too much on fitting the other data points at the cost of a poor fit at the threshold. If this happens, we might get the wrong measure of the treatment effect.</p>
-<p>One way to solve this is to give higher weights for the points that are closer to the threshold. There are many ways to do this, but a popular one is to reweight the samples through the <strong>triangular kernel</strong></p>
+<p>One way to solve this is to give higher weights for the points that are closer to the threshold. There are many ways to do this, but a popular one is to reweight the samples with the <strong>triangular kernel</strong></p>
 <p><span class="math notranslate nohighlight">\(
 K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 \)</span></p>
-<p>The first part of this kernel is an indicator function to whether we are close to the threshold. How close? This is determined by a bandwidth parameter \(h\). The second part of this kernel is a weighting function. As we move away from the threshold, the weights get smaller and smaller. These weights are divided by the bandwidth. If the bandwidth is large, the weights get smaller at a slow rate. If the bandwidth is small, the weights quickly go to zero.</p>
+<p>The first part of this kernel is an indicator function to whether we are close to the threshold. How close? This is determined by a bandwidth parameter \(h\). The second part of this kernel is a weighting function. As we move away from the threshold, the weights get smaller and smaller. These weights are divided by the bandwidth. If the bandwidth is large, the weights get smaller at a slower rate. If the bandwidth is small, the weights quickly go to zero.</p>
 <p>To make it easier to understand, here is what the weights look like for this kernel applied to our problem. I’ve set the bandwidth to be 1 here, meaning we will only consider data from people that are no older than 22 years and no younger than 20 years.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -664,13 +656,13 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 <img alt="_images/16-Regression-Discontinuity-Design_21_0.png" src="_images/16-Regression-Discontinuity-Design_21_0.png" />
 </div>
 </div>
-<p>With the exception of suicide, it looks like adding the kernel weight made the negative impact on alcohol bigger. Once again, if we want to minimize the death rate, we should NOT recommend lowering the legal drinking age, since there clear impact of alcohol on the death rate.</p>
+<p>With the exception of suicide, it looks like adding the kernel weight made the negative impact on alcohol bigger. Once again, if we want to minimize the death rate, we should NOT recommend lowering the legal drinking age, since there is a clear impact of alcohol on the death rates.</p>
 <p>This simple case covers what happens when regression discontinuity design works perfectly. Next, we will see some diagnostics that we should run in order to check how much we can trust RDD and talk about a topic that is very dear to our heart: the effect of education on earnings.</p>
 </div>
 </div>
 <div class="section" id="sheepskin-effect-and-fuzzy-rdd">
 <h2>Sheepskin Effect and Fuzzy RDD<a class="headerlink" href="#sheepskin-effect-and-fuzzy-rdd" title="Permalink to this headline">¶</a></h2>
-<p>When it comes to the effect of education on earnings, there are two major views in economics. The first one is the widely known argument that education increases human capital, increasing productivity and thus, earnings. In this view, education actually changes you for the better. Another view is that education is simply a signaling mechanism. It just puts you through all these hard tests and academic tasks and, if you can make it, it signals to the market that you are a good employee. In this view, education doesn’t make you more productive. It only tells the market how productive you have always been. What matters here is the diploma. If you have it, you will be paid more. We refer to this as the <strong>sheepskin effect</strong>, since diplomas were printed in sheepskin in the past.</p>
+<p>When it comes to the effect of education on earnings, there are two major views in economics. The first one is the widely known argument that education increases human capital, increasing productivity and thus, earnings. In this view, education actually changes you for the better. Another view is that education is simply a signaling mechanism. It just puts you through all these hard tests and academic tasks. If you can make it, it signals to the market that you are a good employee. In this way, education doesn’t make you more productive. It only tells the market how productive you have always been. What matters here is the diploma. If you have it, you will be paid more. We refer to this as the <strong>sheepskin effect</strong>, since diplomas were printed in sheepskin in the past.</p>
 <p>To test this hypothesis, <a class="reference external" href="https://faculty.smu.edu/millimet/classes/eco7321/papers/clark%20martorell%202014.pdf">Clark and Martorell</a> used regression discontinuity to measure the effect of graduating 12th grade on earnings. In order to do that, they had to think about some running variable where students that fall above it graduate and those who fall below it, don’t. They found such data in the Texas education system.</p>
 <p>In order to graduate in Texas, one has to pass an exam. Testing starts at 10th grade and students can do it multiple times, but eventually, they face a last chance exam at the end of 12th grade. The idea was to get data from students who took those last chance exams and compare those that had barely failed it to those that barely passed it. These students will have very similar human capital, but different signaling credentials. Namely, those that barely passed it, will receive a diploma.</p>
 <div class="cell docutils container">
@@ -745,12 +737,12 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </table>
 </div></div></div>
 </div>
-<p>One again, this data is grouped by the running variable. It contains not only the running variable (<code class="docutils literal notranslate"><span class="pre">minscore</span></code>, already centered at zero) and the outcome (<code class="docutils literal notranslate"><span class="pre">avgearnings</span></code>), but it also has the probability of receiving a diploma in that score cell and the size of the call (<code class="docutils literal notranslate"><span class="pre">n</span></code>). So, for example, out of the 12 students in the cell -30 below the score threshold, only 5 were able to get the diploma.</p>
+<p>One again, this data is grouped by the running variable. It contains not only the running variable (<code class="docutils literal notranslate"><span class="pre">minscore</span></code>, already centered at zero) and the outcome (<code class="docutils literal notranslate"><span class="pre">avgearnings</span></code>), but it also has the probability of receiving a diploma in that score cell and the size of the call (<code class="docutils literal notranslate"><span class="pre">n</span></code>). So, for example, out of the 12 students in the cell -30 below the score threshold, only 5 were able to get the diploma (12 * 0,416).</p>
 <p>This means that there is some slippage in the treatment assignment. Some students that are below the passing threshold managed to get the diploma anyway. Here, the regression discontinuity is <strong>fuzzy</strong>, rather than sharp. Notice how the probability of getting the diploma doesn’t jump from zero to one at the threshold. But it does jump from something like 50% to 90%.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sheepskin</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;minscore&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;receivehsd&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Test Scores Relative to Cutoff&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Test Scores Relative to Cut off&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Fraction Receiving Diplomas&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Last-chance Exams&quot;</span><span class="p">);</span>
 </pre></div>
@@ -761,10 +753,10 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </div>
 </div>
 <p>We can think of fuzzy RD as a sort of non compliance. Passing the threshold should make everyone receive the diploma, but some students, the never takers, don’t get it. Likewise, being below the threshold should prevent you from getting a diploma, but some students, the allways takers, manage to get it anyway.</p>
-<p>Just like we have the potential outcome, we have the potential treatment status in this situation. \(T_1\) is the treatment everyone would have received had they been above the threshold. \(T_0\) is the treatment everyone would have received had they been below the threshold. As you’ve might have noticed, we can think of the <strong>threshold as an Instrumental Variable</strong>. Just as in IV, this non compliance makes the treatment effect we can naively estimate biased to zero.</p>
+<p>Just like when we have the potential outcome, we have the potential treatment status in this situation. \(T_1\) is the treatment everyone would have received had they been above the threshold. \(T_0\) is the treatment everyone would have received had they been below the threshold. As you’ve might have noticed, we can think of the <strong>threshold as an Instrumental Variable</strong>. Just as in IV, if we naively estimate the treatment effect, it will be biased towards zero.</p>
 <p><img alt="img" src="_images/rdd_fuzzy.png" /></p>
 <p>The probability of treatment being less than one, even above the threshold, makes the outcome we observe less than the true potential outcome \(Y_1\). By the same token, the outcome we observe below the threshold is higher than the true potential outcome \(Y_0\). This makes it look like the treatment effect at the threshold is smaller than it actually is and we will have to use IV techniques to correct for that.</p>
-<p>Just like we’ve assumed smoothness on the potential outcome, we now assume it for the potential treatment. Also, we need to assume monotonicity, just like in IV. In case you don’t remember, it states that \(T_{i1}&gt;T_{i0} \ \forall i\). This means that crossing the threshold from the left to the right only increases your chance of getting a diploma (or that there are no defiers). With these 2 assumptions, we have a Wald Estimator for LATE.</p>
+<p>Just like when we’ve assumed smoothness on the potential outcome, we now assume it for the potential treatment. Also, we need to assume monotonicity, just like in IV. In case you don’t remember, it states that \(T_{i1}&gt;T_{i0} \ \forall i\). This means that crossing the threshold from the left to the right only increases your chance of getting a diploma (or that there are no defiers). With these 2 assumptions, we have a Wald Estimator for LATE.</p>
 <div class="math notranslate nohighlight">
 \[
 \dfrac{\lim_{r \to c^+} E[Y_i|R_i=r] - \lim_{r \to c^-} E[Y_i|R_i=r]}{\lim_{r \to c^+} E[T_i|R_i=r] - \lim_{r \to c^-} E[T_i|R_i=r]} = E[Y_{1i} - Y_{0i} | T_{1i} &gt; T_{0i}, R_i=c]
@@ -773,8 +765,8 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 <p>To estimate this, we will use 2 linear regression. The numerator can be estimated just like we’ve done before. To get the denominator, we simply replace the outcome with the treatment. But first, let’s talk about a sanity check we need to run to make sure we can trust our RDD estimates.</p>
 <div class="section" id="the-mccrary-test">
 <h3>The McCrary Test<a class="headerlink" href="#the-mccrary-test" title="Permalink to this headline">¶</a></h3>
-<p>One thing that could break our RDD argument is if people manipulate where they stand at the threshold. In the sheepskin example this could happen if students just below the threshold found a way around the system to increase their test score by just a bit. Another example is when you need to be below a certain income level to get a government benefit. Some families might lower their income on purpose, just to be just eligible for the program.</p>
-<p>In these sorts of situations, we tend to see a phenomenon called bunching on the density of the running variable. This means that we will have a lot of entities just above or just below the threshold. To check this, we can plot the density function of the running variable and see if there are any spikes around the threshold. For our case, the density is given by the <code class="docutils literal notranslate"><span class="pre">n</span></code> column in our data.</p>
+<p>One thing that could break our RDD argument is if people can manipulate where they stand at the threshold. In the sheepskin example this could happen if students just below the threshold found a way around the system to increase their test score by just a bit. Another example is when you need to be below a certain income level to get a government benefit. Some families might lower their income on purpose, just to be just eligible for the program.</p>
+<p>In these sorts of situations, we tend to see a phenomenon called bunching on the density of the running variable. This means that we will have a lot of entities just above or just below the threshold. To check for that, we can plot the density function of the running variable and see if there are any spikes around the threshold. For our case, the density is given by the <code class="docutils literal notranslate"><span class="pre">n</span></code> column in our data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
@@ -786,7 +778,7 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">sheepskin</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="mi">1877</span><span class="p">:</span><span class="mi">1977</span><span class="p">,</span> <span class="mi">1874</span><span class="p">:</span><span class="mi">2277</span><span class="p">})</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;minscore&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Test Scores Relative to Cutoff&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Test Scores Relative to Cut off&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Spike at the Threshold&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -795,8 +787,8 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 <img alt="_images/16-Regression-Discontinuity-Design_27_0.png" src="_images/16-Regression-Discontinuity-Design_27_0.png" />
 </div>
 </div>
-<p>The first plot shows how our data density looks like. As we can see, there are no spikes around the threshold, meaning there is no bunching. Students are not manipulating where they fall on the threshold. Just for illustrative purposes, the second plot shows what bunching would look like if students could manipulate where they fall on the threshold. We would see a spike in the density for the cells just above the threshold, since many students would be there. Getting this out of the way, we can go back to estimate the sheepskin effect.</p>
-<p>As I’ve said before, the numerator of the Wald estimator can be estimated just like we did in the Sharp RD. Here, we will use as weight the kernel with a bandwidth of 15. Since we also have the cell size, we will multiply the kernel by the sample size to get a final weight for the cell.</p>
+<p>The first plot shows how our data density looks like. As we can see, there are no spikes around the threshold, meaning there is no bunching. Students are not manipulating where they fall on the threshold. Just for illustrative purposes, the second plot shows what bunching would look like if students could manipulate where they fall on the threshold. We would see a spike in the density for the cells just above the threshold, since many students would be on that cell, barely passing the exam.</p>
+<p>Getting this out of the way, we can go back to estimate the sheepskin effect. As I’ve said before, the numerator of the Wald estimator can be estimated just like we did in the Sharp RD. Here, we will use as weight the kernel with a bandwidth of 15. Since we also have the cell size, we will multiply the kernel by the sample size to get a final weight for the cell.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sheepsking_rdd</span> <span class="o">=</span> <span class="n">sheepskin</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="p">(</span><span class="n">sheepskin</span><span class="p">[</span><span class="s2">&quot;minscore&quot;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
@@ -827,7 +819,7 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </tr>
 </table></div></div>
 </div>
-<p>This is telling us that the effect of a diploma is -97.7571, but this is not statistically significant (P-value of 0.5). If we plot these results, we get a very continuous line at the threshold. More educated people indeed make more money, but there isn’t a jump at the point where they receive the 12th grade diploma. This is an argument in favor of the view that says that education increases earnings by making people more productive, since there is no sheepskin effect.</p>
+<p>This is telling us that the effect of a diploma is -97.7571, but this is not statistically significant (P-value of 0.5). If we plot these results, we get a very continuous line at the threshold. More educated people indeed make more money, but there isn’t a jump at the point where they receive the 12th grade diploma. This is an argument in favor of the view that says that education increases earnings by making people more productive, rather than being just a signal to the marker. In other words, there is no sheepskin effect.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sheepskin</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;minscore&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;avgearnings&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
@@ -842,8 +834,8 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 <img alt="_images/16-Regression-Discontinuity-Design_31_0.png" src="_images/16-Regression-Discontinuity-Design_31_0.png" />
 </div>
 </div>
-<p>However, as we know from the way non compliance bias works, this result is biased towards zero. To correct for this, we need to scale it by the first stage and get the Wald estimator. Unfortunately, there isn’t a good Python implementation for this, so we will have to do it manually and use bootstrap to get the standard errors.</p>
-<p>The code below rund the numerator of the Wald estimator just like we did before and it also constructs the denominator by replacing the target variable with the treatment variable <code class="docutils literal notranslate"><span class="pre">receivehsd</span></code>. The final step just divides the numerator by the denominator.</p>
+<p>However, as we know from the way non compliance bias works, this result is biased towards zero. To correct for that, we need to scale it by the first stage and get the Wald estimator. Unfortunately, there isn’t a good Python implementation for this, so we will have to do it manually and use bootstrap to get the standard errors.</p>
+<p>The code below runs the numerator of the Wald estimator just like we did before and also constructs the denominator by replacing the target variable with the treatment variable <code class="docutils literal notranslate"><span class="pre">receivehsd</span></code>. The final step just divides the numerator by the denominator.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wald_rdd</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
@@ -889,7 +881,7 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </div>
 <div class="section" id="key-ideas">
 <h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
-<p>We learned how to take advantage of artificial discontinuities to estimate the causal effect. The idea is that we will have some artificial threshold that makes the probability of treatment jump. One example that we saw was how age makes the probability of drinking jump at 21 how we can use this to estimate the impact of drinking. We use the fact that very close to the threshold, we have something close to a randomized trial. Entities very close to the threshold could have gone either way and what determines where they’ve landed is essentially random. With this, we can compare those just above and just below to get the treatment effect. We saw how we could do that with weighted linear regression using a kernel and how this even gave us, for free, standard errors for our ATE.</p>
+<p>We learned how to take advantage of artificial discontinuities to estimate causal effects. The idea is that we will have some artificial threshold that makes the probability of treatment jump. One example that we saw was how age makes the probability of drinking jump at 21 years. We could use that to estimate the impact of drinking on mortality rate. We use the fact that very close to the threshold, we have something close to a randomized trial. Entities very close to the threshold could have gone either way and what determines where they’ve landed is essentially random. With this, we can compare those just above and just below to get the treatment effect. We saw how we could do that with weighted linear regression using a kernel and how this even gave us, for free, standard errors for our ATE.</p>
 <p>Then, we look at what would happen in the fuzzy RD design, where we have non compliance. We saw how we could approach the situation much like we did with IV.</p>
 </div>
 <div class="section" id="references">
@@ -908,6 +900,7 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">Causal Inference Book</a></p></li>
 </ul>
+<p><img alt="img" src="_images/poetry.png" /></p>
 </div>
 </div>
 
