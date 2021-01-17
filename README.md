@@ -2,6 +2,8 @@
 
 ![img](./causal-inference-for-the-brave-and-true/data/img/brave-and-true.png)
 
+[![DOI](https://zenodo.org/badge/255903310.svg)](https://zenodo.org/badge/latestdoi/255903310)
+
 A light-hearted yet rigorous approach to learning impact estimation and sensitivity analysis. Everything in Python and with as many memes as I could find.
 
 [Check out the book here!](https://matheusfacure.github.io/python-causality-handbook/landing-page.html)
@@ -23,3 +25,8 @@ I'll also like to reference the amazing books from Angrist. They have shown me t
 My final reference is Miguel Hernan and Jamie Robins' book. It has been my trustworthy companion in the most thorny causal questions I had to answer.
 
 * [Causal Inference Book](https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/)
+
+## How to Support This Work
+
+Causal Inference for the Brave and True is an open-source material on mostly econometrics and the statistics of science. It uses only free software, based in Python. Its goal is to be accessible, not only financially, but intellectual. I've tried my best to keep the writing entertaining while maintaining the necessary scientific rigor.  
+Recently, the book has been translated into Vietnamese by some very nice folks from the London School of Economics. Although I was thrilled by it, the translation process also revealed the insufiencies of my english. For this reason, I'm looking for funds to hire professional proofreading services and sort that problem once and for all. To help me with that, go to https://www.patreon.com/causal_inference_for_the_brave_and_true
