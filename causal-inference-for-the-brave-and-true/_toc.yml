@@ -1,6 +1,6 @@
 - file: landing-page
 
-- part: Part I - The Soul
+- part: Part I - The Yang
   chapters:
   - file: 01-Introduction-To-Causality.ipynb
   - file: 02-Randomised-Experiments.ipynb
@@ -19,6 +19,6 @@
   - file: 15-Synthetic-Control.ipynb
   - file: 16-Regression-Discontinuity-Design.ipynb
 
-- part: Part II - The Path
+- part: Part II - The Yin
   chapters:
   - file: 17-Predictive-Models-101.ipynb
