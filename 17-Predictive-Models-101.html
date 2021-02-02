@@ -1,0 +1,1207 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predictive Models 101 &#8212; Causal Inference for the Brave and True</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Regression Discontinuity Design" href="16-Regression-Discontinuity-Design.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part I - The Yang
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
+   Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html">
+   Difference-in-Difference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part II - The Yin
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Predictive Models 101
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/17-Predictive-Models-101.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F17-Predictive-Models-101.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/17-Predictive-Models-101.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning-in-the-industry">
+   Machine Learning in the Industry
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning-crash-course">
+   Machine Learning Crash Course
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cross-validation">
+   Cross Validation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predictions-and-policies">
+   Predictions and Policies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#one-feature-policies">
+   One Feature Policies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning-models-as-policy-inputs">
+   Machine Learning Models as Policy Inputs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fine-grain-policy">
+   Fine Grain Policy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="predictive-models-101">
+<h1>Predictive Models 101<a class="headerlink" href="#predictive-models-101" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="machine-learning-in-the-industry">
+<h2>Machine Learning in the Industry<a class="headerlink" href="#machine-learning-in-the-industry" title="Permalink to this headline">¶</a></h2>
+<p>The focus of this chapter is to talk about how we normally use <strong>machine learning</strong> in the industry. If you are not familiar with machine learning, you can see this chapter as a machine learning crash course. And if you’ve never worked with ML before, I strongly recommend you learn at least the basics to get the most out of what is to come. The rest of this book is aimed at Data Scientists who want to solve causal problems in their workplace. For this reason, I’ll tend to assume you already have basic data science knowledge, including Machine Learning.</p>
+<p>But this doesn’t mean you should skip this chapter if you are already versed in ML. I still think you will benefit from reading it through. Differently from other machine learning material, this one will <strong>not</strong> discuss the ins and outs of algorithms like decision trees or neural networks. Instead, it will be laser focused on <strong>how machine learning is applied in the real world</strong>.</p>
+<p><img alt="img" src="_images/ml-meme.png" /></p>
+<p>The first thing I want to adress is why are we talking about machine learning in a causal inference book? The short answer is because I think one of the best ways to understand causality is to put it in contrast with the predictive models approach brought by machine learning. The long answer is twofold. First, if you’ve got to this point in this book, there is a high chance you are already familiar with machine learning. Second, even if you aren’t, given the current popularity of these topics, you probably already have some idea on what they are. The only problem is that, with all the hype around machine learning, I might have to bring you back to earth and explain what it really does in very practical terms. Finally, more recent developments causal inference make heavy use of machine learning algorithms, so there is that too.</p>
+<p>As I’ve said in the beginning of the book, <strong>machine learning is a way to make fast, automatic and good predictions</strong>. That’s not the entire picture, but we could say that it covers 90% of it. It’s in the field of supervised machine learning where most of the cool advancements, like computer vision, self-driving cars, language translation and diagnostics, have been made. Notice how at first these might not seem like prediction tasks. How is language translation a prediction? And that’s the beauty of machine learning. We can solve more problems with prediction than what is initially apparent. In the case of language translation, you can frame it as a prediction problem where you present a machine with one sentence and it has to predict the same sentence in another language. Notice that I’m <strong>not</strong> using the word prediction in a forecasting or anticipating the future sense. Prediction is simply mapping from one defined input to an initially unknown but equally well defined output.</p>
+<p><img alt="img" src="_images/translation.png" /></p>
+<p>What machine learning really does is it learns this mapping function, even if it is a very complicated mapping function. The bottom line is that if you can frame a problem as this mapping from an input to an output, then machine learning might be a good candidate to solve it. As for self driving cars, you can think of it as not one, but multiple complex prediction problems: predicting the correct angle of the wheel from sensors in the front of the car, predicting the pressure in the brakes from cameras around the car, predicting the pressure in the accelerator from gps data. Solving those (and a tone more) of prediction problems is what makes a self driving car.</p>
+<p>OK… You now understand how prediction can be more powerful than we first though. Self-driving cars and language translation are cool and all, but they are quite distant, unless you work at a major tech company like Google or Uber. So, to make this more relatable, let’s talk in terms of problems almost every company has: customer acquisition (that is getting new customers).</p>
+<p>From the customer acquisition perspective, what you often have to do is figure out who are the profitable customers. In this problem, each customer has a cost of acquisition (maybe marketing costs, onboarding costs, shipping costs…) and will hopefully generate a positive cashflow for the company. For example, let’s say you are an internet provider or a gas company. Your typical customer might have a cash flow that looks something like this.</p>
+<p><img alt="img" src="_images/cashflow-1.png" /></p>
+<p>Each bar represents a monetary event in the life of your relationship with the customer. For example, to get a customer, right off the bet, you need to invest in marketing. Then, after someone decides to do business with you, you might incur in some sort of onboarding cost (where you have to explain to your customer how to use your product) or installation costs. Only then, the customer starts to generate monthly revenues. At some point, the customer might need some assistance and you will have maintenance costs. Finally, if the customer decides to end the contract, you might have some final costs for that too.</p>
+<p>To see if this is a profitable customer, we can rearrange the bar in what is called a cascade plot. Hopefully, the sum of the cash events end way up above the zero line.</p>
+<p><img alt="img" src="_images/cascade-1.png" /></p>
+<p>In contrast, it could very well be that the customer will generate much more costs than revenues. If he or she uses very little of your product and has high maintenance demands, when we pile up the cash events, they could end up below the zero line.</p>
+<p><img alt="img" src="_images/cascade-2.png" /></p>
+<p>Of course, this cash flow could be simpler or much more complicated, depending on the type of business. You can do stuff like time discounts with an interest rate and get all crazy about it, but I think the point here is made.</p>
+<p>But what can you do about this? Well, if you have many examples of profitable and non profitable customers, you can train a machine learning model to identify them. That way, you can focus your marketing strategies that engage only on the profitable customers. Or, if your contract permits, you can end relations with a customer before he or she generates more costs. Essentially, what you are doing here is framing the business problem as a prediction problem so that you can solve it with machine learning: you want to predict or identify profitable and unprofitable customers so that you only engage with the profitable ones.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">ensemble</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;ggplot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For instance, suppose you have 30 days of transactional data on 10000 customers. You also have the cost of acquisition <code class="docutils literal notranslate"><span class="pre">cacq</span></code>. This could be the bid you place for them if you are doing online marketing, it could be the cost of shipping or any training you have to do with your customer so they can use your product. Also, for the sake of simplicity (this is a crash course, not a semester on customer valuation), let’s pretend you have total control of the customer that you do business with. In other words, you have the power to deny a customer even if he or she wants to do business with you. If that’s the case, your task now becomes identifying who will be profitable beforehand, so you can choose to engage only with them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/customer_transactions.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">transactions</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">transactions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10000, 32)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>cacq</th>
+      <th>day_0</th>
+      <th>day_1</th>
+      <th>day_2</th>
+      <th>day_3</th>
+      <th>day_4</th>
+      <th>day_5</th>
+      <th>day_6</th>
+      <th>day_7</th>
+      <th>...</th>
+      <th>day_20</th>
+      <th>day_21</th>
+      <th>day_22</th>
+      <th>day_23</th>
+      <th>day_24</th>
+      <th>day_25</th>
+      <th>day_26</th>
+      <th>day_27</th>
+      <th>day_28</th>
+      <th>day_29</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>-110</td>
+      <td>6</td>
+      <td>0</td>
+      <td>73</td>
+      <td>10</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>21</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>-58</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>15</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>-7</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>-30</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2</td>
+      <td>0</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>-42</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 32 columns</p>
+</div></div></div>
+</div>
+<p>What we need to do now is distinguish the good from the bad customers according to this transactional data. For the sake of simplicity, I’ll just sum up all transactions and the CACQ. Keep in mind that this throws under the rug a lot of nuances, like distinguishing customers that churned from those that are in a break between one purchase and the next.</p>
+<p>I’ll then join this sum, which I call <code class="docutils literal notranslate"><span class="pre">net_value</span></code>, with customer specific features. Since my goals is to figure out which customer will be profitable <strong>before</strong> deciding to engage with them, you can only use data prior to the acquisition period. In our case, these features are age, region and income, which are all available at another <code class="docutils literal notranslate"><span class="pre">csv</span></code> file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">profitable</span> <span class="o">=</span> <span class="p">(</span><span class="n">transactions</span><span class="p">[[</span><span class="s2">&quot;customer_id&quot;</span><span class="p">]]</span>
+              <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">net_value</span> <span class="o">=</span> <span class="n">transactions</span>
+                      <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;customer_id&quot;</span><span class="p">)</span>
+                      <span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="n">customer_features</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/customer_features.csv&quot;</span><span class="p">)</span>
+                     <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">profitable</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;customer_id&quot;</span><span class="p">))</span>
+
+<span class="n">customer_features</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>region</th>
+      <th>income</th>
+      <th>age</th>
+      <th>net_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>30</td>
+      <td>1025</td>
+      <td>24</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>41</td>
+      <td>1649</td>
+      <td>26</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>18</td>
+      <td>2034</td>
+      <td>33</td>
+      <td>-6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>20</td>
+      <td>1859</td>
+      <td>35</td>
+      <td>136</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1243</td>
+      <td>26</td>
+      <td>-8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Good! Our task is becoming less abstract. We wish to identify the profitable customers (<code class="docutils literal notranslate"><span class="pre">net_value</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>) from the non profitable ones. Let’s try different things and see which one works better. But before that, we need to take a quick look into Machine Learning (feel free skip if you know how ML works)</p>
+</div>
+<div class="section" id="machine-learning-crash-course">
+<h2>Machine Learning Crash Course<a class="headerlink" href="#machine-learning-crash-course" title="Permalink to this headline">¶</a></h2>
+<p>For our intent and purpose, we can think of ML as an overpowered way of making predictions. For it to work, you need some data with labels or the ground truth of what you are predicting. Then, you can train a ML model on that data and use it to make predictions where the ground truth is not yet known. The image below exemplifies the typical machine learning flow.</p>
+<p><img alt="img" src="_images/ml-flow.png" /></p>
+<p>First, you need data where the ground truth, <code class="docutils literal notranslate"><span class="pre">net_value</span></code> here is known. Then, you train a ML model that will use features - region, income and age in our case - to predict <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. This training or estimating step will produce a machine learning model that can be used to make predictions about <code class="docutils literal notranslate"><span class="pre">net_value</span></code> when you don’t yet have the true <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. This is shown in the left part of the image. You have some new data where you have the features (region, income and age) but you don’t know the <code class="docutils literal notranslate"><span class="pre">net_value</span></code> yet. So you pass this data through your model and it provides you with <code class="docutils literal notranslate"><span class="pre">net_value</span></code> predictions.</p>
+<p>One tricky thing with ML models is that they can approximate almost any function. Another way of saying this is that they can be made so powerful as to perfectly fit the data in the training set. Machine learning models often have what we call complexity hyperparameters. These things adjust how powerful or complex the model can be. In the image below, you can see examples of a simple model, an intermediate model and a complex and powerful model. Notice how the complex model has a perfect fit of the training data.</p>
+<p><img alt="img" src="_images/model-fit.png" /></p>
+<p>This raises some problems. Namely, how can we know if our model is any good before using it to make predictions in the real world? One way we have is to compare the predictions with the actual values on the dataset where we have the ground truth. But remember that the model can be made so powerful as to perfectly fit the data. If this happens, the predictions will perfectly match the ground truth. This is problematic, because it means this validation is misleading, since I can nail it just by making my model more powerful and complex.</p>
+<p>Besides, it is generally <strong>not</strong> a good thing to have a very complex model. And you already have some intuition into why that is the case. In the image above, for instance, which model do you prefer? The more complex one that gets all the predictions right? Probably not. You probably prefer the middle one. It’s smoother and simpler and yet, it still makes some good predictions, even if it doesn’t perfectly fit the data.</p>
+<p><img alt="img" src="_images/overfitting.jpg" /></p>
+<p>Your intuition is in the right place. What happens if you give too much power to your model, is that it will not only learn the patterns in your data, but it also learns the random noise. Since the noise will be different when you use the model to make predictions in the real world (it’s random after all), your “perfect” model will make mistakes. In ML terms, we say that models that are too complex are overfitting and don’t generalize well. So, what can we do?</p>
+<p>The idea is to split the dataset for which we have the ground truth into two. Then, we can give one part for the model to train on and the other part we can use to validate the model predictions. This is called cross validation as we will discuss it more later. For now, you can see what happens when we do that.</p>
+<p><img alt="img" src="_images/test.png" /></p>
+<p>In the dataset above, which the model didn’t see during training, the complex model doesn’t do a very good job. The model in the middle, on the other hand, seems to perform better. To choose the right model complexity, we can train different models, each one with a different complexity, and see how they perform on some data that we have the ground truth, but that was not used for training the model.</p>
+</div>
+<div class="section" id="cross-validation">
+<h2>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h2>
+<p>Cross validation is essential for selecting the model complexity but it’s more generally useful. We can use it whenever we want to try many different things and estimate how they would play out in the real world. The idea being that we pretend not to have access to some of the data when estimating our methods. Then, we can use this holdout data for evaluation. We can apply this to the whole problem of figuring out which customers are profitable or not. Here is an outline of what we should do</p>
+<ol class="simple">
+<li><p>We have data on existing customers. On this data, we know which ones are profitables and which ones are not (we know the ground truth). Let’s call our internal data the training set.</p></li>
+<li><p>We will use the internal data to <em>learn</em> a rule that tells us which customer is profitable (hence training).</p></li>
+<li><p>We will apply the rule to the holdout data that was <strong>not</strong> used for learning the rule. This should simulate the process of learning a rule in one dataset and applying it to another, a process that will be inevitable when we go to production and score truly unseen data.</p></li>
+</ol>
+<p>Here is a picture of what cross validation looks like. There is the truly unseen data at the leftmost part of the image and then there is data that we only pretend not to have at learning time.</p>
+<p><img alt="img" src="_images/cross-validation.png" /></p>
+<p>To summarize, we will partition our internal data into a training and a test set. We can use the training set to come up with models or rules that predict if a customer is profitable or not, but we will validate those rules in another partition of the dataset: the test set. This test set will be hidden from our learning procedure. The hope is that this will mimic the situation we will encounter once we go to production.</p>
+<p>Just as a side note here, there are tons of ways to make cross validation better other than this simple train test split (k-fold cross-validation or temporal cross validation, for instance), but for the sake of what we will do here, this is enough. Remember that the spirit of cross validation is to simulate what would happen once we go to a production environment. By doing that we hope to get more realistic estimates.</p>
+<p>For our case, I won’t do anything fancy. I’ll just divide the dataset into two. 70% will be used to build a method that allows us to identify profitable customers and 30% will be used to evaluate how good that method is.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">customer_features</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((7000, 5), (3000, 5))
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="predictions-and-policies">
+<h2>Predictions and Policies<a class="headerlink" href="#predictions-and-policies" title="Permalink to this headline">¶</a></h2>
+<p>We’ve been talking about methods and approaches to identify profitable customers but it is time we get more precise with our concepts. Let’s introduce two. A <strong>prediction</strong> is a number that estimates or predicts something. For example, we can try to predict the profitability of a customer and the prediction would be something like 16 reais, meaning that we predict this customer will generate 16 reais in revenue. The point here is that prediction is a simple number. The second concept is that of a <strong>policy</strong>. A policy is an automatic decision rule. While a prediction is a number, a policy is a decision. For example, we can have a policy that engages with customers with income greater than 1000 and doesn’t engage otherwise. We usually build policies on top of predictions: engage with all customers that have profitability predictions above 10 and don’t engage otherwise. Machine learning will usually take care of the first, that is, of prediction. But notice that predictions alone are useless. We need to attach some decision, or policy to it.</p>
+<p>We can do very simple policies and models or very complicated ones. For both policies and predictions, we need to use cross validation, that is, estimate the policy or prediction in one partition of the data and validate its usefulness in another. Since we’ve already partitioned our data into two, we are good to go.</p>
+</div>
+<div class="section" id="one-feature-policies">
+<h2>One Feature Policies<a class="headerlink" href="#one-feature-policies" title="Permalink to this headline">¶</a></h2>
+<p>Before we go machine learning crazy on this profitability problem, let’s try the simple stuff first. The 80% gain with 20% effort stuff. They often work wonders and, surprising, most data scientists forget about them. So, what is the simplest thing we can do? Naturally, <strong>just engage with all the customers!</strong> Instead of figuring out which ones are profitable, let’s just do business with everyone and hope the profitable customers more than compensate for the non profitable ones.</p>
+<p>To check if this is a good idea, we can see the average net value of the customers. If that turns out to be positive, it means that, on average, we will make money on our customers. Sure, there will be profitable and non profitable ones but, on average, if we have enough customers, we will make money. On the other hand, if this value is negative, it means that we will lose money if we engage with all the customers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s2">&quot;net_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-29.169428571428572
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s a bummer… If we engage with everyone, we would lose about 30 reais for customers we do business with. Our first, very simple thing didn’t work and we better find something more promising if we don’t want to go out of business. Just a quick side note here, keep in mind that this is a pedagogical example. Although the very simple, “treat everyone the same” kind of policy didn’t work here, they often do in real life. It is usually the case that sending a marketing email to everyone is better than not sending it, or giving discounts coupons to everyone is often better than not giving them.</p>
+<p>Moving forward, what is the next simplest thing we can think of? One idea is taking our features and seeing if they alone distinguish the good from the bad customers. Take <code class="docutils literal notranslate"><span class="pre">income</span></code>, for instance. It’s intuitive that richer customers should be more profitable, right? What if we do business only with the top richest customers? Would that be a good idea?</p>
+<p>To figure this out we can partition our data into income quantiles (a quantile has the propriety of dividing the data into partitions of equal size, that’s why I like them). Then, for each income quantile, let’s compute the average net value. The hope here is that, although the average net value in negative, \(E[NetValue]&lt;0\), there might be some subpopulation defined by income where the net value is positive, \(E[NetValue|Income=x]&lt;0\), probably, higher income levels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span> <span class="c1">## seed because the CIs from seaborn uses boostrap</span>
+
+<span class="c1"># pd.qcut create quantiles of a column</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">income_quantile</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s2">&quot;income&quot;</span><span class="p">],</span> <span class="n">q</span><span class="o">=</span><span class="mi">20</span><span class="p">)),</span> 
+            <span class="n">x</span><span class="o">=</span><span class="s2">&quot;income_quantile&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;net_value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Profitability by Income&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">70</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/17-Predictive-Models-101_12_0.png" src="_images/17-Predictive-Models-101_12_0.png" />
+</div>
+</div>
+<p>And, sadly, nope. Yet again, all levels of income have negative average net value. Although it is true that richer customers are “less bad” than non rich customers, they still generate, on average, negative net value. So income didn’t help us much here, but what about the other variables, like region? If most of our costs come, say, from having to serve customers in far away places, we should expect that the region distinguishes the profitable from the unprofitable customers.</p>
+<p>Since region is already a categorical variable, we don’t need to use quantiles here. Let’s just see the average net value per region.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">region_plot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;region&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;net_value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Profitability by Region&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/17-Predictive-Models-101_14_0.png" src="_images/17-Predictive-Models-101_14_0.png" />
+</div>
+</div>
+<p>Bingo! We can clearly see that some regions are profitable, like regions 2, 17, 39, and some are not profitable, like region 0, 9, 29 and the specially bad region 26. This is looking super promising! We can take this and transform into a policy: only do business with the regions that showed to be profitable <em>according to the data that we have here</em>.</p>
+<p>To construct this policy, we will be conservative and take only the regions where the lower end of the confidence interval is above zero. A region like 44 and 27, although slightly positive, will be left out according to this policy.</p>
+<p>The following code extracts the lowest y value for each point in the plot above. The <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> thing just zips each point with an index (0 to 49, since there are 50 points). We can do this only because the points are ordered from region 0 to 49. Then, the second dictionary generator filters only those regions where the lower end of the confidence interval is above zero. The result is the regions we will do business with according to our policy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract the lower bound of the 95% CI from the plot above</span>
+<span class="n">regions_to_net</span> <span class="o">=</span> <span class="p">{</span><span class="n">region</span><span class="p">:</span> <span class="n">line</span><span class="o">.</span><span class="n">get_ydata</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+                  <span class="k">for</span> <span class="n">region</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">region_plot</span><span class="o">.</span><span class="n">lines</span><span class="p">)}</span>
+
+<span class="c1"># filters regions where the net value is &gt; 0.</span>
+<span class="n">regions_to_invest</span> <span class="o">=</span> <span class="p">{</span><span class="n">region</span><span class="p">:</span> <span class="n">net</span> 
+                     <span class="k">for</span> <span class="n">region</span><span class="p">,</span> <span class="n">net</span> <span class="ow">in</span> <span class="n">regions_to_net</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                     <span class="k">if</span> <span class="n">net</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">}</span>
+
+<span class="n">regions_to_invest</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: 2.97820945945946,
+ 2: 20.931954887218048,
+ 4: 11.054375,
+ 9: 32.658587786259545,
+ 11: 37.69755639097744,
+ 12: 37.307142857142864,
+ 15: 32.96007462686567,
+ 17: 39.88967391304348,
+ 18: 41.47943262411348,
+ 19: 16.317234848484848,
+ 20: 22.39430147058824,
+ 21: 24.967833333333335,
+ 25: 35.01883333333333,
+ 35: 12.318981481481481,
+ 37: 28.7275,
+ 38: 49.59211538461538,
+ 45: 3.208582089552239,
+ 49: 16.923684210526318}
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">regions_to_invest</span></code> has all the regions we will engage with. Lets now see how this policy would have performed in our test set, the one we pretend not to have. This is a key step in evaluating our policy, because it could very well be that, simply by chance, a region in our training set is appearing to be profitable. If that is only due to randomness, it will be unlikely that we will find that same pattern in the test set.</p>
+<p>To do so, we will filter the test set to contain only the customers in the regions defined as profitable (according to our training set). Then, we will plot the distribution of net income for those customers and also show the average net income of our policy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region_policy</span> <span class="o">=</span> <span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">test</span><span class="p">[</span><span class="s2">&quot;region&quot;</span><span class="p">]</span>
+                      <span class="c1"># filter regions in regions_to_invest</span>
+                      <span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">regions_to_invest</span><span class="o">.</span><span class="n">keys</span><span class="p">())])</span> 
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">region_policy</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;net_value&quot;</span><span class="p">)</span>
+<span class="c1"># average has to be over all customers, not just the one we&#39;ve filtered with the policy</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Average Net Income: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">region_policy</span><span class="p">[</span><span class="s2">&quot;net_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/17-Predictive-Models-101_18_0.png" src="_images/17-Predictive-Models-101_18_0.png" />
+</div>
+</div>
+<p>Not bad! If we use this very simple rule of doing business with only those regions, we can expect to gain about 15 reais per customer. Sure, out of the 3000 customers in the test set, we chose not to engage with some of them (gain of zero) and there will be some customers that we choose to engage with but made us lose money (the ones below zero in our histogram). However, in aggregate, the profitable ones will more than compensate for that.</p>
+<p>Now that you’ve figured this out, pat yourself in the back! It’s already a super useful policy. Your boss will be super happy because your company can make money instead of losing it on customers. What an achievement! Let this be a lesson to never underestimate the value of simple policies.</p>
+</div>
+<div class="section" id="machine-learning-models-as-policy-inputs">
+<h2>Machine Learning Models as Policy Inputs<a class="headerlink" href="#machine-learning-models-as-policy-inputs" title="Permalink to this headline">¶</a></h2>
+<p>If you are willing to do even better, we can now use the power of machine learning. Keep in mind that this will add tones of complexity to the whole thing and usually only marginal gains. But, depending on the circumstances, marginal gains can be translated into huge piles of money and that’s why machine learning is so valuable these days.</p>
+<p>Here, I’ll use a Gradient Boosting model. It’s a fairly complicated model to explain, but one that is very simple to use. For our purpose here, we don’t need to get into the details of how it works. Instead, just remember what we’ve seen in our ML Crash course: a ML model is a super powerful predictive machine that has some complexity parameters. The more complex, the more powerful the model becomes. However, if the complexity is too high, the model will learn noise and not generalize well to unseen data. Hence, we need to use cross validation here to see if the model has the right complexity.</p>
+<p>Now, we need to ask, how can good predictions be used to improve upon our simple region policy to identify and engage with profitable customers? I think there are two main improvements that we can make here. First, you will have to agree that going through all the features looking for one that distinguishes good from bad customers is a cumbersome process. Here, we had only 3 of them (age, income and region), so it wasn’t that bad, but imagine if we had more than 100. Also, you have to be careful with issues of <a class="reference external" href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">multiple testing</a> and false positive rates. The second reason is that it is probably the case that you need more than one feature to distinguish between customers. In our example, we believe that features other than region also have some information on customer profitability. Sure, when we looked at income alone it didn’t give us much, but what about income on those regions that are just barely unprofitable? Maybe, on those regions, if we focus only on richer customers, we could still get some profit. Coming up with these more complicated policies that involve interacting more than one feature can be super complex. The combinations we have to look at grows exponentially with the number of features and it is simply not a practical thing to do. Istead, what we can do is throw all those features into a machine learning model and have it learn those interactions for us. This is precisely what we will do next.</p>
+<p>The goal of this model will be to predict <code class="docutils literal notranslate"><span class="pre">net_value</span></code> using <code class="docutils literal notranslate"><span class="pre">region</span></code>, <code class="docutils literal notranslate"><span class="pre">income</span></code>, <code class="docutils literal notranslate"><span class="pre">age</span></code>. To help it, we will take the region feature, which is categorical, and encode it with the lower end of the confidence interval of net income for that region. Remember that we have those stored in the <code class="docutils literal notranslate"><span class="pre">regions_to_net</span></code> dictionary? With this, all we have to do is call the method <code class="docutils literal notranslate"><span class="pre">.replace()</span></code> and pass this dictionary as the argument. I’ll create a function for this, because we will do this replacement multiple times. This process of transforming features to facilitate learning is generally called feature engineering.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">df</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="n">regions_to_net</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, our model will be imported from <a class="reference external" href="https://scikit-learn.org/stable/">Sklearn</a>. All their models have a pretty standard usage. First, you instantiate the model passing in the complexity parameters. For this model, we will set the number of estimators to 400, the max depth to 4 and so on. The deeper the model and the greater the number of estimators, the more powerful the model will be. Of course, we can’t let it be too powerful, otherwise it will learn the noise in the training data or overfit to it. Again, you don’t need to know the details of what these parameters do. Just keep in mind that this is a very good prediction model. Then, to train our model, we will call the <code class="docutils literal notranslate"><span class="pre">.fit()</span></code> method, passing the features <code class="docutils literal notranslate"><span class="pre">X</span></code> and the variable we want to predict - or target variable - <code class="docutils literal notranslate"><span class="pre">net_value</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+                <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+                <span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="s1">&#39;ls&#39;</span><span class="p">}</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;region&quot;</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">]</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;net_value&quot;</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="n">reg</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingRegressor</span><span class="p">(</span><span class="o">**</span><span class="n">model_params</span><span class="p">)</span>
+
+<span class="c1"># fit model on the training set</span>
+<span class="n">encoded_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">encode</span><span class="p">)</span>
+<span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">encoded_train</span><span class="p">,</span> <span class="n">train</span><span class="p">[</span><span class="n">target</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The model is trained. Now, we need to check if it is any good. To do this, we can look at the predictive performance of this model <strong>on the test set</strong>. There are tons of metrics to evaluate the predictive performance of a machine learning model. Here, I’ll use one which is called \(R^2\). We don’t need to get into much detail here. It suffices to say that the \(R^2\) is used to evaluate models that predict a continuous variable (like <code class="docutils literal notranslate"><span class="pre">net_income</span></code>). Also, \(R^2\) can go from minus infinity (it will be negative if the prediction is worse than the average) to 1.0. The \(R^2\) tells us how much of the variance in <code class="docutils literal notranslate"><span class="pre">net_income</span></code> is explained by our model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">encoded_train</span>
+              <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">encoded_train</span><span class="p">[</span><span class="n">features</span><span class="p">])))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train R2: &quot;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="n">target</span><span class="p">],</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">train_pred</span><span class="p">[</span><span class="s2">&quot;predictions&quot;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test R2: &quot;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">test</span><span class="p">[</span><span class="n">target</span><span class="p">],</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">encode</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train R2:  0.7105311615186402
+Test R2:  0.6938499023844449
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case, the model explains about 71% of the <code class="docutils literal notranslate"><span class="pre">net_income</span></code> variance in the training set but only about 69% of the <code class="docutils literal notranslate"><span class="pre">net_income</span></code> variance in the test set. This is expected. Since the model had access to the training set, the performance there will often be overestimated. Just for fun (and to learn more about overfitting), try setting the ‘max_depth’ of the model to 14 and see what happens. You will likely see that the train \(R^2\) skyrockets but the test set \(R^2\) gets lower. This is what overfitting looks like.</p>
+<p>Next, in order to make our policy, we will store the test set predictions in a <code class="docutils literal notranslate"><span class="pre">prediction</span></code> column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_policy</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">encode</span><span class="p">)))</span>
+
+<span class="n">model_policy</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>region</th>
+      <th>income</th>
+      <th>age</th>
+      <th>net_value</th>
+      <th>prediction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5952</th>
+      <td>5952</td>
+      <td>19</td>
+      <td>1983</td>
+      <td>23</td>
+      <td>21</td>
+      <td>47.027177</td>
+    </tr>
+    <tr>
+      <th>1783</th>
+      <td>1783</td>
+      <td>31</td>
+      <td>914</td>
+      <td>31</td>
+      <td>-46</td>
+      <td>-34.460435</td>
+    </tr>
+    <tr>
+      <th>4811</th>
+      <td>4811</td>
+      <td>33</td>
+      <td>1349</td>
+      <td>25</td>
+      <td>-19</td>
+      <td>22.628473</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>145</td>
+      <td>20</td>
+      <td>1840</td>
+      <td>26</td>
+      <td>55</td>
+      <td>47.687744</td>
+    </tr>
+    <tr>
+      <th>7146</th>
+      <td>7146</td>
+      <td>19</td>
+      <td>3032</td>
+      <td>34</td>
+      <td>-17</td>
+      <td>4.765130</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Just like we did with the <code class="docutils literal notranslate"><span class="pre">regions</span></code> feature, we can show the average net value by predictions of our model. Since the model is continuous and not categorical, we need to make it discrete first. One way of doing so is using pandas <code class="docutils literal notranslate"><span class="pre">pd.qcut</span></code> (by golly! I love this function!), which partitions the data into quantiles using the model prediction. Let’s use 50 quantiles because 50 is the number of regions that we had. And just as a convention, I tend to call these model quantiles <strong>model bands</strong>, because it gives the intuition that this group has model predictions within a band, say, from -10 to 200.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">n_bands</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">bands</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;band_</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_bands</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">model_plot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">model_policy</span>
+                         <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">model_band</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">model_policy</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">],</span> <span class="n">q</span><span class="o">=</span><span class="n">n_bands</span><span class="p">)),</span>
+                         <span class="n">x</span><span class="o">=</span><span class="s2">&quot;model_band&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;net_value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Profitability by Model Prediction Quantiles&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">70</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/17-Predictive-Models-101_28_0.png" src="_images/17-Predictive-Models-101_28_0.png" />
+</div>
+</div>
+<p>Here, notice how there are model bands where the net value is super negative, while there are also bands where it is very positive. Also, there are bands where we don’t know exactly if the net value is negative or positive. Finally, notice how they have an upward trend, from left to right. Since we are predicting net income, it is expected that the prediction will be proportional to what it predicts.</p>
+<p>Now, to compare this policy using a machine learning model with the one using only the regions we can also show the histogram of net gains, along with the total net value in the test set.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">model_plot_df</span> <span class="o">=</span> <span class="p">(</span><span class="n">model_policy</span><span class="p">[</span><span class="n">model_policy</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">model_plot_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;net_value&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C2&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;model_policy&quot;</span><span class="p">)</span>
+
+<span class="n">region_plot_df</span> <span class="o">=</span> <span class="p">(</span><span class="n">model_policy</span><span class="p">[</span><span class="n">model_policy</span><span class="p">[</span><span class="s2">&quot;region&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">regions_to_invest</span><span class="o">.</span><span class="n">keys</span><span class="p">())])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">region_plot_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;net_value&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;region_policy&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Model Net Income: </span><span class="si">%.2f</span><span class="s2">;    Region Policy Net Income </span><span class="si">%.2f</span><span class="s2">.&quot;</span> <span class="o">%</span> 
+          <span class="p">(</span><span class="n">model_plot_df</span><span class="p">[</span><span class="s2">&quot;net_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+           <span class="n">region_plot_df</span><span class="p">[</span><span class="s2">&quot;net_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/17-Predictive-Models-101_30_0.png" src="_images/17-Predictive-Models-101_30_0.png" />
+</div>
+</div>
+<p>As we can see, the model generates a better policy than just using the regions feature, but not by much. While the model policy would have made us about 16.6 reais / customer on the test set, the region policy would have made us only 15.5 / customer. It’s just slightly better, but if you have tons and tons of customers, this might already justify using a model instead of a simple one feature policy.</p>
+</div>
+<div class="section" id="fine-grain-policy">
+<h2>Fine Grain Policy<a class="headerlink" href="#fine-grain-policy" title="Permalink to this headline">¶</a></h2>
+<p>As a recap, so far, we tested the most simple of all policies, which is just engaging with all the customers. Since that didn’t work (the average net income per customer was negative), we developed a single feature policy that was based on regions: we would do business in some regions, but not in others. This already gave us very good results. Next, we went full machine learning, with a predictive model. Then, we used that model as an input to a policy and chose to do business with all the customers whose net income predictions were above zero.</p>
+<p>Here, the decision which the policy handles is very simple: engage with a customer or don’t engage. The policies we had so far dealt with the binary case. They were in the form of</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">prediction</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">then</span> <span class="n">do</span> <span class="n">business</span> <span class="k">else</span> <span class="n">don</span><span class="s1">&#39;t do business.</span>
+</pre></div>
+</div>
+<p>This is something we call <strong>thresholding</strong>. If the prediction exceeds a certain threshold (zero in our case, but could be something else), we take one decision, if it doesn’t, we take another. One other example of where this could be applied in real life is transactional fraud detection: if the prediction score of a model that detects fraud is above some threshold <code class="docutils literal notranslate"><span class="pre">X</span></code>, we deny the transaction, otherwise we approve it.</p>
+<p>Thresholding works in lots of real case scenarios and it is particularly useful when the nature of the decision is binary. However, we can think of cases where things tend to be more nuanced. For example, you might be willing to spend more in marketing to get the attention of very profitable customers. Or you might want to add them to some prime customers list, where you give special treatment to them, but it also costs you more to do so. Notice that if we include these possibilities, your decision goes from binary (engage vs don’t engage) to continuous: how much should you invest in a customer.</p>
+<p>Here, for the next example, suppose your decision is not just who to do business with, but how much marketing costs you should invest in each customer. And for the sake of the example, assume that you are competing with other firms and whoever spends more on marketing in a particular customer wins that customer (much like a bidding mechanism). In that case, it makes sense to invest more in highly profitable customers, less in marginally profitable customers and not at all in non profitable customers.</p>
+<p>One way to do that is to descritize your predictions into bands. We’ve done this previously for the purpose of model comparison, but here we’ll do it for decision making. Let’s create 20 bands. We can think of those as quantiles or equal size groups. The first band will contain the 5% less profitable customers <em>according to our predictions</em>, the second band will contain from the 5% to the 10% less profitable and so on. The last band, 20, will contain the most profitable customers.</p>
+<p>Notice that the binning too has to be estimated on the training set and applied on the test set! For this reason, we will compute the bins using <code class="docutils literal notranslate"><span class="pre">pd.qcut</span></code> on the training set. To actually do the binning, we will use <code class="docutils literal notranslate"><span class="pre">np.digitize</span></code>, passing the bins that where precomputed on the training set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_binner</span><span class="p">(</span><span class="n">prediction_column</span><span class="p">,</span> <span class="n">bins</span><span class="p">):</span>
+    <span class="c1"># find the bins according to the training set</span>
+    <span class="n">bands</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">prediction_column</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">binner_function</span><span class="p">(</span><span class="n">prediction_column</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">prediction_column</span><span class="p">,</span> <span class="n">bands</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">binner_function</span>
+    
+
+<span class="c1"># train the bining function</span>
+<span class="n">binner_fn</span> <span class="o">=</span> <span class="n">model_binner</span><span class="p">(</span><span class="n">train_pred</span><span class="p">[</span><span class="s2">&quot;predictions&quot;</span><span class="p">],</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># apply the binning</span>
+<span class="n">model_band</span> <span class="o">=</span> <span class="n">model_policy</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">bands</span> <span class="o">=</span> <span class="n">binner_fn</span><span class="p">(</span><span class="n">model_policy</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">]))</span>
+<span class="n">model_band</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>region</th>
+      <th>income</th>
+      <th>age</th>
+      <th>net_value</th>
+      <th>prediction</th>
+      <th>bands</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5952</th>
+      <td>5952</td>
+      <td>19</td>
+      <td>1983</td>
+      <td>23</td>
+      <td>21</td>
+      <td>47.027177</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>1783</th>
+      <td>1783</td>
+      <td>31</td>
+      <td>914</td>
+      <td>31</td>
+      <td>-46</td>
+      <td>-34.460435</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>4811</th>
+      <td>4811</td>
+      <td>33</td>
+      <td>1349</td>
+      <td>25</td>
+      <td>-19</td>
+      <td>22.628473</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>145</td>
+      <td>20</td>
+      <td>1840</td>
+      <td>26</td>
+      <td>55</td>
+      <td>47.687744</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>7146</th>
+      <td>7146</td>
+      <td>19</td>
+      <td>3032</td>
+      <td>34</td>
+      <td>-17</td>
+      <td>4.765130</td>
+      <td>13</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">model_band</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;bands&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;net_value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Model Bands&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/17-Predictive-Models-101_33_0.png" src="_images/17-Predictive-Models-101_33_0.png" />
+</div>
+</div>
+<p>With these bands, we can allocate the bulk of our marketing investments to band 20 and 19. Notice how we went from a binary decision (engage vs not engage), to a continuous one: how much to invest on marketing for each customer. Of course you can fine tune this even more, adding more bands. In the limit, you are not binning at all. Instead, you are using the raw prediction of the model and you can create decision rules like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkt_investments_i</span> <span class="o">=</span> <span class="n">model_prediction_i</span> <span class="o">*</span> <span class="mf">0.3</span>
+</pre></div>
+</div>
+<p>where for each customer \(i\), you invest 30% of the net_value predicted by the model (30% was an arbitrary number, but you get the point).</p>
+</div>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<p>We’ve covered A LOT of ground here in a very short time, so I think this recap is extremely relevant for us to see what we accomplished here. First, we learned how the majority of machine learning applications involves nothing more than making good predictions, where prediction is understood as mapping from a known input to an initially unknown, but well defined output. But when I say “nothing more”, I’m not being entirely fair. We also saw how good predictions can solve more problems than we might think at first, like language translation and self driving cars.</p>
+<p>Then, we got back down to earth and looked at how good predictions can help us with more common tasks, like figuring out which customer we should bring in and which to avoid. Specifically, we looked at how we could predict customer profit. With that prediction, we’ve built a policy that decides who we should do business with. Notice that this is just an example of where prediction models can be applied. There are sure tones of other ones, like credit card underwriting, fraud detection, cancer diagnostics and anything else where good predictions might be useful.</p>
+<p>The key takeaway here is that <strong>if you can frame your business problem as a prediction problem, then machine learning is probably the right tool for the job</strong>. I really can’t emphasize this enough. With all the hype around machine learning, I feel that people forgot about this very important point and often end up making models that are very good in predicting something totally useless. Instead of thinking about how to frame a business problem as a prediction problem and <em>then</em> solving it with machine learning, they often build a prediction model and try to see what business problem could benefit from that prediction. This might work, but, more often than not, is a shot in the dark that only generates solutions in search of a problem.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>The things I’ve written here are mostly stuff from my head. I’ve learned them through experience. This means there isn’t a direct reference I can point you to. It also means that the things I wrote here have <strong>not</strong> passed the academic scrutiny that good science often goes through. Instead, notice how I’m talking about things that work in practice, but I don’t spend too much time explaining why that is the case. It’s a sort of science from the streets, if you will. However, I am putting this up for public scrutiny, so, by all means, if you find something preposterous, open an issue and I’ll address it to the best of my efforts.</p>
+<p>Finally, I believe I might have been too quick for those who were hoping for a comprehensive and detailed introduction of machine learning. To be honest, I believe that where I can truly generate value is teaching about causal inference, not machine learning. For the latter, there are tons of amazing online resources, much better than I could ever dream of creating. The classical one is <a class="reference external" href="https://www.coursera.org/learn/machine-learning">Andrew Ng’s course on Machine Learning</a> and I definitely recommend you take a look into it if you are new to machine learning.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "causal-glory"
+        },
+        kernelOptions: {
+            kernelName: "causal-glory",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'causal-glory'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="16-Regression-Discontinuity-Design.html" title="previous page">Regression Discontinuity Design</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
