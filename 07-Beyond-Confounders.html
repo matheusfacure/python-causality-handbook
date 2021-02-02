@@ -1030,11 +1030,14 @@ E[Y_0|T=0, Agreement=1] &gt; E[Y_0|T=1, Agreement=1]
 E[Y_i|T_i] = E[Y_i|Y_i&gt;0, T_i]P(Y_i&gt;0|T_i)
 \)</span></p>
 <p>There is nothing wrong with the participation model \(P(Y_i&gt;0|T_i)\). In fact, if \(T\) is randomly assigned, it will capture the increase in probability of spending due to the treatment. The issue is with the COP part. <strong>It will be biased even under random assignment</strong>:</p>
-<p>\begin{align*}
-E[Y_i|Y_i&gt;0, T_i]&amp;=E[Y_i|Y_i&gt;0, T_i=1]-E[Y_i|Y_i&gt;0, T_i=0] \
-&amp;=E[Y_{i1}|Y_{i1}&gt;0]-E[Y_{i0}|Y_{i0}&gt;0] \
-&amp;=\underbrace{E[Y_{i1} - Y_{i0}|Y_{i1}&gt;0]}<em>{Causal \ Effect} + \underbrace{{ E[Y</em>{i0}|Y_{i1}&gt;0] - E[Y_{i0}|Y_{i0}&gt;0] }}_{Selection \ Bias}
-\end{align*}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*} 
+E[Y_i|Y_i&gt;0, T_i]&amp;=E[Y_i|Y_i&gt;0, T_i=1]-E[Y_i|Y_i&gt;0, T_i=0] \\
+&amp;=E[Y_{i1}|Y_{i1}&gt;0]-E[Y_{i0}|Y_{i0}&gt;0] \\
+&amp;=\underbrace{E[Y_{i1} - Y_{i0}|Y_{i1}&gt;0]}_{Causal \ Effect} + \underbrace{\{ E[Y_{i0}|Y_{i1}&gt;0] - E[Y_{i0}|Y_{i0}&gt;0] \}}_{Selection \ Bias}
+\end{align*} 
+\end{split}\]</div>
 <p>When we break up the COP effect, we get first the causal effect on the participant subpopulation. In our example, this would be the causal effect on those that decide to spend something. Second, we get a bias term which is the difference in \(Y_0\) for those that decide to participate when assigned to the treatment (\(E[Y_{i0}|Y_{i1}&gt;0]\)) and those that that participate even without the treatment (\(E[Y_{i0}|Y_{i0}&gt;0]\)). In our case, this bias is probably negative, since those that spend when assigned to the treatment, have they not gottend the treatment, would probably spend less than those that spend even without the treatment \(E[Y_{i0}|Y_{i1}&gt;0] &lt; E[Y_{i0}|Y_{i0}&gt;0]\).</p>
 <p><img alt="img" src="_images/cop.png" /></p>
 <p>To wrap up selection bias, we need to always remind ourselves to never control for a variable that is either in between the treatment and the outcome or is a common effect of the outcome and the treated. In graphical language, here is what bad control looks like:</p>
