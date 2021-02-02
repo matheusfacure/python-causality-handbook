@@ -11,3 +11,6 @@ html:
   use_issues_button: true
 
 exclude_patterns: [_build, .DS_Store, "**.ipynb_checkpoints"]
+
+google_analytics:
+  mytrackingcode: UA-97848161-1
