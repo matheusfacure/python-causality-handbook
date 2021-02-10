@@ -1,0 +1,1704 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>When Prediction Fails &#8212; Causal Inference for the Brave and True</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Predictive Models 101" href="17-Predictive-Models-101.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part I - The Yang
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
+   Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html">
+   Difference-in-Difference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part II - The Yin
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-Predictive-Models-101.html">
+   Predictive Models 101
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   When Prediction Fails
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/18-When-Prediction-Fails.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F18-When-Prediction-Fails.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/18-When-Prediction-Fails.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#when-all-you-have-is-a-hammer">
+   When all you have is a Hammer…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#who-wants-a-coupon">
+   Who Wants a Coupon?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-policy">
+   Simple Policy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#policy-with-model">
+   Policy With Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hammering-your-thumb-with-predictions">
+   Hammering Your Thumb with Predictions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#when-might-prediction-helps">
+   When Might Prediction Helps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="when-prediction-fails">
+<h1>When Prediction Fails<a class="headerlink" href="#when-prediction-fails" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="when-all-you-have-is-a-hammer">
+<h2>When all you have is a Hammer…<a class="headerlink" href="#when-all-you-have-is-a-hammer" title="Permalink to this headline">¶</a></h2>
+<p>Between 2015 and 2020, Machine Learning went through a massive surge. Its proven usefulness in the fields of computer vision and natural language understanding, coupled with an initial lack of professionals in the area, provided the perfect opportunity for a machine learning teaching industry. Figures like Andrew Ng and Sebastian Thrun managed to teach machine learning to the world at rock bottom prices. At the same time, on the software side, it became increasingly easier to fit a complex machine learning model (as you’ve already seen by the very few lines of code it took us to write an ML in the previous chapter). Tutorials about how to make intelligent systems sprung all over the internet. The cost of entry in ML plumend.</p>
+<p><img alt="img" src="_images/ml-in-5.png" /></p>
+<p>Building ML became so simple that you didn’t even need to know how to code very well (and I’m living evidence of that), nor the math behind the algorithms. In fact, you could build wonders with the following 5 lines of Python.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span>  <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+ 
+<span class="c1">## instantiate the machine learning model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MachineLearningModel</span><span class="p">()</span>
+ 
+<span class="c1">## Fit the ML model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+ 
+<span class="c1"># Make predictions on unseen data</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+ 
+<span class="c1"># Evaluate the quality of predictions</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Performance&quot;</span><span class="p">,</span> <span class="n">metric</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>For the most part, this is an amazing thing! I’m all in for taking valuable content and making it available. However, there is also a dark side to all of this. This new wave of data scientists were trained mostly in predictive modeling, since that is what ML primarily focuses on solving. As a result, whenever those data scientists encountered a business problem, they tried to tackle it with, not surprisingly, predictive models. When they were indeed prediction problems, like the one we saw in the previous chapter, the data scientist usually succeeded and everyone got happy. However, there is an entire class of problems that are simply not solvable with prediction techniques. And when those appeared, the data scientists usually failed miserably. These are problems that are framed like “how much can I increase Y by changing X”.</p>
+<p>From my experience, this other type of problem is what management usually cares the most about. They often want to know how to increase sales, decrease cost or bring in more customers. Needless to say, they are not very happy when a data scientist comes up with an answer to how to predict sales instead of how to increase it. Sadly, when everything the data scientist knows is predictive models, this tends to happen a lot. As a boss of mine once told me: “when all you have is a hammer, everything starts to look like a thumb”.</p>
+<p>Like I’ve said, I’m all in for lowering the cost of knowledge, but the current Data Scientist curriculum has a huge gap. I think that my job here is to fill in that gap. Is to equip you with tools to solve this other class of problems, which are causal in nature.</p>
+<p>What you are trying to do is estimate how something you can control (advertisement, price, customer service) affects or causes something you want to change, but can’t control directly (sales, number of customers, PNL). But ,before showing you how to solve these problems, I want to show you what happens when you treat them like prediction tasks and try to solve them with the traditional ML toolkit. The reason for it is that data scientists often come to me and say “OK, but although tackling causal problems with prediction tools is not the best idea, it surely helps something, no? Imean, it couldn’t hurt…”. Well, as it turns out, it can. And you better understand this before you go on hammering your own thumb.</p>
+<p><img alt="img" src="_images/horse-meme.png" /></p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">ensemble</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">cross_val_predict</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">gradient_boosting</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;ggplot&quot;</span><span class="p">)</span>
+
+<span class="c1"># helper functions for this notebook</span>
+<span class="kn">from</span> <span class="nn">nb18</span> <span class="kn">import</span> <span class="n">ltv_with_coupons</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="who-wants-a-coupon">
+<h2>Who Wants a Coupon?<a class="headerlink" href="#who-wants-a-coupon" title="Permalink to this headline">¶</a></h2>
+<p>To make matters more relatable, let’s continue with the example we used in the previous chapter, but with a little twist to it. Before, we were trying to distinguish the profitable from the non profitable customers. We framed that as a prediction problem: predicting customer profitability. We could then build a machine learning model for this task and use it to choose who we would do business with: only the customers we predicted to be profitable. In other words, our goal was to separate the profitable from the non-profitable, which we could do with a predictive model.</p>
+<p>Now, you have a new task. You suspect that giving coupons to new customers increases their engagement with your business and makes them more profitable in the long run. That is, they spend more and for a longer period. Your new assignment is to figure out how much the coupon value should be (zero included). Notice that, with coupons, you are essentially giving away money for people to spend on your business. For this reason, they enter as a cost in your book account. Notice that if the coupon value is too high, you will probably lose money, since customers will buy all they need using only the coupons. That’s another way of saying that they will get your product for free. On the flip side, if coupon value is too low (or zero), you are not even giving coupons. This could be a valid answer, but it could also be that some discounts upfront, in the form of coupons, will be more profitable in the long run.</p>
+<p>For reasons you will see later, we will use a data generating function instead of loading a static dataset. The function <code class="docutils literal notranslate"><span class="pre">ltv_with_coupons</span></code> generates transaction data for us. As you can see, they have the same format as the one we saw previously, with one row per customer, a column for the cost of acquisition and columns for the transactions between day 1 and 30.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions</span><span class="p">,</span> <span class="n">customer_features</span> <span class="o">=</span> <span class="n">ltv_with_coupons</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">transactions</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">transactions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10000, 32)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>cacq</th>
+      <th>day_0</th>
+      <th>day_1</th>
+      <th>day_2</th>
+      <th>day_3</th>
+      <th>day_4</th>
+      <th>day_5</th>
+      <th>day_6</th>
+      <th>day_7</th>
+      <th>...</th>
+      <th>day_20</th>
+      <th>day_21</th>
+      <th>day_22</th>
+      <th>day_23</th>
+      <th>day_24</th>
+      <th>day_25</th>
+      <th>day_26</th>
+      <th>day_27</th>
+      <th>day_28</th>
+      <th>day_29</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>-110</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>...</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>-61</td>
+      <td>2</td>
+      <td>0</td>
+      <td>5</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>5</td>
+      <td>0</td>
+      <td>1</td>
+      <td>35</td>
+      <td>11</td>
+      <td>0</td>
+      <td>5</td>
+      <td>2</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>-8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>-30</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>-41</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 32 columns</p>
+</div></div></div>
+</div>
+<p>As for the other parts of the data, again, we have a customer identifier, the region the customer lives, the customer income and the customer age. In addition, we now have a variable that is <code class="docutils literal notranslate"><span class="pre">coupons</span></code>, which tells us how much we’ve given in coupons for that customer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">customer_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">customer_features</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10000, 5)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>region</th>
+      <th>income</th>
+      <th>coupons</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>18</td>
+      <td>1025</td>
+      <td>5</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>40</td>
+      <td>1649</td>
+      <td>5</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>35</td>
+      <td>2034</td>
+      <td>15</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>29</td>
+      <td>1859</td>
+      <td>15</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>11</td>
+      <td>1243</td>
+      <td>5</td>
+      <td>26</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To process this data to a single dataframe, we will sum all the columns in the first table (that is, summing <code class="docutils literal notranslate"><span class="pre">CACQ</span></code> with the transactions).This will give us the <code class="docutils literal notranslate"><span class="pre">net_value</span></code> as it was computed in the previous chapter. After that, we will join in the features data and update the <code class="docutils literal notranslate"><span class="pre">net_value</span></code> to include the coupon cost.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">transactions</span><span class="p">,</span> <span class="n">customer_data</span><span class="p">):</span>
+
+    <span class="n">profitable</span> <span class="o">=</span> <span class="p">(</span><span class="n">transactions</span><span class="p">[[</span><span class="s2">&quot;customer_id&quot;</span><span class="p">]]</span>
+                  <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">net_value</span> <span class="o">=</span> <span class="n">transactions</span>
+                          <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;customer_id&quot;</span><span class="p">)</span>
+                          <span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">customer_data</span>
+            <span class="c1"># join net_value and features</span>
+            <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">profitable</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;customer_id&quot;</span><span class="p">)</span>
+            <span class="c1"># include the coupons cost</span>
+            <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">net_value</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;net_value&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;coupons&quot;</span><span class="p">]))</span>
+
+<span class="n">customer_features</span> <span class="o">=</span> <span class="n">process_data</span><span class="p">(</span><span class="n">transactions</span><span class="p">,</span> <span class="n">customer_features</span><span class="p">)</span>
+<span class="n">customer_features</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>region</th>
+      <th>income</th>
+      <th>coupons</th>
+      <th>age</th>
+      <th>net_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>18</td>
+      <td>1025</td>
+      <td>5</td>
+      <td>24</td>
+      <td>-44</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>40</td>
+      <td>1649</td>
+      <td>5</td>
+      <td>26</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>35</td>
+      <td>2034</td>
+      <td>15</td>
+      <td>33</td>
+      <td>-23</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>29</td>
+      <td>1859</td>
+      <td>15</td>
+      <td>35</td>
+      <td>-45</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>11</td>
+      <td>1243</td>
+      <td>5</td>
+      <td>26</td>
+      <td>-26</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This processed data frame has all that we need. It has our target variable <code class="docutils literal notranslate"><span class="pre">net_value</span></code>, it has our customer features <code class="docutils literal notranslate"><span class="pre">region</span></code>, <code class="docutils literal notranslate"><span class="pre">income</span></code> and <code class="docutils literal notranslate"><span class="pre">age</span></code>, and it has the lever or treatment we want to optimise for: coupons. Just to begin understanding how coupons can increase <code class="docutils literal notranslate"><span class="pre">net_value</span></code>, let’s look at how they were given away.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">customer_features</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;coupons&quot;</span><span class="p">)[</span><span class="s2">&quot;customer_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>coupons
+0      458
+5     4749
+10    4154
+15     639
+Name: customer_id, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that most of the coupons that were handed out had a value of 5 BRL, followed by the coupons with 10 BRL in value. We gave very few 15 BRL coupons or no coupons at all (zero value). This is indicative that they were <strong>NOT</strong> given randomly. To check that, let’s see the correlation between the other variable and coupons.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">customer_features</span><span class="o">.</span><span class="n">corr</span><span class="p">()[[</span><span class="s2">&quot;coupons&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>coupons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>customer_id</th>
+      <td>0.002239</td>
+    </tr>
+    <tr>
+      <th>region</th>
+      <td>-0.004073</td>
+    </tr>
+    <tr>
+      <th>income</th>
+      <td>0.001236</td>
+    </tr>
+    <tr>
+      <th>coupons</th>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>age</th>
+      <td>0.897308</td>
+    </tr>
+    <tr>
+      <th>net_value</th>
+      <td>-0.078369</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>That’s interesting. It looks like the older the person, the higher the probability he or she will receive a coupon. This is some indication of bias in our data. We can also see a negative correlation between coupons and <code class="docutils literal notranslate"><span class="pre">net_value</span></code>: the more coupons we give, the smaller the net_value. This is hardly causal, since we already know that coupons were not randomly distributed. It could be that, say, older people spend less on our products and also receive higher coupon values, confounding the relationship between coupons and <code class="docutils literal notranslate"><span class="pre">net_value</span></code> to the point of making it negative.</p>
+<p>The point being, we know there is bias. However, since there is already too much packed into this chapter, I’ll ignore it for now (actually, I’ll bypass the problem with an artifact you will see in just a moment). Just keep in mind it’s something we will have to address sometime in the future.</p>
+<p>At this point in the analysis, <strong>if this was a prediction problem</strong>, we would probably split the dataset into a training and a test set to build and evaluate some policies, respectively. But this is NOT a prediction problem. The final goal here is not to get a good prediction on customer profitability. Instead, it’s to figure out the optimal coupon strategy. To evaluate this optimization, we would have to know how things would have played out if we have given different coupons than the ones that were given. This is the sort of counterfactual “what if’’ question we’ve been studying under causality. Cross validation won’t help us here because we simply can’t observe counterfactuals. We can only see what happened for the coupons that were actually given, but we can’t know what would have happened if customers received a different coupon value. Unless, we have simulated data!</p>
+<p>If our data is simulated, we can generate the exact same data, only changing the coupon value parameters. This will allow us to see how <code class="docutils literal notranslate"><span class="pre">net_value</span></code> changes under different coupons strategies. We will then be able to calculate the treatment effect between different strategies \(NetValue_{t=a} - NetValue_{t=b}\). With the power of simulated data, understanding this chapter will be much easier. Oh yes, and this will also render the bias problem irrelevant, because we will observe the causal effect directly.</p>
+<p>Nevertheless, always remember that this is a pedagogical artifact. In the real world, you don’t have simulated data and you certainly can’t see what would have happened under different treatment strategies. Individual causal effects remain hidden as they always have been. This poses an interesting problem. How can we evaluate our strategies for identifying causal effect if we can never see the actual causal effect? The real answer is very involved and so important that it deserves its own chapter. Rest assured that we will tackle it. For now, just enjoy the simplicity of simulated data. And speaking of simplicity…</p>
+</div>
+<div class="section" id="simple-policy">
+<h2>Simple Policy<a class="headerlink" href="#simple-policy" title="Permalink to this headline">¶</a></h2>
+<p>As always, the first thing we should do whenever we encounter a new data problem is to ask ourselves “what is the simplest thing I can do that will already bring value?”. For this specific case, the simplest thing is to look back on the data that we have and estimate the <code class="docutils literal notranslate"><span class="pre">net_value</span></code> for each coupon value. Then, check which coupon value is generating the highest <code class="docutils literal notranslate"><span class="pre">net_value</span></code> and give only that coupon value for every customer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">customer_features</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;coupons&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;net_value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Net Value by Coupon Value&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-When-Prediction-Fails_13_0.png" src="_images/18-When-Prediction-Fails_13_0.png" />
+</div>
+</div>
+<p>Doing that analysis, we can see that, on average, we lose money when the coupon value is 0 or 15 and we gain money for coupons of 5 and 10 BLR. The highest average <code class="docutils literal notranslate"><span class="pre">net_income</span></code> appears when we have 5 BLR coupons, yielding us about 250 BLR in <code class="docutils literal notranslate"><span class="pre">net_value</span></code> per customer. Naturally then, the simplest thing we can try is to give everyone 5 BLR in coupons and see how that would play out. This completely disregards the possibility of bias but hey, we are talking simplicity here!</p>
+<p>To do evaluate that policy, the function <code class="docutils literal notranslate"><span class="pre">ltv_with_coupons</span></code> accepts as argument a 10000 array that contains the desired coupon for each of the 10000 customers on our database. To create this array, we will generate an array of ones with <code class="docutils literal notranslate"><span class="pre">np.ones</span></code> the size of our <code class="docutils literal notranslate"><span class="pre">coupons</span></code> array (10000) and multiply it by 5. Then, we will pass this array to the <code class="docutils literal notranslate"><span class="pre">ltv_with_coupons</span></code>. This will generate a new dataset exactly like the one we had previously, but with every coupon value set to 5. We then process this data to get the net value under this newly proposed policy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_policy</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">customer_features</span><span class="p">[</span><span class="s2">&quot;coupons&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">transactions_simple_policy</span><span class="p">,</span> <span class="n">customer_features_simple_policy</span> <span class="o">=</span> <span class="n">ltv_with_coupons</span><span class="p">(</span><span class="n">simple_policy</span><span class="p">)</span>
+<span class="n">customer_features_simple_policy</span> <span class="o">=</span> <span class="n">process_data</span><span class="p">(</span><span class="n">transactions_simple_policy</span><span class="p">,</span> <span class="n">customer_features_simple_policy</span><span class="p">)</span>
+
+<span class="n">customer_features_simple_policy</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>region</th>
+      <th>income</th>
+      <th>coupons</th>
+      <th>age</th>
+      <th>net_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>18</td>
+      <td>1025</td>
+      <td>5</td>
+      <td>24</td>
+      <td>-44</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>40</td>
+      <td>1649</td>
+      <td>5</td>
+      <td>26</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>35</td>
+      <td>2034</td>
+      <td>5</td>
+      <td>33</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>29</td>
+      <td>1859</td>
+      <td>5</td>
+      <td>35</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>11</td>
+      <td>1243</td>
+      <td>5</td>
+      <td>26</td>
+      <td>-26</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Just as a sanity check, let’s see if the features are indeed unchanged, considering the first few customers. Take the third one, for example (<code class="docutils literal notranslate"><span class="pre">customer_id</span></code> 2). For this customer, the region is 35, income is 2034 and the age is 33. If we scroll up a bit, we can see that it matches what we had before, so we are good here. Also, we can check that all the coupons are indeed 5 BRL. Finally, the <code class="docutils literal notranslate"><span class="pre">net_value</span></code> changes as expected. One reason for this is that the cost associated with coupons will change. For example, that customer had 15 BRL in coupons, but now it’s 5. This would decrease the cost from 15 to 5 units. But notice that the <code class="docutils literal notranslate"><span class="pre">net_value</span></code> goes from -23 to 63, a 86 BRL increase in <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. This is much larger than the 10 cost difference. Here giving less in the coupons made this particular customer much more profitable than he or she was before. Finally, to evaluate the policy, we can simply take the average <code class="docutils literal notranslate"><span class="pre">net_value</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_policy_gain</span> <span class="o">=</span> <span class="n">customer_features_simple_policy</span><span class="p">[</span><span class="s2">&quot;net_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">simple_policy_gain</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>252.9268
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see, this simple policy is telling us we can get, on average, 253 BRL for each customer if we give them all a 5 BLR coupon. This is massive! But can we do better? What if we use our shiny machine learning hammer on this problem? Let’s try this next.</p>
+</div>
+<div class="section" id="policy-with-model">
+<h2>Policy With Model<a class="headerlink" href="#policy-with-model" title="Permalink to this headline">¶</a></h2>
+<p>To use ML, we will adapt what we did in the previous chapter. The idea is to build a ML model that predicts <code class="docutils literal notranslate"><span class="pre">net_value</span></code>, just like before, take those predictions and bins them into a defined number of bands. Then, we will partition the data into those bands. Essentially, we are splitting the customer by their predicted <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. Customers that we think will generate roughly the same <code class="docutils literal notranslate"><span class="pre">net_value</span></code> will end up in the same bin or group. Finally, for each group, we will see which coupon value yields the maximum <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. We are doing the same thing as in the simple policy, but now within the groups defined by a prediction band.</p>
+<p><img alt="img" src="_images/partitions.png" /></p>
+<p>The intuition behind this is the following: we know that, on average, 5 BLR coupons performed better. However, it is possible that for some group of customers, another value is even better than 5 BRL. Maybe 5 BLR is the optimal strategy for most of the customers, but not for all of them.</p>
+<p><img alt="img" src="_images/personalise.png" /></p>
+<p>If we can identify the ones where the optimal value is different, we can build a coupon strategy better than the simple one we did above.</p>
+<p>This is what we call a personalisation problem. We can leverage personalisation when we have more than one strategy to choose from and at least one of them is not the overall best strategy, but it is the best in a subset of the targeted population. This definition is a bit convoluted, but the intuition is simple. If you have only one strategy, you are not personalising. You are doing the same thing for every customer. If you have more than one strategy, but one of them is better for every single customer, why will you personalise? You could just do that one best thing. You will only do personalisation if you have one strategy that works better at one subset of the population and another strategy that works best in another subset of the population.</p>
+<p>But back to the example. The first thing we need is a function that fits our predictive model and also splits the predictions into the prediction bands. This function will return another function, a prediction function that will take a dataframe and add both predictions and band columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_bands</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">model_params</span><span class="p">,</span> <span class="n">n_bands</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    
+    <span class="c1"># train the ML model</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">GradientBoostingRegressor</span><span class="p">(</span><span class="o">**</span><span class="n">model_params</span><span class="p">)</span>
+    <span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">train_set</span><span class="p">[</span><span class="n">target</span><span class="p">])</span>
+    
+    <span class="c1"># fit the bands</span>
+    <span class="n">bands</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_set</span><span class="p">[</span><span class="n">features</span><span class="p">]),</span> <span class="n">q</span><span class="o">=</span><span class="n">n_bands</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">test_set</span><span class="p">):</span>
+        <span class="c1"># make predictions with trained model</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_set</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+        
+        <span class="c1"># discretize predictions into bands.</span>
+        <span class="n">pred_bands</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+        <span class="k">return</span> <span class="n">test_set</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span>
+                               <span class="c1"># cliping avoid creating new upper bands</span>
+                               <span class="n">pred_bands</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">pred_bands</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_bands</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">predict</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To evaluate the quality of our predictions, we will split the dataset into a training and a testing set. Notice here that we are evaluating the quality of the prediction, NOT of the policy. This is just to see if our model is any good at doing what is supposed to do.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">customer_features</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s train our model and make 10 bands with its predictions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
+                <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+                <span class="s1">&#39;loss&#39;</span><span class="p">:</span> <span class="s1">&#39;ls&#39;</span><span class="p">}</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;region&quot;</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">]</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;net_value&quot;</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model_bands</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">model_params</span><span class="p">,</span> <span class="n">n_bands</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After training our model, we can use it to make predictions, passing it a dataframe. The result will also be a dataframe with 2 new columns: <code class="docutils literal notranslate"><span class="pre">predictions</span></code> and <code class="docutils literal notranslate"><span class="pre">pred_bands</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="p">(</span><span class="n">train</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>region</th>
+      <th>income</th>
+      <th>coupons</th>
+      <th>age</th>
+      <th>net_value</th>
+      <th>predictions</th>
+      <th>pred_bands</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2228</th>
+      <td>2228</td>
+      <td>30</td>
+      <td>567</td>
+      <td>5</td>
+      <td>27</td>
+      <td>-129</td>
+      <td>-16.296297</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>5910</th>
+      <td>5910</td>
+      <td>32</td>
+      <td>647</td>
+      <td>5</td>
+      <td>25</td>
+      <td>-55</td>
+      <td>-16.296297</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1950</th>
+      <td>1950</td>
+      <td>31</td>
+      <td>2953</td>
+      <td>15</td>
+      <td>33</td>
+      <td>-142</td>
+      <td>102.237797</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2119</th>
+      <td>2119</td>
+      <td>1</td>
+      <td>2860</td>
+      <td>5</td>
+      <td>27</td>
+      <td>-23</td>
+      <td>94.291197</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>5947</th>
+      <td>5947</td>
+      <td>49</td>
+      <td>589</td>
+      <td>5</td>
+      <td>26</td>
+      <td>-91</td>
+      <td>-3.525593</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To see the predictive power of our model, we can look at the \(R^2\) for both training and test sets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train Score:, &quot;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s2">&quot;net_value&quot;</span><span class="p">],</span> <span class="n">model</span><span class="p">(</span><span class="n">train</span><span class="p">)[</span><span class="s2">&quot;predictions&quot;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test Score:, &quot;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s2">&quot;net_value&quot;</span><span class="p">],</span> <span class="n">model</span><span class="p">(</span><span class="n">test</span><span class="p">)[</span><span class="s2">&quot;predictions&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Score:,  0.5382953634651921
+Test Score:,  0.504563847410434
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remember that this performance is only the predictive performance. What we really want to know is if this model can make us some money. Let’s make a policy! The idea here is very similar to what we saw in the previous chapter. We will group the customers by model band. Then, for each type of customer (where type is defined by the bands) we’ll see which decision - coupon value in our case - is the best one. To do so, we can group our data by prediction band and coupon value and plot the <code class="docutils literal notranslate"><span class="pre">net_value</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">model</span><span class="p">(</span><span class="n">customer_features</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;pred_bands&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;net_value&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;coupons&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Net Value by Coupon Value&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-When-Prediction-Fails_29_0.png" src="_images/18-When-Prediction-Fails_29_0.png" />
+</div>
+</div>
+<p>This plot is very interesting. Notice how the optimal decision changes across prediction bands. For instance, on bands like 1, 7 and 8, the best thing to do is to give 10 BLR in coupons. For bands like 3, 5 and 10, the best thing is 5 BRL in coupons. This means that this policy is very much like the simple one, except for the last band. This is evidence that personalisation might be possible, since the optimal decision changes across subpopulations.</p>
+<p>We can code that policy with a couple of <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">then</span> <span class="pre">...</span></code> statements, but I’ll show a more general approach that leverages dataframe operations.</p>
+<p><img alt="img" src="_images/pandas-magic.png" /></p>
+<p>First, we will group our customers by band and coupon value and take the average <code class="docutils literal notranslate"><span class="pre">net_value</span></code> for each group, much like the plot above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_bands</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">customer_features</span><span class="p">)</span>
+              <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;pred_bands&quot;</span><span class="p">,</span> <span class="s2">&quot;coupons&quot;</span><span class="p">])</span>
+              <span class="p">[[</span><span class="s2">&quot;net_value&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+              <span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
+
+<span class="n">pred_bands</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pred_bands</th>
+      <th>coupons</th>
+      <th>net_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>-324.538462</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>5</td>
+      <td>-237.683871</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>10</td>
+      <td>-142.203390</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>15</td>
+      <td>-160.413223</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>0</td>
+      <td>-108.980769</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2</td>
+      <td>5</td>
+      <td>-63.718650</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2</td>
+      <td>10</td>
+      <td>-68.327146</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Then, we will group by band and take the <code class="docutils literal notranslate"><span class="pre">net_value</span></code> rank for each row. This will order the rows according to the average <code class="docutils literal notranslate"><span class="pre">net_value</span></code>, where 1 is the best <code class="docutils literal notranslate"><span class="pre">net_value</span></code> in that band.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_bands</span><span class="p">[</span><span class="s2">&quot;max_net&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pred_bands</span>
+                         <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;pred_bands&#39;</span><span class="p">])</span>
+                         <span class="p">[[</span><span class="s2">&quot;net_value&quot;</span><span class="p">]]</span>
+                         <span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+
+<span class="n">pred_bands</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pred_bands</th>
+      <th>coupons</th>
+      <th>net_value</th>
+      <th>max_net</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>-324.538462</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>5</td>
+      <td>-237.683871</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>10</td>
+      <td>-142.203390</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>15</td>
+      <td>-160.413223</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>0</td>
+      <td>-108.980769</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2</td>
+      <td>5</td>
+      <td>-63.718650</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2</td>
+      <td>10</td>
+      <td>-68.327146</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>For example, for band one, the best coupon strategy is 10 BRL. Next, we will keep only the greatest <code class="docutils literal notranslate"><span class="pre">net_value</span></code> per band.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_coupons_per_band</span> <span class="o">=</span> <span class="n">pred_bands</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;max_net==1&quot;</span><span class="p">)[[</span><span class="s2">&quot;pred_bands&quot;</span><span class="p">,</span> <span class="s2">&quot;coupons&quot;</span><span class="p">]]</span>
+
+<span class="n">best_coupons_per_band</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pred_bands</th>
+      <th>coupons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>3</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>4</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>6</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>7</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>8</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>9</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>10</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To build our policy, we will take that small table above and join it back on the original table using the band as the key. This will pair each row in the original dataset with what we think is optimal coupon value, according to this policy. Then, we sort the rows according to the <code class="docutils literal notranslate"><span class="pre">customer_id</span></code> so that we keep the same ordering we had previously. This is important for evaluation, since <code class="docutils literal notranslate"><span class="pre">ltv_with_coupons</span></code> takes as argument the coupon value in the order of the original dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coupons_per_id</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">customer_features</span><span class="p">)</span>
+                 <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;coupons&quot;</span><span class="p">])</span>
+                 <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">best_coupons_per_band</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;pred_bands&quot;</span><span class="p">)</span>
+                 <span class="p">[[</span><span class="s2">&quot;customer_id&quot;</span><span class="p">,</span> <span class="s2">&quot;coupons&quot;</span><span class="p">]]</span>
+                 <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;customer_id&#39;</span><span class="p">))</span>
+
+<span class="n">coupons_per_id</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>coupons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>788</th>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1982</th>
+      <td>3</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>2743</th>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Finally, to evaluate the policy, we pass the <code class="docutils literal notranslate"><span class="pre">coupons</span></code> column as the coupon array to the <code class="docutils literal notranslate"><span class="pre">ltv_with_coupons</span></code> function. This will regenerate the data, now assuming the coupons were given as we defined by this policy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transactions_policy_w_model</span><span class="p">,</span> <span class="n">customer_features_policy_w_model</span> <span class="o">=</span> <span class="n">ltv_with_coupons</span><span class="p">(</span>
+    <span class="n">coupons_per_id</span><span class="p">[[</span><span class="s2">&quot;coupons&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">customer_features_policy_w_model</span> <span class="o">=</span> <span class="n">process_data</span><span class="p">(</span><span class="n">transactions_policy_w_model</span><span class="p">,</span> <span class="n">customer_features_policy_w_model</span><span class="p">)</span>
+
+<span class="n">customer_features_policy_w_model</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customer_id</th>
+      <th>region</th>
+      <th>income</th>
+      <th>coupons</th>
+      <th>age</th>
+      <th>net_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>18</td>
+      <td>1025</td>
+      <td>10</td>
+      <td>24</td>
+      <td>-87</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>40</td>
+      <td>1649</td>
+      <td>10</td>
+      <td>26</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>35</td>
+      <td>2034</td>
+      <td>5</td>
+      <td>33</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>29</td>
+      <td>1859</td>
+      <td>10</td>
+      <td>35</td>
+      <td>-40</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>11</td>
+      <td>1243</td>
+      <td>5</td>
+      <td>26</td>
+      <td>-26</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Just doing a sanity check again, we can see that the third customer is still the one with region 35, income 2034 and age 33. It also has a coupon value of 5 BRL, just like we’ve established by our policy.</p>
+<p>To check how much money this policy is making us, we can compute the average <code class="docutils literal notranslate"><span class="pre">net_value</span></code> mean for this new dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">policy_w_model_gain</span> <span class="o">=</span> <span class="n">customer_features_policy_w_model</span><span class="p">[</span><span class="s2">&quot;net_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">policy_w_model_gain</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>229.9341
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not bad! We can expect to get about 230 BRL per customer with this model policy. But wait a second! You remember how much we were making with the simple policy? Let’s compare both of them side by side.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">customer_features_policy_w_model</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+             <span class="n">x</span><span class="o">=</span><span class="s2">&quot;net_value&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Policy W/ Model&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">customer_features_simple_policy</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+             <span class="n">x</span><span class="o">=</span><span class="s2">&quot;net_value&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Simple Policy&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Simple Policy Gain: </span><span class="si">{</span><span class="n">simple_policy_gain</span><span class="si">}</span><span class="s2">; Policy w/ Model Gain: </span><span class="si">{</span><span class="n">policy_w_model_gain</span><span class="si">}</span><span class="s2">;&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18-When-Prediction-Fails_43_0.png" src="_images/18-When-Prediction-Fails_43_0.png" />
+</div>
+</div>
+<p>Here is where most Data Scientists fall off their chair. The policy with the model has an average <code class="docutils literal notranslate"><span class="pre">net_income</span></code> which is 20 BRL worse than a very simple policy. How can a model that is good at predicting <code class="docutils literal notranslate"><span class="pre">net_value</span></code> not be good for a strategy that aims to maximize <code class="docutils literal notranslate"><span class="pre">net_value</span></code>? Surely, there must be some bug in the code. You are clearly mistaken. This cannot be! Well, as it turns out, there is a perfectly reasonable and simple explanation for it. However, the answer to this question is so important that I think it’s worth going a bit deeper into it.</p>
+</div>
+<div class="section" id="hammering-your-thumb-with-predictions">
+<h2>Hammering Your Thumb with Predictions<a class="headerlink" href="#hammering-your-thumb-with-predictions" title="Permalink to this headline">¶</a></h2>
+<p>The short answer lies in understanding what we want with this policy, namely, to optimize <code class="docutils literal notranslate"><span class="pre">net_value</span></code> by playing with the coupon values. If we were to put it in an image, it’s not crazy to think that <code class="docutils literal notranslate"><span class="pre">net_value</span></code> will have a quadratic shape on coupons: as we increase the coupon value <code class="docutils literal notranslate"><span class="pre">net_value</span></code> first increases, then it reaches a maximum point. After that, any additional coupon value will cost more than the value it brings.</p>
+<p><img alt="img" src="_images/opt-deriv.png" /></p>
+<p>Finding the optimal coupon value is then equivalent to finding the maximum of the <code class="docutils literal notranslate"><span class="pre">net_value</span></code> function. We can do this by differentiating the function and setting it to zero (second plot). Economists might recognize this as a pricing problem.  The way they (we) would tackle this problem would be to assume a functional form for <code class="docutils literal notranslate"><span class="pre">net_value</span></code>, differentiate it and optimize it.</p>
+<p>There are some great merits to this approach, but I feel is not that general and it requires a great deal of hypothesizing. Sadly, real world data doesn’t come with an underlying function we can differentiate, so guesswork is often involved here. A more practical approach (and perhaps less elegant) is to test multiple coupon values and see which one yields the best <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. This is exactly what our simple policy does. It looks at what happened in the past and repeats what the treatment that was shown to be the most promising one.</p>
+<p>Contrast this to what the model based policy does. First, the model based policy fits a machine learning model to predict <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. Then, it partitions the customer space according to the predictions. If the model is good, this is approximately equal to partitioning the space by <code class="docutils literal notranslate"><span class="pre">net_value</span></code> itself, just like in the following plot.</p>
+<p><img alt="img" src="_images/model-opt.png" /></p>
+<p>The better the prediction, the more this partitioning of the space approaches partitioning on the target variable, <code class="docutils literal notranslate"><span class="pre">net_income</span></code>. Pay very close attention to what happens when you do that. Essentially, you are splitting the customer into sets where <code class="docutils literal notranslate"><span class="pre">net_value</span></code>, the thing you’ve predicted, doesn’t change! And that makes total sense from a predictive standpoint. If your model is good at predicting, groups of points that have the same prediction will also have the same <code class="docutils literal notranslate"><span class="pre">net_value</span></code>.</p>
+<p>So far, so good, but look at what this does to the perceived function of <code class="docutils literal notranslate"><span class="pre">net_value</span></code> on coupons (green lines). It flattens them to have no slope at all. From the predictive point of view, this is awesome. It means that your model has captured all the variation in <code class="docutils literal notranslate"><span class="pre">net_income</span></code>. However, from the policy perspective, this is terrible, because there is no variance left in <code class="docutils literal notranslate"><span class="pre">net_income</span></code> for us to see how it would change given different coupon values. Without this variation in <code class="docutils literal notranslate"><span class="pre">net_income</span></code>, it would look like changing the coupon values has no effect on <code class="docutils literal notranslate"><span class="pre">net_income</span></code> at all, leaving us no room for optimization. By the way, this is a general phenomenon that has nothing to do with the specific quadratic shape we are using here. I’m only using an example to make things more concrete.</p>
+<p>To summarize it, whenever we want to optimise some \(Y\) variable using some \(T\) variable, predicting \(Y\) will not only not help, it will hurt our policy, since data partitions defined by the prediction will have limited \(Y\) variance, hindering our capacity to estimate how \(T\) changes \(Y\), that is, the elasticity \(\frac{\delta Y}{\delta T} \). This is the most important paragraph of this chapter. All of it is summarized here, so reread it if you didn’t understood at first.</p>
+<p>The key to fixing this mistake lies in adjusting our objective to what we really want. Instead of estimating \(Y\) out of \(X\), which is what prediction does, we need to estimate \(\frac{\delta Y}{\delta T} \) out of \(X\). Easier said than done. As you might have guessed already, this precisely what causal inference is all about. And, as it is natural of causal problems, we can’t observe our quantity of interest \(\frac{\delta Y}{\delta T} \). You simply cannot observe how <code class="docutils literal notranslate"><span class="pre">net_income</span></code> would change if we changed the coupon value because we only observe one instance of a coupon per customer. We can never know what would have happened if some different coupon value had taken place (unless we use simulated data, of course. But that’s only useful for teaching purposes).</p>
+<p>This characteristic of causal problems leads to further questions: how can I know if my model is any good if I can’t see what it is supposedly estimating? How can I validate a model like that? Besides, what do we do when data is not random? How can we estimate the best policy under biased data? Those are fair questions and we shall answer them in time. Meanwhile, keep in mind that, as we change our focus from estimating \(Y\) to estimating \(\frac{\delta Y}{\delta T}\), lots of things will have to change accordingly. The traditional ML toolkit will need some adaptation.</p>
+</div>
+<div class="section" id="when-might-prediction-helps">
+<h2>When Might Prediction Helps<a class="headerlink" href="#when-might-prediction-helps" title="Permalink to this headline">¶</a></h2>
+<p>All this mess with machine learning hindering our ability to infer causal effects comes from mistaking the real goal. It comes from estimating \(Y\) instead of \(\frac{\delta Y}{\delta T} \). But sometimes, you might actually get away when using a prediction model to achieve a causal inference goal. But for this to happen, \(Y\) and \(\frac{\delta Y}{\delta T} \) must be somehow correlated. For example, consider the cases on the image below.</p>
+<p><img alt="img" src="_images/waiting-time.png" /></p>
+<p>The first one is the problem we’ve seen before of understanding how coupons impact profitability. First, as we increase coupon value, profitability increases. If they go up together, we can see that they are positively correlated. Moreover, in the derivative plot, at the beginning, as we increase the coupon value, the elasticity \(\frac{\delta Y}{\delta T} \) decreases. If we put both of them together, in the first region of the plot, as net value increases, elasticity will decrease. This means that they are negatively correlated.</p>
+<p>But that’s only at the beginning. If we keep increasing the coupon value, profitability will decrease and elasticity profitability will also decrease. This means that \(\frac{\delta Y}{\delta T} \) and \(Y\) are now positively correlated. So, while outcome and elasticity are negatively correlated at the beginning, this correlation reverses as we increase coupon values. This means that a prediction model won’t help us here because there isn’t a direct relationship between outcome and elasticity of the outcome.</p>
+<p>Another way of thinking about this is that prediction models make slices of the data on the \(Y\) axis. If we do those sorts of slices, we will mix units that are both in the positive elasticity region and in the negative elasticity region.</p>
+<p><img alt="img" src="_images/slice-1.png" /></p>
+<p>Now, consider a second case where we want to see how waiting in line to get answered by customers services impact customer satisfaction. In this case, we can see that customer satisfaction drops pretty fast in the first few minutes of waiting time. Customers get really pissed off when they go from not having to wait much to having to wait just a little bit. However, as waiting time increases, customer satisfaction is already so low it doesn’t drop much afterwards. It sorts of saturates at a lower level.</p>
+<p>This case is interesting because the relationship between \(\frac{\delta Y}{\delta T} \) and \(Y\) doesn’t change much. It is always negatively correlated. As waiting time increases, satisfaction decreases and satisfaction elasticity increases. Or, as \(T\) increases, \(\frac{\delta Y}{\delta T} \) also increases and  \(Y\) decreases. In this case, a prediction model can be useful. The reason being that, now, if we slice on the \(Y\) axis, we will group units that have similar elasticities.</p>
+<p><img alt="img" src="_images/slice-2.png" /></p>
+<p>More generally, whenever we have these sorts of functional forms where elasticity changes ruthly in the same direction as the outcome, you might get away with prediction models. Now, be careful here. This doesn’t mean they are your best bet nor that you should use them for causal problems. I’m simply stating this here so that when you come across a prediction model that works for a causal goal, you can understand what is happening.</p>
+</div>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<p>We saw how there is a whole range of problems that are not solvable with traditional, predictive Machine Learning. Those problems are optimization ones, with a causal component, usually framed as “how should I set this thing I can control, T (price, number of phone calls, discount, …), in order to optimize this metric, Y (profits, customer satisfaction, conversion, costs…)”. When that is the case, predictive models can do more harm than good.</p>
+<p>To prove this point, we walked through an example where we needed to find the best coupon value. The first thing that we tried was to look at past data and see which coupon value led to the highest revenue. Then, we took that supposedly optimal value and gave it to every customer. This approach answers what is the best coupon value (treatment, in causal terms), on average. That is, if we were to pick only one fixed coupon value, what should it be. But we don’t have such a restriction. If it turns out to be the case that some customers respond better to lower valued coupons and some respond better to higher ones, we could personalise the coupon for each customer. To do so, we tried building a predictive ML model, a model that predicted the value each customer would bring. Then, we tried to personalise the coupon value based on the model’s predictions. We grouped the customers according to the predictions and for each group, we found which coupon value was the best one. Then, we tried using that learned value as a coupon strategy. However, we found that it performed worse than the simple strategy of giving the same coupon value for everyone. In other words, our ML model failed to separate customers that responded better or worse to coupon value.</p>
+<p>Notice that the problem we are trying to solve here is one of <strong>personalisation</strong>. In our case, it was trying to figure out which coupon value is best for each customer. More generally, it is framed as “which is the best decision \(T\) I can take for each customer \(i\) so that I can maximise \(Y_i\) across all customers”. This is not an easy problem to solve. But we can solve it with the help of causal inference.</p>
+<p>There is one important thing I want you to take out of this chapter. First, notice that causal inference as we saw it in part one helps you design policies like the simple one we’ve built. With them, we are trying to estimate the average causal effect for the treatment and find the treatment that works best on average. Now, we are getting more ambitious. We don’t want the best treatment on average, we want the best treatment for each individual customer. That’s what personalisation is all about and it relies heavily on causal inference methods.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>The things I’ve written here are mostly stuff from my head. I’ve learned them through experience. This means there isn’t a direct reference I can point you to. It also means that the things I wrote here have <strong>not</strong> passed the academic scrutiny that good science often goes through. Instead, notice how I’m talking about things that work in practice, but I don’t spend too much time explaining why that is the case. It’s a sort of science from the streets, if you will. However, I am putting this up for public scrutiny, so, by all means, if you find something preposterous, open an issue and I’ll address it to the best of my efforts.</p>
+<p>For this chapter, there isn’t much I can point to. There is only this one great article that formulates the problem of personalisation that we are trying to solve with causal inference: <em>Recursive Partitioning for Heterogeneous Causal Effects, Susan Athey and Guido Imbens, 2016</em>. Aslo, the first image is from a YouTube video from Siraj Raval.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "causal-glory"
+        },
+        kernelOptions: {
+            kernelName: "causal-glory",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'causal-glory'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="17-Predictive-Models-101.html" title="previous page">Predictive Models 101</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

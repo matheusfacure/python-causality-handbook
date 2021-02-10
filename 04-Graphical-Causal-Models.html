@@ -194,6 +194,11 @@
    Predictive Models 101
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-When-Prediction-Fails.html">
+   When Prediction Fails
+  </a>
+ </li>
 </ul>
 
 </nav>
@@ -384,7 +389,7 @@
 <div class="cell_output docutils container">
 <img alt="_images/04-Graphical-Causal-Models_2_0.svg" src="_images/04-Graphical-Causal-Models_2_0.svg" /></div>
 </div>
-<p>Each node is a random variable. We use arrows, or edges, to show if a variable causes another. In the first graphical model above we are saying that Z causes X and that U causes X and Y. To give a more concrete example, we can translate our thoughts about the impact of the medicine on patient survival as the second graph above. Severeness causes both medicine and survival and medicine also causes survival. As we will see, this causal graphical models language will help us make our thinking about causality more more clear, as it makes it explicit our beliefs about how the world works.</p>
+<p>Each node is a random variable. We use arrows, or edges, to show if a variable causes another. In the first graphical model above we are saying that Z causes X and that U causes X and Y. To give a more concrete example, we can translate our thoughts about the impact of the medicine on patient survival as the second graph above. Severeness causes both medicine and survival and medicine also causes survival. As we will see, this causal graphical models language will help us make our thinking about causality more clear, as it makes it explicit our beliefs about how the world works.</p>
 </div>
 <div class="section" id="crash-course-in-graphical-models">
 <h2>Crash Course in Graphical Models<a class="headerlink" href="#crash-course-in-graphical-models" title="Permalink to this headline">¶</a></h2>
@@ -412,7 +417,7 @@
 <img alt="_images/04-Graphical-Causal-Models_4_0.svg" src="_images/04-Graphical-Causal-Models_4_0.svg" /></div>
 </div>
 <p>In the first graph, dependence flows in the direction of the arrows. To give a more concrete example, let’s say that knowing about causal inference is the only way to solve business problems and solving those problems is the only way to get a job promotion. So causal knowledge causes problem solving which causes job promotion. We can say here that job promotion is dependent on causal knowledge. The greater the causal knowledge, the greater your chances of getting a promotion. Notice that dependence is symmetric, although it is a little less intuitive. The greater your chances of promotion, the greater the chance you have causal knowledge, otherwise it would be difficult to get a promotion.</p>
-<p>Now, let’s say I condition on the intermediary variable. In this case, the dependence is blocked. So, X and Z are independent given Y. By the same token, in our exemple, if I know that you are good at solving problems, knowing that you know causal inference doesn’t give any further information about your chances of getting a job promotion. In mathematical terms, \(E[Promotion|Solve \ problems, Causal \ knowledge]=E[Promotion|Solve \ problems]\). The inverse is also true, once I know how good you are at solving problems, knowing about your job promotion status gives me no further information about how likely you are to know causal inference.</p>
+<p>Now, let’s say I condition on the intermediary variable. In this case, the dependence is blocked. So, X and Z are independent given Y. By the same token, in our example, if I know that you are good at solving problems, knowing that you know causal inference doesn’t give any further information about your chances of getting a job promotion. In mathematical terms, \(E[Promotion|Solve \ problems, Causal \ knowledge]=E[Promotion|Solve \ problems]\). The inverse is also true, once I know how good you are at solving problems, knowing about your job promotion status gives me no further information about how likely you are to know causal inference.</p>
 <p>As a general rule, the dependence flow in the direct path from A to B is blocked when we condition on an intermediary variable C. Or,</p>
 <p><span class="math notranslate nohighlight">\(A \not\!\perp\!\!\!\perp B\)</span></p>
 <p>and</p>
