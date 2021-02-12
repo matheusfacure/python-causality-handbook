@@ -23,3 +23,4 @@
   chapters:
   - file: 17-Predictive-Models-101.ipynb
   - file: 18-When-Prediction-Fails.ipynb
+  - file: 19-Causal-Models.ipynb
