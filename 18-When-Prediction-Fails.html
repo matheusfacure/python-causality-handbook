@@ -57,6 +57,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Building a Causal Models" href="19-Causal-Models.html" />
     <link rel="prev" title="Predictive Models 101" href="17-Predictive-Models-101.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -198,6 +199,25 @@
    When Prediction Fails
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-Causal-Models.html">
+   Building a Causal Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Contribute
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">
+   Patreon
+   <i class="fas fa-external-link-alt">
+   </i>
+  </a>
+ </li>
 </ul>
 
 </nav>
@@ -328,6 +348,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#when-might-prediction-helps">
    When Might Prediction Helps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-graphical-explanation">
+   A Graphical Explanation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1617,6 +1642,7 @@ Test Score:,  0.504563847410434
 <p><img alt="img" src="_images/model-opt.png" /></p>
 <p>The better the prediction, the more this partitioning of the space approaches partitioning on the target variable, <code class="docutils literal notranslate"><span class="pre">net_income</span></code>. Pay very close attention to what happens when you do that. Essentially, you are splitting the customer into sets where <code class="docutils literal notranslate"><span class="pre">net_value</span></code>, the thing you’ve predicted, doesn’t change! And that makes total sense from a predictive standpoint. If your model is good at predicting, groups of points that have the same prediction will also have the same <code class="docutils literal notranslate"><span class="pre">net_value</span></code>.</p>
 <p>So far, so good, but look at what this does to the perceived function of <code class="docutils literal notranslate"><span class="pre">net_value</span></code> on coupons (green lines). It flattens them to have no slope at all. From the predictive point of view, this is awesome. It means that your model has captured all the variation in <code class="docutils literal notranslate"><span class="pre">net_income</span></code>. However, from the policy perspective, this is terrible, because there is no variance left in <code class="docutils literal notranslate"><span class="pre">net_income</span></code> for us to see how it would change given different coupon values. Without this variation in <code class="docutils literal notranslate"><span class="pre">net_income</span></code>, it would look like changing the coupon values has no effect on <code class="docutils literal notranslate"><span class="pre">net_income</span></code> at all, leaving us no room for optimization. By the way, this is a general phenomenon that has nothing to do with the specific quadratic shape we are using here. I’m only using an example to make things more concrete.</p>
+<p><img alt="img" src="_images/flat-curves.png" /></p>
 <p>To summarize it, whenever we want to optimise some \(Y\) variable using some \(T\) variable, predicting \(Y\) will not only not help, it will hurt our policy, since data partitions defined by the prediction will have limited \(Y\) variance, hindering our capacity to estimate how \(T\) changes \(Y\), that is, the elasticity \(\frac{\delta Y}{\delta T} \). This is the most important paragraph of this chapter. All of it is summarized here, so reread it if you didn’t understood at first.</p>
 <p>The key to fixing this mistake lies in adjusting our objective to what we really want. Instead of estimating \(Y\) out of \(X\), which is what prediction does, we need to estimate \(\frac{\delta Y}{\delta T} \) out of \(X\). Easier said than done. As you might have guessed already, this precisely what causal inference is all about. And, as it is natural of causal problems, we can’t observe our quantity of interest \(\frac{\delta Y}{\delta T} \). You simply cannot observe how <code class="docutils literal notranslate"><span class="pre">net_income</span></code> would change if we changed the coupon value because we only observe one instance of a coupon per customer. We can never know what would have happened if some different coupon value had taken place (unless we use simulated data, of course. But that’s only useful for teaching purposes).</p>
 <p>This characteristic of causal problems leads to further questions: how can I know if my model is any good if I can’t see what it is supposedly estimating? How can I validate a model like that? Besides, what do we do when data is not random? How can we estimate the best policy under biased data? Those are fair questions and we shall answer them in time. Meanwhile, keep in mind that, as we change our focus from estimating \(Y\) to estimating \(\frac{\delta Y}{\delta T}\), lots of things will have to change accordingly. The traditional ML toolkit will need some adaptation.</p>
@@ -1633,6 +1659,21 @@ Test Score:,  0.504563847410434
 <p>This case is interesting because the relationship between \(\frac{\delta Y}{\delta T} \) and \(Y\) doesn’t change much. It is always negatively correlated. As waiting time increases, satisfaction decreases and satisfaction elasticity increases. Or, as \(T\) increases, \(\frac{\delta Y}{\delta T} \) also increases and  \(Y\) decreases. In this case, a prediction model can be useful. The reason being that, now, if we slice on the \(Y\) axis, we will group units that have similar elasticities.</p>
 <p><img alt="img" src="_images/slice-2.png" /></p>
 <p>More generally, whenever we have these sorts of functional forms where elasticity changes ruthly in the same direction as the outcome, you might get away with prediction models. Now, be careful here. This doesn’t mean they are your best bet nor that you should use them for causal problems. I’m simply stating this here so that when you come across a prediction model that works for a causal goal, you can understand what is happening.</p>
+</div>
+<div class="section" id="a-graphical-explanation">
+<h2>A Graphical Explanation<a class="headerlink" href="#a-graphical-explanation" title="Permalink to this headline">¶</a></h2>
+<p>The fact that prediction models can be harmful for personalisation is so counterintuitive and strange that I feel I must tackle the problem from multiple perspectives. The following graphical explanation is thus a way of understanding what is happening from a different angle.</p>
+<p>Consider the causal leftmost graph on the image below. It’s a typical confounding graph, where we have features \(X\) causing both the outcome \(Y\) and the treatment \(T\). What happens if you build a predictive model and use it to segment the units by its predictions?</p>
+<p><img alt="img" src="_images/graph-1.png" /></p>
+<p>You end up getting something like the graphs on the left (technically, they are not causal anymore, because the model obviously doesn’t cause the outcome. It just learns the mapping function from features to outcomes, but that doesn’t invalidate the points I’m about to make). Segmenting on this model is equivalent to conditioning on the model node. You are holding \(M(T, X)\) fixed on each segment. If you do that and try to learn the relationship between \(T\) and \(Y\) while conditioning on \(M(T, X)\), you will end up with the situation we’ve discussed in part I, about bad controls. And in case you don’t remember, if you control for anything in the path between the treatment and the outcome, you block a path that the treatment is using to affect the outcome. As a consequence, the perceived effect ends up looking smaller than the actual effect. So there you have if. We used another explanation to get to the exact same conclusion as before: segmenting units by a predictive model hinders our ability to identify the causal effect.</p>
+<p>Now, if you are smart, you will probably object with the following idea. What if we simply remove \(T\) from the model? That’s a really good argument. In fact, it’s so good it took me years to properly articulate why just trying to fool your model like that is probably not a smart thing to do. In fact, if you look back on the example we’ve explored in this chapter, notice that I didn’t even give the predictive model the <code class="docutils literal notranslate"><span class="pre">coupon</span></code> treatment. That didn’t solve the problem that the predictive model partitioning was squashing our measured elasticity to a horizontal line. The answer to why lies in the following image.</p>
+<p><img alt="img" src="_images/graph-2.png" /></p>
+<p>Excluding the treatment \(T\) from your model \(M(X)\) is not enough to make the model ignore the relationship between \(T\) and \(Y\). Because \(X\) causes \(T\), the model can indirectly learn \(T\) through \(X\). Why will it do that? Because if \(T\) causes \(Y\) and \(M\) wants to predict \(Y\) as much as possible,  it will forcibly explore the pattern in \(X\) that links \(T\) to \(Y\). In other words, the information of how the treatment impacts the outcomes flows backwards to our model through the features. To give an example, consider that you only give discounts (\(T\)) to customers that live in a certain area of town (\(X\)). For the sake of the argument, suppose that the area doesn’t cause sales (\(Y\)) in any way. Even if that is the case, the city area still has predictive power because it causes \(T\), which in turns causes \(Y\). Hence, the model will explore that fact in order to predict \(Y\).</p>
+<p>To be fair to this argument, you actually can fool your model a little bit by not giving it \(T\). To see that, I recommend you rerun the code on our examples but this time include <code class="docutils literal notranslate"><span class="pre">coupons</span></code> in the list of features to the predictive model. You will see that the Model Policy will perform even worse. This means that NOT giving \(T\) to our model is doing some good, although not much.</p>
+<p>Finally, there is one way out of this, which is when \(T\) is random. In that very particular case, a predictive model can actually help you with causal inference. But first, let’s understand why it doesn’t hurt. When \(T\) is random, this excludes any confounding that comes from \(X\). In this case, \(X\) have no information about how \(T\) comes to be.</p>
+<p><img alt="img" src="_images/graph-3.png" /></p>
+<p>When that happens, even if you control for \(M(X)\), you are still allowing all the effect from \(T\) to flow onto \(Y\). In other words, even if you look inside segments where \(M(X)\) is fixed, \(Y\) will still vary due to \(T\). \(M(X)\) can no longer control that variability because it has no way of learning \(T\) anymore. Not only that, this sort of condition will actually help you figure out the Average Treatment Effect. We also saw that on Part I. If we control for variables that are good predictors of \(Y\) but that don’t cause \(T\), we will reduce the variance of our causal estimates. The intuitive reason is that a lot of the variation on \(Y\) that is due to \(X\) is removed by conditioning on the model. Since \(X\) is then explained away, the reason why \(Y\) is still changing must be mostly due to \(T\) (or other unmeasured things, but you get the point that it helps).</p>
+<p>Again, this isn’t an argument in favor of using predictive models when the goal is causal inference. In fact, segments defined by a predictive model will help you identify the ATE, but that doesn’t mean each partition will have a different ATE (or elasticity). Remember that not only do you want to estimate the elasticity, but you also want to find segments where it is higher or lower than average so that you can personalise the treatment.</p>
 </div>
 <div class="section" id="key-ideas">
 <h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
@@ -1677,6 +1718,7 @@ Test Score:,  0.504563847410434
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="17-Predictive-Models-101.html" title="previous page">Predictive Models 101</a>
+    <a class='right-next' id="next-link" href="19-Causal-Models.html" title="next page">Building a Causal Models</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -1699,6 +1741,16 @@ Test Score:,  0.504563847410434
   <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
 
 
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-97848161-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
     
   </body>
 </html>
