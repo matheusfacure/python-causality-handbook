@@ -1,0 +1,989 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evaluating Causal Models &#8212; Causal Inference for the Brave and True</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Building a Causal Models" href="19-Causal-Models.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part I - The Yang
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
+   Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html">
+   Difference-in-Difference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part II - The Yin
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-Predictive-Models-101.html">
+   Predictive Models 101
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-When-Prediction-Fails.html">
+   When Prediction Fails
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-Causal-Models.html">
+   Building a Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Evaluating Causal Models
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Contribute
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">
+   Patreon
+   <i class="fas fa-external-link-alt">
+   </i>
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/20-Evaluating-Causal-Models.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F20-Evaluating-Causal-Models.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/20-Evaluating-Causal-Models.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#elasticity-by-model-band">
+   Elasticity by Model Band
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cumulative-elasticity-curve">
+   Cumulative Elasticity Curve
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cumulative-gain-curve">
+   Cumulative Gain Curve
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#taking-variance-into-account">
+   Taking Variance Into Account
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="evaluating-causal-models">
+<h1>Evaluating Causal Models<a class="headerlink" href="#evaluating-causal-models" title="Permalink to this headline">¶</a></h1>
+<p>In the previous chapter, we saw how to build what I called Conditional Average Treatment Effect (CATE) Models or simply Causal Models. The goal of those models is to leverage heterogeneity in the treatment effect in order to achieve personalisation. In simpler terms, we believe each unit has a different response to the treatment. For that reason, we want to give more of the treatment to those that respond better and less for those that respond worse.</p>
+<p>A model that can estimate the CATE is useful to segment our units into how responsive they are to a treatment. That’s our end goal here. We saw that a CATE model was able to produce segments in a way that a purely predictive model couldn’t do it. Namely, the CATE model managed to create partitions with different treatment elasticity \(\frac{\delta y}{ \delta t}\) while a prediction model was only able to partition the entities on the \(Y\) dimension.</p>
+<p>The CATE model we used was a simple linear regression. Of course we can do better than that. But first, we must get a very important topic out of the way. What does “better” means, in terms of a causal model? In other words, how can we evaluate and ultimately compare different causal models?</p>
+<p>The natural thing to do is to check if the predicted elasticity \(\widehat{\frac{\delta y}{ \delta t}}\) is matching the true elasticity \(\frac{\delta y}{ \delta t}\). But you know we can’t do that. Unlike with predictive models, where we can observe the true value of \(y\), elasticity is not something we can see on an individual level. It is as if every entity had an underlying responsiveness, denoted by the slope of the line from treatment to outcome, but we can’t measure it.</p>
+<p><img alt="img" src="_images/sneak.png" /></p>
+<p>This is a very very very hard thing to wrap our heads around and it took me years to find something, which is not a definitive answer, but it works in practice. The trick is to use aggregate measurements of elasticity. Even if you can’t estimate elasticity individually, you can do it for a group and that is what we will leverage here.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">toolz</span> <span class="kn">import</span> <span class="n">curry</span>
+
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this chapter, we’ll use non random data to estimate our causal models and random data to evaluate it. Again, we will be talking about how price impacts ice cream sales. As we’ll see, random data is very valuable for evaluation purposes. However, in real life, it is often expensive to collect random data (why would you set prices at random if you know some of them are not very good ones and will only make you lose money???). What ends up happening is that we often have an abundance of data where the treatment is <strong>NOT</strong> random and very few, if any, random data. Since evaluating a model with non random data is incredibly tricky, if we have any random data, we  tend to leave that for evaluation purposes.</p>
+<p>And just in case you forgot, here is what the data looks like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/ice_cream_sales.csv&quot;</span><span class="p">)</span> <span class="c1"># loads non-random data</span>
+<span class="n">prices_rnd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/ice_cream_sales_rnd.csv&quot;</span><span class="p">)</span> <span class="c1"># loads random data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prices_rnd</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">prices</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5000, 5)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp</th>
+      <th>weekday</th>
+      <th>cost</th>
+      <th>price</th>
+      <th>sales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>17.3</td>
+      <td>6</td>
+      <td>1.5</td>
+      <td>5.6</td>
+      <td>173</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>25.4</td>
+      <td>3</td>
+      <td>0.3</td>
+      <td>4.9</td>
+      <td>196</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>23.3</td>
+      <td>5</td>
+      <td>1.5</td>
+      <td>7.6</td>
+      <td>207</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>26.9</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>5.3</td>
+      <td>241</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20.2</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>7.2</td>
+      <td>227</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To have something to compare, let’s train two models. The first one will be a linear regression with interactions terms so that elasticity is allowed to vary between units.</p>
+<div class="math notranslate nohighlight">
+\[
+sales_i = \beta_0 + \beta_1 price_i + \pmb{\beta_2 X}_i + \pmb{\beta_3 X}_i price_i + e_i
+\]</div>
+<p>Once we fit this model, we will be able to make elasticity predictions</p>
+<div class="math notranslate nohighlight">
+\[
+\widehat{\frac{\delta sales}{ \delta price}} = \hat{\beta_1} + \pmb{\hat{\beta_3} X}_i
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;sales ~ price*cost + price*C(weekday) + price*temp&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">prices</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The second model will be fully nonparametric, machine learning, predictive model</p>
+<div class="math notranslate nohighlight">
+\[
+sales_i = G(X_i, price_i) + e_i
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;weekday&quot;</span><span class="p">,</span> <span class="s2">&quot;cost&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;sales&quot;</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">GradientBoostingRegressor</span><span class="p">()</span>
+<span class="n">m2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">prices</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">prices</span><span class="p">[</span><span class="n">y</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Just to make sure the model is not heavily overfitting, we can check the \(R^2\) on the data we’ve used to train it and on the new, unseen data. (For those more versed in Machine Learning, notice that some drop in performance is expected, because there is a concept drift. The model was trained in data where price is not random, but the test set has only randomized prices).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train Score:&quot;</span><span class="p">,</span> <span class="n">m2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">prices</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">prices</span><span class="p">[</span><span class="n">y</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test Score:&quot;</span><span class="p">,</span> <span class="n">m2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">prices_rnd</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">prices_rnd</span><span class="p">[</span><span class="n">y</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Score: 0.9251704824568053
+Test Score: 0.7711074163447711
+</pre></div>
+</div>
+</div>
+</div>
+<p>After training our models, we will get the elasticity from the regression model. Again, we will resort to a numerical approximation</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\delta y(t)}{\delta t} \approx  \frac{y(t+h) - y(t)}{h}
+\]</div>
+<p>Our models were trained on non-random data. Now we turn to the random data to make predictions. Just so we have everything in one place, we will add the predictions from the machine learning model and the elasticity prediction from the causal model in a single dataframe, <code class="docutils literal notranslate"><span class="pre">prices_rnd_pred</span></code>.</p>
+<p>Moreover, let’s also include a random model. The idea is that this model just outputs random numbers as predictions. It is obviously not very useful, but it shall serve well as a benchmark. Whenever we are talking about new ways of making evaluations, I always like to think about how a random (useless) model would do. If the random model is able to perform well on the evaluation criterion, that says something about how good the evaluation method really is.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict_elast</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">price_df</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">price_df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">price</span><span class="o">=</span><span class="n">price_df</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span><span class="o">+</span><span class="n">h</span><span class="p">))</span>
+            <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">price_df</span><span class="p">))</span> <span class="o">/</span> <span class="n">h</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">prices_rnd_pred</span> <span class="o">=</span> <span class="n">prices_rnd</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
+    <span class="s2">&quot;m1_pred&quot;</span><span class="p">:</span> <span class="n">m2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">prices_rnd</span><span class="p">[</span><span class="n">X</span><span class="p">]),</span> <span class="c1">## predictive model</span>
+    <span class="s2">&quot;m2_pred&quot;</span><span class="p">:</span> <span class="n">predict_elast</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">prices_rnd</span><span class="p">),</span> <span class="c1">## elasticity model</span>
+    <span class="s2">&quot;m3_pred&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">prices_rnd</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="c1">## random model</span>
+<span class="p">})</span>
+
+<span class="n">prices_rnd_pred</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp</th>
+      <th>weekday</th>
+      <th>cost</th>
+      <th>price</th>
+      <th>sales</th>
+      <th>m1_pred</th>
+      <th>m2_pred</th>
+      <th>m3_pred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>224.067406</td>
+      <td>-13.096964</td>
+      <td>0.696469</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22.7</td>
+      <td>3</td>
+      <td>0.5</td>
+      <td>4</td>
+      <td>190</td>
+      <td>189.889147</td>
+      <td>1.054695</td>
+      <td>0.286139</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>33.7</td>
+      <td>7</td>
+      <td>1.0</td>
+      <td>5</td>
+      <td>237</td>
+      <td>237.255157</td>
+      <td>-17.362642</td>
+      <td>0.226851</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>23.0</td>
+      <td>4</td>
+      <td>0.5</td>
+      <td>5</td>
+      <td>193</td>
+      <td>186.688619</td>
+      <td>0.564985</td>
+      <td>0.551315</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>24.4</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>252</td>
+      <td>250.342203</td>
+      <td>-13.717946</td>
+      <td>0.719469</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="elasticity-by-model-band">
+<h2>Elasticity by Model Band<a class="headerlink" href="#elasticity-by-model-band" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have our predictions, we need to evaluate how good they are. And remember, we can’t observe elasticity, so there isn’t a simple ground truth we can compare against. Instead, let’s think back to what we want from our elasticity models. Perhaps that will give us some insights into how we should evaluate them.</p>
+<p>The idea of making treatment elasticity models came from the necessity of finding which units are more sensitive to the treatment and which are less. It came from a desire for personalisation. Maybe a marketing campaign is very effective in only one segment of the population. Maybe discounts only work for some type of customers. A good causal model should help us find which customers will respond better and worse to a proposed treatment. They should be able to separate units into how elastic or sensitive they are to the treatment. In our ice cream example, the model should be able to figure out in which days are people willing to spend more on ice cream or, in which days is the price elasticity less negative.</p>
+<p>If that is the goal, it would be very useful if we could somehow order units from more sensitive to less sensitive. Since we have the predicted elasticity, we can order the units by that prediction and hope it also orders them by the real elasticity. Sadly, we can’t evaluate that ordering on a unit level. But, what if we don’t need to? What if, instead, we evaluate groups defined by the ordering? If our treatment is randomly distributed (and here is where randomness enters), estimating elasticity for a group of units is easy. All we need is to compare the outcome between the treated and untreated.</p>
+<p>To understand this better, it’s useful to picture the binary treatment case. Let’s keep the pricing example, but now the treatment is a discount. In other words, prices can be either high (untreated) or low (treated). Let’s plot sales on the Y axis, each of our models in the X axis and price as the color. Then, we can split the data on the model axis into three equal sized groups. <strong>If the treatment was randomly assigned</strong>, we can easily estimate the ATE for each group \(E[Y|T=1] - E[Y|T=0]
+\).</p>
+<p><img alt="img" src="_images/ate_bins.png" /></p>
+<p>In the image, we can see that the first model is somewhat good at predicting sales (high correlation with sales), but the groups it produces have roughly the same treatment effect, as shown in the plot on the bottom. Two of the three segments have the same elasticity and only the last one has a different, lower elasticity.</p>
+<p>On the other hand, each group produced by the second model has a different causal effect. That’s a sign this model can indeed be useful for personalisation. Finally, the random model produces groups with the exact same elasticity. That’s not very useful, but it’s expected. If the model is random, each segment it produces will be a random and representative sample of the data. So the elasticity in its groups should be roughly the same as the ATE on the entire dataset.</p>
+<p>Just by looking at these plots, you can get a feeling of which model is better. The more ordered the elasticities look like and the more different they are between bands, the better. Here, model 2 is probably better than model 1, which is probably better than the random model.</p>
+<p>To generalize this to the continuous case, we can estimate the elasticity using a single variable linear regression model.</p>
+<div class="math notranslate nohighlight">
+\[
+y_i = \beta_0 + \beta_1t_i + e_i
+\]</div>
+<p>If we run that model with the sample from a group, we will be estimating the elasticity inside that group.</p>
+<p>From the theory on simple linear regression, we know that</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta_1}=\dfrac{\sum (t_i - \bar{t}) (y_i - \bar{y})}{\sum(t_i - \bar{t})^2}
+\]</div>
+<p>where \(\bar{t}\) is the sample average for the treatment and \(\bar{y}\) is the sample average for the outcome. Here is what that looks like in code</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@curry</span>
+<span class="k">def</span> <span class="nf">elast</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="c1"># line coeficient for the one variable linear regression </span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">*</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span> <span class="o">/</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now apply this to our ice cream price data. For that, we also need a function that segments the dataset into partitions of equal size and applies the elasticity to each partition. The following code should handle that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">elast_by_band</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">df</span>
+            <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pred</span><span class="si">}</span><span class="s2">_band&quot;</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">pred</span><span class="p">],</span> <span class="n">q</span><span class="o">=</span><span class="n">bands</span><span class="p">)})</span> <span class="c1"># makes quantile partitions</span>
+            <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pred</span><span class="si">}</span><span class="s2">_band&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">elast</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">)))</span> <span class="c1"># estimate the elasticity on each partition</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, let’s plot the elasticity by band using the predictions we’ve made before. Here, we will use each model to construct partitions and then estimate the elasticity on each partition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axs</span><span class="p">):</span>
+    <span class="n">elast_by_band</span><span class="p">(</span><span class="n">prices_rnd_pred</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;m</span><span class="si">{</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_pred&quot;</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/20-Evaluating-Causal-Models_17_0.png" src="_images/20-Evaluating-Causal-Models_17_0.png" />
+</div>
+</div>
+<p>First, look at the random model (\(m3\)). It has roughly the same estimated elasticity in each of its partitions. We can already see just by looking at the plot that it won’t help us much with personalisation since it can’t distinguish between the high and low price elasticity days. Next, consider the predictive model, \(m1\). That model is actually promising! It manages to construct groups where the elasticity is high and others where the elasticity is low. That’s exactly what we need.</p>
+<p>Finally, the causal model \(m2\) looks a bit weird. It identifies groups of really low elasticity, where low here actually means high price sensitivity (sales will decrease by a lot as we increase prices). Detecting those high price sensitivity days is very useful for us. If we know when they are, we will be careful not to go on increasing prices on those types of days. The causal model also identifies some less sensitive regions, so it can successfully distinguish high from low elasticities. But the ordering is not as good as that of the predictive model.</p>
+<p>So, what should we decide? Which one is more useful? The predictive or the causal model? The predictive model has better ordering, but the causal model can better identify the extremes. The elasticity by band plot is a good first check, but it can’t answer precisely which model is better. We need to move to something more elaborate.</p>
+</div>
+<div class="section" id="cumulative-elasticity-curve">
+<h2>Cumulative Elasticity Curve<a class="headerlink" href="#cumulative-elasticity-curve" title="Permalink to this headline">¶</a></h2>
+<p>Consider again the illustrative example where price was converted to a binary treatment. We will take it from where we left, so we had the elasticity of the treatment by band. What we can do next is order the band according to how sensitive they are. That is, we take the most sensitive group and place it in the first place, the second most sensitive group in the second place and so on. For both models 1 and 3, no re-ordering needs to be made, since they are already ordered. For model 2, we have to reverse the ordering.</p>
+<p>Once we have the ordered groups, we can construct what we will call the Cumulative Elasticity Curve. We first compute the elasticity of the first group; then, of the first and the second and so on, until we’ve included all the groups. In the end, we will just compute the elasticity for the entire dataset. Here is what it would look like for our illustrative example.</p>
+<p><img alt="img" src="_images/cumm_elast.png" /></p>
+<p>Notice that the first bin in the cumulative elasticity is just the ATE from the most sensitive group according to that model. Also, for all models, the cumulative elasticity will converge to the same point, which is the ATE for the entire dataset.</p>
+<p>Mathematically, we can define the cumulative elasticity as the elasticity estimated up until unit \(k\).</p>
+<div class="math notranslate nohighlight">
+\[
+\widehat{y'(t)}_k = \hat{\beta_1}_k=\dfrac{\sum_i^k (t_i - \bar{t}) (y_i - \bar{y})}{\sum_i^k(t_i - \bar{t})^2}
+\]</div>
+<p>To build the cumulative elasticity curve, we run the above function iteratively in the dataset to produce the following sequence.</p>
+<div class="math notranslate nohighlight">
+\[
+(\widehat{y'(t)}_1, \widehat{y'(t)}_2, \widehat{y'(t)}_3,..., \widehat{y'(t)}_N)
+\]</div>
+<p>This is a very interesting sequence in terms of model evaluation because we can make preferences statements about it. First, a model is better to the degree that \(\widehat{y’(t)}<em>k &gt; \widehat{y’(t)}</em>{k+a}\) for any \(k\) and \(a&gt;0\). In words, if a model is good at ordering elasticity, the elasticity observed in the top \(k\) samples should be higher than the elasticity observed in top \(k+a\) samples. Or, simply put, if I look at the top units, they should have higher elasticity than units below them.</p>
+<p>Second, a model is better to the degree that \(\widehat{y’(t)}<em>k - \widehat{y’(t)}</em>{k+a}\) is the largest, for any \(k\) and \(a&gt;0\). The intuition being that not only do we want the elasticity of the top \(k\) units to be higher than the elasticity of the units below them, but we want that difference to be as large as possible.</p>
+<p>To make it more concrete, here is this idea represented in code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cumulative_elast_curve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">prediction</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="c1"># orders the dataset by the `prediction` column</span>
+    <span class="n">ordered_df</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># create a sequence of row numbers that will define our Ks</span>
+    <span class="c1"># The last item is the sequence is all the rows (the size of the dataset)</span>
+    <span class="n">n_rows</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">min_periods</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span> <span class="o">//</span> <span class="n">steps</span><span class="p">))</span> <span class="o">+</span> <span class="p">[</span><span class="n">size</span><span class="p">]</span>
+    
+    <span class="c1"># cumulative computes the elasticity. First for the top min_periods units.</span>
+    <span class="c1"># then for the top (min_periods + step*1), then (min_periods + step*2) and so on</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">elast</span><span class="p">(</span><span class="n">ordered_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">n_rows</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Some things to notice about this function. It assumes that the thing which ordered the elasticity is stored in the column passed to the <code class="docutils literal notranslate"><span class="pre">prediction</span></code> argument. Also, the first group has <code class="docutils literal notranslate"><span class="pre">min_periods</span></code> units, so it can be different from the others. The reason is that, due to small sample size, the elasticity can be too noisy at the beginning of the curve. To fix that, we can pass a first group which is already large enough. Finally, the <code class="docutils literal notranslate"><span class="pre">steps</span></code> argument defines how many extra units we include in each subsequent group.</p>
+<p>With this function, we can now plot the cumulative elasticity curve, according to the ordering produced by each of our models.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">cumu_elast</span> <span class="o">=</span> <span class="n">cumulative_elast_curve</span><span class="p">(</span><span class="n">prices_rnd_pred</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;m</span><span class="si">{</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_pred&quot;</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cumu_elast</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">cumu_elast</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;M</span><span class="si">{</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">elast</span><span class="p">(</span><span class="n">prices_rnd_pred</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Avg. Elast.&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Customers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cumulative Elasticity&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Elasticity Curve&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/20-Evaluating-Causal-Models_21_0.png" src="_images/20-Evaluating-Causal-Models_21_0.png" />
+</div>
+</div>
+<p>Interpreting a Cumulative Elasticity Curve can be a bit challenging, but here is how I see it. Again, it might be easier to think about the binary case. The X axis of the curve represents how many samples are we treating. Here, I normalized the axis to be the proportion of the dataset, so .4 means we are treating 40% of the samples. The Y axis is the elasticity we should expect at that many samples. So, if a curva has value -1 at 40%, it means that the elasticity of the top 40% units is -1. Ideally, we want the highest elasticity for the largest  possible sample. An ideal curve then would start high up on the Y axis and descend very slowly to the average elasticity, representing we can treat a high percentage of units while still maintaining an above average elasticity.</p>
+<p>Needless to say, none of our models gets even close to an ideal elasticity curve. The random model \(M3\) oscillates around the average elasticity and never goes too far away from it. This means that the model can’t find groups where the elasticity is different from the average one. As for the predictive model \(M1\), it appears to be reversely ordering elasticity, because the curve starts below the average elasticity. Not only that, it also converges to the average elasticity pretty quickly, at around 50% of the samples. Finally, the causal model \(M2\) seems more interesting. It has this weird behavior at first, where the cumulative elasticity increases away from the average, but then it reaches a point where we can treat about 75% of the units while keeping a pretty decent elasticity of almost 0. This is probably happening because this model can identify the very low elasticity (high price sensitivity) days. Hence, provided we don’t increase prices on those days, we are allowed to do it for most of the sample (about 75%), while still having a low price sensitivity.</p>
+<p>In terms of model evaluation, the Cumulative Elasticity Curve is already much better than the simple idea of elasticity by band. Here, we managed to make preference statements about our models that were much more precise. Still, it’s a complicated curve to understand. For this reason, we can do one further improvement.</p>
+</div>
+<div class="section" id="cumulative-gain-curve">
+<h2>Cumulative Gain Curve<a class="headerlink" href="#cumulative-gain-curve" title="Permalink to this headline">¶</a></h2>
+<p>The next idea is a very simple, yet powerful improvement on top of the cumulative elasticity. We will multiply the cumulative elasticity by the proportional sample size. For example, if the cumulative elasticity is, say -0.5 at 40%, we will end up with -0.2 (-0.5 * 0.4)  at that point. Then, we will compare this with the theoretical curve produced by a random model. This curve will actually be a straight line from 0 to the average treatment effect. Think about it this way: every point in the cumulative elasticity of a random model is the ATE, because the model just produces random representative partitions of the data. If at each point along the (0,1) line we multiply the ATE by that point, we will end up with a straight line between zero and the ATE.</p>
+<p><img alt="img" src="_images/cumm_gain.png" /></p>
+<p>Once we have the theoretic random curve, we can use it as a benchmark and compare our other models against it. All curves will start and end at the same point. However, the better the model at ordering elasticity, the more the curve will diverge from the random line in the points between zero and one. For example, in the image above, M2 is better than M1 because it diverges more before reaching the ATE at the end point. For those familiar with the ROC curve, you can think about Cumulative Gain as the ROC for causal models.</p>
+<p>Mathematically speaking,</p>
+<div class="math notranslate nohighlight">
+\[
+\widehat{F(t)}_k = \hat{\beta_1}_k * \frac{k}{N} =\dfrac{\sum_i^k (t_i - \bar{t}) (y_i - \bar{y})}{\sum_i^k(t_i - \bar{t})^2} * \frac{k}{N}
+\]</div>
+<p>To implement it in code, all we have to do is add the proportional sample size normalization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cumulative_gain</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">prediction</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ordered_df</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">n_rows</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">min_periods</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span> <span class="o">//</span> <span class="n">steps</span><span class="p">))</span> <span class="o">+</span> <span class="p">[</span><span class="n">size</span><span class="p">]</span>
+    
+    <span class="c1">## add (rows/size) as a normalizer. </span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">elast</span><span class="p">(</span><span class="n">ordered_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">rows</span><span class="o">/</span><span class="n">size</span><span class="p">)</span> <span class="k">for</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">n_rows</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For our ice cream data, we will get the following curves.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">cumu_gain</span> <span class="o">=</span> <span class="n">cumulative_gain</span><span class="p">(</span><span class="n">prices_rnd_pred</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;m</span><span class="si">{</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">_pred&quot;</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cumu_gain</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">cumu_gain</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;M</span><span class="si">{</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">elast</span><span class="p">(</span><span class="n">prices_rnd_pred</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">)],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Random Model&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Customers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cumulative Gain&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Gain&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/20-Evaluating-Causal-Models_26_0.png" src="_images/20-Evaluating-Causal-Models_26_0.png" />
+</div>
+</div>
+<p>Now it is very clear that the causal model (M2) is much better than the other two. It diverges much more from the random line than both M1 and M3. Also, notice how the random model, M3, follows very closely the theoretical random model. The difference between both is probably just random noise.</p>
+<p>With that, we covered some really nice ideas on how to evaluate causal models. That alone is a huge deed. We managed to evaluate how good are models in ordering elasticity even though we didn’t have a ground truth to compare against. There is only one final thing missing, which to include a confidence interval around those measurements. After all, we are not barbarians, are we?</p>
+<p><img alt="img" src="_images/uncivilised.png" /></p>
+</div>
+<div class="section" id="taking-variance-into-account">
+<h2>Taking Variance Into Account<a class="headerlink" href="#taking-variance-into-account" title="Permalink to this headline">¶</a></h2>
+<p>It just feels wrong to not take variance into account when we are dealing with the elasticity curves. Specially since all of them use linear regression theory, so adding a confidence interval around them should be fairly easy.</p>
+<p>To achieve that, we will first create a function that returns the CI for a linear regression parameter. I’m using the formula for the simple linear regression here, but feel free to extract the CI however you want.</p>
+<div class="math notranslate nohighlight">
+\[
+s_{\hat\beta_1}=\sqrt{\frac{\sum_i\hat\epsilon_i^2}{(n-2)\sum_i(t_i-\bar t)^2}}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">elast_ci</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mf">1.96</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">t_bar</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">beta1</span> <span class="o">=</span> <span class="n">elast</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">beta0</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">beta1</span> <span class="o">*</span> <span class="n">t_bar</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">beta0</span> <span class="o">+</span> <span class="n">beta1</span><span class="o">*</span><span class="n">df</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+    <span class="n">se</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">e</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">-</span><span class="n">t_bar</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">beta1</span> <span class="o">-</span> <span class="n">z</span><span class="o">*</span><span class="n">se</span><span class="p">,</span> <span class="n">beta1</span> <span class="o">+</span> <span class="n">z</span><span class="o">*</span><span class="n">se</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With some minor modification on our <code class="docutils literal notranslate"><span class="pre">cumulative_elast_curve</span></code> function, we can output the confidence interval for the elasticity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cumulative_elast_curve_ci</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">prediction</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ordered_df</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">n_rows</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">min_periods</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span> <span class="o">//</span> <span class="n">steps</span><span class="p">))</span> <span class="o">+</span> <span class="p">[</span><span class="n">size</span><span class="p">]</span>
+    
+    <span class="c1"># just replacing a call to `elast` by a call to `elast_ci`</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">elast_ci</span><span class="p">(</span><span class="n">ordered_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>  <span class="k">for</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">n_rows</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And finally, here is the cumulative elasticity curve with the 95% CI for the causal (M2) model.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">cumu_gain_ci</span> <span class="o">=</span> <span class="n">cumulative_elast_curve_ci</span><span class="p">(</span><span class="n">prices_rnd_pred</span><span class="p">,</span> <span class="s2">&quot;m2_pred&quot;</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cumu_gain_ci</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">cumu_gain_ci</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">elast</span><span class="p">(</span><span class="n">prices_rnd_pred</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Avg. Elast.&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Customers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cumulative Elasticity&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Elasticity for M2 with 95% CI&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/20-Evaluating-Causal-Models_32_0.png" src="_images/20-Evaluating-Causal-Models_32_0.png" />
+</div>
+</div>
+<p>Notice how the CI gets smaller and smaller as we accumulate more of the dataset. That’s because the sample size increases.</p>
+<p>As for the Cumulative Gain curve, it is also equally simple to get the CI. Again, we just replace a call to the <code class="docutils literal notranslate"><span class="pre">elast</span></code> function with a call to the <code class="docutils literal notranslate"><span class="pre">elast_ci</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cumulative_gain_ci</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">prediction</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ordered_df</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">n_rows</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">min_periods</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span> <span class="o">//</span> <span class="n">steps</span><span class="p">))</span> <span class="o">+</span> <span class="p">[</span><span class="n">size</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">elast_ci</span><span class="p">(</span><span class="n">ordered_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">rows</span><span class="o">/</span><span class="n">size</span><span class="p">)</span> <span class="k">for</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">n_rows</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is what it looks like for the causal model. Notice that now, the CI starts small, even though the sample size is smaller at the beginning of the curve. The reason is that the normalization factor \(\frac{k}{N}\) shirks the ATE parameter and it’s CI along with it. Since this curve should be used to compare models, this shouldn’t be a problem, as the curve will apply this shirking factor equally to all the models being evaluated.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">cumu_gain</span> <span class="o">=</span> <span class="n">cumulative_gain_ci</span><span class="p">(</span><span class="n">prices_rnd_pred</span><span class="p">,</span> <span class="s2">&quot;m2_pred&quot;</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cumu_gain</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">cumu_gain</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">elast</span><span class="p">(</span><span class="n">prices_rnd_pred</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">)],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Random Model&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Customers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cumulative Gain&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Gain for M2 with 95% CI&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/20-Evaluating-Causal-Models_36_0.png" src="_images/20-Evaluating-Causal-Models_36_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<p>Here we saw three ways to check how good a model is in terms of ordering elasticity. We used these methods as a way to compare and decide between models that have a causal purpose. That’s a huge deal. We’ve managed to check if a model is good at identifying groups with different elasticities even without being able to see elasticity!</p>
+<p>Here, we relied heavily on random data. We trained the model on non-random data, but all the evaluation was done on a sample where the treatment has been randomized. That’s because we need some way of confidently estimating elasticity. Without random data, the simple formulas we used here wouldn’t work. As we know very well by now, simple linear regression has omitted variable bias in the presence of confounding variables.</p>
+<p>Nonetheless, if we can get our hands on some random data, we already know how to compare random models. In the next chapter, we will address the problem of non random data, but before we go, I wanted to say some last words about model evaluation.</p>
+<p>Let’s reiterate how important trustworthy model evaluation is. With the cumulative gain curve, we finally have a good way of comparing models that are used for causal inference. We can now decide which model is better for treatment personalisation. That’s a major deal. Most materials you will find out there in causal inference don’t give us a good way of doing model evaluation. In my opinion, that’s the missing piece we need to make causal inference as popular as machine learning. With good evaluation, we can take causal inference closer to the train-test paradigm that has already been so useful for predictive models. That’s a bold statement. Which means I’m careful when I say it, but until now, I haven’t found any good criticism of it. If you have some, please let me know.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>The things I’ve written here are mostly stuff from my head. I’ve learned them through experience. This means that they have <strong>not</strong> passed the academic scrutiny that good science often goes through. Instead, notice how I’m talking about things that work in practice, but I don’t spend too much time explaining why that is the case. It’s a sort of science from the streets, if you will. However, I am putting this up for public scrutiny, so, by all means, if you find something preposterous, open an issue and I’ll address it to the best of my efforts.</p>
+<p>I got the ideas from this chapter from a Pierre Gutierrez and Jean-Yves G’erardy’s article called <em>Causal Inference and Uplift Modeling A review of the literature</em>. The authors explain the concept of a Qini curve. If you search that, you will find it’s a technique used for uplift modeling, which you can think of as causal inference for when the treatment is binary. Here, I took the idea from a Qini curve and generalized it to the continuous treatment case. I think the methods presented here work for both continuous and binary cases, but then again, I’ve never seen them anywhere else, so keep that in mind.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "causal-glory"
+        },
+        kernelOptions: {
+            kernelName: "causal-glory",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'causal-glory'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="19-Causal-Models.html" title="previous page">Building a Causal Models</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-97848161-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>
