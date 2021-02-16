@@ -24,6 +24,7 @@
   - file: 17-Predictive-Models-101.ipynb
   - file: 18-When-Prediction-Fails.ipynb
   - file: 19-Causal-Models.ipynb
+  - file: 20-Evaluating-Causal-Models.ipynb
 
 - part: Contribute
   chapters:
