@@ -8,6 +8,7 @@ Part I of the book contains core concepts and models for causal inference. You w
 
 Part II (WIP) contains modern development and applications of causal inference to the (mostly tech) industry. While Part I focuses mostly on identifying average treatment effects, Part II takes a shift to personalization and heterogeneous effect estimating with CATE models. Most of what is written there was taken from my personal experience and is by no means well established science. It's much more experimental and subject to change, afterall, I, too, am learning.
 
+
 ## Acknowledgments
 
 I like to think of this entire series as a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas from Part I are taken from their classes at the American Economic Association. Watching them was what kept me sane during the tough year of 2020.
@@ -22,3 +23,10 @@ I'll also like to reference the amazing books from Angrist. They have shown me t
 My final reference is Miguel Hernan and Jamie Robins' book. It has been my trustworthy companion in the most thorny causal questions I had to answer.
 
 * [Causal Inference Book](https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/)
+
+
+## Contribute
+
+Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
+If you found this book valuable and you want to support it, please go to [Patreon](https://www.patreon.com/causal_inference_for_the_brave_and_true). If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn't understand. Just go to the book's repository and [open an issue](https://github.com/matheusfacure/python-causality-handbook/issues). Finally, if you liked this content, please share it with others who might find it useful and give it a [star on GitHub](https://github.com/matheusfacure/python-causality-handbook/stargazers).
+
