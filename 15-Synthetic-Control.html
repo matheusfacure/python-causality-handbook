@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -201,7 +201,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="19-Causal-Models.html">
-   Building a Causal Models
+   Building a Causal Model
   </a>
  </li>
  <li class="toctree-l1">
@@ -336,11 +336,6 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   We have Time
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#synthetic-control-as-linear-regression">
    Synthetic Control as Linear Regression
   </a>
@@ -363,6 +358,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contribute">
+   Contribute
   </a>
  </li>
 </ul>
@@ -545,9 +545,6 @@
 </div>
 <div class="section" id="we-have-time">
 <h2>We have Time<a class="headerlink" href="#we-have-time" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="id1">
-<h2>We have Time<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>To make matters a little bit more formal suppose that we have \(J+1\) units. Without loss of generality, assume that unit 1 is the unit that gets affected by an intervention. Units \(j=2,…,J+1\) are a collection of untreated units that we will refer to as the “donor pool”. Also assume that the data we have span T time periods, whith \(T_0\) periods before the intervention. For each unit j and each time t, we observe the outcome \(Y_{jt}\). For each unit j and period t, define \(Y^N_{jt}\) as the potential outcome without intervention and \(Y^I_{jt}\), the potential outcome with intervention. Then, the effect for the treated unit \(j=1\) at time t, for \(t&gt;T_0\) is defined as</p>
 <p><span class="math notranslate nohighlight">\(
 \tau_{1t} = Y^I_{jt} - Y^N_{jt}
@@ -1278,6 +1275,11 @@ PV=\frac{1}{N}\sum \mathcal{1}\{\hat{\tau}_{Calif} &gt; \hat{\tau}_j\}
 <li><p><a class="reference external" href="https://www.scunning.com/mixtape.html">Causal Inference: The Mixtape</a></p></li>
 </ul>
 <p><img alt="img" src="_images/poetry.png" /></p>
+</div>
+<div class="section" id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
+<p>Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
+If you found this book valuable and you want to support it, please go to <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a>. If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn’t understand. Just go to the book’s repository and <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/issues">open an issue</a>. Finally, if you liked this content, please share it with others who might find it useful and give it a <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/stargazers">star on GitHub</a>.</p>
 </div>
 </div>
 

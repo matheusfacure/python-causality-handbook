@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -201,7 +201,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="19-Causal-Models.html">
-   Building a Causal Models
+   Building a Causal Model
   </a>
  </li>
  <li class="toctree-l1">
@@ -355,6 +355,11 @@
    References
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contribute">
+   Contribute
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -379,7 +384,7 @@
 <p>Conditional Independence makes it possible for us to measure an effect on the outcome that is solely due to the treatment, and not any other variable lurking around. The classic example of this is the effect of a medicine on an ill patient. If only severely ill patients get the drug, it might even look like giving the drug decreases the patient’s health. That is because the effect of the severity is getting mixed up with the effect of the drug. If, however, we break down the patients by severe and not severe cases and analyse the drug impact in each subgroup, we will get a more clear picture of what the true effect is. This breaking down the population by its features is what we call controlling for or conditioning on X. By conditioning on the severe cases, the treatment mechanism becomes as good as random. Patients within the severe group may or may not receive the drug only due to chance, not due a high severity anymore, since all patients are the same on this dimension. And if treatment is as if randomly assigned within groups, the treatment becomes conditionally independent of the potential outcomes.</p>
 <p>Independence and conditional independence are central to causal inference. Yet, it can be quite challenging to wrap our head around them. But this can change if we use the right language to describe this problem. Here is where <strong>causal graphical models</strong> comes in. A causal graphical model is a way to represent how causality works in terms of what causes what.</p>
 <p>A graphical model looks like this</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -395,7 +400,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">)</span>
@@ -419,7 +424,7 @@
 <h2>Crash Course in Graphical Models<a class="headerlink" href="#crash-course-in-graphical-models" title="Permalink to this headline">¶</a></h2>
 <p>There are <a class="reference external" href="https://www.coursera.org/specializations/probabilistic-graphical-models">whole semesters on graphical models</a>. But, for our purpose, it is just (very) important that we understand what kind of independence and conditional independence assumptions a graphical model entails. As we shall see, independence flows through a graphical model like water flows through a stream. We can stop this flow or we can enable it, depending on how we treat the variables in it. To understand this, let’s examine some common graphical structures and examples. They will be quite simple, but they are the sufficient building blocks to understand everything about independence and conditional independence on graphical models.</p>
 <p>First, look at this very simple graph. A causes B which causes C. Or X causes Y which causes Z.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">)</span>
@@ -449,7 +454,7 @@
 A \!\perp\!\!\!\perp B | C
 \)</span></p>
 <p>Now, let’s consider a fork structure. In this case, the same variable causes two other variables down the graph. In this case, the dependence flows backward through the arrows and we have what it is called a <strong>backdoor path</strong>. We can close the backdoor path and shut down dependence by conditioning on the common cause.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
@@ -478,7 +483,7 @@ A \!\perp\!\!\!\perp B | C
 A \!\perp\!\!\!\perp B | C
 \)</span></p>
 <p>The only structure that is missing is the collider. A collider is when two arrows collide on a single variable. We can say that in this case if both variables share a common effect.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">)</span>
@@ -514,14 +519,14 @@ A \not\!\perp\!\!\!\perp B | C
 <img alt="img" src="_images/graph-flow.png" /></p>
 <p>As a final example, try to figure out some independence and dependence relationship in the following causal graph.</p>
 <ol class="simple">
-<li><p>Is \(D !\perp!!!\perp C\)?</p></li>
-<li><p>Is \(D !\perp!!!\perp C| A \) ?</p></li>
-<li><p>Is \(D !\perp!!!\perp C| G \) ?</p></li>
-<li><p>Is \(A !\perp!!!\perp F \) ?</p></li>
-<li><p>Is \(A !\perp!!!\perp F|E \) ?</p></li>
-<li><p>Is \(A !\perp!!!\perp F|E,C \) ?</p></li>
+<li><p>Is \(D \perp C\)?</p></li>
+<li><p>Is \(D \perp C| A \) ?</p></li>
+<li><p>Is \(D \perp C| G \) ?</p></li>
+<li><p>Is \(A \perp F \) ?</p></li>
+<li><p>Is \(A \perp F|E \) ?</p></li>
+<li><p>Is \(A \perp F|E,C \) ?</p></li>
 </ol>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
@@ -540,12 +545,12 @@ A \not\!\perp\!\!\!\perp B | C
 </div>
 <p><strong>Answers</strong>:</p>
 <ol class="simple">
-<li><p>\(D !\perp!!!\perp C\). It contains a collider that it has <strong>not</strong> been conditioned on.</p></li>
-<li><p>\(D \not!\perp!!!\perp C| A \). It contains a collider that it has  been conditioned on.</p></li>
-<li><p>\(D \not!\perp!!!\perp C| G \). It contains the descendent of a collider that has  been conditioned on. You can see G as some kind of proxy for A here.</p></li>
-<li><p>\(A !\perp!!!\perp F \). It contains a collider, B-&gt;E&lt;-F, that it has <strong>not</strong> been conditioned on.</p></li>
-<li><p>\(A \not!\perp!!!\perp F|E \). It contains a collider, B-&gt;E&lt;-F, that it has been conditioned on.</p></li>
-<li><p>\(A !\perp!!!\perp F|E, C \). It contains a collider, B-&gt;E&lt;-F, that it has been conditioned on, but it contains a non collider that has been conditioned on. Conditioning on E opens the path, but conditioning on C closes it again.</p></li>
+<li><p>\(D \perp C\). It contains a collider that it has <strong>not</strong> been conditioned on.</p></li>
+<li><p>\(D \not\perp C| A \). It contains a collider that it has  been conditioned on.</p></li>
+<li><p>\(D \not\perp C| G \). It contains the descendent of a collider that has  been conditioned on. You can see G as some kind of proxy for A here.</p></li>
+<li><p>\(A \perp F \). It contains a collider, B-&gt;E&lt;-F, that it has <strong>not</strong> been conditioned on.</p></li>
+<li><p>\(A \not\perp F|E \). It contains a collider, B-&gt;E&lt;-F, that it has been conditioned on.</p></li>
+<li><p>\(A \perp F|E, C \). It contains a collider, B-&gt;E&lt;-F, that it has been conditioned on, but it contains a non collider that has been conditioned on. Conditioning on E opens the path, but conditioning on C closes it again.</p></li>
 </ol>
 <p>Knowing about causal graphical models enables us to understand the problems that arise in causal inference. As we’ve seen, the problem always boils down to bias.</p>
 <p><span class="math notranslate nohighlight">\(
@@ -557,7 +562,7 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <h2>Confounding Bias<a class="headerlink" href="#confounding-bias" title="Permalink to this headline">¶</a></h2>
 <p><img alt="img" src="_images/both_crap.png" /></p>
 <p>The first big cause of bias is confounding. It happens when the treatment and the outcome shares a common cause. For example, let’s say that the treatment is education and the outcome is income. It is hard to know the causal effect of education on the wage because both share a common cause: intelligence. So we could make the argument that more educated people earn more money simply because they are more intelligent, not because they have more education. In order to identify the causal effect, we need to close all backdoor paths between the treatment and the outcome. If we do so, the only effect that will be left is the direct effect T-&gt;Y. In our example, if we control for intelligence, that is, we compare people with the same level of intelligence but different levels of education, the difference in the outcome will be only due to the difference in education, since intelligence will be the same for everyone. In order to fix confounding bias, we need to control all common causes of the treatment and the outcome.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">)</span>
@@ -575,7 +580,7 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <img alt="_images/04-Graphical-Causal-Models_12_0.svg" src="_images/04-Graphical-Causal-Models_12_0.svg" /></div>
 </div>
 <p>Unfortunately, it is not always possible to control for all common causes. Sometimes, there are unknown causes or known causes that we can’t measure. The case of intelligence is one of the latter. Despite all the effort, scientists haven’t yet figured out how to measure intelligence well. I’ll use U to denote unmeasured variables here. Now, assume for a moment that intelligence can’t affect your education directly. It just affects how well you do on the SATs, but it is the SATs that determine your level of education, since it opens the possibility of a good college. Even if we can’t control for the unmeasurable intelligence, we  can control for SAT and close that backdoor path.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">)</span>
@@ -601,7 +606,7 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <p>In the following graph, conditioning on X1 and X2, or, SAT and family income, is sufficient to close all backdoor paths between the treatment and the outcome. In other words, \((Y_0, Y_1) \perp T | X1, X2\). So even if we can’t measure all common causes, we can still attain conditional independence if we control for measurable variables that mediate the effect of the unmeasured on the treatment.</p>
 <p>But what if that is not the case? What if the unmeasured variable causes the treatment and the outcome directly? In the following example, intelligence causes education and income directly. So there is confounding on the relationship between the treatment education and the outcome wage. In this case, we can’t control the confounder, because it is unmeasurable. However, we have other measured variables that can act as a proxy for the confounder. Those variables are not in the backdoor path, but controlling for them will help lower the bias (but it won’t eliminate it). Those variables are sometimes referred to as surrogate confounders.</p>
 <p>In our example, we can’t measure intelligence, but we can measure some causes of it, like father education and mother education, and some effects of it, like IQ or SAT score. Controlling for those surrogate variables is not sufficient to eliminate bias, but it sure helps.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;U&quot;</span><span class="p">)</span>
@@ -633,7 +638,7 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <p>The second big source of bias is what we will call selection bias. If confounding bias happens when we don’t control for a common cause, selection bias is more related to effects. One word of caution here, economists tend to refer to all sorts of bias as selection bias. Here, I think the distinction between it and confounding bias is very helpful, so I’ll stick to it.</p>
 <p>More often than not, selection bias arises when we control for more variables that we should. It might be the case that treatment and the potential outcome are marginally independent, but become dependent once we condition on a collider.</p>
 <p>Imagine that with the help of some miracle you are finally able to randomize education in order to measure its effect on wage. But just to be sure you won’t have confounding, you control for a lot of variables. Among them, you control for investments. But investment is not a common cause of education and wage. Instead, it is a consequence of both. More educated people both earn more and invest more. Also, those who earn more invest more. Since investment is a collider, by conditioning on it, you are opening a second path between the treatment and the outcome, which will make it harder to measure the direct effect. One way to think about this is that by controlling investments, you are looking at small groups of the population where investment is the same and then finding the effect of education on those groups. But by doing so, you are also indirectly and inadvertently not allowing wages to change much. As a result, you won’t be able to see how education changes wage, because you are not allowing wages to change as it should.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">)</span>
@@ -656,7 +661,7 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <p>Looking at those that invest, we probably have the case that \(E[Y_0|T=0, I=1] &gt; E[Y_0|T=1, I=1]\). In words, among those that invest, those that manage to do so even without education are more independent of education to achieve high earnings. For this reason, the wage those people have, \(Wage_0|T=0\), is probably higher than the wage the educated group would have in the case that they didn’t had education, \(Wage_0|T=1\). A similar reasoning can be applied to those that don’t invest, where we also probably have \(E[Y_0|T=0, I=0] &gt; E[Y_0|T=1, I=0]\). Those that don’t invest even with education, probably would have a lower wage, had they not got the education, than those that didn’t invest but also didn’t have education.</p>
 <p>To use a purely graphical argument, if someone invests, knowing that they have high education explains away the second cause which is wage. Conditioned on investing, higher education is associated with low wages and we have a negative bias \(E[Y_0|T=0, I=i] &gt; E[Y_0|T=1, I=i]\).</p>
 <p>Just as a side note, all of this we’ve discussed is also true if we condition on any descendent of a common effect.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">)</span>
@@ -672,7 +677,7 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <img alt="_images/04-Graphical-Causal-Models_20_0.svg" src="_images/04-Graphical-Causal-Models_20_0.svg" /></div>
 </div>
 <p>A similar thing happens when we condition on a mediator of the treatment. A mediator is a variable between the treatment and the outcome. It, well, mediates the causal effect. For example, suppose again you are able to randomize education. But, just to be sure, you decide to control whether or not the person had a white collar job. Once again, this conditioning biasses the causal effect estimation. This time, not because it opens a front door path with a collider, but because it closes one of the channels through which the treatment operates. In our example, getting a white collar job is one way that more education leads to higher pay. By controlling it, we close this channel and leave open only the direct effect of education on wage.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">)</span>
@@ -718,6 +723,11 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <li><p><a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">Causal Inference Book</a></p></li>
 </ul>
 <p><img alt="img" src="_images/poetry.png" /></p>
+</div>
+<div class="section" id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
+<p>Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
+If you found this book valuable and you want to support it, please go to <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a>. If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn’t understand. Just go to the book’s repository and <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/issues">open an issue</a>. Finally, if you liked this content, please share it with others who might find it useful and give it a <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/stargazers">star on GitHub</a>.</p>
 </div>
 </div>
 
