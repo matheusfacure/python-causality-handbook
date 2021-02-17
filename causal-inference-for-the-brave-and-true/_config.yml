@@ -12,3 +12,7 @@ html:
   google_analytics_id: UA-97848161-1
 
 exclude_patterns: [_build, .DS_Store, "**.ipynb_checkpoints"]
+
+sphinx:
+  config:
+    language: en
