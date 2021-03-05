@@ -57,6 +57,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Debiasing with Orthogonalization" href="21-Debiasing-with-Orthogonalization.html" />
     <link rel="prev" title="Building a Causal Model" href="19-Causal-Models.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -206,6 +207,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Evaluating Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
+   Debiasing with Orthogonalization
   </a>
  </li>
 </ul>
@@ -372,12 +378,11 @@
                 
   <div class="section" id="evaluating-causal-models">
 <h1>Evaluating Causal Models<a class="headerlink" href="#evaluating-causal-models" title="Permalink to this headline">¶</a></h1>
-<p>In the previous chapter, we saw how to build what I called Conditional Average Treatment Effect (CATE) Models or simply Causal Models. The goal of those models is to leverage heterogeneity in the treatment effect in order to achieve personalisation. In simpler terms, we believe each unit has a different response to the treatment. For that reason, we want to give more of the treatment to those that respond better and less for those that respond worse.</p>
-<p>A model that can estimate the CATE is useful to segment our units into how responsive they are to a treatment. That’s our end goal here. We saw that a CATE model was able to produce segments in a way that a purely predictive model couldn’t do it. Namely, the CATE model managed to create partitions with different treatment elasticity \(\frac{\delta y}{ \delta t}\) while a prediction model was only able to partition the entities on the \(Y\) dimension.</p>
-<p>The CATE model we used was a simple linear regression. Of course we can do better than that. But first, we must get a very important topic out of the way. What does “better” means, in terms of a causal model? In other words, how can we evaluate and ultimately compare different causal models?</p>
-<p>The natural thing to do is to check if the predicted elasticity \(\widehat{\frac{\delta y}{ \delta t}}\) is matching the true elasticity \(\frac{\delta y}{ \delta t}\). But you know we can’t do that. Unlike with predictive models, where we can observe the true value of \(y\), elasticity is not something we can see on an individual level. It is as if every entity had an underlying responsiveness, denoted by the slope of the line from treatment to outcome, but we can’t measure it.</p>
+<p>In the vast majority of material about causality, researchers use synthetic data to check if their methods are any good. Much like we did in the When Prediction Fails chapter, they generate data on both \(Y_{0i}\) and \(Y_{1i}\) so that they can check if their model is correctly capturing the treatment effect \(Y_{1i} - Y_{0i}\). That’s fine for academic purposes, but in the real world, we don’t have that luxury. When applying these techniques in the industry, we’ll be asked time and again to prove why our model is better, why should it replace the current one in production or why it won’t fail miserably. This is so crucial that it’s beyond my comprehension why we don’t see any material whatsoever explaining how we should evaluate causal inference models with real data.</p>
+<p>As a consequence, data scientists that want to apply causal inference models have a really hard time convincing management to trust them. The approach they take is one of showing how sound the theory is and how careful they’ve been while training the model. Unfortunately, in a world where train-test split paradigm is the norm, that just won’t cut it. The quality of your model will have to be grounded on something more concrete than a beautiful theory. Think about it. Machine learning has only achieved its huge success because predictive model validation is very straightforward. There is something reassuring about seeing that the predictions match what really happened.</p>
+<p>Unfortunately, it isn’t obvious at all how we achieve anything like a train-test paradigm in the case of causal inference. That’s because causal inference is interested in estimating an unobservable quantity, \(\frac{\delta y}{ \delta t}\). Well, if we can’t see it, how the hell are we supposed to know if our models are any good at estimating it? Remember, it is as if every entity had an underlying responsiveness, denoted by the slope of the line from treatment to outcome, but we can’t measure it.</p>
 <p><img alt="img" src="_images/sneak.png" /></p>
-<p>This is a very very very hard thing to wrap our heads around and it took me years to find something, which is not a definitive answer, but it works in practice. The trick is to use aggregate measurements of elasticity. Even if you can’t estimate elasticity individually, you can do it for a group and that is what we will leverage here.</p>
+<p>This is a very very very hard thing to wrap our heads around and it took me years to find something close to an answer. Is not a definitive one, but it works in practice and it has that concreteness, which I hope will approach causal inference from a train-test paradigm similar to the one we have with machine learning. The trick is to use aggregate measurements of elasticity. Even if you can’t estimate elasticity individually, you can do it for a group and that is what we will leverage here.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -754,7 +759,7 @@ y_i = \beta_0 + \beta_1t_i + e_i
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">cumu_elast</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;M</span><span class="si">{</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">elast</span><span class="p">(</span><span class="n">prices_rnd_pred</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Avg. Elast.&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Customers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Days&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cumulative Elasticity&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Elasticity Curve&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
@@ -805,7 +810,7 @@ y_i = \beta_0 + \beta_1t_i + e_i
     
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">elast</span><span class="p">(</span><span class="n">prices_rnd_pred</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">)],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Random Model&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Customers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Days&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cumulative Gain&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Gain&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
@@ -867,7 +872,7 @@ s_{\hat\beta_1}=\sqrt{\frac{\sum_i\hat\epsilon_i^2}{(n-2)\sum_i(t_i-\bar t)^2}}
 
 <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">elast</span><span class="p">(</span><span class="n">prices_rnd_pred</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Avg. Elast.&quot;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Customers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Days&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cumulative Elasticity&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Elasticity for M2 with 95% CI&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
@@ -902,7 +907,7 @@ s_{\hat\beta_1}=\sqrt{\frac{\sum_i\hat\epsilon_i^2}{(n-2)\sum_i(t_i-\bar t)^2}}
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">elast</span><span class="p">(</span><span class="n">prices_rnd_pred</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">)],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Random Model&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Customers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Days&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cumulative Gain&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Gain for M2 with 95% CI&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
@@ -925,6 +930,7 @@ s_{\hat\beta_1}=\sqrt{\frac{\sum_i\hat\epsilon_i^2}{(n-2)\sum_i(t_i-\bar t)^2}}
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p>The things I’ve written here are mostly stuff from my head. I’ve learned them through experience. This means that they have <strong>not</strong> passed the academic scrutiny that good science often goes through. Instead, notice how I’m talking about things that work in practice, but I don’t spend too much time explaining why that is the case. It’s a sort of science from the streets, if you will. However, I am putting this up for public scrutiny, so, by all means, if you find something preposterous, open an issue and I’ll address it to the best of my efforts.</p>
 <p>I got the ideas from this chapter from a Pierre Gutierrez and Jean-Yves G’erardy’s article called <em>Causal Inference and Uplift Modeling A review of the literature</em>. The authors explain the concept of a Qini curve. If you search that, you will find it’s a technique used for uplift modeling, which you can think of as causal inference for when the treatment is binary. Here, I took the idea from a Qini curve and generalized it to the continuous treatment case. I think the methods presented here work for both continuous and binary cases, but then again, I’ve never seen them anywhere else, so keep that in mind.</p>
+<p>I also strongly recommend reading the article by Leo Breiman (2001) on the train-test paradigm: Statistical Modeling: The Two Cultures. It’s a great resource if you want to understand what makes a statistical technique successful.</p>
 </div>
 <div class="section" id="contribute">
 <h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
@@ -962,6 +968,7 @@ If you found this book valuable and you want to support it, please go to <a clas
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="19-Causal-Models.html" title="previous page">Building a Causal Model</a>
+    <a class='right-next' id="next-link" href="21-Debiasing-with-Orthogonalization.html" title="next page">Debiasing with Orthogonalization</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
