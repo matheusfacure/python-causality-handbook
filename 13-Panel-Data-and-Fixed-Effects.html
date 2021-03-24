@@ -1063,14 +1063,14 @@ dtype: float64
 <div class="section" id="when-panel-data-won-t-help-you">
 <h2>When Panel Data Won’t Help You<a class="headerlink" href="#when-panel-data-won-t-help-you" title="Permalink to this headline">¶</a></h2>
 <p>Using panel data and fixed effects models is an extremely powerful tool for causal inference. When you don’t have random data nor good instruments, the fixed effect is as convincing as it gets for causal inference with non experimental data. Still, it is worth mentioning that it is not a panacea. There are situations where even panel data won’t help you.</p>
-<p>The most obvious one is when you have confounders that are changing in time. Fixed Effects can only eliminate bias from attributes that are constant for each individual. For instance, suppose that you can increase your intelligence level by reading books and eating lots of good fats. This causes you to get a higher paying job and a wife. Fixed effect won’t be able to remove this bias due to unmeasured intelligence confounding because, in this example, intelligence is changing in time.</p>
+<p>The most obvious one is when you have confounders that are changing in time. Fixed effects can only eliminate bias from attributes that are constant for each individual. For instance, suppose that you can increase your intelligence level by reading books and eating lots of good fats. This causes you to get a higher paying job and a wife. Fixed effect won’t be able to remove this bias due to unmeasured intelligence confounding because, in this example, intelligence is changing in time.</p>
 <p><img alt="img" src="_images/time-travel.png" /></p>
 <p>Another less obvious case when fixed effect fails is when you have <strong>reversed causality</strong>. For instance, let’s say that it isn’t marriage that causes you to earn more. Is earning more that increases your chances of getting married. In this case, it will appear that they have a positive correlation but earnings come first. They would change in time and in the same direction, so fixed effects wouldn’t be able to control for that.</p>
 </div>
 <div class="section" id="key-ideas">
 <h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
 <p>Here, we saw how to use panel data, data where we have multiple measurements of the same individuals across multiple time periods. When that is the case, we can use a fixed effect model that controls for the entity, holding all individual, time constant attributes, fixed. This is a powerful and very convincing way of controlling for confounding and it is as good as it gets with non random data.</p>
-<p>Finally, we saw that FE is not a panacea. We understood two situations where it doesn’t work: when we have reverse causality and when the unmeasured confounding is changing in time.</p>
+<p>Finally, we saw that FE is not a panacea. We saw two situations where it doesn’t work: when we have reverse causality and when the unmeasured confounding is changing in time.</p>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>

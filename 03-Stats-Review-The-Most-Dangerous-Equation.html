@@ -741,12 +741,12 @@ N(\mu_1, \sigma_1^2) + N(\mu_2, \sigma_2^2) = N(\mu_1 + \mu_2, \sigma_1^2 + \sig
 </div>
 <p>If we take the distribution of the means of our 2 groups and subtract one from the other, we will have a third distribution. The mean of this final distribution will be the difference in the means and the standard deviation of this distribution will be the square root of the sum of the standard deviations.</p>
 <p><span class="math notranslate nohighlight">\(
-\mu_{diff} = \mu_1 + \mu_2
+\mu_{diff} = \mu_1 - \mu_2
 \)</span></p>
 <p><span class="math notranslate nohighlight">\(
 SE_{diff} = \sqrt{SE_1 + SE_2} = \sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}
 \)</span></p>
-<p>Let’s return to our classroom example. We will construct this distribution of the diference. Of course, once we have it, building the 95% CI is very easy.</p>
+<p>Let’s return to our classroom example. We will construct this distribution of the difference. Of course, once we have it, building the 95% CI is very easy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff_mu</span> <span class="o">=</span> <span class="n">online</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">face_to_face</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>

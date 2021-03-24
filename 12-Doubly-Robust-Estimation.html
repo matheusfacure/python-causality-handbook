@@ -341,8 +341,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#keys-ideias">
-   Keys Ideias
+  <a class="reference internal nav-link" href="#keys-ideas">
+   Keys Ideas
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -370,8 +370,8 @@
 <h1>Doubly Robust Estimation<a class="headerlink" href="#doubly-robust-estimation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="don-t-put-all-your-eggs-in-one-basket">
 <h2>Don’t Put All your Eggs in One Basket<a class="headerlink" href="#don-t-put-all-your-eggs-in-one-basket" title="Permalink to this headline">¶</a></h2>
-<p>We’ve learned how to use linear regression and propensity score weighting to estimate \(E[Y|Y=1] - E[Y|Y=0] | X\). But which one should we use and when? When in doubt, just use both! Doubly Robust Estimation is a way of combining propensity score and linear regression in a way you don’t have to rely on any single one of them.</p>
-<p>To see how this works, let’s consider the mindset experiment. It is a randomised study conducted in U.S. public high schools which aims at finding the impact of a growth mindset. The way it works is that students receive from the school a seminary to instil in them a growth mindset. Then, they follow up the students on college years to measure how well they performed academically. This measurement was compiled into an achievement score and standardised. The real data on this study is not publicly available in order to preserve students’ privacy. However, we have a simulated dataset with the same statistical properties provided by <a class="reference external" href="https://arxiv.org/pdf/1902.07409.pdf">Athey and Wager</a>, so we will use that instead.</p>
+<p>We’ve learned how to use linear regression and propensity score weighting to estimate \(E[Y|Y=1] - E[Y|Y=0] | X\). But which one should we use and when? When in doubt, just use both! Doubly Robust Estimation is a way of combining propensity score and linear regression in a way you don’t have to rely on either of them.</p>
+<p>To see how this works, let’s consider the mindset experiment. It is a randomised study conducted in U.S. public high schools which aims at finding the impact of a growth mindset. The way it works is that students receive from the school a seminar to instil in them a growth mindset. Then, they follow up with the students in their college years to measure how well they performed academically. This measurement was compiled into an achievement score and standardised. The real data on this study is not publicly available in order to preserve students’ privacy. However, we have a simulated dataset with the same statistical properties provided by <a class="reference external" href="https://arxiv.org/pdf/1902.07409.pdf">Athey and Wager</a>, so we will use that instead.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
@@ -511,7 +511,7 @@ Name: intervention, dtype: float64
 
 <span class="n">data_with_categ</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
     <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">categ</span><span class="p">),</span> <span class="c1"># dataset without the categorical features</span>
-    <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">categ</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">categ</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="c1"># dataset without categorical converted to dummies</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">categ</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">categ</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># categorical features converted to dummies</span>
 <span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">data_with_categ</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -738,11 +738,11 @@ Name: intervention, dtype: float64
 </div>
 </div>
 </div>
-<p>I hope I’ve convinced you about the power of doubly robust estimation. Its magic happens because in causal inference, there are two ways to remove bias from our causal estimates: you either model the treatment mechanism or the outcome mechanism. If either of these models are correct, you are good to go</p>
+<p>I hope I’ve convinced you about the power of doubly robust estimation. Its magic happens because in causal inference, there are two ways to remove bias from our causal estimates: you either model the treatment mechanism or the outcome mechanism. If either of these models are correct, you are good to go.</p>
 <p>One caveat is that, in practice, it’s very hard to model precisely either of those. More often, what ends up happening is that neither the propensity score nor the outcome model are 100% correct. They are both wrong, but in different ways. When this happens, it is not exactly settled <a class="reference external" href="https://www.stat.cmu.edu/%7Eryantibs/journalclub/kang_2007.pdf">[1]</a> <a class="reference external" href="https://arxiv.org/pdf/0804.2969.pdf">[2]</a> <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2798744/">[3]</a> if it’s better to use a single model or doubly robust estimation. As for me, I still like using them because at least it gives me two possibilities of being correct.</p>
 </div>
-<div class="section" id="keys-ideias">
-<h2>Keys Ideias<a class="headerlink" href="#keys-ideias" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="keys-ideas">
+<h2>Keys Ideas<a class="headerlink" href="#keys-ideas" title="Permalink to this headline">¶</a></h2>
 <p>Here, we saw a simple way of combining linear regression with the propensity score to produce a doubly robust estimator. This estimator bears that name because it only requires one of the models to be correct. If the propensity score model is correct, we will be able to identify the causal effect even if the outcome model is wrong. On the flip side, if the outcome model is correct, we will also be able to identify the causal effect even if the propensity score model is wrong.</p>
 </div>
 <div class="section" id="references">

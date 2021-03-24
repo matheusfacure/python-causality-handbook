@@ -14,27 +14,27 @@
 <ellipse fill="none" stroke="black" cx="27" cy="-162" rx="27" ry="18"/>
 <text text-anchor="middle" x="27" y="-158.3" font-family="Times,serif" font-size="14.00">A</text>
 </g>
-<!-- C -->
+<!-- B -->
 <g id="node2" class="node">
-<title>C</title>
+<title>B</title>
 <ellipse fill="none" stroke="black" cx="27" cy="-90" rx="27" ry="18"/>
-<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00">C</text>
+<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00">B</text>
 </g>
-<!-- A&#45;&gt;C -->
+<!-- A&#45;&gt;B -->
 <g id="edge1" class="edge">
-<title>A&#45;&gt;C</title>
+<title>A&#45;&gt;B</title>
 <path fill="none" stroke="black" d="M27,-143.7C27,-135.98 27,-126.71 27,-118.11"/>
 <polygon fill="black" stroke="black" points="30.5,-118.1 27,-108.1 23.5,-118.1 30.5,-118.1"/>
 </g>
-<!-- B -->
+<!-- C -->
 <g id="node3" class="node">
-<title>B</title>
+<title>C</title>
 <ellipse fill="none" stroke="black" cx="27" cy="-18" rx="27" ry="18"/>
-<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00">B</text>
+<text text-anchor="middle" x="27" y="-14.3" font-family="Times,serif" font-size="14.00">C</text>
 </g>
-<!-- C&#45;&gt;B -->
+<!-- B&#45;&gt;C -->
 <g id="edge2" class="edge">
-<title>C&#45;&gt;B</title>
+<title>B&#45;&gt;C</title>
 <path fill="none" stroke="black" d="M27,-71.7C27,-63.98 27,-54.71 27,-46.11"/>
 <polygon fill="black" stroke="black" points="30.5,-46.1 27,-36.1 23.5,-46.1 30.5,-46.1"/>
 </g>

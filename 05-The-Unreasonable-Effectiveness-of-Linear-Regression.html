@@ -597,7 +597,7 @@ log(hwage)_i = \beta_0 + \beta_1 educ_i + u_i
 </tr>
 </table></div></div>
 </div>
-<p>The estimate of \(\beta_1\) is 0.0529, with a 95% confidence interval of (0.040, 0.066). This means that this model predicts that wages will increase about 5.3% for every additional year of education. This percentage increase is inline with the belief that education impacts wages in an exponential fashion: we expect that going from 8 to 9 years of education to be more rewarding than going from 2 to 3 years.</p>
+<p>The estimate of \(\beta_1\) is 0.0596, with a 95% confidence interval of (0.046, 0.073). This means that this model predicts that wages will increase about 5.9% for every additional year of education. This percentage increase is inline with the belief that education impacts wages in an exponential fashion: we expect that going from 8 to 9 years of education to be more rewarding than going from 2 to 3 years.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
@@ -925,7 +925,7 @@ Wage_i = \alpha + \kappa \ Educ_i + A_i'\beta + u_i
 <div class="cell_output docutils container">
 <img alt="_images/05-The-Unreasonable-Effectiveness-of-Linear-Regression_25_0.svg" src="_images/05-The-Unreasonable-Effectiveness-of-Linear-Regression_25_0.svg" /></div>
 </div>
-<p>Now, back to our question, is the parameter we’ve estimated for the impact of <code class="docutils literal notranslate"><span class="pre">educ</span></code> on wage casual? I’m sorry to bring it to you, but that will depend on our ability to argue in favor or against that fact that all confounders have been included in the model. Personally, I think they haven’t. For instance, we haven’t included family wealth. Even if we included family education, that can only be seen as a proxy for wealth. We’ve also not accounted for factors like personal ambition. It could be that ambition is what causes both more years of education and higher wage, so it is a confounder. This is to show that <strong>causal inference with non-random or observational data should always be taken with a grain of salt</strong>. We can never be sure that all confounders were accounted for.</p>
+<p>Now, back to our question, is the parameter we’ve estimated for the impact of <code class="docutils literal notranslate"><span class="pre">educ</span></code> on wage causal? I’m sorry to bring it to you, but that will depend on our ability to argue in favor or against that fact that all confounders have been included in the model. Personally, I think they haven’t. For instance, we haven’t included family wealth. Even if we included family education, that can only be seen as a proxy for wealth. We’ve also not accounted for factors like personal ambition. It could be that ambition is what causes both more years of education and higher wage, so it is a confounder. This is to show that <strong>causal inference with non-random or observational data should always be taken with a grain of salt</strong>. We can never be sure that all confounders were accounted for.</p>
 </div>
 <div class="section" id="key-ideas">
 <h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>

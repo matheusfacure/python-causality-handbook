@@ -428,12 +428,12 @@
 <div class="section" id="crash-course-in-graphical-models">
 <h2>Crash Course in Graphical Models<a class="headerlink" href="#crash-course-in-graphical-models" title="Permalink to this headline">¶</a></h2>
 <p>There are <a class="reference external" href="https://www.coursera.org/specializations/probabilistic-graphical-models">whole semesters on graphical models</a>. But, for our purpose, it is just (very) important that we understand what kind of independence and conditional independence assumptions a graphical model entails. As we shall see, independence flows through a graphical model like water flows through a stream. We can stop this flow or we can enable it, depending on how we treat the variables in it. To understand this, let’s examine some common graphical structures and examples. They will be quite simple, but they are the sufficient building blocks to understand everything about independence and conditional independence on graphical models.</p>
-<p>First, look at this very simple graph. A causes B which causes C. Or X causes Y which causes Z.</p>
+<p>First, look at this very simple graph. A causes B, B causes C. Or X causes Y which causes Z.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">)</span>
 
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">)</span>

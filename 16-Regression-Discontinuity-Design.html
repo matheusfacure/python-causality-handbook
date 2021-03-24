@@ -392,7 +392,7 @@
 <div><p>When the intelligent and animal souls are held together in one embrace, they can be kept from separating.</p>
 </div></blockquote>
 <p>- Tao Te Ching, Lao Tzu.</p>
-<p>Which means that <strong>when we do see jumps and spikes, they are probably artificial</strong> and often man made situations. These events are usually accompanied by counterfactuals to the normal way of things: if a weird thing happens, this gives us some insight into what would have happened if nature was to work in a different way. Exploring these artificial jumps is at the core of Regression Discontinuity Design.</p>
+<p>Which means that <strong>when we do see jumps and spikes, they are probably artificial</strong> and often man-made situations. These events are usually accompanied by counterfactuals to the normal way of things: if a weird thing happens, this gives us some insight into what would have happened if nature was to work in a different way. Exploring these artificial jumps is at the core of Regression Discontinuity Design.</p>
 <p><img alt="img" src="_images/smooth.png" /></p>
 <p>The basic setup goes like this. Imagine that you have a treatment variable \(T\) and potential outcomes \(Y_0\) and \(Y_1\). The treatment T is a discontinuous function of an observed running variable \(R\) such that</p>
 <p><span class="math notranslate nohighlight">\(
@@ -425,7 +425,7 @@ D_i = \mathcal{1}\{R_i&gt;c\}
 </div>
 </div>
 </div>
-<p>To do so we can grab some mortality data aggregated by age. Each row is the average age of a group of people and the average mortality by all causes (<code class="docutils literal notranslate"><span class="pre">all</span></code>), by moving veiche accident (<code class="docutils literal notranslate"><span class="pre">mva</span></code>) and by suicide (<code class="docutils literal notranslate"><span class="pre">suicide</span></code>).</p>
+<p>To do so we can grab some mortality data aggregated by age. Each row is the average age of a group of people and the average mortality by all causes (<code class="docutils literal notranslate"><span class="pre">all</span></code>), by moving vehicle accident (<code class="docutils literal notranslate"><span class="pre">mva</span></code>) and by suicide (<code class="docutils literal notranslate"><span class="pre">suicide</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drinking</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/drinking.csv&quot;</span><span class="p">)</span>
@@ -536,11 +536,14 @@ D_i = \mathcal{1}\{R_i&gt;c\}
 \lim_{r \to c^-} E[Y_{ti}|R_i=r] = \lim_{r \to c^+} E[Y_{ti}|R_i=r]
 \]</div>
 <p>If this holds true, we can find the causal effect at the threshold</p>
-<p>\begin{align}
-\lim_{r \to c^+} E[Y_{ti}|R_i=r] - \lim_{r \to c^-} E[Y_{ti}|R_i=r]=&amp;\lim_{r \to c^+} E[Y_{1i}|R_i=r] - \lim_{r \to c^-} E[Y_{0i}|R_i=r] \
-=&amp; E[Y_{1i}|R_i=r] - E[Y_{0i}|R_i=r] \
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\lim_{r \to c^+} E[Y_{ti}|R_i=r] - \lim_{r \to c^-} E[Y_{ti}|R_i=r]=&amp;\lim_{r \to c^+} E[Y_{1i}|R_i=r] - \lim_{r \to c^-} E[Y_{0i}|R_i=r] \\
+=&amp; E[Y_{1i}|R_i=r] - E[Y_{0i}|R_i=r] \\
 =&amp; E[Y_{1i} - Y_{0i}|R_i=r]
-\end{align}</p>
+\end{align}
+\end{split}\]</div>
 <p>This is, in its own way, a sort of Local Average Treatment Effect (LATE), since we can only know it at the threshold. In this setting, we can think of RDD as a local randomized trial. For those at the threshold, the treatment could have gone either way and, by chance, some people fell below the threshold, and some people fell above. In our example, at the same point in time, some people are just above 21 years and some people are just below 21. What determines this is if someone was born some days later or not, which is pretty random. For this reason, RDD provides a very compelling causal story. It is not the golden standard of RCT, but it is close.</p>
 <p>Now, to estimate the treatment effect at the threshold, all we need to do is estimate both of the limits in the formula above and compare them. The simplest way to do that is by running a linear regression</p>
 <p><img alt="img" src="_images/ols.png" /></p>

@@ -371,7 +371,7 @@
 <div class="section" id="regression-with-grouped-data">
 <h2>Regression With Grouped Data<a class="headerlink" href="#regression-with-grouped-data" title="Permalink to this headline">¶</a></h2>
 <p>Not all data points are created equal. If we look again at our ENEM dataset, we trust the scores of big schools much more than the scores from small schools. This is not to say that big schools are better or anything. It is just due to the fact that their big size imply less variance.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -389,7 +389,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">876</span><span class="p">)</span>
 <span class="n">enem</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/enem_scores.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
@@ -675,7 +675,7 @@
               <span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;lhwage&quot;</span><span class="p">:</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;IQ&quot;</span><span class="p">:</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">:</span><span class="s2">&quot;count&quot;</span><span class="p">})</span>
               <span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
 
-<span class="n">model_4</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;lhwage ~ educ + IQ&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">group_wage</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">model_4</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">wls</span><span class="p">(</span><span class="s1">&#39;lhwage ~ educ + IQ&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">group_wage</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">group_wage</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of observations:&quot;</span><span class="p">,</span> <span class="n">model_4</span><span class="o">.</span><span class="n">nobs</span><span class="p">)</span>
 <span class="n">model_4</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
@@ -690,13 +690,13 @@
       <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th> <td>    1.9747</td> <td>    0.427</td> <td>    4.629</td> <td> 0.002</td> <td>    0.966</td> <td>    2.983</td>
+  <th>Intercept</th> <td>    2.0177</td> <td>    0.512</td> <td>    3.939</td> <td> 0.006</td> <td>    0.806</td> <td>    3.229</td>
 </tr>
 <tr>
-  <th>educ</th>      <td>    0.0464</td> <td>    0.034</td> <td>    1.377</td> <td> 0.211</td> <td>   -0.033</td> <td>    0.126</td>
+  <th>educ</th>      <td>    0.0343</td> <td>    0.034</td> <td>    0.998</td> <td> 0.352</td> <td>   -0.047</td> <td>    0.116</td>
 </tr>
 <tr>
-  <th>IQ</th>        <td>    0.0041</td> <td>    0.008</td> <td>    0.486</td> <td> 0.642</td> <td>   -0.016</td> <td>    0.024</td>
+  <th>IQ</th>        <td>    0.0054</td> <td>    0.009</td> <td>    0.579</td> <td> 0.581</td> <td>   -0.017</td> <td>    0.027</td>
 </tr>
 </table></div></div>
 </div>
@@ -1057,7 +1057,7 @@ E\{ \ (E[Y_i|T=1, Group_i] - E[Y_i|T=0, Group_i])w(Group_i) \ \}
 <p>\(w(Group_i)\) is not exactly, but is proportional to the variance of the treatment in the group \(Var(T_i|Group_i)\). One natural question that arises from this is why not use the full nonparametric estimator, where the group weight is the sample size? This indeed is a valid estimator, but it is not what regression does. By using the treatment variance, regression is placing more weight on groups where the treatment varies a lot. This makes intuitive sense. If the treatment was almost constant (say 1 treated and everyone else untreated), it doesn’t matter its sample size. It wouldn’t provide much information about the treatment effect.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_dummy_2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;hwage ~ C(educ) + C(IQ_bins)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wage</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_dummy_2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;hwage ~ C(educ) + C(IQ_bins)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wage_ed_bins</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">model_dummy_2</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
