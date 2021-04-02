@@ -75,45 +75,45 @@
 <path fill="none" stroke="#000000" d="M225.1082,-72.2022C229.6082,-63.8944 235.059,-53.8316 240.0363,-44.6427"/>
 <polygon fill="#000000" stroke="#000000" points="243.1177,-46.3025 244.803,-35.8425 236.9626,-42.9685 243.1177,-46.3025"/>
 </g>
-<!-- Person (Beauty, Ingeligence...) -->
+<!-- Person (Beauty, Intelligence...) -->
 <g id="node7" class="node">
-<title>Person (Beauty, Ingeligence...)</title>
+<title>Person (Beauty, Intelligence...)</title>
 <ellipse fill="none" stroke="#000000" cx="178.4677" cy="-306" rx="119.1136" ry="18"/>
-<text text-anchor="middle" x="178.4677" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#000000">Person (Beauty, Ingeligence...)</text>
+<text text-anchor="middle" x="178.4677" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#000000">Person (Beauty, Intelligence...)</text>
 </g>
-<!-- Person (Beauty, Ingeligence...)&#45;&gt;Marriage_1 -->
+<!-- Person (Beauty, Intelligence...)&#45;&gt;Marriage_1 -->
 <g id="edge6" class="edge">
-<title>Person (Beauty, Ingeligence...)&#45;&gt;Marriage_1</title>
+<title>Person (Beauty, Intelligence...)&#45;&gt;Marriage_1</title>
 <path fill="none" stroke="#000000" d="M168.6264,-287.8314C164.205,-279.6688 158.8973,-269.87 154.0292,-260.8827"/>
 <polygon fill="#000000" stroke="#000000" points="157.0112,-259.0393 149.1708,-251.9134 150.8562,-262.3734 157.0112,-259.0393"/>
 </g>
-<!-- Person (Beauty, Ingeligence...)&#45;&gt;Income_1 -->
+<!-- Person (Beauty, Intelligence...)&#45;&gt;Income_1 -->
 <g id="edge9" class="edge">
-<title>Person (Beauty, Ingeligence...)&#45;&gt;Income_1</title>
+<title>Person (Beauty, Intelligence...)&#45;&gt;Income_1</title>
 <path fill="none" stroke="#000000" d="M129.1653,-289.5102C110.9306,-281.0369 91.7361,-268.8593 79.4677,-252 66.581,-234.2909 62.64,-209.5853 61.7491,-190.5381"/>
 <polygon fill="#000000" stroke="#000000" points="65.2442,-190.2692 61.5312,-180.3463 58.2458,-190.4189 65.2442,-190.2692"/>
 </g>
-<!-- Person (Beauty, Ingeligence...)&#45;&gt;Marriage_2 -->
+<!-- Person (Beauty, Intelligence...)&#45;&gt;Marriage_2 -->
 <g id="edge7" class="edge">
-<title>Person (Beauty, Ingeligence...)&#45;&gt;Marriage_2</title>
+<title>Person (Beauty, Intelligence...)&#45;&gt;Marriage_2</title>
 <path fill="none" stroke="#000000" d="M187.4059,-288.0042C192.0071,-277.733 197.1308,-264.457 199.4677,-252 202.4179,-236.2743 202.5435,-231.7016 199.4677,-216 197.7054,-207.0032 194.4367,-197.6139 190.948,-189.2358"/>
 <polygon fill="#000000" stroke="#000000" points="194.0829,-187.6709 186.8286,-179.9491 187.6841,-190.5094 194.0829,-187.6709"/>
 </g>
-<!-- Person (Beauty, Ingeligence...)&#45;&gt;Income_2 -->
+<!-- Person (Beauty, Intelligence...)&#45;&gt;Income_2 -->
 <g id="edge10" class="edge">
-<title>Person (Beauty, Ingeligence...)&#45;&gt;Income_2</title>
+<title>Person (Beauty, Intelligence...)&#45;&gt;Income_2</title>
 <path fill="none" stroke="#000000" d="M128.9388,-289.5858C106.8146,-280.7032 81.3158,-268.1928 61.4677,-252 30.6793,-226.8815 20.8642,-217.7517 8.4677,-180 3.476,-164.7986 3.734,-159.2837 8.4677,-144 11.6451,-133.7413 17.5185,-123.6981 23.6645,-115.1092"/>
 <polygon fill="#000000" stroke="#000000" points="26.5293,-117.1245 29.8116,-107.051 20.9637,-112.8789 26.5293,-117.1245"/>
 </g>
-<!-- Person (Beauty, Ingeligence...)&#45;&gt;Marriage_3 -->
+<!-- Person (Beauty, Intelligence...)&#45;&gt;Marriage_3 -->
 <g id="edge8" class="edge">
-<title>Person (Beauty, Ingeligence...)&#45;&gt;Marriage_3</title>
+<title>Person (Beauty, Intelligence...)&#45;&gt;Marriage_3</title>
 <path fill="none" stroke="#000000" d="M192.4781,-287.7759C199.7726,-277.6519 208.4082,-264.5891 214.4677,-252 229.0372,-221.7308 232.2949,-213.1924 237.4677,-180 239.9315,-164.1908 240.5435,-159.7016 237.4677,-144 235.7054,-135.0032 232.4367,-125.6139 228.948,-117.2358"/>
 <polygon fill="#000000" stroke="#000000" points="232.0829,-115.6709 224.8286,-107.9491 225.6841,-118.5094 232.0829,-115.6709"/>
 </g>
-<!-- Person (Beauty, Ingeligence...)&#45;&gt;Income_3 -->
+<!-- Person (Beauty, Intelligence...)&#45;&gt;Income_3 -->
 <g id="edge11" class="edge">
-<title>Person (Beauty, Ingeligence...)&#45;&gt;Income_3</title>
+<title>Person (Beauty, Intelligence...)&#45;&gt;Income_3</title>
 <path fill="none" stroke="#000000" d="M202.4955,-288.3392C213.9825,-278.7573 227.034,-266.0161 235.4677,-252 269.7141,-195.0857 266.4966,-173.8147 275.4677,-108 277.6287,-92.1466 278.4179,-87.7257 275.4677,-72 273.7881,-63.0465 270.6687,-53.67 267.3385,-45.2901"/>
 <polygon fill="#000000" stroke="#000000" points="270.526,-43.8414 263.4059,-35.9958 264.0794,-46.5692 270.526,-43.8414"/>
 </g>

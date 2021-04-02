@@ -490,7 +490,7 @@
 </div>
 <p>Since the data is random, you know that a simple difference in means estimates the Average Treatment Effect. In other words, nothing can have caused the treatment but the randomisation, so the potential outcomes are independent of the treatment: \((Y_0, Y_1)\perp T\).</p>
 <p><span class="math notranslate nohighlight">\(
-ATE = E[Y_i|T_i=1] - E[Y_i|T_i=1]
+ATE = E[Y_i|T_i=1] - E[Y_i|T_i=0]
 \)</span></p>
 <p>Since you are smart and want to place a confidence interval around your estimate, you use a linear regression.</p>
 <div class="cell docutils container">
@@ -1064,21 +1064,36 @@ E[Y_0|T=0, Agreement=1] &gt; E[Y_0|T=1, Agreement=1]
 <img alt="_images/07-Beyond-Confounders_41_0.png" src="_images/07-Beyond-Confounders_41_0.png" />
 </div>
 </div>
-<p>When a data scientist sees this, the first idea that pops into his head is to break up modeling into 2 steps. The first is the participation, that is, the probability that \(Y &gt; 0\). In our spend example, this would be modeling if the customer decided to spend or not. The second part models \(Y\) for those that decided to participate. It is the Conditional-on-Positives effect. In our case, this would be how much the customer spends after he or she decided they would spend anything. If we would like to estimate the effect of the treatment \(T\) on expenditures, it would look something like this under the two model approach</p>
+<p>When a data scientist sees this, the first idea that pops into his head is to break up modeling into 2 steps. The first is the participation, that is, the probability that \(Y &gt; 0\). In our spend example, this would be modeling if the customer decided to spend or not. The second part models \(Y\) for those that decided to participate. It is the Conditional-on-Positives effect. In our case, this would be how much the customer spends after he or she decided they would spend anything. If we would like to estimate the effect of the treatment \(T\) on expenditures, it would look something</p>
 <p><span class="math notranslate nohighlight">\(
 E[Y_i|T_i] = E[Y_i|Y_i&gt;0, T_i]P(Y_i&gt;0|T_i)
 \)</span></p>
-<p>There is nothing wrong with the participation model \(P(Y_i&gt;0|T_i)\). In fact, if \(T\) is randomly assigned, it will capture the increase in probability of spending due to the treatment. The issue is with the COP part. <strong>It will be biased even under random assignment</strong>:</p>
+<p>There is nothing wrong with the participation model \(P(Y_i&gt;0|T_i)\). In fact, if \(T\) is randomly assigned, it will capture the increase in probability of spending due to the treatment. The issue is with the COP part. <strong>It will be biased even under random assignment</strong>. To see that, let’s break up the treatment effect. Under random assignment, it is equal to the difference in means</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*} 
-E[Y_i|Y_i&gt;0, T_i]&amp;=E[Y_i|Y_i&gt;0, T_i=1]-E[Y_i|Y_i&gt;0, T_i=0] \\
-&amp;=E[Y_{i1}|Y_{i1}&gt;0]-E[Y_{i0}|Y_{i0}&gt;0] \\
+&amp;E[Y_i|T_i=1] - E[Y_i|T_i=0]\\
+&amp;=E[Y_i|Y_i&gt;0, T_i=1]P(Y_i&gt;0|T_i=1) - E[Y_i|Y_i&gt;0, T_i=0]P(Y_i&gt;0|T_i=0)\\
+&amp;=\underbrace{\{P(Y_i&gt;0|T_i=1) - P(Y_i&gt;0|T_i=0)\}}_{Participation \ Effect} * E[Y_i|Y_i&gt;0, T_i=1]\\
+&amp;+\underbrace{\{E[Y_i|Y_i&gt;0, T_i=1] - E[Y_i|Y_i&gt;0, T_i=1]\}}_{COP \ Effect} * P(Y_i&gt;0|T_i=0)
+\end{align*} 
+\end{split}\]</div>
+<p>Where the last equality comes from adding and subtracting \(E[Y_i|Y_i&gt;0, T_i=1]P(Y_i&gt;0|T_i=0)\) and rearranging the terms. This means that the difference in averages is composed of two parts: first, it’s the difference in the probability that the outcome \(y\) is positive. This is called the participation effect because it measures the increase in the probability that customers will participate in spending. Second, it’s the difference in the outcome conditioned on participation, the COP effect. So far so good. There is nothing wrong with this. It is a mathematical truth. The problem comes when we try to estimate each part separately</p>
+<p>This becomes more evident if we analyse the COP effect further.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*} 
+E[Y_i|Y_i&gt;0, T_i=1] - E[Y_i|Y_i&gt;0, T_i=1]&amp;=E[Y_{i1}|Y_{i1}&gt;0]-E[Y_{i0}|Y_{i0}&gt;0] \\
 &amp;=\underbrace{E[Y_{i1} - Y_{i0}|Y_{i1}&gt;0]}_{Causal \ Effect} + \underbrace{\{ E[Y_{i0}|Y_{i1}&gt;0] - E[Y_{i0}|Y_{i0}&gt;0] \}}_{Selection \ Bias}
 \end{align*} 
 \end{split}\]</div>
-<p>When we break up the COP effect, we get first the causal effect on the participant subpopulation. In our example, this would be the causal effect on those that decide to spend something. Second, we get a bias term which is the difference in \(Y_0\) for those that decide to participate when assigned to the treatment (\(E[Y_{i0}|Y_{i1}&gt;0]\)) and those that that participate even without the treatment (\(E[Y_{i0}|Y_{i0}&gt;0]\)). In our case, this bias is probably negative, since those that spend when assigned to the treatment, had they not received the treatment, would probably spend less than those that spend even without the treatment \(E[Y_{i0}|Y_{i1}&gt;0] &lt; E[Y_{i0}|Y_{i0}&gt;0]\).</p>
+<p>where the second equality comes after we add and subtract \(E[Y_{i0}|Y_{i1}&gt;0]\). When we break up the COP effect, we get first the causal effect on the participant subpopulation. In our example, this would be the causal effect on those that decide to spend something. Second, we get a bias term which is the difference in \(Y_0\) for those that decide to participate when assigned to the treatment (\(E[Y_{i0}|Y_{i1}&gt;0]\)) and those that that participate even without the treatment (\(E[Y_{i0}|Y_{i0}&gt;0]\)). In our case, this bias is probably negative, since those that spend when assigned to the treatment, had they not received the treatment, would probably spend less than those that spend even without the treatment \(E[Y_{i0}|Y_{i1}&gt;0] &lt; E[Y_{i0}|Y_{i0}&gt;0]\).</p>
 <p><img alt="img" src="_images/cop.png" /></p>
+<p>Now, I know that COP bias is super counterintuitive at first, so I think it is worth going through a visual example. Let’s say that we want to estimate how a marketing campaign increases how much people spend on our product. This marketing campaign has been randomized, so we don’t need to worry about confounding. In this example, we can break up the customers into two segments. First, there are those that will only buy our products if they see a marketing campaign. Let’s call these customers the frugal ones. They don’t spend unless we give them an extra push. Then there are the customers that will spend even without the campaign. The campaign makes them spend more, but they would already spend without seeing it anyway. Let’s call them the rich customers. In the figure, I’ve displayed the counterfactuals in light colors and dashed lines.</p>
+<p><img alt="img" src="_images/cop-ex1.png" /></p>
+<p>To estimate the ATE of the campaign, since we have randomization, all we need to do is compare the treated with the untreated. But, suppose we use the COP formulation where we break up estimation into two models, a participation model that estimates \(P(Y_i&gt;0|T_i)\) and the COP, which estimates \(E[Y_i|Y_i&gt;0]\). This removes everyone that didn’t spend from the analysis.</p>
+<p><img alt="img" src="_images/cop-ex2.png" /></p>
+<p>When we do that, the treated and control are no longer comparable. As we can see, the treated is now only composed of the segment of customers that will spend even without the campaign. Also notice that we can even know the direction of the bias here. It will be \(E[Y_{i0}|Y_{i1}&gt;0] - E[Y_{i0}|Y_{i0}&gt;0]\) or \(E[Y_{i0}|\text{Frugal and Rich}] - E[Y_{i0}|Rich]\). This is obviously negative, as the rich spend more than the frugal customers. As a result, once we filter only the participant population, our estimate of the ATE becomes biased, even if there was no bias at first due to randomization. I sincerely hope this convinces you to avoid COP like the plague. I see too many Data Scientists doing this separate estimation, unaware of the problems that it brings.</p>
 <p>To wrap up selection bias, we need to always remind ourselves to never control for a variable that is either in between the treatment and the outcome or is a common effect of the outcome and the treated. In graphical language, here is what bad control looks like:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1092,7 +1107,7 @@ E[Y_i|Y_i&gt;0, T_i]&amp;=E[Y_i|Y_i&gt;0, T_i=1]-E[Y_i|Y_i&gt;0, T_i=0] \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/07-Beyond-Confounders_43_0.svg" src="_images/07-Beyond-Confounders_43_0.svg" /></div>
+<img alt="_images/07-Beyond-Confounders_44_0.svg" src="_images/07-Beyond-Confounders_44_0.svg" /></div>
 </div>
 </div>
 </div>
