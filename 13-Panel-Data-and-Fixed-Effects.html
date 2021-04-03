@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel Data and Fixed Effects &#8212; Causal Inference for the Brave and True</title>
+    <title>13 - Panel Data and Fixed Effects &#8212; Causal Inference for the Brave and True</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -57,8 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Difference-in-Difference" href="14-Difference-in-Difference.html" />
-    <link rel="prev" title="Doubly Robust Estimation" href="12-Doubly-Robust-Estimation.html" />
+    <link rel="next" title="14 - Difference-in-Difference" href="14-Difference-in-Difference.html" />
+    <link rel="prev" title="12 - Doubly Robust Estimation" href="12-Doubly-Robust-Estimation.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -104,82 +104,82 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="01-Introduction-To-Causality.html">
-   Introduction To Causality
+   01 - Introduction To Causality
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02-Randomised-Experiments.html">
-   Randomised Experiments
+   02 - Randomised Experiments
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
-   Stats Review: The Most Dangerous Equation
+   03 - Stats Review: The Most Dangerous Equation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04-Graphical-Causal-Models.html">
-   Graphical Causal Models
+   04 - Graphical Causal Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
-   The Unreasonable Effectiveness of Linear Regression
+   05 - The Unreasonable Effectiveness of Linear Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
-   Grouped and Dummy Regression
+   06 - Grouped and Dummy Regression
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07-Beyond-Confounders.html">
-   Beyond Confounders
+   07 - Beyond Confounders
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="08-Instrumental-Variables.html">
-   Instrumental Variables
+   08 - Instrumental Variables
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
-   Non Compliance and LATE
+   09 - Non Compliance and LATE
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="10-Matching.html">
-   Matching
+   10 - Matching
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="11-Propensity-Score.html">
-   Propensity Score
+   11 - Propensity Score
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
-   Doubly Robust Estimation
+   12 - Doubly Robust Estimation
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Panel Data and Fixed Effects
+   13 - Panel Data and Fixed Effects
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="14-Difference-in-Difference.html">
-   Difference-in-Difference
+   14 - Difference-in-Difference
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="15-Synthetic-Control.html">
-   Synthetic Control
+   15 - Synthetic Control
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
-   Regression Discontinuity Design
+   16 - Regression Discontinuity Design
   </a>
  </li>
 </ul>
@@ -191,27 +191,32 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="17-Predictive-Models-101.html">
-   Predictive Models 101
+   17 - Predictive Models 101
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="18-When-Prediction-Fails.html">
-   When Prediction Fails
+   18 - When Prediction Fails
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="19-Causal-Models.html">
-   Building a Causal Model
+   19 - Building a Causal Model
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="20-Evaluating-Causal-Models.html">
-   Evaluating Causal Models
+   20 - Evaluating Causal Models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
-   Debiasing with Orthogonalization
+   21 - Debiasing with Orthogonalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22-Debiasing-with-Propensity-Score.html">
+   22 - Debiasing with Propensity Score
   </a>
  </li>
 </ul>
@@ -382,7 +387,7 @@
               <div>
                 
   <div class="section" id="panel-data-and-fixed-effects">
-<h1>Panel Data and Fixed Effects<a class="headerlink" href="#panel-data-and-fixed-effects" title="Permalink to this headline">¶</a></h1>
+<h1>13 - Panel Data and Fixed Effects<a class="headerlink" href="#panel-data-and-fixed-effects" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="controlling-what-you-cannot-see">
 <h2>Controlling What you Cannot See<a class="headerlink" href="#controlling-what-you-cannot-see" title="Permalink to this headline">¶</a></h2>
 <p>Methods like propensity score, linear regression and matching are very good at controlling for confounding in non-random data, but they rely on a key assumption: conditional unconfoundedness</p>
@@ -1027,7 +1032,7 @@ dtype: float64
 </div>
 <div class="section" id="time-effects">
 <h2>Time Effects<a class="headerlink" href="#time-effects" title="Permalink to this headline">¶</a></h2>
-<p>Just as we implemented a fixed effect for the individual level, we could design a fixed effect for the time level. If adding a dummy for each individual controls for fixed individual characteristics, adding a time dummy would control for variables that are fixed across time. One example of such a variable is inflation. Prices and salary tend to go up with time. If the wage and marriage proportion also changes with time, we would have time as a confounder. To give a more concrete example, suppose that marriage is increasing with time. Since inflation also makes salary increase with time, some of the positive association we see between marriage and wage would be simply because both are increasing with time. To correct for that, we can add a dummy variable for each time period. In <code class="docutils literal notranslate"><span class="pre">linear</span> <span class="pre">models</span></code>, this is as simple as adding <code class="docutils literal notranslate"><span class="pre">TimeEffects</span></code> to our formula and setting the <code class="docutils literal notranslate"><span class="pre">cluster_time</span></code> to true.</p>
+<p>Just like we did a fixed effect for the individual level, we could design a fixed effect for the time level. If adding a dummy for each individual controls for fixed individual characteristics, adding a time dummy would control for variables that are fixed for each time period, but that might change across time. One example of such a variable is inflation. Prices and salary tend to go up with time, but the inflation on each time period is the same for all entities. To give a more concrete example, suppose that marriage is increasing with time. If the wage and marriage proportion also changes with time, we would have time as a confounder. Since inflation also makes salary increase with time, some of the positive association we see between marriage and wage would be simply because both are increasing with time. To correct for that, we can add a dummy variable for each time period. In <code class="docutils literal notranslate"><span class="pre">linear</span> <span class="pre">models</span></code>, this is as simple as adding <code class="docutils literal notranslate"><span class="pre">TimeEffects</span></code> to our formula and setting the <code class="docutils literal notranslate"><span class="pre">cluster_time</span></code> to true.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">PanelOLS</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s2">&quot;lwage ~ expersq+union+married+hours+EntityEffects+TimeEffects&quot;</span><span class="p">,</span>
@@ -1129,8 +1134,8 @@ If you found this book valuable and you want to support it, please go to <a clas
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="12-Doubly-Robust-Estimation.html" title="previous page">Doubly Robust Estimation</a>
-    <a class='right-next' id="next-link" href="14-Difference-in-Difference.html" title="next page">Difference-in-Difference</a>
+    <a class='left-prev' id="prev-link" href="12-Doubly-Robust-Estimation.html" title="previous page">12 - Doubly Robust Estimation</a>
+    <a class='right-next' id="next-link" href="14-Difference-in-Difference.html" title="next page">14 - Difference-in-Difference</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

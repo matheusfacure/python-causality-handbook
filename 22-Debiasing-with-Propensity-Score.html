@@ -1,0 +1,1595 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>22 - Debiasing with Propensity Score &#8212; Causal Inference for the Brave and True</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="21 - Debiasing with Orthogonalization" href="21-Debiasing-with-Orthogonalization.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part I - The Yang
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   01 - Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   02 - Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   03 - Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   04 - Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   05 - The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   06 - Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   07 - Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   08 - Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   09 - Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   10 - Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   11 - Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   12 - Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
+   13 - Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html">
+   14 - Difference-in-Difference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   15 - Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   16 - Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part II - The Yin
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-Predictive-Models-101.html">
+   17 - Predictive Models 101
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-When-Prediction-Fails.html">
+   18 - When Prediction Fails
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-Causal-Models.html">
+   19 - Building a Causal Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20-Evaluating-Causal-Models.html">
+   20 - Evaluating Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
+   21 - Debiasing with Orthogonalization
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   22 - Debiasing with Propensity Score
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Contribute
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">
+   Patreon
+   <i class="fas fa-external-link-alt">
+   </i>
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/22-Debiasing-with-Propensity-Score.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F22-Debiasing-with-Propensity-Score.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/22-Debiasing-with-Propensity-Score.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inverse-probability-of-treatment-weighting">
+   Inverse Probability of Treatment Weighting
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stored-propensity-score">
+     Stored Propensity Score
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimated-propensity-score">
+     Estimated Propensity Score
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-weakness-of-propensity-score">
+   The Weakness of Propensity Score
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#positivity-or-common-support">
+   Positivity or Common Support
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#positivity-in-practice">
+     Positivity In Practice
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contribute">
+   Contribute
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="debiasing-with-propensity-score">
+<h1>22 - Debiasing with Propensity Score<a class="headerlink" href="#debiasing-with-propensity-score" title="Permalink to this headline">¶</a></h1>
+<p>Previously, we saw how to go from a biased dataset to one where the treatment looked as good as randomly assigned. We used orthogonalization for that. That technique was based on predicting the treatment and the outcome and then replacing both with their predictions’ residuals.</p>
+<p><span class="math notranslate nohighlight">\(
+t^* = t - M_t(X)
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(
+y^* = y - M_y(X)
+\)</span></p>
+<p>That alone is a powerful technique. It works both when the treatment is continuous or binary. Now, we’ll take a look at another method which is based on the propensity score. Since the propensity score is best defined when the treatment is binary or categorical, this debiasing technique will also work only for categorical  or binary treatments. Still, in some situations, it can be more reliable than orthogonalization and it is very much worth learning.</p>
+<p>But first, we need to change context a little bit. We were talking about ice cream prices, which is a continuous treatment. Now, we will look into marketing emails, a binary treatment. And just as a side note, it is totally fair play to discretize a continuous treatment into buckets so it looks categorial (for example, you can take price, which is continuous, and discretize it in bins of R$ 2.00 like [2.00, 4.00, 6.00, 8.00]). Back to the emails now.</p>
+<p>The situation goes like this. You work at a financial company (I’m not very creative with my examples, sorry) that supplies, not surprisingly, financial products such as life insurance, savings account, investment account and so on. The company is coming up with a new financial consulting service and wants to market it to its customers. To do so, the marketing team tried out three different emails: <code class="docutils literal notranslate"><span class="pre">em1</span></code>, <code class="docutils literal notranslate"><span class="pre">em2</span></code> and <code class="docutils literal notranslate"><span class="pre">em3</span></code>.</p>
+<p>Because the marketing team is very well educated in statistics and experimental design, they don’t simply send the email to everyone and see what happend. Instead, they design an experiment where each customer has a probability of receiving the email. This probability is based on their business intuition to who will be more responsive to the email. For example, <code class="docutils literal notranslate"><span class="pre">em1</span></code> is targeted to a mass market audience, that don’t invest much and that don’t have a high income. These people will have a higher probability of receiving <code class="docutils literal notranslate"><span class="pre">em1</span></code>. Finally, after having defined that probability, we randomize the assignment so that customers receive the email according to their assigned probabilities.</p>
+<p><img alt="img" src="_images/ps-experiment.png" /></p>
+<p>As a side note, this is the best way I know of that uses business expertise to target an audience while still allowing you to make valid inference about how effective the marketing strategy is. The marketing team not only assigned the email according to this probability function, but they actually stored each customers’ probability, which will be very handy later on.</p>
+<p>Here is what the data from this experiment looks like. We have data on four customer attributes: <code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">income</span></code>, how much they have on life <code class="docutils literal notranslate"><span class="pre">insurance</span></code> and how much they have <code class="docutils literal notranslate"><span class="pre">invested</span></code>. These are the attributes which the marketing team used to assign the probability of receiving each email. Those probabilities are stored in columns <code class="docutils literal notranslate"><span class="pre">em1_ps</span></code>, <code class="docutils literal notranslate"><span class="pre">em2_ps</span></code> and <code class="docutils literal notranslate"><span class="pre">em3_ps</span></code>. Then, we have information on whether the customer actually received the email on columns <code class="docutils literal notranslate"><span class="pre">em1</span></code>, <code class="docutils literal notranslate"><span class="pre">em2</span></code> and <code class="docutils literal notranslate"><span class="pre">em3</span></code>. These are our treatment variables. Finally, we have the outcome, <code class="docutils literal notranslate"><span class="pre">converted</span></code>, flags if the customer contracted the financial advisory service.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">email</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/invest_email.csv&quot;</span><span class="p">)</span>
+<span class="n">email</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>income</th>
+      <th>insurance</th>
+      <th>invested</th>
+      <th>em1_ps</th>
+      <th>em2_ps</th>
+      <th>em3_ps</th>
+      <th>em1</th>
+      <th>em2</th>
+      <th>em3</th>
+      <th>converted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>44.1</td>
+      <td>4214.66</td>
+      <td>14036.41</td>
+      <td>7988.66</td>
+      <td>0.118507</td>
+      <td>0.045174</td>
+      <td>0.921281</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>39.8</td>
+      <td>1151.27</td>
+      <td>66622.15</td>
+      <td>1000.74</td>
+      <td>0.431123</td>
+      <td>0.005659</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>49.0</td>
+      <td>8047.26</td>
+      <td>14119.53</td>
+      <td>29480.22</td>
+      <td>0.062137</td>
+      <td>0.166706</td>
+      <td>0.840049</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>39.7</td>
+      <td>10558.37</td>
+      <td>14798.26</td>
+      <td>36373.09</td>
+      <td>0.047372</td>
+      <td>0.205684</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>35.3</td>
+      <td>802.15</td>
+      <td>780.84</td>
+      <td>1643.16</td>
+      <td>0.616450</td>
+      <td>0.009292</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As we can see, there are customers with very low probability of receiving <code class="docutils literal notranslate"><span class="pre">em1</span></code>. This is the case of customer 2, which has a probability of only 0.062. Also notice that this customer did not receive <code class="docutils literal notranslate"><span class="pre">em1</span></code>. This is not surprising, given that he had a very low probability of receiving this email.</p>
+<p>Now, contrast this with the following customers. All of them had a very high chance of getting <code class="docutils literal notranslate"><span class="pre">em1</span></code>, but none of them did.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">email</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;em1 == 0&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;em1_ps&gt;0.9&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>income</th>
+      <th>insurance</th>
+      <th>invested</th>
+      <th>em1_ps</th>
+      <th>em2_ps</th>
+      <th>em3_ps</th>
+      <th>em1</th>
+      <th>em2</th>
+      <th>em3</th>
+      <th>converted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2438</th>
+      <td>48.0</td>
+      <td>538.02</td>
+      <td>26276.38</td>
+      <td>1582.82</td>
+      <td>0.913562</td>
+      <td>0.008951</td>
+      <td>0.999208</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2692</th>
+      <td>44.2</td>
+      <td>545.62</td>
+      <td>2377.01</td>
+      <td>743.40</td>
+      <td>0.901065</td>
+      <td>0.004204</td>
+      <td>0.999047</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3152</th>
+      <td>44.6</td>
+      <td>541.42</td>
+      <td>13272.96</td>
+      <td>1455.92</td>
+      <td>0.907929</td>
+      <td>0.008233</td>
+      <td>0.999136</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4175</th>
+      <td>38.0</td>
+      <td>543.20</td>
+      <td>16787.28</td>
+      <td>1302.20</td>
+      <td>0.905007</td>
+      <td>0.007364</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="inverse-probability-of-treatment-weighting">
+<h2>Inverse Probability of Treatment Weighting<a class="headerlink" href="#inverse-probability-of-treatment-weighting" title="Permalink to this headline">¶</a></h2>
+<p><img alt="img" src="_images/again.png" /></p>
+<p>Just to recap the idea behind propensity score debiasing (we’ve already seen it when we discussed propensity score), we are very interested in customers like the ones above. They look a lot like the ones that get <code class="docutils literal notranslate"><span class="pre">em1</span></code>, after all they had a high probability of getting that email. However, they didn’t get it. This makes them awesome candidates to estimate the counterfactual outcome \(Y_0|em1=1\).</p>
+<p>Propensity score debiasing works by encoding this intuitive importance we want to give to customers that look like the treated, but didn’t get the treatment. It will also assign a high importance for those that look like the untreated, but got the treatment. The idea is pretty simple: just <strong>weight every unit by the inverse probability of the treatment they got</strong>. So, if a unit got the treatment, weigh it by \(1/P(treatment=1)\). If a unit did not get the treatment, weigh it by \(1/P(treatment=0)\) or \(1/P(control)\). In the case of binary treatment, this is simply</p>
+<div class="math notranslate nohighlight">
+\[
+W_i = \dfrac{T}{P(T=1|X)} + \dfrac{1-T}{1-P(T=1|X)}
+\]</div>
+<p>For multiple treatments, we can generalize it to</p>
+<div class="math notranslate nohighlight">
+\[
+W_i = \sum^K_{k=0} \dfrac{\mathcal{1}_{K=k} }{P(T=k|X)}
+\]</div>
+<p>Now that we had an idea about how to use the propensity score to do debiasing, let’s check how this works in practice. But first, let’s see what happens when we don’t debias our dataset.</p>
+<p>Like I’ve said before, the treatment is confounded by the customer’s characteristics: age, income, how much they have on insurance and how muc they have on hinvestment.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">confounders</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">,</span> <span class="s2">&quot;insurance&quot;</span><span class="p">,</span> <span class="s2">&quot;invested&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we look at their correlation structure, we can see that these variables are indeed confounders. They are correlated both with the treatment <code class="docutils literal notranslate"><span class="pre">em1</span></code> and the outcome <code class="docutils literal notranslate"><span class="pre">converted</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">email</span><span class="p">[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">,</span> <span class="s2">&quot;converted&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()[[</span><span class="s2">&quot;em1&quot;</span><span class="p">,</span> <span class="s2">&quot;converted&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>em1</th>
+      <th>converted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>age</th>
+      <td>-0.058796</td>
+      <td>0.401759</td>
+    </tr>
+    <tr>
+      <th>income</th>
+      <td>-0.305610</td>
+      <td>-0.054009</td>
+    </tr>
+    <tr>
+      <th>insurance</th>
+      <td>-0.023948</td>
+      <td>-0.076234</td>
+    </tr>
+    <tr>
+      <th>invested</th>
+      <td>-0.242374</td>
+      <td>-0.030250</td>
+    </tr>
+    <tr>
+      <th>em1</th>
+      <td>1.000000</td>
+      <td>0.046598</td>
+    </tr>
+    <tr>
+      <th>converted</th>
+      <td>0.046598</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>If we fail to account for this confounding bias, our causal estimates will be wrong. To give an example, consider the <code class="docutils literal notranslate"><span class="pre">invested</span></code> variable. Those that invest <strong>less</strong> are <strong>more</strong> likely to convert <strong>and</strong> also <strong>more</strong> likely to receive the email. Hence, if we don’t control for investments, it will look like <code class="docutils literal notranslate"><span class="pre">em1</span></code> increases the chance of conversion. But that could be just due to correlation, not causation, as lower levels of investments leads to both higher conversion and a higher chance of getting <code class="docutils literal notranslate"><span class="pre">em1</span></code>.</p>
+<p>Besides looking at the correlation with the confounders, we can also check how the distribution looks like for those that did and didn’t get the email <code class="docutils literal notranslate"><span class="pre">em1</span></code>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">email</span><span class="p">[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">]],</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">],</span> <span class="n">confounders</span><span class="p">)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">plt_df</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em1&quot;</span><span class="p">,</span> <span class="n">col_wrap</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="p">):</span>
+    <span class="n">iter_df</span> <span class="o">=</span> <span class="n">plt_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;variable&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">confounders</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em1&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">iter_df</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">confounders</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Debiasing-with-Propensity-Score_10_0.png" src="_images/22-Debiasing-with-Propensity-Score_10_0.png" />
+</div>
+</div>
+<div class="section" id="stored-propensity-score">
+<h3>Stored Propensity Score<a class="headerlink" href="#stored-propensity-score" title="Permalink to this headline">¶</a></h3>
+<p>Now that we’ve confirmed that the assignment of <code class="docutils literal notranslate"><span class="pre">em1</span></code> is indeed biased, we can work on debiasing it with the propensity score. Now it’s a good time to answer a question that might be in your head: why can’t I just use orthogonalization? Or, more elegantly, when should I use the propensity score instead of orthogonalization. That’s a good question and one I confess I don’t have all the answers for. However, there is one clear case when there is a strong argument for the propensity score.</p>
+<p>When you’ve stored the probabilities of receiving the treatment while conducting your experiment, <strong>propensity score debiasing can be done without having to estimate a model</strong>. If the assignment of the emails was done in a probabilistic way and we’ve stored those probabilities, then we don’t have to rely on models. That’s a huge advantage, because models are never perfect, which means that debiasing with them is also never perfect. Here, we have this situation where we’ve stored the probabilities of the treatments in the columns <code class="docutils literal notranslate"><span class="pre">em1_ps</span></code>, <code class="docutils literal notranslate"><span class="pre">em2_ps</span></code> and <code class="docutils literal notranslate"><span class="pre">em3_ps</span></code>.</p>
+<p>Since we are dealing only with <code class="docutils literal notranslate"><span class="pre">em1</span></code>, we only need the probability in <code class="docutils literal notranslate"><span class="pre">em1_ps</span></code> to do the debiasing. Here is what we’ll do. First, we will generate the debiasing weights by using the formula we’ve seen above. Then, we will resample with replacement from this dataset, using the newly created weights. This means a unit with weight 2 will be resampled twice as often as a unit with weight 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">em1_rnd</span> <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+    <span class="n">em1_w</span> <span class="o">=</span> <span class="n">email</span><span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">email</span><span class="p">[</span><span class="s2">&quot;em1_ps&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">email</span><span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">email</span><span class="p">[</span><span class="s2">&quot;em1_ps&quot;</span><span class="p">])</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s2">&quot;em1_w&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">em1_rnd</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>income</th>
+      <th>insurance</th>
+      <th>invested</th>
+      <th>em1_ps</th>
+      <th>em2_ps</th>
+      <th>em3_ps</th>
+      <th>em1</th>
+      <th>em2</th>
+      <th>em3</th>
+      <th>converted</th>
+      <th>em1_w</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2252</th>
+      <td>44.0</td>
+      <td>5102.43</td>
+      <td>42300.28</td>
+      <td>2294.60</td>
+      <td>0.097928</td>
+      <td>0.012976</td>
+      <td>0.902465</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1.108559</td>
+    </tr>
+    <tr>
+      <th>4364</th>
+      <td>44.0</td>
+      <td>8503.72</td>
+      <td>751.08</td>
+      <td>33314.37</td>
+      <td>0.058805</td>
+      <td>0.188387</td>
+      <td>0.830375</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>17.005333</td>
+    </tr>
+    <tr>
+      <th>752</th>
+      <td>44.4</td>
+      <td>1778.21</td>
+      <td>24615.45</td>
+      <td>3054.08</td>
+      <td>0.279973</td>
+      <td>0.017270</td>
+      <td>0.972922</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3.571777</td>
+    </tr>
+    <tr>
+      <th>3656</th>
+      <td>39.8</td>
+      <td>1752.18</td>
+      <td>487.22</td>
+      <td>1893.95</td>
+      <td>0.284108</td>
+      <td>0.010710</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.396859</td>
+    </tr>
+    <tr>
+      <th>4613</th>
+      <td>43.1</td>
+      <td>1023.04</td>
+      <td>64695.01</td>
+      <td>2220.32</td>
+      <td>0.484638</td>
+      <td>0.012556</td>
+      <td>0.988928</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1.940382</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This resampling should make a new dataset that is debiased. It should have oversampled units that looked like the treated (high <code class="docutils literal notranslate"><span class="pre">em1_ps</span></code>) but did not get the treatment and those that looked like the control (low <code class="docutils literal notranslate"><span class="pre">em1_ps</span></code>), but got the treatment.</p>
+<p>If we look at correlations between the treatment and the confounders, we can see that they essentially vanished.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">em1_rnd</span><span class="p">[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">,</span> <span class="s2">&quot;converted&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()[[</span><span class="s2">&quot;em1&quot;</span><span class="p">,</span> <span class="s2">&quot;converted&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>em1</th>
+      <th>converted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>age</th>
+      <td>-0.021004</td>
+      <td>0.404736</td>
+    </tr>
+    <tr>
+      <th>income</th>
+      <td>-0.026685</td>
+      <td>-0.037946</td>
+    </tr>
+    <tr>
+      <th>insurance</th>
+      <td>-0.037656</td>
+      <td>-0.071385</td>
+    </tr>
+    <tr>
+      <th>invested</th>
+      <td>-0.012073</td>
+      <td>-0.047987</td>
+    </tr>
+    <tr>
+      <th>em1</th>
+      <td>1.000000</td>
+      <td>0.076342</td>
+    </tr>
+    <tr>
+      <th>converted</th>
+      <td>0.076342</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Moreover, if we look at the confounders distributions by treatment assignment, we can see how nicely they align. This is not 100% proof that the debiasing worked, but it’s good evidence of it.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">em1_rnd</span><span class="p">[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">]],</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">],</span> <span class="n">confounders</span><span class="p">)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">plt_df</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em1&quot;</span><span class="p">,</span> <span class="n">col_wrap</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="p">):</span>
+    <span class="n">iter_df</span> <span class="o">=</span> <span class="n">plt_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;variable&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">confounders</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em1&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">iter_df</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">confounders</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Debiasing-with-Propensity-Score_17_0.png" src="_images/22-Debiasing-with-Propensity-Score_17_0.png" />
+</div>
+</div>
+<p>This new dataset we’ve created is now debiased. We can use it to do model evaluation or any other analys that requires the treatment to be randomly assigned. There is only one thing you need to watch out for. Notice how I’ve sampled 10000 points but the original dataset had only 5000? With this resampling method, I can make a debiased dataset as big as I wish. This means that confidence intervals that are computed in it are not valid, as they don’t take into account the fact that the sample size can be artificially inflated.</p>
+<p>Ok, so this technique was super effective because we had the stored probabilities in the first place, but what if we don’t? What if we only have access to the confounders and the treatment that got assigned, but not to how likely those units were to get the treatment?</p>
+</div>
+<div class="section" id="estimated-propensity-score">
+<h3>Estimated Propensity Score<a class="headerlink" href="#estimated-propensity-score" title="Permalink to this headline">¶</a></h3>
+<p>If we don’t have the propensity score stored, we will have to estimate them. In this situation, it becomes less clear when you should use propensity score or orthogonalisation for debiasing.</p>
+<p>Since we don’t have the propensity score, we will use a machine learning model to estimate it. The propensity score is closely related to the probability of treatment, so this ML model must be calibrated to output a probability. Not only that, we need to do cross prediction to work around any sort of bias we might have due to overfitting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.calibration</span> <span class="kn">import</span> <span class="n">CalibratedClassifierCV</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="s2">&quot;em1&quot;</span>
+
+<span class="n">folds</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="c1"># makes calibrated Random Forest. </span>
+<span class="n">m_t</span> <span class="o">=</span> <span class="n">CalibratedClassifierCV</span><span class="p">(</span>
+    <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+    <span class="n">cv</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+
+<span class="c1"># estimate PS with cross prediction. </span>
+<span class="n">ps_score_m1</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">m_t</span><span class="p">,</span> <span class="n">email</span><span class="p">[</span><span class="n">confounders</span><span class="p">],</span> <span class="n">email</span><span class="p">[</span><span class="n">t</span><span class="p">],</span>
+                                <span class="n">cv</span><span class="o">=</span><span class="n">folds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;predict_proba&quot;</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">email</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">ps_score_m1_est</span> <span class="o">=</span> <span class="n">ps_score_m1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>income</th>
+      <th>insurance</th>
+      <th>invested</th>
+      <th>em1_ps</th>
+      <th>em2_ps</th>
+      <th>em3_ps</th>
+      <th>em1</th>
+      <th>em2</th>
+      <th>em3</th>
+      <th>converted</th>
+      <th>ps_score_m1_est</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>44.1</td>
+      <td>4214.66</td>
+      <td>14036.41</td>
+      <td>7988.66</td>
+      <td>0.118507</td>
+      <td>0.045174</td>
+      <td>0.921281</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0.104727</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>39.8</td>
+      <td>1151.27</td>
+      <td>66622.15</td>
+      <td>1000.74</td>
+      <td>0.431123</td>
+      <td>0.005659</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.389991</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>49.0</td>
+      <td>8047.26</td>
+      <td>14119.53</td>
+      <td>29480.22</td>
+      <td>0.062137</td>
+      <td>0.166706</td>
+      <td>0.840049</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.083805</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>39.7</td>
+      <td>10558.37</td>
+      <td>14798.26</td>
+      <td>36373.09</td>
+      <td>0.047372</td>
+      <td>0.205684</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.086290</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>35.3</td>
+      <td>802.15</td>
+      <td>780.84</td>
+      <td>1643.16</td>
+      <td>0.616450</td>
+      <td>0.009292</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.737111</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Just out of curiosity, notice that the estimated propensity score, <code class="docutils literal notranslate"><span class="pre">ps_score_m1_est</span></code>, is close to the true one <code class="docutils literal notranslate"><span class="pre">em1_ps</span></code>, but not identical. Those errors in the estimation process will affect the final debiasing, but we hope it won’t affect much. We can also check how well calibrated our score is. For that, we can plot the mean score against the mean <code class="docutils literal notranslate"><span class="pre">em1</span></code>. If the score is well calibrated, 20% of those with a score of 0.2 should have received email-1, 30% of those with a score of 0.3 should have received email-1 and so on.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.calibration</span> <span class="kn">import</span> <span class="n">calibration_curve</span>
+
+<span class="n">prob_true</span><span class="p">,</span> <span class="n">prob_pred</span> <span class="o">=</span> <span class="n">calibration_curve</span><span class="p">(</span><span class="n">email</span><span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">],</span> <span class="n">ps_score_m1</span><span class="p">,</span> <span class="n">n_bins</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">prob_pred</span><span class="p">,</span> <span class="n">prob_true</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Calibrated RF&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span><span class="o">.</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">8</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Perfectly Calibrated&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Fraction of Positives&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Average Prediction&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Debiasing-with-Propensity-Score_22_0.png" src="_images/22-Debiasing-with-Propensity-Score_22_0.png" />
+</div>
+</div>
+<p>From here, we can proceed as if we had the true propensity score.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">em1_rnd_est</span> <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+    <span class="n">em1_w</span> <span class="o">=</span> <span class="n">email</span><span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">ps_score_m1</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">email</span><span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ps_score_m1</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s2">&quot;em1_w&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we check the correlation structure, we will see that there are still some strong correlations between the treatment and the confounders, even after the debiasing process. For instance, income has a correlation of <code class="docutils literal notranslate"><span class="pre">-0.18</span></code> this is lower than the correlation in the unbiased dataset (<code class="docutils literal notranslate"><span class="pre">-0.3</span></code>), but much higher than what we got in the dataset that was debiased with the original propensity score (<code class="docutils literal notranslate"><span class="pre">0.01</span></code>). The same is true for the <code class="docutils literal notranslate"><span class="pre">invested</span></code> variable, which still shows some correlation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">em1_rnd_est</span><span class="p">[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()[</span><span class="s2">&quot;em1&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>age         -0.030409
+income      -0.150937
+insurance   -0.037893
+invested    -0.111138
+em1          1.000000
+Name: em1, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">em1_rnd_est</span><span class="p">[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">]],</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">],</span> <span class="n">confounders</span><span class="p">)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">plt_df</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em1&quot;</span><span class="p">,</span> <span class="n">col_wrap</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="p">):</span>
+    <span class="n">iter_df</span> <span class="o">=</span> <span class="n">plt_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;variable&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">confounders</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em1&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">iter_df</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">confounders</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Debiasing-with-Propensity-Score_27_0.png" src="_images/22-Debiasing-with-Propensity-Score_27_0.png" />
+</div>
+</div>
+<p>As for the distributions, we can see that they don’t align that well as before, specially for the variables <code class="docutils literal notranslate"><span class="pre">invested</span></code> and <code class="docutils literal notranslate"><span class="pre">income</span></code></p>
+</div>
+</div>
+<div class="section" id="the-weakness-of-propensity-score">
+<h2>The Weakness of Propensity Score<a class="headerlink" href="#the-weakness-of-propensity-score" title="Permalink to this headline">¶</a></h2>
+<p>We’ve already talked a lot about this on the propensity score chapter, so I won’t spend much time on it, but it is recalling one of the main weaknesses with the propensity score debiasing. It has to do with propensities scores that are two high or too low.</p>
+<p><img alt="img" src="_images/fear-no-man.png" /></p>
+<p>To understand this, take a look at the following unit in our original dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">email</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">1014</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>income</th>
+      <th>insurance</th>
+      <th>invested</th>
+      <th>em1_ps</th>
+      <th>em2_ps</th>
+      <th>em3_ps</th>
+      <th>em1</th>
+      <th>em2</th>
+      <th>em3</th>
+      <th>converted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1014</th>
+      <td>43.2</td>
+      <td>18628.09</td>
+      <td>30356.68</td>
+      <td>28335.68</td>
+      <td>0.026862</td>
+      <td>0.160233</td>
+      <td>0.615788</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This unit has a propensity score of 0.027 for <code class="docutils literal notranslate"><span class="pre">em1</span></code>. This means it’s weight will be around 37 (1/0.027). This unit will be sampled almost twice as much as a treated unit with a propensity score of 0.05 (weight of 20), which is already a very low propensity score. This unit appears 38 times in the dataset we’ve resampled using the stored (not estimated) propensity score.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">em1_rnd</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">1014</span><span class="p">]]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(38, 12)
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s a problem, because the debiased dataset is overpopulated with only one unit. If this unit wasn’t in the original dataset, the debiased dataset could look totally different. So, removing a single unit can affect a lot how a debiased dataset looks like. This is a problem of high variance.</p>
+<p>If we plot the number of replications for each unit in the debiased dataset, we see that a bunch of them appear more than 10 times. Those are treated units with low propensity score or untreated units with high propensity score.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">em1_rnd</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">em1_rnd</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;count&quot;</span><span class="p">:</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="s2">&quot;em1_ps&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;em1&quot;</span><span class="p">:</span> <span class="s2">&quot;mean&quot;</span><span class="p">}),</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;em1_ps&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em1&quot;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Replications on Debiased Data&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Debiasing-with-Propensity-Score_33_0.png" src="_images/22-Debiasing-with-Propensity-Score_33_0.png" />
+</div>
+</div>
+<p>To avoid having overly important units, some scientists like to clip the weights, forcing them to be, let’s say, at most 20. It is true that this technique will remove some of the variance, but it will add bias back. Since the whole point of this was to remove bias, I feel like clipping the weights is not a good idea.</p>
+<p>In my opinion, the best thing you can do is at the experimentation phase, not at the analysis phase. You should make sure none of the units have a weight that is too high. In other words, as much as possible, try to give the treatment with equal probabilities to everyone.</p>
+<p>To be fair to the propensity weighting method, all causal inference methods will suffer whenever the probability of receiving either the treatment or the control is too low, for the entire sample or for a subpopulation. Intuitively, this means some units will almost never receive the treatment or the control, which will make it difficult to estimate counterfactuals for those units. This problem can be seen as almost violating the common support assumption, which we will explore next.</p>
+</div>
+<div class="section" id="positivity-or-common-support">
+<h2>Positivity or Common Support<a class="headerlink" href="#positivity-or-common-support" title="Permalink to this headline">¶</a></h2>
+<p>Besides high variance, we can also have problems with positivity. Positivity, or common support is a causal inference assumption which states that there must be sufficient overlap between the characteristics of the treated and the control units. Or, in other words, that everyone has a non zero probability of getting the treatment or the control. If this doesn’t happen, we won’t be able to estimate a causal effect that is valid for the entire population, only for those we have common support.</p>
+<p>To be clar, problems with positivity are problems of the data itself, not a problem with the propensity score method. Propensity score method just makes it very clear when positivity problems exist. In that sense, this is an argument in favor of the propensity score. While most methods will not warn you when there are positivity problems, propensity score will show it to your face. All you have to do is plot the distribution of the propensity score for the treated and for the untreated.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;em1_ps&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Positivity Check&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Debiasing-with-Propensity-Score_36_0.png" src="_images/22-Debiasing-with-Propensity-Score_36_0.png" />
+</div>
+</div>
+<p>If they have a nice overlap, like in the plot above, then you have common support.</p>
+<p>Up until now, we’ve only looked at email-1 (<code class="docutils literal notranslate"><span class="pre">em1</span></code>). Let’s look at email-3 now.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">email</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>income</th>
+      <th>insurance</th>
+      <th>invested</th>
+      <th>em1_ps</th>
+      <th>em2_ps</th>
+      <th>em3_ps</th>
+      <th>em1</th>
+      <th>em2</th>
+      <th>em3</th>
+      <th>converted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>44.1</td>
+      <td>4214.66</td>
+      <td>14036.41</td>
+      <td>7988.66</td>
+      <td>0.118507</td>
+      <td>0.045174</td>
+      <td>0.921281</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>39.8</td>
+      <td>1151.27</td>
+      <td>66622.15</td>
+      <td>1000.74</td>
+      <td>0.431123</td>
+      <td>0.005659</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>49.0</td>
+      <td>8047.26</td>
+      <td>14119.53</td>
+      <td>29480.22</td>
+      <td>0.062137</td>
+      <td>0.166706</td>
+      <td>0.840049</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>39.7</td>
+      <td>10558.37</td>
+      <td>14798.26</td>
+      <td>36373.09</td>
+      <td>0.047372</td>
+      <td>0.205684</td>
+      <td>0.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>35.3</td>
+      <td>802.15</td>
+      <td>780.84</td>
+      <td>1643.16</td>
+      <td>0.616450</td>
+      <td>0.009292</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>First thing that jumps the eye is that there are units with zero probability, which already indicates a violation to the positivity assumption. Now, let’s look at the features distributions by <code class="docutils literal notranslate"><span class="pre">em3</span></code></p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">email</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em3&quot;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em3&quot;</span><span class="p">,</span> <span class="n">plot_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Debiasing-with-Propensity-Score_40_0.png" src="_images/22-Debiasing-with-Propensity-Score_40_0.png" />
+</div>
+</div>
+<p>It looks like <code class="docutils literal notranslate"><span class="pre">em3</span></code> was only sent to customers that are older than 40 years. Thats a huge problem. If the control has younger folks, but the treatment doesn’t, there is no way we can estimate the counterfactual \(Y_0|T=1, age&lt;40\). Simply because we have no idea how younger customers will respond to this email.</p>
+<p>Just so you know what will happen, we can try to make the propensity score debiasing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">em3_weight</span> <span class="o">=</span> <span class="p">(</span><span class="n">email</span>
+              <span class="c1"># using a different implementation to avoid division by zero</span>
+              <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">em3_w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">email</span><span class="p">[</span><span class="s2">&quot;em3&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="n">email</span><span class="p">[</span><span class="s2">&quot;em3_ps&quot;</span><span class="p">],</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">email</span><span class="p">[</span><span class="s2">&quot;em3_ps&quot;</span><span class="p">])))</span>
+              <span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s2">&quot;em3_w&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">em3_weight</span><span class="p">[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em3&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()[</span><span class="s2">&quot;em3&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>age          0.251035
+income       0.047607
+insurance   -0.000961
+invested     0.053524
+em3          1.000000
+Name: em3, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see, there is still a huge correlation between age and the treatment. Not having treated samples that are younger than 40 years made it so that we couldn’t remove the bias due to age.</p>
+<p>We can also run the positivity diagnostic, plotting the propensity score distribution by treatment.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;em3_ps&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em3&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Positivity Check&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22-Debiasing-with-Propensity-Score_45_0.png" src="_images/22-Debiasing-with-Propensity-Score_45_0.png" />
+</div>
+</div>
+<p>Notice how poor the overlap is here. Units with propensity score below 0.4 almost never get the treatment. Not to mention that huge peak at zero.</p>
+<div class="section" id="positivity-in-practice">
+<h3>Positivity In Practice<a class="headerlink" href="#positivity-in-practice" title="Permalink to this headline">¶</a></h3>
+<p>Issues in positivity are very serious in the academic world because they treat the generalization of a conclusion or theory. If you only have treated individuals that are older, you have no way of generalizing whatever treatment effect that you find to a younger population. But in the industry, violations of the positivity assumption might not be so problematic.</p>
+<p>To give an example, if you are a lender wishing to estimate the elasticity of loan amount on probability of default, you will probably not give high loans to people with very low credit scores. Sure, this will violate the positivity assumption, but you are not very interested in estimating the loan amount elasticity for risky customers because you are not intending to give them loans anyway. Or, for a somewhat more exaggerated example, if you want to estimate the price elasticity of some product, you will probably not test prices from 0 to 1000000. That’s because you have some intuition on where the prices normally are. You will often test around that region.</p>
+<p>The point here is that you can (and probably should) use your intuition to exclude some part of the population from receiving the treatment (or the control). Doing random experiments is expensive, so you should focus your efforts on where things are more promising.</p>
+<p>In our email example, probably the marketing team though that email-3 should never be sent to younger people. Maybe it contains text explicitly discussing something that only older people can relate to. Regardless of the reason, we can only estimate the effect of email-3 on the older, age&gt;40, population. And that is totally fine. We just shouldn’t expect to generalize whatever findings we have to the younger population.</p>
+<p>With that in mind, let’s debias email-3. Of course, we will remove the younger population from the sample.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">em3_weight</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;age&gt;40&quot;</span><span class="p">)[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em3&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()[</span><span class="s2">&quot;em3&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>age         -0.034455
+income       0.024633
+insurance   -0.005650
+invested     0.020711
+em3          1.000000
+Name: em3, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once we do that, notice how the correlation between the treatment and the confounders goes away. Remember that in the entire sample, the correlation with age was more than 0.2. Now, it is probably indistinguishable from zero.</p>
+<p>We can also explore the distribution of treated and non treated in this filtered sample.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">em3_weight</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;age&gt;40&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em3&quot;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em3&quot;</span><span class="p">,</span> <span class="n">plot_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x132656b70&gt;
+</pre></div>
+</div>
+<img alt="_images/22-Debiasing-with-Propensity-Score_49_1.png" src="_images/22-Debiasing-with-Propensity-Score_49_1.png" />
+</div>
+</div>
+<p>All of this to say that, yes, due to positivity violations, you can’t debias the entire sample with respect to <code class="docutils literal notranslate"><span class="pre">em3</span></code>. But you can do it for the population for which email-3 was designed for in the first place. That is good enough.</p>
+</div>
+</div>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<p>This chapter presented another debiasing idea for when the treatment is binary or discrete. The idea is to resample the units using the inverse propensity score as a weight. This will upsample the units that look like the treated (high propensity score) but where not treated and those that look like the untreated (low propensity score) but where treated.</p>
+<p>The main advantage of propensity score debiasing is that it doesn’t require estimating a model, if you’ve stored the probabilities of treatment during the experiment. This doesn’t mean you can’t apply propensity reweighting if you don’t have those probabilities, but having to estimate them will add additional error to your debiasing process.</p>
+<p>As for the disadvantages, the propensity score reweighting can have a huge variance if the propensity score is either too high or too low, generating huge weights. Intuitively, this happens when there are very few untreated units that look like the treated and very few treated units that look like the untreated. To be fair to the propensity score weighting, this is a problem for all causal inference methods, but propensity weighting highlights this almost violation to the positivity assumption more clearly.</p>
+<p>Finally, we had a brief discussion about how much of a problem is violation in the positivity assumption. We ended up concluding that it is not a problem <strong>as long as you don’t wish to generalize your conclusions to the subset of the population where positivity doesn’t hold</strong>.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>The things I’ve written here are mostly stuff from my head. I’ve learned them through experience. This means that they have <strong>not</strong> passed the academic scrutiny that good science often goes through. Instead, notice how I’m talking about things that work in practice, but I don’t spend too much time explaining why that is the case. It’s a sort of science from the streets, if you will. However, I am putting this up for public scrutiny, so, by all means, if you find something preposterous, open an issue and I’ll address it to the best of my efforts.</p>
+<p>Most of this chapter draws from Guido W. Imbens, Causal Inference for Statistics, Social, and Biomedical Sciences, where you will find extensive discussions on the propensity score. The discussion on positivity is on me though, from countless debates I had at work with my colleagues.</p>
+</div>
+<div class="section" id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
+<p>Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
+If you found this book valuable and you want to support it, please go to <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a>. If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn’t understand. Just go to the book’s repository and <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/issues">open an issue</a>. Finally, if you liked this content, please share it with others who might find it useful and give it a <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/stargazers">star on GitHub</a>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "causal-glory"
+        },
+        kernelOptions: {
+            kernelName: "causal-glory",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'causal-glory'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="21-Debiasing-with-Orthogonalization.html" title="previous page">21 - Debiasing with Orthogonalization</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-97848161-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>
