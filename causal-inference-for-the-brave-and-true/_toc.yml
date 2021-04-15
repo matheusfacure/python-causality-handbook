@@ -26,6 +26,7 @@
   - file: 19-Causal-Models.ipynb
   - file: 20-Evaluating-Causal-Models.ipynb
   - file: 21-Debiasing-with-Orthogonalization.ipynb
+  - file: 22-Debiasing-with-Propensity-Score.ipynb
 
 - part: Contribute
   chapters:
