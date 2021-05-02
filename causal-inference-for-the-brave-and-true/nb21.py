@@ -33,3 +33,10 @@ def cumulative_gain_ci(dataset, prediction, y, t, min_periods=30, steps=100):
     ordered_df = dataset.sort_values(prediction, ascending=False).reset_index(drop=True)
     n_rows = list(range(min_periods, size, size // steps)) + [size]
     return np.array([elast_ci(ordered_df.head(rows), y, t) * (rows/size) for rows in n_rows])
+
+
+def cumulative_gain(dataset, prediction, y, t, min_periods=30, steps=100):
+    size = dataset.shape[0]
+    ordered_df = dataset.sort_values(prediction, ascending=False).reset_index(drop=True)
+    n_rows = list(range(min_periods, size, size // steps)) + [size]
+    return np.array([elast(ordered_df.head(rows), y, t) * (rows/size) for rows in n_rows])
