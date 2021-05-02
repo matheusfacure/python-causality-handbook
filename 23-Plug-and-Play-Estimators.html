@@ -1,0 +1,1138 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>23 - Plug-and-Play Estimators &#8212; Causal Inference for the Brave and True</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="22 - Debiasing with Propensity Score" href="22-Debiasing-with-Propensity-Score.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part I - The Yang
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   01 - Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   02 - Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   03 - Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   04 - Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   05 - The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   06 - Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   07 - Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   08 - Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   09 - Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   10 - Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   11 - Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   12 - Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
+   13 - Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html">
+   14 - Difference-in-Difference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   15 - Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   16 - Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part II - The Yin
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-Predictive-Models-101.html">
+   17 - Predictive Models 101
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-When-Prediction-Fails.html">
+   18 - When Prediction Fails
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-Causal-Models.html">
+   19 - Building a Causal Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20-Evaluating-Causal-Models.html">
+   20 - Evaluating Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
+   21 - Debiasing with Orthogonalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22-Debiasing-with-Propensity-Score.html">
+   22 - Debiasing with Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   23 - Plug-and-Play Estimators
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Contribute
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">
+   Patreon
+   <i class="fas fa-external-link-alt">
+   </i>
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/23-Plug-and-Play-Estimators.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F23-Plug-and-Play-Estimators.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/23-Plug-and-Play-Estimators.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-setup">
+   Problem Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#target-transformation">
+   Target Transformation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-continuous-treatment-case">
+   The Continuous Treatment Case
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-linear-treatment-effects">
+     Non Linear Treatment Effects
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contribute">
+   Contribute
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="plug-and-play-estimators">
+<h1>23 - Plug-and-Play Estimators<a class="headerlink" href="#plug-and-play-estimators" title="Permalink to this headline">¶</a></h1>
+<p>So far, we’ve seen how to debias our data in the case where the treatment is not randomly assigned, which results in confounding bias. That helps us with the identification problem in causal inference. In other words, once the units are exchangeable, or \( Y(0), Y(1) \perp X\), it becomes possible to learn the treatment effect. But we are far from done.</p>
+<p>Identification means that we can find the average treatment effect. In other words, we know how effective a treatment is on average. Of course this is useful, as it helps us to decide if we should roll out a treatment or not. But we want more than that. We want to know if there are subgroups of units that respond better or worse to the treatment. That should allow for a much better policy, one where we only treat the ones that will benefit from it.</p>
+<div class="section" id="problem-setup">
+<h2>Problem Setup<a class="headerlink" href="#problem-setup" title="Permalink to this headline">¶</a></h2>
+<p>Let’s recall our setup of interest. Given the potential outcomes, we can define the individual treatment effect as the difference between the potential outcomes.</p>
+<p><span class="math notranslate nohighlight">\(
+\tau_i = Y_i(1) − Y_i(0),
+\)</span></p>
+<p>or, the continuous treatment case, \(\tau_i = \partial Y(t)\), where \(t\) is the treatment variable. Of course, we can never observe the individual treatment effect, because we only get to see the one of potential outcomes</p>
+<p><span class="math notranslate nohighlight">\(
+Y^{obs}_i(t)= 
+\begin{cases}
+Y_i(1), &amp; \text{if } t=1\\
+Y_i(0), &amp; \text{if } t=0
+\end{cases}
+\)</span></p>
+<p>We can define the average treatment effect (ATE) as</p>
+<p><span class="math notranslate nohighlight">\(
+\tau = E[Y_i(1) − Y_i(0)] = E[\tau_i]
+\)</span></p>
+<p>and the conditional average treatment effect (CATE) as</p>
+<p><span class="math notranslate nohighlight">\(
+\tau(x) = E[Y_i(1) − Y_i(0)|X] = E[\tau_i|X]
+\)</span></p>
+<p>In Part I of this book, we’ve focused mostly on the ATE. Now, we are interested in the CATE. The CATE is useful for personalising a decision making process. For example, if you have a drug as the treatment \(t\), you want to know which type of patients are more responsive to the drug (higher CATE) and if there are some types of patient with a negative response (CATE &lt; 0).</p>
+<p>We’ve seen how to estimate the CATE using a linear regression with interactions between the treatment and the the features</p>
+<p><span class="math notranslate nohighlight">\(
+y_i = \beta_0 + \beta_1 t_i + \beta_2 X_i + \beta_3 t_i X_i + e_i.
+\)</span></p>
+<p>If we estimate this model, we can get estimates for \(\tau(x)\)</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{\tau}(x) = \hat{\beta}_1 + \hat{\beta}_3 t_i X_i
+\)</span></p>
+<p>Still, the linear models have some drawbacks. The main one being the linearity assumption on \(X\). Notice that you don’t even care about \(\beta_2\) on this model. But if the features \(X\) don’t have a linear relationship with the outcome, your estimates of the causal parameters \(\beta_1\) and \(\beta_3\) will be off.</p>
+<p>It would be great if we could replace the linear model by a more flexible machine learning model. We could even plug the treatment as a feature to a ML model, like boosted trees or a neural network</p>
+<p><span class="math notranslate nohighlight">\(
+y_i = M(X_i, T_i) + e_i
+\)</span></p>
+<p>but from there, it is not clear how we can get treatment effect estimates, since this model will output \(\hat{y}\) predictions, not \(\hat{\tau(x)}\) predictions. Ideally, we would use a machine learning regression model that, instead of minimising the outcome MSE</p>
+<p><span class="math notranslate nohighlight">\(
+E[(Y_i - \hat{Y}_i)^2]
+\)</span></p>
+<p>would minimise the treatment effect MSE</p>
+<p><span class="math notranslate nohighlight">\(
+E[(\tau(x)_i - \hat{\tau}(x)_i)^2] = E[(Y_i(1) - Y_i(0) - \hat{\tau}(x)_i)^2].
+\)</span></p>
+<p>However, this criterion is what we call infeasible. Again, the problem here is that \(\tau(x)_i\) is not observable, so we can’t optimize it directly. This puts us in a tough spot… Let’s try to simplify it a bit and maybe we can think of something.</p>
+<p><img alt="img" src="_images/infeasible.png" /></p>
+</div>
+<div class="section" id="target-transformation">
+<h2>Target Transformation<a class="headerlink" href="#target-transformation" title="Permalink to this headline">¶</a></h2>
+<p>Suppose your treatment is binary. Let’s say you are an investment firm testing the effectiveness of sending a financial education email. You hope the email will make people invest more. Also, let’s say you did a randomized study where 50% of the customers got the email and the other 50% didn’t.</p>
+<p>Here is a crazy idea: let’s transform the outcome variable by multiplying it with the treatment.</p>
+<p><span class="math notranslate nohighlight">\(
+Y^*_i = 2 Y_i * T_i - 2 Y_i*(1-T_i)
+\)</span></p>
+<p>So, if the unit was treated, you would take the outcome and multiply it by 2. If it wasn’t treated, you would take the outcome and multiply it by -2. For example, if one of your customers invested BRL 2000,00 and got the email, the transformed target would be 4000. However, if he or she didn’t get the email, it would be -4000.</p>
+<p>This seems very odd, because you are saying that the effect of the email can be a negative number, but bare with me. If we do a little bit of math, we can see that, on average or in expectation, this transformed target will be the treatment effect. This is nothing short of amazing. What I’m saying is that by applying this somewhat wacky transformation, I get to estimate something that I can’t even observe.</p>
+<p>To understand that, we need a bit of math. Because of random assignment, we have that \(T \perp Y(1), Y(1)\), which is our old unconfoundedness friend. That implies that \(E[T, Y(t)]=E[T]*E[Y(t)]\), which is the definition of independence.</p>
+<p>Also, we know that</p>
+<p><span class="math notranslate nohighlight">\(
+Y_i*T_i = Y_(1)i*T_i \text{ and }  Y_i*(1-T_i) = Y_(0)i*T_i
+\)</span></p>
+<p>because the treatment is what materializes one or the other potential outcomes. With that in mind, let’s take the expected value of \(Y^*_i\) and see what we end up with.</p>
+<p><span class="math notranslate nohighlight">\(
+\begin{align}
+E[Y^*_i|X_i=x] &amp;= E[2 Y(1)_i * T_i - 2 Y(0)_i*(1-T_i)|X_i=x] \\
+&amp;= 2E[Y(1)_i * T_i | X_i=x] - 2E[Y(0)_i*(1-T_i)|X_i=x]\\
+&amp;= 2E[Y(1)_i| X_i=x] * E[ T_i | X_i=x] - 2E[Y(0)_i| X_i=x]*E[(1-T_i)|X_i=x] \\
+&amp;= 2E[Y(1)_i| X_i=x] * 0.5 - 2E[Y(0)_i| X_i=x]*0.5 \\ 
+&amp;= E[Y(1)_i| X_i=x] - E[Y(0)_i| X_i=x] \\
+&amp;= \tau(x)_i
+\end{align}
+\)</span></p>
+<p>So, this apparently crazy idea ended up being an unbiased estimate of the individual treatment effect \(\tau(x)_i\). Now, we can replace our infeasible optimization criterion with</p>
+<p><span class="math notranslate nohighlight">\(
+E[(Y^*_i - \hat{\tau}(x)_i)^2]
+\)</span></p>
+<p>In simpler terms, all we have to do is use any regression machine learning model to predict \(Y^*_i\) and this model will output treatment effect predictions.</p>
+<p>Now that we’ve solved the simple case, what about the more complicated case, where treatment is not 50% 50%, or not even randomly assigned? As it turns out, the answer is a bit more complicated, but not much. First, if we don’t have random assignment, we need at least conditional independence \(T \perp Y(1), Y(1) | X\). That is, controlling for \(X\), \(T\) is as good as random. With that, we can generalize the transformed target to</p>
+<p><span class="math notranslate nohighlight">\(
+Y^*_i = Y_i * \dfrac{T_i - e(X_i)}{e(X_i)(1-e(X_i))}
+\)</span></p>
+<p>where \(e(X_i)\) is the propensity score. So, if the treatment is not 50% 50%, but randomized with a different probability \(p\), all you have to do is replace the propensity score in the above formula with \(p\). If the treatment is not random, then you have to use the propensity score, either stored or estimated.</p>
+<p>If you take the expectation of this, you will see that it also matches the treatment effect. The proof is left as an exercise to the reader. Just kidding, here it is. It’s a bit cumbersome, so feel free to skip it.</p>
+<p><span class="math notranslate nohighlight">\(
+\begin{align}
+E[Y^*_i|X_i=x] &amp;= E\big[Y_i * \dfrac{T_i - e(X_i)}{e(X_i)(1-e(X_i))}|X_i=x\big] \\
+&amp;= E\big[Y_i T_i * \dfrac{T_i - e(X_i)}{e(X_i)(1-e(X_i))} + Y_i (1-T_i) * \dfrac{T_i - e(X_i)}{e(X_i)(1-e(X_i))}|X_i=x\big]\\
+&amp;= E\big[Y(1)_i * \dfrac{T_i(1 - e(X_i))}{e(X_i)(1-e(X_i))} | X_i=x\big] - E\big[Y(0)_i * \dfrac{(1-T_i)e(X_i)}{e(X_i)(1-e(X_i))}|X_i=x\big]\\
+&amp;= \dfrac{1}{e(X_i)} E[Y(1)_i * T_i|X_i=x] - \dfrac{1}{1-e(X_i)} E[Y(0)_i * (1-T_i)| X_i=x]\\
+&amp;= \dfrac{1}{e(X_i)} E[Y(1)_i|X_i=x] * E[T_i|X_i=x] - \dfrac{1}{1-e(X_i)} E[Y(0)_i|X_i=x] * E[(1-T_i)| X_i=x]\\
+&amp;= E[Y(1)_i|X_i=x] - E[Y(0)_i|X_i=x]\\
+&amp;= \tau(x)_i
+\end{align}
+\)</span></p>
+<p>As always, I think this will become much more concrete with an example. Again, consider the investment emails we’ve sent trying to make people invest more. The outcome variable the binary (invested vs didn’t invest) <code class="docutils literal notranslate"><span class="pre">converted</span></code>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">nb21</span> <span class="kn">import</span> <span class="n">cumulative_gain</span><span class="p">,</span> <span class="n">elast</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">email</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/invest_email_rnd.csv&quot;</span><span class="p">)</span>
+<span class="n">email</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>income</th>
+      <th>insurance</th>
+      <th>invested</th>
+      <th>em1</th>
+      <th>em2</th>
+      <th>em3</th>
+      <th>converted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>44.1</td>
+      <td>5483.80</td>
+      <td>6155.29</td>
+      <td>14294.81</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>39.8</td>
+      <td>2737.92</td>
+      <td>50069.40</td>
+      <td>7468.15</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>49.0</td>
+      <td>2712.51</td>
+      <td>5707.08</td>
+      <td>5095.65</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>39.7</td>
+      <td>2326.37</td>
+      <td>15657.97</td>
+      <td>6345.20</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>35.3</td>
+      <td>2787.26</td>
+      <td>27074.44</td>
+      <td>14114.86</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Our goal here is one of personalization. Let’s focus on email-1. We wish to send it only to those customers who will respond better to it. In other words, we wish to estimate the conditional average treatment effect of email-1</p>
+<p><span class="math notranslate nohighlight">\(
+E[Converted(1)_i - Converted(0)_i|X_i=x] = \tau(x)_i
+\)</span></p>
+<p>so that we can target those customers who will have the best response to the email (higher CATE)</p>
+<p>But first, let’s break our dataset into a training and a validation set. We will estimate \(\tau(x)_i\) on one set and evaluate the estimates on the other.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9000, 8) (6000, 8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we will apply the target transformation we’ve just learned. Since the emails were randomly assigned (although not on a 50% 50% basis), we don’t need to worry about the propensity score. Rather, it is constant and equal to the treatment probability.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;converted&quot;</span>
+<span class="n">T</span> <span class="o">=</span> <span class="s2">&quot;em1&quot;</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">,</span> <span class="s2">&quot;insurance&quot;</span><span class="p">,</span> <span class="s2">&quot;invested&quot;</span><span class="p">]</span>
+
+<span class="n">ps</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">T</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="n">y_star_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="o">-</span> <span class="n">ps</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">ps</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ps</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the transformed target, we can pick any ML regression algorithm to predict it. Lets use boosted trees here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lightgbm</span> <span class="kn">import</span> <span class="n">LGBMRegressor</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">cate_learner</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">min_child_samples</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">num_leaves</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">cate_learner</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">y_star_train</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This model can now estimate \(\tau(x)_i\). In other words, what it outputs is \(\hat{\tau}(x)_i\). For example, if we make predictions on the test set, we will see that some units have higher CATE than others. For example, customer 6958 has a CATE of 0.1, meaning the probability he or she will buy our investment product is predicted to increase by 0.1 if we send the email to this customer. In contrast, for customer 3903, the probability of buying the product is predicted to increase just 0.04.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_pred</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cate</span><span class="o">=</span><span class="n">cate_learner</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">X</span><span class="p">]))</span>
+<span class="n">test_pred</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>income</th>
+      <th>insurance</th>
+      <th>invested</th>
+      <th>em1</th>
+      <th>em2</th>
+      <th>em3</th>
+      <th>converted</th>
+      <th>cate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6958</th>
+      <td>40.9</td>
+      <td>4486.14</td>
+      <td>37320.33</td>
+      <td>12559.25</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.105665</td>
+    </tr>
+    <tr>
+      <th>7534</th>
+      <td>42.6</td>
+      <td>6386.19</td>
+      <td>13270.47</td>
+      <td>29114.42</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.121922</td>
+    </tr>
+    <tr>
+      <th>2975</th>
+      <td>47.6</td>
+      <td>1900.26</td>
+      <td>25588.72</td>
+      <td>2420.39</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.034161</td>
+    </tr>
+    <tr>
+      <th>3903</th>
+      <td>41.0</td>
+      <td>5802.19</td>
+      <td>57087.37</td>
+      <td>20182.20</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0.046805</td>
+    </tr>
+    <tr>
+      <th>8437</th>
+      <td>49.1</td>
+      <td>2202.96</td>
+      <td>5050.81</td>
+      <td>9245.88</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-0.009099</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To evaluate how good this model is, we can show the cumulative gain curves, for both training and testing sets.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gain_curve_test</span> <span class="o">=</span> <span class="n">cumulative_gain</span><span class="p">(</span><span class="n">test_pred</span><span class="p">,</span> <span class="s2">&quot;cate&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;converted&quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="s2">&quot;em1&quot;</span><span class="p">)</span>
+<span class="n">gain_curve_train</span> <span class="o">=</span> <span class="n">cumulative_gain</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cate</span><span class="o">=</span><span class="n">cate_learner</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">])),</span> <span class="s2">&quot;cate&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;converted&quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="s2">&quot;em1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gain_curve_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gain_curve_train</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">elast</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="s2">&quot;converted&quot;</span><span class="p">,</span> <span class="s2">&quot;em1&quot;</span><span class="p">)],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Baseline&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/23-Plug-and-Play-Estimators_13_0.png" src="_images/23-Plug-and-Play-Estimators_13_0.png" />
+</div>
+</div>
+<p>As we can see, this plug and play estimator is better than random on the test set. Still, it looks like it is overfitting a lot, since the performance on the training set is much better than that of the test set.</p>
+<p>That is actually one of the biggest downsides of this target transformation technique. With this target transformation, you do get a lot of simplicity, since you can just transform the target and use any ML estimator to predict heterogeneous treatment effects. The cost of it is that you get a lot of variance. That’s because the transformed target is a very noisy estimate of the individual treatment effect and that variance gets transferred to your estimation. This is a huge problem if you don’t have a lot of data, but it should be less of a problem in big data applications, where you are dealing with more than 1MM samples.</p>
+</div>
+<div class="section" id="the-continuous-treatment-case">
+<h2>The Continuous Treatment Case<a class="headerlink" href="#the-continuous-treatment-case" title="Permalink to this headline">¶</a></h2>
+<p><img alt="img" src="_images/second-estimator.png" /></p>
+<p>Another obvious downside of the target transformation method is that it only works for discrete or binary treatments. This is something you see a lot in the causal inference literature. Most of the research is done for the binary treatment case, but you don’t find a lot about continuous treatments. That bothered me a lot, because in the industry, continuous treatments are everywhere, mostly in the form of prices you need to optimize. So, even though I couldn’t find anything regarding target transformations for continuous treatment, I came up with something that works in practice. Just keep in mind that I don’t have a super solid econometric research around it.</p>
+<p>To motivate it, let’s go back to the ice cream sales example. There, we were tasked with the problem of estimating demand elasticity to price so that we can better set the ice cream prices to optimize our revenues. Recall that the event sample in the dataset is a day and we wish to know when people are less sensitive to price increases. Also, recall that prices are randomly assigned in this dataset, which means we don’t need to worry about confounding bias.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prices_rnd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/ice_cream_sales_rnd.csv&quot;</span><span class="p">)</span>
+<span class="n">prices_rnd</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp</th>
+      <th>weekday</th>
+      <th>cost</th>
+      <th>price</th>
+      <th>sales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22.7</td>
+      <td>3</td>
+      <td>0.5</td>
+      <td>4</td>
+      <td>190</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>33.7</td>
+      <td>7</td>
+      <td>1.0</td>
+      <td>5</td>
+      <td>237</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>23.0</td>
+      <td>4</td>
+      <td>0.5</td>
+      <td>5</td>
+      <td>193</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>24.4</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>252</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As before, let’s start by separating our data into training and a testing set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">prices_rnd</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((3500, 5), (1500, 5))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now is where we need a little bit of creativity. For the discrete case, the conditional average treatment effect is given by how much the outcome changes when we go from untreated to treated, conditioned on unit characteristics \(X\).</p>
+<p><span class="math notranslate nohighlight">\(
+\tau(x) = E[Y_i(1) − Y_i(0)|X] = E[\tau_i|X]
+\)</span></p>
+<p>In plain english, this is estimating the impact of the treatment on different unit profiles, where profiles are defined using the features \(X\). For the continuous case, we don’t have that on-off switch. Units are not treated or untreated. Rather, they are all treated, but with different intensities. Therefore, we can’t talk about the effect of giving the treatment. Rather, we need to speak in terms of increasing the treatment. In other words, we wish to know how the outcome would change if we increase the treatment by some amount. This is like estimating the partial derivative of the outcome function \(Y\) on the treatment \(t\). And because we wish to know that for each group (the CATE, not the ATE), we condition on the features \(X\)</p>
+<p><span class="math notranslate nohighlight">\(
+\tau(x) = E[\partial Y_i(t)|X] = E[\tau_i|X]
+\)</span></p>
+<p>How can we estimate that? First, let’s consider the easy case, where the outcome is linear on the treatment. Suppose you have two types of days: hot days (yellow) and cold days (blue). On cold days people are more sensitive to price increases. Also, as price increases, demand falls linearly.</p>
+<p><img alt="img" src="_images/linear-case.png" /></p>
+<p>In this case, the CATE will be the slope of each demand line. These slopes will tell us how much demand will fall if we increase price by any amount. If this relationship is indeed linear, we can estimate those elasticities with the coefficient of a simple linear regression estimate on hot days and on cold days separately.</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\tau(x)} = Cov(Y_i, T_i)/Var(T_i) = \dfrac{\sum(Y_i- \bar{Y})(T_i - \bar{T})}{\sum (T_i - \bar{T})^2}
+\]</div>
+<p>We can be inspired by this estimator and think about what it would be like for an individual unit. In other words, what if we have that same thing up there, defined for each day. In my head, it would be something like this:</p>
+<p><span class="math notranslate nohighlight">\(
+Y^*_i = (Y_i- \bar{Y})\dfrac{(T_i - \bar{T})}{\sigma^2_T}
+\)</span></p>
+<p>In plain English, we would transform the original target by subtracting the mean from it, then we would multiply it by the treatment, from which we’ve also subtracted the mean from. Finally, we would divide it by the treatment variance. Alas, we have a target transformation for the continuous case.</p>
+<p><img alt="img" src="_images/genious.jpeg" /></p>
+<p>The question now is: does it work? As a matter of fact it does and we can go over a similar proof for why it works, just like we did in the binary case. First, lets call</p>
+<p><span class="math notranslate nohighlight">\(
+V_i = \dfrac{(T_i - \bar{T})}{\sigma^2_T}
+\)</span></p>
+<p>notice that \(E[V_i|X_i=x]=0\) because under random assignment \(E[T_i|X_i=x]=\bar{T}\). In other words, for every region of X, \(E[T_i]=\bar{T}\). Also \(E[T_i V_i | X_i=x]=1\) because \(E[T_i(T_i - \bar{T})|X_i=x] = E[(T_i - \bar{T})^2|X_i=x]\), which is the treatment variance. Finally, under conditional independence (which we get for free in the random treatment assignment case), \(E[T_i e_i | X_i=x] = E[T_i | X_i=x] E[e_i | X_i=x]\).</p>
+<p>To show that this target transformation works, we need to remember that we are estimating the parameter for a local linear model</p>
+<p><span class="math notranslate nohighlight">\(
+Y_i = \alpha + \beta T_i + e_i | X_i=x
+\)</span></p>
+<p>In our example, those would be the linear models for the hot and cold days. Here, we are interested in the \(\beta\) parameter, which is our conditional elasticity or CATE. With all that, we can prove that</p>
+<p><span class="math notranslate nohighlight">\(
+\begin{align}
+E[Y^*_i|X_i=X] &amp;= E[(Y_i-\bar{Y})V_i | X_i=x] \\
+&amp;= E[(\alpha + \beta T_i + e_i - \bar{Y})V_i | X_i=x] \\
+&amp;= \alpha E[V_i | X_i=x] + \beta E[T_i V_i | X_i=x] + E[e_i V_i | X_i=x] \\
+&amp;= \beta + E[e_i V_i | X_i=x] \\
+&amp;= \beta = \tau(x)
+\end{align}
+\)</span></p>
+<p>Bare in mind that this only works when the treatment is randomized. For non randomized treatment, we have to replace \(\bar{T}\) by \(M(X_i)\), where \(M\) is a model that estimates \(E[T_i|X_i=x]\).</p>
+<p><span class="math notranslate nohighlight">\(
+Y^*_i = (Y_i- \bar{Y})\dfrac{(T_i - M(T_i))}{(T_i - M(T_i))^2}
+\)</span></p>
+<p>This will make sure that the term \(\alpha E[V_i | X_i=x]\) in the third line vanishes to zero and that the term \(E[T_i V_i | X_i=x]\) goes to 1. Notice that you don’t actually need \(E[T_i V_i | X_i=x]\) to go to 1 if you just want to order units in terms of treatment effect. In other words, if you just want to know in which days demand is more sensitive to price increases but you don’t need to know by how much, it doesn’t matter if the \(\beta\) estimates are scaled up or down. If that is the case, you can omit the denominator.</p>
+<p><span class="math notranslate nohighlight">\(
+Y^*_i = (Y_i- \bar{Y})(T_i - M(T_i))
+\)</span></p>
+<p>If all that math seems tiresome, don’t worry. The code is actually very simple. Once again, we transform our training target with the formulas seen above. Here, we have random treatment assignments, so we don’t need to build a model that predicts prices. I’m also omitting the denominator, because here I only care about ordering the treatment effect.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_star_cont</span> <span class="o">=</span> <span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">train</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+               <span class="o">*</span><span class="n">train</span><span class="p">[</span><span class="s2">&quot;sales&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">train</span><span class="p">[</span><span class="s2">&quot;sales&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, just like before, we fit a regression ML model to predict that target.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cate_learner</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">min_child_samples</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">num_leaves</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">cate_learner</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[[</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;weekday&quot;</span><span class="p">,</span> <span class="s2">&quot;cost&quot;</span><span class="p">]],</span> <span class="n">y_star_cont</span><span class="p">)</span>
+
+<span class="n">cate_test_transf_y</span> <span class="o">=</span> <span class="n">cate_learner</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[[</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;weekday&quot;</span><span class="p">,</span> <span class="s2">&quot;cost&quot;</span><span class="p">]])</span>
+
+<span class="n">test_pred</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cate</span><span class="o">=</span><span class="n">cate_test_transf_y</span><span class="p">)</span>
+<span class="n">test_pred</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp</th>
+      <th>weekday</th>
+      <th>cost</th>
+      <th>price</th>
+      <th>sales</th>
+      <th>cate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2815</th>
+      <td>15.7</td>
+      <td>4</td>
+      <td>1.5</td>
+      <td>3</td>
+      <td>187</td>
+      <td>-1395.956278</td>
+    </tr>
+    <tr>
+      <th>257</th>
+      <td>29.4</td>
+      <td>3</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>209</td>
+      <td>-1607.400415</td>
+    </tr>
+    <tr>
+      <th>2585</th>
+      <td>24.6</td>
+      <td>6</td>
+      <td>1.0</td>
+      <td>10</td>
+      <td>197</td>
+      <td>-1497.197402</td>
+    </tr>
+    <tr>
+      <th>3260</th>
+      <td>20.2</td>
+      <td>1</td>
+      <td>0.5</td>
+      <td>4</td>
+      <td>246</td>
+      <td>-1629.798111</td>
+    </tr>
+    <tr>
+      <th>1999</th>
+      <td>10.0</td>
+      <td>4</td>
+      <td>0.5</td>
+      <td>10</td>
+      <td>139</td>
+      <td>-1333.690544</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This time, the CATE’s interpretation is non intuitive. Since we’ve removed the denominator from the target transformation, this CATE we are seeing is scaled by \(Var(X)\). However, this prediction should still order the treatment effect pretty well. To see that, we can use the cumulative gain curve, just like we did before.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gain_curve_test</span> <span class="o">=</span> <span class="n">cumulative_gain</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cate</span><span class="o">=</span><span class="n">cate_test_transf_y</span><span class="p">),</span>
+                                <span class="s2">&quot;cate&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">)</span>
+
+<span class="n">gain_curve_train</span> <span class="o">=</span> <span class="n">cumulative_gain</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cate</span><span class="o">=</span><span class="n">cate_learner</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train</span><span class="p">[[</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;weekday&quot;</span><span class="p">,</span> <span class="s2">&quot;cost&quot;</span><span class="p">]])),</span>
+                                   <span class="s2">&quot;cate&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gain_curve_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gain_curve_train</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">elast</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">)],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Taseline&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/23-Plug-and-Play-Estimators_25_0.png" src="_images/23-Plug-and-Play-Estimators_25_0.png" />
+</div>
+</div>
+<p>For this data, it looks like the model with transformed target is way better than random. Not only that, train and test results are pretty close, so variance is not an issue here. But this is just a characteristic of this dataset. If you recall, this was not the case when we explored the binary treatment case. There, the model performed not so great.</p>
+<div class="section" id="non-linear-treatment-effects">
+<h3>Non Linear Treatment Effects<a class="headerlink" href="#non-linear-treatment-effects" title="Permalink to this headline">¶</a></h3>
+<p>Having talked about the continuous case, there is still an elephant in the room we need to adress. We’ve assumed a linearity on the treatment effect. However, that is very rarely a reasonable assumption. Usually, treatment effects saturate in one form or another. In our example, it’s reasonable to think that demand will go down faster at the first units of price increase, but then it will fall slowlier.</p>
+<p><img alt="img" src="_images/non-linear-case.png" /></p>
+<p>The problem here is that <strong>elasticity or treatment effect changes with the treatment itself</strong>. In our example, the treatment effect is more intense at the beginning of the curve and smaller as prices get higher. Again,suppose you have two types of days: hot days (yellow) and cold days (blue) and we want to distinguish between the two with a causal model. The thing is that causal models should predict elasticity, but in the nonlinear case, the elasticity for hot and cold days could be the same, if we look at different price points in the curve (right image).</p>
+<p>There is no easy way out of this problem and I confess I’m still investigating what works best. For now, the thing that I do is try to think about the functional form of the treatment effect and somehow linearize it. For example, demand usually has the following functional form, where higher \(\alpha\)s means that demand falls faster with each price increase</p>
+<p><span class="math notranslate nohighlight">\(
+D_i = \dfrac{1}{P_i^{\alpha}}
+\)</span></p>
+<p>So, if I apply the log transformation to both the demand \(Y\) and prices \(T\), I should get something that is linear.</p>
+<p><span class="math notranslate nohighlight">\(
+\begin{align}
+log(D)_i &amp;= log\bigg(\dfrac{1}{P_i^{\alpha}}\bigg) \\
+&amp;= log(1) - log(P_i^{\alpha}) \\
+&amp;= log(1) - log(P_i^{\alpha}) \\
+&amp;= - \alpha * log(P_i) \\
+\end{align}
+\)</span></p>
+<p>Linearization is not so easy to do, as it involves some thinking. But you can also try stuff out and see what works best. Often, things like logs and square roots help.</p>
+</div>
+</div>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<p>We are now moving in the direction of estimating conditional average treatment effects using machine learning models. The biggest challenge when doing so is adapting a predictive model to one that estimates causal effects. Another way of thinking about it is that predictive models focus on estimating the outcome Y as a function of features X and possibly treatment T \(Y = M(X, T) \) while causal models need to estimate the partial derivative of this output function on the treatment \( \partial Y = \partial M(X, T) \). This is far from trivial, because while we do observe the outcome Y, we can’t observe \(\partial Y\), at least not on an individual level. As a consequence, we need to be creative when designing an objective function for our models.</p>
+<p>Here, we saw a very simple technique of target transformation. The idea is to combine the original target Y with the treatment T to form a transformed target which is, in expectation, equal to the CATE. With that new target, we can plug any predictive ML model to estimate it and then the model predictions will be CATE estimates. As a side note, besides target transformation, this method also goes by the name of <strong>F-Learner</strong>.</p>
+<p>With all that simplicity, there is also a price to pay. The transformed target is a very noisy estimate of the individual treatment effect and that noise will be transferred to the model estimates in the form of variance. This makes target transformation better suited for big data applications, where variance is less of a problem due to sheer sample sizes. Another downside of the target transformation method is that it is only defined for binary or categorical treatments. We did our best to come up with a continuous version of the approach and even ended up with something that seemed to work, but up until now, there is no solid theoretical framework to back it up.</p>
+<p>Finally, we’ve ended with a discussion on non linear treatment effects and the challenges that come with it. Namely, when the treatment effect changes with the treatment itself, we might mistakenly think units have the same treatment response curve because they have the same responsiveness to the treatment, but actually they are just receiving different treatment amounts.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>The things I’ve written here are mostly stuff from my head. I’ve learned them through experience. This means that they have <strong>not</strong> passed the academic scrutiny that good science often goes through. Instead, notice how I’m talking about things that work in practice, but I don’t spend too much time explaining why that is the case. It’s a sort of science from the streets, if you will. However, I am putting this up for public scrutiny, so, by all means, if you find something preposterous, open an issue and I’ll address it to the best of my efforts.</p>
+<p>Most of this chapter draws from Susan Atheys’ and Guido W. Imbens’ paper, <em>Machine Learning Methods for Estimating Heterogeneous Causal Effects</em>. Some material about target transformation can also be found on Pierre Gutierrez’ and Jean-Yves G´erardy’s paper, <em>Causal Inference and Uplift Modeling: A review of the literature</em>. Note that these papers only cover the binary treatment case. Another review of causal models for CATE estimation that references the F-Learner is <em>Meta-learners for Estimating Heterogeneous Treatment Effects using Machine Learning</em>, by K¨unzel et al, 2019.</p>
+</div>
+<div class="section" id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
+<p>Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
+If you found this book valuable and you want to support it, please go to <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a>. If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn’t understand. Just go to the book’s repository and <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/issues">open an issue</a>. Finally, if you liked this content, please share it with others who might find it useful and give it a <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/stargazers">star on GitHub</a>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "causal-glory"
+        },
+        kernelOptions: {
+            kernelName: "causal-glory",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'causal-glory'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="22-Debiasing-with-Propensity-Score.html" title="previous page">22 - Debiasing with Propensity Score</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-97848161-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

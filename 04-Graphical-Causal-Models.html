@@ -219,6 +219,11 @@
    22 - Debiasing with Propensity Score
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="23-Plug-and-Play-Estimators.html">
+   23 - Plug-and-Play Estimators
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -624,7 +629,7 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;U&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;QI&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;IQ&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;SAT&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Father&#39;s Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Inteligence&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Mother&#39;s Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Inteligence&quot;</span><span class="p">)</span>
@@ -750,16 +755,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "causal-glory"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "causal-glory",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'causal-glory'</script>
 
               </div>
               

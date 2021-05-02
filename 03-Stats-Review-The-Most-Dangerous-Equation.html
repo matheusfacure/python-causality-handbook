@@ -219,6 +219,11 @@
    22 - Debiasing with Propensity Score
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="23-Plug-and-Play-Estimators.html">
+   23 - Plug-and-Play Estimators
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -385,7 +390,7 @@
 <h1>03 - Stats Review: The Most Dangerous Equation<a class="headerlink" href="#stats-review-the-most-dangerous-equation" title="Permalink to this headline">¶</a></h1>
 <p>In his famous article of 2007, Howard Wainer writes about very dangerous equations:</p>
 <p>“Some equations  are  dangerous  if you  know them, and others are dangerous if you do not. The first category may  pose  danger  because the secrets  within its bounds open  doors  behind which lies terrible peril. The obvious winner in this is Einstein’s ionic equation \(E = MC^2\), for it  provides  a  measure of  the  enormous energy hidden  within  ordinary  matter. […] Instead I am interested in equations that unleash their danger not when we know about them, but rather when we do not. Kept close at hand, these equations allow us to understand things clearly, but their absence leaves us dangerously ignorant.”</p>
-<p>The equation he talks about is the Moivre’s equation:</p>
+<p>The equation he talks about is Moivre’s equation:</p>
 <p><span class="math notranslate nohighlight">\(
 SE = \dfrac{\sigma}{\sqrt{n}} 
 \)</span></p>
@@ -510,7 +515,7 @@ SE = \dfrac{\sigma}{\sqrt{n}}
 </table>
 </div></div></div>
 </div>
-<p>Looking at it from another angle, we can separate only the 1% top schools and study them. What are they like? Perhaps we can learn something from the best and replicate it elsewhere. And sure enough, if we look at the top 1% schools, we figure out they have, on average, a smaller number of students.</p>
+<p>Looking at it from another angle, we can separate only the 1% top schools and study them. What are they like? Perhaps we can learn something from the best and replicate it elsewhere. And sure enough, if we look at the top 1% schools, we figure out they have, on average, fewer students.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
@@ -551,13 +556,13 @@ SE = \dfrac{\sigma}{\sqrt{n}}
 <img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_5_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_5_0.png" />
 </div>
 </div>
-<p>What we are seeing above is exactly what is expected according to the Moivre’s equation. As the number of students grow, the average score becomes more and more precise. Schools with very few samples can have very high and very low scores simply due to chance. This is harder to occur with large schools. Moivre’s equation talks about a fundamental fact about the reality of information and records in the form of data: it is always imprecise. The question then becomes how much imprecise.</p>
+<p>What we are seeing above is exactly what is expected according to the Moivre’s equation. As the number of students grows, the average score becomes more and more precise. Schools with very few samples can have very high and very low scores simply due to chance. This is less likley to occur with large schools. Moivre’s equation talks about a fundamental fact about the reality of information and records in the form of data: it is always imprecise. The question then becomes how imprecise.</p>
 <p>Statistics is the science that deals with these imprecisions so they don’t catch us off-guard. As Taleb puts it in his book, Fooled by Randomness:</p>
 <blockquote>
 <div><p>Probability is not a mere computation of odds on the dice or more complicated variants; it is the acceptance of the lack of certainty in our knowledge and the development of methods for dealing with our ignorance.</p>
 </div></blockquote>
-<p>One way to quantify our uncertainty is the <strong>variance of our estimates</strong>. Variance tells us how much observation deviates from their central and most probably value. As pointed by the Moivre’s equation, this uncertainty shrinks as the amount of data that we observe increases. This makes sense right? If we see lots and lots of students performing excellent at a school, we can be more confident that this is indeed a good school. However, if we see a school with only 10 students and 8 of them perform well, we need to be more suspicious. It could be that, by chance, that school got some above average students.</p>
-<p>The  beautiful triangular plot we see above tells exactly this story. It shows us how our estimates of the school performance has a huge variance when the sample sizes are small. It also shows that variance shrinks as the sample size increases. This is true for the average score in a school, but it is also true about any summary statistics that we have, including the ATE we so often want to estimate.</p>
+<p>One way to quantify our uncertainty is the <strong>variance of our estimates</strong>. Variance tells us how much observation deviates from their central and most probably value. As indicated by Moivre’s equation, this uncertainty shrinks as the amount of data we observe increases. This makes sense, right? If we see lots and lots of students performing excellently at a school, we can be more confident that this is indeed a good school. However, if we see a school with only 10 students and 8 of them perform well, we need to be more suspicious. It could be that, by chance, that school got some above average students.</p>
+<p>The beautiful triangular plot we see above tells exactly this story. It shows us how our estimates of the school performance has a huge variance when the sample sizes are small. It also shows that variance shrinks as the sample size increases. This is true for the average score in a school, but it is also true about any summary statistics that we have, including the ATE we so often want to estimate.</p>
 <div class="section" id="the-standard-error-of-our-estimates">
 <h2>The Standard Error of Our Estimates<a class="headerlink" href="#the-standard-error-of-our-estimates" title="Permalink to this headline">¶</a></h2>
 <p>Since this is just a review on statistics, I’ll take the liberty to go a bit faster now. If you are not familiar with distributions, variance and standard errors, please, do read on, but keep in mind that you might need some additional resources. I suggest you google any MIT course on introduction to statistics. They are usually quite good.</p>
@@ -595,7 +600,7 @@ SE for Face to Face: 0.8723511456319106
 <blockquote>
 <div><p>Each [of the essential forms] manifests itself in a great variety of combinations, with actions, with material things, and with one another, and each seems to be many</p>
 </div></blockquote>
-<p>To better grasp this, let’s suppose we have a true abstract distribution of students’ test score. This is a normal distribution with true mean of 74 and true standard deviation of 2. From this distribution, we can run 10000 experiments. On each one, we collect 500 samples. Some experiment data will have a mean lower than the true one, some will be higher. If we plot them in a histogram, we can see that the true mean is where most of the experiments’ mean fall in.</p>
+<p>To better grasp this, let’s suppose we have a true abstract distribution of students’ test score. This is a normal distribution with true mean of 74 and true standard deviation of 2. From this distribution, we can run 10000 experiments. On each one, we collect 500 samples. Some experiment data will have a mean lower than the true one, some will be higher. If we plot them in a histogram, we can see that means of the experiments are distributed around the true mean.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_std</span> <span class="o">=</span> <span class="mi">2</span>
@@ -608,8 +613,8 @@ SE for Face to Face: 0.8723511456319106
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">freq</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">run_experiment</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Experiment&#39;s Mean&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">true_mean</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">freq</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True Mean&quot;</span><span class="p">)</span>
+<span class="n">freq</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">run_experiment</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Experiment Means&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">true_mean</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">freq</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;True Mean&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -619,10 +624,10 @@ SE for Face to Face: 0.8723511456319106
 </div>
 </div>
 <p>Notice that we are talking about the mean of means here. So, by chance, we could have an experiment where the mean is somewhat below or above the true mean. This is to say that we can never be sure that the mean of our experiment matches the true platonic and ideal mean. However, <strong>with the standard error, we can create an interval that will contain the true mean 95% of the time</strong>.</p>
-<p>In real life, we don’t have the luxury of simulating the same experiment with multiple datasets. We often only have one. But we can drawn on the intuition above to construct what we call <strong>confidence intervals</strong>. Confidence intervals come with a probability attached to them. The most common one is 95%. This probability tells us how many of the hypothetical confidence intervals we would build from different studies contains the true mean. For example, the 95% confidence intervals computed from many similar studies would contain the true mean 95% of the time.</p>
+<p>In real life, we don’t have the luxury of simulating the same experiment with multiple datasets. We often only have one. But we can draw on the intuition above to construct what we call <strong>confidence intervals</strong>. Confidence intervals come with a probability attached to them. The most common one is 95%. This probability tells us how many of the hypothetical confidence intervals we would build from different studies contain the true mean. For example, the 95% confidence intervals computed from many similar studies would contain the true mean 95% of the time.</p>
 <p>To calculate the confidence interval, we use what is called the <strong>central limit theorem</strong>. This theorem states that <strong>means of experiments are normally distributed</strong>. From statistical theory, we know that 95% of the mass of a normal distribution is between 2 standard deviations above and below the mean. Technically, 1.96, but 2 is close enough.</p>
 <p><img alt="normal_density" src="_images/normal_dist.jpeg" /></p>
-<p>The Standard Error of the mean serves as our estimate for the means’ distribution of our experiments. So, if we multiply it by 2 and add and subtract it from one of our experiment’s mean, we will construct a 95% confidence interval.</p>
+<p>The Standard Error of the mean serves as our estimate of the distribution of the experiment means. So, if we multiply it by 2 and add and subtract it from the mean of one of our experiments, we will construct a 95% confidence interval for the true mean.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">321</span><span class="p">)</span>
@@ -656,8 +661,8 @@ SE for Face to Face: 0.8723511456319106
 <img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_12_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_12_0.png" />
 </div>
 </div>
-<p>Of course, we don’t need to restrict ourselves to the 95% confidence interval. We could generate the 99% interval by finding how many times do we need to multiply the standard deviation so the interval contains 99% of the mass of a normal distribution.</p>
-<p>The function <code class="docutils literal notranslate"><span class="pre">ppf</span></code> in python gives us the inverse of the CDF. So, <code class="docutils literal notranslate"><span class="pre">ppf(0.5)</span></code> will return 0.0, saying that 50% of the mass of the standard normal distribution is below 0.0. By the same token, if we plug 99.5%, we will have the value <code class="docutils literal notranslate"><span class="pre">z</span></code>, such that 99.5% of the distribution mass falls below this value. In other words, 0.05% of the mass falls above this value. We will take this value from above and below the distribution, which will result in 99% if the distribution falls between them. Here is the 99% interval.</p>
+<p>Of course, we don’t need to restrict ourselves to the 95% confidence interval. We could generate the 99% interval by finding what we need to multiply the standard deviation by so the interval contains 99% of the mass of a normal distribution.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">ppf</span></code> in python gives us the inverse of the CDF. So, <code class="docutils literal notranslate"><span class="pre">ppf(0.5)</span></code> will return 0.0, saying that 50% of the mass of the standard normal distribution is below 0.0. By the same token, if we plug 99.5%, we will have the value <code class="docutils literal notranslate"><span class="pre">z</span></code>, such that 99.5% of the distribution mass falls below this value. In other words, 0.05% of the mass falls above this value. Instead of multiplying the standard error by 2 like we did to find the 95% CI, we will multiply it by <code class="docutils literal notranslate"><span class="pre">z</span></code>, which will result in the 99% CI.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
@@ -711,7 +716,7 @@ SE for Face to Face: 0.8723511456319106
 </div>
 </div>
 </div>
-<p>What we can see is that the 95% CI of the groups don’t overlap. The lower end of the CI for Face to Face class is above the upper end of the CI for online classes. This is evidence that our result is not by chance. There is a significant causal decrease in academic performance once you switch from face to face to online classes.</p>
+<p>What we can see is that the 95% CI of the groups don’t overlap. The lower end of the CI for Face to Face class is above the upper end of the CI for online classes. This is evidence that our result is not by chance, and that the true mean for students in face to face clases is higher than the true mean for students in online classes. In other words, there is a significant causal decrease in academic performance when switching from face to face to online classes.</p>
 <p>As a recap, confidence intervals are a way to place uncertainty around our estimates. The smaller the sample size, the larger the standard error and the wider the confidence interval. Finally, you should always be suspicious of measurements without any uncertainty metric attached to it. Since they are super easy to compute, lack of confidence intervals signals either some bad intentions or simply lack of knowledge, which is equally concerning.</p>
 <p><img alt="img" src="_images/ci_xkcd.png" /></p>
 <p>One final word of caution here. Confidence intervals are trickier to interpret than at first glance. For instance, I <strong>shouldn’t</strong> say that this particular 95% confidence interval contains the true population mean with 95% chance. That’s because in frequentist statistics, the one that uses confidence intervals, the population mean is regarded as a true population constant. So it either is or isn’t in our particular confidence interval. In other words, our particular confidence interval either contains or doesn’t contain the true mean. If it does, the chance of containing it would be 100%, not 95%. If it doesn’t, the chance would be 0%. Rather, in confidence intervals, the 95% refers to the frequency that such confidence intervals, computed in many many studies, contain the true mean. 95% is our confidence in the algorithm used to compute the 95% CI, not on the particular interval itself.</p>
@@ -719,7 +724,7 @@ SE for Face to Face: 0.8723511456319106
 </div>
 <div class="section" id="hypothesis-testing">
 <h2>Hypothesis Testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">¶</a></h2>
-<p>Another way to incorporate uncertainty is to state a hypothesis test: is the difference in means statistically different from zero (or any other value)? To do so, we will recall that the sum or difference of 2 normal distributions is also a normal distribution. The resulting mean will be the sum or difference between the two distribution, while the variance will always be the sum of the variance:</p>
+<p>Another way to incorporate uncertainty is to state a hypothesis test: is the difference in means statistically different from zero (or any other value)? To do so, we will recall that the sum or difference of 2 normal distributions is also a normal distribution. The resulting mean will be the sum or difference between the two distributions, while the variance will always be the sum of the variance:</p>
 <p><span class="math notranslate nohighlight">\(
 N(\mu_1, \sigma_1^2) - N(\mu_2, \sigma_2^2) = N(\mu_1 - \mu_2, \sigma_1^2 + \sigma_2^2)
 \)</span></p>
@@ -789,7 +794,7 @@ z = \dfrac{\mu_{diff} - H_{0}}{SE_{diff}} = \dfrac{(\mu_1 - \mu_2) - H_{0}}{\sqr
 \)</span></p>
 <p>Where \(H_0\) is the value which we want to test our difference against.</p>
 <p>The z statistic is a measure of how extreme the observed difference is. To test our hypothesis that the difference in the means is statistically different from zero, we will use contradiction. We will assume that the opposite is true, that is, we will assume that the difference is zero. This is called a null hypothesis, or \(H_0\). Then, we will ask ourselves “is it likely that we would observe such a difference if the true difference were indeed zero?” In statistical math terms, we can translate this question to checking how far from zero is our z statistic.</p>
-<p>Under \(H_0\), the z statistic follows a standard normal distribution. So, if the difference is indeed zero, we would see the z statistic between 2 standard deviation of the mean 95% of the time. The direct consequence of this is that if z falls above or below 2 standard deviations, we can reject the null hypothesis with 95% confidence.</p>
+<p>Under \(H_0\), the z statistic follows a standard normal distribution. So, if the difference is indeed zero, we would see the z statistic within 2 standard deviations of the mean 95% of the time. The direct consequence of this is that if z falls above or below 2 standard deviations, we can reject the null hypothesis with 95% confidence.</p>
 <p>Let’s see how this looks like in our classroom example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -849,7 +854,7 @@ Diff 95% CI: (0.22814141774873375, 5.771858582251266)
 <h2>P-values<a class="headerlink" href="#p-values" title="Permalink to this headline">¶</a></h2>
 <p>I’ve said previously that there is less than 5% chance that we would observe such an extreme value if the difference between online and face to face groups were actually zero. But can we estimate exactly what is that chance? How likely are we to observe such an extreme value? Enters p-values!</p>
 <p>Just like with confidence intervals (and most frequentist statistics, as a matter of fact) the true definition of p-values can be very confusing. So, to not take any risks, I’ll copy the definition from Wikipedia: “the p-value is the probability of obtaining test results at least as extreme as the results actually observed during the test, assuming that the null hypothesis is correct”.</p>
-<p>To put it more succinctly, the p-value is the probability of seeing such a data, given that the null-hypothesis is true. It measures how unlikely it is that you are seeing a measurement if the null-hypothesis is true. Naturally, this often gets confused with the probability of the null-hypothesis being true. Note the difference here. The p-value is NOT \(P(H_0|data)\), but rather \(P(data|H_0)\).</p>
+<p>To put it more succinctly, the p-value is the probability of seeing such data, given that the null-hypothesis is true. It measures how unlikely it is that you are seeing a measurement if the null-hypothesis is true. Naturally, this often gets confused with the probability of the null-hypothesis being true. Note the difference here. The p-value is NOT \(P(H_0|data)\), but rather \(P(data|H_0)\).</p>
 <p>But don’t let this complexity fool you. In practical terms, they are pretty straightforward to use.</p>
 <p><img alt="p_value" src="_images/p_value.png" /></p>
 <p>To get the p-value, we need to compute the area under the standard normal distribution before or after the z statistic. Fortunately, we have a computer to do this calculation for us. We can simply plug the z statistic in the CDF of the standard normal distribution.</p>
@@ -865,7 +870,7 @@ Diff 95% CI: (0.22814141774873375, 5.771858582251266)
 </div>
 </div>
 </div>
-<p>This means that there is only a 0.2% chance of observing this extreme z statistic if the difference was zero. Notice how the p-value is interesting because it avoids us having to specify a confidence level, like 95% or 99%. But, if we wish to report one, from the p-value, we know exactly which confidence will our test pass or fail. For instance, with a p-value of 0.0027, we know that we have significance up to the 0.2% level. So, while the 95% CI for the difference and the 99% CI will neither contain zero, the 99.9% CI will.</p>
+<p>This means that there is only a 0.2% chance of observing this extreme z statistic if the difference was zero. Notice how the p-value is interesting because it avoids us having to specify a confidence level, like 95% or 99%. But, if we wish to report one, from the p-value, we know exactly at which confidence our test will pass or fail. For instance, with a p-value of 0.0027, we know that we have significance up to the 0.2% level. So, while the 95% CI and the 99% CI for the difference will neither contain zero, the 99.9% CI will.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff_mu</span> <span class="o">=</span> <span class="n">online</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">face_to_face</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -887,7 +892,7 @@ Diff 95% CI: (0.22814141774873375, 5.771858582251266)
 </div>
 <div class="section" id="keys-ideas">
 <h2>Keys Ideas<a class="headerlink" href="#keys-ideas" title="Permalink to this headline">¶</a></h2>
-<p>We’ve seen how important it is to know the Moivre’s equation and we used it to place a degree of certainty around our estimates. Namely, we figured out that the online classes cause a decrease in academic performance compared to face to face classes. We also saw that this was a statistically significant result. We did it by comparing the Confidence Intervals of the means for the 2 groups, by looking at the confidence interval for the difference, by doing a hypothesis test and by looking at the p-value. Let’s wrap everything up in a single function that does A/B testing comparison like the one we did above</p>
+<p>We’ve seen how important it is to know Moivre’s equation and we used it to place a degree of certainty around our estimates. Namely, we figured out that the online classes cause a decrease in academic performance compared to face to face classes. We also saw that this was a statistically significant result. We did it by comparing the Confidence Intervals of the means for the 2 groups, by looking at the confidence interval for the difference, by doing a hypothesis test and by looking at the p-value. Let’s wrap everything up in a single function that does A/B testing comparison like the one we did above</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">AB_test</span><span class="p">(</span><span class="n">test</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">control</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">h0</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>

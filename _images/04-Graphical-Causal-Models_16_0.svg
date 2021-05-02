@@ -62,15 +62,15 @@
 <ellipse fill="none" stroke="black" cx="246" cy="-162" rx="50.09" ry="18"/>
 <text text-anchor="middle" x="246" y="-158.3" font-family="Times,serif" font-size="14.00">Inteligence</text>
 </g>
-<!-- QI -->
+<!-- IQ -->
 <g id="node6" class="node">
-<title>QI</title>
+<title>IQ</title>
 <ellipse fill="none" stroke="black" cx="137" cy="-90" rx="27" ry="18"/>
-<text text-anchor="middle" x="137" y="-86.3" font-family="Times,serif" font-size="14.00">QI</text>
+<text text-anchor="middle" x="137" y="-86.3" font-family="Times,serif" font-size="14.00">IQ</text>
 </g>
-<!-- Inteligence&#45;&gt;QI -->
+<!-- Inteligence&#45;&gt;IQ -->
 <g id="edge5" class="edge">
-<title>Inteligence&#45;&gt;QI</title>
+<title>Inteligence&#45;&gt;IQ</title>
 <path fill="none" stroke="black" d="M222.62,-145.98C205.68,-135.1 182.71,-120.35 164.82,-108.87"/>
 <polygon fill="black" stroke="black" points="166.3,-105.66 155.99,-103.2 162.52,-111.55 166.3,-105.66"/>
 </g>

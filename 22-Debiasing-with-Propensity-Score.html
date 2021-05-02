@@ -57,6 +57,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="23 - Plug-and-Play Estimators" href="23-Plug-and-Play-Estimators.html" />
     <link rel="prev" title="21 - Debiasing with Orthogonalization" href="21-Debiasing-with-Orthogonalization.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -216,6 +217,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    22 - Debiasing with Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="23-Plug-and-Play-Estimators.html">
+   23 - Plug-and-Play Estimators
   </a>
  </li>
 </ul>
@@ -1287,7 +1293,7 @@ Name: em1, dtype: float64
 <div class="section" id="positivity-or-common-support">
 <h2>Positivity or Common Support<a class="headerlink" href="#positivity-or-common-support" title="Permalink to this headline">¶</a></h2>
 <p>Besides high variance, we can also have problems with positivity. Positivity, or common support is a causal inference assumption which states that there must be sufficient overlap between the characteristics of the treated and the control units. Or, in other words, that everyone has a non zero probability of getting the treatment or the control. If this doesn’t happen, we won’t be able to estimate a causal effect that is valid for the entire population, only for those we have common support.</p>
-<p>To be clar, problems with positivity are problems of the data itself, not a problem with the propensity score method. Propensity score method just makes it very clear when positivity problems exist. In that sense, this is an argument in favor of the propensity score. While most methods will not warn you when there are positivity problems, propensity score will show it to your face. All you have to do is plot the distribution of the propensity score for the treated and for the untreated.</p>
+<p>To be clear, positivity issues are problems of the data itself, not a problem with the propensity score method. Propensity score method just makes it very clear when positivity problems exist. In that sense, this is an argument in favor of the propensity score. While most methods will not warn you when there are positivity problems, propensity score will show it to your face. All you have to do is plot the distribution of the propensity score for the treated and for the untreated.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;em1_ps&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em1&quot;</span><span class="p">)</span>
@@ -1558,6 +1564,7 @@ If you found this book valuable and you want to support it, please go to <a clas
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="21-Debiasing-with-Orthogonalization.html" title="previous page">21 - Debiasing with Orthogonalization</a>
+    <a class='right-next' id="next-link" href="23-Plug-and-Play-Estimators.html" title="next page">23 - Plug-and-Play Estimators</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
