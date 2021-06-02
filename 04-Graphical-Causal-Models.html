@@ -224,6 +224,11 @@
    23 - Plug-and-Play Estimators
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="24-Meta-Learners.html">
+   24 - Meta Learners
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -391,7 +396,7 @@
 <div class="section" id="thinking-about-causality">
 <h2>Thinking About Causality<a class="headerlink" href="#thinking-about-causality" title="Permalink to this headline">¶</a></h2>
 <p>Have you ever noticed how those cooks in YouTube videos are excellent at describing food? “Reduce the sauce until it reaches a velvety consistency”. If you are just starting to learn how to cook, you have no idea what this even means. Just give me the time I should leave this thing on the stove! With causality, it’s the same thing. If you walk into a bar and hear folks discussing causality (probably a bar next to an economics department), you will hear them say how the confounding of income made it challenging to identify the imigration effect on that neighborhood, so they had to use an instrumental variable. And by now, you might not understand what they are talking about. But I’ll fix at least some of this problem right now.</p>
-<p>Graphical models is the language of causality. Is what you use not only to talk with other brave and true causality aficionados, but it is also something you use to make your own thoughts clearer.</p>
+<p>Graphical models are the language of causality. They are not only what you use to talk with other brave and true causality aficionados, but also something you use to make your own thoughts clearer.</p>
 <p>As a starting point, let’s take conditional independence of the potential outcomes, for example. This is one of the main assumptions that we require to be true when doing causal inference:</p>
 <p><span class="math notranslate nohighlight">\(
 (Y_0, Y_1) \perp T | X
@@ -461,7 +466,7 @@
 <img alt="_images/04-Graphical-Causal-Models_4_0.svg" src="_images/04-Graphical-Causal-Models_4_0.svg" /></div>
 </div>
 <p>In the first graph, dependence flows in the direction of the arrows. To give a more concrete example, let’s say that knowing about causal inference is the only way to solve business problems and solving those problems is the only way to get a job promotion. So causal knowledge causes problem solving which causes job promotion. We can say here that job promotion is dependent on causal knowledge. The greater the causal knowledge, the greater your chances of getting a promotion. Notice that dependence is symmetric, although it is a little less intuitive. The greater your chances of promotion, the greater the chance you have causal knowledge, otherwise it would be difficult to get a promotion.</p>
-<p>Now, let’s say I condition on the intermediary variable. In this case, the dependence is blocked. So, X and Z are independent given Y. By the same token, in our example, if I know that you are good at solving problems, knowing that you know causal inference doesn’t give any further information about your chances of getting a job promotion. In mathematical terms, \(E[Promotion|Solve \ problems, Causal \ knowledge]=E[Promotion|Solve \ problems]\). The inverse is also true, once I know how good you are at solving problems, knowing about your job promotion status gives me no further information about how likely you are to know causal inference.</p>
+<p>Now, let’s say I condition on the intermediary variable. In this case, the dependence is blocked. So, X and Z are independent given Y. In the graph above, red indicates that Y is a conditioned variable.  By the same token, in our example, if I know that you are good at solving problems, knowing that you know causal inference doesn’t give any further information about your chances of getting a job promotion. In mathematical terms, \(E[Promotion|Solve \ problems, Causal \ knowledge]=E[Promotion|Solve \ problems]\). The inverse is also true, once I know how good you are at solving problems, knowing about your job promotion status gives me no further information about how likely you are to know causal inference.</p>
 <p>As a general rule, the dependence flow in the direct path from A to B is blocked when we condition on an intermediary variable C. Or,</p>
 <p><span class="math notranslate nohighlight">\(A \not\!\perp\!\!\!\perp B\)</span></p>
 <p>and</p>
@@ -530,8 +535,8 @@ A \not\!\perp\!\!\!\perp B | C
 <li><p>It contains a non collider that has been conditioned on</p></li>
 <li><p>It contains a collider that has not been conditioned on and has no descendants that have been conditioned on.</p></li>
 </ol>
-<p>Here is a cheat sheet about how dependence flows in a graph. I’ve taken from a <a class="reference external" href="http://ai.stanford.edu/%7Epaskin/gm-short-course/lec2.pdf">Stanford presentation</a> by Mark Paskin.
-<img alt="img" src="_images/graph-flow.png" /></p>
+<p>Here is a cheat sheet about how dependence flows in a graph. I’ve taken from a <a class="reference external" href="http://ai.stanford.edu/%7Epaskin/gm-short-course/lec2.pdf">Stanford presentation</a> by Mark Paskin.  The arrows with lines at their tips signify independence, and the arrows without lines at their tips signify dependence.</p>
+<p><img alt="img" src="_images/graph-flow.png" /></p>
 <p>As a final example, try to figure out some independence and dependence relationship in the following causal graph.</p>
 <ol class="simple">
 <li><p>Is \(D \perp C\)?</p></li>
@@ -651,7 +656,7 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <p>You might think that it is a good idea to add everything you can measure to your model just to be sure you don’t have confounding bias. Well, think again.</p>
 <p><img alt="image.png" src="_images/selection_bias.png" /></p>
 <p>The second big source of bias is what we will call selection bias. If confounding bias happens when we don’t control for a common cause, selection bias is more related to effects. One word of caution here, economists tend to refer to all sorts of bias as selection bias. Here, I think the distinction between it and confounding bias is very helpful, so I’ll stick to it.</p>
-<p>More often than not, selection bias arises when we control for more variables that we should. It might be the case that the treatment and the potential outcome are marginally independent, but become dependent once we condition on a collider.</p>
+<p>More often than not, selection bias arises when we control for more variables than we should. It might be the case that the treatment and the potential outcome are marginally independent, but become dependent once we condition on a collider.</p>
 <p>Imagine that with the help of some miracle you are finally able to randomize education in order to measure its effect on wage. But just to be sure you won’t have confounding, you control for a lot of variables. Among them, you control for investments. But investment is not a common cause of education and wage. Instead, it is a consequence of both. More educated people both earn more and invest more. Also, those who earn more invest more. Since investment is a collider, by conditioning on it, you are opening a second path between the treatment and the outcome, which will make it harder to measure the direct effect. One way to think about this is that by controlling investments, you are looking at small groups of the population where investment is the same and then finding the effect of education on those groups. But by doing so, you are also indirectly and inadvertently not allowing wages to change much. As a result, you won’t be able to see how education changes wage, because you are not allowing wages to change as it should.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -672,8 +677,8 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <div class="cell_output docutils container">
 <img alt="_images/04-Graphical-Causal-Models_18_0.svg" src="_images/04-Graphical-Causal-Models_18_0.svg" /></div>
 </div>
-<p>To demonstrate why this is the case, imagine that investments and education takes only 2 values. Either people invest or not. They are either educated or not. Initially, when we don’t control for investments, the bias term is zero \(E[Y_0|T=1] - E[Y_0|T=0] = 0\) because the education was randomised. This means that the wage people would have in the case they didn’t receive education \(Wage_0\) is the same if they do or don’t receive the education treatment. But what happens if we condition on investments?</p>
-<p>Looking at those that invest, we probably have the case that \(E[Y_0|T=0, I=1] &gt; E[Y_0|T=1, I=1]\). In words, among those that invest, those that manage to do so even without education are more independent of education to achieve high earnings. For this reason, the wage those people have, \(Wage_0|T=0\), is probably higher than the wage the educated group would have in the case that they didn’t had education, \(Wage_0|T=1\). A similar reasoning can be applied to those that don’t invest, where we also probably have \(E[Y_0|T=0, I=0] &gt; E[Y_0|T=1, I=0]\). Those that don’t invest even with education, probably would have a lower wage, had they not got the education, than those that didn’t invest but also didn’t have education.</p>
+<p>To demonstrate why this is the case, imagine that investments and education take only 2 values. Either people invest or not. They are either educated or not. Initially, when we don’t control for investments, the bias term is zero: \(E[Y_0|T=1] - E[Y_0|T=0] = 0\) because the education was randomised. This means that the wage people would have in the case they didn’t receive education \(Wage_0\) is the same if they do or don’t receive the education treatment. But what happens if we condition on investments?</p>
+<p>Looking at those that invest, we probably have the case that \(E[Y_0|T=0, I=1] &gt; E[Y_0|T=1, I=1]\). In words, among those that invest, those that manage to do so even without education are more independent of education to achieve high earnings. For this reason, the wage those people have, \(Wage_0|T=0\), is probably higher than the wage the educated group would have in the case that they didn’t have education, \(Wage_0|T=1\). A similar reasoning can be applied to those that don’t invest, where we also probably have \(E[Y_0|T=0, I=0] &gt; E[Y_0|T=1, I=0]\). Those that don’t invest even with education, probably would have a lower wage, had they not got the education, than those that didn’t invest but also didn’t have education.</p>
 <p>To use a purely graphical argument, if someone invests, knowing that they have high education explains away the second cause which is wage. Conditioned on investing, higher education is associated with low wages and we have a negative bias \(E[Y_0|T=0, I=i] &gt; E[Y_0|T=1, I=i]\).</p>
 <p>Just as a side note, all of this we’ve discussed is also true if we condition on any descendent of a common effect.</p>
 <div class="cell tag_hide-input docutils container">
@@ -755,16 +760,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "causal-glory"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "causal-glory",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'causal-glory'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

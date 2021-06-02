@@ -224,6 +224,11 @@
    23 - Plug-and-Play Estimators
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="24-Meta-Learners.html">
+   24 - Meta Learners
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -395,7 +400,7 @@
 <p>We’ve seen how adding additional controls to our regression model can help identify causal effect. If the control is a confounder, adding it to the model is not just nice to have, but is a requirement. When the unwary see this, a natural response is to throw whatever he can measure into the model. In today’s world of big data, this could easily be more than 1000 variables. As it turns out, this is not only unnecessary, but can be detrimental to causal identification. We will now turn our attention to controls that are not confounders. First, let’s take a look at the good ones. Then, we will delve into harmful controls.</p>
 <p>As a motivating example, let’s suppose you are a data scientist in the collections team of a fintech. Your next task is to figure out the impact of sending an email asking people to negotiate their debt. Your response variable is the amount of payments from the late customers.</p>
 <p>To answer this question, your team selects 5000 random customers from your late customers base to do a random test. For every customer, you flip a coin, if its heads, the customer receives the email; otherwise, it is left as a control. With this test, you hope to find out how much extra money the email generates.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -533,7 +538,7 @@ ATE = E[Y_i|T_i=1] - E[Y_i|T_i=0]
 <p>Notice how your data has some other interesting columns. For example, <code class="docutils literal notranslate"><span class="pre">credit_limit</span></code> represents the customer’s credit line prior to he or she getting late. <code class="docutils literal notranslate"><span class="pre">risk_score</span></code> corresponds to the estimated risk of the customer prior to the delivery of the email. It makes sense to think that credit limit and risk are probably very good predictors of payments. But how can that be useful?</p>
 <p>First, let’s understand why we can fail to find statistical significance in a treatment even when it is there. It could be that, like in this case, the treatment has very little impact on the outcome. If you think about it, what makes people pay their debt is, by and large, factors outside the control of the collections department. People pay their debt because they find a new job, manage their finances, income and so on. In statistical terms, we can say that <strong>the variability of payments is explained much more by other factors other than by the email</strong>.</p>
 <p>To get a visual understanding of it, we can plot the payments against the treatment variable email. I’ve also plotted the fitted line of the model above in red. To help visualization, I’ve added a little bit of noise to the email variable so that it doesn’t get smashed at the zero or one.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;payments&quot;</span><span class="p">,</span> 
                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
@@ -590,7 +595,7 @@ Email Residual Variance 0.24918421069820032
       <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th> <td> 4.143e-13</td> <td>    1.063</td> <td>  3.9e-13</td> <td> 1.000</td> <td>   -2.084</td> <td>    2.084</td>
+  <th>Intercept</th> <td> 1.537e-13</td> <td>    1.063</td> <td> 1.45e-13</td> <td> 1.000</td> <td>   -2.084</td> <td>    2.084</td>
 </tr>
 <tr>
   <th>res_email</th> <td>    4.4304</td> <td>    2.129</td> <td>    2.080</td> <td> 0.038</td> <td>    0.256</td> <td>    8.605</td>
@@ -599,7 +604,7 @@ Email Residual Variance 0.24918421069820032
 </div>
 <p>Notice how the variance of payments went from 10807 to 5652. We’ve decreased it by almost half once we control for risk and credit limits. Also notice that we didn’t manage to reduce the variability of the treatment email. This makes sense, since risk and credit line does not predict email (nothing does, by definition of randomness).</p>
 <p>Now, we see something much more reasonable. This new estimate tells us that we should expect customers that received the email to pay, on average, 4.4 reais more than those in the control group. This estimate is now statistically different from zero. We can also visualize how the variance is now lower within each control group.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="s2">&quot;res_email&quot;</span><span class="p">,</span> <span class="s2">&quot;res_payments&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">residuals</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">model_treatment</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">model_treatment</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
@@ -640,7 +645,7 @@ Email Residual Variance 0.24918421069820032
 </table></div></div>
 </div>
 <p>To wrap it up, anytime we have a control that is a good predictor of the outcome, even if it is not a confounder, adding it to our model is a good idea. It helps lowering the variance of our treatment effect estimates. Here is a picture of what this situation looks like with causal graphs.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">),</span> <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
@@ -881,7 +886,7 @@ Email Residual Variance 0.24918421069820032
         <td></td>           <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th>     <td> 2.498e-14</td> <td>    0.827</td> <td> 3.02e-14</td> <td> 1.000</td> <td>   -1.646</td> <td>    1.646</td>
+  <th>Intercept</th>     <td> 4.465e-14</td> <td>    0.827</td> <td>  5.4e-14</td> <td> 1.000</td> <td>   -1.646</td> <td>    1.646</td>
 </tr>
 <tr>
   <th>res_treatment</th> <td>   -5.0945</td> <td>    3.447</td> <td>   -1.478</td> <td> 0.143</td> <td>  -11.957</td> <td>    1.768</td>
@@ -897,7 +902,7 @@ Email Residual Variance 0.24918421069820032
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Treatment Variance 0.234375
-Treatment Residual Variance 0.05752909187211906
+Treatment Residual Variance 0.057529091872119076
 </pre></div>
 </div>
 </div>
@@ -912,14 +917,14 @@ Treatment Residual Variance 0.05752909187211906
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SE of the Coeficient: 3.4469737674869028
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SE of the Coeficient: 3.446973767486902
 </pre></div>
 </div>
 </div>
 </div>
 <p>So the bottom line is that we should add controls that are both correlated with the treatment and the outcome (confounder), like the severity in the model above. We should also add controls that are good predictors of the outcome, even if they are not confounders, because they lower the variance of our estimates. However, we should <strong>NOT</strong> add controls that are just good predictors of the treatment, because they will increase the variance of our estimates.</p>
 <p>Here is a picture of what this situation looks like with causal graphs.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 
@@ -1005,7 +1010,7 @@ Treatment Residual Variance 0.05752909187211906
 <p>We know that we MUST add confounding variables. Variables that cause both the treatment and the outcome. We also know that it is a good idea to add controls that predict the outcome very well. This is not required, but it’s nice to have. We also know that it is a bad idea to add controls that predict only the treatment. Again, this is not a deadly sin, but is nice to avoid. So what kind of controls are <code class="docutils literal notranslate"><span class="pre">opened</span></code> and <code class="docutils literal notranslate"><span class="pre">agreement</span></code>? Turns out, they are neither of the above.</p>
 <p>If you think about it, <code class="docutils literal notranslate"><span class="pre">opened</span></code> and <code class="docutils literal notranslate"><span class="pre">agreement</span></code> are surely correlated with the email. After all, you can’t open the email if you didn’t receive it and we’ve also said that the agreement only considers renegotiation that happened after the email has been sent. But <strong>they don’t cause email! Instead, they are caused by it!</strong></p>
 <p>Whenever I need to understand what kind of variables I’m dealing with, I always like to think about their causal graph. Let’s do these here</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 
@@ -1059,7 +1064,7 @@ E[Y_0|T=0, Agreement=1] &gt; E[Y_0|T=1, Agreement=1]
 <div class="section" id="bad-cop">
 <h3>Bad COP<a class="headerlink" href="#bad-cop" title="Permalink to this headline">¶</a></h3>
 <p>The situation goes like this. You have a continuous variable that you want to predict but its distribution is overrepresented at zero. For instance, if you want to model consumer spending, you will have something like a gamma distribution, but with lots of zeros.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> 
@@ -1074,11 +1079,14 @@ E[Y_0|T=0, Agreement=1] &gt; E[Y_0|T=1, Agreement=1]
 <img alt="_images/07-Beyond-Confounders_41_0.png" src="_images/07-Beyond-Confounders_41_0.png" />
 </div>
 </div>
-<p>When a data scientist sees this, the first idea that pops into his head is to break up modeling into 2 steps. The first is the participation, that is, the probability that \(Y &gt; 0\). In our spend example, this would be modeling if the customer decided to spend or not. The second part models \(Y\) for those that decided to participate. It is the Conditional-on-Positives effect. In our case, this would be how much the customer spends after he or she decided they would spend anything. If we would like to estimate the effect of the treatment \(T\) on expenditures, it would look something</p>
+<p>When a data scientist sees this, the first idea that pops into his head is to break up modeling into 2 steps. The first is the participation, that is, the probability that \(Y &gt; 0\). In our spend example, this would be modeling if the customer decided to spend or not. The second part models \(Y\) for those that decided to participate. It is the Conditional-on-Positives effect. In our case, this would be how much the customer spends after he or she decided they would spend anything. If we would like to estimate the effect of the treatment \(T\) on expenditures, it would look something this:</p>
 <p><span class="math notranslate nohighlight">\(
 E[Y_i|T_i] = E[Y_i|Y_i&gt;0, T_i]P(Y_i&gt;0|T_i)
 \)</span></p>
-<p>There is nothing wrong with the participation model \(P(Y_i&gt;0|T_i)\). In fact, if \(T\) is randomly assigned, it will capture the increase in probability of spending due to the treatment. The issue is with the COP part. <strong>It will be biased even under random assignment</strong>. To see that, let’s break up the treatment effect. Under random assignment, it is equal to the difference in means</p>
+<p>There is nothing wrong with the participation model \(P(Y_i&gt;0|T_i)\). In fact, if \(T\) is randomly assigned, it will capture the increase in probability of spending due to the treatment. Also, there is nothing wrong with the decomposition above. It’s mathematically true, by the law of total probabilities.</p>
+<p>The issue is in estimating the COP part. <strong>It will be biased even under random assignment</strong>. On an intuitive level, it’s not crazy to think that some units are zeros only because they didn’t get the treatment. The treatment would cause them to <strong>not</strong> be zeros. On the other hand, some units are never zeros. The treatment might increase their outcome, but even without it, they would not be zeros. Now, the key point is understanding that these two types of units are not comparable. Those that are never zeros have high \(Y_0\) compared to those that are zeros if they didn’t get the treatment. In fact, for the latter, \(Y_0=0\).</p>
+<p>Knowing this, if we remove the zeros, we will keep the never zeros on both the treated and the control group. But we would remove from the control those that flip from zero to not zero with the treatment. This would make the treatment and control no longer comparable, because the control would only contain those that are never zeros and that have higher \(Y_0\), while the treated would contain both types of units.</p>
+<p>Now that we have an intuitive understanding of the problem, let’s check it from a mathematical angle. To see it, let’s break up the treatment effect. Under random assignment, it is equal to the difference in means</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*} 
@@ -1089,7 +1097,7 @@ E[Y_i|T_i] = E[Y_i|Y_i&gt;0, T_i]P(Y_i&gt;0|T_i)
 \end{align*} 
 \end{split}\]</div>
 <p>Where the last equality comes from adding and subtracting \(E[Y_i|Y_i&gt;0, T_i=1]P(Y_i&gt;0|T_i=0)\) and rearranging the terms. This means that the difference in averages is composed of two parts: first, it’s the difference in the probability that the outcome \(y\) is positive. This is called the participation effect because it measures the increase in the probability that customers will participate in spending. Second, it’s the difference in the outcome conditioned on participation, the COP effect. So far so good. There is nothing wrong with this. It is a mathematical truth. The problem comes when we try to estimate each part separately</p>
-<p>This becomes more evident if we analyse the COP effect further.</p>
+<p>This becomes more evident if we analyse the COP effect even further.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*} 
@@ -1103,9 +1111,9 @@ E[Y_i|Y_i&gt;0, T_i=1] - E[Y_i|Y_i&gt;0, T_i=0]&amp;=E[Y_{i1}|Y_{i1}&gt;0]-E[Y_{
 <p><img alt="img" src="_images/cop-ex1.png" /></p>
 <p>To estimate the ATE of the campaign, since we have randomization, all we need to do is compare the treated with the untreated. But, suppose we use the COP formulation where we break up estimation into two models, a participation model that estimates \(P(Y_i&gt;0|T_i)\) and the COP, which estimates \(E[Y_i|Y_i&gt;0]\). This removes everyone that didn’t spend from the analysis.</p>
 <p><img alt="img" src="_images/cop-ex2.png" /></p>
-<p>When we do that, the treated and control are no longer comparable. As we can see, the treated is now only composed of the segment of customers that will spend even without the campaign. Also notice that we can even know the direction of the bias here. It will be \(E[Y_{i0}|Y_{i1}&gt;0] - E[Y_{i0}|Y_{i0}&gt;0]\) or \(E[Y_{i0}|\text{Frugal and Rich}] - E[Y_{i0}|Rich]\). This is obviously negative, as the rich spend more than the frugal customers. As a result, once we filter only the participant population, our estimate of the ATE becomes biased, even if there was no bias at first due to randomization. I sincerely hope this convinces you to avoid COP like the plague. I see too many Data Scientists doing this separate estimation, unaware of the problems that it brings.</p>
+<p>When we do that, the treated and control are no longer comparable. As we can see, the untreated is now only composed of the segment of customers that will spend even without the campaign. Also notice that we can even know the direction of the bias here. It will be \(E[Y_{i0}|Y_{i1}&gt;0] - E[Y_{i0}|Y_{i0}&gt;0]\) or \(E[Y_{i0}|\text{Frugal and Rich}] - E[Y_{i0}|Rich]\). This is obviously negative, as the rich spend more than the frugal customers. As a result, once we filter only the participant population, our estimate of the ATE becomes biased, even if there was no bias at first due to randomization. I sincerely hope this convinces you to avoid COP like the plague. I see too many Data Scientists doing this separate estimation, unaware of the problems that it brings.</p>
 <p>To wrap up selection bias, we need to always remind ourselves to never control for a variable that is either in between the treatment and the outcome or is a common effect of the outcome and the treated. In graphical language, here is what bad control looks like:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 
@@ -1159,16 +1167,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "causal-glory"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "causal-glory",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'causal-glory'</script>
 
               </div>
               

@@ -224,6 +224,11 @@
    23 - Plug-and-Play Estimators
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="24-Meta-Learners.html">
+   24 - Meta Learners
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -421,7 +426,7 @@ E[Y|T=1] - E[Y|T=0] = E[Y_1 - Y_0]=ATE
 <p>So, although we could do simple comparisons, it wouldn’t be very convincing. One way or another, we could never be sure if there wasn’t any bias lurking around and masking our causal effect.</p>
 <p><img alt="img" src="_images/lurking_bias.png" /></p>
 <p>To solve that, we need to make the treated and untreated comparable \(E[Y_0|T=1] = E[Y_0|T=0]\). One way to force this is by randomly assigning the online and presential classes to students. If we managed to do that, the treatment and untreated would be, on average, the same, except for the treatment they receive.</p>
-<p>Fortunately, some economists have done that for us. They’ve randomized not the students, but the classes. Some of them were randomly assigned to have face-to-face lectures, others, to have only online lectures and a third group, to have a blended format of both online and face-to-face lectures. At the end of the semester, they collected data on a standard exam.</p>
+<p>Fortunately, some economists have done that for us. They’ve randomized classes so that some were assigned to have face-to-face lectures, others, to have only online lectures and a third group, to have a blended format of both online and face-to-face lectures. At the end of the semester, they collected data on a standard exam.</p>
 <p>Here is what the data looks like:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

@@ -224,6 +224,11 @@
    23 - Plug-and-Play Estimators
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="24-Meta-Learners.html">
+   24 - Meta Learners
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -735,8 +740,12 @@ y_i = \beta_0 + \beta_1t_i + e_i
 \[
 (\widehat{y'(t)}_1, \widehat{y'(t)}_2, \widehat{y'(t)}_3,..., \widehat{y'(t)}_N)
 \]</div>
-<p>This is a very interesting sequence in terms of model evaluation because we can make preferences statements about it. First, a model is better to the degree that \(\widehat{y’(t)}<em>k &gt; \widehat{y’(t)}</em>{k+a}\) for any \(k\) and \(a&gt;0\). In words, if a model is good at ordering elasticity, the elasticity observed in the top \(k\) samples should be higher than the elasticity observed in top \(k+a\) samples. Or, simply put, if I look at the top units, they should have higher elasticity than units below them.</p>
-<p>Second, a model is better to the degree that \(\widehat{y’(t)}<em>k - \widehat{y’(t)}</em>{k+a}\) is the largest, for any \(k\) and \(a&gt;0\). The intuition being that not only do we want the elasticity of the top \(k\) units to be higher than the elasticity of the units below them, but we want that difference to be as large as possible.</p>
+<p>This is a very interesting sequence in terms of model evaluation because we can make preferences statements about it. First, a model is better to the degree that</p>
+<p><span class="math notranslate nohighlight">\(\hat{y}'(t)_k &gt; \hat{y}'(t)_{k+a}\)</span></p>
+<p>for any \(k\) and \(a&gt;0\). In words, if a model is good at ordering elasticity, the elasticity observed in the top \(k\) samples should be higher than the elasticity observed in top \(k+a\) samples. Or, simply put, if I look at the top units, they should have higher elasticity than units below them.</p>
+<p>Second, a model is better to the degree that</p>
+<p><span class="math notranslate nohighlight">\(\hat{y}'(t)_k - \hat{y}'(t)_{k+a}\)</span></p>
+<p>is the largest, for any \(k\) and \(a&gt;0\). The intuition being that not only do we want the elasticity of the top \(k\) units to be higher than the elasticity of the units below them, but we want that difference to be as large as possible.</p>
 <p>To make it more concrete, here is this idea represented in code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
