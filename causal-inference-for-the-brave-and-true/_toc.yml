@@ -29,6 +29,7 @@
   - file: 22-Debiasing-with-Propensity-Score.ipynb
   - file: 23-Plug-and-Play-Estimators.ipynb
   - file: 24-Meta-Learners.ipynb
+  - file: 25-Debiased-Orthogonal-Machine-Learning.ipynb
 
 - part: Contribute
   chapters:
