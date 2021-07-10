@@ -229,6 +229,11 @@
    24 - Meta Learners
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="25-Debiased-Orthogonal-Machine-Learning.html">
+   25 - Debiased/Orthogonal Machine Learning
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -402,7 +407,7 @@ SE = \dfrac{\sigma}{\sqrt{n}}
 <p>where \(SE\) is the standard error of the mean, \(\sigma\) is the standard deviation and \(n\) is the sample size. Sounds like a piece of math the brave and true should master, so let’s get to it.</p>
 <p>To see why not knowing this equation is very dangerous, let’s take a look at some education data. I’ve compiled data on ENEM scores (Brazilian standardised high school scores, similar to SAT) from different schools for a period of 3 years. I also did some cleaning on the data to keep only the information relevant to us. The original data can be downloaded in the <a class="reference external" href="http://portal.inep.gov.br/web/guest/microdados">Inep website</a>.</p>
 <p>If we look at the top performing school, something catches the eye: those schools have a fairly small number of students.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -414,8 +419,13 @@ SE = \dfrac{\sigma}{\sqrt{n}}
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
 <span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;fivethirtyeight&quot;</span><span class="p">)</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/enem_scores.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/enem_scores.csv&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;avg_score&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -521,7 +531,7 @@ SE = \dfrac{\sigma}{\sqrt{n}}
 </div></div></div>
 </div>
 <p>Looking at it from another angle, we can separate only the 1% top schools and study them. What are they like? Perhaps we can learn something from the best and replicate it elsewhere. And sure enough, if we look at the top 1% schools, we figure out they have, on average, fewer students.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
              <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">top_school</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">],</span> <span class="o">.</span><span class="mi">99</span><span class="p">))</span>
@@ -535,14 +545,14 @@ SE = \dfrac{\sigma}{\sqrt{n}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_3_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_3_0.png" />
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_4_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_4_0.png" />
 </div>
 </div>
 <p>One natural conclusion that follows is that small schools lead to higher academic performance. This makes intuitive sense, since we believe that less students per teacher allows the teacher to give focused attention to each student. But what does this have to do with Moivre’s equation? And why is it dangerous?</p>
 <p>Well, it becomes dangerous once people start to make important and expensive decisions based on this information. In his article, Howard continues:</p>
 <p>“In the 1990s, it became popular to champion reductions in the size of schools. Numerous philanthropic organisations and government agencies funded the division of larger schools based on the fact that students at small schools are over represented in groups with high test scores.”</p>
 <p>What people forgot to do was to look also at the bottom 1% of schools. If we do that, lo and behold! They also have very few students!</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_99</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">],</span> <span class="o">.</span><span class="mi">99</span><span class="p">)</span>
 <span class="n">q_01</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">],</span> <span class="o">.</span><span class="mi">01</span><span class="p">)</span>
@@ -558,7 +568,7 @@ SE = \dfrac{\sigma}{\sqrt{n}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_5_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_5_0.png" />
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_6_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_6_0.png" />
 </div>
 </div>
 <p>What we are seeing above is exactly what is expected according to the Moivre’s equation. As the number of students grows, the average score becomes more and more precise. Schools with very few samples can have very high and very low scores simply due to chance. This is less likley to occur with large schools. Moivre’s equation talks about a fundamental fact about the reality of information and records in the form of data: it is always imprecise. The question then becomes how imprecise.</p>
@@ -574,7 +584,7 @@ SE = \dfrac{\sigma}{\sqrt{n}}
 <p>In the previous section, we estimated the average treatment effect \(E[Y_1-Y_0]\) as the difference in the means between the treated and the untreated \(E[Y|T=1]-E[Y|T=0]\). As our motivating example, we figured out the \(ATE\) for online classes. We also saw that it was a negative impact, that is, online classes made students perform about 5 points worse than the students with face to face classes. Now, we get to see if this impact is statistically significant.</p>
 <p>To do so, we need to estimate the \(SE\). We already have \(n\), our sample size. To get the estimate for the standard deviation we can do the following</p>
 <p><span class="math notranslate nohighlight">\(
-\hat{\sigma}=\frac{1}{N-1}\sum_{i=0}^N (x-\bar{x})^2
+\hat{\sigma}^2=\frac{1}{N-1}\sum_{i=0}^N (x-\bar{x})^2
 \)</span></p>
 <p>where \(\bar{x}\) is the mean of \(x\). Fortunately for us, most programming software already implements this. In Pandas, we can use the method <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.std.html">std</a>.</p>
 <div class="cell docutils container">
@@ -625,7 +635,7 @@ SE for Face to Face: 0.8723511456319106
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_9_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_9_0.png" />
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_10_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_10_0.png" />
 </div>
 </div>
 <p>Notice that we are talking about the mean of means here. So, by chance, we could have an experiment where the mean is somewhat below or above the true mean. This is to say that we can never be sure that the mean of our experiment matches the true platonic and ideal mean. However, <strong>with the standard error, we can create an interval that will contain the true mean 95% of the time</strong>.</p>
@@ -663,7 +673,7 @@ SE for Face to Face: 0.8723511456319106
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_12_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_12_0.png" />
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_13_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_13_0.png" />
 </div>
 </div>
 <p>Of course, we don’t need to restrict ourselves to the 95% confidence interval. We could generate the 99% interval by finding what we need to multiply the standard deviation by so the interval contains 99% of the mass of a normal distribution.</p>
@@ -700,7 +710,7 @@ SE for Face to Face: 0.8723511456319106
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_15_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_15_0.png" />
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_16_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_16_0.png" />
 </div>
 </div>
 <p>Back to our classroom experiment, we can construct the confidence interval for the mean exam score for both the online and face to face students’ group</p>
@@ -751,7 +761,7 @@ N(\mu_1, \sigma_1^2) + N(\mu_2, \sigma_2^2) = N(\mu_1 + \mu_2, \sigma_1^2 + \sig
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_19_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_19_0.png" />
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_20_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_20_0.png" />
 </div>
 </div>
 <p>If we take the distribution of the means of our 2 groups and subtract one from the other, we will have a third distribution. The mean of this final distribution will be the difference in the means and the standard deviation of this distribution will be the square root of the sum of the standard deviations.</p>
@@ -790,7 +800,7 @@ SE_{diff} = \sqrt{SE_1 + SE_2} = \sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_22_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_22_0.png" />
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_23_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_23_0.png" />
 </div>
 </div>
 <p>With this at hand, we can say that we are 95% confident that the true difference between the online and face to face group falls between -8.37 and -1.44. We can also construct a <strong>z statistic</strong> by dividing the difference in mean by the \(SE\) of the differences.</p>
@@ -826,7 +836,7 @@ z = \dfrac{\mu_{diff} - H_{0}}{SE_{diff}} = \dfrac{(\mu_1 - \mu_2) - H_{0}}{\sqr
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_25_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_25_0.png" />
+<img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_26_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_26_0.png" />
 </div>
 </div>
 <p>This looks like a pretty extreme value. Indeed, it is above 2, which means there is less than a 5% chance that we would see such an extreme value if there were no difference in the groups. This again leads us to conclude that switching from face to face to online classes causes a statistically significant drop in academic performance.</p>
@@ -986,16 +996,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "causal-glory"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "causal-glory",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'causal-glory'</script>
 
               </div>
               

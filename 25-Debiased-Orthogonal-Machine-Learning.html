@@ -1,0 +1,1655 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>25 - Debiased/Orthogonal Machine Learning &#8212; Causal Inference for the Brave and True</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="24 - Meta Learners" href="24-Meta-Learners.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part I - The Yang
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   01 - Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   02 - Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   03 - Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   04 - Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   05 - The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   06 - Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   07 - Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   08 - Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   09 - Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   10 - Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   11 - Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   12 - Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
+   13 - Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html">
+   14 - Difference-in-Difference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   15 - Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   16 - Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part II - The Yin
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-Predictive-Models-101.html">
+   17 - Predictive Models 101
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-When-Prediction-Fails.html">
+   18 - When Prediction Fails
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-Causal-Models.html">
+   19 - Building a Causal Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20-Evaluating-Causal-Models.html">
+   20 - Evaluating Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
+   21 - Debiasing with Orthogonalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22-Debiasing-with-Propensity-Score.html">
+   22 - Debiasing with Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="23-Plug-and-Play-Estimators.html">
+   23 - Plug-and-Play Estimators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="24-Meta-Learners.html">
+   24 - Meta Learners
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   25 - Debiased/Orthogonal Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Contribute
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">
+   Patreon
+   <i class="fas fa-external-link-alt">
+   </i>
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/25-Debiased-Orthogonal-Machine-Learning.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F25-Debiased-Orthogonal-Machine-Learning.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/25-Debiased-Orthogonal-Machine-Learning.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ml-for-nuisance-parameters">
+   ML for Nuisance Parameters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#frisch-waugh-lovell">
+     Frisch-Waugh-Lovell
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#frisch-waugh-lovell-on-steroids">
+     Frisch-Waugh-Lovell on Steroids
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cate-estimation-with-double-ml">
+     CATE Estimation with Double-ML
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-parametric-double-debiased-ml">
+   Non Parametric Double/Debiased ML
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-non-parametric-about">
+     What is Non-Parametric About?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#non-scientific-double-debiased-ml">
+   Non-Scientific Double/Debiased ML
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#more-econometrics-may-be-needed">
+     More Econometrics May be Needed!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contribute">
+   Contribute
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="debiased-orthogonal-machine-learning">
+<h1>25 - Debiased/Orthogonal Machine Learning<a class="headerlink" href="#debiased-orthogonal-machine-learning" title="Permalink to this headline">¶</a></h1>
+<p>The next meta-learner we will consider actually came before they were even called meta-learners. As far as I can tell, it came from an awesome 2016 paper that sprung a fruitful field in the causal inference literature. The paper was called <em>Double Machine Learning for Treatment and Causal Parameters</em> and it took a lot of people to write it: Victor Chernozhukov, Denis Chetverikov, Mert Demirer, Esther Duflo (which, by the way, won the 2020 Economics Nobel Prize along with Abhijit Banerjee and Michael Kremer “for their experimental approach to alleviating global poverty”), Christian Hansen, Whitney Newey and James Robins. No wonder it was a very good paper and I even took the liberty of representing its authors as the Avengers just because (credits to Paul Goldsmith-Pinkham who had this idea first).</p>
+<p><img alt="img" src="_images/avengers.png" /></p>
+<p>There is only one problem with the paper: it is incredibly difficult to read (which is expected, since it’s an econometric paper). And since this book is all about making causal inference mainstream, here we are, trying to make Debiased/Orthogonal Machine Learning intuitive.</p>
+<p>But what makes it so special as to deserve it’s own chapter, apart from the other meta-learners? The thing that caught my attention was how well justified this Debiased/Orthogonal ML is. The other methods that we’ve seen so far, the T-learner, S-Learner and X-learner, all seem a bit hackish. We can give an intuitive explanation about why they work, but they didn’t seem very general. In contrast, with Debiased/Orthogonal Machine Learning, we have a general framework we can apply, which is both very intuitive and also very rigorous. Another bonus is that Debiased/Orthogonal ML works for both continuous and discrete treatments, something that neither the T, not X learner could do. Not to mention that the papers describing it do an incredible job with the asymptotic analysis of this estimator. So without further ado, let’s get down to it.</p>
+<p>Once again, as a motivating example, we will resort to our ice cream sales dataset. Just as a reminder, here we are trying to find heterogeneity on the effect of price on sales. Our test set has randomly assigned prices but our training data has only observational prices, which is potentially biased.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">nb21</span> <span class="kn">import</span> <span class="n">cumulative_gain</span><span class="p">,</span> <span class="n">elast</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;ggplot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/ice_cream_sales_rnd.csv&quot;</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/ice_cream_sales.csv&quot;</span><span class="p">)</span>
+<span class="n">train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp</th>
+      <th>weekday</th>
+      <th>cost</th>
+      <th>price</th>
+      <th>sales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>17.3</td>
+      <td>6</td>
+      <td>1.5</td>
+      <td>5.6</td>
+      <td>173</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>25.4</td>
+      <td>3</td>
+      <td>0.3</td>
+      <td>4.9</td>
+      <td>196</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>23.3</td>
+      <td>5</td>
+      <td>1.5</td>
+      <td>7.6</td>
+      <td>207</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>26.9</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>5.3</td>
+      <td>241</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20.2</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>7.2</td>
+      <td>227</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;price&#39;, ylabel=&#39;sales&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_3_1.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_3_1.png" />
+</div>
+</div>
+<p>One source of bias is very clear. As we can see, prices are much higher on the weekend (weekdays 1 and 7), but we can also have other confounders, like temperature and cost. So, if we want to do any causal inference with it, we will need to correct this bias.</p>
+<div class="section" id="ml-for-nuisance-parameters">
+<h2>ML for Nuisance Parameters<a class="headerlink" href="#ml-for-nuisance-parameters" title="Permalink to this headline">¶</a></h2>
+<p>One way we can try to remove this bias is by using a linear model to estimate the treatment effect of prices on sales while controlling for the confounders.</p>
+<div class="math notranslate nohighlight">
+\[
+Sales_i = \alpha + \tau price_i + \beta_1 temp_i + \beta_2 cost_i + \pmb{\beta_3} Weekday_i + e_i
+\]</div>
+<p>where \(\pmb{\beta_3}\) is a vector of parameters associated with each weekday dummy.</p>
+<p>Notice that we are only interested in the \(\tau\) parameter because that’s our treatment effect. We are going to call the other parameters nuisance parameters because we don’t care about them. But, as it turns out, even if we don’t care about them, we have to get them right, because if we don’t, our treatment effect will be off. That’s sort of annoying.</p>
+<p>For instance, if we think about it, the relationship between <code class="docutils literal notranslate"><span class="pre">temp</span></code> and sales is probably not linear. First, as temperature increases, more people will go to the beach and buy ice cream, so sales will increase. But, at some point, it becomes too hot and people decide it is best to stay home. At that point, sales will drop. The relationship between <code class="docutils literal notranslate"><span class="pre">temp</span></code> and sales probably peaks somewhere and then decreases. Which means the above model is probably wrong. It should have been something like</p>
+<div class="math notranslate nohighlight">
+\[
+Sales_i = \alpha + \tau price_i + \beta_1 temp_i + \beta_2 temp^2_i + \beta_3 cost_i + \pmb{\beta_4} Weekday_i + e_i
+\]</div>
+<p>with a quadratic term.</p>
+<p><img alt="img" src="_images/non-linear.png" /></p>
+<p>Thinking about how to model nuisance parameters is already boring with just a few covariates. But what if we had tens or hundreds of them? With modern datasets, this is pretty common. So, what can we do about it? The answer lies the coolest Econometric theorem ever derived.</p>
+<div class="section" id="frisch-waugh-lovell">
+<h3>Frisch-Waugh-Lovell<a class="headerlink" href="#frisch-waugh-lovell" title="Permalink to this headline">¶</a></h3>
+<p>Frisch, Waugh and Lovell were 19th century econometricians who noticed the coolest thing about linear regression. This isn’t new to you, as we’ve talked about it in the context of regression residuals and when talking about fixed effects. But since this theorem is key to understanding Orthogonal-ML, it’s very much worth recapping it.</p>
+<p>Suppose you have a linear regression model with a set of features \(X_1\) and another set of features \(X_2\). You then estimate that model’s parameters.</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{Y} = \hat{\beta_1} X_1 + \hat{\beta_2} X_2
+\)</span></p>
+<p>where \(X_1\) and \(X_1\) are feature matrices (one column per feature and one row per observation) and \(\hat{\beta_1}\) and \(\hat{\beta_2}\) are row vectors. You can get the exact same \(\hat{\beta_1}\) parameter by doing the following steps</p>
+<ol class="simple">
+<li><p>regress the outcome \(y\) on the second set of features \(\hat{y^*} = \hat{\gamma_1} X_2\)</p></li>
+<li><p>regress the first set of features on the second \(\hat{X_1} = \hat{\gamma_2} X_2\)</p></li>
+<li><p>obtain the residuals \(\tilde{X}_1 = X_1 - \hat{X_1}\) and \(\tilde{y}_1 = y_1 - \hat{y^*}\)</p></li>
+<li><p>regress the residuals of the outcome on the residuals of the features \(\hat{y} = \hat{\beta_1} \tilde{X}_1\)</p></li>
+</ol>
+<p>This is insanely cool. Here, we have a generic representation, but notice that one set of features can be just the treatment variable. This means you can estimate all the nuisance parameters separately. First, regress the outcome on the features to get outcome residuals. Then, regress the treatment on the features to get treatment residuals. Finally, regress the outcome residuals on the feature residuals. This will yield the exact same estimate as if we regress the outcome on the features and treatment at the same time.</p>
+<p>But don’t take my word for it. FWL is something that everyone interested in causal inference should do at least once. In the example below, we estimate the treatment effect by first estimating the effects of the covariates on the outcome (sales) and treatment (price).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;sales~temp+C(weekday)+cost&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">mt</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;price~temp+C(weekday)+cost&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, with the residuals, we estimate the ATE of price on sales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;sales_res~price_res&quot;</span><span class="p">,</span> 
+        <span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sales_res</span><span class="o">=</span><span class="n">my</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="c1"># sales residuals</span>
+                          <span class="n">price_res</span><span class="o">=</span><span class="n">mt</span><span class="o">.</span><span class="n">resid</span><span class="p">)</span> <span class="c1"># price residuals</span>
+       <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>-3.848e-13</td> <td>    0.111</td> <td>-3.48e-12</td> <td> 1.000</td> <td>   -0.217</td> <td>    0.217</td>
+</tr>
+<tr>
+  <th>price_res</th> <td>   -4.0004</td> <td>    0.110</td> <td>  -36.428</td> <td> 0.000</td> <td>   -4.216</td> <td>   -3.785</td>
+</tr>
+</table></div></div>
+</div>
+<p>We’ve estimated the ATE to -4, meaning that each unit increase in price will lower sales by 4 units.</p>
+<p>Now, let’s estimate the same parameter, but this time, we will include the treatment and the covariates in the same model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;sales~price+temp+C(weekday)+cost&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-4.000429145475403
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, they are the exact same number! This shows that estimating the treatment effect all at once or separating in the FWL steps is mathematically the same.</p>
+<p>Another way of saying this is that the treatment effect can be derived from <strong>regression on residuals</strong>, where we obtain the residuals from regressing \(Y\) on \(X\) and regress it on the residuals of regressing \(T\) on \(X\). Let’s say that \(\sim\) is the regression operator, so we can summarise FWL theorem as follows.</p>
+<p><span class="math notranslate nohighlight">\(
+(Y - (Y \sim X)) \sim (T - (T \sim X))
+\)</span></p>
+<p>which is essentially estimating the causal parameter \(\tau\) in the following model</p>
+<p><span class="math notranslate nohighlight">\(
+Y_i - E[Y_i | X_i]
+= \tau \cdot (T_i - E[T_i | X_i]) + \epsilon
+\)</span></p>
+<p>As I’ve said, FWL is so awesome because it allows us to separate the estimation procedure of the causal parameter from that of the nuisance parameters. But we still didn’t answer our initial question, which is how can we avoid all the hassle from having to specify the correct functional form on the nuisance parameters? Or, in other words, how can we focus only on the causal parameter without having to worry about the nuisance parameters? Here is where machine learning comes to play.</p>
+<p><img alt="img" src="_images/drown-ols.png" /></p>
+</div>
+<div class="section" id="frisch-waugh-lovell-on-steroids">
+<h3>Frisch-Waugh-Lovell on Steroids<a class="headerlink" href="#frisch-waugh-lovell-on-steroids" title="Permalink to this headline">¶</a></h3>
+<p>Double/Debiased ML can be seen as Frisch, Waugh and Lovell theorem on steroids. The idea is very simple: use ML models when constructing the outcome and treatment residuals:</p>
+<p><span class="math notranslate nohighlight">\(
+Y_i - \hat{M}_y(X_i)
+= \tau \cdot (T_i - \hat{M}_t(X_i)) + \epsilon
+\)</span></p>
+<p>Where \(\hat{M}_y(X_i)\) is estimating \(E[Y|X]\) and  \(\hat{M}_t(X_i)\) is estimating  \(E[T|X]\).</p>
+<p>The idea is that ML models are super flexible, hence, they can capture interactions and non linearities when estimating the \(Y\) and \(T\) residuals while still maintaining a FWL style orthogonalisation. This means we don’t have to make any parametric assumption about the relationship between the covariates \(X\) and the outcome \(Y\) nor between the covariates and the treatment in order to get the correct treatment effect. Provided we don’t have unobserved confounders, we can recover the ATE with the following orthogonalisation procedure:</p>
+<ol class="simple">
+<li><p>Estimate the outcome \(Y\) with features \(X\) using a flexible ML regression model M_y.</p></li>
+<li><p>Estimate the treatment \(T\) with features \(X\) using a flexible ML regression model M_t.</p></li>
+<li><p>Obtain the residuals \(\tilde{Y} = Y - M_y(X)\) and \(\tilde{T} = T - M_t(X)\)</p></li>
+<li><p>regress the residuals of the outcome on the residuals of the treatment \(\tilde{Y} = \alpha + \tau \tilde{T}\)</p></li>
+</ol>
+<p>where \(\tau\) is the causal parameter ATE, which we can estimate, for example, with OLS.</p>
+<p>The power you gain with ML is flexibility. ML is so powerful that it can capture complicated functional forms in the nuisance relationships. But that flexibility is also troublesome, because it means we now have to take into account the possibility of overfitting.</p>
+<p><img alt="img" src="_images/ml-problem.png" /></p>
+<p>Chernozhukov et al (2016) has a much more in depth and rigorous explanation about how overfitting can be troublesome and I definitely recommend you check it out. But here, I’ll go on with a more intuition based explanation.</p>
+<p>To see the issue, suppose that your \(M_y\) model is overfitting. The result is that the residual \(\tilde{Y}\) will be smaller than it should be. It also means that \(M_y\) is capturing more than only the relationship between \(X\) and \(Y\). Part of that something more is the relationship between \(T\) and \(Y\), and if \(M_y\) is capturing some of that, the residual regression will be biased towards zero. In other words, \(M_y\) is capturing the causal relationship and not leaving it to the final residual regression.</p>
+<p>Now to see the problem in overfitting \(M_t\), notice that it will explain more of the variance in \(T\) than it should. As a result, the treatment residual will have less variance than it should. If there is less variance in the treatment, the variance of the final estimator will be high. It is as if the treatment is the same for almost everyone. And if everyone has the same treatment level, it becomes very difficult to estimate what would happen under different treatment levels. As a side note, this will also happen when \(T\) is a deterministic function of \(X\), meaning positivity is being violated.</p>
+<p>Those are the problems we have when using ML models, but how can we correct them? The answer lies in what we will call cross prediction and out-of-fold residuals.</p>
+<p><img alt="img" src="_images/cross-prediction.png" /></p>
+<p>We will split out data into K parts of equal size. Then, for each part k, we will estimate the ML models on all the other K-k samples and make the residuals on the k part. Notice that these residuals are made using out-of-fold prediction. We fit the model on one part of the data, but make the predictions and residuals on another part.</p>
+<p>so even if the model does overfit, it won’t drive the residuals to zero artificially. Finally, we combine the predictions on all the K parts to estimate the final causal model \(\tilde{Y} = \alpha + \tau \tilde{T}\).</p>
+<p>OK, we’ve covered a lot of ground and it might be getting hard to keep up without an example. To go along with all that theory, let’s go through a step by step implementation of the Double/Debiased ML. As we do so, I’ll take the opportunity to explain what each step is doing.</p>
+<p>First, let’s estimate the nuisance relationship using ML models. I’ll start with the treatment model \(M_t\). We will use a LGBM model to predict prices from the covariates <code class="docutils literal notranslate"><span class="pre">temp</span></code>, <code class="docutils literal notranslate"><span class="pre">weekday</span></code> and <code class="docutils literal notranslate"><span class="pre">cost</span></code>. These predictions will be cross predictions, which we can get from using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s <code class="docutils literal notranslate"><span class="pre">cross_val_predict</span></code> function. I’m also adding the average \(\hat{\mu_t}\) to the residuals just for visualization purposes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lightgbm</span> <span class="kn">import</span> <span class="n">LGBMRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;sales&quot;</span>
+<span class="n">T</span> <span class="o">=</span> <span class="s2">&quot;price&quot;</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;weekday&quot;</span><span class="p">,</span> <span class="s2">&quot;cost&quot;</span><span class="p">]</span>
+
+<span class="n">debias_m</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">train_pred</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">price_res</span> <span class="o">=</span>  <span class="n">train</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="o">-</span>
+                          <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">debias_m</span><span class="p">,</span> <span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+                          <span class="o">+</span> <span class="n">train</span><span class="p">[</span><span class="n">T</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="c1"># add mu_t for visualization. </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that I’m calling the \(M_t\) model the debias model. That’s because the role this model is playing on the Double/Debias ML is one of debiasing the treatment. The residuals \(\tilde{T} = T - M_t(X)\) can be viewed as a version of the treatment where all the confounding bias from \(X\) has been removed by the model. In other words, \(\tilde{T}\) is orthogonal to \(X\). Intuitively, \(\tilde{T}\) can no longer be explained by \(X\), because it already was.</p>
+<p>To see that, we can show the same plot we’ve seen earlier but now replacing price with the price residuals. Remember that, before, weekends had higher prices? Now, that bias is gone. All the weekdays have the same price residual distribution.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train_pred</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price_res&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_13_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_13_0.png" />
+</div>
+</div>
+<p>The role of \(M_t\) is to debias the treatment, but what about \(M_y\)? Its role is to remove the variance from \(Y\). Hence, I’ll call it the denoising model. Intuitively, \(M_y\) is creating a version of the outcome where all the variance due to \(X\) has been explained away. As a result, it becomes easier to do causal estimation in \(\tilde{Y}\). Since it has less noise, the causal relationship becomes easier to see.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">denoise_m</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">train_pred</span> <span class="o">=</span> <span class="n">train_pred</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sales_res</span> <span class="o">=</span>  <span class="n">train</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span>
+                               <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">denoise_m</span><span class="p">,</span> <span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="n">y</span><span class="p">],</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+                               <span class="o">+</span> <span class="n">train</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we plot the same graph as before, but now replacing sales with sales residual, we can see that the variance in \(Y\) is much smaller than it was before.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train_pred</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price_res&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales_res&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_17_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_17_0.png" />
+</div>
+</div>
+<p>It is now easy to see the negative relationship between prices and sales.</p>
+<p>Finally, to estimate that causal relationship, we can run a regression on the residuals.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;sales_res ~ price_res&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train_pred</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">final_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>  224.5586</td> <td>    0.443</td> <td>  506.469</td> <td> 0.000</td> <td>  223.689</td> <td>  225.428</td>
+</tr>
+<tr>
+  <th>price_res</th> <td>   -3.9228</td> <td>    0.071</td> <td>  -54.962</td> <td> 0.000</td> <td>   -4.063</td> <td>   -3.783</td>
+</tr>
+</table></div></div>
+</div>
+<p>As we can see, when we use the residualized or orthogonalised version of sales and price, we can be very confident that the relationship between prices and sales is negative, which makes a lot of sense. As we increase prices, demand for ice cream should fall.</p>
+<p>But if we look at the un-residualized or raw relationship between prices and sales, because of bias, we find a positive relationship. That is because, in anticipation to high sales, prices are increased.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;sales ~ price&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train_pred</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">final_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>  192.9679</td> <td>    1.013</td> <td>  190.414</td> <td> 0.000</td> <td>  190.981</td> <td>  194.954</td>
+</tr>
+<tr>
+  <th>price</th>     <td>    1.2294</td> <td>    0.162</td> <td>    7.575</td> <td> 0.000</td> <td>    0.911</td> <td>    1.547</td>
+</tr>
+</table></div></div>
+</div>
+</div>
+<div class="section" id="cate-estimation-with-double-ml">
+<h3>CATE Estimation with Double-ML<a class="headerlink" href="#cate-estimation-with-double-ml" title="Permalink to this headline">¶</a></h3>
+<p>So far, we’ve seen how Double/Debiased ML allow us to focus on estimating the Average Treatment Effect (ATE), but it can also be used to estimate treatment effect heterogeneity or Conditional Average Treatment Effect (CATE). Essentially, we are now saying that the causal parameter \(\tau\) changes depending on the unit’s covariates.</p>
+<p><span class="math notranslate nohighlight">\(
+Y_i - {M}_y(X_i)
+= \tau(X_i) \cdot (T_i - {M}_t(X_i)) + \epsilon_i
+\)</span></p>
+<p>To estimate this model, we will use the same residualised version of price and sales, but now we will interact the price residuals with the other covariates. Then, we can fit a linear CATE model.</p>
+<p><span class="math notranslate nohighlight">\(
+\tilde{Y_i} = \alpha + \beta_1 \tilde{T_i} + \pmb{\beta}_2 \pmb{X_i} \tilde{T_i} + \epsilon_i
+\)</span></p>
+<p>Once we’ve estimated such a model, to make CATE predictions, we will use the randomised test set. Since this final model is linear, we can compute the CATE mechanically:</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{\mu}(\partial Sales_i, X_i) = M(Price=1, X_i) - M(Price=0, X_i)
+\)</span></p>
+<p>where \(M\) is our final linear model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_model_cate</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;sales_res ~ price_res * (temp + C(weekday) + cost)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train_pred</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">cate_test</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cate</span><span class="o">=</span><span class="n">final_model_cate</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">price_res</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+                        <span class="o">-</span> <span class="n">final_model_cate</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">price_res</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To check how good this model is in terms of differentiating units with high price sensitivity from those with low price sensitivity, we will use the cumulative elasticity curve.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gain_curve_test</span> <span class="o">=</span> <span class="n">cumulative_gain</span><span class="p">(</span><span class="n">cate_test</span><span class="p">,</span> <span class="s2">&quot;cate&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gain_curve_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">elast</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">T</span><span class="p">)],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Baseline&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;R-Learner&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_25_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_25_0.png" />
+</div>
+</div>
+<p>The Double/Debiased ML procedure with a final linear model is already very good, as we can see by the curve above. But, maybe we can do even better. As a matter of fact, this is a very general procedure that we can understand just like a meta-learner. Nie and Wager called it the R-Learner, as a way to recognise the work of Donald Rubin in the causal literature.</p>
+<p>This generalization comes from realizing that the Double/Debiased ML procedure defines a new loss function that we can minimize however we want. Next, we will see how to do that in a very similar fashion to what we’ve seen before when discussing target transformation method or F-learner.</p>
+</div>
+</div>
+<div class="section" id="non-parametric-double-debiased-ml">
+<h2>Non Parametric Double/Debiased ML<a class="headerlink" href="#non-parametric-double-debiased-ml" title="Permalink to this headline">¶</a></h2>
+<p>The nice thing about Double-ML is that it frees us from all the hassle of learning the nuisance parameters in a causal model. With that, we can focus all our attention to learning the causal parameter of interest, be it the ATE or the CATE. However, with the above specification, we were still using a linear model after the ML residualization, as the final causal model. In our example, this means we are assuming that price impacts sales linearly. That’s probably OK for a small range of prices, but we know from microeconomic theory that that’s not necessarily the case. It could be that, at low prices, a unit increase in price will lower demand by 2 units. But then, at higher prices, a unit increase in price will lower demand by just 1 unit. That’s not a linear relationship.</p>
+<p>We could leverage microeconomic theory here to speculate about the functional form of the outcome on the treatment, but maybe we can also delegate that to a ML model. In other words, let the machine learn that complicated function form. As it turns out, that’s totally possible if we make a few changes to our original Double/Debiased ML algorithm.</p>
+<p>First, we start exactly as before, orthogonalizing the treatment and the outcome with cross predictions from a ML model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;sales&quot;</span>
+<span class="n">T</span> <span class="o">=</span> <span class="s2">&quot;price&quot;</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;weekday&quot;</span><span class="p">,</span> <span class="s2">&quot;cost&quot;</span><span class="p">]</span>
+
+<span class="n">debias_m</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">denoise_m</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">train_pred</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">price_res</span> <span class="o">=</span>  <span class="n">train</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="o">-</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">debias_m</span><span class="p">,</span> <span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+                          <span class="n">sales_res</span> <span class="o">=</span>  <span class="n">train</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">denoise_m</span><span class="p">,</span> <span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="n">y</span><span class="p">],</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So far, nothing different. Now is where things get interesting. Recall that Double/Debiased-ML models the data as follows</p>
+<p><span class="math notranslate nohighlight">\(
+Y_i = \hat{M}_y(X_i) + \tau(X_i) \big(T_i - \hat{M}_t(X)\big) + \hat{\epsilon}_i
+\)</span></p>
+<p>Where \(\hat{M}_y\) and \(\hat{M}_t\) are models that, respectively, predicts the outcome and treatment from the features. If we rearrange the terms above, we can isolate the error term</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{\epsilon}_i = \big(Y_i - \hat{M}_y(X_i)\big) - \tau(X_i) \big(T_i - \hat{M}_t(X)\big)
+\)</span></p>
+<p>This is nothing short of awesome, because now we can call this a <strong>causal loss function</strong>. Which means that, if we minimize the square of this loss, we will be estimating expected value of \(\tau(X_i)\), which is the CATE.</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{L}_n(\tau(x)) = \frac{1}{n} \sum^n_{i=1}\bigg(\big(Y_i - \hat{M}_y(X_i)\big) - \tau(X_i) \big(T_i - \hat{M}_t(X)\big)\bigg)^2
+\)</span></p>
+<p>This loss is also called the <strong>R-Loss</strong>, since it’s what the R-learner minimizes. Ok, but how do we minimize this loss function? There are multiple ways, actually, but here we will cover the simplest one. First, to declutter the technical notation, let’s rewrite the loss function we had before, but using the residualized version of treatment and outcome.</p>
+<p><span class="math notranslate nohighlight">\(
+\hat{L}_n(\tau(x)) = \frac{1}{n} \sum^n_{i=1}\bigg( \tilde{Y}_i - \tau(X_i) \tilde{T}_i \bigg)^2
+\)</span></p>
+<p>Finally, we can do some algebraic parkour to take \(\tilde{T}_i\) out of the parenthesis and isolate \(\tau(X_i)\) in the square part of the loss function.</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{L}_n(\tau(x)) = \frac{1}{n} \sum^n_{i=1} \tilde{T}_i^2 \left(\frac{\tilde{Y}_i}{\tilde{T}_i} - \tau(X_i)\right)^2 
+\]</div>
+<p>Minimising the above loss is equivalent to minimising what is inside the parenthesis, but weighting each term by \(\tilde{T}_i^2\). Minimising what’s inside the parenthesis is equivalent to predicting \(\frac{\tilde{Y}_i}{\tilde{T}_i}\). This is what’s called the weight trick to get the non-parametric causal loss. Notice how similar this is to the target transformation idea we saw earlier. This is, indeed, a target transformation, but with the extra weighting trick.</p>
+<p>To summarise before we go to the code, now that we have the nuisance models and residualised versions of treatment and outcome, we will</p>
+<ol class="simple">
+<li><p>Create weights \(\tilde{T}_i^2\)</p></li>
+<li><p>Create a target \(\dfrac{\tilde{Y}_i}{\tilde{T}_i}\)</p></li>
+<li><p>Use any prediction method to predict the target (1) while using the weights (2).</p></li>
+</ol>
+<p>And here is the code. As you will see, it is incredibly simple.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_final</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+ 
+<span class="c1"># create the weights</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">train_pred</span><span class="p">[</span><span class="s2">&quot;price_res&quot;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> 
+ 
+<span class="c1"># create the transformed target</span>
+<span class="n">y_star</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_pred</span><span class="p">[</span><span class="s2">&quot;sales_res&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">train_pred</span><span class="p">[</span><span class="s2">&quot;price_res&quot;</span><span class="p">])</span>
+ 
+<span class="c1"># use a weighted regression ML model to predict the target with the weights.</span>
+<span class="n">model_final</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">y_star</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">w</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above ML model, even though it is an off-the-shelf predictive model, is estimating the CATE. That’s the power of the non-parametric Double-ML. Before, we were using a linear regression as the final model for the CATE estimation. Now, since we defined a generic loss, we can use any predictive model at our disposal as the final model.</p>
+<p>Let’s now use the test set to compare this non-parametric version with the linear version we had before.</p>
+<p>First, we estimate the individual treatment effect.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cate_test_non_param</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cate</span><span class="o">=</span><span class="n">model_final</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">X</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we can plot the non-parametric cumulative elasticity curve side by side with the one we got from the parametric  (linear) version of Double/Orthogonal-ML.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gain_curve_test_non_param</span> <span class="o">=</span> <span class="n">cumulative_gain</span><span class="p">(</span><span class="n">cate_test_non_param</span><span class="p">,</span> <span class="s2">&quot;cate&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gain_curve_test_non_param</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Non-Parametric&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gain_curve_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Parametric&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">elast</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">T</span><span class="p">)],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Baseline&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;R-Learner&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_33_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_33_0.png" />
+</div>
+</div>
+<p>Not a huge improvement here, but it’s something. Plus, not having to specify the functional form of the treatment function is already a huge benefit.</p>
+<div class="section" id="what-is-non-parametric-about">
+<h3>What is Non-Parametric About?<a class="headerlink" href="#what-is-non-parametric-about" title="Permalink to this headline">¶</a></h3>
+<p>Before we move on, I just wanted to highlight a common misconception. When we think about using a non-parametric Double-ML model to estimate the CATE, it looks like we will get a nonlinear treatment effect. For instance, let’s assume a very simple data generating process (DGP) where discont affects sales non-linearly, but through a square root function.</p>
+<p><span class="math notranslate nohighlight">\(
+Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
+\)</span></p>
+<p>The treatment effect is given by the derivative of this Sales function with respect to the treatment.</p>
+<p><span class="math notranslate nohighlight">\(
+\dfrac{\partial Sales_i}{\partial Discount_i} = \dfrac{10}{2\sqrt{Discount_i}}
+\)</span></p>
+<p>As we can see, the treatment effect is <strong>not</strong> linear. It actually gets weaker as the treatment increases. This makes a lot of sense for this DGP. At first, a little bit of discount increases sales by a lot. But, as we give too much discount, an extra unit of discount will affect sales less and less, because people won’t want to buy to infinity. Hence, the discount is only effective up until they point they get satiated.</p>
+<p>The question then is, can the non-parametric ML capture this saturating behavior in the treatment effect? Can it extrapolate from a small discount level that, if the discount were higher, the treatment effect would be lower? The answer is… sort of. To better understand that, let’s generate data like in the above DGP.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">321</span><span class="p">)</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">5000</span>
+<span class="n">discount</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">discount</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># for better ploting</span>
+<span class="n">sales</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">20</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">discount</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we plot this DGP, we can see the square root relationship between these variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">discount</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">discount</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Sales&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Discount&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_37_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_37_0.png" />
+</div>
+</div>
+<p>Now, let’s apply the Non-Parametric Double/Debias ML to this data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">debias_m</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">denoise_m</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># orthogonalising step</span>
+<span class="n">discount_res</span> <span class="o">=</span>  <span class="n">discount</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">-</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">debias_m</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">discount</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">discount</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">sales_res</span> <span class="o">=</span>  <span class="n">sales</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">-</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">denoise_m</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">sales</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">sales</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># final, non parametric causal model</span>
+<span class="n">non_param</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">discount_res</span> <span class="o">**</span> <span class="mi">2</span> 
+<span class="n">y_star</span> <span class="o">=</span> <span class="n">sales_res</span> <span class="o">/</span> <span class="n">discount_res</span>
+
+<span class="n">non_param</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">discount_res</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">y_star</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">w</span><span class="o">.</span><span class="n">ravel</span><span class="p">());</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the above model, we can get the CATE estimate. The issue here is that the CATE is not linear. As the treatment increases, the CATE should decrease. The question we are trying to answer is if the non-parametric model can capture that non linearity.</p>
+<p>To answer that properly, let’s remember what is the underlying assumption that the Double/Debiased ML makes about the data generating process. These assumptions can be seen in the equation we’ve laid down before.</p>
+<p><span class="math notranslate nohighlight">\(
+\tilde{Y}_i = \tau(X_i) \tilde{T}_i + e_i
+\)</span></p>
+<p>In words, it says that the residualized outcome is equal to the residualized treatment multiplied by the conditional treatment effect. This mean that the <strong>treatment impacts the outcome linearly</strong>. There is no non-linearity here. The above model says that the outcome will increase by a fixed amount \(\tau(X_i) \) if we increase the treatment from 1 to 10 or from 100 to 110. It’s a simple multiplication.</p>
+<p>So, does this mean that the non-parametric model can’t capture the non-linearity of the treatment effect? Again, not really… Rather, what is happening is that Double/ML <strong>finds the locally linear approximation to the non-linear CATE</strong>. In other words, it finds the derivative of the outcome with respect to the treatment at that treatment level or around the treatment. This is equivalent to finding the slopes of the lines that are tangential to the outcome function at the treatment point.</p>
+<p><img alt="img" src="_images/linear-aprox.png" /></p>
+<p>This mean that, yes, Non-Parametric Double-ML will figure out that the treatment effect will be smaller as we increase the treatment. But, no, it won’t find the non-linear treatment effect, but rather the local linear treatment effect. We can even plot those linear approximations against the ground true non-linear causal effect and indeed, they are good approximations.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cate</span> <span class="o">=</span> <span class="n">non_param</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">discount</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">discount</span><span class="p">,</span> <span class="n">sales</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">discount</span><span class="p">,</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">discount</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Ground Truth&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Sales by Discount&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Discount&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">discount</span><span class="p">,</span> <span class="n">cate</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\hat{</span><span class="se">\\</span><span class="s2">tau}(x)$&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;C4&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">discount</span><span class="p">,</span> <span class="mi">5</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">discount</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Ground Truth&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;C2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;CATE ($\partial$Sales) by Discount&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Discount&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_41_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_41_0.png" />
+</div>
+</div>
+<p>This might sound like technicalities, but it has very practical consequences. For example, let’s say you find a treatment effect of 2 for a customer in the example above, meaning that if you increase the discount by 1 unit, your sales to that customer will increase by 2 units. You might look at that and think: “Great! I’ll give a lot of discounts to this unit! After all, for every 1 unit in discount, I’ll get 2 in sales”. However, that’s the wrong conclusion. The treatment effect is 2 only at that discount level. As soon as you increase the discount, the effect will fall. For example, say this hypothetical customer got only 5 in discount, which is why her treatment effect is so high. Say you see that huge treatment effect and use it to justify giving 20 in discount to that customer. But as you do so, the effect might go from 2 to something like 0.5. And a 20 discount that made sense at a treatment effect of 2 might no longer be profitable at a treatment effect of 0.5.</p>
+<p>This means you have to be extra careful when extrapolating a nonlinear treatment effect to a new treatment level. If you are not, you might end up making very unprofitable decisions. Another way to put is is that, when treatment effect is not linear, even non-parametric Double/Debiased-ML will <strong>struggle to make counterfactuals outcome predictions</strong>. It will try to linearly extrapolate the treatment effect (TE) from a low treatment level to a high treatment level or the other way around. And, due to the non linearity, that extrapolation will likely be off.</p>
+<p>To solve that, there is a final idea. Keep in mind that this idea is much less cientifict than the things we’ve seen before. It boils down to using a S-learner after applying the orthogonalization procedure, but I’m getting ahead of myself. Let’s look at that next.</p>
+<p><img alt="img" src="_images/non-sci.png" /></p>
+</div>
+</div>
+<div class="section" id="non-scientific-double-debiased-ml">
+<h2>Non-Scientific Double/Debiased ML<a class="headerlink" href="#non-scientific-double-debiased-ml" title="Permalink to this headline">¶</a></h2>
+<p>The final idea we will try is a fundamental shift in mentality. We will no longer try to estimate the linear approximation to the CATE. Instead, we will make counterfactual predictions.</p>
+<p><img alt="img" src="_images/cf-pred.png" /></p>
+<p>The CATE is the slope of the outcome function at the data point. It is how much we expect the outcome to change if we increase the treatment by a very small amount. More technically, it’s the derivative at the point. Counterfactual predictions, on the other hand, are an attempt to recreate the entire outcome curve from a single datapoint. We will predict what the outcome would be if the treatment were at some other level than the one it currently takes, hence the counterfactual.</p>
+<p>If we manage to do so, we will be able to simulate different treatments for a unit and predict how it would respond under those different treatment levels. This is very risky business, because we will be extrapolating an entire curve from a single point. Also, although I’ve used this technique in practice a lot, I’ve never found any scientific article showing how or why it works. That’s why I call it the Non-Scientific Double-ML. Simply put: beware!</p>
+<p>Here is how this will go down. First, let’s start with the traditional Double/Debiased-ML formulation, where we have the residualized version of the treatment and outcome.</p>
+<p><span class="math notranslate nohighlight">\(
+\tilde{Y}_i = \tau(X_i) \tilde{T}_i + e_i
+\)</span></p>
+<p>Now, I’ll move the treatment inside the treatment effect function. This allows the treatment effect to be non linear, that is to change with the treatment itself.</p>
+<p><span class="math notranslate nohighlight">\(
+\tilde{Y}_i = \tau(X_i, \tilde{T}_i)  + e_i
+\)</span></p>
+<p>This is dangerous business, because I have no idea how this treatment functions. For all we know, it could be some weird non-linear function. But, fortunately, we know how to estimate weird functions with Machine Learning. So, that’s what we will do. Simply speaking, we will fit a ML model to predict the residualised outcome \(\tilde{Y}\) from the residualized treatment \(\tilde{T}\) together with the features \(X\). The residualisation is important to remove bias and noise so that this final ML can focus on learning only the treatment effect and how the covariates \(X\) impact that treatment effect.</p>
+<p>Then, once we have this model, we will make 2 step counterfactual predictions. First we will have to make a prediction for the treatment in order to get \(\tilde{T}\), then, we will feed that prediction, along with the features, in our final model \(\hat{\tau}(X_i, \tilde{T}_i)\).</p>
+<p>Since we will have to make \(\tilde{T}\), we first need to implement our own version of the <code class="docutils literal notranslate"><span class="pre">cross_prediction</span></code> function. This function will return not only the cross prediction, but also the models used to make those predictions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+
+<span class="k">def</span> <span class="nf">cv_estimate</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_params</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">cv</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">model_params</span><span class="p">)</span>
+    
+    <span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cv_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">train_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">train_data</span><span class="p">):</span>
+        <span class="n">m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="n">X</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">],</span> <span class="n">train_data</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">])</span>
+        <span class="n">cv_pred</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="n">X</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">])</span>
+        <span class="n">models</span> <span class="o">+=</span> <span class="p">[</span><span class="n">m</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">cv_pred</span><span class="p">,</span> <span class="n">models</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have our own cross prediction function that also gives us the models, we can proceed with the orthogonalisation step.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;sales&quot;</span>
+<span class="n">T</span> <span class="o">=</span> <span class="s2">&quot;price&quot;</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;temp&quot;</span><span class="p">,</span> <span class="s2">&quot;weekday&quot;</span><span class="p">,</span> <span class="s2">&quot;cost&quot;</span><span class="p">]</span>
+
+<span class="n">debias_m</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">denoise_m</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">y_hat</span><span class="p">,</span> <span class="n">models_y</span> <span class="o">=</span> <span class="n">cv_estimate</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">LGBMRegressor</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">t_hat</span><span class="p">,</span> <span class="n">models_t</span> <span class="o">=</span> <span class="n">cv_estimate</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">LGBMRegressor</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="n">X</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+
+<span class="n">y_res</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_hat</span>
+<span class="n">t_res</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="o">-</span> <span class="n">t_hat</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After the orthogonalisation, we will throw \(\tilde{T}\) along with \(X\) to a ML model that tries to precit \(\tilde{Y}\). I’m using a LGBM model here, but you can pick any ML model. One cool thing about LGBM is that I can set monotonic constraints to it. Knowing what we know about prices, sales should decrease as price increases. We can take that into account and constrain our LGBM model <strong>to not increase</strong> it’s predictions as prices increase.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -1 on price saying that the predictions should not increase as price increases</span>
+<span class="n">monotone_constraints</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">col</span> <span class="o">==</span> <span class="n">T</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X</span><span class="o">+</span><span class="p">[</span><span class="n">T</span><span class="p">]]</span>
+ 
+<span class="n">model_final</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">monotone_constraints</span><span class="o">=</span><span class="n">monotone_constraints</span><span class="p">)</span>
+<span class="n">model_final</span> <span class="o">=</span> <span class="n">model_final</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">]</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">T</span><span class="p">:</span> <span class="n">t_res</span><span class="p">}),</span> <span class="n">y</span><span class="o">=</span><span class="n">y_res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now is where things get a little weird. If we think about it, this final ML model is estimating the following \(\tau\) treatment function</p>
+<p><span class="math notranslate nohighlight">\(
+\tilde{Y}_i = \tau(X_i, \tilde{T}_i)  + e_i
+\)</span></p>
+<p>but there isn’t a clear way to extract the treatment effect from this function. So,  rather than extracting a treatment effect, we will input the counterfactual predictions, just like I’ve shown in the previous image. We will simulate different price levels for each unit and use our Double-ML model to predict what would be the sales we would see under those different price levels.</p>
+<p>To achieve that, we will 1) cross join the test set with a price table that contains all simulated prices. The end result will be as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">test</span>
+             <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;price&quot;</span><span class="p">:</span><span class="s2">&quot;factual_price&quot;</span><span class="p">})</span>
+             <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">jk</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+             <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> <span class="c1"># create day ID</span>
+             <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">jk</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">))),</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;jk&quot;</span><span class="p">)</span>
+             <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;jk&quot;</span><span class="p">]))</span>
+
+<span class="n">pred_test</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;index==0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>temp</th>
+      <th>weekday</th>
+      <th>cost</th>
+      <th>factual_price</th>
+      <th>sales</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>3.000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>3.875</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>4.750</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>5.625</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>6.500</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>7.375</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>8.250</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>9.125</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>10.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Notice that we are showing only the day in index 1, so only a single unit. On that day (unit), the actual or factual price or treatment was 7. But we’ve simulated different counterfactual treatments, from 3 to 10. Now, we will feed all those counterfactual prices to our causal model, which will make counterfactual sales predictions based on those simulated prices.</p>
+<p>Since our model has the following format</p>
+<p><span class="math notranslate nohighlight">\(
+\widehat{Price_i} = \hat{\tau}(X_i, \tilde{T}_i)
+\)</span></p>
+<p>Before making the counterfactual predictions, we need to get \(\tilde{T}_i\), that is, the price residuals. We will get those residuals by first, making predictions will all our treatment models (remember that we’ve used a 5 fold cross prediction in the training step), then we will average the predictions from the five models into a single prediction and finally subtract the counterfactual price we’ve generated earlier from the predicted price using this ensemble of models.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ensamble_pred</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">X</span><span class="p">])</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">t_res_test</span> <span class="o">=</span> <span class="n">pred_test</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="o">-</span> <span class="n">ensamble_pred</span><span class="p">(</span><span class="n">pred_test</span><span class="p">,</span> <span class="n">models_t</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+
+<span class="n">pred_test</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">_pred&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model_final</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">pred_test</span><span class="p">[</span><span class="n">X</span><span class="p">]</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">T</span><span class="p">:</span> <span class="n">t_res_test</span><span class="p">}))</span>
+
+<span class="n">pred_test</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;index==0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>temp</th>
+      <th>weekday</th>
+      <th>cost</th>
+      <th>factual_price</th>
+      <th>sales</th>
+      <th>price</th>
+      <th>sales_pred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>3.000</td>
+      <td>24.302849</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>3.875</td>
+      <td>20.862833</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>4.750</td>
+      <td>14.401401</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>5.625</td>
+      <td>6.274595</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>6.500</td>
+      <td>-1.624625</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>7.375</td>
+      <td>-12.539291</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>8.250</td>
+      <td>-23.332933</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>9.125</td>
+      <td>-25.319174</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>10.000</td>
+      <td>-25.319174</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As you can see, we now have a sales prediction for every simulated price. The lower the price, the higher the sales. One interesting thing is that these predictions are off in their level. For instance, they go from about 24 to about -24. That’s because the model is predicting the residualized outcome, which is roughly mean zero. This is fine if all you want is to get the slope of the sales curve, which is the price treatment effect. Also, if you want to fix the prediction levels, all you have to do is add the predictions from the denoising model \(M_y\).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_hat_test</span> <span class="o">=</span> <span class="n">ensamble_pred</span><span class="p">(</span><span class="n">pred_test</span><span class="p">,</span> <span class="n">models_y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="n">pred_test</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">_pred&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_hat_test</span> <span class="o">+</span> 
+                          <span class="n">model_final</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">pred_test</span><span class="p">[</span><span class="n">X</span><span class="p">]</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">T</span><span class="p">:</span> <span class="n">t_res_test</span><span class="p">})))</span>
+
+<span class="n">pred_test</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;index==0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>temp</th>
+      <th>weekday</th>
+      <th>cost</th>
+      <th>factual_price</th>
+      <th>sales</th>
+      <th>price</th>
+      <th>sales_pred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>3.000</td>
+      <td>255.459625</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>3.875</td>
+      <td>252.019609</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>4.750</td>
+      <td>245.558177</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>5.625</td>
+      <td>237.431371</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>6.500</td>
+      <td>229.532151</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>7.375</td>
+      <td>218.617485</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>8.250</td>
+      <td>207.823843</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>9.125</td>
+      <td>205.837602</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0</td>
+      <td>25.8</td>
+      <td>1</td>
+      <td>0.3</td>
+      <td>7</td>
+      <td>230</td>
+      <td>10.000</td>
+      <td>205.837602</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can also plot the unit level sales curve. Let’s sample ten units and see how they would behave under different prices.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sample_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pred_test</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">pred_test</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;index in @sample_ids&quot;</span><span class="p">),</span>
+             <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales_pred&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_55_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_55_0.png" />
+</div>
+</div>
+<p>It is interesting to see that some units are very sensitive to price increases. In some cases, we expect sales to drop from 250 to almost 200 as we increase the price from 3 to 10. On the other hand, some units are very inelastic to price: as we increase prices from 3 to 10, we expect the sales to go from about 195 to about 185.</p>
+<p>It’s hard to see these differences in price sensitivity, so what I like to do is to make all the curves start from the same point (the average sales here). This will make it easier to see that some units have a sharp drop in sales as we increase prices, while others not so much.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sample_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pred_test</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">(</span><span class="n">pred_test</span>
+                   <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;index in @sample_ids&quot;</span><span class="p">)</span>
+                   <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">max_sales</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">)[[</span><span class="s2">&quot;sales_pred&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s2">&quot;max&quot;</span><span class="p">))</span>
+                   <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sales_pred</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;sales_pred&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;max_sales&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;sales_pred&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())),</span>
+             <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales_pred&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_57_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_57_0.png" />
+</div>
+</div>
+<div class="section" id="more-econometrics-may-be-needed">
+<h3>More Econometrics May be Needed!<a class="headerlink" href="#more-econometrics-may-be-needed" title="Permalink to this headline">¶</a></h3>
+<p><img alt="img" src="_images/more-metrics.png" /></p>
+<p>I want to end this section on the non-scientific Double-ML with a word of caution. I didn’t call this approach non scientific for nothing. It is sort of a hack to get non linear counterfactual predictions. And since it’s a hack, I feel it is worth talking about its potential downsides.</p>
+<p>First and foremost, it has the same problems all ML techniques have when applied naively to causal inference: bias. Since the final model is a regularized ML model, this regularization can bias the causal estimate to zero.</p>
+<p>The second problem has to do with the ML algorithm you choose. Here, we choose boosted trees. Trees are not very good at making smooth predictions. As a consequence, we can have discontinuities in the prediction curve. You can see that in the plots above: a stepwise behavior here and there. Also, trees are not very good at extrapolating, so this model might output weird predictions for prices never seen before.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">test</span>
+             <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;price&quot;</span><span class="p">:</span><span class="s2">&quot;factual_price&quot;</span><span class="p">})</span>
+             <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">jk</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+             <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span> <span class="c1"># create day ID</span>
+             <span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">jk</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">price</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">))),</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;jk&quot;</span><span class="p">)</span>
+             <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;jk&quot;</span><span class="p">]))</span>
+
+<span class="n">t_res_test</span> <span class="o">=</span> <span class="n">pred_test</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="o">-</span> <span class="n">ensamble_pred</span><span class="p">(</span><span class="n">pred_test</span><span class="p">,</span> <span class="n">models_t</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+
+<span class="n">y_hat_test</span> <span class="o">=</span> <span class="n">ensamble_pred</span><span class="p">(</span><span class="n">pred_test</span><span class="p">,</span> <span class="n">models_y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="n">pred_test</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">_pred&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model_final</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">pred_test</span><span class="p">[</span><span class="n">X</span><span class="p">]</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">T</span><span class="p">:</span> <span class="n">t_res_test</span><span class="p">}))</span> <span class="o">+</span> <span class="n">y_hat_test</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sample_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pred_test</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">(</span><span class="n">pred_test</span>
+                   <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;index in @sample_ids&quot;</span><span class="p">)</span>
+                   <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">max_sales</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">)[[</span><span class="s2">&quot;sales_pred&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s2">&quot;max&quot;</span><span class="p">))</span>
+                   <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sales_pred</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;sales_pred&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;max_sales&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;sales_pred&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())),</span>
+             <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales_pred&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_59_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_59_0.png" />
+</div>
+</div>
+<p>All this to say that this approach is highly dependent on the final ML model. If you regularize it too much, you will bias your causal estimates to zero. If you use this or that ML algorithm, you carry all its limitations to your final counterfactual predictions. Still, if you think this approach is worth a try, by all means give it a shot! Just don’t forget the downsides I’ve outlined here.</p>
+</div>
+</div>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<p>Double/Debiased/Orthogonal ML is a way to delegate estimating nuisance parameters which allows us to focus our attention on the causal parameter of interest. It first employes a two step orthogonalisation procedure:</p>
+<ol class="simple">
+<li><p>Fit a model \(M_x(X)\) to predict the treatment from the covariates X and get out of fold residuals \(\tilde{t} = t - M_t(X)\). We called this the debiasing model because the residuals \(\tilde{t}\) are, by definition, orthogonal to the features used to construct it.</p></li>
+<li><p>Fit a model \(M_y(X)\) to predict the outcome from the covariates X and get out of fold residuals \(\tilde{y} = y - M_y(X)\). We called this the denoising model because the residual \(\tilde{y}\) can be seen as a version of the outcome where all the variance from the features got explained away.</p></li>
+</ol>
+<p>Once we have those residuals, provided there are no unmeasured confounders, we can regress \(\tilde{y}\) on \(\tilde{t}\) for a linear approximation to the ATE. We can also interact \(\tilde{t}\) with the covariates to estimate the CATE or use a weighting trick to allow for any generic ML model as our final CATE model.</p>
+<p><img alt="img" src="_images/diagram.png" /></p>
+<p>Finally, I’ve argued that the orthogonalization steps is a general tool to facilitate causal learning. In that spirit, we’ve tried to feed the treatment and outcome residuals to a S-learner style ML algorithm. With that, we managed to get counterfactual predictions from simulated treatments. Indeed orthogonal ML serves as a pre-processing step in many causal inference applications.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>The things I’ve written here are mostly stuff from my head. I’ve learned them through experience. This means that they have <strong>not</strong> passed the academic scrutiny that good science often goes through. Instead, notice how I’m talking about things that work in practice, but I don’t spend too much time explaining why that is the case. It’s a sort of science from the streets, if you will. However, I am putting this up for public scrutiny, so, by all means, if you find something preposterous, open an issue and I’ll address it to the best of my efforts.</p>
+<p>To write this chapter, I’ve relied on Chernozhukov et al (2016), <em>Double/Debiased Machine Learning for Treatment and Causal Parameters</em>, D. Foster and V. Syrgkanis (2019) <em>Orthogonal Statistical Learning</em> and on the <em>econml</em> library documentation page. Orthogonal ML has gotten a lot of attention lately, so there are many other references on the subject. To name a few, Nie and Wager (Draft, 2020) have a nice discussion on the R-loss, Athey et al (2019) talk about it in the context of causal decision trees and there are many subsequent papers by Chernozhukov, which develop the subject further.</p>
+<p>I also stole an image from <a class="reference external" href="https://pedrohcgs.github.io/files/Callaway_SantAnna_2020_slides.pdf">Pedro Sant’Anna’s slides</a>.</p>
+</div>
+<div class="section" id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
+<p>Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
+If you found this book valuable and you want to support it, please go to <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a>. If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn’t understand. Just go to the book’s repository and <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/issues">open an issue</a>. Finally, if you liked this content, please share it with others who might find it useful and give it a <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/stargazers">star on GitHub</a>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "causal-glory"
+        },
+        kernelOptions: {
+            kernelName: "causal-glory",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'causal-glory'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="24-Meta-Learners.html" title="previous page">24 - Meta Learners</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-97848161-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

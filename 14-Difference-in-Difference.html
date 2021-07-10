@@ -229,6 +229,11 @@
    24 - Meta Learners
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="25-Debiased-Orthogonal-Machine-Learning.html">
+   25 - Debiased/Orthogonal Machine Learning
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -539,7 +544,7 @@
 <p><span class="math notranslate nohighlight">\(
 E[Y_0(1)|D=1] = E[Y_1(0)|D=1] + (E[Y_0(1)|D=0] - E[Y_0(0)|D=0])
 \)</span></p>
-<p>What this does is take the treated unit before the treated unit <strong>before the intervention</strong> and adds a trend component to it, which is estimated using the control \(E[Y_0(1)|T=0] - E[Y_0(0)|T=0]\). In words, it is saying that the treated <strong>after the intervention</strong>, had it not been treated, would look like the <strong>treated before the treatment</strong> plus a growth factor that is the same as the growth of the control.</p>
+<p>What this does is take the treated unit <strong>before the intervention</strong> and adds a trend component to it, which is estimated using the control \(E[Y_0(1)|T=0] - E[Y_0(0)|T=0]\). In words, it is saying that the treated <strong>after the intervention</strong>, had it not been treated, would look like the <strong>treated before the treatment</strong> plus a growth factor that is the same as the growth of the control.</p>
 <p>It is important to notice that this assumes that the trends in the treatment and control are the same:</p>
 <p><span class="math notranslate nohighlight">\(
 E[Y_0(1) − Y_0(0)|D=1] = E[Y_0(1) − Y_0(0)|D=0]
