@@ -22,14 +22,17 @@
 - part: Part II - The Yin
   chapters:
   - file: 17-Predictive-Models-101.ipynb
-  - file: 18-When-Prediction-Fails.ipynb
-  - file: 19-Causal-Models.ipynb
-  - file: 20-Evaluating-Causal-Models.ipynb
-  - file: 21-Debiasing-with-Orthogonalization.ipynb
-  - file: 22-Debiasing-with-Propensity-Score.ipynb
-  - file: 23-Plug-and-Play-Estimators.ipynb
-  - file: 24-Meta-Learners.ipynb
-  - file: 25-Debiased-Orthogonal-Machine-Learning.ipynb
+  - file: 18-Causal-Models.ipynb
+  - file: 19-Evaluating-Causal-Models.ipynb
+  - file: 20-Plug-and-Play-Estimators.ipynb
+  - file: 21-Meta-Learners.ipynb
+  - file: 22-Debiased-Orthogonal-Machine-Learning.ipynb
+
+- part: Apendix
+  chapters:
+  - file: Debiasing-with-Orthogonalization.ipynb
+  - file: Debiasing-with-Propensity-Score.ipynb
+  - file: When-Prediction-Fails.ipynb
 
 - part: Contribute
   chapters:
