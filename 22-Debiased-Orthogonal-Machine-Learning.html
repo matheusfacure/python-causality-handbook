@@ -57,7 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="24 - Meta Learners" href="24-Meta-Learners.html" />
+    <link rel="next" title="21 - Debiasing with Orthogonalization" href="Debiasing-with-Orthogonalization.html" />
+    <link rel="prev" title="24 - Meta Learners" href="21-Meta-Learners.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -194,43 +195,50 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="18-When-Prediction-Fails.html">
-   18 - When Prediction Fails
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Causal-Models.html">
+  <a class="reference internal" href="18-Causal-Models.html">
    19 - Building a Causal Model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="20-Evaluating-Causal-Models.html">
+  <a class="reference internal" href="19-Evaluating-Causal-Models.html">
    20 - Evaluating Causal Models
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Debiasing-with-Propensity-Score.html">
-   22 - Debiasing with Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Plug-and-Play-Estimators.html">
+  <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
    23 - Plug-and-Play Estimators
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="24-Meta-Learners.html">
+  <a class="reference internal" href="21-Meta-Learners.html">
    24 - Meta Learners
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    25 - Debiased/Orthogonal Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Apendix
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
+   21 - Debiasing with Orthogonalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
+   22 - Debiasing with Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="When-Prediction-Fails.html">
+   18 - When Prediction Fails
   </a>
  </li>
 </ul>
@@ -289,7 +297,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/25-Debiased-Orthogonal-Machine-Learning.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/22-Debiased-Orthogonal-Machine-Learning.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -306,7 +314,7 @@
     <div class="dropdown-buttons sourcebuttons">
         
         <a class="issues-button"
-            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F25-Debiased-Orthogonal-Machine-Learning.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F22-Debiased-Orthogonal-Machine-Learning.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -327,7 +335,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/25-Debiased-Orthogonal-Machine-Learning.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/22-Debiased-Orthogonal-Machine-Learning.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -532,7 +540,7 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;price&#39;, ylabel=&#39;sales&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_3_1.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_3_1.png" />
+<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_3_1.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_3_1.png" />
 </div>
 </div>
 <p>One source of bias is very clear. As we can see, prices are much higher on the weekend (weekdays 1 and 7), but we can also have other confounders, like temperature and cost. So, if we want to do any causal inference with it, we will need to correct this bias.</p>
@@ -682,7 +690,7 @@ Y_i - \hat{M}_y(X_i)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_13_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_13_0.png" />
+<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_13_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_13_0.png" />
 </div>
 </div>
 <p>The role of \(M_t\) is to debias the treatment, but what about \(M_y\)? Its role is to remove the variance from \(Y\). Hence, I’ll call it the denoising model. Intuitively, \(M_y\) is creating a version of the outcome where all the variance due to \(X\) has been explained away. As a result, it becomes easier to do causal estimation in \(\tilde{Y}\). Since it has less noise, the causal relationship becomes easier to see.</p>
@@ -706,7 +714,7 @@ Y_i - \hat{M}_y(X_i)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_17_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_17_0.png" />
+<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_17_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_17_0.png" />
 </div>
 </div>
 <p>It is now easy to see the negative relationship between prices and sales.</p>
@@ -792,7 +800,7 @@ Y_i - {M}_y(X_i)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_25_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_25_0.png" />
+<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_25_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_25_0.png" />
 </div>
 </div>
 <p>The Double/Debiased ML procedure with a final linear model is already very good, as we can see by the curve above. But, maybe we can do even better. As a matter of fact, this is a very general procedure that we can understand just like a meta-learner. Nie and Wager called it the R-Learner, as a way to recognise the work of Donald Rubin in the causal literature.</p>
@@ -887,7 +895,7 @@ Y_i = \hat{M}_y(X_i) + \tau(X_i) \big(T_i - \hat{M}_t(X)\big) + \hat{\epsilon}_i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_33_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_33_0.png" />
+<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_33_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_33_0.png" />
 </div>
 </div>
 <p>Not a huge improvement here, but it’s something. Plus, not having to specify the functional form of the treatment function is already a huge benefit.</p>
@@ -924,7 +932,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_37_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_37_0.png" />
+<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_37_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_37_0.png" />
 </div>
 </div>
 <p>Now, let’s apply the Non-Parametric Double/Debias ML to this data.</p>
@@ -978,7 +986,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_41_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_41_0.png" />
+<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_41_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_41_0.png" />
 </div>
 </div>
 <p>This might sound like technicalities, but it has very practical consequences. For example, let’s say you find a treatment effect of 2 for a customer in the example above, meaning that if you increase the discount by 1 unit, your sales to that customer will increase by 2 units. You might look at that and think: “Great! I’ll give a lot of discounts to this unit! After all, for every 1 unit in discount, I’ll get 2 in sales”. However, that’s the wrong conclusion. The treatment effect is 2 only at that discount level. As soon as you increase the discount, the effect will fall. For example, say this hypothetical customer got only 5 in discount, which is why her treatment effect is so high. Say you see that huge treatment effect and use it to justify giving 20 in discount to that customer. But as you do so, the effect might go from 2 to something like 0.5. And a 20 discount that made sense at a treatment effect of 2 might no longer be profitable at a treatment effect of 0.5.</p>
@@ -1505,7 +1513,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_55_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_55_0.png" />
+<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_55_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_55_0.png" />
 </div>
 </div>
 <p>It is interesting to see that some units are very sensitive to price increases. In some cases, we expect sales to drop from 250 to almost 200 as we increase the price from 3 to 10. On the other hand, some units are very inelastic to price: as we increase prices from 3 to 10, we expect the sales to go from about 195 to about 185.</p>
@@ -1524,7 +1532,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_57_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_57_0.png" />
+<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_57_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_57_0.png" />
 </div>
 </div>
 <div class="section" id="more-econometrics-may-be-needed">
@@ -1559,7 +1567,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25-Debiased-Orthogonal-Machine-Learning_59_0.png" src="_images/25-Debiased-Orthogonal-Machine-Learning_59_0.png" />
+<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_59_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_59_0.png" />
 </div>
 </div>
 <p>All this to say that this approach is highly dependent on the final ML model. If you regularize it too much, you will bias your causal estimates to zero. If you use this or that ML algorithm, you carry all its limitations to your final counterfactual predictions. Still, if you think this approach is worth a try, by all means give it a shot! Just don’t forget the downsides I’ve outlined here.</p>
@@ -1617,7 +1625,8 @@ If you found this book valuable and you want to support it, please go to <a clas
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="24-Meta-Learners.html" title="previous page">24 - Meta Learners</a>
+    <a class='left-prev' id="prev-link" href="21-Meta-Learners.html" title="previous page">24 - Meta Learners</a>
+    <a class='right-next' id="next-link" href="Debiasing-with-Orthogonalization.html" title="next page">21 - Debiasing with Orthogonalization</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

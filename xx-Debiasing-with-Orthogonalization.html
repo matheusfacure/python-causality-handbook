@@ -1,0 +1,997 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21 - Debiasing with Orthogonalization &#8212; Causal Inference for the Brave and True</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part I - The Yang
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   01 - Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   02 - Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   03 - Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   04 - Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   05 - The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   06 - Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   07 - Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   08 - Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   09 - Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   10 - Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   11 - Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   12 - Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
+   13 - Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Difference-in-Difference.html">
+   14 - Difference-in-Difference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   15 - Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   16 - Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Part II - The Yin
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-Predictive-Models-101.html">
+   17 - Predictive Models 101
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Contribute
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">
+   Patreon
+   <i class="fas fa-external-link-alt">
+   </i>
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/xx-Debiasing-with-Orthogonalization.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2Fxx-Debiasing-with-Orthogonalization.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/xx-Debiasing-with-Orthogonalization.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-regression-reborn">
+   Linear Regression Reborn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-intuition-behind-orthogonalization">
+   The Intuition Behind Orthogonalization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#orthogonalization-with-machine-learning">
+   Orthogonalization with Machine Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contribute">
+   Contribute
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="debiasing-with-orthogonalization">
+<h1>21 - Debiasing with Orthogonalization<a class="headerlink" href="#debiasing-with-orthogonalization" title="Permalink to this headline">¶</a></h1>
+<p>Previously, we saw how to evaluate a causal model. By itself, that’s a huge deed. Causal models estimates the elasticity \(\frac{\delta y}{\delta t}\), which is an unseen quantity. Hence, since we can’t see the ground truth of what our model is estimating, we had to be very creative in how we would go about evaluating them.</p>
+<p>The technique shown on the previous chapter relied heavily on data where the treatment was randomly assigned. The idea was to estimate the elasticity \(\frac{\delta y}{\delta t}\) as the coefficient of a single variable linear regression of <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">~</span> <span class="pre">t</span></code>. However, this only works if the treatment is randomly assigned. If it isn’t, we get into trouble due to omitted variable bias.</p>
+<p>To workaround this, we need to make the data look as if the treatment is randomly assigned. I would say there are two main techniques to do this. One is using propensity score and the other using orthogonalization. We will cover the latter in this chapter.</p>
+<p>One final word of caution before we continue. I would argue that probably the safest way out of non random data is to go out and do some sort of experiment to gather random data. I myself don’t trust very much on debiasing techniques because you can never know if you’ve accounted for every confounder. Having said that, orthogonalization is still very much worth learning. It’s an incredibly powerful technique that will be the foundation of many causal models to come.</p>
+<div class="section" id="linear-regression-reborn">
+<h2>Linear Regression Reborn<a class="headerlink" href="#linear-regression-reborn" title="Permalink to this headline">¶</a></h2>
+<p>The idea of orthogonalization is based on a theorem designed by three econometricians in 1933, Ragnar Frisch, Frederick V. Waugh, and Michael C. Lovell. Simply put, it states that you can decompose any multivariable linear regression model into three stages or models. Let’s say that your features are in an \(X\) matrix. Now, you partition that matrix in such a way that you get one part, \(X_1\), with some of the features and another part, \(X_2\), with the rest of the features.</p>
+<p>In the first stage, we take the first set of features and estimate the following linear regression model</p>
+<div class="math notranslate nohighlight">
+\[
+y_i = \theta_0 + \pmb{\theta_1 X}_{1i} + e_i
+\]</div>
+<p>where \(\pmb{\theta_1}\) is a vector of parameters. We then take the residuals of that model</p>
+<div class="math notranslate nohighlight">
+\[
+y^* = y_i - (\hat{\theta}_0 + \pmb{\hat{\theta}_1 X}_{1i})
+\]</div>
+<p>On the second stage, we take the first set of features again, but now we run a model where we estimate the second set of features</p>
+<div class="math notranslate nohighlight">
+\[
+\pmb{X}_{2i} = \gamma_0 + \pmb{\gamma_1 X}_{1i} + e_i
+\]</div>
+<p>Here, we are using the first set of features to predict the second set of features. Finally, we also take the residuals for this second stage.</p>
+<div class="math notranslate nohighlight">
+\[
+\pmb{X}^*_{2i} = \pmb{X}_{2i} - (\hat{\gamma}_0 + \pmb{\hat{\gamma}_1 X}_{1i})
+\]</div>
+<p>Lastly, we take the residuals from the first and second stage, and estimate the following model</p>
+<div class="math notranslate nohighlight">
+\[
+y_i^* = \beta_0 + \pmb{\beta_2 X}^*_{2i} + e_i
+\]</div>
+<p>The Frisch–Waugh–Lovell theorem states that the parameter estimate \(\pmb{\hat{\beta}_2}\) from estimating this model is equivalent to the one we get by running the full regression, with all the features:</p>
+<div class="math notranslate nohighlight">
+\[
+y_i = \beta_0 + \pmb{\beta_1 X}_{1i} + \pmb{\beta_2 X}_{2i} + e_i
+\]</div>
+<p><img alt="img" src="_images/nazare-confusa.jpg" /></p>
+<p>OK. Let’s unpack this a bit further. We know that regression is a very special model. Each of its parameters has the interpretation of a partial derivative: how much would \(Y\) increase if I increase one feature <strong>while holding all the others fixed</strong>. This is very nice for causal inference, because it means we can control for variables in the analysis, even if those same variables have not been held fixed during the collection of the data.</p>
+<p>We also know that if we omit variables from the regression, we get bias. Specifically, omitted variable bias (or confounding bias). Still, the Frisch–Waugh–Lovell is saying that I can break my regression model into two parts, neither of them containing the full feature set, and still get the same estimate I would get by running the entire regression. Not only that, this theorem also provides some insight into what linear regression is doing. To get the coefficient of one variable \(X_k\), regression first uses all the other variables to predict \(X_k\) and takes the residuals. This “cleans”  \(X_k\) of any influence from those variables. That way, when we try to understand \(X_k\)’s impact on \(Y\), it will be free from omitted variable bias. Second, regression uses all the other variables to predict \(Y\) and takes the residuals. This “cleans” \(Y\) from any influence from those variables, reducing the variance of \(Y\) so that it is easier to see how \(X_k\) impacts \(Y\).</p>
+<p>I know it can be hard to appreciate how awesome this is. But remember what linear regression is doing. It’s estimating the impact of \(X_2\) on \(y\) while accounting for \(X_1\). This is incredibly powerful for causal inference. It says that I can build a model that predicts my treatment \(t\) using my features \(X\), a model that predicts the outcome \(y\) using the same features, take the residuals from both models and run a model that estimates how the residual of \(t\) affects the residual of \(y\). This last model will tell me how \(t\) affects \(y\) while controlling for \(X\). In other words, the first two models are controlling for the confounding variables. They are generating data which is as good as random. This is debiasing my data. That’s what we use in the final model to estimate the elasticity.</p>
+<p>There is a (not so complicated) mathematical proof for why that is the case, but I think the intuition behind this theorem is so straightforward we can go directly into it.</p>
+</div>
+<div class="section" id="the-intuition-behind-orthogonalization">
+<h2>The Intuition Behind Orthogonalization<a class="headerlink" href="#the-intuition-behind-orthogonalization" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="kn">from</span> <span class="nn">nb21</span> <span class="kn">import</span> <span class="n">cumulative_elast_curve_ci</span><span class="p">,</span> <span class="n">elast</span><span class="p">,</span> <span class="n">cumulative_gain_ci</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s take our price data once again. But now, we will only take the sample where prices where <strong>not</strong> randomly assigned. Once again, we separate them into a training and a test set. Since we will use the test set to evaluate our causal model, let’s see how we can use orthogonalization to debias it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/ice_cream_sales.csv&quot;</span><span class="p">)</span>
+
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((5000, 5), (5000, 5))
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we show the correlations on the test set, we can see that price is positively correlated with sales, meaning that sales should go up as we increase prices. This is obviously nonsense. People don’t buy more if ice cream is expensive. We probably have some sort of bias here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp</th>
+      <th>weekday</th>
+      <th>cost</th>
+      <th>price</th>
+      <th>sales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>temp</th>
+      <td>1.000000</td>
+      <td>0.003630</td>
+      <td>0.006605</td>
+      <td>-0.011977</td>
+      <td>0.379108</td>
+    </tr>
+    <tr>
+      <th>weekday</th>
+      <td>0.003630</td>
+      <td>1.000000</td>
+      <td>0.011889</td>
+      <td>0.002610</td>
+      <td>0.004589</td>
+    </tr>
+    <tr>
+      <th>cost</th>
+      <td>0.006605</td>
+      <td>0.011889</td>
+      <td>1.000000</td>
+      <td>0.388046</td>
+      <td>-0.009410</td>
+    </tr>
+    <tr>
+      <th>price</th>
+      <td>-0.011977</td>
+      <td>0.002610</td>
+      <td>0.388046</td>
+      <td>1.000000</td>
+      <td>0.080040</td>
+    </tr>
+    <tr>
+      <th>sales</th>
+      <td>0.379108</td>
+      <td>0.004589</td>
+      <td>-0.009410</td>
+      <td>0.080040</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>If we plot our data, we can see why this is happening. Weekends (Saturday and Sunday) have higher price but also higher sales. We can see that this is the case because the weekend cloud of points seems to be to the upper right part of the plot.</p>
+<p>Weekend is probably playing an important role in the bias here. On the weekends, there are more ice cream sales because there is more demand. In response to that demand, prices go up. So it is not that the increase in price causes sales to go up. It is just that both sales and prices are high on weekends.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">test</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/xx-Debiasing-with-Orthogonalization_7_0.png" src="_images/xx-Debiasing-with-Orthogonalization_7_0.png" />
+</div>
+</div>
+<p>To debias this dataset we will need two models. The first model, let’s call it \(M_t(X)\), predicts the treatment (price, in our case) using the confounders. It’s the one of the stages we’ve seen above, on the Frisch–Waugh–Lovell theorem.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_t</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;price ~ cost + C(weekday) + temp&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">test</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">debiased_test</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;price-Mt(X)&quot;</span><span class="p">:</span><span class="n">test</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">m_t</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once we have this model, we will construct the residuals</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{t}_i = t_i - M_t(X_i)
+\]</div>
+<p>You can think of this residual as a version of the treatment that is unbiased or, better yet, that is impossible to predict from the confounders \(X\). Since the confounders were already used to predict \(t\), the residual is by definition, unpredictable with \(X\). Another way of saying this is that the bias has been explained away by the model \(M_t(X_i)\), prudicing \(\hat{t}_i\) which is as good as randomly assigned. Of course this only works if we have in \(X\) all the confounders that cause both \(T\) and \(Y\).</p>
+<p>We can also plot this data to see what it looks like.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">debiased_test</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price-Mt(X)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">debiased_test</span><span class="p">[</span><span class="s2">&quot;sales&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">debiased_test</span><span class="p">[</span><span class="s2">&quot;sales&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/xx-Debiasing-with-Orthogonalization_11_0.png" src="_images/xx-Debiasing-with-Orthogonalization_11_0.png" />
+</div>
+</div>
+<p>We can see that the weekends are no longer to the upper right corner. They got pushed to the center. Moreover, we can no longer differentiate between different price levels (the treatment) using the weekdays. We can say that the residual \(price-M_t(X)\), plotted on the x-axis, is a “random” or debiased version of the original treatment.</p>
+<p>This alone is sufficient to debias the dataset. This new treatment we’ve created is as good as randomly assigned. But we can still do one other thing to make the debiased dataset even better. Namely, we can also construct residuals for the outcome.</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{y}_i = y_i - M_y(X_i)
+\]</div>
+<p>This is another stage from the Frisch–Waugh–Lovell theorem. It doesn’t make the set less biased, but it makes it easier to estimate the elasticity by reducing the variance in \(y\). Once again, you can think about \(\hat{y}_i\) as a version of \(y_i\) that is unpredictable from \(X\) or that had all its variances due to \(X\) explained away. Think about it. We’ve already used \(X\) to predict \(y\) with \(M_y(X_i)\). And \(\hat{y}_i\) is the error of this prediction. So, by definition, it’s not possible to predict it from \(X\). All the information in \(X\) to predict \(y\) has already been used. If that is the case, the only thing left to explain \(\hat{y}_i\) is something we didn’t used to construct it (not included in \(X\)), which is only the treatment (again, assuming no unmeasured confounders).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_y</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;sales ~ cost + C(weekday) + temp&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">test</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">debiased_test</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;price-Mt(X)&quot;</span><span class="p">:</span><span class="n">test</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">m_t</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">),</span>
+                               <span class="s2">&quot;sales-My(X)&quot;</span><span class="p">:</span><span class="n">test</span><span class="p">[</span><span class="s2">&quot;sales&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">m_y</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once we do both transformations, not only does weekdays not predict the price residuals, but it also can’t predict the residual of sales \(\hat{y}\). The only thing left to predict these residuals is the treatment. Also, notice something interesting. In the plot above, it was hard to know the direction of the price elasticity. It looked like sales decreased as prices went up, but there was such a large variance in sales that it was hard to say that for sure.</p>
+<p>Now, when we plot the two residuals, it becomes much clear that sales indeed causes prices to go down.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">debiased_test</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price-Mt(X)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales-My(X)&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">debiased_test</span><span class="p">[</span><span class="s2">&quot;sales-My(X)&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">debiased_test</span><span class="p">[</span><span class="s2">&quot;sales-My(X)&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">linestyles</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/xx-Debiasing-with-Orthogonalization_15_0.png" src="_images/xx-Debiasing-with-Orthogonalization_15_0.png" />
+</div>
+</div>
+<p>One small disadvantage of this debiased data is that the residuals have been shifted to a different scale. As a result, it’s hard to interpret what they mean (what is a price residual of -3?). Still, I think this is a small price to pay for the convenience of building random data from data that was not initially random.</p>
+<p>To summarize, by predicting the treatment, we’ve constructed \(\hat{t}\) which works as an unbiased version of the treatment; by predicting the outcome, we’ve constructed \(\hat{y}\) which is a version of the outcome that can only be further explained if we use the treatment. This data, where we replace \(y\) by \(\hat{y}\) and \(t\) by \(\hat{t}\) is the debiased data we wanted. We can use it to evaluate our causal model just like we deed previously using random data.</p>
+<p>To see this, let’s once again build a causal model for price elasticity using the training data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m3</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sales ~ price*cost + price*C(weekday) + price*temp&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, we’ll make elasticity predictions on the debiased test set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict_elast</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">price_df</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.01</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">price_df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">price</span><span class="o">=</span><span class="n">price_df</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span><span class="o">+</span><span class="n">h</span><span class="p">))</span>
+            <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">price_df</span><span class="p">))</span> <span class="o">/</span> <span class="n">h</span>
+
+<span class="n">debiased_test_pred</span> <span class="o">=</span> <span class="n">debiased_test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
+    <span class="s2">&quot;m3_pred&quot;</span><span class="p">:</span> <span class="n">predict_elast</span><span class="p">(</span><span class="n">m3</span><span class="p">,</span> <span class="n">debiased_test</span><span class="p">),</span>
+<span class="p">})</span>
+
+<span class="n">debiased_test_pred</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp</th>
+      <th>weekday</th>
+      <th>cost</th>
+      <th>price</th>
+      <th>sales</th>
+      <th>price-Mt(X)</th>
+      <th>sales-My(X)</th>
+      <th>m3_pred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7791</th>
+      <td>20.8</td>
+      <td>3</td>
+      <td>1.5</td>
+      <td>6.3</td>
+      <td>187</td>
+      <td>-0.201769</td>
+      <td>1.441373</td>
+      <td>-0.073317</td>
+    </tr>
+    <tr>
+      <th>1764</th>
+      <td>26.6</td>
+      <td>3</td>
+      <td>1.5</td>
+      <td>6.3</td>
+      <td>201</td>
+      <td>-0.179506</td>
+      <td>4.737748</td>
+      <td>-2.139611</td>
+    </tr>
+    <tr>
+      <th>5785</th>
+      <td>24.0</td>
+      <td>4</td>
+      <td>1.0</td>
+      <td>5.8</td>
+      <td>186</td>
+      <td>-0.215107</td>
+      <td>-5.855171</td>
+      <td>-0.549798</td>
+    </tr>
+    <tr>
+      <th>3542</th>
+      <td>20.9</td>
+      <td>3</td>
+      <td>1.5</td>
+      <td>5.1</td>
+      <td>180</td>
+      <td>-1.401386</td>
+      <td>-5.743172</td>
+      <td>-0.108943</td>
+    </tr>
+    <tr>
+      <th>9250</th>
+      <td>26.7</td>
+      <td>5</td>
+      <td>1.0</td>
+      <td>7.0</td>
+      <td>201</td>
+      <td>0.978382</td>
+      <td>4.384885</td>
+      <td>-1.427230</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now, when it comes to plotting the cumulative elasticity, we still order the dataset by the predictive elasticity, but now we use the debiased versions of the treatment and outcome to get this elasticity. This is equivalent to estimating \(\beta_1\) in the following regression model</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{y}_i = \beta_0 + \beta_1 \hat{t}_i + e_i
+\]</div>
+<p>where the residuals are like we’ve described before.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">cumm_elast</span> <span class="o">=</span> <span class="n">cumulative_elast_curve_ci</span><span class="p">(</span><span class="n">debiased_test_pred</span><span class="p">,</span> <span class="s2">&quot;m3_pred&quot;</span><span class="p">,</span> <span class="s2">&quot;sales-My(X)&quot;</span><span class="p">,</span> <span class="s2">&quot;price-Mt(X)&quot;</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cumm_elast</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">cumm_elast</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">elast</span><span class="p">(</span><span class="n">debiased_test_pred</span><span class="p">,</span> <span class="s2">&quot;sales-My(X)&quot;</span><span class="p">,</span> <span class="s2">&quot;price-Mt(X)&quot;</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Avg. Elast.&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Customers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Elasticity of Top %&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Elasticity&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/xx-Debiasing-with-Orthogonalization_21_0.png" src="_images/xx-Debiasing-with-Orthogonalization_21_0.png" />
+</div>
+</div>
+<p>We can do the same thing for the cumulative gain curve, of course.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">cumm_gain</span> <span class="o">=</span> <span class="n">cumulative_gain_ci</span><span class="p">(</span><span class="n">debiased_test_pred</span><span class="p">,</span> <span class="s2">&quot;m3_pred&quot;</span><span class="p">,</span> <span class="s2">&quot;sales-My(X)&quot;</span><span class="p">,</span> <span class="s2">&quot;price-Mt(X)&quot;</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cumm_gain</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">cumm_gain</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">elast</span><span class="p">(</span><span class="n">debiased_test_pred</span><span class="p">,</span> <span class="s2">&quot;sales-My(X)&quot;</span><span class="p">,</span> <span class="s2">&quot;price-Mt(X)&quot;</span><span class="p">)],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Random Model&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Customers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cumulative Gain&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Gain on Debiased Sample&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/xx-Debiasing-with-Orthogonalization_23_0.png" src="_images/xx-Debiasing-with-Orthogonalization_23_0.png" />
+</div>
+</div>
+<p>Notice how similar these plots are to the ones in the previous chapter. This is some indication that the debiasing worked wonders here.</p>
+<p>In contrast, let’s see what the cumulative gain plot would look like if we used the original, biased data.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">cumm_gain</span> <span class="o">=</span> <span class="n">cumulative_gain_ci</span><span class="p">(</span><span class="n">debiased_test_pred</span><span class="p">,</span> <span class="s2">&quot;m3_pred&quot;</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cumm_gain</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">cumm_gain</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">elast</span><span class="p">(</span><span class="n">debiased_test_pred</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">)],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Random Model&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">% o</span><span class="s2">f Top Elast. Customers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Gains on Biased Sample&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cumulative Gains&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/xx-Debiasing-with-Orthogonalization_25_0.png" src="_images/xx-Debiasing-with-Orthogonalization_25_0.png" />
+</div>
+</div>
+<p>First thing you should notice is that the average elasticity goes up, instead of down. We’ve seen this before. In the biased data, it looks like sales goes up as price increases. As a result, the final point in the cumulative gain plot is positive. This makes little sense, since we now people don’t buy more as we increase ice cream prices. If the average price elasticity is already messed up, any ordering in it also makes little sense. The bottom line being that this data should not be used for model evaluation.</p>
+</div>
+<div class="section" id="orthogonalization-with-machine-learning">
+<h2>Orthogonalization with Machine Learning<a class="headerlink" href="#orthogonalization-with-machine-learning" title="Permalink to this headline">¶</a></h2>
+<p>In a 2016 paper, Victor Chernozhukov <em>et all</em> showed that you can also do orthogonalization with machine learning models. This is obviously very recent science and we still have much to discover on what we can and can’t do with ML models. Still, it’s a very interesting idea to know about.</p>
+<p>The nuts and bolts are pretty much the same to what we’ve already covered. The only difference is that now, we use machine learning models for the debiasing.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{y}_i &amp;= y_i - M_y(X_i) \\
+\hat{t}_i &amp;= t_i - M_t(X_i)
+\end{align}
+\end{split}\]</div>
+<p>There is a catch, though. As we know very well, machine learning models are so powerful that they can fit the data perfectly, or rather, overfit. Just by looking at the equations above, we can know what will happen in that case. If \(M_y\) somehow overfitts, the residuals will all be very close to zero. If that happens, it will be hard to find how \(t\) affects it. Similarly, if \(M_t\) somehow overfitts, its residuals will also be close to zero. Hence, there won’t be variation in the treatment residual to see how it can impact the outcome.</p>
+<p>To account for that, we need to do sample splitting. That is, we estimate the model with one part of the dataset and we make predictions in the other part. The simplest way to do this is to split the test sample in half, make two models  in such a way that each one is estimated in one half of the dataset and makes predictions in the other half.</p>
+<p>A slightly more elegant implementation uses K-fold cross validation. The advantage being that we can train all the models on a sample which is bigger than half the test set.</p>
+<p><img alt="img" src="_images/kfold-cv.png" /></p>
+<p>Fortunately, this sort of cross prediction is very easy to implement using Sklearn’s <code class="docutils literal notranslate"><span class="pre">cross_val_predict</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cost&quot;</span><span class="p">,</span> <span class="s2">&quot;weekday&quot;</span><span class="p">,</span> <span class="s2">&quot;temp&quot;</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="s2">&quot;price&quot;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;sales&quot;</span>
+
+<span class="n">folds</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">m_t</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">t_res</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">-</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">m_t</span><span class="p">,</span> <span class="n">test</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">cv</span><span class="o">=</span><span class="n">folds</span><span class="p">)</span>
+
+<span class="n">m_y</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y_res</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">-</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">m_y</span><span class="p">,</span> <span class="n">test</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="n">y</span><span class="p">],</span> <span class="n">cv</span><span class="o">=</span><span class="n">folds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have the residuals, let’s store them as columns on a new dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ml_debiased_test</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
+    <span class="s2">&quot;sales-ML_y(X)&quot;</span><span class="p">:</span> <span class="n">y_res</span><span class="p">,</span>
+    <span class="s2">&quot;price-ML_t(X)&quot;</span><span class="p">:</span> <span class="n">t_res</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="n">ml_debiased_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp</th>
+      <th>weekday</th>
+      <th>cost</th>
+      <th>price</th>
+      <th>sales</th>
+      <th>sales-ML_y(X)</th>
+      <th>price-ML_t(X)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7791</th>
+      <td>20.8</td>
+      <td>3</td>
+      <td>1.5</td>
+      <td>6.3</td>
+      <td>187</td>
+      <td>-3.150833</td>
+      <td>-0.869267</td>
+    </tr>
+    <tr>
+      <th>1764</th>
+      <td>26.6</td>
+      <td>3</td>
+      <td>1.5</td>
+      <td>6.3</td>
+      <td>201</td>
+      <td>-0.418857</td>
+      <td>-0.192867</td>
+    </tr>
+    <tr>
+      <th>5785</th>
+      <td>24.0</td>
+      <td>4</td>
+      <td>1.0</td>
+      <td>5.8</td>
+      <td>186</td>
+      <td>-2.515667</td>
+      <td>0.790429</td>
+    </tr>
+    <tr>
+      <th>3542</th>
+      <td>20.9</td>
+      <td>3</td>
+      <td>1.5</td>
+      <td>5.1</td>
+      <td>180</td>
+      <td>-11.718500</td>
+      <td>-1.280460</td>
+    </tr>
+    <tr>
+      <th>9250</th>
+      <td>26.7</td>
+      <td>5</td>
+      <td>1.0</td>
+      <td>7.0</td>
+      <td>201</td>
+      <td>-1.214167</td>
+      <td>1.715117</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Finally, we can plot the debiased dataset.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ml_debiased_test</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span>
+                <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price-ML_t(X)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales-ML_y(X)&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/xx-Debiasing-with-Orthogonalization_32_0.png" src="_images/xx-Debiasing-with-Orthogonalization_32_0.png" />
+</div>
+</div>
+<p>Once again, we’ve uncovered a negative price elasticity on sales. Actually, the plot is incredibly similar to the one we’ve got when using simple linear regression. But that’s probably because this is a very simple dataset. The advantages of machine learning orthogonalization is that it can estimate more complicated functions. It can learn interactions and non linearities in a way that it’s hard to encode into linear regression. Also, there is the advantage that some machine learning models (those bases on decision trees) are much simpler to run than linear regression. They can handle categorical data, outliers and even missing data, stuff that would require some attention if you are just using linear regression.</p>
+<p>Finally, before we close, I just need to cover one final common mistake that data scientists often make when they are introduced to this idea (been there, done that). If the treatment or the outcome is binary, one might think it is better to replace the machine learning regression models for their classification versions. However, this does not work. The theory of orthogonalization only functions under regression models, similarly with what we’ve seen a long time ago when talking about Instrumental Variables. To be honest, it is not that the model will fail miserably if you replace regression by classification, but I would advise against it. If the theory doesn’t justify it, why run the risk?</p>
+</div>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+<p>We’ve started the chapter by highlighting the necessity of random treatment assignment in order for our causal evaluation methods to work. This poses a problem in the case where random data is not available. To be clear, the safest solution in this case is to go and do some experiments in order to get random data. If that is out of the question, only then, we can rely on a clever alternative: transform our data to look as if the treatment has been randomly assigned.</p>
+<p>Here, we’ve covered how to do that using the principles of orthogonalization. First, we’ve built a model that uses our features \(X\) to predict the treatment \(t\) and get it’s residuals. The idea being that the treatment residuals is, by definition, independent of the features used to construct it. In other words, the treatment residuals are orthogonal to the features. We can see these residuals as a version of the treatment where all the confounding bias due to \(X\) has been removed.</p>
+<p>That alone is enough to make our data look as good as random. But we can go one step further. We can build a model that predicts the outcome \(y\) using the features \(X\) but not the treatment and also get its residuals. Again, the intuition is very similar. These outcome residuals is a version of the outcome where all the variance due to the features has been explained away. That will hopefully explay a lot of the variance, making it easier to see the treatment effect.</p>
+<p>Here we are using orthogonalization with the goal of debiasing our data for model evaluation. However, this technique is also used for other purposes. Namely, lot’s of causal inference models use orthogonalization as a first pre-processing step to ease the task of the causal inference model. We can say that orthogonalization makes the foundation of many modern causal inference algorithms.</p>
+<p><img alt="img" src="_images/athlas.png" /></p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>The things I’ve written here are mostly stuff from my head. I’ve learned them through experience. This means that they have <strong>not</strong> passed the academic scrutiny that good science often goes through. Instead, notice how I’m talking about things that work in practice, but I don’t spend too much time explaining why that is the case. It’s a sort of science from the streets, if you will. However, I am putting this up for public scrutiny, so, by all means, if you find something preposterous, open an issue and I’ll address it to the best of my efforts.</p>
+<p>This chapter is based on Victor Chernozhukov <em>et all</em> (2016), Double/Debiased Machine Learning for Treatment and Causal Parameters. You can also check Frisch, Ragnar; Waugh, Frederick V. (1933) original article, Partial Time Regressions as Compared with Individual Trends.</p>
+</div>
+<div class="section" id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
+<p>Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
+If you found this book valuable and you want to support it, please go to <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a>. If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn’t understand. Just go to the book’s repository and <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/issues">open an issue</a>. Finally, if you liked this content, please share it with others who might find it useful and give it a <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/stargazers">star on GitHub</a>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "causal-glory"
+        },
+        kernelOptions: {
+            kernelName: "causal-glory",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'causal-glory'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-97848161-1', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+    
+  </body>
+</html>

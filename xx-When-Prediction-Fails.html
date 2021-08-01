@@ -57,8 +57,6 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="19 - Building a Causal Model" href="19-Causal-Models.html" />
-    <link rel="prev" title="17 - Predictive Models 101" href="17-Predictive-Models-101.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -188,50 +186,10 @@
   Part II - The Yin
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="17-Predictive-Models-101.html">
    17 - Predictive Models 101
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   18 - When Prediction Fails
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Causal-Models.html">
-   19 - Building a Causal Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Evaluating-Causal-Models.html">
-   20 - Evaluating Causal Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Debiasing-with-Propensity-Score.html">
-   22 - Debiasing with Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Plug-and-Play-Estimators.html">
-   23 - Plug-and-Play Estimators
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="24-Meta-Learners.html">
-   24 - Meta Learners
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="25-Debiased-Orthogonal-Machine-Learning.html">
-   25 - Debiased/Orthogonal Machine Learning
   </a>
  </li>
 </ul>
@@ -290,7 +248,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/18-When-Prediction-Fails.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/xx-When-Prediction-Fails.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -307,7 +265,7 @@
     <div class="dropdown-buttons sourcebuttons">
         
         <a class="issues-button"
-            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F18-When-Prediction-Fails.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2Fxx-When-Prediction-Fails.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -328,7 +286,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/18-When-Prediction-Fails.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/xx-When-Prediction-Fails.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -916,7 +874,7 @@ Name: customer_id, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-When-Prediction-Fails_13_0.png" src="_images/18-When-Prediction-Fails_13_0.png" />
+<img alt="_images/xx-When-Prediction-Fails_13_0.png" src="_images/xx-When-Prediction-Fails_13_0.png" />
 </div>
 </div>
 <p>Doing that analysis, we can see that, on average, we lose money when the coupon value is 0 or 15 and we gain money for coupons of 5 and 10 BLR. The highest average <code class="docutils literal notranslate"><span class="pre">net_income</span></code> appears when we have 5 BLR coupons, yielding us about 250 BLR in <code class="docutils literal notranslate"><span class="pre">net_value</span></code> per customer. Naturally then, the simplest thing we can try is to give everyone 5 BLR in coupons and see how that would play out. This completely disregards the possibility of bias but hey, we are talking simplicity here!</p>
@@ -1209,7 +1167,7 @@ Test Score:,  0.504563847410434
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-When-Prediction-Fails_29_0.png" src="_images/18-When-Prediction-Fails_29_0.png" />
+<img alt="_images/xx-When-Prediction-Fails_29_0.png" src="_images/xx-When-Prediction-Fails_29_0.png" />
 </div>
 </div>
 <p>This plot is very interesting. Notice how the optimal decision changes across prediction bands. For instance, on bands like 1, 7 and 8, the best thing to do is to give 10 BLR in coupons. For bands like 3, 5 and 10, the best thing is 5 BRL in coupons. This means that this policy is very much like the simple one, except for the last band. This is evidence that personalisation might be possible, since the optimal decision changes across subpopulations.</p>
@@ -1662,7 +1620,7 @@ Test Score:,  0.504563847410434
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18-When-Prediction-Fails_43_0.png" src="_images/18-When-Prediction-Fails_43_0.png" />
+<img alt="_images/xx-When-Prediction-Fails_43_0.png" src="_images/xx-When-Prediction-Fails_43_0.png" />
 </div>
 </div>
 <p>Here is where most Data Scientists fall off their chair. The policy with the model has an average <code class="docutils literal notranslate"><span class="pre">net_income</span></code> which is 20 BRL worse than a very simple policy. How can a model that is good at predicting <code class="docutils literal notranslate"><span class="pre">net_value</span></code> not be good for a strategy that aims to maximize <code class="docutils literal notranslate"><span class="pre">net_value</span></code>? Surely, there must be some bug in the code. You are clearly mistaken. This cannot be! Well, as it turns out, there is a perfectly reasonable and simple explanation for it. However, the answer to this question is so important that I think it’s worth going a bit deeper into it.</p>
@@ -1700,7 +1658,7 @@ Test Score:,  0.504563847410434
 <p>The fact that prediction models can be harmful for personalisation is so counterintuitive and strange that I feel I must tackle the problem from multiple perspectives. The following graphical explanation is thus a way of understanding what is happening from a different angle.</p>
 <p>Consider the causal leftmost graph on the image below. It’s a typical confounding graph, where we have features \(X\) causing both the outcome \(Y\) and the treatment \(T\). What happens if you build a predictive model and use it to segment the units by its predictions?</p>
 <p><img alt="img" src="_images/graph-1.png" /></p>
-<p>You end up getting something like the graphs on the left (technically, they are not causal anymore, because the model obviously doesn’t cause the outcome. It just learns the mapping function from features to outcomes, but that doesn’t invalidate the points I’m about to make). Segmenting on this model is equivalent to conditioning on the model node. You are holding \(M(T, X)\) fixed on each segment. If you do that and try to learn the relationship between \(T\) and \(Y\) while conditioning on \(M(T, X)\), you will end up with the situation we’ve discussed in part I, about bad controls. And in case you don’t remember, if you control for anything in the path between the treatment and the outcome, you block a path that the treatment is using to affect the outcome. As a consequence, the perceived effect ends up looking smaller than the actual effect. So there you have if. We used another explanation to get to the exact same conclusion as before: segmenting units by a predictive model hinders our ability to identify the causal effect.</p>
+<p>You end up getting something like the graphs on the left (technically, they are not causal anymore, because the model obviously doesn’t cause the outcome. It just learns the mapping function from features to outcomes, but that doesn’t invalidate the points I’m about to make). Segmenting on this model is equivalent to conditioning on the model node. You are holding \(M(T, X)\) fixed on each segment. If you do that and try to learn the relationship between \(T\) and \(Y\) while conditioning on \(M(T, X)\), you will end up with the situation we’ve discussed in part I, about bad controls. And in case you don’t remember, if you control for anything in the path between the treatment and the outcome, you block a path that the treatment is using to affect the outcome. As a consequence, the perceived effect ends up looking smaller than the actual effect. So there you have it. We used another explanation to get to the exact same conclusion as before: segmenting units by a predictive model hinders our ability to identify the causal effect.</p>
 <p>Now, if you are smart, you will probably object with the following idea. What if we simply remove \(T\) from the model? That’s a really good argument. In fact, it’s so good it took me years to properly articulate why just trying to fool your model like that is probably not a smart thing to do. In fact, if you look back on the example we’ve explored in this chapter, notice that I didn’t even give the predictive model the <code class="docutils literal notranslate"><span class="pre">coupon</span></code> treatment. That didn’t solve the problem that the predictive model partitioning was squashing our measured elasticity to a horizontal line. The answer to why lies in the following image.</p>
 <p><img alt="img" src="_images/graph-2.png" /></p>
 <p>Excluding the treatment \(T\) from your model \(M(X)\) is not enough to make the model ignore the relationship between \(T\) and \(Y\). Because \(X\) causes \(T\), the model can indirectly learn \(T\) through \(X\). Why will it do that? Because if \(T\) causes \(Y\) and \(M\) wants to predict \(Y\) as much as possible,  it will forcibly explore the pattern in \(X\) that links \(T\) to \(Y\). In other words, the information of how the treatment impacts the outcomes flows backwards to our model through the features. To give an example, consider that you only give discounts (\(T\)) to customers that live in a certain area of town (\(X\)). For the sake of the argument, suppose that the area doesn’t cause sales (\(Y\)) in any way. Even if that is the case, the city area still has predictive power because it causes \(T\), which in turns causes \(Y\). Hence, the model will explore that fact in order to predict \(Y\).</p>
@@ -1757,8 +1715,6 @@ If you found this book valuable and you want to support it, please go to <a clas
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="17-Predictive-Models-101.html" title="previous page">17 - Predictive Models 101</a>
-    <a class='right-next' id="next-link" href="19-Causal-Models.html" title="next page">19 - Building a Causal Model</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

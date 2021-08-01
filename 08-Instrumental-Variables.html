@@ -195,43 +195,50 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="18-When-Prediction-Fails.html">
-   18 - When Prediction Fails
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Causal-Models.html">
+  <a class="reference internal" href="18-Causal-Models.html">
    19 - Building a Causal Model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="20-Evaluating-Causal-Models.html">
+  <a class="reference internal" href="19-Evaluating-Causal-Models.html">
    20 - Evaluating Causal Models
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Debiasing-with-Propensity-Score.html">
-   22 - Debiasing with Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Plug-and-Play-Estimators.html">
+  <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
    23 - Plug-and-Play Estimators
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="24-Meta-Learners.html">
+  <a class="reference internal" href="21-Meta-Learners.html">
    24 - Meta Learners
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="25-Debiased-Orthogonal-Machine-Learning.html">
+  <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
    25 - Debiased/Orthogonal Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Apendix
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
+   21 - Debiasing with Orthogonalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
+   22 - Debiasing with Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="When-Prediction-Fails.html">
+   18 - When Prediction Fails
   </a>
  </li>
 </ul>
@@ -500,7 +507,7 @@ Cov(Z,Y) = Cov(Z,\beta_0 + \kappa\ T_i + v_i) = \kappa Cov(Z,T) + Cov(Z, v) = \k
 <p><span class="math notranslate nohighlight">\(
 \kappa = \dfrac{\frac{\partial y}{\partial z}}{\frac{\partial T}{\partial z}} = \dfrac{\partial y}{\partial z} * \dfrac{\partial z}{\partial T} =  \dfrac{\partial y}{\partial T}
 \)</span></p>
-<p>What this is showing to us is more subtle than most people appreciate. It is also cooler than most people appreciate. By writing IV like this, we are saying, “look, it’s hard to find the impact of T on Y due to confounders. But I can easily find the impact of Z on Y, since there is nothing that causes Z and Y (exclusion restriction). However, I’m interested in the impact of T on Y, not Z on Y. So, I’ma estimate the easy effect of Z on Y and <strong>scale it by the effect of Z on T</strong>, to convert the effect to T units instead of Z units”.</p>
+<p>What this is showing to us is more subtle than most people appreciate. It is also cooler than most people appreciate. By writing IV like this, we are saying, “look, it’s hard to find the impact of T on Y due to confounders. But I can easily find the impact of Z on Y, since there is nothing that causes Z and Y (exclusion restriction). However, I’m interested in the impact of T on Y, not Z on Y. So, I’ll estimate the easy effect of Z on Y and <strong>scale it by the effect of Z on T</strong>, to convert the effect to T units instead of Z units”.</p>
 <p>We can also see this in a simplified case where the instrument is a dummy variable. In this case, the IV estimator gets further simplified by the ratio between 2 differences in means.</p>
 <p><span class="math notranslate nohighlight">\(
 \kappa = \dfrac{E[Y|Z=1]-E[Y|Z=0]}{E[T|Z=1]-E[T|Z=0]}

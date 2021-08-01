@@ -57,8 +57,6 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="23 - Plug-and-Play Estimators" href="23-Plug-and-Play-Estimators.html" />
-    <link rel="prev" title="21 - Debiasing with Orthogonalization" href="21-Debiasing-with-Orthogonalization.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -188,50 +186,10 @@
   Part II - The Yin
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="17-Predictive-Models-101.html">
    17 - Predictive Models 101
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-When-Prediction-Fails.html">
-   18 - When Prediction Fails
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Causal-Models.html">
-   19 - Building a Causal Model
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Evaluating-Causal-Models.html">
-   20 - Evaluating Causal Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   22 - Debiasing with Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Plug-and-Play-Estimators.html">
-   23 - Plug-and-Play Estimators
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="24-Meta-Learners.html">
-   24 - Meta Learners
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="25-Debiased-Orthogonal-Machine-Learning.html">
-   25 - Debiased/Orthogonal Machine Learning
   </a>
  </li>
 </ul>
@@ -290,7 +248,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/22-Debiasing-with-Propensity-Score.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/xx-Debiasing-with-Propensity-Score.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -307,7 +265,7 @@
     <div class="dropdown-buttons sourcebuttons">
         
         <a class="issues-button"
-            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F22-Debiasing-with-Propensity-Score.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2Fxx-Debiasing-with-Propensity-Score.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -328,7 +286,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/22-Debiasing-with-Propensity-Score.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/xx-Debiasing-with-Propensity-Score.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -757,7 +715,7 @@ W_i = \sum^K_{k=0} \dfrac{\mathcal{1}_{K=k} }{P(T=k|X)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiasing-with-Propensity-Score_10_0.png" src="_images/22-Debiasing-with-Propensity-Score_10_0.png" />
+<img alt="_images/xx-Debiasing-with-Propensity-Score_10_0.png" src="_images/xx-Debiasing-with-Propensity-Score_10_0.png" />
 </div>
 </div>
 <div class="section" id="stored-propensity-score">
@@ -978,7 +936,7 @@ W_i = \sum^K_{k=0} \dfrac{\mathcal{1}_{K=k} }{P(T=k|X)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiasing-with-Propensity-Score_17_0.png" src="_images/22-Debiasing-with-Propensity-Score_17_0.png" />
+<img alt="_images/xx-Debiasing-with-Propensity-Score_17_0.png" src="_images/xx-Debiasing-with-Propensity-Score_17_0.png" />
 </div>
 </div>
 <p>This new dataset we’ve created is now debiased. We can use it to do model evaluation or any other analys that requires the treatment to be randomly assigned. There is only one thing you need to watch out for. Notice how I’ve sampled 10000 points but the original dataset had only 5000? With this resampling method, I can make a debiased dataset as big as I wish. This means that confidence intervals that are computed in it are not valid, as they don’t take into account the fact that the sample size can be artificially inflated.</p>
@@ -1147,7 +1105,7 @@ W_i = \sum^K_{k=0} \dfrac{\mathcal{1}_{K=k} }{P(T=k|X)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiasing-with-Propensity-Score_22_0.png" src="_images/22-Debiasing-with-Propensity-Score_22_0.png" />
+<img alt="_images/xx-Debiasing-with-Propensity-Score_22_0.png" src="_images/xx-Debiasing-with-Propensity-Score_22_0.png" />
 </div>
 </div>
 <p>From here, we can proceed as if we had the true propensity score.</p>
@@ -1195,7 +1153,7 @@ Name: em1, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiasing-with-Propensity-Score_27_0.png" src="_images/22-Debiasing-with-Propensity-Score_27_0.png" />
+<img alt="_images/xx-Debiasing-with-Propensity-Score_27_0.png" src="_images/xx-Debiasing-with-Propensity-Score_27_0.png" />
 </div>
 </div>
 <p>As for the distributions, we can see that they don’t align that well as before, specially for the variables <code class="docutils literal notranslate"><span class="pre">invested</span></code> and <code class="docutils literal notranslate"><span class="pre">income</span></code></p>
@@ -1293,7 +1251,7 @@ Name: em1, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiasing-with-Propensity-Score_33_0.png" src="_images/22-Debiasing-with-Propensity-Score_33_0.png" />
+<img alt="_images/xx-Debiasing-with-Propensity-Score_33_0.png" src="_images/xx-Debiasing-with-Propensity-Score_33_0.png" />
 </div>
 </div>
 <p>To avoid having overly important units, some scientists like to clip the weights, forcing them to be, let’s say, at most 20. It is true that this technique will remove some of the variance, but it will add bias back. Since the whole point of this was to remove bias, I feel like clipping the weights is not a good idea.</p>
@@ -1312,7 +1270,7 @@ Name: em1, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiasing-with-Propensity-Score_36_0.png" src="_images/22-Debiasing-with-Propensity-Score_36_0.png" />
+<img alt="_images/xx-Debiasing-with-Propensity-Score_36_0.png" src="_images/xx-Debiasing-with-Propensity-Score_36_0.png" />
 </div>
 </div>
 <p>If they have a nice overlap, like in the plot above, then you have common support.</p>
@@ -1438,7 +1396,7 @@ Name: em1, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiasing-with-Propensity-Score_40_0.png" src="_images/22-Debiasing-with-Propensity-Score_40_0.png" />
+<img alt="_images/xx-Debiasing-with-Propensity-Score_40_0.png" src="_images/xx-Debiasing-with-Propensity-Score_40_0.png" />
 </div>
 </div>
 <p>It looks like <code class="docutils literal notranslate"><span class="pre">em3</span></code> was only sent to customers that are older than 40 years. Thats a huge problem. If the control has younger folks, but the treatment doesn’t, there is no way we can estimate the counterfactual \(Y_0|T=1, age&lt;40\). Simply because we have no idea how younger customers will respond to this email.</p>
@@ -1480,7 +1438,7 @@ Name: em3, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiasing-with-Propensity-Score_45_0.png" src="_images/22-Debiasing-with-Propensity-Score_45_0.png" />
+<img alt="_images/xx-Debiasing-with-Propensity-Score_45_0.png" src="_images/xx-Debiasing-with-Propensity-Score_45_0.png" />
 </div>
 </div>
 <p>Notice how poor the overlap is here. Units with propensity score below 0.4 almost never get the treatment. Not to mention that huge peak at zero.</p>
@@ -1520,7 +1478,7 @@ Name: em3, dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x132656b70&gt;
 </pre></div>
 </div>
-<img alt="_images/22-Debiasing-with-Propensity-Score_49_1.png" src="_images/22-Debiasing-with-Propensity-Score_49_1.png" />
+<img alt="_images/xx-Debiasing-with-Propensity-Score_49_1.png" src="_images/xx-Debiasing-with-Propensity-Score_49_1.png" />
 </div>
 </div>
 <p>All of this to say that, yes, due to positivity violations, you can’t debias the entire sample with respect to <code class="docutils literal notranslate"><span class="pre">em3</span></code>. But you can do it for the population for which email-3 was designed for in the first place. That is good enough.</p>
@@ -1573,8 +1531,6 @@ If you found this book valuable and you want to support it, please go to <a clas
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="21-Debiasing-with-Orthogonalization.html" title="previous page">21 - Debiasing with Orthogonalization</a>
-    <a class='right-next' id="next-link" href="23-Plug-and-Play-Estimators.html" title="next page">23 - Plug-and-Play Estimators</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

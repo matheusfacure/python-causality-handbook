@@ -57,8 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="21 - Debiasing with Orthogonalization" href="21-Debiasing-with-Orthogonalization.html" />
-    <link rel="prev" title="19 - Building a Causal Model" href="19-Causal-Models.html" />
+    <link rel="next" title="23 - Plug-and-Play Estimators" href="20-Plug-and-Play-Estimators.html" />
+    <link rel="prev" title="19 - Building a Causal Model" href="18-Causal-Models.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -195,12 +195,7 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="18-When-Prediction-Fails.html">
-   18 - When Prediction Fails
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Causal-Models.html">
+  <a class="reference internal" href="18-Causal-Models.html">
    19 - Building a Causal Model
   </a>
  </li>
@@ -210,28 +205,40 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Debiasing-with-Propensity-Score.html">
-   22 - Debiasing with Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Plug-and-Play-Estimators.html">
+  <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
    23 - Plug-and-Play Estimators
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="24-Meta-Learners.html">
+  <a class="reference internal" href="21-Meta-Learners.html">
    24 - Meta Learners
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="25-Debiased-Orthogonal-Machine-Learning.html">
+  <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
    25 - Debiased/Orthogonal Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Apendix
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
+   21 - Debiasing with Orthogonalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
+   22 - Debiasing with Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="When-Prediction-Fails.html">
+   18 - When Prediction Fails
   </a>
  </li>
 </ul>
@@ -290,7 +297,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/20-Evaluating-Causal-Models.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/19-Evaluating-Causal-Models.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -307,7 +314,7 @@
     <div class="dropdown-buttons sourcebuttons">
         
         <a class="issues-button"
-            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F20-Evaluating-Causal-Models.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F19-Evaluating-Causal-Models.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -328,7 +335,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/20-Evaluating-Causal-Models.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/19-Evaluating-Causal-Models.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -722,7 +729,7 @@ y_i = \beta_0 + \beta_1t_i + e_i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/20-Evaluating-Causal-Models_17_0.png" src="_images/20-Evaluating-Causal-Models_17_0.png" />
+<img alt="_images/19-Evaluating-Causal-Models_17_0.png" src="_images/19-Evaluating-Causal-Models_17_0.png" />
 </div>
 </div>
 <p>First, look at the random model (\(m3\)). It has roughly the same estimated elasticity in each of its partitions. We can already see just by looking at the plot that it won’t help us much with personalisation since it can’t distinguish between the high and low price elasticity days. Next, consider the predictive model, \(m1\). That model is actually promising! It manages to construct groups where the elasticity is high and others where the elasticity is low. That’s exactly what we need.</p>
@@ -791,10 +798,10 @@ y_i = \beta_0 + \beta_1t_i + e_i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/20-Evaluating-Causal-Models_21_0.png" src="_images/20-Evaluating-Causal-Models_21_0.png" />
+<img alt="_images/19-Evaluating-Causal-Models_21_0.png" src="_images/19-Evaluating-Causal-Models_21_0.png" />
 </div>
 </div>
-<p>Interpreting a Cumulative Elasticity Curve can be a bit challenging, but here is how I see it. Again, it might be easier to think about the binary case. The X axis of the curve represents how many samples are we treating. Here, I normalized the axis to be the proportion of the dataset, so .4 means we are treating 40% of the samples. The Y axis is the elasticity we should expect at that many samples. So, if a curva has value -1 at 40%, it means that the elasticity of the top 40% units is -1. Ideally, we want the highest elasticity for the largest  possible sample. An ideal curve then would start high up on the Y axis and descend very slowly to the average elasticity, representing we can treat a high percentage of units while still maintaining an above average elasticity.</p>
+<p>Interpreting a Cumulative Elasticity Curve can be a bit challenging, but here is how I see it. Again, it might be easier to think about the binary case. The X axis of the curve represents how many samples are we treating. Here, I normalized the axis to be the proportion of the dataset, so .4 means we are treating 40% of the samples. The Y axis is the elasticity we should expect at that many samples. So, if a curve has value -1 at 40%, it means that the elasticity of the top 40% units is -1. Ideally, we want the highest elasticity for the largest  possible sample. An ideal curve then would start high up on the Y axis and descend very slowly to the average elasticity, representing we can treat a high percentage of units while still maintaining an above average elasticity.</p>
 <p>Needless to say, none of our models gets even close to an ideal elasticity curve. The random model \(M3\) oscillates around the average elasticity and never goes too far away from it. This means that the model can’t find groups where the elasticity is different from the average one. As for the predictive model \(M1\), it appears to be reversely ordering elasticity, because the curve starts below the average elasticity. Not only that, it also converges to the average elasticity pretty quickly, at around 50% of the samples. Finally, the causal model \(M2\) seems more interesting. It has this weird behavior at first, where the cumulative elasticity increases away from the average, but then it reaches a point where we can treat about 75% of the units while keeping a pretty decent elasticity of almost 0. This is probably happening because this model can identify the very low elasticity (high price sensitivity) days. Hence, provided we don’t increase prices on those days, we are allowed to do it for most of the sample (about 75%), while still having a low price sensitivity.</p>
 <p>In terms of model evaluation, the Cumulative Elasticity Curve is already much better than the simple idea of elasticity by band. Here, we managed to make preference statements about our models that were much more precise. Still, it’s a complicated curve to understand. For this reason, we can do one further improvement.</p>
 </div>
@@ -842,7 +849,7 @@ y_i = \beta_0 + \beta_1t_i + e_i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/20-Evaluating-Causal-Models_26_0.png" src="_images/20-Evaluating-Causal-Models_26_0.png" />
+<img alt="_images/19-Evaluating-Causal-Models_26_0.png" src="_images/19-Evaluating-Causal-Models_26_0.png" />
 </div>
 </div>
 <p>Now it is very clear that the causal model (M2) is much better than the other two. It diverges much more from the random line than both M1 and M3. Also, notice how the random model, M3, follows very closely the theoretical random model. The difference between both is probably just random noise.</p>
@@ -904,7 +911,7 @@ s_{\hat\beta_1}=\sqrt{\frac{\sum_i\hat\epsilon_i^2}{(n-2)\sum_i(t_i-\bar t)^2}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/20-Evaluating-Causal-Models_32_0.png" src="_images/20-Evaluating-Causal-Models_32_0.png" />
+<img alt="_images/19-Evaluating-Causal-Models_32_0.png" src="_images/19-Evaluating-Causal-Models_32_0.png" />
 </div>
 </div>
 <p>Notice how the CI gets smaller and smaller as we accumulate more of the dataset. That’s because the sample size increases.</p>
@@ -939,7 +946,7 @@ s_{\hat\beta_1}=\sqrt{\frac{\sum_i\hat\epsilon_i^2}{(n-2)\sum_i(t_i-\bar t)^2}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/20-Evaluating-Causal-Models_36_0.png" src="_images/20-Evaluating-Causal-Models_36_0.png" />
+<img alt="_images/19-Evaluating-Causal-Models_36_0.png" src="_images/19-Evaluating-Causal-Models_36_0.png" />
 </div>
 </div>
 </div>
@@ -991,8 +998,8 @@ If you found this book valuable and you want to support it, please go to <a clas
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="19-Causal-Models.html" title="previous page">19 - Building a Causal Model</a>
-    <a class='right-next' id="next-link" href="21-Debiasing-with-Orthogonalization.html" title="next page">21 - Debiasing with Orthogonalization</a>
+    <a class='left-prev' id="prev-link" href="18-Causal-Models.html" title="previous page">19 - Building a Causal Model</a>
+    <a class='right-next' id="next-link" href="20-Plug-and-Play-Estimators.html" title="next page">23 - Plug-and-Play Estimators</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

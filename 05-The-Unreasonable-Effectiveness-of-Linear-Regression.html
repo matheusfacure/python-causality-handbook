@@ -195,43 +195,50 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="18-When-Prediction-Fails.html">
-   18 - When Prediction Fails
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Causal-Models.html">
+  <a class="reference internal" href="18-Causal-Models.html">
    19 - Building a Causal Model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="20-Evaluating-Causal-Models.html">
+  <a class="reference internal" href="19-Evaluating-Causal-Models.html">
    20 - Evaluating Causal Models
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Debiasing-with-Propensity-Score.html">
-   22 - Debiasing with Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Plug-and-Play-Estimators.html">
+  <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
    23 - Plug-and-Play Estimators
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="24-Meta-Learners.html">
+  <a class="reference internal" href="21-Meta-Learners.html">
    24 - Meta Learners
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="25-Debiased-Orthogonal-Machine-Learning.html">
+  <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
    25 - Debiased/Orthogonal Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Apendix
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
+   21 - Debiasing with Orthogonalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
+   22 - Debiasing with Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="When-Prediction-Fails.html">
+   18 - When Prediction Fails
   </a>
  </li>
 </ul>
@@ -534,7 +541,7 @@ y_i = \beta_0 + \kappa T_i + \beta_1 X_{1i} + ... +\beta_k X_{ki} + u_i
 <p><span class="math notranslate nohighlight">\(
 \kappa = \dfrac{Cov(Y_i, \tilde{T_i})}{Var(\tilde{T_i})} 
 \)</span></p>
-<p>where \(\tilde{T_i}\) is the residual from a regression of all other covariates \(X_{1i} + … + X_{ki}\) on \(T_i\). Now, let’s appreciate how cool this is. It means that the coefficient of a multivariate regression is the bivariate coefficient of the same regressor <strong>after accounting for the effect of other variables in the model</strong>. In causal inference terms, \(\kappa\) is the bivariate coeficiente of \(T\) after having used all other variables to predict it.</p>
+<p>where \(\tilde{T_i}\) is the residual from a regression of all other covariates \(X_{1i} + … + X_{ki}\) on \(T_i\). Now, let’s appreciate how cool this is. It means that the coefficient of a multivariate regression is the bivariate coefficient of the same regressor <strong>after accounting for the effect of other variables in the model</strong>. In causal inference terms, \(\kappa\) is the bivariate coefficient of \(T\) after having used all other variables to predict it.</p>
 <p>This has a nice intuition behind it. If we can predict \(T\) using other variables, it means it’s not random. However, we can make it so that \(T\) is as good as random once we control for other available variables. To do so, we use linear regression to predict it from the other variables and then we take the residuals of that regression \(\tilde{T}\). By definition, \(\tilde{T}\) cannot be predicted by the other variables \(X\) that we’ve already used to predict \(T\). Quite elegantly, \(\tilde{T}\) is a version of the treatment that is not associated with any other variable in \(X\).</p>
 <p>By the way, this is also a property of linear regression. The residual always orthogonal or uncorrelated with any of the variables in the model that created it:</p>
 <div class="cell docutils container">
@@ -814,7 +821,7 @@ log(hwage)_i = \beta_0 + \kappa \ educ_i + \pmb{\beta}X_i + u_i
 </div>
 </div>
 </div>
-<p>This coefficient we’ve just estimated tells us that, for people with the same IQ, experience, tenure, age and so on, we should expect an additional year of education to be associated with a 4.11% increase in hourly wage. This confirms our suspicion that the first simple model with only <code class="docutils literal notranslate"><span class="pre">educ</span></code> was biases. It also confirms that this bias was overestimating the impact of education. Once we controlled for other factors, the estimated impact of education fell.</p>
+<p>This coefficient we’ve just estimated tells us that, for people with the same IQ, experience, tenure, age and so on, we should expect an additional year of education to be associated with a 4.11% increase in hourly wage. This confirms our suspicion that the first simple model with only <code class="docutils literal notranslate"><span class="pre">educ</span></code> was biased. It also confirms that this bias was overestimating the impact of education. Once we controlled for other factors, the estimated impact of education fell.</p>
 <p>If we are wiser and use software that other people wrote instead of coding everything yourself, we can even place a confidence interval around this estimate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

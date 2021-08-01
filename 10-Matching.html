@@ -195,43 +195,50 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="18-When-Prediction-Fails.html">
-   18 - When Prediction Fails
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Causal-Models.html">
+  <a class="reference internal" href="18-Causal-Models.html">
    19 - Building a Causal Model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="20-Evaluating-Causal-Models.html">
+  <a class="reference internal" href="19-Evaluating-Causal-Models.html">
    20 - Evaluating Causal Models
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Debiasing-with-Propensity-Score.html">
-   22 - Debiasing with Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Plug-and-Play-Estimators.html">
+  <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
    23 - Plug-and-Play Estimators
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="24-Meta-Learners.html">
+  <a class="reference internal" href="21-Meta-Learners.html">
    24 - Meta Learners
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="25-Debiased-Orthogonal-Machine-Learning.html">
+  <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
    25 - Debiased/Orthogonal Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Apendix
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
+   21 - Debiasing with Orthogonalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
+   22 - Debiasing with Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="When-Prediction-Fails.html">
+   18 - When Prediction Fails
   </a>
  </li>
 </ul>
@@ -1498,7 +1505,7 @@ E[\sqrt{N_1}(\hat{ATET} - ATET)] = E[\sqrt{N_1}(\mu_0(X_i) - \mu_0(X_j(i)))]
 </div>
 <div class="section" id="the-curse-of-dimensionality">
 <h2>The Curse of Dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h2>
-<p>As it turns out, the answer is quite simple and intuitive. It is easy to find people that mach on a few characteristics, like sex. But if we add more characteristics, like age, income, city of birth and so on, it becomes harder and harder to find matches. In more general terms, the more features we have, the higher will be the distance between units and their matches.</p>
+<p>As it turns out, the answer is quite simple and intuitive. It is easy to find people that match on a few characteristics, like sex. But if we add more characteristics, like age, income, city of birth and so on, it becomes harder and harder to find matches. In more general terms, the more features we have, the higher will be the distance between units and their matches.</p>
 <p>This is not something that hurts only the matching estimator. It ties back to the subclassification estimator we saw earlier. Early on, in that contrived medicine example where with man and woman, it was quite easy to build the subclassification estimator. That was because we only had 2 cells: man and woman. But what would happen if we had more? Let’s say we have 2 continuous features like age and income and we manage to discretise them into 5 buckets each. This will give us 25 cells, or \(5^2\). And what if we had 10 covariates with 3 buckets each? Doesn’t seem like a lot right? Well, this would give us 59049 cells, or \(3^{10}\). It’s easy to see how this can blow out of proportion pretty quickly. This is a phenomena pervasive in all data science, which is called the <strong>The Curse of Dimensionality</strong>!!!</p>
 <p><img alt="img" src="_images/curse-of-dimensionality.jpg" />
 Image Source: https://deepai.org/machine-learning-glossary-and-terms/curse-of-dimensionality</p>

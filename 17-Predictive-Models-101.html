@@ -57,7 +57,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="18 - When Prediction Fails" href="18-When-Prediction-Fails.html" />
+    <link rel="next" title="19 - Building a Causal Model" href="18-Causal-Models.html" />
     <link rel="prev" title="16 - Regression Discontinuity Design" href="16-Regression-Discontinuity-Design.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -195,43 +195,50 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="18-When-Prediction-Fails.html">
-   18 - When Prediction Fails
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Causal-Models.html">
+  <a class="reference internal" href="18-Causal-Models.html">
    19 - Building a Causal Model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="20-Evaluating-Causal-Models.html">
+  <a class="reference internal" href="19-Evaluating-Causal-Models.html">
    20 - Evaluating Causal Models
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Debiasing-with-Propensity-Score.html">
-   22 - Debiasing with Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Plug-and-Play-Estimators.html">
+  <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
    23 - Plug-and-Play Estimators
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="24-Meta-Learners.html">
+  <a class="reference internal" href="21-Meta-Learners.html">
    24 - Meta Learners
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="25-Debiased-Orthogonal-Machine-Learning.html">
+  <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
    25 - Debiased/Orthogonal Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Apendix
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
+   21 - Debiasing with Orthogonalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
+   22 - Debiasing with Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="When-Prediction-Fails.html">
+   18 - When Prediction Fails
   </a>
  </li>
 </ul>
@@ -413,25 +420,33 @@
                 
   <div class="section" id="predictive-models-101">
 <h1>17 - Predictive Models 101<a class="headerlink" href="#predictive-models-101" title="Permalink to this headline">¶</a></h1>
+<p>We are leaving Part I of this book. That part covered the core about causal inference. Techniques over there are very well known and established. They have survived the test of time. Part I builds the solid foundation we can rely upon. In more technical terms, Part I focuses on defining what is causal inference, what are the biases that prevents correlation from being causation, multiple ways to adjust for those biases (regression, matching and propensity score) and canonical identification strategies (instrumental variables, diff-in-diff and RDD). In summary, Part I focuses on the standard techniques we use to identify the average treatment effect \(E[Y_1 - Y_0]\).</p>
+<p>As we move to Part II, things will get a bit shaky. We will cover recent developments in the causal inference literature, its relationship with Machine Learning and applications in the industry. In that sense, we trade-off academic rigour for applicability and empiricism. Some methods presented in Part II don’t have a solid theory about why they work. Still, when we try them, they seem to work nevertheless. In that sense, Part II might be more useful for industry practitioners that want to use causal inference in their day to day work, rather than scientists who want to research a fundamental causal relationship in the world.</p>
+<p>The first few chapters of part two will focus on estimating heterogeneous treatment effects. We will move from a world where all we cared about was the average treatment effect, \(E[Y_1 - Y_0]\), to one where we want to know how different units respond differently to the treatment \(E[Y_1 - Y_0 | X]\). This is the world where personalisation is paramount. We want to prioritise treating those whose treatment effect will be the most impactful and we don’t want to treat those to whom the treatment will be harmful. In a sense, we are also moving from a positive question about what is the average treatment effect to a normative question: who should we treat?</p>
+<p>This is the question most businesses ask themselves, albeit in slightly different terms: who should I give discounts to? What interest rate should I charge on a loan? What item should I recommend to this user? What page layout should I show to each customer? Those are all treatment effect heterogeneity questions that we can answer with the tools presented in Part II. But before we do that, it’s only fair that I present what Machine Learning means to the industry, as this will become a fundamental tool we will later use for causal inference.</p>
 <div class="section" id="machine-learning-in-the-industry">
 <h2>Machine Learning in the Industry<a class="headerlink" href="#machine-learning-in-the-industry" title="Permalink to this headline">¶</a></h2>
-<p>The focus of this chapter is to talk about how we normally use <strong>machine learning</strong> in the industry. If you are not familiar with machine learning, you can see this chapter as a machine learning crash course. And if you’ve never worked with ML before, I strongly recommend you learn at least the basics to get the most out of what is to come. The rest of this book is aimed at Data Scientists who want to solve causal problems in their workplace. For this reason, I’ll tend to assume you already have basic data science knowledge, including Machine Learning.</p>
-<p>But this doesn’t mean you should skip this chapter if you are already versed in ML. I still think you will benefit from reading it through. Differently from other machine learning material, this one will <strong>not</strong> discuss the ins and outs of algorithms like decision trees or neural networks. Instead, it will be laser focused on <strong>how machine learning is applied in the real world</strong>.</p>
+<p>The focus of this chapter is to talk about how we normally use <strong>machine learning</strong> in the industry. If you are not familiar with machine learning, you can see this chapter as a machine learning crash course. And if you’ve never worked with ML before, I strongly recommend you learn at least the basics to get the most out of what’s to come. But this doesn’t mean you should skip this chapter if you are already versed in ML. I still think you will benefit from reading it through. Differently from other machine learning material, this one will <strong>not</strong> discuss the ins and outs of algorithms like decision trees or neural networks. Instead, it will be laser focused on <strong>how machine learning is applied in the real world</strong>.</p>
 <p><img alt="img" src="_images/ml-meme.png" /></p>
-<p>The first thing I want to adress is why are we talking about machine learning in a causal inference book? The short answer is because I think one of the best ways to understand causality is to put it in contrast with the predictive models approach brought by machine learning. The long answer is twofold. First, if you’ve got to this point in this book, there is a high chance you are already familiar with machine learning. Second, even if you aren’t, given the current popularity of these topics, you probably already have some idea on what they are. The only problem is that, with all the hype around machine learning, I might have to bring you back to earth and explain what it really does in very practical terms. Finally, more recent developments causal inference make heavy use of machine learning algorithms, so there is that too.</p>
-<p>As I’ve said in the beginning of the book, <strong>machine learning is a way to make fast, automatic and good predictions</strong>. That’s not the entire picture, but we could say that it covers 90% of it. It’s in the field of supervised machine learning where most of the cool advancements, like computer vision, self-driving cars, language translation and diagnostics, have been made. Notice how at first these might not seem like prediction tasks. How is language translation a prediction? And that’s the beauty of machine learning. We can solve more problems with prediction than what is initially apparent. In the case of language translation, you can frame it as a prediction problem where you present a machine with one sentence and it has to predict the same sentence in another language. Notice that I’m <strong>not</strong> using the word prediction in a forecasting or anticipating the future sense. Prediction is simply mapping from one defined input to an initially unknown but equally well defined output.</p>
+<p>The first thing I want to adress is why are we talking about machine learning in a causal inference book? The short answer is because I think one of the best ways to understand causality is to put it in contrast with the predictive models approach brought by machine learning. The long answer is twofold. First, if you’ve got to this point in this book, there is a high chance you are already familiar with machine learning. Second, even if you aren’t, given the current popularity of these topics, you probably already have some idea on what they are. The only problem is that, with all the hype around machine learning, I might have to bring you back to earth and explain what it really does in very practical terms. Finally, more recent developments in causal inference make heavy use of machine learning algorithms, so there is that too.</p>
+<p>Being very direct, <strong>machine learning is a way to make fast, automatic and good predictions</strong>. That’s not the entire picture, but it covers 90% of it. It’s in the field of supervised machine learning where most of the cool advancements, like computer vision, self-driving cars, language translation and diagnostics, have been made. Notice how, at first, these might not seem like prediction tasks. How is language translation a prediction? And that’s the beauty of machine learning. We can solve more problems with prediction than what is initially apparent. In the case of language translation, you can frame it as a prediction problem where you present a machine with one sentence and it has to predict the same sentence in another language. Notice that I’m <strong>not</strong> using the word prediction in a forecasting or anticipating the future sense. Prediction is simply mapping from one defined input to an initially unknown but equally well defined and observable output.</p>
 <p><img alt="img" src="_images/translation.png" /></p>
-<p>What machine learning really does is it learns this mapping function, even if it is a very complicated mapping function. The bottom line is that if you can frame a problem as this mapping from an input to an output, then machine learning might be a good candidate to solve it. As for self driving cars, you can think of it as not one, but multiple complex prediction problems: predicting the correct angle of the wheel from sensors in the front of the car, predicting the pressure in the brakes from cameras around the car, predicting the pressure in the accelerator from gps data. Solving those (and a tone more) of prediction problems is what makes a self driving car.</p>
-<p>OK… You now understand how prediction can be more powerful than we first though. Self-driving cars and language translation are cool and all, but they are quite distant, unless you work at a major tech company like Google or Uber. So, to make this more relatable, let’s talk in terms of problems almost every company has: customer acquisition (that is getting new customers).</p>
-<p>From the customer acquisition perspective, what you often have to do is figure out who are the profitable customers. In this problem, each customer has a cost of acquisition (maybe marketing costs, onboarding costs, shipping costs…) and will hopefully generate a positive cashflow for the company. For example, let’s say you are an internet provider or a gas company. Your typical customer might have a cash flow that looks something like this.</p>
+<p>What machine learning really does is it learns this mapping function, even if it is a very complicated mapping function. The bottom line is that if you can frame a problem as this mapping from an input to an output, then machine learning might be a good candidate to solve it. As for self-driving cars, you can think of it as not one, but multiple complex prediction problems: predicting the correct angle of the wheel from sensors in the front of the car, predicting the pressure in the brakes from cameras around the car, predicting the pressure in the accelerator from gps data. Solving those (and a tone more) of prediction problems is what makes a self driving car.</p>
+<p>A more technical way of thinking about ML is in term of estimating (possibly very complex) expectation functions:</p>
+<p><span class="math notranslate nohighlight">\(
+E[Y|X]
+\)</span></p>
+<p>Where \(Y\) is what you want to know (translated sentence, diagnostica) and \(X\) is what you already know (input sentence, x-ray image). Machine learning is simply a way of estimating that conditional expectation function.</p>
+<p>OK… You now understand how prediction can be more powerful than we first thought. Self-driving cars and language translation are cool and all, but they are quite distant, unless you work at a major tech company like Google or Uber. So, to make things more relatable, let’s talk in terms of problems almost every company has: customer acquisition (that is getting new customers).</p>
+<p>From the customer acquisition perspective, what you often have to do is figure out who the profitable customers are. In this problem, each customer has a cost of acquisition (maybe marketing costs, onboarding costs, shipping costs…) and will hopefully generate a positive cashflow for the company. For example, let’s say you are an internet provider or a gas company. Your typical customer might have a cash flow that looks something like this.</p>
 <p><img alt="img" src="_images/cashflow-1.png" /></p>
-<p>Each bar represents a monetary event in the life of your relationship with the customer. For example, to get a customer, right off the bet, you need to invest in marketing. Then, after someone decides to do business with you, you might incur in some sort of onboarding cost (where you have to explain to your customer how to use your product) or installation costs. Only then, the customer starts to generate monthly revenues. At some point, the customer might need some assistance and you will have maintenance costs. Finally, if the customer decides to end the contract, you might have some final costs for that too.</p>
-<p>To see if this is a profitable customer, we can rearrange the bar in what is called a cascade plot. Hopefully, the sum of the cash events end way up above the zero line.</p>
+<p>Each bar represents a monetary event in the life of your relationship with the customer. For example, to get a customer, right off the bet, you need to invest in marketing. Then, after someone decides to do business with you, you might incur some sort of onboarding cost (where you have to explain to your customer how to use your product) or installation costs. Only then, the customer starts to generate monthly revenues. At some point, the customer might need some assistance and you will have maintenance costs. Finally, if the customer decides to end the contract, you might have some final costs for that too.</p>
+<p>To see if this is a profitable customer, we can rearrange the bar in what is called a cascade plot. Hopefully, the sum of the cash events end up way above the zero line.</p>
 <p><img alt="img" src="_images/cascade-1.png" /></p>
 <p>In contrast, it could very well be that the customer will generate much more costs than revenues. If he or she uses very little of your product and has high maintenance demands, when we pile up the cash events, they could end up below the zero line.</p>
 <p><img alt="img" src="_images/cascade-2.png" /></p>
 <p>Of course, this cash flow could be simpler or much more complicated, depending on the type of business. You can do stuff like time discounts with an interest rate and get all crazy about it, but I think the point here is made.</p>
-<p>But what can you do about this? Well, if you have many examples of profitable and non profitable customers, you can train a machine learning model to identify them. That way, you can focus your marketing strategies that engage only on the profitable customers. Or, if your contract permits, you can end relations with a customer before he or she generates more costs. Essentially, what you are doing here is framing the business problem as a prediction problem so that you can solve it with machine learning: you want to predict or identify profitable and unprofitable customers so that you only engage with the profitable ones.</p>
+<p>But what can you do about this? Well, if you have many examples of profitable and non profitable customers, you can train a machine learning model to identify them. That way, you can focus your marketing strategies that engage only on the profitable customers. Or, if your contract permits, you can end relations with a customer before he or she generates more costs. Essentially, what you are doing here is <strong>framing the business problem as a prediction problem so that you can solve it with machine learning</strong>: you want to predict or identify profitable and unprofitable customers so that you only engage with the profitable ones.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -628,7 +643,7 @@
 <p>5 rows × 32 columns</p>
 </div></div></div>
 </div>
-<p>What we need to do now is distinguish the good from the bad customers according to this transactional data. For the sake of simplicity, I’ll just sum up all transactions and the CACQ. Keep in mind that this throws under the rug a lot of nuances, like distinguishing customers that churned from those that are in a break between one purchase and the next.</p>
+<p>What we need to do now is distinguish the good from the bad customers according to this transactional data. For the sake of simplicity, I’ll just sum up all transactions and the CACQ. Keep in mind that this throws under the rug a lot of nuances, like distinguishing customers that are churned from those that are in a break between one purchase and the next.</p>
 <p>I’ll then join this sum, which I call <code class="docutils literal notranslate"><span class="pre">net_value</span></code>, with customer specific features. Since my goals is to figure out which customer will be profitable <strong>before</strong> deciding to engage with them, you can only use data prior to the acquisition period. In our case, these features are age, region and income, which are all available at another <code class="docutils literal notranslate"><span class="pre">csv</span></code> file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -721,20 +736,22 @@
 <h2>Machine Learning Crash Course<a class="headerlink" href="#machine-learning-crash-course" title="Permalink to this headline">¶</a></h2>
 <p>For our intent and purpose, we can think of ML as an overpowered way of making predictions. For it to work, you need some data with labels or the ground truth of what you are predicting. Then, you can train a ML model on that data and use it to make predictions where the ground truth is not yet known. The image below exemplifies the typical machine learning flow.</p>
 <p><img alt="img" src="_images/ml-flow.png" /></p>
-<p>First, you need data where the ground truth, <code class="docutils literal notranslate"><span class="pre">net_value</span></code> here is known. Then, you train a ML model that will use features - region, income and age in our case - to predict <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. This training or estimating step will produce a machine learning model that can be used to make predictions about <code class="docutils literal notranslate"><span class="pre">net_value</span></code> when you don’t yet have the true <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. This is shown in the left part of the image. You have some new data where you have the features (region, income and age) but you don’t know the <code class="docutils literal notranslate"><span class="pre">net_value</span></code> yet. So you pass this data through your model and it provides you with <code class="docutils literal notranslate"><span class="pre">net_value</span></code> predictions.</p>
-<p>One tricky thing with ML models is that they can approximate almost any function. Another way of saying this is that they can be made so powerful as to perfectly fit the data in the training set. Machine learning models often have what we call complexity hyperparameters. These things adjust how powerful or complex the model can be. In the image below, you can see examples of a simple model, an intermediate model and a complex and powerful model. Notice how the complex model has a perfect fit of the training data.</p>
+<p>First, you need data where the ground truth, <code class="docutils literal notranslate"><span class="pre">net_value</span></code> here, is known. Then, you train a ML model that will use features - region, income and age in our case - to predict <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. This training or estimating step will produce a machine learning model that can be used to make predictions about <code class="docutils literal notranslate"><span class="pre">net_value</span></code> when you don’t yet have the true <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. This is shown in the left part of the image. You have some new data where you have the features (region, income and age) but you don’t know the <code class="docutils literal notranslate"><span class="pre">net_value</span></code> yet. So you pass this data through your model and it provides you with <code class="docutils literal notranslate"><span class="pre">net_value</span></code> predictions.</p>
+<p>If you are more into technical notation, another way of understanding machine learning is in term of estimating a conditional expectation \(E[Y|X]\), where \(Y\) is called the target variable or outcome and \(X\) is called the feature variables. ML is just a powerful way of obtaining \(\hat{E}[Y|X]\), usually by optimizing some error or loss function.</p>
+<p>One tricky thing with ML models is that they can approximate almost any function. Another way of saying this is that they can be made so powerful as to perfectly fit the data in the training set. Machine learning models often have what we call complexity hyperparameters. These things adjust how powerful or complex the model can be. In the image below, you can see examples of a simple model (left), an intermediate model (middle) and a complex and powerful model (right). Notice how the complex model has a perfect fit of the training data.</p>
 <p><img alt="img" src="_images/model-fit.png" /></p>
-<p>This raises some problems. Namely, how can we know if our model is any good before using it to make predictions in the real world? One way we have is to compare the predictions with the actual values on the dataset where we have the ground truth. But remember that the model can be made so powerful as to perfectly fit the data. If this happens, the predictions will perfectly match the ground truth. This is problematic, because it means this validation is misleading, since I can nail it just by making my model more powerful and complex.</p>
-<p>Besides, it is generally <strong>not</strong> a good thing to have a very complex model. And you already have some intuition into why that is the case. In the image above, for instance, which model do you prefer? The more complex one that gets all the predictions right? Probably not. You probably prefer the middle one. It’s smoother and simpler and yet, it still makes some good predictions, even if it doesn’t perfectly fit the data.</p>
+<p>This raises some problems. Namely, how can we know if our model is any good before using it to make predictions in the real world? One way we have is to compare the predictions with the actual values on the dataset where we have the ground truth. These are so-called goodness of fit metrics, like \(R^2\). But remember that the model can be made so powerful as to perfectly fit the data. If this happens, the predictions will perfectly match the ground truth. This is problematic, because it means this validation is misleading, since we can nail it just by making my model more powerful and complex.</p>
+<p>Besides, it is generally <strong>not</strong> a good thing to have a very complex model. And you already have some intuition into why that is the case. In the image above, for instance, which model do you prefer? The more complex one that gets all the predictions right? Probably not. You probably prefer the middle one. It’s smoother, simpler and yet, it still makes some good predictions, even if it doesn’t perfectly fit the data.</p>
 <p><img alt="img" src="_images/overfitting.jpg" /></p>
 <p>Your intuition is in the right place. What happens if you give too much power to your model, is that it will not only learn the patterns in your data, but it also learns the random noise. Since the noise will be different when you use the model to make predictions in the real world (it’s random after all), your “perfect” model will make mistakes. In ML terms, we say that models that are too complex are overfitting and don’t generalize well. So, what can we do?</p>
-<p>The idea is to split the dataset for which we have the ground truth into two. Then, we can give one part for the model to train on and the other part we can use to validate the model predictions. This is called cross validation as we will discuss it more later. For now, you can see what happens when we do that.</p>
+<p>We are going to pretend  we don’t have access to parts of the data. The idea is to split the dataset for which we have the ground truth into two. Then, we can give one part for the model to train on and the other part we can use to validate the model predictions. This is called cross validation.</p>
 <p><img alt="img" src="_images/test.png" /></p>
-<p>In the dataset above, which the model didn’t see during training, the complex model doesn’t do a very good job. The model in the middle, on the other hand, seems to perform better. To choose the right model complexity, we can train different models, each one with a different complexity, and see how they perform on some data that we have the ground truth, but that was not used for training the model.</p>
+<p>In the dataset above, which the model didn’t see during training, the complex model doesn’t do a very good job. The model in the middle, on the other hand, seems to perform better. To choose the right model complexity, we can train different models, each one with a different complexity, and see how they perform on some data that we have the ground truth, but that was not used for training the model. Cross validation is so important we should probably spend more time on it.</p>
 </div>
 <div class="section" id="cross-validation">
 <h2>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h2>
-<p>Cross validation is essential for selecting the model complexity but it’s more generally useful. We can use it whenever we want to try many different things and estimate how they would play out in the real world. The idea being that we pretend not to have access to some of the data when estimating our methods. Then, we can use this holdout data for evaluation. We can apply this to the whole problem of figuring out which customers are profitable or not. Here is an outline of what we should do</p>
+<p>Cross validation is essential for selecting the model complexity but it’s useful beyond that. We can use it whenever we want to try many different things and estimate how they would play out in the real world. The idea being cross validation is to mimic the real world, where we estimate a model on the data that we have, but we make predictions on new, unseen data. The holdout data that we pretend not to have serves as a proxy to what we will encounter in the wild.</p>
+<p>Let’s see how we can apply cross validation to the whole problem of figuring out which customers are profitable or not. Here is an outline of what we should do:</p>
 <ol class="simple">
 <li><p>We have data on existing customers. On this data, we know which ones are profitables and which ones are not (we know the ground truth). Let’s call our internal data the training set.</p></li>
 <li><p>We will use the internal data to <em>learn</em> a rule that tells us which customer is profitable (hence training).</p></li>
@@ -742,7 +759,7 @@
 </ol>
 <p>Here is a picture of what cross validation looks like. There is the truly unseen data at the leftmost part of the image and then there is data that we only pretend not to have at learning time.</p>
 <p><img alt="img" src="_images/cross-validation.png" /></p>
-<p>To summarize, we will partition our internal data into a training and a test set. We can use the training set to come up with models or rules that predict if a customer is profitable or not, but we will validate those rules in another partition of the dataset: the test set. This test set will be hidden from our learning procedure. The hope is that this will mimic the situation we will encounter once we go to production.</p>
+<p>To summarize, we will partition our internal data into a training and a test set. We can use the training set to come up with models or rules that predict if a customer is profitable or not, but we will validate those rules in another partition of the dataset: the test set. This test set will be hidden from our learning procedure.</p>
 <p>Just as a side note here, there are tons of ways to make cross validation better other than this simple train test split (k-fold cross-validation or temporal cross validation, for instance), but for the sake of what we will do here, this is enough. Remember that the spirit of cross validation is to simulate what would happen once we go to a production environment. By doing that we hope to get more realistic estimates.</p>
 <p>For our case, I won’t do anything fancy. I’ll just divide the dataset into two. 70% will be used to build a method that allows us to identify profitable customers and 30% will be used to evaluate how good that method is.</p>
 <div class="cell docutils container">
@@ -761,7 +778,9 @@
 </div>
 <div class="section" id="predictions-and-policies">
 <h2>Predictions and Policies<a class="headerlink" href="#predictions-and-policies" title="Permalink to this headline">¶</a></h2>
-<p>We’ve been talking about methods and approaches to identify profitable customers but it is time we get more precise with our concepts. Let’s introduce two. A <strong>prediction</strong> is a number that estimates or predicts something. For example, we can try to predict the profitability of a customer and the prediction would be something like 16 reais, meaning that we predict this customer will generate 16 reais in revenue. The point here is that prediction is a simple number. The second concept is that of a <strong>policy</strong>. A policy is an automatic decision rule. While a prediction is a number, a policy is a decision. For example, we can have a policy that engages with customers with income greater than 1000 and doesn’t engage otherwise. We usually build policies on top of predictions: engage with all customers that have profitability predictions above 10 and don’t engage otherwise. Machine learning will usually take care of the first, that is, of prediction. But notice that predictions alone are useless. We need to attach some decision, or policy to it.</p>
+<p><img alt="img" src="_images/profit.png" /></p>
+<p>We’ve been talking about methods and approaches to identify profitable customers but it is time we get more precise with our concepts. Let’s introduce two new ones. A <strong>prediction</strong> is a number that estimates or predicts something. It’s the estimation of \(\hat{E}[y_i|X_i]\). For example, we can try to predict the profitability of a customer and the prediction would be something like 16 BRL, meaning that we predict this customer will generate 16 BRL in revenue. The point here is that prediction is a simple number.</p>
+<p>The second concept is that of a <strong>policy</strong>. A policy is an automatic decision rule. While a prediction is a number, a policy is a decision. For example, we can have a policy that engages with customers with income greater than 1000 and doesn’t engage otherwise. We usually build policies on top of predictions: engage with all customers that have profitability predictions above 10 and don’t engage otherwise, \(\hat{E}[y_i|X_i] &gt; 10\). Machine learning will usually take care of the first concept, that is, of prediction. But notice that predictions alone are useless. We need to attach some decision, or policy to it.</p>
 <p>We can do very simple policies and models or very complicated ones. For both policies and predictions, we need to use cross validation, that is, estimate the policy or prediction in one partition of the data and validate its usefulness in another. Since we’ve already partitioned our data into two, we are good to go.</p>
 </div>
 <div class="section" id="one-feature-policies">
@@ -815,14 +834,14 @@
 <img alt="_images/17-Predictive-Models-101_14_0.png" src="_images/17-Predictive-Models-101_14_0.png" />
 </div>
 </div>
-<p>Bingo! We can clearly see that some regions are profitable, like regions 2, 17, 39, and some are not profitable, like region 0, 9, 29 and the specially bad region 26. This is looking super promising! We can take this and transform into a policy: only do business with the regions that showed to be profitable <em>according to the data that we have here</em>.</p>
-<p>To construct this policy, we will be conservative and take only the regions where the lower end of the confidence interval is above zero. A region like 44 and 27, although slightly positive, will be left out according to this policy.</p>
-<p>The following code extracts the lowest y value for each point in the plot above. The <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> thing just zips each point with an index (0 to 49, since there are 50 points). We can do this only because the points are ordered from region 0 to 49. Then, the second dictionary generator filters only those regions where the lower end of the confidence interval is above zero. The result is the regions we will do business with according to our policy.</p>
+<p>Bingo! We can clearly see that some regions are profitable, like regions 2, 17, 39, and some are not profitable, like regions 0, 9, 29 and the especially bad region 26. This is looking super promising! We can take this and transform into a policy: only do business with the regions that showed to be profitable <em>according to the data that we have here</em>.</p>
+<p>One thing to notice is that what we are doing is what ML would do, but in a much simpler way. Namely, we are estimating the expected value of net value in each region: \(E[NetValue|Region]\). Now, we need to take this estimation and do something with it.</p>
+<p>To construct this policy, we will do something very simple. If the expected (average) net value of a region is positive, we will do business with it. Technically, \(\hat{E}[NetValue|Region] &gt; 0\).</p>
+<p>The following code builds a dictionary where the key is the region and the value is the expected value. Then, the dictionary generator filters only those regions where the expected net value is positive. The result is the regions we will do business with according to our policy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract the lower bound of the 95% CI from the plot above</span>
-<span class="n">regions_to_net</span> <span class="o">=</span> <span class="p">{</span><span class="n">region</span><span class="p">:</span> <span class="n">line</span><span class="o">.</span><span class="n">get_ydata</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-                  <span class="k">for</span> <span class="n">region</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">region_plot</span><span class="o">.</span><span class="n">lines</span><span class="p">)}</span>
+<span class="n">regions_to_net</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;region&quot;</span><span class="p">)[</span><span class="s2">&quot;net_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
 
 <span class="c1"># filters regions where the net value is &gt; 0.</span>
 <span class="n">regions_to_invest</span> <span class="o">=</span> <span class="p">{</span><span class="n">region</span><span class="p">:</span> <span class="n">net</span> 
@@ -834,24 +853,26 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: 2.97820945945946,
- 2: 20.931954887218048,
- 4: 11.054375,
- 9: 32.658587786259545,
- 11: 37.69755639097744,
- 12: 37.307142857142864,
- 15: 32.96007462686567,
- 17: 39.88967391304348,
- 18: 41.47943262411348,
- 19: 16.317234848484848,
- 20: 22.39430147058824,
- 21: 24.967833333333335,
- 25: 35.01883333333333,
- 35: 12.318981481481481,
- 37: 28.7275,
- 38: 49.59211538461538,
- 45: 3.208582089552239,
- 49: 16.923684210526318}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: 13.236486486486486,
+ 2: 30.827067669172934,
+ 4: 19.48125,
+ 5: 0.3333333333333333,
+ 9: 43.86259541984733,
+ 11: 47.24812030075188,
+ 12: 47.37662337662338,
+ 15: 41.76865671641791,
+ 17: 50.77536231884058,
+ 18: 51.05673758865248,
+ 19: 28.446969696969695,
+ 20: 32.26470588235294,
+ 21: 34.68,
+ 25: 44.153333333333336,
+ 33: 4.13768115942029,
+ 35: 19.234567901234566,
+ 37: 39.51428571428571,
+ 38: 60.23076923076923,
+ 45: 14.059701492537313,
+ 49: 27.039473684210527}
 </pre></div>
 </div>
 </div>
@@ -874,15 +895,14 @@
 <img alt="_images/17-Predictive-Models-101_18_0.png" src="_images/17-Predictive-Models-101_18_0.png" />
 </div>
 </div>
-<p>Not bad! If we use this very simple rule of doing business with only those regions, we can expect to gain about 15 reais per customer. Sure, out of the 3000 customers in the test set, we chose not to engage with some of them (gain of zero) and there will be some customers that we choose to engage with but made us lose money (the ones below zero in our histogram). However, in aggregate, the profitable ones will more than compensate for that.</p>
-<p>Now that you’ve figured this out, pat yourself in the back! It’s already a super useful policy. Your boss will be super happy because your company can make money instead of losing it on customers. What an achievement! Let this be a lesson to never underestimate the value of simple policies.</p>
 </div>
 <div class="section" id="machine-learning-models-as-policy-inputs">
 <h2>Machine Learning Models as Policy Inputs<a class="headerlink" href="#machine-learning-models-as-policy-inputs" title="Permalink to this headline">¶</a></h2>
-<p>If you are willing to do even better, we can now use the power of machine learning. Keep in mind that this will add tones of complexity to the whole thing and usually only marginal gains. But, depending on the circumstances, marginal gains can be translated into huge piles of money and that’s why machine learning is so valuable these days.</p>
-<p>Here, I’ll use a Gradient Boosting model. It’s a fairly complicated model to explain, but one that is very simple to use. For our purpose here, we don’t need to get into the details of how it works. Instead, just remember what we’ve seen in our ML Crash course: a ML model is a super powerful predictive machine that has some complexity parameters. The more complex, the more powerful the model becomes. However, if the complexity is too high, the model will learn noise and not generalize well to unseen data. Hence, we need to use cross validation here to see if the model has the right complexity.</p>
-<p>Now, we need to ask, how can good predictions be used to improve upon our simple region policy to identify and engage with profitable customers? I think there are two main improvements that we can make here. First, you will have to agree that going through all the features looking for one that distinguishes good from bad customers is a cumbersome process. Here, we had only 3 of them (age, income and region), so it wasn’t that bad, but imagine if we had more than 100. Also, you have to be careful with issues of <a class="reference external" href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">multiple testing</a> and false positive rates. The second reason is that it is probably the case that you need more than one feature to distinguish between customers. In our example, we believe that features other than region also have some information on customer profitability. Sure, when we looked at income alone it didn’t give us much, but what about income on those regions that are just barely unprofitable? Maybe, on those regions, if we focus only on richer customers, we could still get some profit. Coming up with these more complicated policies that involve interacting more than one feature can be super complex. The combinations we have to look at grows exponentially with the number of features and it is simply not a practical thing to do. Istead, what we can do is throw all those features into a machine learning model and have it learn those interactions for us. This is precisely what we will do next.</p>
-<p>The goal of this model will be to predict <code class="docutils literal notranslate"><span class="pre">net_value</span></code> using <code class="docutils literal notranslate"><span class="pre">region</span></code>, <code class="docutils literal notranslate"><span class="pre">income</span></code>, <code class="docutils literal notranslate"><span class="pre">age</span></code>. To help it, we will take the region feature, which is categorical, and encode it with the lower end of the confidence interval of net income for that region. Remember that we have those stored in the <code class="docutils literal notranslate"><span class="pre">regions_to_net</span></code> dictionary? With this, all we have to do is call the method <code class="docutils literal notranslate"><span class="pre">.replace()</span></code> and pass this dictionary as the argument. I’ll create a function for this, because we will do this replacement multiple times. This process of transforming features to facilitate learning is generally called feature engineering.</p>
+<p>If you are willing to do even better, we can now use the power of machine learning. Keep in mind that this might add tones of complexity to the whole thing and usually only marginal gains. But, depending on the circumstances, marginal gains can be translated into huge piles of money and that’s why machine learning is so valuable these days.</p>
+<p>Here, I’ll use a Gradient Boosting model. It’s a fairly complicated model to explain, but one that is very simple to use. For our purpose, we don’t need to get into the details of how it works. Instead, just remember what we’ve seen in our ML Crash course: a ML model is a super powerful predictive machine that has some complexity parameters. It’s a tool to estimate \(E[Y|X]\). The more complex, the more powerful the model becomes. However, if the complexity is too high, the model will overfit, learn noise and not generalize well to unseen data. Hence, we need to use cross validation here to see if the model has the right complexity.</p>
+<p>Now, we need to ask, how can good predictions be used to improve upon our simple region policy to identify and engage with profitable customers? I think there are two main improvements that we can make here. First, you will have to agree that going through all the features looking for one that distinguishes good from bad customers is a cumbersome process. Here, we had only 3 of them (age, income and region), so it wasn’t that bad, but imagine if we had more than 100. Also, you have to be careful with issues of <a class="reference external" href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">multiple testing</a> and false positive rates. The second reason is that it is probably the case that you need more than one feature to distinguish between customers. In our example, we believe that features other than region also have some information on customer profitability. Sure, when we looked at income alone it didn’t give us much, but what about income in those regions that are just barely unprofitable? Maybe, in those regions, if we focus only on richer customers, we could still get some profit. Technically speaking, we are saying that \(E[NetValue|Region, Income, Age]\) is a better predictor of <code class="docutils literal notranslate"><span class="pre">NetValue</span></code> than (E[NetValue|Region]\). This makes a lot of sense. Using more information about income and age on top of region should allow us to predict net value better.</p>
+<p>Coming up with these more complicated policies that involve interacting more than one feature can be super complex. The combinations we have to look at grow exponentially with the number of features and it is simply not a practical thing to do. Istead, what we can do is throw all those features into a machine learning model and have it learn those interactions for us. This is precisely what we will do next.</p>
+<p>The goal of this model will be to predict <code class="docutils literal notranslate"><span class="pre">net_value</span></code> using <code class="docutils literal notranslate"><span class="pre">region</span></code>, <code class="docutils literal notranslate"><span class="pre">income</span></code>, <code class="docutils literal notranslate"><span class="pre">age</span></code>. To help it, we will take the region feature, which is categorical, and encode it with a numerical value. We will replace each region by the region’s average net value on the training set. Remember that we have those stored in the <code class="docutils literal notranslate"><span class="pre">regions_to_net</span></code> dictionary? With this, all we have to do is call the method <code class="docutils literal notranslate"><span class="pre">.replace()</span></code> and pass this dictionary as the argument. I’ll create a function for this, because we will do this replacement multiple times. This process of transforming features to facilitate learning is generally called feature engineering.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">df</span><span class="p">):</span> 
@@ -914,7 +934,7 @@
 </div>
 </div>
 </div>
-<p>The model is trained. Now, we need to check if it is any good. To do this, we can look at the predictive performance of this model <strong>on the test set</strong>. There are tons of metrics to evaluate the predictive performance of a machine learning model. Here, I’ll use one which is called \(R^2\). We don’t need to get into much detail here. It suffices to say that the \(R^2\) is used to evaluate models that predict a continuous variable (like <code class="docutils literal notranslate"><span class="pre">net_income</span></code>). Also, \(R^2\) can go from minus infinity (it will be negative if the prediction is worse than the average) to 1.0. The \(R^2\) tells us how much of the variance in <code class="docutils literal notranslate"><span class="pre">net_income</span></code> is explained by our model.</p>
+<p>The model is now trained. Next, we need to check if it is any good. To do this, we can look at the predictive performance of this model <strong>on the test set</strong>. There are tons of metrics to evaluate the predictive performance of a machine learning model. Here, I’ll use one which is called \(R^2\). We don’t need to get into much detail here. It suffices to say that the \(R^2\) is used to evaluate models that predict a continuous variable (like <code class="docutils literal notranslate"><span class="pre">net_income</span></code>). Also, \(R^2\) can go from minus infinity (it will be negative if the prediction is worse than the average) to 1.0. The \(R^2\) tells us how much of the variance in <code class="docutils literal notranslate"><span class="pre">net_income</span></code> is explained by our model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">encoded_train</span>
@@ -926,14 +946,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train R2:  0.7105311615186402
-Test R2:  0.6938499023844449
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train R2:  0.7108790300152951
+Test R2:  0.6938513063048141
 </pre></div>
 </div>
 </div>
 </div>
 <p>In this case, the model explains about 71% of the <code class="docutils literal notranslate"><span class="pre">net_income</span></code> variance in the training set but only about 69% of the <code class="docutils literal notranslate"><span class="pre">net_income</span></code> variance in the test set. This is expected. Since the model had access to the training set, the performance there will often be overestimated. Just for fun (and to learn more about overfitting), try setting the ‘max_depth’ of the model to 14 and see what happens. You will likely see that the train \(R^2\) skyrockets but the test set \(R^2\) gets lower. This is what overfitting looks like.</p>
-<p>Next, in order to make our policy, we will store the test set predictions in a <code class="docutils literal notranslate"><span class="pre">prediction</span></code> column.</p>
+<p>Next, in order to make our policy, we will store the test set predictions in a <code class="docutils literal notranslate"><span class="pre">prediction</span></code> column. This predictions are estimates of \(E[NetValue|Age, Income, Region ]\).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_policy</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">encode</span><span class="p">)))</span>
@@ -977,7 +997,7 @@ Test R2:  0.6938499023844449
       <td>1983</td>
       <td>23</td>
       <td>21</td>
-      <td>47.027177</td>
+      <td>47.734883</td>
     </tr>
     <tr>
       <th>1783</th>
@@ -986,7 +1006,7 @@ Test R2:  0.6938499023844449
       <td>914</td>
       <td>31</td>
       <td>-46</td>
-      <td>-34.460435</td>
+      <td>-36.026935</td>
     </tr>
     <tr>
       <th>4811</th>
@@ -995,7 +1015,7 @@ Test R2:  0.6938499023844449
       <td>1349</td>
       <td>25</td>
       <td>-19</td>
-      <td>22.628473</td>
+      <td>22.553420</td>
     </tr>
     <tr>
       <th>145</th>
@@ -1004,7 +1024,7 @@ Test R2:  0.6938499023844449
       <td>1840</td>
       <td>26</td>
       <td>55</td>
-      <td>47.687744</td>
+      <td>48.306256</td>
     </tr>
     <tr>
       <th>7146</th>
@@ -1013,7 +1033,7 @@ Test R2:  0.6938499023844449
       <td>3032</td>
       <td>34</td>
       <td>-17</td>
-      <td>4.765130</td>
+      <td>7.039414</td>
     </tr>
   </tbody>
 </table>
@@ -1062,20 +1082,20 @@ Test R2:  0.6938499023844449
 <img alt="_images/17-Predictive-Models-101_30_0.png" src="_images/17-Predictive-Models-101_30_0.png" />
 </div>
 </div>
-<p>As we can see, the model generates a better policy than just using the regions feature, but not by much. While the model policy would have made us about 16.6 reais / customer on the test set, the region policy would have made us only 15.5 / customer. It’s just slightly better, but if you have tons and tons of customers, this might already justify using a model instead of a simple one feature policy.</p>
+<p>As we can see, the model generates a better policy than just using the <code class="docutils literal notranslate"><span class="pre">region</span></code> feature, but not by much. While the model policy would have made us about 16.6 reais / customer on the test set, the region policy would have made us only 15.5 / customer. It’s just slightly better, but if you have tons and tons of customers, this might already justify using a model instead of a simple one feature policy.</p>
 </div>
 <div class="section" id="fine-grain-policy">
 <h2>Fine Grain Policy<a class="headerlink" href="#fine-grain-policy" title="Permalink to this headline">¶</a></h2>
-<p>As a recap, so far, we tested the most simple of all policies, which is just engaging with all the customers. Since that didn’t work (the average net income per customer was negative), we developed a single feature policy that was based on regions: we would do business in some regions, but not in others. This already gave us very good results. Next, we went full machine learning, with a predictive model. Then, we used that model as an input to a policy and chose to do business with all the customers whose net income predictions were above zero.</p>
+<p>As a recap, so far, we tested the most simple of all policies, which is just engaging with all the customers. This policy can be seen as estimating the marginal net value, \(\hat{E}[NetValue] &gt; 0\). Since that didn’t work (the average net income per customer was negative), we developed a single feature policy that was based on regions: we would do business in some regions, but not in others, or \(\hat{E}[NetValue|Region] &gt; 0\). This already gave us very good results. Next, we went full machine learning, with a predictive model that used all the features: \(\hat{E}[NetValue|Region, Income, Age] &gt; 0\). Then, we used that model as an input to a policy and chose to do business with all the customers whose net income predictions were above zero.</p>
 <p>Here, the decision which the policy handles is very simple: engage with a customer or don’t engage. The policies we had so far dealt with the binary case. They were in the form of</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">prediction</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">then</span> <span class="n">do</span> <span class="n">business</span> <span class="k">else</span> <span class="n">don</span><span class="s1">&#39;t do business.</span>
 </pre></div>
 </div>
 <p>This is something we call <strong>thresholding</strong>. If the prediction exceeds a certain threshold (zero in our case, but could be something else), we take one decision, if it doesn’t, we take another. One other example of where this could be applied in real life is transactional fraud detection: if the prediction score of a model that detects fraud is above some threshold <code class="docutils literal notranslate"><span class="pre">X</span></code>, we deny the transaction, otherwise we approve it.</p>
-<p>Thresholding works in lots of real case scenarios and it is particularly useful when the nature of the decision is binary. However, we can think of cases where things tend to be more nuanced. For example, you might be willing to spend more in marketing to get the attention of very profitable customers. Or you might want to add them to some prime customers list, where you give special treatment to them, but it also costs you more to do so. Notice that if we include these possibilities, your decision goes from binary (engage vs don’t engage) to continuous: how much should you invest in a customer.</p>
+<p>Thresholding works in lots of real case scenarios and it is particularly useful when the nature of the decision is binary. However, we can think of cases where things tend to be more nuanced. For example, you might be willing to spend more on marketing to get the attention of very profitable customers. Or you might want to add them to some prime customers list, where you give special treatment to them, but it also costs you more to do so. Notice that if we include these possibilities, your decision goes from binary (engage vs don’t engage) to continuous: how much should you invest in a customer.</p>
 <p>Here, for the next example, suppose your decision is not just who to do business with, but how much marketing costs you should invest in each customer. And for the sake of the example, assume that you are competing with other firms and whoever spends more on marketing in a particular customer wins that customer (much like a bidding mechanism). In that case, it makes sense to invest more in highly profitable customers, less in marginally profitable customers and not at all in non profitable customers.</p>
 <p>One way to do that is to descritize your predictions into bands. We’ve done this previously for the purpose of model comparison, but here we’ll do it for decision making. Let’s create 20 bands. We can think of those as quantiles or equal size groups. The first band will contain the 5% less profitable customers <em>according to our predictions</em>, the second band will contain from the 5% to the 10% less profitable and so on. The last band, 20, will contain the most profitable customers.</p>
-<p>Notice that the binning too has to be estimated on the training set and applied on the test set! For this reason, we will compute the bins using <code class="docutils literal notranslate"><span class="pre">pd.qcut</span></code> on the training set. To actually do the binning, we will use <code class="docutils literal notranslate"><span class="pre">np.digitize</span></code>, passing the bins that where precomputed on the training set.</p>
+<p>Notice that the binning too has to be estimated on the training set and applied on the test set! For this reason, we will compute the bins using <code class="docutils literal notranslate"><span class="pre">pd.qcut</span></code> on the training set. To actually do the binning, we will use <code class="docutils literal notranslate"><span class="pre">np.digitize</span></code>, passing the bins that were precomputed on the training set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_binner</span><span class="p">(</span><span class="n">prediction_column</span><span class="p">,</span> <span class="n">bins</span><span class="p">):</span>
@@ -1133,7 +1153,7 @@ Test R2:  0.6938499023844449
       <td>1983</td>
       <td>23</td>
       <td>21</td>
-      <td>47.027177</td>
+      <td>47.734883</td>
       <td>18</td>
     </tr>
     <tr>
@@ -1143,7 +1163,7 @@ Test R2:  0.6938499023844449
       <td>914</td>
       <td>31</td>
       <td>-46</td>
-      <td>-34.460435</td>
+      <td>-36.026935</td>
       <td>7</td>
     </tr>
     <tr>
@@ -1153,7 +1173,7 @@ Test R2:  0.6938499023844449
       <td>1349</td>
       <td>25</td>
       <td>-19</td>
-      <td>22.628473</td>
+      <td>22.553420</td>
       <td>15</td>
     </tr>
     <tr>
@@ -1163,7 +1183,7 @@ Test R2:  0.6938499023844449
       <td>1840</td>
       <td>26</td>
       <td>55</td>
-      <td>47.687744</td>
+      <td>48.306256</td>
       <td>18</td>
     </tr>
     <tr>
@@ -1173,7 +1193,7 @@ Test R2:  0.6938499023844449
       <td>3032</td>
       <td>34</td>
       <td>-17</td>
-      <td>4.765130</td>
+      <td>7.039414</td>
       <td>13</td>
     </tr>
   </tbody>
@@ -1200,9 +1220,9 @@ Test R2:  0.6938499023844449
 </div>
 <div class="section" id="key-ideas">
 <h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
-<p>We’ve covered A LOT of ground here in a very short time, so I think this recap is extremely relevant for us to see what we accomplished here. First, we learned how the majority of machine learning applications involves nothing more than making good predictions, where prediction is understood as mapping from a known input to an initially unknown, but well defined output. But when I say “nothing more”, I’m not being entirely fair. We also saw how good predictions can solve more problems than we might think at first, like language translation and self driving cars.</p>
-<p>Then, we got back down to earth and looked at how good predictions can help us with more common tasks, like figuring out which customer we should bring in and which to avoid. Specifically, we looked at how we could predict customer profit. With that prediction, we’ve built a policy that decides who we should do business with. Notice that this is just an example of where prediction models can be applied. There are sure tones of other ones, like credit card underwriting, fraud detection, cancer diagnostics and anything else where good predictions might be useful.</p>
-<p>The key takeaway here is that <strong>if you can frame your business problem as a prediction problem, then machine learning is probably the right tool for the job</strong>. I really can’t emphasize this enough. With all the hype around machine learning, I feel that people forgot about this very important point and often end up making models that are very good in predicting something totally useless. Instead of thinking about how to frame a business problem as a prediction problem and <em>then</em> solving it with machine learning, they often build a prediction model and try to see what business problem could benefit from that prediction. This might work, but, more often than not, is a shot in the dark that only generates solutions in search of a problem.</p>
+<p>We’ve covered A LOT of ground here in a very short time, so I think this recap is extremely relevant for us to see what we accomplished here. First, we learned how the majority of machine learning applications involve nothing more than making good predictions, where prediction is understood as mapping from a known input to an initially unknown, but well defined output. We can also understand prediction as estimating an expectation function \(E[Y|X]\). But when I say “nothing more”, I’m not being entirely fair. We also saw how good predictions can solve more problems than we might realize at first sight, like language translation and self-driving cars.</p>
+<p>Then, we got back down to earth and looked at how good predictions can help us with more common tasks, like figuring out which customer we should bring in and which to avoid. Specifically, we looked at how we could predict customer profit. With that prediction, we built a policy that decides who we should do business with. Notice that this is just an example of where prediction models can be applied. There are sure tones of other applications, like credit card underwriting, fraud detection, cancer diagnostics and anything else where good predictions might be useful.</p>
+<p>The key takeaway here is that <strong>if you can frame your business problem as a prediction problem, then machine learning is probably the right tool for the job</strong>. I really can’t emphasize this enough. With all the hype around machine learning, I feel that people forget about this very important point and often end up making models that are very good at predicting something totally useless. Instead of thinking about how to frame a business problem as a prediction problem and <em>then</em> solving it with machine learning, they often build a prediction model and try to see what business problem could benefit from that prediction. This might work, but, more often than not, is a shot in the dark that only generates solutions in search of a problem.</p>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
@@ -1245,7 +1265,7 @@ If you found this book valuable and you want to support it, please go to <a clas
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="16-Regression-Discontinuity-Design.html" title="previous page">16 - Regression Discontinuity Design</a>
-    <a class='right-next' id="next-link" href="18-When-Prediction-Fails.html" title="next page">18 - When Prediction Fails</a>
+    <a class='right-next' id="next-link" href="18-Causal-Models.html" title="next page">19 - Building a Causal Model</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

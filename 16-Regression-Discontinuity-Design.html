@@ -195,43 +195,50 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="18-When-Prediction-Fails.html">
-   18 - When Prediction Fails
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Causal-Models.html">
+  <a class="reference internal" href="18-Causal-Models.html">
    19 - Building a Causal Model
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="20-Evaluating-Causal-Models.html">
+  <a class="reference internal" href="19-Evaluating-Causal-Models.html">
    20 - Evaluating Causal Models
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="21-Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Debiasing-with-Propensity-Score.html">
-   22 - Debiasing with Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Plug-and-Play-Estimators.html">
+  <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
    23 - Plug-and-Play Estimators
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="24-Meta-Learners.html">
+  <a class="reference internal" href="21-Meta-Learners.html">
    24 - Meta Learners
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="25-Debiased-Orthogonal-Machine-Learning.html">
+  <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
    25 - Debiased/Orthogonal Machine Learning
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Apendix
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
+   21 - Debiasing with Orthogonalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
+   22 - Debiasing with Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="When-Prediction-Fails.html">
+   18 - When Prediction Fails
   </a>
  </li>
 </ul>
@@ -641,7 +648,7 @@ y_i = \beta_0 + \beta_1 r_i + \beta_2 \mathcal{1}\{r_i&gt;c\} + \beta_3 \mathcal
 <img alt="_images/16-Regression-Discontinuity-Design_13_0.png" src="_images/16-Regression-Discontinuity-Design_13_0.png" />
 </div>
 </div>
-<p>RDD is telling us that alcohol increases the chance of deth by suicide and car accidents by 15%, wich is a pretty significant ammount. These results are compelling arguments to not lower the drinking age, if we want to minimize mortality rates.</p>
+<p>RDD is telling us that alcohol increases the chance of death by suicide and car accidents by 15%, which is a pretty significant amount. These results are compelling arguments to not lower the drinking age, if we want to minimize mortality rates.</p>
 <div class="section" id="kernel-weighting">
 <h3>Kernel Weighting<a class="headerlink" href="#kernel-weighting" title="Permalink to this headline">¶</a></h3>
 <p>Regression Discontinuity relies heavily on the extrapolations properties of linear regression. Since we are looking at the values at the beginning and end of 2 regression lines, we better get those limits right. What can happen is that regression might focus too much on fitting the other data points at the cost of a poor fit at the threshold. If this happens, we might get the wrong measure of the treatment effect.</p>
@@ -817,7 +824,7 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </table>
 </div></div></div>
 </div>
-<p>One again, this data is grouped by the running variable. It contains not only the running variable (<code class="docutils literal notranslate"><span class="pre">minscore</span></code>, already centered at zero) and the outcome (<code class="docutils literal notranslate"><span class="pre">avgearnings</span></code>), but it also has the probability of receiving a diploma in that score cell and the size of the call (<code class="docutils literal notranslate"><span class="pre">n</span></code>). So, for example, out of the 12 students in the cell -30 below the score threshold, only 5 were able to get the diploma (12 * 0,416).</p>
+<p>Once again, this data is grouped by the running variable. It contains not only the running variable (minscore, already centered at zero) and the outcome (avgearnings), but it also has the probability of receiving a diploma in that score cell and the size of the call (n). So, for example, out of the 12 students in the cell -30 below the score threshold, only 5 were able to get the diploma (12 * 0,416).</p>
 <p>This means that there is some slippage in the treatment assignment. Some students that are below the passing threshold managed to get the diploma anyway. Here, the regression discontinuity is <strong>fuzzy</strong>, rather than sharp. Notice how the probability of getting the diploma doesn’t jump from zero to one at the threshold. But it does jump from something like 50% to 90%.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -832,7 +839,7 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 <img alt="_images/16-Regression-Discontinuity-Design_25_0.png" src="_images/16-Regression-Discontinuity-Design_25_0.png" />
 </div>
 </div>
-<p>We can think of fuzzy RD as a sort of non compliance. Passing the threshold should make everyone receive the diploma, but some students, the never takers, don’t get it. Likewise, being below the threshold should prevent you from getting a diploma, but some students, the allways takers, manage to get it anyway.</p>
+<p>We can think of fuzzy RD as a sort of non compliance. Passing the threshold should make everyone receive the diploma, but some students, the never takers, don’t get it. Likewise, being below the threshold should prevent you from getting a diploma, but some students, the always takers, manage to get it anyway.</p>
 <p>Just like when we have the potential outcome, we have the potential treatment status in this situation. \(T_1\) is the treatment everyone would have received had they been above the threshold. \(T_0\) is the treatment everyone would have received had they been below the threshold. As you’ve might have noticed, we can think of the <strong>threshold as an Instrumental Variable</strong>. Just as in IV, if we naively estimate the treatment effect, it will be biased towards zero.</p>
 <p><img alt="img" src="_images/rdd_fuzzy.png" /></p>
 <p>The probability of treatment being less than one, even above the threshold, makes the outcome we observe less than the true potential outcome \(Y_1\). By the same token, the outcome we observe below the threshold is higher than the true potential outcome \(Y_0\). This makes it look like the treatment effect at the threshold is smaller than it actually is and we will have to use IV techniques to correct for that.</p>
