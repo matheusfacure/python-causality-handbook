@@ -195,8 +195,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="18-Causal-Models.html">
-   19 - Building a Causal Model
+  <a class="reference internal" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html">
+   18 - Heterogeneous Treatment Effects and Personalization
   </a>
  </li>
  <li class="toctree-l1">
@@ -206,17 +206,17 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
-   23 - Plug-and-Play Estimators
+   20 - Plug-and-Play Estimators
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-Meta-Learners.html">
-   24 - Meta Learners
+   21 - Meta Learners
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
-   25 - Debiased/Orthogonal Machine Learning
+   22 - Debiased/Orthogonal Machine Learning
   </a>
  </li>
 </ul>
@@ -228,17 +228,17 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
+   Debiasing with Orthogonalization
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
-   22 - Debiasing with Propensity Score
+   Debiasing with Propensity Score
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="When-Prediction-Fails.html">
-   18 - When Prediction Fails
+   When Prediction Fails
   </a>
  </li>
 </ul>
@@ -438,7 +438,7 @@ E[Y|T=1] - E[Y|T=0] = E[Y_1 - Y_0]=ATE
 <p>So, although we could do simple comparisons, it wouldn’t be very convincing. One way or another, we could never be sure if there wasn’t any bias lurking around and masking our causal effect.</p>
 <p><img alt="img" src="_images/lurking_bias.png" /></p>
 <p>To solve that, we need to make the treated and untreated comparable \(E[Y_0|T=1] = E[Y_0|T=0]\). One way to force this is by randomly assigning the online and presential classes to students. If we managed to do that, the treatment and untreated would be, on average, the same, except for the treatment they receive.</p>
-<p>Fortunately, some economists have done that for us. They’ve randomized classes so that some were assigned to have face-to-face lectures, others, to have only online lectures and a third group, to have a blended format of both online and face-to-face lectures. At the end of the semester, they collected data on a standard exam.</p>
+<p>Fortunately, some economists have done that for us. They’ve randomized classes so that some students were assigned to have face-to-face lectures, others, to have only online lectures and a third group, to have a blended format of both online and face-to-face lectures. At the end of the semester, they collected data on a standard exam.</p>
 <p>Here is what the data looks like:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -662,7 +662,7 @@ E[Y|T=1] - E[Y|T=0] = E[Y_1 - Y_0]=ATE
 </div>
 <div class="section" id="the-ideal-experiment">
 <h2>The Ideal Experiment<a class="headerlink" href="#the-ideal-experiment" title="Permalink to this headline">¶</a></h2>
-<p>Randomised experiments are the most reliable way to get causal effects. It’s a ridiculously simple technique and absurdly convincing. It is so powerful that most countries have it as a requirement for showing the effectiveness of new medicine. To make a terrible analogy, you can think of RCT and Aang, from Avatar: The Last Airbender, while other techniques are more like Sokka. Sokka is cool and can pull some neat tricks here and there, but Aang can bend the four elements and connect with the spiritual world. Think of it this way, if we could, RCT would be all we would ever do to uncover causality. A well designed RCT is the dream of any scientist.</p>
+<p>Randomised experiments are the most reliable way to get causal effects. It’s a ridiculously simple technique and absurdly convincing. It is so powerful that most countries have it as a requirement for showing the effectiveness of new medicine. To make a terrible analogy, you can think of RCT as Aang, from Avatar: The Last Airbender, while other techniques are more like Sokka. Sokka is cool and can pull some neat tricks here and there, but Aang can bend the four elements and connect with the spiritual world. Think of it this way, if we could, RCT would be all we would ever do to uncover causality. A well designed RCT is the dream of any scientist.</p>
 <p><img alt="img" src="_images/science_dream.png" /></p>
 <p>Unfortunately, they tend to be either very expensive or just plain unethical. Sometimes, we simply can’t control the assignment mechanism. Imagine yourself as a physician trying to estimate the effect of smoking during pregnancy on baby weight at birth. You can’t simply force a random portion of moms to smoke during pregnancy. Or say you work for a big bank and you need to estimate the impact of the credit line on customer churn. It would be too expensive to give random credit lines to your customers. Or that you want to understand the impact of increasing minimum wage on unemployment. You can’t simply assign countries to have one or another minimum wage. You get the point.</p>
 <p>We will later see how to lower the randomisation cost by using conditional randomisation, but there is nothing we can do about unethical or unfeasible experiments. Still, whenever we deal with causal questions, it is worth thinking about the <strong>ideal experiment</strong>. Always ask yourself, if you could, <strong>what would be the ideal experiment you would run to uncover this causal effect?</strong> This tends to shed some light in the way of how we can uncover the causal effect even without the ideal experiment.</p>

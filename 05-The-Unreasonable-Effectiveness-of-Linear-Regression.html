@@ -195,8 +195,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="18-Causal-Models.html">
-   19 - Building a Causal Model
+  <a class="reference internal" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html">
+   18 - Heterogeneous Treatment Effects and Personalization
   </a>
  </li>
  <li class="toctree-l1">
@@ -206,17 +206,17 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
-   23 - Plug-and-Play Estimators
+   20 - Plug-and-Play Estimators
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-Meta-Learners.html">
-   24 - Meta Learners
+   21 - Meta Learners
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
-   25 - Debiased/Orthogonal Machine Learning
+   22 - Debiased/Orthogonal Machine Learning
   </a>
  </li>
 </ul>
@@ -228,17 +228,17 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
+   Debiasing with Orthogonalization
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
-   22 - Debiasing with Propensity Score
+   Debiasing with Propensity Score
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="When-Prediction-Fails.html">
-   18 - When Prediction Fails
+   When Prediction Fails
   </a>
  </li>
 </ul>
@@ -797,7 +797,7 @@ log(hwage)_i = \beta_0 + \kappa \ educ_i + \pmb{\beta}X_i + u_i
 <p><span class="math notranslate nohighlight">\(
 \kappa = \dfrac{Cov(Y_i, \tilde{T_i})}{Var(\tilde{T_i})} 
 \)</span></p>
-<p>This formula says that we can predict <code class="docutils literal notranslate"><span class="pre">educ</span></code> from the parents’ education, from IQ, from experience and so on. After we do that, we’ll be left with a version of <code class="docutils literal notranslate"><span class="pre">educ</span></code>, \(\tilde{educ}\), which is uncorrelated with all the variables included previously. This will break down arguments such as “people that have more years of education have it because they have higher IQ. It is not the case that education leads to higher wages. It is just the case that it is correlated with IQ, which is what drives waged”. Well, if we include IQ in our model, then \(\kappa\) becomes the return of an additional year of education while keeping IQ fixed. Pause a little bit to understand what this implies. Even if we can’t use randomised controlled trials to keep other factors equal between treated and untreated, regression can do this by including those same factors in the model, even if the data is not random!</p>
+<p>This formula says that we can predict <code class="docutils literal notranslate"><span class="pre">educ</span></code> from the parents’ education, from IQ, from experience and so on. After we do that, we’ll be left with a version of <code class="docutils literal notranslate"><span class="pre">educ</span></code>, \(\tilde{educ}\), which is uncorrelated with all the variables included previously. This will break down arguments such as “people that have more years of education have it because they have higher IQ. It is not the case that education leads to higher wages. It is just the case that it is correlated with IQ, which is what drives wages”. Well, if we include IQ in our model, then \(\kappa\) becomes the return of an additional year of education while keeping IQ fixed. Pause a little bit to understand what this implies. Even if we can’t use randomised controlled trials to keep other factors equal between treated and untreated, regression can do this by including those same factors in the model, even if the data is not random!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">controls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;IQ&#39;</span><span class="p">,</span> <span class="s1">&#39;exper&#39;</span><span class="p">,</span> <span class="s1">&#39;tenure&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;married&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span>

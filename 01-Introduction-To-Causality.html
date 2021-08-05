@@ -195,8 +195,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="18-Causal-Models.html">
-   19 - Building a Causal Model
+  <a class="reference internal" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html">
+   18 - Heterogeneous Treatment Effects and Personalization
   </a>
  </li>
  <li class="toctree-l1">
@@ -206,17 +206,17 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
-   23 - Plug-and-Play Estimators
+   20 - Plug-and-Play Estimators
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-Meta-Learners.html">
-   24 - Meta Learners
+   21 - Meta Learners
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
-   25 - Debiased/Orthogonal Machine Learning
+   22 - Debiased/Orthogonal Machine Learning
   </a>
  </li>
 </ul>
@@ -228,17 +228,17 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
+   Debiasing with Orthogonalization
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
-   22 - Debiasing with Propensity Score
+   Debiasing with Propensity Score
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="When-Prediction-Fails.html">
-   18 - When Prediction Fails
+   When Prediction Fails
   </a>
  </li>
 </ul>
@@ -488,9 +488,6 @@ T_i=\begin{cases}
 \)</span></p>
 <p>The treatment here doesn’t need to be a medicine or anything from the medical field. Instead, it is just a term we will use to denote some intervention for which we want to know the effect. In our case, the treatment is giving tablets to students. As a side note, you might sometimes see \(D\) instead of \(T\) to denote the treatment.</p>
 <p>Now, let’s call \(Y_i\) the observed outcome variable for unit i.</p>
-<p><span class="math notranslate nohighlight">\(
-Y_i
-\)</span></p>
 <p>The outcome is our variable of interest. We want to know if the treatment has any influence in it. In our tablet example, it would be the academic performance.</p>
 <p>Here is where things get interesting. The <strong>fundamental problem of causal inference</strong> is that we can never observe the same unit with and without treatment. It is as if we have two diverging roads and we can only know what lies ahead of the one we take. As in Robert Frost poem:</p>
 <blockquote>
@@ -700,7 +697,7 @@ E[Y|T=1] - E[Y|T=0] = E[Y_1|T=1] - E[Y_0|T=0] + E[Y_0|T=1] - E[Y_0|T=1]
 <p><span class="math notranslate nohighlight">\(
 E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_0|T=1] - E[Y_0|T=0] \}}_{BIAS}
 \)</span></p>
-<p>This simple piece of math encompasses all the problems we will encounter in causal questions. I cannot stress how important it is that you understand every aspect of it. If you’re ever forced to tattoo something on your arm, this equation should be a good candidate for it. It’s something to hold onto very dearly and really understand what is telling us, like some sacred text that can be interpreted 100 different ways. In fact, let’s take a deeper look. Let’s break it down into some of its implications. First, this equation tells why association is not causation. As we can see, association is equal to the treatment effect on the treated plus a bias term. <strong>The bias is given by how the treated and control group differ before the treatment, that is, in case neither of them has received the treatment</strong>. We can now say precisely why we are suspicious when someone tells us that tablets in the classroom boost academic performance. We think that, is this example, \(E[Y_0|T=0] &lt; E[Y_0|T=1]\), that is, schools that can afford to give tablets to their kids are better than those that can’t, <strong>regardless of the tablets treatment</strong>.</p>
+<p>This simple piece of math encompasses all the problems we will encounter in causal questions. I cannot stress how important it is that you understand every aspect of it. If you’re ever forced to tattoo something on your arm, this equation should be a good candidate for it. It’s something to hold onto very dearly and really understand what is telling us, like some sacred text that can be interpreted 100 different ways. In fact, let’s take a deeper look. Let’s break it down into some of its implications. First, this equation tells why association is not causation. As we can see, association is equal to the treatment effect on the treated plus a bias term. <strong>The bias is given by how the treated and control group differ before the treatment, that is, in case neither of them has received the treatment</strong>. We can now say precisely why we are suspicious when someone tells us that tablets in the classroom boost academic performance. We think that, in this example, \(E[Y_0|T=0] &lt; E[Y_0|T=1]\), that is, schools that can afford to give tablets to their kids are better than those that can’t, <strong>regardless of the tablets treatment</strong>.</p>
 <p>Why does this happen? We will talk more about that once we enter confounding, but for now you can think of bias arising because many things we can’t control are changing together with the treatment. As a result, the treated and untreated schools don’t differ only on the tablets. They also differ on the tuition cost, location, teachers…
 For us to say that tablets in the classroom increase academic performance, we would need for schools with and without them to be, on average, similar to each other.</p>
 <div class="cell docutils container">

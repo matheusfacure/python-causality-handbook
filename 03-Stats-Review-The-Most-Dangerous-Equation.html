@@ -195,8 +195,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="18-Causal-Models.html">
-   19 - Building a Causal Model
+  <a class="reference internal" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html">
+   18 - Heterogeneous Treatment Effects and Personalization
   </a>
  </li>
  <li class="toctree-l1">
@@ -206,17 +206,17 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
-   23 - Plug-and-Play Estimators
+   20 - Plug-and-Play Estimators
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-Meta-Learners.html">
-   24 - Meta Learners
+   21 - Meta Learners
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
-   25 - Debiased/Orthogonal Machine Learning
+   22 - Debiased/Orthogonal Machine Learning
   </a>
  </li>
 </ul>
@@ -228,17 +228,17 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
+   Debiasing with Orthogonalization
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
-   22 - Debiasing with Propensity Score
+   Debiasing with Propensity Score
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="When-Prediction-Fails.html">
-   18 - When Prediction Fails
+   When Prediction Fails
   </a>
  </li>
 </ul>
@@ -746,7 +746,7 @@ SE for Face to Face: 0.8723511456319106
 </div>
 <div class="section" id="hypothesis-testing">
 <h2>Hypothesis Testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this headline">¶</a></h2>
-<p>Another way to incorporate uncertainty is to state a hypothesis test: is the difference in means statistically different from zero (or any other value)? To do so, we will recall that the sum or difference of 2 normal distributions is also a normal distribution. The resulting mean will be the sum or difference between the two distributions, while the variance will always be the sum of the variance:</p>
+<p>Another way to incorporate uncertainty is to state a hypothesis test: is the difference in means statistically different from zero (or any other value)? To do so, we will recall that the sum or difference of 2 independent normal distributions is also a normal distribution. The resulting mean will be the sum or difference between the two distributions, while the variance will always be the sum of the variance:</p>
 <p><span class="math notranslate nohighlight">\(
 N(\mu_1, \sigma_1^2) - N(\mu_2, \sigma_2^2) = N(\mu_1 - \mu_2, \sigma_1^2 + \sigma_2^2)
 \)</span></p>

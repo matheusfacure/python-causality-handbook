@@ -195,8 +195,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="18-Causal-Models.html">
-   19 - Building a Causal Model
+  <a class="reference internal" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html">
+   18 - Heterogeneous Treatment Effects and Personalization
   </a>
  </li>
  <li class="toctree-l1">
@@ -206,17 +206,17 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
-   23 - Plug-and-Play Estimators
+   20 - Plug-and-Play Estimators
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-Meta-Learners.html">
-   24 - Meta Learners
+   21 - Meta Learners
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
-   25 - Debiased/Orthogonal Machine Learning
+   22 - Debiased/Orthogonal Machine Learning
   </a>
  </li>
 </ul>
@@ -228,17 +228,17 @@
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
-   21 - Debiasing with Orthogonalization
+   Debiasing with Orthogonalization
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
-   22 - Debiasing with Propensity Score
+   Debiasing with Propensity Score
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="When-Prediction-Fails.html">
-   18 - When Prediction Fails
+   When Prediction Fails
   </a>
  </li>
 </ul>
@@ -407,7 +407,7 @@
 <h1>04 - Graphical Causal Models<a class="headerlink" href="#graphical-causal-models" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="thinking-about-causality">
 <h2>Thinking About Causality<a class="headerlink" href="#thinking-about-causality" title="Permalink to this headline">¶</a></h2>
-<p>Have you ever noticed how those cooks in YouTube videos are excellent at describing food? “Reduce the sauce until it reaches a velvety consistency”. If you are just starting to learn how to cook, you have no idea what this even means. Just give me the time I should leave this thing on the stove! With causality, it’s the same thing. If you walk into a bar and hear folks discussing causality (probably a bar next to an economics department), you will hear them say how the confounding of income made it challenging to identify the imigration effect on that neighborhood, so they had to use an instrumental variable. And by now, you might not understand what they are talking about. But I’ll fix at least some of this problem right now.</p>
+<p>Have you ever noticed how those cooks in YouTube videos are excellent at describing food? “Reduce the sauce until it reaches a velvety consistency”. If you are just starting to learn how to cook, you have no idea what this even means. Just give me the time I should leave this thing on the stove! With causality, it’s the same thing. If you walk into a bar and hear folks discussing causality (probably a bar next to an economics department), you will hear them say how the confounding of income made it challenging to identify the immigration effect on that neighborhood, so they had to use an instrumental variable. And by now, you might not understand what they are talking about. But I’ll fix at least some of this problem right now.</p>
 <p>Graphical models are the language of causality. They are not only what you use to talk with other brave and true causality aficionados, but also something you use to make your own thoughts clearer.</p>
 <p>As a starting point, let’s take conditional independence of the potential outcomes, for example. This is one of the main assumptions that we require to be true when doing causal inference:</p>
 <p><span class="math notranslate nohighlight">\(
@@ -450,7 +450,7 @@
 <div class="cell_output docutils container">
 <img alt="_images/04-Graphical-Causal-Models_2_0.svg" src="_images/04-Graphical-Causal-Models_2_0.svg" /></div>
 </div>
-<p>Each node is a random variable. We use arrows, or edges, to show if a variable causes another. In the first graphical model above we are saying that Z causes X and that U causes X and Y. To give a more concrete example, we can translate our thoughts about the impact of the medicine on patient survival as the second graph above. Severeness causes both medicine and survival and medicine also causes survival. As we will see, this causal graphical models language will help us make our thinking about causality more clear, as it makes it explicit our beliefs about how the world works.</p>
+<p>Each node is a random variable. We use arrows, or edges, to show if a variable causes another. In the first graphical model above we are saying that Z causes X and that U causes X and Y. To give a more concrete example, we can translate our thoughts about the impact of the medicine on patient survival as the second graph above. Severeness causes both medicine and survival and medicine also causes survival. As we will see, this causal graphical models language will help us make our thinking about causality more clear, as it makes explicit our beliefs about how the world works.</p>
 </div>
 <div class="section" id="crash-course-in-graphical-models">
 <h2>Crash Course in Graphical Models<a class="headerlink" href="#crash-course-in-graphical-models" title="Permalink to this headline">¶</a></h2>
@@ -485,7 +485,7 @@
 <p><span class="math notranslate nohighlight">\(
 A \!\perp\!\!\!\perp B | C
 \)</span></p>
-<p>Now, let’s consider a fork structure. In this case, the same variable causes two other variables down the graph. In this case, the dependence flows backward through the arrows and we have what it is called a <strong>backdoor path</strong>. We can close the backdoor path and shut down dependence by conditioning on the common cause.</p>
+<p>Now, let’s consider a fork structure. In this case, the same variable causes two other variables down the graph. In this case, the dependence flows backward through the arrows and we have what is called a <strong>backdoor path</strong>. We can close the backdoor path and shut down dependence by conditioning on the common cause.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
@@ -514,7 +514,7 @@ A \!\perp\!\!\!\perp B | C
 <p><span class="math notranslate nohighlight">\(
 A \!\perp\!\!\!\perp B | C
 \)</span></p>
-<p>The only structure that is missing is the collider. A collider is when two arrows collide on a single variable. We can say that in this case if both variables share a common effect.</p>
+<p>The only structure that is missing is the collider. A collider is when two arrows collide on a single variable. We can say that in this case both variables share a common effect.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
