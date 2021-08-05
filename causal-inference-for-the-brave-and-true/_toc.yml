@@ -22,7 +22,7 @@
 - part: Part II - The Yin
   chapters:
   - file: 17-Predictive-Models-101.ipynb
-  - file: 18-Causal-Models.ipynb
+  - file: 18-Heterogeneous-Treatment-Effects-and-Personalization.ipynb
   - file: 19-Evaluating-Causal-Models.ipynb
   - file: 20-Plug-and-Play-Estimators.ipynb
   - file: 21-Meta-Learners.ipynb
