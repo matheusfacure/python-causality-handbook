@@ -33,6 +33,7 @@
   - file: Debiasing-with-Orthogonalization.ipynb
   - file: Debiasing-with-Propensity-Score.ipynb
   - file: When-Prediction-Fails.ipynb
+  - file: Prediction-Metrics-For-Causal-Models.ipynb
 
 - part: Contribute
   chapters:
