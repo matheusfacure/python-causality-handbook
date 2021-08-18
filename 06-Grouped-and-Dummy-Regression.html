@@ -241,6 +241,11 @@
    When Prediction Fails
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Prediction-Metrics-For-Causal-Models.html">
+   Why Prediction Metrics are Dangerous For Causal Models
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -1077,7 +1082,7 @@ E[Y|T=17]-E[Y|T=9]: 9.590472362353516
 </div>
 </div>
 </div>
-<p>If we include more dummy covariates in the model, the parameters on education become a weighted average of the effect on each dummy group:</p>
+<p>If we include more dummy covariates in the model, the parameter on education become a weighted average of the effect on each dummy group:</p>
 <p><span class="math notranslate nohighlight">\(
 E\{ \ (E[Y_i|T=1, Group_i] - E[Y_i|T=0, Group_i])w(Group_i) \ \}
 \)</span></p>

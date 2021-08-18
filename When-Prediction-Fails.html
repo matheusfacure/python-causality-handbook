@@ -57,6 +57,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Why Prediction Metrics are Dangerous For Causal Models" href="Prediction-Metrics-For-Causal-Models.html" />
     <link rel="prev" title="Debiasing with Propensity Score" href="Debiasing-with-Propensity-Score.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -238,6 +239,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    When Prediction Fails
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Prediction-Metrics-For-Causal-Models.html">
+   Why Prediction Metrics are Dangerous For Causal Models
   </a>
  </li>
 </ul>
@@ -925,7 +931,7 @@ Name: customer_id, dtype: int64
 <img alt="_images/When-Prediction-Fails_13_0.png" src="_images/When-Prediction-Fails_13_0.png" />
 </div>
 </div>
-<p>Doing that analysis, we can see that, on average, we lose money when the coupon value is 0 or 15 and we gain money for coupons of 5 and 10 BLR. The highest average <code class="docutils literal notranslate"><span class="pre">net_income</span></code> appears when we have 5 BLR coupons, yielding us about 250 BLR in <code class="docutils literal notranslate"><span class="pre">net_value</span></code> per customer. Naturally then, the simplest thing we can try is to give everyone 5 BLR in coupons and see how that would play out. This completely disregards the possibility of bias but hey, we are talking simplicity here!</p>
+<p>Doing that analysis, we can see that, on average, we lose money when the coupon value is 0 or 15 and we gain money for coupons of 5 and 10 BRL. The highest average <code class="docutils literal notranslate"><span class="pre">net_income</span></code> appears when we have 5 BRL coupons, yielding us about 250 BRL in <code class="docutils literal notranslate"><span class="pre">net_value</span></code> per customer. Naturally then, the simplest thing we can try is to give everyone 5 BRL in coupons and see how that would play out. This completely disregards the possibility of bias but hey, we are talking simplicity here!</p>
 <p>To do evaluate that policy, the function <code class="docutils literal notranslate"><span class="pre">ltv_with_coupons</span></code> accepts as argument a 10000 array that contains the desired coupon for each of the 10000 customers on our database. To create this array, we will generate an array of ones with <code class="docutils literal notranslate"><span class="pre">np.ones</span></code> the size of our <code class="docutils literal notranslate"><span class="pre">coupons</span></code> array (10000) and multiply it by 5. Then, we will pass this array to the <code class="docutils literal notranslate"><span class="pre">ltv_with_coupons</span></code>. This will generate a new dataset exactly like the one we had previously, but with every coupon value set to 5. We then process this data to get the net value under this newly proposed policy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1029,13 +1035,13 @@ Name: customer_id, dtype: int64
 </div>
 </div>
 </div>
-<p>As we can see, this simple policy is telling us we can get, on average, 253 BRL for each customer if we give them all a 5 BLR coupon. This is massive! But can we do better? What if we use our shiny machine learning hammer on this problem? Let’s try this next.</p>
+<p>As we can see, this simple policy is telling us we can get, on average, 253 BRL for each customer if we give them all a 5 BRL coupon. This is massive! But can we do better? What if we use our shiny machine learning hammer on this problem? Let’s try this next.</p>
 </div>
 <div class="section" id="policy-with-model">
 <h2>Policy With Model<a class="headerlink" href="#policy-with-model" title="Permalink to this headline">¶</a></h2>
 <p>To use ML, we will adapt what we did in the previous chapter. The idea is to build a ML model that predicts <code class="docutils literal notranslate"><span class="pre">net_value</span></code>, just like before, take those predictions and bins them into a defined number of bands. Then, we will partition the data into those bands. Essentially, we are splitting the customer by their predicted <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. Customers that we think will generate roughly the same <code class="docutils literal notranslate"><span class="pre">net_value</span></code> will end up in the same bin or group. Finally, for each group, we will see which coupon value yields the maximum <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. We are doing the same thing as in the simple policy, but now within the groups defined by a prediction band.</p>
 <p><img alt="img" src="_images/partitions.png" /></p>
-<p>The intuition behind this is the following: we know that, on average, 5 BLR coupons performed better. However, it is possible that for some group of customers, another value is even better than 5 BRL. Maybe 5 BLR is the optimal strategy for most of the customers, but not for all of them.</p>
+<p>The intuition behind this is the following: we know that, on average, 5 BRL coupons performed better. However, it is possible that for some group of customers, another value is even better than 5 BRL. Maybe 5 BRL is the optimal strategy for most of the customers, but not for all of them.</p>
 <p><img alt="img" src="_images/personalise.png" /></p>
 <p>If we can identify the ones where the optimal value is different, we can build a coupon strategy better than the simple one we did above.</p>
 <p>This is what we call a personalisation problem. We can leverage personalisation when we have more than one strategy to choose from and at least one of them is not the overall best strategy, but it is the best in a subset of the targeted population. This definition is a bit convoluted, but the intuition is simple. If you have only one strategy, you are not personalising. You are doing the same thing for every customer. If you have more than one strategy, but one of them is better for every single customer, why will you personalise? You could just do that one best thing. You will only do personalisation if you have one strategy that works better at one subset of the population and another strategy that works best in another subset of the population.</p>
@@ -1218,7 +1224,7 @@ Test Score:,  0.504563847410434
 <img alt="_images/When-Prediction-Fails_29_0.png" src="_images/When-Prediction-Fails_29_0.png" />
 </div>
 </div>
-<p>This plot is very interesting. Notice how the optimal decision changes across prediction bands. For instance, on bands like 1, 7 and 8, the best thing to do is to give 10 BLR in coupons. For bands like 3, 5 and 10, the best thing is 5 BRL in coupons. This means that this policy is very much like the simple one, except for the last band. This is evidence that personalisation might be possible, since the optimal decision changes across subpopulations.</p>
+<p>This plot is very interesting. Notice how the optimal decision changes across prediction bands. For instance, on bands like 1, 7 and 8, the best thing to do is to give 10 BRL in coupons. For bands like 3, 5 and 10, the best thing is 5 BRL in coupons. This means that this policy is very much like the simple one, except for the last band. This is evidence that personalisation might be possible, since the optimal decision changes across subpopulations.</p>
 <p>We can code that policy with a couple of <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">then</span> <span class="pre">...</span></code> statements, but I’ll show a more general approach that leverages dataframe operations.</p>
 <p><img alt="img" src="_images/pandas-magic.png" /></p>
 <p>First, we will group our customers by band and coupon value and take the average <code class="docutils literal notranslate"><span class="pre">net_value</span></code> for each group, much like the plot above.</p>
@@ -1764,6 +1770,7 @@ If you found this book valuable and you want to support it, please go to <a clas
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="Debiasing-with-Propensity-Score.html" title="previous page">Debiasing with Propensity Score</a>
+    <a class='right-next' id="next-link" href="Prediction-Metrics-For-Causal-Models.html" title="next page">Why Prediction Metrics are Dangerous For Causal Models</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
