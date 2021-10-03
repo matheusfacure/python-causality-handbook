@@ -1,6 +1,7 @@
-- file: landing-page
-
-- part: Part I - The Yang
+format: jb-book
+root: landing-page
+parts:
+- caption: Part I - The Yang
   chapters:
   - file: 01-Introduction-To-Causality.ipynb
   - file: 02-Randomised-Experiments.ipynb
@@ -18,8 +19,7 @@
   - file: 14-Difference-in-Difference.ipynb
   - file: 15-Synthetic-Control.ipynb
   - file: 16-Regression-Discontinuity-Design.ipynb
-
-- part: Part II - The Yin
+- caption: Part II - The Yin
   chapters:
   - file: 17-Predictive-Models-101.ipynb
   - file: 18-Heterogeneous-Treatment-Effects-and-Personalization.ipynb
@@ -27,15 +27,13 @@
   - file: 20-Plug-and-Play-Estimators.ipynb
   - file: 21-Meta-Learners.ipynb
   - file: 22-Debiased-Orthogonal-Machine-Learning.ipynb
-
-- part: Apendix
+- caption: Apendix
   chapters:
   - file: Debiasing-with-Orthogonalization.ipynb
   - file: Debiasing-with-Propensity-Score.ipynb
   - file: When-Prediction-Fails.ipynb
   - file: Prediction-Metrics-For-Causal-Models.ipynb
-
-- part: Contribute
+- caption: Contribute
   chapters:
   - url: https://www.patreon.com/causal_inference_for_the_brave_and_true
     title: Patreon
