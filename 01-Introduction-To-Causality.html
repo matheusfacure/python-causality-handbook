@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>01 - Introduction To Causality &#8212; Causal Inference for the Brave and True</title>
     
-  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -34,21 +31,20 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -59,14 +55,14 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="02 - Randomised Experiments" href="02-Randomised-Experiments.html" />
     <link rel="prev" title="Causal Inference for The Brave and True" href="landing-page.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -75,21 +71,19 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  
-  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
-  
-</a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="landing-page.html">
    Causal Inference for The Brave and True
@@ -101,7 +95,7 @@
   Part I - The Yang
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    01 - Introduction To Causality
@@ -188,7 +182,7 @@
   Part II - The Yin
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="17-Predictive-Models-101.html">
    17 - Predictive Models 101
@@ -225,7 +219,7 @@
   Apendix
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
    Debiasing with Orthogonalization
@@ -252,19 +246,16 @@
   Contribute
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">
    Patreon
-   <i class="fas fa-external-link-alt">
-   </i>
   </a>
  </li>
 </ul>
 
-</nav>
-
- <!-- To handle the deprecated key -->
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
   Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
@@ -279,25 +270,25 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -309,9 +300,9 @@
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
-        <!-- Source interaction buttons -->
+
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -326,14 +317,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -352,16 +343,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#why-bother">
    Why Bother?
@@ -404,8 +395,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -514,7 +505,7 @@ To where it bent in the undergrowth;</p>
 <p>Of course, due to the fundamental problem of causal inference, we can never know the individual treatment effect because we only observe one of the potential outcomes. For the time being, let’s focus on something easier than estimating the individual treatment effect. Instead, lets focus on the <strong>average treatment effect</strong>, which is defined as follows.</p>
 <p>\(ATE = E[Y_1 - Y_0]\)</p>
 <p>where, <code class="docutils literal notranslate"><span class="pre">E[...]</span></code> is the expected value. Another easier quantity to estimate is the <strong>average treatment effect on the treated</strong>:</p>
-<p>\(ATET = E[Y_1 - Y_0 | T=1]\)</p>
+<p>\(ATT = E[Y_1 - Y_0 | T=1]\)</p>
 <p>Now, I know we can’t see both potential outcomes, but just for the sake of the argument, let’s suppose we could. Pretend that the causal inference deity is pleased with the many statistical battles that we fought and has rewarded us with godlike powers to see the alternative potential outcomes. With that power, say we collect data on 4 schools. We know if they gave tablets to its students and their score on some annual academic test. Here, tablets are the treatment, so \(T=1\) if the school gives tablets to its kids. \(Y\) will be the test score.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -599,8 +590,8 @@ To where it bent in the undergrowth;</p>
 </div>
 <p>The \(ATE\) here would be the mean of the last column, that is, of the treatment effect:</p>
 <p>\(ATE=(-50 + 0 - 200 + 50)/4 = -50\)</p>
-<p>This would mean that tablets reduced the academic performance of students, on average, by 50 points. The \(ATET\) here would be the mean of the last column when \(T=1\):</p>
-<p>\(ATET=(- 200 + 50)/2 = -75\)</p>
+<p>This would mean that tablets reduced the academic performance of students, on average, by 50 points. The \(ATT\) here would be the mean of the last column when \(T=1\):</p>
+<p>\(ATT=(- 200 + 50)/2 = -75\)</p>
 <p>This is saying that, for the schools that were treated, the tablets reduced the academic performance of students, on average, by 75 points. Of course we can never know this. In reality, the table above would look like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -700,7 +691,7 @@ E[Y|T=1] - E[Y|T=0] = E[Y_1|T=1] - E[Y_0|T=0] + E[Y_0|T=1] - E[Y_0|T=1]
 \)</span></p>
 <p>Finally, we reorder the terms, merge some expectations, and lo and behold:</p>
 <p><span class="math notranslate nohighlight">\(
-E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_0|T=1] - E[Y_0|T=0] \}}_{BIAS}
+E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATT} + \underbrace{\{ E[Y_0|T=1] - E[Y_0|T=0] \}}_{BIAS}
 \)</span></p>
 <p>This simple piece of math encompasses all the problems we will encounter in causal questions. I cannot stress how important it is that you understand every aspect of it. If you’re ever forced to tattoo something on your arm, this equation should be a good candidate for it. It’s something to hold onto very dearly and really understand what is telling us, like some sacred text that can be interpreted 100 different ways. In fact, let’s take a deeper look. Let’s break it down into some of its implications. First, this equation tells why association is not causation. As we can see, association is equal to the treatment effect on the treated plus a bias term. <strong>The bias is given by how the treated and control group differ before the treatment, that is, in case neither of them has received the treatment</strong>. We can now say precisely why we are suspicious when someone tells us that tablets in the classroom boost academic performance. We think that, in this example, \(E[Y_0|T=0] &lt; E[Y_0|T=1]\), that is, schools that can afford to give tablets to their kids are better than those that can’t, <strong>regardless of the tablets treatment</strong>.</p>
 <p>Why does this happen? We will talk more about that once we enter confounding, but for now you can think of bias arising because many things we can’t control are changing together with the treatment. As a result, the treated and untreated schools don’t differ only on the tablets. They also differ on the tuition cost, location, teachers…
@@ -719,7 +710,7 @@ For us to say that tablets in the classroom increase academic performance, we wo
 </div>
 <p>Now that we understand the problem, let’s look at the solution. We can also say what would be necessary to make association equal to causation. <strong>If \(E[Y_0|T=0] = E[Y_0|T=1]\), then, association IS CAUSATION!</strong> Understanding this is not just remembering the equation. There is a strong intuitive argument here. To say that \(E[Y_0|T=0] = E[Y_0|T=1]\) is to say that treatment and control group are comparable before the treatment. Or, in the case that the treated had not been treated, if we could observe its \(Y_0\), then its outcome would be the same as the untreated. Mathematically, the bias term would vanish:</p>
 <p><span class="math notranslate nohighlight">\(
-E[Y|T=1] - E[Y|T=0] = E[Y_1 - Y_0|T=1] = ATET
+E[Y|T=1] - E[Y|T=0] = E[Y_1 - Y_0|T=1] = ATT
 \)</span></p>
 <p>Also, if the treated and the untreated only differ on the treatment itself, that is,  \(E[Y_0|T=0] = E[Y_0|T=1]\)</p>
 <p>We have that the causal impact on the treated is the same as in the untreated (because they are very similar).</p>
@@ -732,7 +723,7 @@ E[Y_1 - Y_0|T=1] &amp;= E[Y_1|T=1] - E[Y_0|T=1] \\
 \)</span></p>
 <p>Not only that, but \(E[Y_1 - Y_0|T=1]=E[Y_1 - Y_0|T=0]\), simply because the treated and untreated are exchangeable. Hence, in this case, the <strong>difference in means BECOMES the causal effect</strong>:</p>
 <p><span class="math notranslate nohighlight">\(
-E[Y|T=1] - E[Y|T=0] = ATET = ATE
+E[Y|T=1] - E[Y|T=0] = ATT = ATE
 \)</span></p>
 <p>Once again, this is so important that I think it is worth going over it again, now with pretty pictures. If we do a simple average comparison between the treatment and the untreated group, this is what we get (blue dots didn’t receive the treatment, that is, the tablet):</p>
 <p><img alt="img" src="_images/anatomy1.png" /></p>
@@ -808,23 +799,43 @@ If you found this book valuable and you want to support it, please go to <a clas
 
               </div>
               
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="landing-page.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Causal Inference for The Brave and True</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="02-Randomised-Experiments.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">02 - Randomised Experiments</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="landing-page.html" title="previous page">Causal Inference for The Brave and True</a>
-    <a class='right-next' id="next-link" href="02-Randomised-Experiments.html" title="next page">02 - Randomised Experiments</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
           By Matheus Facure Alves<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -833,21 +844,19 @@ If you found this book valuable and you want to support it, please go to <a clas
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+  
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-97848161-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-97848161-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>

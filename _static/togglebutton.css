@@ -48,7 +48,7 @@ div.admonition.toggle-hidden .admonition-title ~ * {
 button.toggle-button {
     background: #999;
     border: none;
-    z-index: 999;
+    z-index: 100;
     right: -2.5em;
     margin-left: -2.5em; /* A hack to keep code blocks from being pushed left */
     position: relative;

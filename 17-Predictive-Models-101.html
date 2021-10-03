@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>17 - Predictive Models 101 &#8212; Causal Inference for the Brave and True</title>
     
-  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -34,21 +31,20 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -59,14 +55,14 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="18 - Heterogeneous Treatment Effects and Personalization" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html" />
     <link rel="prev" title="16 - Regression Discontinuity Design" href="16-Regression-Discontinuity-Design.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -75,21 +71,19 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  
-  <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
-  
-</a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="landing-page.html">
    Causal Inference for The Brave and True
@@ -101,7 +95,7 @@
   Part I - The Yang
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01-Introduction-To-Causality.html">
    01 - Introduction To Causality
@@ -188,7 +182,7 @@
   Part II - The Yin
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    17 - Predictive Models 101
@@ -225,7 +219,7 @@
   Apendix
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
    Debiasing with Orthogonalization
@@ -252,19 +246,16 @@
   Contribute
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">
    Patreon
-   <i class="fas fa-external-link-alt">
-   </i>
   </a>
  </li>
 </ul>
 
-</nav>
-
- <!-- To handle the deprecated key -->
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
   Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
@@ -279,25 +270,25 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -309,9 +300,9 @@
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
-        <!-- Source interaction buttons -->
+
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -326,14 +317,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -352,16 +343,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#machine-learning-in-the-industry">
    Machine Learning in the Industry
@@ -414,8 +405,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -762,7 +753,7 @@ E[Y|X]
 <li><p>We will use the internal data to <em>learn</em> a rule that tells us which customer is profitable (hence training).</p></li>
 <li><p>We will apply the rule to the holdout data that was <strong>not</strong> used for learning the rule. This should simulate the process of learning a rule in one dataset and applying it to another, a process that will be inevitable when we go to production and score truly unseen data.</p></li>
 </ol>
-<p>Here is a picture of what cross validation looks like. There is the truly unseen data at the leftmost part of the image and then there is data that we only pretend not to have at learning time.</p>
+<p>Here is a picture of what cross validation looks like. There is the truly unseen data at the rightmost part of the image and then there is data that we only pretend not to have at learning time.</p>
 <p><img alt="img" src="_images/cross-validation.png" /></p>
 <p>To summarize, we will partition our internal data into a training and a test set. We can use the training set to come up with models or rules that predict if a customer is profitable or not, but we will validate those rules in another partition of the dataset: the test set. This test set will be hidden from our learning procedure.</p>
 <p>Just as a side note here, there are tons of ways to make cross validation better other than this simple train test split (k-fold cross-validation or temporal cross validation, for instance), but for the sake of what we will do here, this is enough. Remember that the spirit of cross validation is to simulate what would happen once we go to a production environment. By doing that we hope to get more realistic estimates.</p>
@@ -841,16 +832,23 @@ E[Y|X]
 </div>
 <p>Bingo! We can clearly see that some regions are profitable, like regions 2, 17, 39, and some are not profitable, like regions 0, 9, 29 and the especially bad region 26. This is looking super promising! We can take this and transform into a policy: only do business with the regions that showed to be profitable <em>according to the data that we have here</em>.</p>
 <p>One thing to notice is that what we are doing is what ML would do, but in a much simpler way. Namely, we are estimating the expected value of net value in each region: \(E[NetValue|Region]\). Now, we need to take this estimation and do something with it.</p>
-<p>To construct this policy, we will do something very simple. If the expected (average) net value of a region is positive, we will do business with it. Technically, \(\hat{E}[NetValue|Region] &gt; 0\).</p>
-<p>The following code builds a dictionary where the key is the region and the value is the expected value. Then, the dictionary generator filters only those regions where the expected net value is positive. The result is the regions we will do business with according to our policy.</p>
+<p>To construct this policy, we will do something very simple. We will construct a 95% confidence interval around the expected net value of a region. If it is greater than zero, we will do business with that region</p>
+<p>The following code builds a dictionary where the key is the region and the value is the lower bound of the 95% CI. Then, the dictionary generator filters only those regions where the expected net value is positive. The result is the regions we will do business with according to our policy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract the lower bound of the 95% CI from the plot above</span>
-<span class="n">regions_to_net</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;region&quot;</span><span class="p">)[</span><span class="s2">&quot;net_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">regions_to_net</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)[</span><span class="s1">&#39;net_value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">])</span>
 
-<span class="c1"># filters regions where the net value is &gt; 0.</span>
+<span class="n">regions_to_net</span> <span class="o">=</span> <span class="n">regions_to_net</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+    <span class="n">lower_bound</span><span class="o">=</span><span class="n">regions_to_net</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.96</span><span class="o">*</span><span class="n">regions_to_net</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">regions_to_net</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">regions_to_net_lower_bound</span> <span class="o">=</span> <span class="n">regions_to_net</span><span class="p">[</span><span class="s1">&#39;lower_bound&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="n">regions_to_net</span> <span class="o">=</span> <span class="n">regions_to_net</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+<span class="c1"># filters regions where the net value lower bound is &gt; 0.</span>
 <span class="n">regions_to_invest</span> <span class="o">=</span> <span class="p">{</span><span class="n">region</span><span class="p">:</span> <span class="n">net</span> 
-                     <span class="k">for</span> <span class="n">region</span><span class="p">,</span> <span class="n">net</span> <span class="ow">in</span> <span class="n">regions_to_net</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                     <span class="k">for</span> <span class="n">region</span><span class="p">,</span> <span class="n">net</span> <span class="ow">in</span> <span class="n">regions_to_net_lower_bound</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
                      <span class="k">if</span> <span class="n">net</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">}</span>
 
 <span class="n">regions_to_invest</span>
@@ -858,26 +856,24 @@ E[Y|X]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: 13.236486486486486,
- 2: 30.827067669172934,
- 4: 19.48125,
- 5: 0.3333333333333333,
- 9: 43.86259541984733,
- 11: 47.24812030075188,
- 12: 47.37662337662338,
- 15: 41.76865671641791,
- 17: 50.77536231884058,
- 18: 51.05673758865248,
- 19: 28.446969696969695,
- 20: 32.26470588235294,
- 21: 34.68,
- 25: 44.153333333333336,
- 33: 4.13768115942029,
- 35: 19.234567901234566,
- 37: 39.51428571428571,
- 38: 60.23076923076923,
- 45: 14.059701492537313,
- 49: 27.039473684210527}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: 2.9729729729729737,
+ 2: 20.543302704837856,
+ 4: 10.051075065003388,
+ 9: 32.08862469914759,
+ 11: 37.434210420891255,
+ 12: 37.44213667009523,
+ 15: 32.09847683044394,
+ 17: 39.52753893574483,
+ 18: 41.86162250217046,
+ 19: 15.62406327716401,
+ 20: 22.06654814414531,
+ 21: 24.621030401718578,
+ 25: 33.97022928360584,
+ 35: 11.68776141117673,
+ 37: 27.83183541449011,
+ 38: 49.740709395699994,
+ 45: 2.286387928016998,
+ 49: 17.01853709535029}
 </pre></div>
 </div>
 </div>
@@ -1099,7 +1095,7 @@ Test R2:  0.6938513063048141
 <p>This is something we call <strong>thresholding</strong>. If the prediction exceeds a certain threshold (zero in our case, but could be something else), we take one decision, if it doesn’t, we take another. One other example of where this could be applied in real life is transactional fraud detection: if the prediction score of a model that detects fraud is above some threshold <code class="docutils literal notranslate"><span class="pre">X</span></code>, we deny the transaction, otherwise we approve it.</p>
 <p>Thresholding works in lots of real case scenarios and it is particularly useful when the nature of the decision is binary. However, we can think of cases where things tend to be more nuanced. For example, you might be willing to spend more on marketing to get the attention of very profitable customers. Or you might want to add them to some prime customers list, where you give special treatment to them, but it also costs you more to do so. Notice that if we include these possibilities, your decision goes from binary (engage vs don’t engage) to continuous: how much should you invest in a customer.</p>
 <p>Here, for the next example, suppose your decision is not just who to do business with, but how much marketing costs you should invest in each customer. And for the sake of the example, assume that you are competing with other firms and whoever spends more on marketing in a particular customer wins that customer (much like a bidding mechanism). In that case, it makes sense to invest more in highly profitable customers, less in marginally profitable customers and not at all in non profitable customers.</p>
-<p>One way to do that is to descritize your predictions into bands. We’ve done this previously for the purpose of model comparison, but here we’ll do it for decision making. Let’s create 20 bands. We can think of those as quantiles or equal size groups. The first band will contain the 5% less profitable customers <em>according to our predictions</em>, the second band will contain from the 5% to the 10% less profitable and so on. The last band, 20, will contain the most profitable customers.</p>
+<p>One way to do that is to discritize your predictions into bands. We’ve done this previously for the purpose of model comparison, but here we’ll do it for decision making. Let’s create 20 bands. We can think of those as quantiles or equal size groups. The first band will contain the 5% less profitable customers <em>according to our predictions</em>, the second band will contain from the 5% to the 10% less profitable and so on. The last band, 20, will contain the most profitable customers.</p>
 <p>Notice that the binning too has to be estimated on the training set and applied on the test set! For this reason, we will compute the bins using <code class="docutils literal notranslate"><span class="pre">pd.qcut</span></code> on the training set. To actually do the binning, we will use <code class="docutils literal notranslate"><span class="pre">np.digitize</span></code>, passing the bins that were precomputed on the training set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1113,7 +1109,7 @@ Test R2:  0.6938513063048141
     <span class="k">return</span> <span class="n">binner_function</span>
     
 
-<span class="c1"># train the bining function</span>
+<span class="c1"># train the binning function</span>
 <span class="n">binner_fn</span> <span class="o">=</span> <span class="n">model_binner</span><span class="p">(</span><span class="n">train_pred</span><span class="p">[</span><span class="s2">&quot;predictions&quot;</span><span class="p">],</span> <span class="mi">20</span><span class="p">)</span>
 
 <span class="c1"># apply the binning</span>
@@ -1263,23 +1259,43 @@ If you found this book valuable and you want to support it, please go to <a clas
 
               </div>
               
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="16-Regression-Discontinuity-Design.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">16 - Regression Discontinuity Design</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">18 - Heterogeneous Treatment Effects and Personalization</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="16-Regression-Discontinuity-Design.html" title="previous page">16 - Regression Discontinuity Design</a>
-    <a class='right-next' id="next-link" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html" title="next page">18 - Heterogeneous Treatment Effects and Personalization</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
           By Matheus Facure Alves<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -1288,21 +1304,19 @@ If you found this book valuable and you want to support it, please go to <a clas
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+  
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-97848161-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
 
-
-    
-    <!-- Google Analytics -->
-    <script>
-      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-97848161-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
-    <script async src='https://www.google-analytics.com/analytics.js'></script>
-    <!-- End Google Analytics -->
-    
   </body>
 </html>
