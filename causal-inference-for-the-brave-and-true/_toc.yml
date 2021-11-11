@@ -27,7 +27,7 @@ parts:
   - file: 20-Plug-and-Play-Estimators.ipynb
   - file: 21-Meta-Learners.ipynb
   - file: 22-Debiased-Orthogonal-Machine-Learning.ipynb
-- caption: Apendix
+- caption: Appendix
   chapters:
   - file: Debiasing-with-Orthogonalization.ipynb
   - file: Debiasing-with-Propensity-Score.ipynb
