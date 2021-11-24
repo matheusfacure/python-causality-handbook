@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -399,7 +399,7 @@
         
               <div>
                 
-  <div class="section" id="graphical-causal-models">
+  <div class="tex2jax_ignore mathjax_ignore section" id="graphical-causal-models">
 <h1>04 - Graphical Causal Models<a class="headerlink" href="#graphical-causal-models" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="thinking-about-causality">
 <h2>Thinking About Causality<a class="headerlink" href="#thinking-about-causality" title="Permalink to this headline">¶</a></h2>
@@ -475,11 +475,11 @@
 </div>
 <p>In the first graph, dependence flows in the direction of the arrows. To give a more concrete example, let’s say that knowing about causal inference is the only way to solve business problems and solving those problems is the only way to get a job promotion. So causal knowledge causes problem solving which causes job promotion. We can say here that job promotion is dependent on causal knowledge. The greater the causal knowledge, the greater your chances of getting a promotion. Notice that dependence is symmetric, although it is a little less intuitive. The greater your chances of promotion, the greater the chance you have causal knowledge, otherwise it would be difficult to get a promotion.</p>
 <p>Now, let’s say I condition on the intermediary variable. In this case, the dependence is blocked. So, X and Z are independent given Y. In the graph above, red indicates that Y is a conditioned variable.  By the same token, in our example, if I know that you are good at solving problems, knowing that you know causal inference doesn’t give any further information about your chances of getting a job promotion. In mathematical terms, \(E[Promotion|Solve \ problems, Causal \ knowledge]=E[Promotion|Solve \ problems]\). The inverse is also true, once I know how good you are at solving problems, knowing about your job promotion status gives me no further information about how likely you are to know causal inference.</p>
-<p>As a general rule, the dependence flow in the direct path from A to B is blocked when we condition on an intermediary variable C. Or,</p>
-<p><span class="math notranslate nohighlight">\(A \not\!\perp\!\!\!\perp B\)</span></p>
+<p>As a general rule, the dependence flow in the direct path from A to C is blocked when we condition on an intermediary variable B. Or,</p>
+<p><span class="math notranslate nohighlight">\(A \not\!\perp\!\!\!\perp C\)</span></p>
 <p>and</p>
 <p><span class="math notranslate nohighlight">\(
-A \!\perp\!\!\!\perp B | C
+A \!\perp\!\!\!\perp C | B
 \)</span></p>
 <p>Now, let’s consider a fork structure. In this case, the same variable causes two other variables down the graph. In this case, the dependence flows backward through the arrows and we have what is called a <strong>backdoor path</strong>. We can close the backdoor path and shut down dependence by conditioning on the common cause.</p>
 <div class="cell tag_hide-input docutils container">
@@ -597,8 +597,8 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Educ&quot;</span><span class="p">),</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">),</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Educ&quot;</span><span class="p">),</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">),</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
 <span class="n">g</span>
 </pre></div>
@@ -622,8 +622,8 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;SAT&quot;</span><span class="p">,</span> <span class="s2">&quot;Educ&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Family Income&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;SAT&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;SAT&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
 <span class="n">g</span>
 </pre></div>
 </div>
@@ -642,14 +642,14 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;U&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;IQ&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;SAT&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Father&#39;s Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Inteligence&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Mother&#39;s Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Inteligence&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;IQ&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;SAT&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Father&#39;s Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Intelligence&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Mother&#39;s Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Intelligence&quot;</span><span class="p">)</span>
 
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Educ&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Educ&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
 
 <span class="n">g</span>
 </pre></div>

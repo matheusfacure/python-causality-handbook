@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -399,7 +399,7 @@
         
               <div>
                 
-  <div class="section" id="the-unreasonable-effectiveness-of-linear-regression">
+  <div class="tex2jax_ignore mathjax_ignore section" id="the-unreasonable-effectiveness-of-linear-regression">
 <h1>05 - The Unreasonable Effectiveness of Linear Regression<a class="headerlink" href="#the-unreasonable-effectiveness-of-linear-regression" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="all-you-need-is-regression">
 <h2>All You Need is Regression<a class="headerlink" href="#all-you-need-is-regression" title="Permalink to this headline">¶</a></h2>
@@ -423,6 +423,7 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <p><span class="math notranslate nohighlight">\(
 exam_i = \beta_0 + \kappa \ Online_i + u_i
 \)</span></p>
+<p>This means we are modeling the exam outcome as a baseline \(\beta_0\) plus \(\kappa\) if the class is online.  Of course the exam result is driven by additional variables (like student’s mood on the exam day, hours studied and so on). But we don’t really care about understanding those relationships. So, instead, we use that \(u_i\) term to represent everything else we don’t care about. This is called the model error.</p>
 <p>Notice that \(Online\) is our treatment indication and hence, a dummy variable. It is zero when the treatment is face to face and 1 if it’s online. With that in mind, we can see that linear regression will recover \(E[Y|T=0] = \beta_0\) and \(E[Y|T=1] = \beta_0 + \kappa \). \(\kappa\) will be our ATE.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -539,7 +540,7 @@ y_i = \beta_0 + \kappa T_i + \beta_1 X_{1i} + ... +\beta_k X_{ki} + u_i
 \)</span></p>
 <p>where \(\tilde{T_i}\) is the residual from a regression of all other covariates \(X_{1i} + … + X_{ki}\) on \(T_i\). Now, let’s appreciate how cool this is. It means that the coefficient of a multivariate regression is the bivariate coefficient of the same regressor <strong>after accounting for the effect of other variables in the model</strong>. In causal inference terms, \(\kappa\) is the bivariate coefficient of \(T\) after having used all other variables to predict it.</p>
 <p>This has a nice intuition behind it. If we can predict \(T\) using other variables, it means it’s not random. However, we can make it so that \(T\) is as good as random once we control for other available variables. To do so, we use linear regression to predict it from the other variables and then we take the residuals of that regression \(\tilde{T}\). By definition, \(\tilde{T}\) cannot be predicted by the other variables \(X\) that we’ve already used to predict \(T\). Quite elegantly, \(\tilde{T}\) is a version of the treatment that is not associated with any other variable in \(X\).</p>
-<p>By the way, this is also a property of linear regression. The residual always orthogonal or uncorrelated with any of the variables in the model that created it:</p>
+<p>By the way, this is also a property of linear regression. The residual are always orthogonal or uncorrelated with any of the variables in the model that created it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
@@ -595,7 +596,7 @@ y_i = \beta_0 + \kappa T_i + \beta_1 X_{1i} + ... +\beta_k X_{ki} + u_i
 <h2>Regression For Non-Random Data<a class="headerlink" href="#regression-for-non-random-data" title="Permalink to this headline">¶</a></h2>
 <p>So far, we worked with random experiment data but, as we know, those are hard to come by. Experiments are very expensive to conduct or simply infeasible. It’s very hard to convince McKinsey &amp; Co. to randomly provide their services free of charge so that we can, once and for all, distinguish the value their consulting services brings from the fact that those firms that can afford to pay them are already very well off.</p>
 <p>For this reason, we shall now delve into non random or observational data. In the following example, we will try to estimate the impact of an additional year of education on hourly wage. As you might have guessed, it is extremely hard to conduct an experiment with education. You can’t simply randomize people to 4, 8 or 12 years of education. In this case observational data is all we have.</p>
-<p>First, let’s estimate a very simple model. We will regress log hourly wages on years of education. We use logs here so that our parameter estimates have a percentage interpretation. With it, we will be able to say that 1 extra year of education yields a wage increase of x%.</p>
+<p>First, let’s estimate a very simple model. We will regress log hourly wages on years of education. We use logs here so that our parameter estimates have a percentage interpretation (if you never heard about this amazing properties of the log and want to know why that is, check out <a class="reference external" href="https://stats.stackexchange.com/questions/244199/why-is-it-that-natural-log-changes-are-percentage-changes-what-is-about-logs-th">this link</a>). With it, we will be able to say that 1 extra year of education yields a wage increase of x%.</p>
 <p><span class="math notranslate nohighlight">\(
 log(hwage)_i = \beta_0 + \beta_1 educ_i + u_i
 \)</span></p>
