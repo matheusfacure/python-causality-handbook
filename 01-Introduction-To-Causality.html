@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
+    <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
-  Appendix
+  Apendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Contribute
  </span>
@@ -404,7 +404,7 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-causality">
+  <div class="section" id="introduction-to-causality">
 <h1>01 - Introduction To Causality<a class="headerlink" href="#introduction-to-causality" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="why-bother">
 <h2>Why Bother?<a class="headerlink" href="#why-bother" title="Permalink to this headline">¶</a></h2>
@@ -432,7 +432,7 @@
 <p>The type of question Machine Learning is currently very good at answering is of the prediction kind. As Ajay Agrawal, Joshua Gans and Avi Goldfarb puts it in the book Prediction Machines, “the new wave of artificial intelligence does not actually bring us intelligence but instead a critical component of intelligence - prediction”. We can do all sorts of wonderful things with machine learning. The only requirement is that we frame our problems as prediction ones. Want to translate from english to portuguese? Then build a ML model that predicts portuguese sentences when given english sentences. Want to recognize faces? Then build a ML model that predicts the presence of a face in a subsection of a picture. Want to build a self driving car? Then build one ML model to predict the direction of the wheel and the pressure on the brakes and accelerator when presented with images and sensors from the surroundings of a car.</p>
 <p>However, ML is not a panacea. It can perform wonders under very strict boundaries and still fail miserably if the data it’s using deviates a little from what the model is accustomed to. To give another example from Prediction Machines, “in many industries, low prices are associated with low sales. For example, in the hotel industry, prices are low outside the tourist season, and prices are high when demand is highest and hotels are full. Given that data, a naive prediction might suggest that increasing the price would lead to more rooms sold.”</p>
 <p>ML is notoriously bad at this inverse causality type of problems. They require us to answer “what if” questions, what Economists call counterfactuals. What would happen if instead of this price I’m currently asking for my merchandise, I use another price? What would happen if instead of this low fat diet I’m in, I do a low sugar one? If you work in a bank, giving credit, you will have to figure out how changing the customer line changes your revenue. Or if you work at the local government, you might be asked to figure out how to make the schooling system better. Should you give tablets to every kid because the era of digital knowledge tells you to? Or should you build an old fashioned library?</p>
-<p>At the heart of these questions there is a causal inquiry we wish to know the answer. Causal questions permeate everyday problems, like figuring out how to make sales go up, but they also play an important role on dilemmas that are very personal and dear to us: do I have to go to an expensive school to be successful in life (does education cause earnings)? Does imigration lower my chances of getting a job (does imigration causes unemployment to go up)? Does money transfer to the poor lower the crime rate? It doesn’t matter the field you are in, it is very likely you had or will have to answer some type of causal question. Unfortunately for ML, we can’t rely on correlation type predictions to tackle them.</p>
+<p>At the heart of these questions there is a causal inquiry we wish to know the answer. Causal questions permeate everyday problems, like figuring out how to make sales go up, but they also play an important role on dilemmas that are very personal and dear to us: do I have to go to an expensive school to be successful in life (does education cause earnings)? Does imigration lowers my chances of getting a job (does imigration causes unemployment to go up)? Does money transfer to the poor lower the crime rate? It doesn’t matter the field you are in, it is very likely you had or will have to answer some type of causal question. Unfortunately for ML, we can’t rely on correlation type predictions to tackle them.</p>
 <p>Answering this kind of question is tougher than most people appreciate. Your parents have probably repeated to you that “association is not causation”, “association is not causation”. But actually explaining why that is the case is a bit more involved. This is what this introduction to causal inference is all about. As for the rest of this book, it will be dedicated to <strong>figuring how to make association be causation</strong>.</p>
 </div>
 <div class="section" id="when-association-is-causation">

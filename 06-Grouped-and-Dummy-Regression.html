@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
+    <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
-  Appendix
+  Apendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p class="caption">
  <span class="caption-text">
   Contribute
  </span>
@@ -389,7 +389,7 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="grouped-and-dummy-regression">
+  <div class="section" id="grouped-and-dummy-regression">
 <h1>06 - Grouped and Dummy Regression<a class="headerlink" href="#grouped-and-dummy-regression" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="regression-with-grouped-data">
 <h2>Regression With Grouped Data<a class="headerlink" href="#regression-with-grouped-data" title="Permalink to this headline">¶</a></h2>
@@ -651,7 +651,7 @@
 </tr>
 </table></div></div>
 </div>
-<p>Notice how the parameter estimate of <code class="docutils literal notranslate"><span class="pre">educ</span></code> in the grouped model is very close to the one in the ungrouped data (actually, they are the same in this case). Also, even with only 10 data points, we’ve managed to get a statistically significant coefficient. That’s because, although we have fewer points, grouping also lowers the variance by a lot. Also notice how the standard error is a bit larger, as is the t statistics. That’s because some information about the variance is lost, so we have to be more conservative. Once we group the data, we don’t know how large the variance is within each group. Compare the results above with what we would have with the non weighted model below.</p>
+<p>Notice how the parameter estimate of <code class="docutils literal notranslate"><span class="pre">educ</span></code> in the grouped model is exactly the same as the one in the ungrouped data. Also, even with only 10 data points, we’ve managed to get a statistically significant coefficient. That’s because, although we have fewer points, grouping also lowers the variance by a lot. Also notice how the standard error is a bit larger, as is the t statistics. That’s because some information about the variance is lost, so we have to be more conservative. Once we group the data, we don’t know how large the variance is within each group. Compare the results above with what we would have with the non weighted model below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_3</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;lhwage ~ educ&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">group_wage</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -688,7 +688,7 @@
 <img alt="_images/06-Grouped-and-Dummy-Regression_14_0.png" src="_images/06-Grouped-and-Dummy-Regression_14_0.png" />
 </div>
 </div>
-<p>The bottom line is that regression is this marvellous tool that works both with individual or aggregated data, but you have to use weights in this last case. To use weighted regression you need mean statistics. Not sums, not standard deviations, not medians, but means! For both the covariates and the dependent variable. Just keep in mind that the result of weighted regression with grouped data won’t match exactly that of regression in ungrouped data, but it will be pretty similar.</p>
+<p>The bottom line is that regression is this marvellous tool that works both with individual or aggregated data, but you have to use weights in this last case. To use weighted regression you need mean statistics. Not sums, not standard deviations, not medians, but means! For both the covariates and the dependent variable. With the exception of the bivariate case, the result of weighted regression with grouped data won’t match exactly that of regression in ungrouped data, but it will be pretty similar.</p>
 <p><img alt="img" src="_images/heterosk.png" /></p>
 <p>I’ll finish with a final example using additional covariates in a grouped data model.</p>
 <div class="cell docutils container">
