@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -408,7 +408,7 @@
         
               <div>
                 
-  <div class="section" id="regression-discontinuity-design">
+  <div class="tex2jax_ignore mathjax_ignore section" id="regression-discontinuity-design">
 <h1>16 - Regression Discontinuity Design<a class="headerlink" href="#regression-discontinuity-design" title="Permalink to this headline">¶</a></h1>
 <p>We don’t stop to think about it much, but it is impressive how smooth nature is. You can’t grow a tree without first getting a bud, you can’t teleport from one place to another, a wound takes its time to heal. Even in the social realm, smoothness seems to be the norm. You can’t grow a business in one day, consistency and hard work are required to build wealth and it takes years before you learn how linear regression works. Under normal circumstances, nature is very cohesive and doesn’t jump around much.</p>
 <blockquote>
@@ -417,11 +417,11 @@
 <p>- Tao Te Ching, Lao Tzu.</p>
 <p>Which means that <strong>when we do see jumps and spikes, they are probably artificial</strong> and often man-made situations. These events are usually accompanied by counterfactuals to the normal way of things: if a weird thing happens, this gives us some insight into what would have happened if nature was to work in a different way. Exploring these artificial jumps is at the core of Regression Discontinuity Design.</p>
 <p><img alt="img" src="_images/smooth.png" /></p>
-<p>The basic setup goes like this. Imagine that you have a treatment variable \(T\) and potential outcomes \(Y_0\) and \(Y_1\). The treatment T is a discontinuous function of an observed running variable \(R\) such that</p>
+<p>The basic setup goes like this. Imagine that you have a treatment variable <span class="math notranslate nohighlight">\(T\)</span> and potential outcomes <span class="math notranslate nohighlight">\(Y_0\)</span> and <span class="math notranslate nohighlight">\(Y_1\)</span>. The treatment T is a discontinuous function of an observed running variable <span class="math notranslate nohighlight">\(R\)</span> such that</p>
 <p><span class="math notranslate nohighlight">\(
 D_i = \mathcal{1}\{R_i&gt;c\}
 \)</span></p>
-<p>In other words, this is saying that treatment is zero when \(R\) is below a threshold \(c\) and one otherwise. This means that we get to observe \(Y_1\) when \(R&gt;c\) and \(Y_0\) when \(R&lt;c\). To wrap our head around this, think about the potential outcomes as 2 functions that we can’t observe entirely. Both \(Y_0(R)\) and \(Y_1(R)\) are there, we just can’t see that. The threshold acts as a switch that allows us to see one or the other of those function, but never both, much like in the image below:</p>
+<p>In other words, this is saying that treatment is zero when <span class="math notranslate nohighlight">\(R\)</span> is below a threshold <span class="math notranslate nohighlight">\(c\)</span> and one otherwise. This means that we get to observe <span class="math notranslate nohighlight">\(Y_1\)</span> when <span class="math notranslate nohighlight">\(R&gt;c\)</span> and <span class="math notranslate nohighlight">\(Y_0\)</span> when <span class="math notranslate nohighlight">\(R&lt;c\)</span>. To wrap our head around this, think about the potential outcomes as 2 functions that we can’t observe entirely. Both <span class="math notranslate nohighlight">\(Y_0(R)\)</span> and <span class="math notranslate nohighlight">\(Y_1(R)\)</span> are there, we just can’t see that. The threshold acts as a switch that allows us to see one or the other of those function, but never both, much like in the image below:</p>
 <p><img alt="img" src="_images/rdd.png" /></p>
 <p>The idea of regression discontinuity is to compare the outcome just above and just below the threshold to identify the treatment effect at the threshold. This is called a <strong>sharp RD</strong> design, since the probability of getting the treatment jumps from 0 to 1 at the threshold, but we could also think about a <strong>fuzzy RD</strong> design, where the probability also jumps, but is a less dramatic manner.</p>
 <div class="section" id="is-alcohol-killing-you">
@@ -429,7 +429,7 @@ D_i = \mathcal{1}\{R_i&gt;c\}
 <p>A very relevant public policy question is what should be the minimal drinking age. Most countries, Brazil included, set it to be 18 year, but in the US (most states) it is currently 21. So, is it the case that the US is being overly prudent and that they should lower their minimal drinking age? Or is it the case that other countries should make their legal drinking age higher?</p>
 <p>One way to look at this question is from a <a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/app.1.1.164">mortality rate perspective (Carpenter and Dobkin, 2009)</a>. From the public policy standpoint, one could argue that we should lower the mortality rate as much as possible. If alcohol consumption increases the mortality rate by a lot, we should avoid lowering the minimum drinking age. This would be consistent with the objective of lowering deaths caused by alcohol consumption.</p>
 <p>To estimate the impacts of alcohol on death, we could use the fact that legal drinking age imposes a discontinuity on nature. In the US, those just under 21 years don’t drink (or drink much less) while those just older than 21 do drink. This means that the probability of drinking jumps at 21 years and that is something we can explore with an RDD.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -574,8 +574,8 @@ D_i = \mathcal{1}\{R_i&gt;c\}
 <p><span class="math notranslate nohighlight">\(
 y_i = \beta_0 + \beta_1 r_i + \beta_2 \mathcal{1}\{r_i&gt;c\} + \beta_3 \mathcal{1}\{r_i&gt;c\} r_i
 \)</span></p>
-<p>Essentially, this is the same as fitting a linear regression above the threshold and another below it. The parameter \(\beta_0\) is the intercept of the regression below the threshold and \(\beta_0+\beta_2\) is the intercept for the regression above the threshold.</p>
-<p>Here is where the trick of centering the running variable at the threshold comes into play. After this pre-processing step, the threshold becomes zero. This causes the intercept \(\beta_0\) to be the predicted value at the threshold, for the regression below it. In other words, \(\beta_0=\lim_{r \to c^-} E[Y_{ti}|R_i=r]\). By the same reasoning, \(\beta_0+\beta_2\) is the limit of the outcome from above. Wich means, that</p>
+<p>Essentially, this is the same as fitting a linear regression above the threshold and another below it. The parameter <span class="math notranslate nohighlight">\(\beta_0\)</span> is the intercept of the regression below the threshold and <span class="math notranslate nohighlight">\(\beta_0+\beta_2\)</span> is the intercept for the regression above the threshold.</p>
+<p>Here is where the trick of centering the running variable at the threshold comes into play. After this pre-processing step, the threshold becomes zero. This causes the intercept <span class="math notranslate nohighlight">\(\beta_0\)</span> to be the predicted value at the threshold, for the regression below it. In other words, <span class="math notranslate nohighlight">\(\beta_0=\lim_{r \to c^-} E[Y_{ti}|R_i=r]\)</span>. By the same reasoning, <span class="math notranslate nohighlight">\(\beta_0+\beta_2\)</span> is the limit of the outcome from above. Wich means, that</p>
 <p><span class="math notranslate nohighlight">\(
 \lim_{r \to c^+} E[Y_{ti}|R_i=r] - \lim_{r \to c^-} E[Y_{ti}|R_i=r]=\beta_2=E[ATE|R=c]
 \)</span></p>
@@ -652,7 +652,7 @@ y_i = \beta_0 + \beta_1 r_i + \beta_2 \mathcal{1}\{r_i&gt;c\} + \beta_3 \mathcal
 <p><span class="math notranslate nohighlight">\(
 K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 \)</span></p>
-<p>The first part of this kernel is an indicator function to whether we are close to the threshold. How close? This is determined by a bandwidth parameter \(h\). The second part of this kernel is a weighting function. As we move away from the threshold, the weights get smaller and smaller. These weights are divided by the bandwidth. If the bandwidth is large, the weights get smaller at a slower rate. If the bandwidth is small, the weights quickly go to zero.</p>
+<p>The first part of this kernel is an indicator function to whether we are close to the threshold. How close? This is determined by a bandwidth parameter <span class="math notranslate nohighlight">\(h\)</span>. The second part of this kernel is a weighting function. As we move away from the threshold, the weights get smaller and smaller. These weights are divided by the bandwidth. If the bandwidth is large, the weights get smaller at a slower rate. If the bandwidth is small, the weights quickly go to zero.</p>
 <p>To make it easier to understand, here is what the weights look like for this kernel applied to our problem. I’ve set the bandwidth to be 1 here, meaning we will only consider data from people that are no older than 22 years and no younger than 20 years.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -836,15 +836,15 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </div>
 </div>
 <p>We can think of fuzzy RD as a sort of non compliance. Passing the threshold should make everyone receive the diploma, but some students, the never takers, don’t get it. Likewise, being below the threshold should prevent you from getting a diploma, but some students, the always takers, manage to get it anyway.</p>
-<p>Just like when we have the potential outcome, we have the potential treatment status in this situation. \(T_1\) is the treatment everyone would have received had they been above the threshold. \(T_0\) is the treatment everyone would have received had they been below the threshold. As you’ve might have noticed, we can think of the <strong>threshold as an Instrumental Variable</strong>. Just as in IV, if we naively estimate the treatment effect, it will be biased towards zero.</p>
+<p>Just like when we have the potential outcome, we have the potential treatment status in this situation. <span class="math notranslate nohighlight">\(T_1\)</span> is the treatment everyone would have received had they been above the threshold. <span class="math notranslate nohighlight">\(T_0\)</span> is the treatment everyone would have received had they been below the threshold. As you’ve might have noticed, we can think of the <strong>threshold as an Instrumental Variable</strong>. Just as in IV, if we naively estimate the treatment effect, it will be biased towards zero.</p>
 <p><img alt="img" src="_images/rdd_fuzzy.png" /></p>
-<p>The probability of treatment being less than one, even above the threshold, makes the outcome we observe less than the true potential outcome \(Y_1\). By the same token, the outcome we observe below the threshold is higher than the true potential outcome \(Y_0\). This makes it look like the treatment effect at the threshold is smaller than it actually is and we will have to use IV techniques to correct for that.</p>
-<p>Just like when we’ve assumed smoothness on the potential outcome, we now assume it for the potential treatment. Also, we need to assume monotonicity, just like in IV. In case you don’t remember, it states that \(T_{i1}&gt;T_{i0} \ \forall i\). This means that crossing the threshold from the left to the right only increases your chance of getting a diploma (or that there are no defiers). With these 2 assumptions, we have a Wald Estimator for LATE.</p>
+<p>The probability of treatment being less than one, even above the threshold, makes the outcome we observe less than the true potential outcome <span class="math notranslate nohighlight">\(Y_1\)</span>. By the same token, the outcome we observe below the threshold is higher than the true potential outcome <span class="math notranslate nohighlight">\(Y_0\)</span>. This makes it look like the treatment effect at the threshold is smaller than it actually is and we will have to use IV techniques to correct for that.</p>
+<p>Just like when we’ve assumed smoothness on the potential outcome, we now assume it for the potential treatment. Also, we need to assume monotonicity, just like in IV. In case you don’t remember, it states that <span class="math notranslate nohighlight">\(T_{i1}&gt;T_{i0} \ \forall i\)</span>. This means that crossing the threshold from the left to the right only increases your chance of getting a diploma (or that there are no defiers). With these 2 assumptions, we have a Wald Estimator for LATE.</p>
 <div class="math notranslate nohighlight">
 \[
 \dfrac{\lim_{r \to c^+} E[Y_i|R_i=r] - \lim_{r \to c^-} E[Y_i|R_i=r]}{\lim_{r \to c^+} E[T_i|R_i=r] - \lim_{r \to c^-} E[T_i|R_i=r]} = E[Y_{1i} - Y_{0i} | T_{1i} &gt; T_{0i}, R_i=c]
 \]</div>
-<p>Notice how this is a local estimate in two senses. First, it is local because it only gives the treatment effect at the threshold \(c\). This is the RD locality. Second, it is local because it only estimates the treatment effect for the compliers. This is the IV locality.</p>
+<p>Notice how this is a local estimate in two senses. First, it is local because it only gives the treatment effect at the threshold <span class="math notranslate nohighlight">\(c\)</span>. This is the RD locality. Second, it is local because it only estimates the treatment effect for the compliers. This is the IV locality.</p>
 <p>To estimate this, we will use 2 linear regression. The numerator can be estimated just like we’ve done before. To get the denominator, we simply replace the outcome with the treatment. But first, let’s talk about a sanity check we need to run to make sure we can trust our RDD estimates.</p>
 <div class="section" id="the-mccrary-test">
 <h3>The McCrary Test<a class="headerlink" href="#the-mccrary-test" title="Permalink to this headline">¶</a></h3>

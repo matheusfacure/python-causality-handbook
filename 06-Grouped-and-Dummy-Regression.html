@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -389,7 +389,7 @@
         
               <div>
                 
-  <div class="section" id="grouped-and-dummy-regression">
+  <div class="tex2jax_ignore mathjax_ignore section" id="grouped-and-dummy-regression">
 <h1>06 - Grouped and Dummy Regression<a class="headerlink" href="#grouped-and-dummy-regression" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="regression-with-grouped-data">
 <h2>Regression With Grouped Data<a class="headerlink" href="#regression-with-grouped-data" title="Permalink to this headline">¶</a></h2>
@@ -651,7 +651,7 @@
 </tr>
 </table></div></div>
 </div>
-<p>Notice how the parameter estimate of <code class="docutils literal notranslate"><span class="pre">educ</span></code> in the grouped model is exactly the same as the one in the ungrouped data. Also, even with only 10 data points, we’ve managed to get a statistically significant coefficient. That’s because, although we have fewer points, grouping also lowers the variance by a lot. Also notice how the standard error is a bit larger, as is the t statistics. That’s because some information about the variance is lost, so we have to be more conservative. Once we group the data, we don’t know how large the variance is within each group. Compare the results above with what we would have with the non weighted model below.</p>
+<p>Notice how the parameter estimate of <code class="docutils literal notranslate"><span class="pre">educ</span></code> in the grouped model is very close to the one in the ungrouped data (actually, they are the same in this case). Also, even with only 10 data points, we’ve managed to get a statistically significant coefficient. That’s because, although we have fewer points, grouping also lowers the variance by a lot. Also notice how the standard error is a bit larger, as is the t statistics. That’s because some information about the variance is lost, so we have to be more conservative. Once we group the data, we don’t know how large the variance is within each group. Compare the results above with what we would have with the non weighted model below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_3</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;lhwage ~ educ&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">group_wage</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -688,7 +688,7 @@
 <img alt="_images/06-Grouped-and-Dummy-Regression_14_0.png" src="_images/06-Grouped-and-Dummy-Regression_14_0.png" />
 </div>
 </div>
-<p>The bottom line is that regression is this marvellous tool that works both with individual or aggregated data, but you have to use weights in this last case. To use weighted regression you need mean statistics. Not sums, not standard deviations, not medians, but means! For both the covariates and the dependent variable. With the exception of the bivariate case, the result of weighted regression with grouped data won’t match exactly that of regression in ungrouped data, but it will be pretty similar.</p>
+<p>The bottom line is that regression is this marvellous tool that works both with individual or aggregated data, but you have to use weights in this last case. To use weighted regression you need mean statistics. Not sums, not standard deviations, not medians, but means! For both the covariates and the dependent variable. Just keep in mind that the result of weighted regression with grouped data won’t match exactly that of regression in ungrouped data, but it will be pretty similar.</p>
 <p><img alt="img" src="_images/heterosk.png" /></p>
 <p>I’ll finish with a final example using additional covariates in a grouped data model.</p>
 <div class="cell docutils container">
@@ -870,11 +870,11 @@
 </table></div></div>
 </div>
 <p>In this case, when the person hasn’t completed 12th grade (dummy off), the average income is 19.9. When he or she has completed 12th grade (dummy on), the predicted value or the average income is 24.8449 (19.9405 + 4.9044). Hence, the dummy coefficient captures the difference in means, which is 4.9044 in our case.</p>
-<p>More formally, when the dependent variable is binary, as is often the case with treatment indicators, regression captures the ATE perfectly. That is because regression is a linear approximation to the conditional expectation function (CEF) \(E[Y|X]\) and, in this particular case, the CEF IS linear. Namely, we can define \(E[Y_i|T_i=0]=\alpha\) and \(E[Y_i|T_i=1] = \alpha + \beta\), which leads to the following CEF</p>
+<p>More formally, when the dependent variable is binary, as is often the case with treatment indicators, regression captures the ATE perfectly. That is because regression is a linear approximation to the conditional expectation function (CEF) <span class="math notranslate nohighlight">\(E[Y|X]\)</span> and, in this particular case, the CEF IS linear. Namely, we can define <span class="math notranslate nohighlight">\(E[Y_i|T_i=0]=\alpha\)</span> and <span class="math notranslate nohighlight">\(E[Y_i|T_i=1] = \alpha + \beta\)</span>, which leads to the following CEF</p>
 <p><span class="math notranslate nohighlight">\(
 E[Y_i|T_i] =  E[Y_i|T_i=0] + \beta T_i = \alpha + \beta T_i
 \)</span></p>
-<p>and \(\beta\) is the difference in means or the ATE in the case of random data</p>
+<p>and <span class="math notranslate nohighlight">\(\beta\)</span> is the difference in means or the ATE in the case of random data</p>
 <p><span class="math notranslate nohighlight">\(
 \beta = [Y_i|T_i=1] - [Y_i|T_i=0]
 \)</span></p>
@@ -901,11 +901,11 @@ E[Y_i|T_i] =  E[Y_i|T_i=0] + \beta T_i = \alpha + \beta T_i
 <p><span class="math notranslate nohighlight">\(
 wage_i = \beta_0 + \beta_1T_i + \beta_2 IQ_i + e_i
 \)</span></p>
-<p>Here, \(\beta_1\) is the conditional difference in means and it is a constant value, 3.16 in our case. We can make this model more flexible by adding an interaction term.</p>
+<p>Here, <span class="math notranslate nohighlight">\(\beta_1\)</span> is the conditional difference in means and it is a constant value, 3.16 in our case. We can make this model more flexible by adding an interaction term.</p>
 <p><span class="math notranslate nohighlight">\(
 wage_i = \beta_0 + \beta_1T_i + \beta_2 IQ_i + \beta_3 IQ_i * T_i  + e_i
 \)</span></p>
-<p>Things are getting a little bit more complex, so let’s see what each parameter means in this model. First, the intercept \(\beta_0\). This bad boy doesn’t have a particularly interesting interpretation. It’s the expected wage when the treatment is zero (the person hasn’t graduated from 12th grade) AND the IQ is zero. Since we don’t expect IQ to be zero for anyone (actually… nevermind), this parameter is not very meaningful. Now, when we turn to \(\beta_1\), we have a similar situation. This parameter is how much increase in wage we should expect from completing 12th grade <strong>when IQ is zero</strong>. Once again, since IQ is never zero, it doesn’t have a particularly interesting meaning. Now, \(\beta_2\) is a bit more interesting. It tells us how much IQ increases wages <strong>for the non-treated</strong>. So, in our case, it is something like 0.11. This means that for each 1 extra IQ point, the person that has not completed 12th grade should expect to gain an extra 11 cents per hour. Finally, the most interesting parameter is \(\beta_3\). It tells us how much IQ increases the effect of graduating 12th grade. In our case, this parameter is 0.024, which means that for each extra IQ point, graduating 12th grade gives 2 extra cents. This might not seem much, but compare someone with 60IQ and with 140IQ. The first one will get an increase of 1.44 in wage (60 * 0.024), while the person with 140 IQ will gain an extra 3.36 dollars (60 * 0.024) when graduating from 12th grade.</p>
+<p>Things are getting a little bit more complex, so let’s see what each parameter means in this model. First, the intercept <span class="math notranslate nohighlight">\(\beta_0\)</span>. This bad boy doesn’t have a particularly interesting interpretation. It’s the expected wage when the treatment is zero (the person hasn’t graduated from 12th grade) AND the IQ is zero. Since we don’t expect IQ to be zero for anyone (actually… nevermind), this parameter is not very meaningful. Now, when we turn to <span class="math notranslate nohighlight">\(\beta_1\)</span>, we have a similar situation. This parameter is how much increase in wage we should expect from completing 12th grade <strong>when IQ is zero</strong>. Once again, since IQ is never zero, it doesn’t have a particularly interesting meaning. Now, <span class="math notranslate nohighlight">\(\beta_2\)</span> is a bit more interesting. It tells us how much IQ increases wages <strong>for the non-treated</strong>. So, in our case, it is something like 0.11. This means that for each 1 extra IQ point, the person that has not completed 12th grade should expect to gain an extra 11 cents per hour. Finally, the most interesting parameter is <span class="math notranslate nohighlight">\(\beta_3\)</span>. It tells us how much IQ increases the effect of graduating 12th grade. In our case, this parameter is 0.024, which means that for each extra IQ point, graduating 12th grade gives 2 extra cents. This might not seem much, but compare someone with 60IQ and with 140IQ. The first one will get an increase of 1.44 in wage (60 * 0.024), while the person with 140 IQ will gain an extra 3.36 dollars (60 * 0.024) when graduating from 12th grade.</p>
 <p>In simple modeling jargon, this interaction term allows the treatment effect to change by levels of the features (only IQ, in this example). The result is that if we plot the prediction lines, we will see that they are no longer parallel and that those that graduate 12th grade (T=1) have a higher slope on IQ, higher IQ benefit more from graduating than lower IQ. This is sometimes referenced as effect modification or heterogeneous treatment effect.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1078,7 +1078,7 @@ E[Y|T=17]-E[Y|T=9]: 9.590472362353516
 <p><span class="math notranslate nohighlight">\(
 E\{ \ (E[Y_i|T=1, Group_i] - E[Y_i|T=0, Group_i])w(Group_i) \ \}
 \)</span></p>
-<p>\(w(Group_i)\) is not exactly, but is proportional to the variance of the treatment in the group \(Var(T_i|Group_i)\). One natural question that arises from this is why not use the full nonparametric estimator, where the group weight is the sample size? This indeed is a valid estimator, but it is not what regression does. By using the treatment variance, regression is placing more weight on groups where the treatment varies a lot. This makes intuitive sense. If the treatment was almost constant (say 1 treated and everyone else untreated), it doesn’t matter its sample size. It wouldn’t provide much information about the treatment effect.</p>
+<p><span class="math notranslate nohighlight">\(w(Group_i)\)</span> is not exactly, but is proportional to the variance of the treatment in the group <span class="math notranslate nohighlight">\(Var(T_i|Group_i)\)</span>. One natural question that arises from this is why not use the full nonparametric estimator, where the group weight is the sample size? This indeed is a valid estimator, but it is not what regression does. By using the treatment variance, regression is placing more weight on groups where the treatment varies a lot. This makes intuitive sense. If the treatment was almost constant (say 1 treated and everyone else untreated), it doesn’t matter its sample size. It wouldn’t provide much information about the treatment effect.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_dummy_2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;hwage ~ C(educ) + C(IQ_bins)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wage_ed_bins</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>

@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -401,7 +401,7 @@
         
               <div>
                 
-  <div class="section" id="beyond-confounders">
+  <div class="tex2jax_ignore mathjax_ignore section" id="beyond-confounders">
 <h1>07 - Beyond Confounders<a class="headerlink" href="#beyond-confounders" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="good-controls">
 <h2>Good Controls<a class="headerlink" href="#good-controls" title="Permalink to this headline">¶</a></h2>
@@ -511,7 +511,7 @@
 </table>
 </div></div></div>
 </div>
-<p>Since the data is random, you know that a simple difference in means estimates the Average Treatment Effect. In other words, nothing can have caused the treatment but the randomisation, so the potential outcomes are independent of the treatment: \((Y_0, Y_1)\perp T\).</p>
+<p>Since the data is random, you know that a simple difference in means estimates the Average Treatment Effect. In other words, nothing can have caused the treatment but the randomisation, so the potential outcomes are independent of the treatment: <span class="math notranslate nohighlight">\((Y_0, Y_1)\perp T\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(
 ATE = E[Y_i|T_i=1] - E[Y_i|T_i=0]
 \)</span></p>
@@ -768,7 +768,7 @@ Email Residual Variance 0.24918421069820032
 </tr>
 </table></div></div>
 </div>
-<p>But you find some counterintuitive results. How can the treatment be increasing the number of days in the hospital? The answer lies in the fact that we are running 2 different experiments. Severity is positively linked with more days at the hospital and since the hospital with more severe cases also gives more of the drug, the drug becomes positively correlated with more days at the hospital. When we look at both hospital together, we have that \(E[Y_0|T=0]&gt;E[Y_0|T=1]\), that is, the potential outcome of the untreated is, on average, higher than that of the treated because there are more untreated in the hospital with less severe cases. In other words, severity acts as a confounder, determining the hospital the patient goes and, hence, the probability of receiving the drug.</p>
+<p>But you find some counterintuitive results. How can the treatment be increasing the number of days in the hospital? The answer lies in the fact that we are running 2 different experiments. Severity is positively linked with more days at the hospital and since the hospital with more severe cases also gives more of the drug, the drug becomes positively correlated with more days at the hospital. When we look at both hospitals together, we have that <span class="math notranslate nohighlight">\(E[Y_0|T=0]&lt;E[Y_0|T=1]\)</span>, that is, the potential outcome of the untreated is, on average, lower than that of the treated because there are more untreated in the hospital with less severe cases. In other words, severity acts as a confounder, determining the hospital the patient goes and, hence, the probability of receiving the drug.</p>
 <p>There are 2 ways of fixing that. The first one, which defeats the purpose of using data from both hospitals, is to simply look at the ATE in each hospital individually.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -873,7 +873,7 @@ Email Residual Variance 0.24918421069820032
 <p><span class="math notranslate nohighlight">\(
 \text{Var}(\hat{\beta}_2) = \dfrac{\sigma^2}{\sum(x_i - \bar{x})^2}
 \)</span></p>
-<p>From this formula, we can see that the standard error is inversely proportional to the variance of the variable \(X\). This means that, if \(X\) doesn’t change much, it will be hard to estimate its effect on the outcome. This also makes intuitive sense. Take it to the extreme and pretend you want to estimate the effect of a drug, so you conduct a test with 10000 individuals but only 1 of them get the treatment. This will make finding the ATE very hard, we will have to rely on comparing a single individual with everyone else. Another way to say this is that we need lots of variability in the treatment to make it easier to find its impact.</p>
+<p>From this formula, we can see that the standard error is inversely proportional to the variance of the variable <span class="math notranslate nohighlight">\(X\)</span>. This means that, if <span class="math notranslate nohighlight">\(X\)</span> doesn’t change much, it will be hard to estimate its effect on the outcome. This also makes intuitive sense. Take it to the extreme and pretend you want to estimate the effect of a drug, so you conduct a test with 10000 individuals but only 1 of them get the treatment. This will make finding the ATE very hard, we will have to rely on comparing a single individual with everyone else. Another way to say this is that we need lots of variability in the treatment to make it easier to find its impact.</p>
 <p>As to why including hospitals in the model increases the error of our estimate, it is because it is a good predictor of the treatment and not of the outcome (once we control for severity). So, by predicting the treatment, it effectively makes it so that it’s variance is lower! Once again, we can resort to partitioning our regression above into it’s 2 steps to see this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1049,7 +1049,7 @@ email -&gt; opened -&gt; agreement -&gt; payment
 \)</span></p>
 <p>We also think that different levels of risk and line have different propensity of doing an agreement, so we will mark them as also causing agreement. As for email and agreement, we could make an argument that some people just read the subject of the email and that makes them more likely to make an agreement. The point is that email could also cause agreement without passing through open.</p>
 <p>What we notice with this graph is that opened and agreement are both in the causal path from email to payments. So, if we control for them with regression, we would be saying “this is the effect of email while keeping <code class="docutils literal notranslate"><span class="pre">opened</span></code> and <code class="docutils literal notranslate"><span class="pre">agreement</span></code> fixed”. However, both are part of the causal effect of the email, so we don’t want to hold them fixed. Instead, we could argue that email increases payments precisely because it boosts the agreement rate. If we fix those variables, we are removing some of the true effect from the email variable.</p>
-<p>With potential outcome notation, we can say that, due to randomization \(E[Y_0|T=0] = E[Y_0|T=1]\). However, even with randomization, when we control for agreement, treatment and control are no longer comparable. In fact, with some intuitive thinking, we can even guess how they are different:</p>
+<p>With potential outcome notation, we can say that, due to randomization <span class="math notranslate nohighlight">\(E[Y_0|T=0] = E[Y_0|T=1]\)</span>. However, even with randomization, when we control for agreement, treatment and control are no longer comparable. In fact, with some intuitive thinking, we can even guess how they are different:</p>
 <p><span class="math notranslate nohighlight">\(
 E[Y_0|T=0, Agreement=0] &gt; E[Y_0|T=1, Agreement=0]
 \)</span></p>
@@ -1058,7 +1058,7 @@ E[Y_0|T=0, Agreement=1] &gt; E[Y_0|T=1, Agreement=1]
 \)</span></p>
 <p>The first equation makes it explicit that we think those without the email and the agreement are better than those with the email and without the agreement. That is because, if the treatment has a positive effect, those that didn’t make an agreement <strong>even after having received the email</strong> are probably worse in terms of payments compared to those that also didn’t do the agreement but also didn’t get the extra incentive of the email. As for the second equation, those that did the agreement even without having received the treatment are probably better than those that did the agreement but had the extra incentive of the email.</p>
 <p>This might be very confusing the first time you read it (it was for me), but make sure you understand it. Read it again if necessary. Then, a similar kind of reasoning can be done with the opened variable. Try to make it yourself.</p>
-<p>This sort of bias is so pervasive it has its own name. While confounding is the bias from failing to control for a common cause, <strong>selection bias is when we control for a common effect or a variable in between the path from cause to effect.</strong> As a rule of thumb, always include confounders and variables that are good predictors of \(Y\) in your model. Always exclude variables that are good predictors of only \(T\), mediators between the treatment and outcome or common effect of the treatment and outcome.</p>
+<p>This sort of bias is so pervasive it has its own name. While confounding is the bias from failing to control for a common cause, <strong>selection bias is when we control for a common effect or a variable in between the path from cause to effect.</strong> As a rule of thumb, always include confounders and variables that are good predictors of <span class="math notranslate nohighlight">\(Y\)</span> in your model. Always exclude variables that are good predictors of only <span class="math notranslate nohighlight">\(T\)</span>, mediators between the treatment and outcome or common effect of the treatment and outcome.</p>
 <p><img alt="img" src="_images/selection.png" /></p>
 <p>Selection bias is so pervasive that not even randomization can fix it. Better yet, it is often introduced by the ill advised, even in random data! Spotting and avoiding selection bias requires more practice than skill. Often, they appear underneath some supposedly clever idea, making it even harder to uncover. Here are some examples of selection biased I’ve encountered:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. Adding a dummy for paying the entire debt when trying to estimate the effect of a collections strategy on payments.
@@ -1087,13 +1087,13 @@ E[Y_0|T=0, Agreement=1] &gt; E[Y_0|T=1, Agreement=1]
 <img alt="_images/07-Beyond-Confounders_41_0.png" src="_images/07-Beyond-Confounders_41_0.png" />
 </div>
 </div>
-<p>When a data scientist sees this, the first idea that pops into his head is to break up modeling into 2 steps. The first is the participation, that is, the probability that \(Y &gt; 0\). In our spend example, this would be modeling if the customer decided to spend or not. The second part models \(Y\) for those that decided to participate. It is the Conditional-on-Positives effect. In our case, this would be how much the customer spends after he or she decided they would spend anything. If we would like to estimate the effect of the treatment \(T\) on expenditures, it would look something this:</p>
+<p>When a data scientist sees this, the first idea that pops into his head is to break up modeling into 2 steps. The first is the participation, that is, the probability that <span class="math notranslate nohighlight">\(Y &gt; 0\)</span>. In our spend example, this would be modeling if the customer decided to spend or not. The second part models <span class="math notranslate nohighlight">\(Y\)</span> for those that decided to participate. It is the Conditional-on-Positives effect. In our case, this would be how much the customer spends after he or she decided they would spend anything. If we would like to estimate the effect of the treatment <span class="math notranslate nohighlight">\(T\)</span> on expenditures, it would look something this:</p>
 <p><span class="math notranslate nohighlight">\(
 E[Y_i|T_i] = E[Y_i|Y_i&gt;0, T_i]P(Y_i&gt;0|T_i)
 \)</span></p>
-<p>There is nothing wrong with the participation model \(P(Y_i&gt;0|T_i)\). In fact, if \(T\) is randomly assigned, it will capture the increase in probability of spending due to the treatment. Also, there is nothing wrong with the decomposition above. It’s mathematically true, by the law of total probabilities.</p>
-<p>The issue is in estimating the COP part. <strong>It will be biased even under random assignment</strong>. On an intuitive level, it’s not crazy to think that some units are zeros only because they didn’t get the treatment. The treatment would cause them to <strong>not</strong> be zeros. On the other hand, some units are never zeros. The treatment might increase their outcome, but even without it, they would not be zeros. Now, the key point is understanding that these two types of units are not comparable. Those that are never zeros have high \(Y_0\) compared to those that are zeros if they didn’t get the treatment. In fact, for the latter, \(Y_0=0\).</p>
-<p>Knowing this, if we remove the zeros, we will keep the never zeros on both the treated and the control group. But we would remove from the control those that flip from zero to not zero with the treatment. This would make the treatment and control no longer comparable, because the control would only contain those that are never zeros and that have higher \(Y_0\), while the treated would contain both types of units.</p>
+<p>There is nothing wrong with the participation model <span class="math notranslate nohighlight">\(P(Y_i&gt;0|T_i)\)</span>. In fact, if <span class="math notranslate nohighlight">\(T\)</span> is randomly assigned, it will capture the increase in probability of spending due to the treatment. Also, there is nothing wrong with the decomposition above. It’s mathematically true, by the law of total probabilities.</p>
+<p>The issue is in estimating the COP part. <strong>It will be biased even under random assignment</strong>. On an intuitive level, it’s not crazy to think that some units are zeros only because they didn’t get the treatment. The treatment would cause them to <strong>not</strong> be zeros. On the other hand, some units are never zeros. The treatment might increase their outcome, but even without it, they would not be zeros. Now, the key point is understanding that these two types of units are not comparable. Those that are never zeros have high <span class="math notranslate nohighlight">\(Y_0\)</span> compared to those that are zeros if they didn’t get the treatment. In fact, for the latter, <span class="math notranslate nohighlight">\(Y_0=0\)</span>.</p>
+<p>Knowing this, if we remove the zeros, we will keep the never zeros on both the treated and the control group. But we would remove from the control those that flip from zero to not zero with the treatment. This would make the treatment and control no longer comparable, because the control would only contain those that are never zeros and that have higher <span class="math notranslate nohighlight">\(Y_0\)</span>, while the treated would contain both types of units.</p>
 <p>Now that we have an intuitive understanding of the problem, let’s check it from a mathematical angle. To see it, let’s break up the treatment effect. Under random assignment, it is equal to the difference in means</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1104,7 +1104,7 @@ E[Y_i|T_i] = E[Y_i|Y_i&gt;0, T_i]P(Y_i&gt;0|T_i)
 &amp;+\underbrace{\{E[Y_i|Y_i&gt;0, T_i=1] - E[Y_i|Y_i&gt;0, T_i=0]\}}_{COP \ Effect} * P(Y_i&gt;0|T_i=0)
 \end{align*} 
 \end{split}\]</div>
-<p>Where the last equality comes from adding and subtracting \(E[Y_i|Y_i&gt;0, T_i=1]P(Y_i&gt;0|T_i=0)\) and rearranging the terms. This means that the difference in averages is composed of two parts: first, it’s the difference in the probability that the outcome \(y\) is positive. This is called the participation effect because it measures the increase in the probability that customers will participate in spending. Second, it’s the difference in the outcome conditioned on participation, the COP effect. So far so good. There is nothing wrong with this. It is a mathematical truth. The problem comes when we try to estimate each part separately</p>
+<p>Where the last equality comes from adding and subtracting <span class="math notranslate nohighlight">\(E[Y_i|Y_i&gt;0, T_i=1]P(Y_i&gt;0|T_i=0)\)</span> and rearranging the terms. This means that the difference in averages is composed of two parts: first, it’s the difference in the probability that the outcome <span class="math notranslate nohighlight">\(y\)</span> is positive. This is called the participation effect because it measures the increase in the probability that customers will participate in spending. Second, it’s the difference in the outcome conditioned on participation, the COP effect. So far so good. There is nothing wrong with this. It is a mathematical truth. The problem comes when we try to estimate each part separately</p>
 <p>This becomes more evident if we analyse the COP effect even further.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1113,13 +1113,13 @@ E[Y_i|Y_i&gt;0, T_i=1] - E[Y_i|Y_i&gt;0, T_i=0]&amp;=E[Y_{i1}|Y_{i1}&gt;0]-E[Y_{
 &amp;=\underbrace{E[Y_{i1} - Y_{i0}|Y_{i1}&gt;0]}_{Causal \ Effect} + \underbrace{\{ E[Y_{i0}|Y_{i1}&gt;0] - E[Y_{i0}|Y_{i0}&gt;0] \}}_{Selection \ Bias}
 \end{align*} 
 \end{split}\]</div>
-<p>where the second equality comes after we add and subtract \(E[Y_{i0}|Y_{i1}&gt;0]\). When we break up the COP effect, we get first the causal effect on the participant subpopulation. In our example, this would be the causal effect on those that decide to spend something. Second, we get a bias term which is the difference in \(Y_0\) for those that decide to participate when assigned to the treatment (\(E[Y_{i0}|Y_{i1}&gt;0]\)) and those that that participate even without the treatment (\(E[Y_{i0}|Y_{i0}&gt;0]\)). In our case, this bias is probably negative, since those that spend when assigned to the treatment, had they not received the treatment, would probably spend less than those that spend even without the treatment \(E[Y_{i0}|Y_{i1}&gt;0] &lt; E[Y_{i0}|Y_{i0}&gt;0]\).</p>
+<p>where the second equality comes after we add and subtract <span class="math notranslate nohighlight">\(E[Y_{i0}|Y_{i1}&gt;0]\)</span>. When we break up the COP effect, we get first the causal effect on the participant subpopulation. In our example, this would be the causal effect on those that decide to spend something. Second, we get a bias term which is the difference in <span class="math notranslate nohighlight">\(Y_0\)</span> for those that decide to participate when assigned to the treatment (<span class="math notranslate nohighlight">\(E[Y_{i0}|Y_{i1}&gt;0]\)</span>) and those that that participate even without the treatment (<span class="math notranslate nohighlight">\(E[Y_{i0}|Y_{i0}&gt;0]\)</span>). In our case, this bias is probably negative, since those that spend when assigned to the treatment, had they not received the treatment, would probably spend less than those that spend even without the treatment <span class="math notranslate nohighlight">\(E[Y_{i0}|Y_{i1}&gt;0] &lt; E[Y_{i0}|Y_{i0}&gt;0]\)</span>.</p>
 <p><img alt="img" src="_images/cop.png" /></p>
 <p>Now, I know that COP bias is super counterintuitive at first, so I think it is worth going through a visual example. Let’s say that we want to estimate how a marketing campaign increases how much people spend on our product. This marketing campaign has been randomized, so we don’t need to worry about confounding. In this example, we can break up the customers into two segments. First, there are those that will only buy our products if they see a marketing campaign. Let’s call these customers the frugal ones. They don’t spend unless we give them an extra push. Then there are the customers that will spend even without the campaign. The campaign makes them spend more, but they would already spend without seeing it anyway. Let’s call them the rich customers. In the figure, I’ve displayed the counterfactuals in light colors and dashed lines.</p>
 <p><img alt="img" src="_images/cop-ex1.png" /></p>
-<p>To estimate the ATE of the campaign, since we have randomization, all we need to do is compare the treated with the untreated. But, suppose we use the COP formulation where we break up estimation into two models, a participation model that estimates \(P(Y_i&gt;0|T_i)\) and the COP, which estimates \(E[Y_i|Y_i&gt;0]\). This removes everyone that didn’t spend from the analysis.</p>
+<p>To estimate the ATE of the campaign, since we have randomization, all we need to do is compare the treated with the untreated. But, suppose we use the COP formulation where we break up estimation into two models, a participation model that estimates <span class="math notranslate nohighlight">\(P(Y_i&gt;0|T_i)\)</span> and the COP, which estimates <span class="math notranslate nohighlight">\(E[Y_i|Y_i&gt;0]\)</span>. This removes everyone that didn’t spend from the analysis.</p>
 <p><img alt="img" src="_images/cop-ex2.png" /></p>
-<p>When we do that, the treated and control are no longer comparable. As we can see, the untreated is now only composed of the segment of customers that will spend even without the campaign. Also notice that we can even know the direction of the bias here. It will be \(E[Y_{i0}|Y_{i1}&gt;0] - E[Y_{i0}|Y_{i0}&gt;0]\) or \(E[Y_{i0}|\text{Frugal and Rich}] - E[Y_{i0}|Rich]\). This is obviously negative, as the rich spend more than the frugal customers. As a result, once we filter only the participant population, our estimate of the ATE becomes biased, even if there was no bias at first due to randomization. I sincerely hope this convinces you to avoid COP like the plague. I see too many Data Scientists doing this separate estimation, unaware of the problems that it brings.</p>
+<p>When we do that, the treated and control are no longer comparable. As we can see, the untreated is now only composed of the segment of customers that will spend even without the campaign. Also notice that we can even know the direction of the bias here. It will be <span class="math notranslate nohighlight">\(E[Y_{i0}|Y_{i1}&gt;0] - E[Y_{i0}|Y_{i0}&gt;0]\)</span> or <span class="math notranslate nohighlight">\(E[Y_{i0}|\text{Frugal and Rich}] - E[Y_{i0}|Rich]\)</span>. This is obviously negative, as the rich spend more than the frugal customers. As a result, once we filter only the participant population, our estimate of the ATE becomes biased, even if there was no bias at first due to randomization. I sincerely hope this convinces you to avoid COP like the plague. I see too many Data Scientists doing this separate estimation, unaware of the problems that it brings.</p>
 <p>To wrap up selection bias, we need to always remind ourselves to never control for a variable that is either in between the treatment and the outcome or is a common effect of the outcome and the treated. In graphical language, here is what bad control looks like:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -1139,7 +1139,7 @@ E[Y_i|Y_i&gt;0, T_i=1] - E[Y_i|Y_i&gt;0, T_i=0]&amp;=E[Y_{i1}|Y_{i1}&gt;0]-E[Y_{
 </div>
 <div class="section" id="key-ideas">
 <h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
-<p>In this section, we’ve looked at variables that are not confounders and if we should add them or not to our model for causal identification. We’ve seen that variables that are good predictors of the outcome \(y\) should be added to the model even if they don’t predict \(T\) (are not confounders). This is because predicting \(Y\) lowers its variance and makes it more likely that we will see statistically significant results when estimating the causal effect. Next, we’ve seen that it is a bad idea to add variables that predict the treatment but not the outcome. Those variables reduce the variability of the treatment, making it harder for us to find the causal effect. Finally, we’ve looked at selection bias. This is bias that arises when we control for variables in the causal path from the treatment to the outcome or variables that are common effects of the treatment and the outcome.</p>
+<p>In this section, we’ve looked at variables that are not confounders and if we should add them or not to our model for causal identification. We’ve seen that variables that are good predictors of the outcome <span class="math notranslate nohighlight">\(y\)</span> should be added to the model even if they don’t predict <span class="math notranslate nohighlight">\(T\)</span> (are not confounders). This is because predicting <span class="math notranslate nohighlight">\(Y\)</span> lowers its variance and makes it more likely that we will see statistically significant results when estimating the causal effect. Next, we’ve seen that it is a bad idea to add variables that predict the treatment but not the outcome. Those variables reduce the variability of the treatment, making it harder for us to find the causal effect. Finally, we’ve looked at selection bias. This is bias that arises when we control for variables in the causal path from the treatment to the outcome or variables that are common effects of the treatment and the outcome.</p>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>

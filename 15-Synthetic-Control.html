@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -404,7 +404,7 @@
         
               <div>
                 
-  <div class="section" id="synthetic-control">
+  <div class="tex2jax_ignore mathjax_ignore section" id="synthetic-control">
 <h1>15 - Synthetic Control<a class="headerlink" href="#synthetic-control" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="one-amazing-math-trick-to-learn-what-cant-be-known">
 <h2>One Amazing Math Trick to Learn What can’t be Known<a class="headerlink" href="#one-amazing-math-trick-to-learn-what-cant-be-known" title="Permalink to this headline">¶</a></h2>
@@ -573,13 +573,13 @@
 </div>
 <div class="section" id="we-have-time">
 <h2>We have Time<a class="headerlink" href="#we-have-time" title="Permalink to this headline">¶</a></h2>
-<p>To make matters a little bit more formal, suppose that we have \(J+1\) units. Without loss of generality, assume that unit 1 is the unit that gets affected by an intervention. Units \(j=2,…,J+1\) are a collection of untreated units that we will refer to as the “donor pool”. Also assume that the data we have span T time periods, with \(T_0\) periods before the intervention. For each unit j and each time t, we observe the outcome \(Y_{jt}\). For each unit j and period t, define \(Y^N_{jt}\) as the potential outcome without intervention and \(Y^I_{jt}\), the potential outcome with intervention. Then, the effect for the treated unit \(j=1\) at time t, for \(t&gt;T_0\) is defined as</p>
+<p>To make matters a little bit more formal, suppose that we have <span class="math notranslate nohighlight">\(J+1\)</span> units. Without loss of generality, assume that unit 1 is the unit that gets affected by an intervention. Units <span class="math notranslate nohighlight">\(j=2,...,J+1\)</span> are a collection of untreated units that we will refer to as the “donor pool”. Also assume that the data we have span T time periods, with <span class="math notranslate nohighlight">\(T_0\)</span> periods before the intervention. For each unit j and each time t, we observe the outcome <span class="math notranslate nohighlight">\(Y_{jt}\)</span>. For each unit j and period t, define <span class="math notranslate nohighlight">\(Y^N_{jt}\)</span> as the potential outcome without intervention and <span class="math notranslate nohighlight">\(Y^I_{jt}\)</span>, the potential outcome with intervention. Then, the effect for the treated unit <span class="math notranslate nohighlight">\(j=1\)</span> at time t, for <span class="math notranslate nohighlight">\(t&gt;T_0\)</span> is defined as</p>
 <p><span class="math notranslate nohighlight">\(
 \tau_{1t} = Y^I_{jt} - Y^N_{jt}
 \)</span></p>
-<p>Since unit \(j=1\) is the treated one, \(Y^I_{jt}\) is factual but \(Y^N_{jt}\) is not. The challenge then becomes how do we estimate \(Y^N_{jt}\). Notice how the treatment effect is defined for each period, which means it can change in time. It doesn’t need to be instantaneous. It can accumulate or dissipate. To put it in a picture, the problem of estimating the treatment effect boils down to the problem of <strong>estimating what would have happened to the outcome of unit \(j=1\) if it had not been treated</strong>.</p>
+<p>Since unit <span class="math notranslate nohighlight">\(j=1\)</span> is the treated one, <span class="math notranslate nohighlight">\(Y^I_{jt}\)</span> is factual but <span class="math notranslate nohighlight">\(Y^N_{jt}\)</span> is not. The challenge then becomes how do we estimate <span class="math notranslate nohighlight">\(Y^N_{jt}\)</span>. Notice how the treatment effect is defined for each period, which means it can change in time. It doesn’t need to be instantaneous. It can accumulate or dissipate. To put it in a picture, the problem of estimating the treatment effect boils down to the problem of <strong>estimating what would have happened to the outcome of unit <span class="math notranslate nohighlight">\(j=1\)</span> if it had not been treated</strong>.</p>
 <p><img alt="img" src="_images/synth_img.png" /></p>
-<p>To estimate \(Y^N_{jt}\), we remember that a combination of units in the donor pool may approximate the characteristics of the treated unit much better than any untreated unit alone. Thus, a synthetic control is defined as a weighted average of the units in the control pool. Given the weights \(\pmb{W}=(w_2, …, w_{J+1})\), the synthetic control estimate of \(Y^N_{jt}\) is</p>
+<p>To estimate <span class="math notranslate nohighlight">\(Y^N_{jt}\)</span>, we remember that a combination of units in the donor pool may approximate the characteristics of the treated unit much better than any untreated unit alone. Thus, a synthetic control is defined as a weighted average of the units in the control pool. Given the weights <span class="math notranslate nohighlight">\(\pmb{W}=(w_2, ..., w_{J+1})\)</span>, the synthetic control estimate of <span class="math notranslate nohighlight">\(Y^N_{jt}\)</span> is</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{Y}^N_{jt} = \sum^{J+1}_{j=2} w_j Y_{jt}
 \)</span></p>
@@ -802,11 +802,11 @@
 <p><span class="math notranslate nohighlight">\(
 \hat{Y}^N_{jt} = \sum^{J+1}_{j=2} w_j Y_{jt}
 \)</span></p>
-<p>but now, we will use weights \(\pmb{W}=(w_2, …, w_{J+1})\) that minimises</p>
+<p>but now, we will use weights <span class="math notranslate nohighlight">\(\pmb{W}=(w_2, ..., w_{J+1})\)</span> that minimises</p>
 <p><span class="math notranslate nohighlight">\(
 ||\pmb{X}_1 - \pmb{X}_0 \pmb{W}|| = \bigg(\sum^k_{h=1}v_h \bigg(X_{h1} - \sum^{J+1}_{j=2} w_j X_{hj} \bigg)^2 \bigg)^{\frac{1}{2}}
 \)</span></p>
-<p>subject to the restriction that \(w_2, …, w_{J+1}\) are positive and sum to one. Notice that \(v_h\) reflect the importance of each variable when minimising the difference between the treated and the synthetic control. Different \(v\)s would give different optimal weights. One way to choose \(V\) is to make it so that each variable has mean zero and unit variance. A more complex way is to choose \(V\) in such a way that variables that help to predict \(Y\) better get higher importance. Since we want to keep the code simple, we will simply give the same importance for each variable.</p>
+<p>subject to the restriction that <span class="math notranslate nohighlight">\(w_2, ..., w_{J+1}\)</span> are positive and sum to one. Notice that <span class="math notranslate nohighlight">\(v_h\)</span> reflect the importance of each variable when minimising the difference between the treated and the synthetic control. Different <span class="math notranslate nohighlight">\(v\)</span>s would give different optimal weights. One way to choose <span class="math notranslate nohighlight">\(V\)</span> is to make it so that each variable has mean zero and unit variance. A more complex way is to choose <span class="math notranslate nohighlight">\(V\)</span> in such a way that variables that help to predict <span class="math notranslate nohighlight">\(Y\)</span> better get higher importance. Since we want to keep the code simple, we will simply give the same importance for each variable.</p>
 <p>To implement this, first, define the above loss function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -820,7 +820,7 @@
 </div>
 </div>
 </div>
-<p>Since we are using the same importance for every feature, we don’t need to worry about \(v\).</p>
+<p>Since we are using the same importance for every feature, we don’t need to worry about <span class="math notranslate nohighlight">\(v\)</span>.</p>
 <p>Now, to get the optimal weights, we will use the quadratic programming optimisation of scipy. We will constrain the weights to sum up to 1 with</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 </pre></div>

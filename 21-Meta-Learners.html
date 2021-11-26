@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -394,14 +394,14 @@
         
               <div>
                 
-  <div class="section" id="meta-learners">
+  <div class="tex2jax_ignore mathjax_ignore section" id="meta-learners">
 <h1>21 - Meta Learners<a class="headerlink" href="#meta-learners" title="Permalink to this headline">¶</a></h1>
 <p>Just to recap, we are now interested in finding treatment effect heterogeneity, that is, identifying how units respond differently to the treatment. In this framework, we want to estimate</p>
 <p><span class="math notranslate nohighlight">\(
 \tau(x) = E[Y_i(1) − Y_i(0)|X] = E[\tau_i|X]
 \)</span></p>
-<p>or, \(E[\delta Y_i(t)|X]\) in the continuous case. In other words, we want to know how sensitive the units are to the treatment. This is super useful in the case where we can’t treat everyone and need to do some prioritization of the treatment, for example when you want to give discounts but have a limited budget.</p>
-<p>Previously, we saw how we could transform the outcome variable \(Y\) so that we can plug it in a predictive model and get a Conditional Average Treatment Effect (CATE) estimate. There, we had to pay a price in terms of variance increase. That’s something we see a lot in Data Science. There isn’t a single best method because each one has its downsides and upsides. For that reason, it is worth learning about many techniques so you can trade-off one for the other depending on the circumstances. In that spirit, this chapter will focus on giving more tools for you to have at your disposal.</p>
+<p>or, <span class="math notranslate nohighlight">\(E[\delta Y_i(t)|X]\)</span> in the continuous case. In other words, we want to know how sensitive the units are to the treatment. This is super useful in the case where we can’t treat everyone and need to do some prioritization of the treatment, for example when you want to give discounts but have a limited budget.</p>
+<p>Previously, we saw how we could transform the outcome variable <span class="math notranslate nohighlight">\(Y\)</span> so that we can plug it in a predictive model and get a Conditional Average Treatment Effect (CATE) estimate. There, we had to pay a price in terms of variance increase. That’s something we see a lot in Data Science. There isn’t a single best method because each one has its downsides and upsides. For that reason, it is worth learning about many techniques so you can trade-off one for the other depending on the circumstances. In that spirit, this chapter will focus on giving more tools for you to have at your disposal.</p>
 <p><img alt="img" src="_images/learned-new-move.png" /></p>
 <p>Meta learners are a simple way to leverage off-the-shelf predictive machine learning methods in order to solve the same problem we’ve been looking at so far: estimating the CATE. Again, none of them is the single best one and each one has its weakness.
 I’ll try to go over them, but keep in mind that this stuff is highly dependent on the context. Not only that, meta-learners deploy predictive ML models which can vary from linear regression and boosted decision trees to neural networks and gaussian processes. The success of the meta learner will be also highly dependent on what machine learning method it uses as its components. Oftentimes you just have to try out many different things and see what works best.</p>
@@ -514,7 +514,7 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
 </table>
 </div></div></div>
 </div>
-<p>Our outcome variable is conversion and our treatment is email-1. Let’s create variables to store those along with the features \(X\) we will use to search for heterogeneity in the treatment effect.</p>
+<p>Our outcome variable is conversion and our treatment is email-1. Let’s create variables to store those along with the features <span class="math notranslate nohighlight">\(X\)</span> we will use to search for heterogeneity in the treatment effect.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;converted&quot;</span>
@@ -526,7 +526,7 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
 </div>
 <div class="section" id="s-learner-aka-the-go-horse-learner">
 <h2>S-Learner (aka, the Go-Horse Learner)<a class="headerlink" href="#s-learner-aka-the-go-horse-learner" title="Permalink to this headline">¶</a></h2>
-<p>The first learner we will use is the S-Learner. This is the simplest learner we can think of. We will use a single (hence the S) machine learning model \(M_s\) to estimate</p>
+<p>The first learner we will use is the S-Learner. This is the simplest learner we can think of. We will use a single (hence the S) machine learning model <span class="math notranslate nohighlight">\(M_s\)</span> to estimate</p>
 <p><span class="math notranslate nohighlight">\(
 \mu(x) = E[Y| T, X]
 \)</span></p>
@@ -583,7 +583,7 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
 <p>As we can see from the cumulative gain, the S-learner, although simple, can perform okay on this dataset. One thing to keep in mind is that this performance is highly particular to this dataset. Depending on the type of data that you have, the S-learner might do better or worse. In practice, I find that the S-learner is a good first bet for any causal problem, mostly due to its simplicity. Not only that, the S-learner can handle both continuous and discrete treatments, while the rest of the learners in this chapter can only deal with discrete treatments.</p>
 <p>The major disadvantage of the S-learner is that it tends to bias the treatment effect towards zero. Since the S-learner employs what is usually a regularized machine learning model, that regularization can restrict the estimated treatment effect. ‪Chernozhukov‬ et al (2016) outline this problem using simulated data:</p>
 <p><img alt="img" src="_images/zero-bias-s-learner.png" /></p>
-<p>Here, they plot the difference between the true causal effect (red outline) and the estimated causal effect, \(\tau - \hat{\tau}\),  using an S-learner. The estimated causal effect is heavily downward biased. In other words, the true causal effect is frequently bigger than the estimated one.</p>
+<p>Here, they plot the difference between the true causal effect (red outline) and the estimated causal effect, <span class="math notranslate nohighlight">\(\tau - \hat{\tau}\)</span>,  using an S-learner. The estimated causal effect is heavily downward biased. In other words, the true causal effect is frequently bigger than the estimated one.</p>
 <p>Even worse, if the treatment is very weak relative to the impact other covariates play in explaining the outcome, the S-learner can discard the treatment variable completely. Notice that this is highly related to the chosen ML model you employ. The greater the regularization, the greater the problem. One attempt to fix that is the next learner we will see.</p>
 </div>
 <div class="section" id="t-learner">
@@ -652,7 +652,7 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
 <p>The T-learner also performs OK on this dataset. The test performance doesn’t look much different from what we got with the S-learner. Perhaps because the treatment is not that weak. Also, we can see that the training performance is much higher than the testing performance. This indicates the model is overfitting. This can happen because we are fitting each model on only a subset of the data. With less data points, the model is probably learning some noise.</p>
 <p>The T-Learner avoids the problem of not picking up on a weak treatment variable, but it can still suffer from regularization bias. Consider the following situation, taken from Kunzela et al, 2019. You have lots of data for the untreated and very few data for the treated, a pretty common case in many applications, as treatment is often expensive. Now suppose you have some non linearity in the outcome Y, but the <strong>treatment effect is constant</strong>. We can see what happens in the following image</p>
 <p><img alt="img" src="_images/t-learner-problem.png" /></p>
-<p>Here, since we have very few treated observations, \(M_1\) will be a very simple model (linear in this case) to avoid overfitting. \(M_0\) will be more complicated, but that’s OK because the abundance of data prevents overfitting. This is all reasonable from a Machine Learning perspective. However, if we use these models to compute the cate \(\hat{\tau}=M_1(X) - M_0(X)\), the non linearity of \(M_0(X)\) minus the linearity of \(M_1(X)\) will result in a nonlinear CATE (blue line minus red line), which is wrong, since the CATE is constant and equal to 1 in this case.</p>
+<p>Here, since we have very few treated observations, <span class="math notranslate nohighlight">\(M_1\)</span> will be a very simple model (linear in this case) to avoid overfitting. <span class="math notranslate nohighlight">\(M_0\)</span> will be more complicated, but that’s OK because the abundance of data prevents overfitting. This is all reasonable from a Machine Learning perspective. However, if we use these models to compute the cate <span class="math notranslate nohighlight">\(\hat{\tau}=M_1(X) - M_0(X)\)</span>, the non linearity of <span class="math notranslate nohighlight">\(M_0(X)\)</span> minus the linearity of <span class="math notranslate nohighlight">\(M_1(X)\)</span> will result in a nonlinear CATE (blue line minus red line), which is wrong, since the CATE is constant and equal to 1 in this case.</p>
 <p>What happens here is that the model for the untreated can pick up the non linearity, but the model for the treated cannot, because we’ve used regularization to deal with a small sample size. Of course, you could use less regularization on that model, but then the small sample size will cause you to overfit. Seems like we are caught between a rock and a hard place. To solve this problem, we can use an X-learner, proposed in the same paper by Kunzela et al.</p>
 </div>
 <div class="section" id="x-learner">
@@ -678,15 +678,15 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
 <p><span class="math notranslate nohighlight">\(
 \hat{M}_{\tau 1}(X) \approx E[\hat{\tau}(X)|T=1]
 \)</span></p>
-<p>If we apply this on the image we’ve shown before, \(\hat{\tau}(X, T=0)\), the imputed treatment effect on the untreated, would be the red crosses and the red dashed line would be \(\hat{M}_{\tau 0}(X)\). Notice that this model is wrong. Because \(\hat{\tau}(X, T=0)\) was made using the regularized, simple model, estimated on the treated, \(\hat{M}_1\).  The treatment effect it inputs is non linear, since it <strong>doesn’t</strong> capture the non-linearity in the Y variable.</p>
-<p>In contrast, the blue dots are the imputed treatment effect for the treated, \(\hat{\tau}(X, T=1)\). These effects are estimated using the correct model, \(M_0\), trained in the untreated, large, sample. As a result, since its imputed treatment effects are correct, we are able to train a correct second stage model \(\hat{M}_{\tau 1}(X)\), shown by the blue line.</p>
+<p>If we apply this on the image we’ve shown before, <span class="math notranslate nohighlight">\(\hat{\tau}(X, T=0)\)</span>, the imputed treatment effect on the untreated, would be the red crosses and the red dashed line would be <span class="math notranslate nohighlight">\(\hat{M}_{\tau 0}(X)\)</span>. Notice that this model is wrong. Because <span class="math notranslate nohighlight">\(\hat{\tau}(X, T=0)\)</span> was made using the regularized, simple model, estimated on the treated, <span class="math notranslate nohighlight">\(\hat{M}_1\)</span>.  The treatment effect it inputs is non linear, since it <strong>doesn’t</strong> capture the non-linearity in the Y variable.</p>
+<p>In contrast, the blue dots are the imputed treatment effect for the treated, <span class="math notranslate nohighlight">\(\hat{\tau}(X, T=1)\)</span>. These effects are estimated using the correct model, <span class="math notranslate nohighlight">\(M_0\)</span>, trained in the untreated, large, sample. As a result, since its imputed treatment effects are correct, we are able to train a correct second stage model <span class="math notranslate nohighlight">\(\hat{M}_{\tau 1}(X)\)</span>, shown by the blue line.</p>
 <p><img alt="img" src="_images/second-stage-x.png" /></p>
-<p>So we have one model that is wrong because we’ve input the treatment effects wrongly and another model that is correct because we’ve imputed those values correctly. Now, we need a way to combine the two in a way that gives more weight to the correct model. Here is where the propensity score model comes to play. Let \(\hat{e}(x)\) be the propensity score model, we can combine the two second stage models as follows:</p>
+<p>So we have one model that is wrong because we’ve input the treatment effects wrongly and another model that is correct because we’ve imputed those values correctly. Now, we need a way to combine the two in a way that gives more weight to the correct model. Here is where the propensity score model comes to play. Let <span class="math notranslate nohighlight">\(\hat{e}(x)\)</span> be the propensity score model, we can combine the two second stage models as follows:</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{\tau(x)} = \hat{M}_{\tau 0}(X)(\hat{e}(x)) +  \hat{M}_{\tau 1}(X)(1-\hat{e}(x))
 \)</span></p>
-<p>Since there are very few treated units, \(\hat{e}(x)\) is very small. This will give a very small weight to the wrong model \(\hat{M}_{\tau 0}(X)\).</p>
-<p>In contrast, \(1-\hat{e}(x)\) is close to one, so we will give a high weight to the correct model \(\hat{M}_{\tau 1}(X)\). More generally, weighted average using the propensity score will make sure we give more weight to the CATE model that was estimated where the assigned treatment was more likely. In other words, we will favor the model that was trained using more data. The following image shows the estimated CATE given by the X-learner and the T-learner.</p>
+<p>Since there are very few treated units, <span class="math notranslate nohighlight">\(\hat{e}(x)\)</span> is very small. This will give a very small weight to the wrong model <span class="math notranslate nohighlight">\(\hat{M}_{\tau 0}(X)\)</span>.</p>
+<p>In contrast, <span class="math notranslate nohighlight">\(1-\hat{e}(x)\)</span> is close to one, so we will give a high weight to the correct model <span class="math notranslate nohighlight">\(\hat{M}_{\tau 1}(X)\)</span>. More generally, weighted average using the propensity score will make sure we give more weight to the CATE model that was estimated where the assigned treatment was more likely. In other words, we will favor the model that was trained using more data. The following image shows the estimated CATE given by the X-learner and the T-learner.</p>
 <p><img alt="img" src="_images/t-vs-x-learner.png" /></p>
 <p>As we can see, compared to the T-learner, the X-learner does a much better job in correcting the wrong CATE estimated at the non linearity. In general the X-learner performs better when a treatment group is much larger than the other.</p>
 <p>I know this might be a mouthful, but it will hopefully be clear once we move to the implementation. Just to summarize everything, here is the diagram of this learner.</p>

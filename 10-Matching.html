@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -404,12 +404,12 @@
         
               <div>
                 
-  <div class="section" id="matching">
+  <div class="tex2jax_ignore mathjax_ignore section" id="matching">
 <h1>10 - Matching<a class="headerlink" href="#matching" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-is-regression-doing-after-all">
 <h2>What is Regression Doing After All?<a class="headerlink" href="#what-is-regression-doing-after-all" title="Permalink to this headline">¶</a></h2>
-<p>As we’ve seen so far, regression does an amazing job at controlling for additional variables when we do a test vs control comparison. If we have independence, \((Y_0, Y_1)\perp T | X\), then regression can identify the ATE by controlling for X. The way regression does this is kind of magical. To get some intuition about it, let’s remember the case when all variables X are dummy variables. If that is the case, regression partitions the data into the dummy cells and computes the mean difference between test and control. This difference in means keeps the Xs constant, since we are doing it in a fixed cell of X dummy. It is as if we were doing \(E[Y|T=1] - E[Y|T=0] | X=x\), where \(x\) is a dummy cell (all dummies set to 1, for example).  Regression then combines the estimate in each of the cells to produce a final ATE. The way it does this is by applying weights to the cell proportional to the variance of the treatment on that group.</p>
-<div class="cell docutils container">
+<p>As we’ve seen so far, regression does an amazing job at controlling for additional variables when we do a test vs control comparison. If we have independence, <span class="math notranslate nohighlight">\((Y_0, Y_1)\perp T | X\)</span>, then regression can identify the ATE by controlling for X. The way regression does this is kind of magical. To get some intuition about it, let’s remember the case when all variables X are dummy variables. If that is the case, regression partitions the data into the dummy cells and computes the mean difference between test and control. This difference in means keeps the Xs constant, since we are doing it in a fixed cell of X dummy. It is as if we were doing <span class="math notranslate nohighlight">\(E[Y|T=1] - E[Y|T=0] | X=x\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is a dummy cell (all dummies set to 1, for example).  Regression then combines the estimate in each of the cells to produce a final ATE. The way it does this is by applying weights to the cell proportional to the variance of the treatment on that group.</p>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -434,7 +434,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drug_example</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
     <span class="n">sex</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;M&quot;</span><span class="p">,</span><span class="s2">&quot;M&quot;</span><span class="p">,</span><span class="s2">&quot;M&quot;</span><span class="p">,</span><span class="s2">&quot;M&quot;</span><span class="p">,</span><span class="s2">&quot;M&quot;</span><span class="p">,</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;W&quot;</span><span class="p">,</span><span class="s2">&quot;W&quot;</span><span class="p">,</span><span class="s2">&quot;W&quot;</span><span class="p">,</span><span class="s2">&quot;W&quot;</span><span class="p">],</span>
-    <span class="n">drug</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">drug</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
     <span class="n">days</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
 <span class="p">))</span>
 </pre></div>
@@ -459,7 +459,7 @@
 ATE=\dfrac{(-3*6) + (-2*4)}{10}=-2.6
 \)</span></p>
 <p>This estimate is done by 1) partitioning the data into confounder cells, in this case, man and women, 2) estimating the effect on each cell and 3) combining the estimate with a weighted average, where the weight is the sample size of the cell or covariate group. If we had exactly the same size of man and woman in the data, the ATE estimate would be right in the middle of the ATE of the 2 groups, -2.5. Since there are more men than women in our dataset, the ATE estimate is a little bit closer to the man’s ATE. This is called a non-parametric estimate, since it places no assumption on how the data was generated.</p>
-<p>If we control for sex using regression, we will add the assumption of linearity. Regression will also partition the data into man and woman and estimate the effect on both of these groups. So far, so good. However, when it comes to combining the effect on each group, it does not weigh them by the sample size. Instead, regression uses weights that are proportional to the variance of the treatment in that group. In our case, the variance of the treatment in men is smaller than in women, since only one man is in the control group. To be exact, the variance of T for man is \(0.139=1/6*(1 - 1/6)\) and for women is \(0.25=2/4*(1 - 2/4)\). So regression will give a higher weight to women in our example and the ATE will be a bit closer to the women’s ATE of -2.</p>
+<p>If we control for sex using regression, we will add the assumption of linearity. Regression will also partition the data into man and woman and estimate the effect on both of these groups. So far, so good. However, when it comes to combining the effect on each group, it does not weigh them by the sample size. Instead, regression uses weights that are proportional to the variance of the treatment in that group. In our case, the variance of the treatment in men is smaller than in women, since only one man is in the control group. To be exact, the variance of T for man is <span class="math notranslate nohighlight">\(0.139=1/6*(1 - 1/6)\)</span> and for women is <span class="math notranslate nohighlight">\(0.25=2/4*(1 - 2/4)\)</span>. So regression will give a higher weight to women in our example and the ATE will be a bit closer to the women’s ATE of -2.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;days ~ drug + C(sex)&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">drug_example</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -489,15 +489,15 @@ ATE=\dfrac{(-3*6) + (-2*4)}{10}=-2.6
 <h2>The Subclassification Estimator<a class="headerlink" href="#the-subclassification-estimator" title="Permalink to this headline">¶</a></h2>
 <p><img alt="img" src="_images/explain.png" /></p>
 <p>If there is some causal effect we want to estimate, like the effect of job training on earnings, <strong>and</strong> the treatment is not randomly assigned, we need to watch out for confounders. It could be that only more motivated people do the training and they would have higher earnings regardless of the training. We need to estimate the effect of the training program within small groups of individuals that are roughly the same in motivation level and any other confounders we may have.</p>
-<p>More generally, if there is some causal effect we want to estimate, but it is hard to do so because of confounding of some variables X, what we need to do is make the treatment vs control comparison within small groups where X is the same. If we have conditional independence \((Y_0, Y_1)\perp T | X\), then we can write the ATE as follows.</p>
+<p>More generally, if there is some causal effect we want to estimate, but it is hard to do so because of confounding of some variables X, what we need to do is make the treatment vs control comparison within small groups where X is the same. If we have conditional independence <span class="math notranslate nohighlight">\((Y_0, Y_1)\perp T | X\)</span>, then we can write the ATE as follows.</p>
 <p><span class="math notranslate nohighlight">\(
 ATE = \int(E[Y|X, T=1] - E[Y|X, T=0])dP(x)
 \)</span></p>
-<p>What this integral does is it goes through all the space of the distribution of features X, computes the difference in means for all those tiny spaces and combines everything into the ATE. Another way to see this is to think about a discrete set of features. In this case, we can say that the features X takes on K different cells \({X_1, X_2, …, X_k}\) and what we are doing is computing the treatment effect in each cell and combining them into the ATE. In this discrete case, converting the integral to a sum, we can derive the subclassifications estimator</p>
+<p>What this integral does is it goes through all the space of the distribution of features X, computes the difference in means for all those tiny spaces and combines everything into the ATE. Another way to see this is to think about a discrete set of features. In this case, we can say that the features X takes on K different cells <span class="math notranslate nohighlight">\(\{X_1, X_2, ..., X_k\}\)</span> and what we are doing is computing the treatment effect in each cell and combining them into the ATE. In this discrete case, converting the integral to a sum, we can derive the subclassifications estimator</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{ATE} = \sum^K_{i=0}(\bar{Y}_{k1} - \bar{Y}_{k0}) * \dfrac{N_k}{N}
 \)</span></p>
-<p>where the bar represent the mean of the outcome on the treated, \(Y_{k1}\), and treated, \(Y_{k0}\), cell k and \(N_{k}\) is the number of observations in that same cell. As you can see, we are computing a local ATE for each cell and combining them using a weighted average, where the weights are the sample size of the cell. In our medicine example above, this would be the first estimate, which gave us −2.6.</p>
+<p>where the bar represent the mean of the outcome on the treated, <span class="math notranslate nohighlight">\(Y_{k1}\)</span>, and treated, <span class="math notranslate nohighlight">\(Y_{k0}\)</span>, cell k and <span class="math notranslate nohighlight">\(N_{k}\)</span> is the number of observations in that same cell. As you can see, we are computing a local ATE for each cell and combining them using a weighted average, where the weights are the sample size of the cell. In our medicine example above, this would be the first estimate, which gave us −2.6.</p>
 </div>
 <div class="section" id="matching-estimator">
 <h2>Matching Estimator<a class="headerlink" href="#matching-estimator" title="Permalink to this headline">¶</a></h2>
@@ -1014,12 +1014,12 @@ ATE = \int(E[Y|X, T=1] - E[Y|X, T=0])dP(x)
 </div>
 </div>
 </div>
-<p>But this was a very contrived example, just to introduce matching. In reality, we usually have more than one feature and units don’t match perfectly. In this case, we have to define some measurement of proximity to compare how units are close to each other. One common metric for this is the euclidean norm \(||X_i - X_j||\). This difference, however, is not invariant to the scale of the features. This means that features like age, that take values on the tenths, will be much less important when computing this norm compared to features like income, which take the order of hundreds. For this reason, before applying the norm, we need to scale the features so that they are on roughly the same scale.</p>
+<p>But this was a very contrived example, just to introduce matching. In reality, we usually have more than one feature and units don’t match perfectly. In this case, we have to define some measurement of proximity to compare how units are close to each other. One common metric for this is the euclidean norm <span class="math notranslate nohighlight">\(||X_i - X_j||\)</span>. This difference, however, is not invariant to the scale of the features. This means that features like age, that take values on the tenths, will be much less important when computing this norm compared to features like income, which take the order of hundreds. For this reason, before applying the norm, we need to scale the features so that they are on roughly the same scale.</p>
 <p>Having defined a distance measure, we can now define the match as the nearest neighbour to that sample we wish to match. In math terms, we can write the matching estimator the following way</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{ATE} = \frac{1}{N} \sum^N_{i=0} (2T_i - 1)\big(Y_i - Y_{jm}(i)\big)
 \)</span></p>
-<p>Where \(Y_{jm}(i)\) is the sample from the other treatment group which is most similar to \(Y_i\). We do this \(2T_i - 1\) to match both ways: treated with controls and controls with the treatment.</p>
+<p>Where <span class="math notranslate nohighlight">\(Y_{jm}(i)\)</span> is the sample from the other treatment group which is most similar to <span class="math notranslate nohighlight">\(Y_i\)</span>. We do this <span class="math notranslate nohighlight">\(2T_i - 1\)</span> to match both ways: treated with controls and controls with the treatment.</p>
 <p>To test this estimator, let’s consider a medicine example. Once again, we want to find the effect of a medication on days until recovery. Unfortunately, this effect is confounded by severity, sex and age. We have reasons to believe that patients with more severe conditions have a higher chance of receiving the medicine.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1099,7 +1099,7 @@ ATE = \int(E[Y|X, T=1] - E[Y|X, T=0])dP(x)
 </table>
 </div></div></div>
 </div>
-<p>If we look at a simple difference in means, \(E[Y|T=1]-E[Y|T=0]\), we get that the treatment takes, on average, 16.9 more days to recover than the untreated. This is probably due to confounding, since we don’t expect the medicine to cause harm to the patient.</p>
+<p>If we look at a simple difference in means, <span class="math notranslate nohighlight">\(E[Y|T=1]-E[Y|T=0]\)</span>, we get that the treatment takes, on average, 16.9 more days to recover than the untreated. This is probably due to confounding, since we don’t expect the medicine to cause harm to the patient.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">med</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;medication==1&quot;</span><span class="p">)[</span><span class="s2">&quot;recovery&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">med</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;medication==0&quot;</span><span class="p">)[</span><span class="s2">&quot;recovery&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -1321,21 +1321,21 @@ ATE = \int(E[Y|X, T=1] - E[Y|X, T=0])dP(x)
 <p><span class="math notranslate nohighlight">\(
 \hat{ATET} = \frac{1}{N_1}\sum (Y_i - Y_j(i))
 \)</span></p>
-<p>where \(N_1\) is the number of treated individuals and \(Y_j(i)\) is the untreated match of treated unit i. To check for bias, what we do is hope we can apply the Central Limit Theorem so that this down there converges to a normal distribution with mean zero.</p>
+<p>where <span class="math notranslate nohighlight">\(N_1\)</span> is the number of treated individuals and <span class="math notranslate nohighlight">\(Y_j(i)\)</span> is the untreated match of treated unit i. To check for bias, what we do is hope we can apply the Central Limit Theorem so that this down there converges to a normal distribution with mean zero.</p>
 <p><span class="math notranslate nohighlight">\(
 \sqrt{N_1}(\hat{ATET} - ATET)
 \)</span></p>
-<p>However, this doesn’t alway happen. If we define the mean outcome for the untreated given X, \(\mu_0(x)=E[Y|X=x, T=0]\), we will have that (btw, I’ve omitted the proof for that because it’s a little beyond the point here).</p>
+<p>However, this doesn’t alway happen. If we define the mean outcome for the untreated given X, <span class="math notranslate nohighlight">\(\mu_0(x)=E[Y|X=x, T=0]\)</span>, we will have that (btw, I’ve omitted the proof for that because it’s a little beyond the point here).</p>
 <p><span class="math notranslate nohighlight">\(
 E[\sqrt{N_1}(\hat{ATET} - ATET)] = E[\sqrt{N_1}(\mu_0(X_i) - \mu_0(X_j(i)))]
 \)</span></p>
-<p>Now, \(\mu_0(X_i) - \mu_0(X_j(i))\) is not so simple to understand, so let’s look at it more carefully. \(\mu_0(X_i)\) is the outcome Y value of a treated unit i had it not been treated. So, it is the counterfactual outcome \(Y_0\) for unit i. \(\mu_0(X_j(i))\) is the outcome of the untreated unit j that is the match of unit i. So, it is also the \(Y_0\) , but for unit j now. Only this time, it is a factual outcome, because j is in the non treated group. Now, because j and i are only similar, but not the same, this will likely not be zero. In other words, \(X_i \approx X_j \). So, \(Y_{0i} \approx Y_{0j} \).</p>
-<p>As we increase the sample size, there will be more units to match, so the difference between unit i and its match j will also get smaller. But this difference converges to zero slowly. As a result \(E[\sqrt{N_1}(\mu_0(X_i) - \mu_0(X_j(i)))]\) may not converge to zero, because the \(\sqrt{N_1}\) grows faster than \((\mu_0(X_i) - \mu_0(X_j(i)))\) diminishes.</p>
-<p>Bias arises when the matching discrepancies are huge. Fortunately, we know how to correct it. Each observation contributes \((\mu_0(X_i) - \mu_0(X_j(i)))\) to the bias so all we need to do is subtract this quantity from each matching comparison in our estimator. To do so, we can replace \(\mu_0(X_j(i))\) with some sort of estimate of this quantity \(\hat{\mu_0}(X_j(i))\), which can be obtained with models like linear regression. This updates the ATET estimator to the following equation</p>
+<p>Now, <span class="math notranslate nohighlight">\(\mu_0(X_i) - \mu_0(X_j(i))\)</span> is not so simple to understand, so let’s look at it more carefully. <span class="math notranslate nohighlight">\(\mu_0(X_i)\)</span> is the outcome Y value of a treated unit i had it not been treated. So, it is the counterfactual outcome <span class="math notranslate nohighlight">\(Y_0\)</span> for unit i. <span class="math notranslate nohighlight">\(\mu_0(X_j(i))\)</span> is the outcome of the untreated unit j that is the match of unit i. So, it is also the <span class="math notranslate nohighlight">\(Y_0\)</span> , but for unit j now. Only this time, it is a factual outcome, because j is in the non treated group. Now, because j and i are only similar, but not the same, this will likely not be zero. In other words, <span class="math notranslate nohighlight">\(X_i \approx X_j \)</span>. So, <span class="math notranslate nohighlight">\(Y_{0i} \approx Y_{0j} \)</span>.</p>
+<p>As we increase the sample size, there will be more units to match, so the difference between unit i and its match j will also get smaller. But this difference converges to zero slowly. As a result <span class="math notranslate nohighlight">\(E[\sqrt{N_1}(\mu_0(X_i) - \mu_0(X_j(i)))]\)</span> may not converge to zero, because the <span class="math notranslate nohighlight">\(\sqrt{N_1}\)</span> grows faster than <span class="math notranslate nohighlight">\((\mu_0(X_i) - \mu_0(X_j(i)))\)</span> diminishes.</p>
+<p>Bias arises when the matching discrepancies are huge. Fortunately, we know how to correct it. Each observation contributes <span class="math notranslate nohighlight">\((\mu_0(X_i) - \mu_0(X_j(i)))\)</span> to the bias so all we need to do is subtract this quantity from each matching comparison in our estimator. To do so, we can replace <span class="math notranslate nohighlight">\(\mu_0(X_j(i))\)</span> with some sort of estimate of this quantity <span class="math notranslate nohighlight">\(\hat{\mu_0}(X_j(i))\)</span>, which can be obtained with models like linear regression. This updates the ATET estimator to the following equation</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{ATET} = \frac{1}{N_1}\sum \big((Y_i - Y_{j(i)}) - (\hat{\mu_0}(X_i) - \hat{\mu_0}(X_{j(i)}))\big)
 \)</span></p>
-<p>where \(\hat{\mu_0}(x)\) is some estimative of \(E[Y|X, T=0]\), like a linear regression fitted only on the untreated sample.</p>
+<p>where <span class="math notranslate nohighlight">\(\hat{\mu_0}(x)\)</span> is some estimative of <span class="math notranslate nohighlight">\(E[Y|X, T=0]\)</span>, like a linear regression fitted only on the untreated sample.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
@@ -1502,7 +1502,7 @@ E[\sqrt{N_1}(\hat{ATET} - ATET)] = E[\sqrt{N_1}(\mu_0(X_i) - \mu_0(X_j(i)))]
 <div class="section" id="the-curse-of-dimensionality">
 <h2>The Curse of Dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h2>
 <p>As it turns out, the answer is quite simple and intuitive. It is easy to find people that match on a few characteristics, like sex. But if we add more characteristics, like age, income, city of birth and so on, it becomes harder and harder to find matches. In more general terms, the more features we have, the higher will be the distance between units and their matches.</p>
-<p>This is not something that hurts only the matching estimator. It ties back to the subclassification estimator we saw earlier. Early on, in that contrived medicine example where with man and woman, it was quite easy to build the subclassification estimator. That was because we only had 2 cells: man and woman. But what would happen if we had more? Let’s say we have 2 continuous features like age and income and we manage to discretise them into 5 buckets each. This will give us 25 cells, or \(5^2\). And what if we had 10 covariates with 3 buckets each? Doesn’t seem like a lot right? Well, this would give us 59049 cells, or \(3^{10}\). It’s easy to see how this can blow out of proportion pretty quickly. This is a phenomena pervasive in all data science, which is called the <strong>The Curse of Dimensionality</strong>!!!</p>
+<p>This is not something that hurts only the matching estimator. It ties back to the subclassification estimator we saw earlier. Early on, in that contrived medicine example where with man and woman, it was quite easy to build the subclassification estimator. That was because we only had 2 cells: man and woman. But what would happen if we had more? Let’s say we have 2 continuous features like age and income and we manage to discretise them into 5 buckets each. This will give us 25 cells, or <span class="math notranslate nohighlight">\(5^2\)</span>. And what if we had 10 covariates with 3 buckets each? Doesn’t seem like a lot right? Well, this would give us 59049 cells, or <span class="math notranslate nohighlight">\(3^{10}\)</span>. It’s easy to see how this can blow out of proportion pretty quickly. This is a phenomena pervasive in all data science, which is called the <strong>The Curse of Dimensionality</strong>!!!</p>
 <p><img alt="img" src="_images/curse-of-dimensionality.jpg" />
 Image Source: <a class="reference external" href="https://deepai.org/machine-learning-glossary-and-terms/curse-of-dimensionality">https://deepai.org/machine-learning-glossary-and-terms/curse-of-dimensionality</a></p>
 <p>Despite its scary and pretentious name, this only means that the number of data points required to fill a feature space grows exponentially with the number of features, or dimensions. So, if it takes X data points to fill the space of, say, 3 feature spaces, it takes exponentially more points to fill in the space of 4 features.</p>

@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -399,7 +399,7 @@
         
               <div>
                 
-  <div class="section" id="graphical-causal-models">
+  <div class="tex2jax_ignore mathjax_ignore section" id="graphical-causal-models">
 <h1>04 - Graphical Causal Models<a class="headerlink" href="#graphical-causal-models" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="thinking-about-causality">
 <h2>Thinking About Causality<a class="headerlink" href="#thinking-about-causality" title="Permalink to this headline">¶</a></h2>
@@ -474,12 +474,12 @@
 <img alt="_images/04-Graphical-Causal-Models_4_0.svg" src="_images/04-Graphical-Causal-Models_4_0.svg" /></div>
 </div>
 <p>In the first graph, dependence flows in the direction of the arrows. To give a more concrete example, let’s say that knowing about causal inference is the only way to solve business problems and solving those problems is the only way to get a job promotion. So causal knowledge causes problem solving which causes job promotion. We can say here that job promotion is dependent on causal knowledge. The greater the causal knowledge, the greater your chances of getting a promotion. Notice that dependence is symmetric, although it is a little less intuitive. The greater your chances of promotion, the greater the chance you have causal knowledge, otherwise it would be difficult to get a promotion.</p>
-<p>Now, let’s say I condition on the intermediary variable. In this case, the dependence is blocked. So, X and Z are independent given Y. In the graph above, red indicates that Y is a conditioned variable.  By the same token, in our example, if I know that you are good at solving problems, knowing that you know causal inference doesn’t give any further information about your chances of getting a job promotion. In mathematical terms, \(E[Promotion|Solve \ problems, Causal \ knowledge]=E[Promotion|Solve \ problems]\). The inverse is also true, once I know how good you are at solving problems, knowing about your job promotion status gives me no further information about how likely you are to know causal inference.</p>
-<p>As a general rule, the dependence flow in the direct path from A to B is blocked when we condition on an intermediary variable C. Or,</p>
-<p><span class="math notranslate nohighlight">\(A \not\!\perp\!\!\!\perp B\)</span></p>
+<p>Now, let’s say I condition on the intermediary variable. In this case, the dependence is blocked. So, X and Z are independent given Y. In the graph above, red indicates that Y is a conditioned variable.  By the same token, in our example, if I know that you are good at solving problems, knowing that you know causal inference doesn’t give any further information about your chances of getting a job promotion. In mathematical terms, <span class="math notranslate nohighlight">\(E[Promotion|Solve \ problems, Causal \ knowledge]=E[Promotion|Solve \ problems]\)</span>. The inverse is also true, once I know how good you are at solving problems, knowing about your job promotion status gives me no further information about how likely you are to know causal inference.</p>
+<p>As a general rule, the dependence flow in the direct path from A to C is blocked when we condition on an intermediary variable B. Or,</p>
+<p><span class="math notranslate nohighlight">\(A \not\!\perp\!\!\!\perp C\)</span></p>
 <p>and</p>
 <p><span class="math notranslate nohighlight">\(
-A \!\perp\!\!\!\perp B | C
+A \!\perp\!\!\!\perp C | B
 \)</span></p>
 <p>Now, let’s consider a fork structure. In this case, the same variable causes two other variables down the graph. In this case, the dependence flows backward through the arrows and we have what is called a <strong>backdoor path</strong>. We can close the backdoor path and shut down dependence by conditioning on the common cause.</p>
 <div class="cell tag_hide-input docutils container">
@@ -547,12 +547,12 @@ A \not\!\perp\!\!\!\perp B | C
 <p><img alt="img" src="_images/graph-flow.png" /></p>
 <p>As a final example, try to figure out some independence and dependence relationship in the following causal graph.</p>
 <ol class="simple">
-<li><p>Is \(D \perp C\)?</p></li>
-<li><p>Is \(D \perp C| A \) ?</p></li>
-<li><p>Is \(D \perp C| G \) ?</p></li>
-<li><p>Is \(A \perp F \) ?</p></li>
-<li><p>Is \(A \perp F|E \) ?</p></li>
-<li><p>Is \(A \perp F|E,C \) ?</p></li>
+<li><p>Is <span class="math notranslate nohighlight">\(D \perp C\)</span>?</p></li>
+<li><p>Is <span class="math notranslate nohighlight">\(D \perp C| A \)</span> ?</p></li>
+<li><p>Is <span class="math notranslate nohighlight">\(D \perp C| G \)</span> ?</p></li>
+<li><p>Is <span class="math notranslate nohighlight">\(A \perp F \)</span> ?</p></li>
+<li><p>Is <span class="math notranslate nohighlight">\(A \perp F|E \)</span> ?</p></li>
+<li><p>Is <span class="math notranslate nohighlight">\(A \perp F|E,C \)</span> ?</p></li>
 </ol>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -573,12 +573,12 @@ A \not\!\perp\!\!\!\perp B | C
 </div>
 <p><strong>Answers</strong>:</p>
 <ol class="simple">
-<li><p>\(D \perp C\). It contains a collider that it has <strong>not</strong> been conditioned on.</p></li>
-<li><p>\(D \not\perp C| A \). It contains a collider that it has  been conditioned on.</p></li>
-<li><p>\(D \not\perp C| G \). It contains the descendent of a collider that has  been conditioned on. You can see G as some kind of proxy for A here.</p></li>
-<li><p>\(A \perp F \). It contains a collider, B-&gt;E&lt;-F, that it has <strong>not</strong> been conditioned on.</p></li>
-<li><p>\(A \not\perp F|E \). It contains a collider, B-&gt;E&lt;-F, that it has been conditioned on.</p></li>
-<li><p>\(A \perp F|E, C \). It contains a collider, B-&gt;E&lt;-F, that it has been conditioned on, but it contains a non collider that has been conditioned on. Conditioning on E opens the path, but conditioning on C closes it again.</p></li>
+<li><p><span class="math notranslate nohighlight">\(D \perp C\)</span>. It contains a collider that it has <strong>not</strong> been conditioned on.</p></li>
+<li><p><span class="math notranslate nohighlight">\(D \not\perp C| A \)</span>. It contains a collider that it has  been conditioned on.</p></li>
+<li><p><span class="math notranslate nohighlight">\(D \not\perp C| G \)</span>. It contains the descendent of a collider that has  been conditioned on. You can see G as some kind of proxy for A here.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A \perp F \)</span>. It contains a collider, B-&gt;E&lt;-F, that it has <strong>not</strong> been conditioned on.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A \not\perp F|E \)</span>. It contains a collider, B-&gt;E&lt;-F, that it has been conditioned on.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A \perp F|E, C \)</span>. It contains a collider, B-&gt;E&lt;-F, that it has been conditioned on, but it contains a non collider that has been conditioned on. Conditioning on E opens the path, but conditioning on C closes it again.</p></li>
 </ol>
 <p>Knowing about causal graphical models enables us to understand the problems that arise in causal inference. As we’ve seen, the problem always boils down to bias.</p>
 <p><span class="math notranslate nohighlight">\(
@@ -597,8 +597,8 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Educ&quot;</span><span class="p">),</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">),</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Educ&quot;</span><span class="p">),</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">),</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
 <span class="n">g</span>
 </pre></div>
@@ -622,8 +622,8 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;SAT&quot;</span><span class="p">,</span> <span class="s2">&quot;Educ&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Family Income&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;SAT&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;SAT&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
 <span class="n">g</span>
 </pre></div>
 </div>
@@ -631,7 +631,7 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <div class="cell_output docutils container">
 <img alt="_images/04-Graphical-Causal-Models_14_0.svg" src="_images/04-Graphical-Causal-Models_14_0.svg" /></div>
 </div>
-<p>In the following graph, conditioning on X1 and X2, or, SAT and family income, is sufficient to close all backdoor paths between the treatment and the outcome. In other words, \((Y_0, Y_1) \perp T | X1, X2\). So even if we can’t measure all common causes, we can still attain conditional independence if we control for measurable variables that mediate the effect of the unmeasured on the treatment. One quick note, we also have \((Y_0, Y_1) \perp T | X1, U\), but since we can’t observe U, we can’t condition on it.</p>
+<p>In the following graph, conditioning on X1 and X2, or, SAT and family income, is sufficient to close all backdoor paths between the treatment and the outcome. In other words, <span class="math notranslate nohighlight">\((Y_0, Y_1) \perp T | X1, X2\)</span>. So even if we can’t measure all common causes, we can still attain conditional independence if we control for measurable variables that mediate the effect of the unmeasured on the treatment. One quick note, we also have <span class="math notranslate nohighlight">\((Y_0, Y_1) \perp T | X1, U\)</span>, but since we can’t observe U, we can’t condition on it.</p>
 <p>But what if that is not the case? What if the unmeasured variable causes the treatment and the outcome directly? In the following example, intelligence causes education and income directly. So there is confounding on the relationship between the treatment education and the outcome wage. In this case, we can’t control the confounder, because it is unmeasurable. However, we have other measured variables that can act as a proxy for the confounder. Those variables are not in the backdoor path, but controlling for them will help lower the bias (but it won’t eliminate it). Those variables are sometimes referred to as surrogate confounders.</p>
 <p>In our example, we can’t measure intelligence, but we can measure some causes of it, like the father’s and mother’s education, and some effects of it, like IQ or SAT score. Controlling for those surrogate variables is not sufficient to eliminate bias, but it sure helps.</p>
 <div class="cell tag_hide-input docutils container">
@@ -642,14 +642,14 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;U&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;IQ&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;SAT&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Father&#39;s Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Inteligence&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Mother&#39;s Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Inteligence&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;IQ&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;SAT&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Father&#39;s Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Intelligence&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Mother&#39;s Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Intelligence&quot;</span><span class="p">)</span>
 
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Educ&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Educ&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Educ&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Inteligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Intelligence&quot;</span><span class="p">,</span> <span class="s2">&quot;Wage&quot;</span><span class="p">)</span>
 
 <span class="n">g</span>
 </pre></div>
@@ -685,9 +685,9 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <div class="cell_output docutils container">
 <img alt="_images/04-Graphical-Causal-Models_18_0.svg" src="_images/04-Graphical-Causal-Models_18_0.svg" /></div>
 </div>
-<p>To demonstrate why this is the case, imagine that investments and education take only 2 values. Either people invest or not. They are either educated or not. Initially, when we don’t control for investments, the bias term is zero: \(E[Y_0|T=1] - E[Y_0|T=0] = 0\) because the education was randomised. This means that the wage people would have in the case they didn’t receive education \(Wage_0\) is the same if they do or don’t receive the education treatment. But what happens if we condition on investments?</p>
-<p>Looking at those that invest, we probably have the case that \(E[Y_0|T=0, I=1] &gt; E[Y_0|T=1, I=1]\). In words, among those that invest, those that manage to do so even without education are more independent of education to achieve high earnings. For this reason, the wage those people have, \(Wage_0|T=0\), is probably higher than the wage the educated group would have in the case that they didn’t have education, \(Wage_0|T=1\). A similar reasoning can be applied to those that don’t invest, where we also probably have \(E[Y_0|T=0, I=0] &gt; E[Y_0|T=1, I=0]\). Those that don’t invest even with education, probably would have a lower wage, had they not got the education, than those that didn’t invest but also didn’t have education.</p>
-<p>To use a purely graphical argument, if someone invests, knowing that they have high education explains away the second cause which is wage. Conditioned on investing, higher education is associated with low wages and we have a negative bias \(E[Y_0|T=0, I=i] &gt; E[Y_0|T=1, I=i]\).</p>
+<p>To demonstrate why this is the case, imagine that investments and education take only 2 values. Either people invest or not. They are either educated or not. Initially, when we don’t control for investments, the bias term is zero: <span class="math notranslate nohighlight">\(E[Y_0|T=1] - E[Y_0|T=0] = 0\)</span> because the education was randomised. This means that the wage people would have in the case they didn’t receive education <span class="math notranslate nohighlight">\(Wage_0\)</span> is the same if they do or don’t receive the education treatment. But what happens if we condition on investments?</p>
+<p>Looking at those that invest, we probably have the case that <span class="math notranslate nohighlight">\(E[Y_0|T=0, I=1] &gt; E[Y_0|T=1, I=1]\)</span>. In words, among those that invest, those that manage to do so even without education are more independent of education to achieve high earnings. For this reason, the wage those people have, <span class="math notranslate nohighlight">\(Wage_0|T=0\)</span>, is probably higher than the wage the educated group would have in the case that they didn’t have education, <span class="math notranslate nohighlight">\(Wage_0|T=1\)</span>. A similar reasoning can be applied to those that don’t invest, where we also probably have <span class="math notranslate nohighlight">\(E[Y_0|T=0, I=0] &gt; E[Y_0|T=1, I=0]\)</span>. Those that don’t invest even with education, probably would have a lower wage, had they not got the education, than those that didn’t invest but also didn’t have education.</p>
+<p>To use a purely graphical argument, if someone invests, knowing that they have high education explains away the second cause which is wage. Conditioned on investing, higher education is associated with low wages and we have a negative bias <span class="math notranslate nohighlight">\(E[Y_0|T=0, I=i] &gt; E[Y_0|T=1, I=i]\)</span>.</p>
 <p>Just as a side note, all of this we’ve discussed is also true if we condition on any descendent of a common effect.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -724,7 +724,7 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <div class="cell_output docutils container">
 <img alt="_images/04-Graphical-Causal-Models_22_0.svg" src="_images/04-Graphical-Causal-Models_22_0.svg" /></div>
 </div>
-<p>To give a potential outcome argument, we know that, due to randomisation, the bias is zero \(E[Y_0|T=0] - E[Y_0|T=1] = 0\). However, if we condition on the white collar individuals, we have that \(E[Y_0|T=0, WC=1] &gt; E[Y_0|T=1, WC=1]\). That is because those that manage to get a white collar job even without education are probably more hard working than those that required the help of education to get the same job. With the same reasoning, \(E[Y_0|T=0, WC=0] &gt; E[Y_0|T=1, WC=0]\) because those that didn’t get a white collar job even with education are probably less hard working than those that didn’t, but also didn’t have any education.</p>
+<p>To give a potential outcome argument, we know that, due to randomisation, the bias is zero <span class="math notranslate nohighlight">\(E[Y_0|T=0] - E[Y_0|T=1] = 0\)</span>. However, if we condition on the white collar individuals, we have that <span class="math notranslate nohighlight">\(E[Y_0|T=0, WC=1] &gt; E[Y_0|T=1, WC=1]\)</span>. That is because those that manage to get a white collar job even without education are probably more hard working than those that required the help of education to get the same job. With the same reasoning, <span class="math notranslate nohighlight">\(E[Y_0|T=0, WC=0] &gt; E[Y_0|T=1, WC=0]\)</span> because those that didn’t get a white collar job even with education are probably less hard working than those that didn’t, but also didn’t have any education.</p>
 <p>In our case, conditioning on the mediator induces a negative bias. It makes the effect of education seem lower than it actually is. This is the case because the causal effect is positive. If the effect were negative, conditioning on a mediator would have a positive bias. In all cases, this sort of conditioning makes the effect look weaker than it is.</p>
 <p>To put it in a more prosaic way, suppose that you have to choose between two candidates for a job at your company. Both have equally impressive professional achievements, but one does not have a higher education degree. Which one should you choose? Of course, you should go with the one without the higher education, because he managed to achieve the same things as the other one but had the odds stacked against him.</p>
 <p><img alt="image.png" src="_images/three_bias.png" /></p>

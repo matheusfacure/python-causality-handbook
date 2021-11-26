@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -389,13 +389,13 @@
         
               <div>
                 
-  <div class="section" id="doubly-robust-estimation">
+  <div class="tex2jax_ignore mathjax_ignore section" id="doubly-robust-estimation">
 <h1>12 - Doubly Robust Estimation<a class="headerlink" href="#doubly-robust-estimation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="don-t-put-all-your-eggs-in-one-basket">
 <h2>Don’t Put All your Eggs in One Basket<a class="headerlink" href="#don-t-put-all-your-eggs-in-one-basket" title="Permalink to this headline">¶</a></h2>
-<p>We’ve learned how to use linear regression and propensity score weighting to estimate \(E[Y|T=1] - E[Y|T=0] | X\). But which one should we use and when? When in doubt, just use both! Doubly Robust Estimation is a way of combining propensity score and linear regression in a way you don’t have to rely on either of them.</p>
+<p>We’ve learned how to use linear regression and propensity score weighting to estimate <span class="math notranslate nohighlight">\(E[Y|T=1] - E[Y|T=0] | X\)</span>. But which one should we use and when? When in doubt, just use both! Doubly Robust Estimation is a way of combining propensity score and linear regression in a way you don’t have to rely on either of them.</p>
 <p>To see how this works, let’s consider the mindset experiment. It is a randomised study conducted in U.S. public high schools which aims at finding the impact of a growth mindset. The way it works is that students receive from the school a seminar to instil in them a growth mindset. Then, they follow up with the students in their college years to measure how well they performed academically. This measurement was compiled into an achievement score and standardised. The real data on this study is not publicly available in order to preserve students’ privacy. However, we have a simulated dataset with the same statistical properties provided by <a class="reference external" href="https://arxiv.org/pdf/1902.07409.pdf">Athey and Wager</a>, so we will use that instead.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -556,7 +556,7 @@ Name: intervention, dtype: float64
 <p><span class="math notranslate nohighlight">\(
 \hat{ATE} = \frac{1}{N}\sum \bigg( \dfrac{T_i(Y_i - \hat{\mu_1}(X_i))}{\hat{P}(X_i)} + \hat{\mu_1}(X_i) \bigg) - \frac{1}{N}\sum \bigg( \dfrac{(1-T_i)(Y_i - \hat{\mu_0}(X_i))}{1-\hat{P}(X_i)} + \hat{\mu_0}(X_i) \bigg)
 \)</span></p>
-<p>where \(\hat{P}(x)\) is an estimation of the propensity score (using logistic regression, for example), \(\hat{\mu_1}(x)\) is an estimation of \(E[Y|X, T=1]\) (using linear regression, for example), and \(\hat{\mu_0}(x)\) is an estimation of \(E[Y|X, T=0]\). As you might have already guessed, the first part of the doubly robust estimator estimates \(E[Y_1]\) and the second part estimates \(E[Y_0]\). Let’s examine the first part, as all the intuition will also apply to the second part by analogy.</p>
+<p>where <span class="math notranslate nohighlight">\(\hat{P}(x)\)</span> is an estimation of the propensity score (using logistic regression, for example), <span class="math notranslate nohighlight">\(\hat{\mu_1}(x)\)</span> is an estimation of <span class="math notranslate nohighlight">\(E[Y|X, T=1]\)</span> (using linear regression, for example), and <span class="math notranslate nohighlight">\(\hat{\mu_0}(x)\)</span> is an estimation of <span class="math notranslate nohighlight">\(E[Y|X, T=0]\)</span>. As you might have already guessed, the first part of the doubly robust estimator estimates <span class="math notranslate nohighlight">\(E[Y_1]\)</span> and the second part estimates <span class="math notranslate nohighlight">\(E[Y_0]\)</span>. Let’s examine the first part, as all the intuition will also apply to the second part by analogy.</p>
 <p>Since I know that this formula is scary at first (but don’t worry, you will see it is super simple), I will first show how to code this estimator. I have the feeling that some people are less frightened by code than by formulas. Let’s see how this estimator works in practice, shall we?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -631,11 +631,11 @@ Name: intervention, dtype: float64
 <img alt="_images/12-Doubly-Robust-Estimation_13_0.png" src="_images/12-Doubly-Robust-Estimation_13_0.png" />
 </div>
 </div>
-<p>Now that we got a taste of the doubly robust estimator, let’s examine why it is so great. First, it is called doubly robust because it only requires one of the models, \(\hat{P}(x)\) or \(\hat{\mu}(x)\), to be correctly specified. To see this, take the first part that estimates \(E[Y_1]\) and take a good look at it.</p>
+<p>Now that we got a taste of the doubly robust estimator, let’s examine why it is so great. First, it is called doubly robust because it only requires one of the models, <span class="math notranslate nohighlight">\(\hat{P}(x)\)</span> or <span class="math notranslate nohighlight">\(\hat{\mu}(x)\)</span>, to be correctly specified. To see this, take the first part that estimates <span class="math notranslate nohighlight">\(E[Y_1]\)</span> and take a good look at it.</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{E}[Y_1] = \frac{1}{N}\sum \bigg( \dfrac{T_i(Y_i - \hat{\mu_1}(X_i))}{\hat{P}(X_i)} + \hat{\mu_1}(X_i) \bigg)
 \)</span></p>
-<p>Assume that \(\hat{\mu_1}(x)\) is correct. If the propensity score model is wrong, we wouldn’t need to worry. Because if \(\hat{\mu_1}(x)\) is correct, then \(E[T_i(Y_i - \hat{\mu_1}(X_i))]=0\). That is because the multiplication by \(T_i\) selects only the treated and the residual of \(\hat{\mu_1}\) on the treated have, by definition, mean zero. This causes the whole thing to reduce to \(\hat{\mu_1}(X_i)\), which is correctly estimated \(E[Y_1]\) by assumption. So, you see, that by being correct, \(\hat{\mu_1}(X_i)\) wipes out the relevance of the propensity score model. We can apply the same reasoning to understand the estimator of \(E[Y_0]\).</p>
+<p>Assume that <span class="math notranslate nohighlight">\(\hat{\mu_1}(x)\)</span> is correct. If the propensity score model is wrong, we wouldn’t need to worry. Because if <span class="math notranslate nohighlight">\(\hat{\mu_1}(x)\)</span> is correct, then <span class="math notranslate nohighlight">\(E[T_i(Y_i - \hat{\mu_1}(X_i))]=0\)</span>. That is because the multiplication by <span class="math notranslate nohighlight">\(T_i\)</span> selects only the treated and the residual of <span class="math notranslate nohighlight">\(\hat{\mu_1}\)</span> on the treated have, by definition, mean zero. This causes the whole thing to reduce to <span class="math notranslate nohighlight">\(\hat{\mu_1}(X_i)\)</span>, which is correctly estimated <span class="math notranslate nohighlight">\(E[Y_1]\)</span> by assumption. So, you see, that by being correct, <span class="math notranslate nohighlight">\(\hat{\mu_1}(X_i)\)</span> wipes out the relevance of the propensity score model. We can apply the same reasoning to understand the estimator of <span class="math notranslate nohighlight">\(E[Y_0]\)</span>.</p>
 <p>But don’t take my word for it. Let the code show you the way! In the following estimator, I’ve replaced the logistic regression that estimates the propensity score by a random uniform variable that goes from 0.1 to 0.9 (I don’t want very small weights to blow up my propensity score variance). Since this is random, there is no way it is a good propensity score model, but we will see that the doubly robust estimator still manages to produce an estimation that is very close to when the propensity score was estimated with logistic regression.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -704,8 +704,8 @@ Name: intervention, dtype: float64
 <p><span class="math notranslate nohighlight">\(
 \hat{E}[Y_1] = \frac{1}{N}\sum \bigg( \dfrac{T_iY_i}{\hat{P}(X_i)} - \bigg(\dfrac{T_i - \hat{P}(X_i)}{\hat{P}(X_i)}\bigg) \hat{\mu_1}(X_i) \bigg)
 \)</span></p>
-<p>Now, assume that the propensity score \(\hat{P}(X_i)\) is correctly specified. In this case, \(E[T_i - \hat{P}(X_i)]=0\), which wipes out the part dependent on \(\hat{\mu_1}(X_i)\). This makes the doubly robust estimator reduce to the propensity score weighting estimator \(\frac{T_iY_i}{\hat{P}(X_i)}\), which is correct by assumption. So, even if the \(\hat{\mu_1}(X_i)\) is wrong, the estimator will still be correct, provided that the propensity score is correctly specified.</p>
-<p>Once again, if you believe more in code than in formulas, here it is the practical verification. In the code below, I’ve replaced both regression models with a random normal variable. There is no doubt that \(\hat{\mu}(X_i)\) is <strong>not correctly specified</strong>. Still, we will see that doubly robust estimation still manages to recover the same \(\hat{ATE}\) of about 0.38 that we’ve seen before.</p>
+<p>Now, assume that the propensity score <span class="math notranslate nohighlight">\(\hat{P}(X_i)\)</span> is correctly specified. In this case, <span class="math notranslate nohighlight">\(E[T_i - \hat{P}(X_i)]=0\)</span>, which wipes out the part dependent on <span class="math notranslate nohighlight">\(\hat{\mu_1}(X_i)\)</span>. This makes the doubly robust estimator reduce to the propensity score weighting estimator <span class="math notranslate nohighlight">\(\frac{T_iY_i}{\hat{P}(X_i)}\)</span>, which is correct by assumption. So, even if the <span class="math notranslate nohighlight">\(\hat{\mu_1}(X_i)\)</span> is wrong, the estimator will still be correct, provided that the propensity score is correctly specified.</p>
+<p>Once again, if you believe more in code than in formulas, here it is the practical verification. In the code below, I’ve replaced both regression models with a random normal variable. There is no doubt that <span class="math notranslate nohighlight">\(\hat{\mu}(X_i)\)</span> is <strong>not correctly specified</strong>. Still, we will see that doubly robust estimation still manages to recover the same <span class="math notranslate nohighlight">\(\hat{ATE}\)</span> of about 0.38 that we’ve seen before.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span><span class="p">,</span> <span class="n">LinearRegression</span>

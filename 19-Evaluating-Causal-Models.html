@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -399,11 +399,11 @@
         
               <div>
                 
-  <div class="section" id="evaluating-causal-models">
+  <div class="tex2jax_ignore mathjax_ignore section" id="evaluating-causal-models">
 <h1>19 - Evaluating Causal Models<a class="headerlink" href="#evaluating-causal-models" title="Permalink to this headline">¶</a></h1>
-<p>In the vast majority of material about causality, researchers use synthetic data to check if their methods are any good. Much like we did in the When Prediction Fails chapter, they generate data on both \(Y_{0i}\) and \(Y_{1i}\) so that they can check if their model is correctly capturing the treatment effect \(Y_{1i} - Y_{0i}\). That’s fine for academic purposes, but in the real world, we don’t have that luxury. When applying these techniques in the industry, we’ll be asked time and again to prove why our model is better, why should it replace the current one in production or why it won’t fail miserably. This is so crucial that it’s beyond my comprehension why we don’t see any material whatsoever explaining how we should evaluate causal inference models with real data.</p>
+<p>In the vast majority of material about causality, researchers use synthetic data to check if their methods are any good. Much like we did in the When Prediction Fails chapter, they generate data on both <span class="math notranslate nohighlight">\(Y_{0i}\)</span> and <span class="math notranslate nohighlight">\(Y_{1i}\)</span> so that they can check if their model is correctly capturing the treatment effect <span class="math notranslate nohighlight">\(Y_{1i} - Y_{0i}\)</span>. That’s fine for academic purposes, but in the real world, we don’t have that luxury. When applying these techniques in the industry, we’ll be asked time and again to prove why our model is better, why should it replace the current one in production or why it won’t fail miserably. This is so crucial that it’s beyond my comprehension why we don’t see any material whatsoever explaining how we should evaluate causal inference models with real data.</p>
 <p>As a consequence, data scientists that want to apply causal inference models have a really hard time convincing management to trust them. The approach they take is one of showing how sound the theory is and how careful they’ve been while training the model. Unfortunately, in a world where train-test split paradigm is the norm, that just won’t cut it. The quality of your model will have to be grounded on something more concrete than a beautiful theory. Think about it. Machine learning has only achieved its huge success because predictive model validation is very straightforward. There is something reassuring about seeing that the predictions match what really happened.</p>
-<p>Unfortunately, it isn’t obvious at all how we achieve anything like a train-test paradigm in the case of causal inference. That’s because causal inference is interested in estimating an unobservable quantity, \(\frac{\delta y}{ \delta t}\). Well, if we can’t see it, how the hell are we supposed to know if our models are any good at estimating it? Remember, it is as if every entity had an underlying responsiveness, denoted by the slope of the line from treatment to outcome, but we can’t measure it.</p>
+<p>Unfortunately, it isn’t obvious at all how we achieve anything like a train-test paradigm in the case of causal inference. That’s because causal inference is interested in estimating an unobservable quantity, <span class="math notranslate nohighlight">\(\frac{\delta y}{ \delta t}\)</span>. Well, if we can’t see it, how the hell are we supposed to know if our models are any good at estimating it? Remember, it is as if every entity had an underlying responsiveness, denoted by the slope of the line from treatment to outcome, but we can’t measure it.</p>
 <p><img alt="img" src="_images/sneak.png" /></p>
 <p>This is a very very very hard thing to wrap our heads around and it took me years to find something close to an answer. Is not a definitive one, but it works in practice and it has that concreteness, which I hope will approach causal inference from a train-test paradigm similar to the one we have with machine learning. The trick is to use aggregate measurements of elasticity. Even if you can’t estimate elasticity individually, you can do it for a group and that is what we will leverage here.</p>
 <div class="cell tag_hide-input docutils container">
@@ -541,7 +541,7 @@ sales_i = G(X_i, price_i) + e_i
 </div>
 </div>
 </div>
-<p>Just to make sure the model is not heavily overfitting, we can check the \(R^2\) on the data we’ve used to train it and on the new, unseen data. (For those more versed in Machine Learning, notice that some drop in performance is expected, because there is a concept drift. The model was trained in data where price is not random, but the test set has only randomized prices).</p>
+<p>Just to make sure the model is not heavily overfitting, we can check the <span class="math notranslate nohighlight">\(R^2\)</span> on the data we’ve used to train it and on the new, unseen data. (For those more versed in Machine Learning, notice that some drop in performance is expected, because there is a concept drift. The model was trained in data where price is not random, but the test set has only randomized prices).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train Score:&quot;</span><span class="p">,</span> <span class="n">m2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">prices</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">prices</span><span class="p">[</span><span class="n">y</span><span class="p">]))</span>
@@ -674,8 +674,8 @@ Test Score: 0.7711074163447711
 <p>Now that we have our predictions, we need to evaluate how good they are. And remember, we can’t observe elasticity, so there isn’t a simple ground truth we can compare against. Instead, let’s think back to what we want from our elasticity models. Perhaps that will give us some insights into how we should evaluate them.</p>
 <p>The idea of making treatment elasticity models came from the necessity of finding which units are more sensitive to the treatment and which are less. It came from a desire for personalisation. Maybe a marketing campaign is very effective in only one segment of the population. Maybe discounts only work for some type of customers. A good causal model should help us find which customers will respond better and worse to a proposed treatment. They should be able to separate units into how elastic or sensitive they are to the treatment. In our ice cream example, the model should be able to figure out in which days are people willing to spend more on ice cream or, in which days is the price elasticity less negative.</p>
 <p>If that is the goal, it would be very useful if we could somehow order units from more sensitive to less sensitive. Since we have the predicted elasticity, we can order the units by that prediction and hope it also orders them by the real elasticity. Sadly, we can’t evaluate that ordering on a unit level. But, what if we don’t need to? What if, instead, we evaluate groups defined by the ordering? If our treatment is randomly distributed (and here is where randomness enters), estimating elasticity for a group of units is easy. All we need is to compare the outcome between the treated and untreated.</p>
-<p>To understand this better, it’s useful to picture the binary treatment case. Let’s keep the pricing example, but now the treatment is a discount. In other words, prices can be either high (untreated) or low (treated). Let’s plot sales on the Y axis, each of our models in the X axis and price as the color. Then, we can split the data on the model axis into three equal sized groups. <strong>If the treatment was randomly assigned</strong>, we can easily estimate the ATE for each group \(E[Y|T=1] - E[Y|T=0]
-\).</p>
+<p>To understand this better, it’s useful to picture the binary treatment case. Let’s keep the pricing example, but now the treatment is a discount. In other words, prices can be either high (untreated) or low (treated). Let’s plot sales on the Y axis, each of our models in the X axis and price as the color. Then, we can split the data on the model axis into three equal sized groups. <strong>If the treatment was randomly assigned</strong>, we can easily estimate the ATE for each group <span class="math notranslate nohighlight">\(E[Y|T=1] - E[Y|T=0]
+\)</span>.</p>
 <p><img alt="img" src="_images/ate_bins.png" /></p>
 <p>In the image, we can see that the first model is somewhat good at predicting sales (high correlation with sales), but the groups it produces have roughly the same treatment effect, as shown in the plot on the bottom. Two of the three segments have the same elasticity and only the last one has a different, lower elasticity.</p>
 <p>On the other hand, each group produced by the second model has a different causal effect. That’s a sign this model can indeed be useful for personalisation. Finally, the random model produces groups with the exact same elasticity. That’s not very useful, but it’s expected. If the model is random, each segment it produces will be a random and representative sample of the data. So the elasticity in its groups should be roughly the same as the ATE on the entire dataset.</p>
@@ -691,7 +691,7 @@ y_i = \beta_0 + \beta_1t_i + e_i
 \[
 \hat{\beta_1}=\dfrac{\sum (t_i - \bar{t}) (y_i - \bar{y})}{\sum(t_i - \bar{t})^2}
 \]</div>
-<p>where \(\bar{t}\) is the sample average for the treatment and \(\bar{y}\) is the sample average for the outcome. Here is what that looks like in code</p>
+<p>where <span class="math notranslate nohighlight">\(\bar{t}\)</span> is the sample average for the treatment and <span class="math notranslate nohighlight">\(\bar{y}\)</span> is the sample average for the outcome. Here is what that looks like in code</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@curry</span>
@@ -728,8 +728,8 @@ y_i = \beta_0 + \beta_1t_i + e_i
 <img alt="_images/19-Evaluating-Causal-Models_17_0.png" src="_images/19-Evaluating-Causal-Models_17_0.png" />
 </div>
 </div>
-<p>First, look at the random model (\(m3\)). It has roughly the same estimated elasticity in each of its partitions. We can already see just by looking at the plot that it won’t help us much with personalisation since it can’t distinguish between the high and low price elasticity days. Next, consider the predictive model, \(m1\). That model is actually promising! It manages to construct groups where the elasticity is high and others where the elasticity is low. That’s exactly what we need.</p>
-<p>Finally, the causal model \(m2\) looks a bit weird. It identifies groups of really low elasticity, where low here actually means high price sensitivity (sales will decrease by a lot as we increase prices). Detecting those high price sensitivity days is very useful for us. If we know when they are, we will be careful not to go on increasing prices on those types of days. The causal model also identifies some less sensitive regions, so it can successfully distinguish high from low elasticities. But the ordering is not as good as that of the predictive model.</p>
+<p>First, look at the random model (<span class="math notranslate nohighlight">\(m3\)</span>). It has roughly the same estimated elasticity in each of its partitions. We can already see just by looking at the plot that it won’t help us much with personalisation since it can’t distinguish between the high and low price elasticity days. Next, consider the predictive model, <span class="math notranslate nohighlight">\(m1\)</span>. That model is actually promising! It manages to construct groups where the elasticity is high and others where the elasticity is low. That’s exactly what we need.</p>
+<p>Finally, the causal model <span class="math notranslate nohighlight">\(m2\)</span> looks a bit weird. It identifies groups of really low elasticity, where low here actually means high price sensitivity (sales will decrease by a lot as we increase prices). Detecting those high price sensitivity days is very useful for us. If we know when they are, we will be careful not to go on increasing prices on those types of days. The causal model also identifies some less sensitive regions, so it can successfully distinguish high from low elasticities. But the ordering is not as good as that of the predictive model.</p>
 <p>So, what should we decide? Which one is more useful? The predictive or the causal model? The predictive model has better ordering, but the causal model can better identify the extremes. The elasticity by band plot is a good first check, but it can’t answer precisely which model is better. We need to move to something more elaborate.</p>
 </div>
 <div class="section" id="cumulative-elasticity-curve">
@@ -738,7 +738,7 @@ y_i = \beta_0 + \beta_1t_i + e_i
 <p>Once we have the ordered groups, we can construct what we will call the Cumulative Elasticity Curve. We first compute the elasticity of the first group; then, of the first and the second and so on, until we’ve included all the groups. In the end, we will just compute the elasticity for the entire dataset. Here is what it would look like for our illustrative example.</p>
 <p><img alt="img" src="_images/cumm_elast.png" /></p>
 <p>Notice that the first bin in the cumulative elasticity is just the ATE from the most sensitive group according to that model. Also, for all models, the cumulative elasticity will converge to the same point, which is the ATE for the entire dataset.</p>
-<p>Mathematically, we can define the cumulative elasticity as the elasticity estimated up until unit \(k\).</p>
+<p>Mathematically, we can define the cumulative elasticity as the elasticity estimated up until unit <span class="math notranslate nohighlight">\(k\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[
 \widehat{y'(t)}_k = \hat{\beta_1}_k=\dfrac{\sum_i^k (t_i - \bar{t}) (y_i - \bar{y})}{\sum_i^k(t_i - \bar{t})^2}
@@ -750,10 +750,10 @@ y_i = \beta_0 + \beta_1t_i + e_i
 \]</div>
 <p>This is a very interesting sequence in terms of model evaluation because we can make preferences statements about it. First, a model is better to the degree that</p>
 <p><span class="math notranslate nohighlight">\(\hat{y}'(t)_k &gt; \hat{y}'(t)_{k+a}\)</span></p>
-<p>for any \(k\) and \(a&gt;0\). In words, if a model is good at ordering elasticity, the elasticity observed in the top \(k\) samples should be higher than the elasticity observed in top \(k+a\) samples. Or, simply put, if I look at the top units, they should have higher elasticity than units below them.</p>
+<p>for any <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(a&gt;0\)</span>. In words, if a model is good at ordering elasticity, the elasticity observed in the top <span class="math notranslate nohighlight">\(k\)</span> samples should be higher than the elasticity observed in top <span class="math notranslate nohighlight">\(k+a\)</span> samples. Or, simply put, if I look at the top units, they should have higher elasticity than units below them.</p>
 <p>Second, a model is better to the degree that</p>
 <p><span class="math notranslate nohighlight">\(\hat{y}'(t)_k - \hat{y}'(t)_{k+a}\)</span></p>
-<p>is the largest, for any \(k\) and \(a&gt;0\). The intuition being that not only do we want the elasticity of the top \(k\) units to be higher than the elasticity of the units below them, but we want that difference to be as large as possible.</p>
+<p>is the largest, for any <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(a&gt;0\)</span>. The intuition being that not only do we want the elasticity of the top <span class="math notranslate nohighlight">\(k\)</span> units to be higher than the elasticity of the units below them, but we want that difference to be as large as possible.</p>
 <p>To make it more concrete, here is this idea represented in code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -798,7 +798,7 @@ y_i = \beta_0 + \beta_1t_i + e_i
 </div>
 </div>
 <p>Interpreting a Cumulative Elasticity Curve can be a bit challenging, but here is how I see it. Again, it might be easier to think about the binary case. The X axis of the curve represents how many samples are we treating. Here, I normalized the axis to be the proportion of the dataset, so .4 means we are treating 40% of the samples. The Y axis is the elasticity we should expect at that many samples. So, if a curve has value -1 at 40%, it means that the elasticity of the top 40% units is -1. Ideally, we want the highest elasticity for the largest  possible sample. An ideal curve then would start high up on the Y axis and descend very slowly to the average elasticity, representing we can treat a high percentage of units while still maintaining an above average elasticity.</p>
-<p>Needless to say, none of our models gets even close to an ideal elasticity curve. The random model \(M3\) oscillates around the average elasticity and never goes too far away from it. This means that the model can’t find groups where the elasticity is different from the average one. As for the predictive model \(M1\), it appears to be reversely ordering elasticity, because the curve starts below the average elasticity. Not only that, it also converges to the average elasticity pretty quickly, at around 50% of the samples. Finally, the causal model \(M2\) seems more interesting. It has this weird behavior at first, where the cumulative elasticity increases away from the average, but then it reaches a point where we can treat about 75% of the units while keeping a pretty decent elasticity of almost 0. This is probably happening because this model can identify the very low elasticity (high price sensitivity) days. Hence, provided we don’t increase prices on those days, we are allowed to do it for most of the sample (about 75%), while still having a low price sensitivity.</p>
+<p>Needless to say, none of our models gets even close to an ideal elasticity curve. The random model <span class="math notranslate nohighlight">\(M3\)</span> oscillates around the average elasticity and never goes too far away from it. This means that the model can’t find groups where the elasticity is different from the average one. As for the predictive model <span class="math notranslate nohighlight">\(M1\)</span>, it appears to be reversely ordering elasticity, because the curve starts below the average elasticity. Not only that, it also converges to the average elasticity pretty quickly, at around 50% of the samples. Finally, the causal model <span class="math notranslate nohighlight">\(M2\)</span> seems more interesting. It has this weird behavior at first, where the cumulative elasticity increases away from the average, but then it reaches a point where we can treat about 75% of the units while keeping a pretty decent elasticity of almost 0. This is probably happening because this model can identify the very low elasticity (high price sensitivity) days. Hence, provided we don’t increase prices on those days, we are allowed to do it for most of the sample (about 75%), while still having a low price sensitivity.</p>
 <p>In terms of model evaluation, the Cumulative Elasticity Curve is already much better than the simple idea of elasticity by band. Here, we managed to make preference statements about our models that were much more precise. Still, it’s a complicated curve to understand. For this reason, we can do one further improvement.</p>
 </div>
 <div class="section" id="cumulative-gain-curve">
@@ -923,7 +923,7 @@ s_{\hat\beta_1}=\sqrt{\frac{\sum_i\hat\epsilon_i^2}{(n-2)\sum_i(t_i-\bar t)^2}}
 </div>
 </div>
 </div>
-<p>Here is what it looks like for the causal model. Notice that now, the CI starts small, even though the sample size is smaller at the beginning of the curve. The reason is that the normalization factor \(\frac{k}{N}\) shirks the ATE parameter and it’s CI along with it. Since this curve should be used to compare models, this shouldn’t be a problem, as the curve will apply this shirking factor equally to all the models being evaluated.</p>
+<p>Here is what it looks like for the causal model. Notice that now, the CI starts small, even though the sample size is smaller at the beginning of the curve. The reason is that the normalization factor <span class="math notranslate nohighlight">\(\frac{k}{N}\)</span> shirks the ATE parameter and it’s CI along with it. Since this curve should be used to compare models, this shouldn’t be a problem, as the curve will apply this shirking factor equally to all the models being evaluated.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>

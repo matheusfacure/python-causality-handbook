@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -399,7 +399,7 @@
         
               <div>
                 
-  <div class="section" id="randomised-experiments">
+  <div class="tex2jax_ignore mathjax_ignore section" id="randomised-experiments">
 <h1>02 - Randomised Experiments<a class="headerlink" href="#randomised-experiments" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-golden-standard">
 <h2>The Golden Standard<a class="headerlink" href="#the-golden-standard" title="Permalink to this headline">¶</a></h2>
@@ -407,15 +407,15 @@
 <p><span class="math notranslate nohighlight">\(
 E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATT} + \underbrace{\{ E[Y_0|T=1] - E[Y_0|T=0] \}}_{BIAS}
 \)</span></p>
-<p>To recap, association becomes causation if there is no bias. There will be no bias if \(E[Y_0|T=0]=E[Y_0|T=1]\). In words, association will be causation if the treated and control are equal, or comparable, except for the treatment they receive. Or, in more technical words, when the outcome of the untreated is equal to the counterfactual outcome of the treated. Remember that this counterfactual outcome is the outcome of the treated group if they had not received the treatment.</p>
+<p>To recap, association becomes causation if there is no bias. There will be no bias if <span class="math notranslate nohighlight">\(E[Y_0|T=0]=E[Y_0|T=1]\)</span>. In words, association will be causation if the treated and control are equal, or comparable, except for the treatment they receive. Or, in more technical words, when the outcome of the untreated is equal to the counterfactual outcome of the treated. Remember that this counterfactual outcome is the outcome of the treated group if they had not received the treatment.</p>
 <p>I think we did an OK job explaining in math terms how to make association equal to causation. But that was only in theory. Now, we look at the first tool we have to make the bias vanish: <strong>Randomised Experiments</strong>. Randomised experiments consist of randomly assigning individuals in a population to a treatment or to a control group. The proportion that receives the treatment doesn’t have to be 50%. You could have an experiment where only 10% of your samples get the treatment.</p>
 <p>Randomisation annihilates bias by making the potential outcomes independent of the treatment.</p>
 <p><span class="math notranslate nohighlight">\(
 (Y_0, Y_1) \perp\!\!\!\perp T
 \)</span></p>
-<p>This can be confusing at first (it was for me). But don’t worry, my brave and true fellow, I’ll explain it further. If the outcome is independent of the treatment, doesn’t this also imply that the treatment has no effect? Well, yes! But notice I’m not talking about the outcomes. Rather, I’m talking about the <strong>potential</strong> outcomes. The potential outcomes is how the outcome <strong>would have been</strong> under the treatment (\(Y_1\)) or under the control (\(Y_0\)). In randomized trials, we <strong>don’t</strong> want the outcome to be <strong>independent</strong> on the treatment, since we think <strong>the treatment causes</strong> the outcome. But we want the <strong>potential</strong> outcomes to be independent from the treatment.</p>
+<p>This can be confusing at first (it was for me). But don’t worry, my brave and true fellow, I’ll explain it further. If the outcome is independent of the treatment, doesn’t this also imply that the treatment has no effect? Well, yes! But notice I’m not talking about the outcomes. Rather, I’m talking about the <strong>potential</strong> outcomes. The potential outcomes is how the outcome <strong>would have been</strong> under the treatment (<span class="math notranslate nohighlight">\(Y_1\)</span>) or under the control (<span class="math notranslate nohighlight">\(Y_0\)</span>). In randomized trials, we <strong>don’t</strong> want the outcome to be <strong>independent</strong> on the treatment, since we think <strong>the treatment causes</strong> the outcome. But we want the <strong>potential</strong> outcomes to be independent from the treatment.</p>
 <p><img alt="img" src="_images/indep.png" /></p>
-<p>Saying that the potential outcomes are independent from the treatment is saying that they would be, in expectation, the same in the treatment or the control group. In simpler terms, it means that treatment and control groups are comparable. Or that knowing the treatment assignment doesn’t give me any information on how the outcome was, previous to the treatment. Consequently, \((Y_0, Y_1)\perp T\) means that the treatment is the only thing that is generating a difference between the outcome in the treated and in the control. To see this, notice that independence implies precisely that</p>
+<p>Saying that the potential outcomes are independent from the treatment is saying that they would be, in expectation, the same in the treatment or the control group. In simpler terms, it means that treatment and control groups are comparable. Or that knowing the treatment assignment doesn’t give me any information on how the outcome was, previous to the treatment. Consequently, <span class="math notranslate nohighlight">\((Y_0, Y_1)\perp T\)</span> means that the treatment is the only thing that is generating a difference between the outcome in the treated and in the control. To see this, notice that independence implies precisely that</p>
 <p><span class="math notranslate nohighlight">\(
 E[Y_0|T=0]=E[Y_0|T=1]=E[Y_0]
 \)</span></p>
@@ -429,14 +429,14 @@ E[Y|T=1] - E[Y|T=0] = E[Y_1 - Y_0]=ATE
 <h2>In a School Far, Far Away<a class="headerlink" href="#in-a-school-far-far-away" title="Permalink to this headline">¶</a></h2>
 <p>In the year of 2020, the Coronavirus Pandemic forced business to adapt to social distancing. Delivery services became widespread, big corporations shifted to a remote work strategy. With schools, it wasn’t different. Many started their own online repository of classes.</p>
 <p>Four months into the crises and many are wondering if the introduced changes could be maintained. There is no question that online learning has its benefits. For once, it is cheaper, since it can save on real estate and transportation. It can also be more digital, leveraging world class content from around the globe, not just from a fixed set of teachers. In spite of all of that, we still need to answer if online learning has a negative or positive impact on the student’s academic performance.</p>
-<p>One way to answer this is to take students from schools that give mostly online classes and compare them with students from schools that give lectures in traditional classrooms. As we know by now this is not the best approach. It could be that online schools attract only the well disciplined students that do better than average even if the class were presential. In this case, we would have a positive bias, where the treated are academically better than the untreated: \(E[Y_0|T=1] &gt; E[Y_0|T=0]\).</p>
-<p>Or, on the flip side, it could be that online classes are cheaper and are composed mostly of less wealthy students, who might have to work besides studying. In this case, these students would do worse than those from the presential schools even if they took presential classes. If this was the case, we would have bias in the other direction, where the treated are academically worse than the untreated:  \(E[Y_0|T=1] &lt; E[Y_0|T=0]\).</p>
+<p>One way to answer this is to take students from schools that give mostly online classes and compare them with students from schools that give lectures in traditional classrooms. As we know by now this is not the best approach. It could be that online schools attract only the well disciplined students that do better than average even if the class were presential. In this case, we would have a positive bias, where the treated are academically better than the untreated: <span class="math notranslate nohighlight">\(E[Y_0|T=1] &gt; E[Y_0|T=0]\)</span>.</p>
+<p>Or, on the flip side, it could be that online classes are cheaper and are composed mostly of less wealthy students, who might have to work besides studying. In this case, these students would do worse than those from the presential schools even if they took presential classes. If this was the case, we would have bias in the other direction, where the treated are academically worse than the untreated:  <span class="math notranslate nohighlight">\(E[Y_0|T=1] &lt; E[Y_0|T=0]\)</span>.</p>
 <p>So, although we could do simple comparisons, it wouldn’t be very convincing. One way or another, we could never be sure if there wasn’t any bias lurking around and masking our causal effect.</p>
 <p><img alt="img" src="_images/lurking_bias.png" /></p>
-<p>To solve that, we need to make the treated and untreated comparable \(E[Y_0|T=1] = E[Y_0|T=0]\). One way to force this is by randomly assigning the online and presential classes to students. If we managed to do that, the treatment and untreated would be, on average, the same, except for the treatment they receive.</p>
+<p>To solve that, we need to make the treated and untreated comparable <span class="math notranslate nohighlight">\(E[Y_0|T=1] = E[Y_0|T=0]\)</span>. One way to force this is by randomly assigning the online and presential classes to students. If we managed to do that, the treatment and untreated would be, on average, the same, except for the treatment they receive.</p>
 <p>Fortunately, some economists have done that for us. They’ve randomized classes so that some students were assigned to have face-to-face lectures, others, to have only online lectures and a third group, to have a blended format of both online and face-to-face lectures. At the end of the semester, they collected data on a standard exam.</p>
 <p>Here is what the data looks like:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -653,7 +653,7 @@ E[Y|T=1] - E[Y|T=0] = E[Y_1 - Y_0]=ATE
 </table>
 </div></div></div>
 </div>
-<p>Yup. It’s that simple. We can see that face to face classes yield a 78.54 average score, while online classes yield a 73.63 average score. Not so good news for the proponents of online learning. The \(ATE\) for online class is thus -4.91. This means that <strong>online classes cause students to perform about 5 points lower</strong>, on average. That’s it. You don’t need to worry that online classes might have poorer students that can’t afford face to face classes or, for that matter, you don’t have to worry that the students from the different treatments are different in any way other than the treatment they received. By design, the random experiment is made to wipe out those differences.</p>
+<p>Yup. It’s that simple. We can see that face to face classes yield a 78.54 average score, while online classes yield a 73.63 average score. Not so good news for the proponents of online learning. The <span class="math notranslate nohighlight">\(ATE\)</span> for online class is thus -4.91. This means that <strong>online classes cause students to perform about 5 points lower</strong>, on average. That’s it. You don’t need to worry that online classes might have poorer students that can’t afford face to face classes or, for that matter, you don’t have to worry that the students from the different treatments are different in any way other than the treatment they received. By design, the random experiment is made to wipe out those differences.</p>
 <p>For this reason, a good sanity check to see if the randomisation was done right (or if you are looking at the right data) is to check if the treated are equal to the untreated in pre-treatment variables. In our data, we have information on gender and ethnicity, so we can see if they are equal across groups. For the <code class="docutils literal notranslate"><span class="pre">gender</span></code>, <code class="docutils literal notranslate"><span class="pre">asian</span></code>, <code class="docutils literal notranslate"><span class="pre">hispanic</span></code> and <code class="docutils literal notranslate"><span class="pre">white</span></code> variables, we can say that they look pretty similar. The <code class="docutils literal notranslate"><span class="pre">black</span></code> variable, however, looks a little bit different. This draws attention to what happens with a small dataset. Even under randomisation, it could be that, by chance, one group is different from another. In large samples, this difference tends to disappear.</p>
 </div>
 <div class="section" id="the-ideal-experiment">

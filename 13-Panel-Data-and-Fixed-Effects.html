@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -404,7 +404,7 @@
         
               <div>
                 
-  <div class="section" id="panel-data-and-fixed-effects">
+  <div class="tex2jax_ignore mathjax_ignore section" id="panel-data-and-fixed-effects">
 <h1>13 - Panel Data and Fixed Effects<a class="headerlink" href="#panel-data-and-fixed-effects" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="controlling-what-you-cannot-see">
 <h2>Controlling What you Cannot See<a class="headerlink" href="#controlling-what-you-cannot-see" title="Permalink to this headline">¶</a></h2>
@@ -415,7 +415,7 @@
 <p>To put it in words, they require that all the confounders are known and measured, so that we can condition on them and make the treatment as good as random. One major issue with this is that sometimes we simply can’t measure a confounder. For instance, take a classical labor economics problem of figuring out the impact of marriage on men’s earnings. It’s a well known fact in economics that married men earn more than single men. However, it is not clear if this relationship is causal or not. It could be that more educated men are both more likely to marry and more likely to have a high earnings job, which would mean that education is a confounder of the effect of marriage on earnings. For this confounder, we could measure the education of the person in the study and run a regression controlling for that. But another confounder could be beauty. It could be that more handsome men are both more likely to get married and more likely to have a high paying job. Unfortunately, beauty is one of those characteristics like intelligence. It’s something we can’t measure very well.</p>
 <p>This puts us in a difficult situation, because if we have unmeasured confounders, we have bias. One way to deal with this is with instrumental variables, as we’ve seen before. But coming up with good instruments it’s no easy task and requires a lot of creativity. Here, let’s look at an alternative that takes advantage of time or the temporal structure of data.</p>
 <p>The idea is to use <strong>panel data</strong>. Panel data is when we have <strong>observations on the same individual for multiple periods of time</strong>. Panel data formats are very common in the industry, where they keep records of customer behavior for the same customer and for multiple time periods. The reason we can leverage panel data is because we can compare the same unit before and after the treatment and see how they behave with it. Before we dive in the math, let’s see how this makes intuitive sense.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -438,7 +438,7 @@
 </div>
 </div>
 <p>First, let’s take a look at the causal graph that we have once we include multiple observations of the same unit across time. Suppose we have a situation where marriage at the first time causes income at the same time and subsequent marital status. This is also true for times 2 and 3. Also, suppose that beauty is the same across all time periods (a bold statement, but reasonable if time is just a few years) and it causes both marriage and income.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Marriage_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_1&quot;</span><span class="p">)</span>
@@ -463,7 +463,7 @@
 <img alt="_images/13-Panel-Data-and-Fixed-Effects_3_0.svg" src="_images/13-Panel-Data-and-Fixed-Effects_3_0.svg" /></div>
 </div>
 <p>Remember that we cannot control beauty, since we can’t measure it. But we can still use the panel structure so it is not a problem anymore. The idea is that we can see beauty - and any other attribute that is constant across time - as the defining aspects of a person. And although we can’t control them directly, we can control for the individual itself.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;Marriage_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Income_1&quot;</span><span class="p">)</span>
@@ -588,17 +588,17 @@
 <p><span class="math notranslate nohighlight">\(
 y_{it} = \beta X_{it} + \gamma U_i + e_{it}
 \)</span></p>
-<p>where \(y_{it}\) is the outcome of individual \(i\) at time \(t\), \(X_{it}\) is the vector of variables for individual \(i\) at time \(t\). \(U_i\) is a set of unobservables for individual \(i\). Notice that those unobservables are unchanging through time, hence the lack of the time subscript. Finally,  \(e_{it}\) is the error term. For the education example, \(y_{it}\) is log wages,  \(X_{it}\) are the observable variables that change in time, like marriage and experience and \(U_i\) are the variables that are not observed but constant for each individual, like beauty and intelligence.</p>
-<p>Now, remember how I’ve said that using panel data with a fixed effect model is as simple as adding a dummy for the entities. It’s true, but in practice, we don’t actually do it. Imagine a dataset where we have 1 million customers. If we add one dummy for each of them, we would end up with 1 million columns, which is probably not a good idea. Instead, we use the trick of partitioning the linear regression into 2 separate models. We’ve seen this before, but now is a good time to recap it. Suppose you have a linear regression model with a set of features \(X_1\) and another set of features \(X_2\).</p>
+<p>where <span class="math notranslate nohighlight">\(y_{it}\)</span> is the outcome of individual <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(X_{it}\)</span> is the vector of variables for individual <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>. <span class="math notranslate nohighlight">\(U_i\)</span> is a set of unobservables for individual <span class="math notranslate nohighlight">\(i\)</span>. Notice that those unobservables are unchanging through time, hence the lack of the time subscript. Finally,  <span class="math notranslate nohighlight">\(e_{it}\)</span> is the error term. For the education example, <span class="math notranslate nohighlight">\(y_{it}\)</span> is log wages,  <span class="math notranslate nohighlight">\(X_{it}\)</span> are the observable variables that change in time, like marriage and experience and <span class="math notranslate nohighlight">\(U_i\)</span> are the variables that are not observed but constant for each individual, like beauty and intelligence.</p>
+<p>Now, remember how I’ve said that using panel data with a fixed effect model is as simple as adding a dummy for the entities. It’s true, but in practice, we don’t actually do it. Imagine a dataset where we have 1 million customers. If we add one dummy for each of them, we would end up with 1 million columns, which is probably not a good idea. Instead, we use the trick of partitioning the linear regression into 2 separate models. We’ve seen this before, but now is a good time to recap it. Suppose you have a linear regression model with a set of features <span class="math notranslate nohighlight">\(X_1\)</span> and another set of features <span class="math notranslate nohighlight">\(X_2\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{Y} = \hat{\beta_1} X_1 + \hat{\beta_2} X_2
 \)</span></p>
-<p>where \(X_1\) and \(X_1\) are feature matrices (one row per feature and one column per observation) and \(\hat{\beta_1}\) and \(\hat{\beta_2}\) are row vectors. You can get the exact same \(\hat{\beta_1}\) parameter by doing</p>
+<p>where <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span> are feature matrices (one row per feature and one column per observation) and <span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span> and <span class="math notranslate nohighlight">\(\hat{\beta_2}\)</span> are row vectors. You can get the exact same <span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span> parameter by doing</p>
 <ol class="simple">
-<li><p>regress the outcome \(y\) on the second set of features \(\hat{y^*} = \hat{\gamma_1} X_2\)</p></li>
-<li><p>regress the first set of features on the second \(\hat{X_1} = \hat{\gamma_2} X_2\)</p></li>
-<li><p>obtain the residuals \(\tilde{X}_1 = X_1 - \hat{X_1}\) and \(\tilde{y}_1 = y_1 - \hat{y^*}\)</p></li>
-<li><p>regress the residuals of the outcome on the residuals of the features \(\hat{y} = \hat{\beta_1} \tilde{X}_1\)</p></li>
+<li><p>regress the outcome <span class="math notranslate nohighlight">\(y\)</span> on the second set of features <span class="math notranslate nohighlight">\(\hat{y^*} = \hat{\gamma_1} X_2\)</span></p></li>
+<li><p>regress the first set of features on the second <span class="math notranslate nohighlight">\(\hat{X_1} = \hat{\gamma_2} X_2\)</span></p></li>
+<li><p>obtain the residuals <span class="math notranslate nohighlight">\(\tilde{X}_1 = X_1 - \hat{X_1}\)</span> and <span class="math notranslate nohighlight">\(\tilde{y}_1 = y_1 - \hat{y^*}\)</span></p></li>
+<li><p>regress the residuals of the outcome on the residuals of the features <span class="math notranslate nohighlight">\(\hat{y} = \hat{\beta_1} \tilde{X}_1\)</span></p></li>
 </ol>
 <p>The parameter from this last regression will be exactly the same as running the regression with all the features. But how exactly does this help us? Well, we can break the estimation of the model with the entity dummies into 2. First, we use the dummies to predict the outcome and the feature. These are steps 1 and 2 above.</p>
 <p>Now, remember how running a regression on a dummy variable is as simple as estimating the mean for that dummy? If you don’t, let’s use our data to show how this is true. Let’s run a model where we predict wages as a function of the year dummy.</p>
@@ -669,7 +669,7 @@ Name: lwage, dtype: float64
 <span class="math notranslate nohighlight">\(\ddot{X}_{it} = X_{it} -  \bar{X}_i\)</span></p></li>
 <li><p>Regress <span class="math notranslate nohighlight">\(\ddot{Y}_{it}\)</span> on <span class="math notranslate nohighlight">\(\ddot{X}_{it}\)</span></p></li>
 </ol>
-<p>Notice that when we do so, the unobserved \(U_i\) vanishes. Since \(U_i\) is constant across time, we have that \(\bar{U_i}=U_i\). If we have the following system of two equations</p>
+<p>Notice that when we do so, the unobserved <span class="math notranslate nohighlight">\(U_i\)</span> vanishes. Since <span class="math notranslate nohighlight">\(U_i\)</span> is constant across time, we have that <span class="math notranslate nohighlight">\(\bar{U_i}=U_i\)</span>. If we have the following system of two equations</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}

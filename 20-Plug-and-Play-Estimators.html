@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -401,9 +401,9 @@
         
               <div>
                 
-  <div class="section" id="plug-and-play-estimators">
+  <div class="tex2jax_ignore mathjax_ignore section" id="plug-and-play-estimators">
 <h1>20 - Plug-and-Play Estimators<a class="headerlink" href="#plug-and-play-estimators" title="Permalink to this headline">¶</a></h1>
-<p>So far, we’ve seen how to debias our data in the case where the treatment is not randomly assigned, which results in confounding bias. That helps us with the identification problem in causal inference. In other words, once the units are exchangeable, or \( Y(0), Y(1) \perp X\), it becomes possible to learn the treatment effect. But we are far from done.</p>
+<p>So far, we’ve seen how to debias our data in the case where the treatment is not randomly assigned, which results in confounding bias. That helps us with the identification problem in causal inference. In other words, once the units are exchangeable, or <span class="math notranslate nohighlight">\( Y(0), Y(1) \perp X\)</span>, it becomes possible to learn the treatment effect. But we are far from done.</p>
 <p>Identification means that we can find the average treatment effect. In other words, we know how effective a treatment is on average. Of course this is useful, as it helps us to decide if we should roll out a treatment or not. But we want more than that. We want to know if there are subgroups of units that respond better or worse to the treatment. That should allow for a much better policy, one where we only treat the ones that will benefit from it.</p>
 <div class="section" id="problem-setup">
 <h2>Problem Setup<a class="headerlink" href="#problem-setup" title="Permalink to this headline">¶</a></h2>
@@ -411,7 +411,7 @@
 <p><span class="math notranslate nohighlight">\(
 \tau_i = Y_i(1) − Y_i(0),
 \)</span></p>
-<p>or, the continuous treatment case, \(\tau_i = \partial Y(t)\), where \(t\) is the treatment variable. Of course, we can never observe the individual treatment effect, because we only get to see the one of potential outcomes</p>
+<p>or, the continuous treatment case, <span class="math notranslate nohighlight">\(\tau_i = \partial Y(t)\)</span>, where <span class="math notranslate nohighlight">\(t\)</span> is the treatment variable. Of course, we can never observe the individual treatment effect, because we only get to see the one of potential outcomes</p>
 <p><span class="math notranslate nohighlight">\(
 Y^{obs}_i(t)= 
 \begin{cases}
@@ -427,21 +427,21 @@ Y_i(0), &amp; \text{if } t=0
 <p><span class="math notranslate nohighlight">\(
 \tau(x) = E[Y_i(1) − Y_i(0)|X] = E[\tau_i|X]
 \)</span></p>
-<p>In Part I of this book, we’ve focused mostly on the ATE. Now, we are interested in the CATE. The CATE is useful for personalising a decision making process. For example, if you have a drug as the treatment \(t\), you want to know which type of patients are more responsive to the drug (higher CATE) and if there are some types of patient with a negative response (CATE &lt; 0).</p>
+<p>In Part I of this book, we’ve focused mostly on the ATE. Now, we are interested in the CATE. The CATE is useful for personalising a decision making process. For example, if you have a drug as the treatment <span class="math notranslate nohighlight">\(t\)</span>, you want to know which type of patients are more responsive to the drug (higher CATE) and if there are some types of patient with a negative response (CATE &lt; 0).</p>
 <p>We’ve seen how to estimate the CATE using a linear regression with interactions between the treatment and the features</p>
 <p><span class="math notranslate nohighlight">\(
 y_i = \beta_0 + \beta_1 t_i + \beta_2 X_i + \beta_3 t_i X_i + e_i.
 \)</span></p>
-<p>If we estimate this model, we can get estimates for \(\tau(x)\)</p>
+<p>If we estimate this model, we can get estimates for <span class="math notranslate nohighlight">\(\tau(x)\)</span></p>
 <p><span class="math notranslate nohighlight">\(
 \hat{\tau}(x) = \hat{\beta}_1 + \hat{\beta}_3 t_i X_i
 \)</span></p>
-<p>Still, the linear models have some drawbacks. The main one being the linearity assumption on \(X\). Notice that you don’t even care about \(\beta_2\) on this model. But if the features \(X\) don’t have a linear relationship with the outcome, your estimates of the causal parameters \(\beta_1\) and \(\beta_3\) will be off.</p>
+<p>Still, the linear models have some drawbacks. The main one being the linearity assumption on <span class="math notranslate nohighlight">\(X\)</span>. Notice that you don’t even care about <span class="math notranslate nohighlight">\(\beta_2\)</span> on this model. But if the features <span class="math notranslate nohighlight">\(X\)</span> don’t have a linear relationship with the outcome, your estimates of the causal parameters <span class="math notranslate nohighlight">\(\beta_1\)</span> and <span class="math notranslate nohighlight">\(\beta_3\)</span> will be off.</p>
 <p>It would be great if we could replace the linear model by a more flexible machine learning model. We could even plug the treatment as a feature to a ML model, like boosted trees or a neural network</p>
 <p><span class="math notranslate nohighlight">\(
 y_i = M(X_i, T_i) + e_i
 \)</span></p>
-<p>but from there, it is not clear how we can get treatment effect estimates, since this model will output \(\hat{y}\) predictions, not \(\hat{\tau(x)}\) predictions. Ideally, we would use a machine learning regression model that, instead of minimising the outcome MSE</p>
+<p>but from there, it is not clear how we can get treatment effect estimates, since this model will output <span class="math notranslate nohighlight">\(\hat{y}\)</span> predictions, not <span class="math notranslate nohighlight">\(\hat{\tau(x)}\)</span> predictions. Ideally, we would use a machine learning regression model that, instead of minimising the outcome MSE</p>
 <p><span class="math notranslate nohighlight">\(
 E[(Y_i - \hat{Y}_i)^2]
 \)</span></p>
@@ -449,7 +449,7 @@ E[(Y_i - \hat{Y}_i)^2]
 <p><span class="math notranslate nohighlight">\(
 E[(\tau(x)_i - \hat{\tau}(x)_i)^2] = E[(Y_i(1) - Y_i(0) - \hat{\tau}(x)_i)^2].
 \)</span></p>
-<p>However, this criterion is what we call infeasible. Again, the problem here is that \(\tau(x)_i\) is not observable, so we can’t optimize it directly. This puts us in a tough spot… Let’s try to simplify it a bit and maybe we can think of something.</p>
+<p>However, this criterion is what we call infeasible. Again, the problem here is that <span class="math notranslate nohighlight">\(\tau(x)_i\)</span> is not observable, so we can’t optimize it directly. This puts us in a tough spot… Let’s try to simplify it a bit and maybe we can think of something.</p>
 <p><img alt="img" src="_images/infeasible.png" /></p>
 </div>
 <div class="section" id="target-transformation">
@@ -461,12 +461,12 @@ Y^*_i = 2 Y_i * T_i - 2 Y_i*(1-T_i)
 \)</span></p>
 <p>So, if the unit was treated, you would take the outcome and multiply it by 2. If it wasn’t treated, you would take the outcome and multiply it by -2. For example, if one of your customers invested BRL 2000,00 and got the email, the transformed target would be 4000. However, if he or she didn’t get the email, it would be -4000.</p>
 <p>This seems very odd, because you are saying that the effect of the email can be a negative number, but bare with me. If we do a little bit of math, we can see that, on average or in expectation, this transformed target will be the treatment effect. This is nothing short of amazing. What I’m saying is that by applying this somewhat wacky transformation, I get to estimate something that I can’t even observe.</p>
-<p>To understand that, we need a bit of math. Because of random assignment, we have that \(T \perp Y(1), Y(1)\), which is our old unconfoundedness friend. That implies that \(E[T, Y(t)]=E[T]*E[Y(t)]\), which is the definition of independence.</p>
+<p>To understand that, we need a bit of math. Because of random assignment, we have that <span class="math notranslate nohighlight">\(T \perp Y(1), Y(1)\)</span>, which is our old unconfoundedness friend. That implies that <span class="math notranslate nohighlight">\(E[T, Y(t)]=E[T]*E[Y(t)]\)</span>, which is the definition of independence.</p>
 <p>Also, we know that</p>
 <p><span class="math notranslate nohighlight">\(
 Y_i*T_i = Y_(1)i*T_i \text{ and }  Y_i*(1-T_i) = Y_(0)i*T_i
 \)</span></p>
-<p>because the treatment is what materializes one or the other potential outcomes. With that in mind, let’s take the expected value of \(Y^*_i\) and see what we end up with.</p>
+<p>because the treatment is what materializes one or the other potential outcomes. With that in mind, let’s take the expected value of <span class="math notranslate nohighlight">\(Y^*_i\)</span> and see what we end up with.</p>
 <p><span class="math notranslate nohighlight">\(
 \begin{align}
 E[Y^*_i|X_i=x] &amp;= E[2 Y(1)_i * T_i - 2 Y(0)_i*(1-T_i)|X_i=x] \\
@@ -477,16 +477,16 @@ E[Y^*_i|X_i=x] &amp;= E[2 Y(1)_i * T_i - 2 Y(0)_i*(1-T_i)|X_i=x] \\
 &amp;= \tau(x)_i
 \end{align}
 \)</span></p>
-<p>So, this apparently crazy idea ended up being an unbiased estimate of the individual treatment effect \(\tau(x)_i\). Now, we can replace our infeasible optimization criterion with</p>
+<p>So, this apparently crazy idea ended up being an unbiased estimate of the individual treatment effect <span class="math notranslate nohighlight">\(\tau(x)_i\)</span>. Now, we can replace our infeasible optimization criterion with</p>
 <p><span class="math notranslate nohighlight">\(
 E[(Y^*_i - \hat{\tau}(x)_i)^2]
 \)</span></p>
-<p>In simpler terms, all we have to do is use any regression machine learning model to predict \(Y^*_i\) and this model will output treatment effect predictions.</p>
-<p>Now that we’ve solved the simple case, what about the more complicated case, where treatment is not 50% 50%, or not even randomly assigned? As it turns out, the answer is a bit more complicated, but not much. First, if we don’t have random assignment, we need at least conditional independence \(T \perp Y(1), Y(1) | X\). That is, controlling for \(X\), \(T\) is as good as random. With that, we can generalize the transformed target to</p>
+<p>In simpler terms, all we have to do is use any regression machine learning model to predict <span class="math notranslate nohighlight">\(Y^*_i\)</span> and this model will output treatment effect predictions.</p>
+<p>Now that we’ve solved the simple case, what about the more complicated case, where treatment is not 50% 50%, or not even randomly assigned? As it turns out, the answer is a bit more complicated, but not much. First, if we don’t have random assignment, we need at least conditional independence <span class="math notranslate nohighlight">\(T \perp Y(1), Y(1) | X\)</span>. That is, controlling for <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(T\)</span> is as good as random. With that, we can generalize the transformed target to</p>
 <p><span class="math notranslate nohighlight">\(
 Y^*_i = Y_i * \dfrac{T_i - e(X_i)}{e(X_i)(1-e(X_i))}
 \)</span></p>
-<p>where \(e(X_i)\) is the propensity score. So, if the treatment is not 50% 50%, but randomized with a different probability \(p\), all you have to do is replace the propensity score in the above formula with \(p\). If the treatment is not random, then you have to use the propensity score, either stored or estimated.</p>
+<p>where <span class="math notranslate nohighlight">\(e(X_i)\)</span> is the propensity score. So, if the treatment is not 50% 50%, but randomized with a different probability <span class="math notranslate nohighlight">\(p\)</span>, all you have to do is replace the propensity score in the above formula with <span class="math notranslate nohighlight">\(p\)</span>. If the treatment is not random, then you have to use the propensity score, either stored or estimated.</p>
 <p>If you take the expectation of this, you will see that it also matches the treatment effect. The proof is left as an exercise to the reader. Just kidding, here it is. It’s a bit cumbersome, so feel free to skip it.</p>
 <p><span class="math notranslate nohighlight">\(
 \begin{align}
@@ -612,7 +612,7 @@ E[Y^*_i|X_i=x] &amp;= E\big[Y_i * \dfrac{T_i - e(X_i)}{e(X_i)(1-e(X_i))}|X_i=x\b
 E[Converted(1)_i - Converted(0)_i|X_i=x] = \tau(x)_i
 \)</span></p>
 <p>so that we can target those customers who will have the best response to the email (higher CATE)</p>
-<p>But first, let’s break our dataset into a training and a validation set. We will estimate \(\tau(x)_i\) on one set and evaluate the estimates on the other.</p>
+<p>But first, let’s break our dataset into a training and a validation set. We will estimate <span class="math notranslate nohighlight">\(\tau(x)_i\)</span> on one set and evaluate the estimates on the other.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -655,7 +655,7 @@ E[Converted(1)_i - Converted(0)_i|X_i=x] = \tau(x)_i
 </div>
 </div>
 </div>
-<p>This model can now estimate \(\tau(x)_i\). In other words, what it outputs is \(\hat{\tau}(x)_i\). For example, if we make predictions on the test set, we will see that some units have higher CATE than others. For example, customer 6958 has a CATE of 0.1, meaning the probability he or she will buy our investment product is predicted to increase by 0.1 if we send the email to this customer. In contrast, for customer 3903, the probability of buying the product is predicted to increase just 0.04.</p>
+<p>This model can now estimate <span class="math notranslate nohighlight">\(\tau(x)_i\)</span>. In other words, what it outputs is <span class="math notranslate nohighlight">\(\hat{\tau}(x)_i\)</span>. For example, if we make predictions on the test set, we will see that some units have higher CATE than others. For example, customer 6958 has a CATE of 0.1, meaning the probability he or she will buy our investment product is predicted to increase by 0.1 if we send the email to this customer. In contrast, for customer 3903, the probability of buying the product is predicted to increase just 0.04.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_pred</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cate</span><span class="o">=</span><span class="n">cate_learner</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">X</span><span class="p">]))</span>
@@ -875,11 +875,11 @@ E[Converted(1)_i - Converted(0)_i|X_i=x] = \tau(x)_i
 </div>
 </div>
 </div>
-<p>Now is where we need a little bit of creativity. For the discrete case, the conditional average treatment effect is given by how much the outcome changes when we go from untreated to treated, conditioned on unit characteristics \(X\).</p>
+<p>Now is where we need a little bit of creativity. For the discrete case, the conditional average treatment effect is given by how much the outcome changes when we go from untreated to treated, conditioned on unit characteristics <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(
 \tau(x) = E[Y_i(1) − Y_i(0)|X] = E[\tau_i|X]
 \)</span></p>
-<p>In plain english, this is estimating the impact of the treatment on different unit profiles, where profiles are defined using the features \(X\). For the continuous case, we don’t have that on-off switch. Units are not treated or untreated. Rather, they are all treated, but with different intensities. Therefore, we can’t talk about the effect of giving the treatment. Rather, we need to speak in terms of increasing the treatment. In other words, we wish to know how the outcome would change if we increase the treatment by some amount. This is like estimating the partial derivative of the outcome function \(Y\) on the treatment \(t\). And because we wish to know that for each group (the CATE, not the ATE), we condition on the features \(X\)</p>
+<p>In plain english, this is estimating the impact of the treatment on different unit profiles, where profiles are defined using the features <span class="math notranslate nohighlight">\(X\)</span>. For the continuous case, we don’t have that on-off switch. Units are not treated or untreated. Rather, they are all treated, but with different intensities. Therefore, we can’t talk about the effect of giving the treatment. Rather, we need to speak in terms of increasing the treatment. In other words, we wish to know how the outcome would change if we increase the treatment by some amount. This is like estimating the partial derivative of the outcome function <span class="math notranslate nohighlight">\(Y\)</span> on the treatment <span class="math notranslate nohighlight">\(t\)</span>. And because we wish to know that for each group (the CATE, not the ATE), we condition on the features <span class="math notranslate nohighlight">\(X\)</span></p>
 <p><span class="math notranslate nohighlight">\(
 \tau(x) = E[\partial Y_i(t)|X] = E[\tau_i|X]
 \)</span></p>
@@ -900,12 +900,12 @@ Y^*_i = (Y_i- \bar{Y})\dfrac{(T_i - \bar{T})}{\sigma^2_T}
 <p><span class="math notranslate nohighlight">\(
 V_i = \dfrac{(T_i - \bar{T})}{\sigma^2_T}
 \)</span></p>
-<p>notice that \(E[V_i|X_i=x]=0\) because under random assignment \(E[T_i|X_i=x]=\bar{T}\). In other words, for every region of X, \(E[T_i]=\bar{T}\). Also \(E[T_i V_i | X_i=x]=1\) because \(E[T_i(T_i - \bar{T})|X_i=x] = E[(T_i - \bar{T})^2|X_i=x]\), which is the treatment variance. Finally, under conditional independence (which we get for free in the random treatment assignment case), \(E[T_i e_i | X_i=x] = E[T_i | X_i=x] E[e_i | X_i=x]\).</p>
+<p>notice that <span class="math notranslate nohighlight">\(E[V_i|X_i=x]=0\)</span> because under random assignment <span class="math notranslate nohighlight">\(E[T_i|X_i=x]=\bar{T}\)</span>. In other words, for every region of X, <span class="math notranslate nohighlight">\(E[T_i]=\bar{T}\)</span>. Also <span class="math notranslate nohighlight">\(E[T_i V_i | X_i=x]=1\)</span> because <span class="math notranslate nohighlight">\(E[T_i(T_i - \bar{T})|X_i=x] = E[(T_i - \bar{T})^2|X_i=x]\)</span>, which is the treatment variance. Finally, under conditional independence (which we get for free in the random treatment assignment case), <span class="math notranslate nohighlight">\(E[T_i e_i | X_i=x] = E[T_i | X_i=x] E[e_i | X_i=x]\)</span>.</p>
 <p>To show that this target transformation works, we need to remember that we are estimating the parameter for a local linear model</p>
 <p><span class="math notranslate nohighlight">\(
 Y_i = \alpha + \beta T_i + e_i | X_i=x
 \)</span></p>
-<p>In our example, those would be the linear models for the hot and cold days. Here, we are interested in the \(\beta\) parameter, which is our conditional elasticity or CATE. With all that, we can prove that</p>
+<p>In our example, those would be the linear models for the hot and cold days. Here, we are interested in the <span class="math notranslate nohighlight">\(\beta\)</span> parameter, which is our conditional elasticity or CATE. With all that, we can prove that</p>
 <p><span class="math notranslate nohighlight">\(
 \begin{align}
 E[Y^*_i|X_i=X] &amp;= E[(Y_i-\bar{Y})V_i | X_i=x] \\
@@ -915,11 +915,11 @@ E[Y^*_i|X_i=X] &amp;= E[(Y_i-\bar{Y})V_i | X_i=x] \\
 &amp;= \beta = \tau(x)
 \end{align}
 \)</span></p>
-<p>Bare in mind that this only works when the treatment is randomized. For non randomized treatment, we have to replace \(\bar{T}\) by \(M(X_i)\), where \(M\) is a model that estimates \(E[T_i|X_i=x]\).</p>
+<p>Bare in mind that this only works when the treatment is randomized. For non randomized treatment, we have to replace <span class="math notranslate nohighlight">\(\bar{T}\)</span> by <span class="math notranslate nohighlight">\(M(X_i)\)</span>, where <span class="math notranslate nohighlight">\(M\)</span> is a model that estimates <span class="math notranslate nohighlight">\(E[T_i|X_i=x]\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(
 Y^*_i = (Y_i- \bar{Y})\dfrac{(T_i - M(T_i))}{(T_i - M(T_i))^2}
 \)</span></p>
-<p>This will make sure that the term \(\alpha E[V_i | X_i=x]\) in the third line vanishes to zero and that the term \(E[T_i V_i | X_i=x]\) goes to 1. Notice that you don’t actually need \(E[T_i V_i | X_i=x]\) to go to 1 if you just want to order units in terms of treatment effect. In other words, if you just want to know in which days demand is more sensitive to price increases but you don’t need to know by how much, it doesn’t matter if the \(\beta\) estimates are scaled up or down. If that is the case, you can omit the denominator.</p>
+<p>This will make sure that the term <span class="math notranslate nohighlight">\(\alpha E[V_i | X_i=x]\)</span> in the third line vanishes to zero and that the term <span class="math notranslate nohighlight">\(E[T_i V_i | X_i=x]\)</span> goes to 1. Notice that you don’t actually need <span class="math notranslate nohighlight">\(E[T_i V_i | X_i=x]\)</span> to go to 1 if you just want to order units in terms of treatment effect. In other words, if you just want to know in which days demand is more sensitive to price increases but you don’t need to know by how much, it doesn’t matter if the <span class="math notranslate nohighlight">\(\beta\)</span> estimates are scaled up or down. If that is the case, you can omit the denominator.</p>
 <p><span class="math notranslate nohighlight">\(
 Y^*_i = (Y_i- \bar{Y})(T_i - M(T_i))
 \)</span></p>
@@ -1024,7 +1024,7 @@ Y^*_i = (Y_i- \bar{Y})(T_i - M(T_i))
 </table>
 </div></div></div>
 </div>
-<p>This time, the CATE’s interpretation is non intuitive. Since we’ve removed the denominator from the target transformation, this CATE we are seeing is scaled by \(Var(X)\). However, this prediction should still order the treatment effect pretty well. To see that, we can use the cumulative gain curve, just like we did before.</p>
+<p>This time, the CATE’s interpretation is non intuitive. Since we’ve removed the denominator from the target transformation, this CATE we are seeing is scaled by <span class="math notranslate nohighlight">\(Var(X)\)</span>. However, this prediction should still order the treatment effect pretty well. To see that, we can use the cumulative gain curve, just like we did before.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gain_curve_test</span> <span class="o">=</span> <span class="n">cumulative_gain</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cate</span><span class="o">=</span><span class="n">cate_test_transf_y</span><span class="p">),</span>
@@ -1051,11 +1051,11 @@ Y^*_i = (Y_i- \bar{Y})(T_i - M(T_i))
 <p>Having talked about the continuous case, there is still an elephant in the room we need to adress. We’ve assumed a linearity on the treatment effect. However, that is very rarely a reasonable assumption. Usually, treatment effects saturate in one form or another. In our example, it’s reasonable to think that demand will go down faster at the first units of price increase, but then it will fall slowlier.</p>
 <p><img alt="img" src="_images/non-linear-case.png" /></p>
 <p>The problem here is that <strong>elasticity or treatment effect changes with the treatment itself</strong>. In our example, the treatment effect is more intense at the beginning of the curve and smaller as prices get higher. Again,suppose you have two types of days: hot days (yellow) and cold days (blue) and we want to distinguish between the two with a causal model. The thing is that causal models should predict elasticity, but in the nonlinear case, the elasticity for hot and cold days could be the same, if we look at different price points in the curve (right image).</p>
-<p>There is no easy way out of this problem and I confess I’m still investigating what works best. For now, the thing that I do is try to think about the functional form of the treatment effect and somehow linearize it. For example, demand usually has the following functional form, where higher \(\alpha\)s means that demand falls faster with each price increase</p>
+<p>There is no easy way out of this problem and I confess I’m still investigating what works best. For now, the thing that I do is try to think about the functional form of the treatment effect and somehow linearize it. For example, demand usually has the following functional form, where higher <span class="math notranslate nohighlight">\(\alpha\)</span>s means that demand falls faster with each price increase</p>
 <p><span class="math notranslate nohighlight">\(
 D_i = \dfrac{1}{P_i^{\alpha}}
 \)</span></p>
-<p>So, if I apply the log transformation to both the demand \(Y\) and prices \(T\), I should get something that is linear.</p>
+<p>So, if I apply the log transformation to both the demand <span class="math notranslate nohighlight">\(Y\)</span> and prices <span class="math notranslate nohighlight">\(T\)</span>, I should get something that is linear.</p>
 <p><span class="math notranslate nohighlight">\(
 \begin{align}
 log(D)_i &amp;= log\bigg(\dfrac{1}{P_i^{\alpha}}\bigg) \\
@@ -1069,7 +1069,7 @@ log(D)_i &amp;= log\bigg(\dfrac{1}{P_i^{\alpha}}\bigg) \\
 </div>
 <div class="section" id="key-ideas">
 <h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
-<p>We are now moving in the direction of estimating conditional average treatment effects using machine learning models. The biggest challenge when doing so is adapting a predictive model to one that estimates causal effects. Another way of thinking about it is that predictive models focus on estimating the outcome Y as a function of features X and possibly treatment T \(Y = M(X, T) \) while causal models need to estimate the partial derivative of this output function on the treatment \( \partial Y = \partial M(X, T) \). This is far from trivial, because while we do observe the outcome Y, we can’t observe \(\partial Y\), at least not on an individual level. As a consequence, we need to be creative when designing an objective function for our models.</p>
+<p>We are now moving in the direction of estimating conditional average treatment effects using machine learning models. The biggest challenge when doing so is adapting a predictive model to one that estimates causal effects. Another way of thinking about it is that predictive models focus on estimating the outcome Y as a function of features X and possibly treatment T <span class="math notranslate nohighlight">\(Y = M(X, T) \)</span> while causal models need to estimate the partial derivative of this output function on the treatment <span class="math notranslate nohighlight">\( \partial Y = \partial M(X, T) \)</span>. This is far from trivial, because while we do observe the outcome Y, we can’t observe <span class="math notranslate nohighlight">\(\partial Y\)</span>, at least not on an individual level. As a consequence, we need to be creative when designing an objective function for our models.</p>
 <p>Here, we saw a very simple technique of target transformation. The idea is to combine the original target Y with the treatment T to form a transformed target which is, in expectation, equal to the CATE. With that new target, we can plug any predictive ML model to estimate it and then the model predictions will be CATE estimates. As a side note, besides target transformation, this method also goes by the name of <strong>F-Learner</strong>.</p>
 <p>With all that simplicity, there is also a price to pay. The transformed target is a very noisy estimate of the individual treatment effect and that noise will be transferred to the model estimates in the form of variance. This makes target transformation better suited for big data applications, where variance is less of a problem due to sheer sample sizes. Another downside of the target transformation method is that it is only defined for binary or categorical treatments. We did our best to come up with a continuous version of the approach and even ended up with something that seemed to work, but up until now, there is no solid theoretical framework to back it up.</p>
 <p>Finally, we’ve ended with a discussion on non linear treatment effects and the challenges that come with it. Namely, when the treatment effect changes with the treatment itself, we might mistakenly think units have the same treatment response curve because they have the same responsiveness to the treatment, but actually they are just receiving different treatment amounts.</p>

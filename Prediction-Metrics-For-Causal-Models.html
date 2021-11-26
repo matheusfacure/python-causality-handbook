@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -89,7 +89,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -176,7 +176,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -213,9 +213,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -240,7 +240,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -384,9 +384,9 @@
 </div>
 </div>
 </div>
-<div class="section" id="why-prediction-metrics-are-dangerous-for-causal-models">
+<div class="tex2jax_ignore mathjax_ignore section" id="why-prediction-metrics-are-dangerous-for-causal-models">
 <h1>Why Prediction Metrics are Dangerous For Causal Models<a class="headerlink" href="#why-prediction-metrics-are-dangerous-for-causal-models" title="Permalink to this headline">¶</a></h1>
-<p>A common misconception I often hear is that, if we have random data, to evaluate a causal model we could just evaluate the predictive performance of such model on the random dataset, using a metric like \(R^2\). Unfortunately things are not that simple and I’ll try to explain why.</p>
+<p>A common misconception I often hear is that, if we have random data, to evaluate a causal model we could just evaluate the predictive performance of such model on the random dataset, using a metric like <span class="math notranslate nohighlight">\(R^2\)</span>. Unfortunately things are not that simple and I’ll try to explain why.</p>
 <p>Generally speaking, we can say any outcome is a function of the treatment and covariates</p>
 <div class="math notranslate nohighlight">
 \[
@@ -398,12 +398,12 @@ Y = F(x, t)
 Y = g(x) + f(t,x)
 \]</div>
 <p>This additive structure places some restriction on the functional form but not much, so we can argue it is a pretty general way of describing a Data Generating Process (DGP).</p>
-<p>The point is that if the treatment effect is weaker than the covariates effect, then, <strong>even if we have random data</strong>, we can have a model which has higher predictive power but is bad for causal inference. All that model has to do is approximate \(g(x)\) while disregarding \(f(t,x)\).</p>
+<p>The point is that if the treatment effect is weaker than the covariates effect, then, <strong>even if we have random data</strong>, we can have a model which has higher predictive power but is bad for causal inference. All that model has to do is approximate <span class="math notranslate nohighlight">\(g(x)\)</span> while disregarding <span class="math notranslate nohighlight">\(f(t,x)\)</span>.</p>
 <p>In other words, <strong>predictive performance on a random dataset does not translate our preference for how good a model is for causal inference</strong>.</p>
 <p>To show that, let’s use some simulated data.</p>
 <div class="section" id="simulating-data">
 <h2>Simulating Data<a class="headerlink" href="#simulating-data" title="Permalink to this headline">¶</a></h2>
-<p>In the following DGP, we have covariates \(X\) that have a high predictive power but don’t interact with the treatment. In other words, they don’t dictate the treatment effect heterogeneity. We also have features \(W\) that only impact the outcome through the treatment (are not confounders). Since the treatment has low predictive power, \(W\) also doesn’t have much predictive power.</p>
+<p>In the following DGP, we have covariates <span class="math notranslate nohighlight">\(X\)</span> that have a high predictive power but don’t interact with the treatment. In other words, they don’t dictate the treatment effect heterogeneity. We also have features <span class="math notranslate nohighlight">\(W\)</span> that only impact the outcome through the treatment (are not confounders). Since the treatment has low predictive power, <span class="math notranslate nohighlight">\(W\)</span> also doesn’t have much predictive power.</p>
 <div class="math notranslate nohighlight">
 \[
 Y_i = g(X_i) + f(T_i,W_i) + e_i
@@ -449,7 +449,7 @@ Y_i = g(X_i) + f(T_i,W_i) + e_i
 </div>
 </div>
 </div>
-<p>and train two models for treatment effect heterogeneity, \(M1\) and \(M2\). \(M1\) will include the highly predictive features that don’t affect the treatment heterogeneity and \(M2\) will include the low predictive features that do affect treatment heterogeneity.</p>
+<p>and train two models for treatment effect heterogeneity, <span class="math notranslate nohighlight">\(M1\)</span> and <span class="math notranslate nohighlight">\(M2\)</span>. <span class="math notranslate nohighlight">\(M1\)</span> will include the highly predictive features that don’t affect the treatment heterogeneity and <span class="math notranslate nohighlight">\(M2\)</span> will include the low predictive features that do affect treatment heterogeneity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s2">&quot;Y~T*(&quot;</span> <span class="o">+</span> <span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;f</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_features</span><span class="p">)])</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -458,7 +458,7 @@ Y_i = g(X_i) + f(T_i,W_i) + e_i
 </div>
 </div>
 </div>
-<p>If we look at the predictive power of both models using the \(R^2\), indeed, \(M1\) is much better than \(M2\).</p>
+<p>If we look at the predictive power of both models using the <span class="math notranslate nohighlight">\(R^2\)</span>, indeed, <span class="math notranslate nohighlight">\(M1\)</span> is much better than <span class="math notranslate nohighlight">\(M2\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
@@ -530,7 +530,7 @@ M2: 0.08378351037639298
 <img alt="_images/Prediction-Metrics-For-Causal-Models_14_0.png" src="_images/Prediction-Metrics-For-Causal-Models_14_0.png" />
 </div>
 </div>
-<p>As we can see, now \(M1\) is much worse than \(M2\), even though it has a higher \(R^2\) on the test set. This shows that predictive power doesn’t translate directly to a good causal model, even if we use random data.</p>
+<p>As we can see, now <span class="math notranslate nohighlight">\(M1\)</span> is much worse than <span class="math notranslate nohighlight">\(M2\)</span>, even though it has a higher <span class="math notranslate nohighlight">\(R^2\)</span> on the test set. This shows that predictive power doesn’t translate directly to a good causal model, even if we use random data.</p>
 </div>
 <div class="section" id="predictive-metric-for-causal-inference">
 <h2>Predictive Metric For Causal Inference<a class="headerlink" href="#predictive-metric-for-causal-inference" title="Permalink to this headline">¶</a></h2>
@@ -539,12 +539,12 @@ M2: 0.08378351037639298
 \[
 Y = g(x) + f(t,x)
 \]</div>
-<p>To use a predictive metric, we need to somehow transform the outcome in order to remove the \(g(x)\) component from it. That way, all the remaining predictive power will necessarily be used to learn the causal relationship.</p>
+<p>To use a predictive metric, we need to somehow transform the outcome in order to remove the <span class="math notranslate nohighlight">\(g(x)\)</span> component from it. That way, all the remaining predictive power will necessarily be used to learn the causal relationship.</p>
 <div class="math notranslate nohighlight">
 \[
 \tilde{Y} = Y - g(x) = f(t,x)
 \]</div>
-<p>One way of doing that is by orthogonalizing \(Y\). We can use any ML model to estimate \(g\) and get out of fold residuals</p>
+<p>One way of doing that is by orthogonalizing <span class="math notranslate nohighlight">\(Y\)</span>. We can use any ML model to estimate <span class="math notranslate nohighlight">\(g\)</span> and get out of fold residuals</p>
 <div class="math notranslate nohighlight">
 \[
 \tilde{Y} = Y - \hat{g}(x)
@@ -561,7 +561,7 @@ Y = g(x) + f(t,x)
 </div>
 </div>
 </div>
-<p>Once we do that, we can evaluate the power of each model in predicting the residualized outcome \(\tilde{Y}\). The predictive performance on this new outcome will directly translate to a better causal model.</p>
+<p>Once we do that, we can evaluate the power of each model in predicting the residualized outcome <span class="math notranslate nohighlight">\(\tilde{Y}\)</span>. The predictive performance on this new outcome will directly translate to a better causal model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;M1:&quot;</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">test_res</span><span class="p">[</span><span class="s2">&quot;Y_res&quot;</span><span class="p">],</span> <span class="n">m1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_res</span><span class="p">)))</span>
@@ -576,7 +576,7 @@ M2: -24.04912481654577
 </div>
 </div>
 </div>
-<p>The downside of this approach is that it depends on how well you can estimate \(g(x)\).</p>
+<p>The downside of this approach is that it depends on how well you can estimate <span class="math notranslate nohighlight">\(g(x)\)</span>.</p>
 </div>
 </div>
 

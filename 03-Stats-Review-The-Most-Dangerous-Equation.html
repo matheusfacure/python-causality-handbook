@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -399,15 +399,15 @@
         
               <div>
                 
-  <div class="section" id="stats-review-the-most-dangerous-equation">
+  <div class="tex2jax_ignore mathjax_ignore section" id="stats-review-the-most-dangerous-equation">
 <h1>03 - Stats Review: The Most Dangerous Equation<a class="headerlink" href="#stats-review-the-most-dangerous-equation" title="Permalink to this headline">¶</a></h1>
 <p>In his famous article of 2007, Howard Wainer writes about very dangerous equations:</p>
-<p>“Some equations  are  dangerous  if you  know them, and others are dangerous if you do not. The first category may  pose  danger  because the secrets  within its bounds open  doors  behind which lies terrible peril. The obvious winner in this is Einstein’s ionic equation \(E = MC^2\), for it  provides  a  measure of  the  enormous energy hidden  within  ordinary  matter. […] Instead I am interested in equations that unleash their danger not when we know about them, but rather when we do not. Kept close at hand, these equations allow us to understand things clearly, but their absence leaves us dangerously ignorant.”</p>
+<p>“Some equations  are  dangerous  if you  know them, and others are dangerous if you do not. The first category may  pose  danger  because the secrets  within its bounds open  doors  behind which lies terrible peril. The obvious winner in this is Einstein’s ionic equation <span class="math notranslate nohighlight">\(E = MC^2\)</span>, for it  provides  a  measure of  the  enormous energy hidden  within  ordinary  matter. […] Instead I am interested in equations that unleash their danger not when we know about them, but rather when we do not. Kept close at hand, these equations allow us to understand things clearly, but their absence leaves us dangerously ignorant.”</p>
 <p>The equation he talks about is Moivre’s equation:</p>
 <p><span class="math notranslate nohighlight">\(
 SE = \dfrac{\sigma}{\sqrt{n}} 
 \)</span></p>
-<p>where \(SE\) is the standard error of the mean, \(\sigma\) is the standard deviation and \(n\) is the sample size. Sounds like a piece of math the brave and true should master, so let’s get to it.</p>
+<p>where <span class="math notranslate nohighlight">\(SE\)</span> is the standard error of the mean, <span class="math notranslate nohighlight">\(\sigma\)</span> is the standard deviation and <span class="math notranslate nohighlight">\(n\)</span> is the sample size. Sounds like a piece of math the brave and true should master, so let’s get to it.</p>
 <p>To see why not knowing this equation is very dangerous, let’s take a look at some education data. I’ve compiled data on ENEM scores (Brazilian standardised high school scores, similar to SAT) from different schools for a period of 3 years. I also did some cleaning on the data to keep only the information relevant to us. The original data can be downloaded in the <a class="reference external" href="http://portal.inep.gov.br/web/guest/microdados">Inep website</a>.</p>
 <p>If we look at the top performing school, something catches the eye: those schools have a fairly small number of students.</p>
 <div class="cell tag_hide-input docutils container">
@@ -537,9 +537,9 @@ SE = \dfrac{\sigma}{\sqrt{n}}
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
-             <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">top_school</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">],</span> <span class="o">.</span><span class="mi">99</span><span class="p">))</span>
+             <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">top_school</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">],</span> <span class="mf">.99</span><span class="p">))</span>
              <span class="p">[[</span><span class="s2">&quot;top_school&quot;</span><span class="p">,</span> <span class="s2">&quot;number_of_students&quot;</span><span class="p">]]</span>
-             <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;number_of_students&lt;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;number_of_students&#39;</span><span class="p">],</span> <span class="o">.</span><span class="mi">98</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span> <span class="c1"># remove outliers</span>
+             <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;number_of_students&lt;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;number_of_students&#39;</span><span class="p">],</span> <span class="mf">.98</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span> <span class="c1"># remove outliers</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;top_school&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;number_of_students&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">plot_data</span><span class="p">)</span>
@@ -557,8 +557,8 @@ SE = \dfrac{\sigma}{\sqrt{n}}
 <p>What people forgot to do was to look also at the bottom 1% of schools. If we do that, lo and behold! They also have very few students!</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_99</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">],</span> <span class="o">.</span><span class="mi">99</span><span class="p">)</span>
-<span class="n">q_01</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">],</span> <span class="o">.</span><span class="mi">01</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_99</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">],</span> <span class="mf">.99</span><span class="p">)</span>
+<span class="n">q_01</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;avg_score&quot;</span><span class="p">],</span> <span class="mf">.01</span><span class="p">)</span>
 
 <span class="n">plot_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span>
              <span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
@@ -584,12 +584,12 @@ SE = \dfrac{\sigma}{\sqrt{n}}
 <div class="section" id="the-standard-error-of-our-estimates">
 <h2>The Standard Error of Our Estimates<a class="headerlink" href="#the-standard-error-of-our-estimates" title="Permalink to this headline">¶</a></h2>
 <p>Since this is just a review on statistics, I’ll take the liberty to go a bit faster now. If you are not familiar with distributions, variance and standard errors, please, do read on, but keep in mind that you might need some additional resources. I suggest you google any MIT course on introduction to statistics. They are usually quite good.</p>
-<p>In the previous section, we estimated the average treatment effect \(E[Y_1-Y_0]\) as the difference in the means between the treated and the untreated \(E[Y|T=1]-E[Y|T=0]\). As our motivating example, we figured out the \(ATE\) for online classes. We also saw that it was a negative impact, that is, online classes made students perform about 5 points worse than the students with face to face classes. Now, we get to see if this impact is statistically significant.</p>
-<p>To do so, we need to estimate the \(SE\). We already have \(n\), our sample size. To get the estimate for the standard deviation we can do the following</p>
+<p>In the previous section, we estimated the average treatment effect <span class="math notranslate nohighlight">\(E[Y_1-Y_0]\)</span> as the difference in the means between the treated and the untreated <span class="math notranslate nohighlight">\(E[Y|T=1]-E[Y|T=0]\)</span>. As our motivating example, we figured out the <span class="math notranslate nohighlight">\(ATE\)</span> for online classes. We also saw that it was a negative impact, that is, online classes made students perform about 5 points worse than the students with face to face classes. Now, we get to see if this impact is statistically significant.</p>
+<p>To do so, we need to estimate the <span class="math notranslate nohighlight">\(SE\)</span>. We already have <span class="math notranslate nohighlight">\(n\)</span>, our sample size. To get the estimate for the standard deviation we can do the following</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{\sigma}^2=\frac{1}{N-1}\sum_{i=0}^N (x-\bar{x})^2
 \)</span></p>
-<p>where \(\bar{x}\) is the mean of \(x\). Fortunately for us, most programming software already implements this. In Pandas, we can use the method <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.std.html">std</a>.</p>
+<p>where <span class="math notranslate nohighlight">\(\bar{x}\)</span> is the mean of <span class="math notranslate nohighlight">\(x\)</span>. Fortunately for us, most programming software already implements this. In Pandas, we can use the method <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.std.html">std</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/online_classroom.csv&quot;</span><span class="p">)</span>
@@ -606,7 +606,7 @@ SE = \dfrac{\sigma}{\sqrt{n}}
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SE for Online: 1.5371593973041635
-SE for Face to Face: 0.8723511456319104
+SE for Face to Face: 0.8723511456319106
 </pre></div>
 </div>
 </div>
@@ -684,7 +684,7 @@ SE for Face to Face: 0.8723511456319104
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
-<span class="n">z</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">995</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">.995</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 <span class="n">ci</span> <span class="o">=</span> <span class="p">(</span><span class="n">exp_mu</span> <span class="o">-</span> <span class="n">z</span> <span class="o">*</span> <span class="n">exp_se</span><span class="p">,</span> <span class="n">exp_mu</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span> <span class="n">exp_se</span><span class="p">)</span>
 <span class="n">ci</span>
@@ -729,7 +729,7 @@ SE for Face to Face: 0.8723511456319104
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% CI for Online: (70.56094429049804, 76.7095818797147)
-95% for Face to Face: (76.80278229206948, 80.29218687459712)
+95% for Face to Face: (76.80278229206951, 80.29218687459715)
 </pre></div>
 </div>
 </div>
@@ -756,9 +756,9 @@ N(\mu_1, \sigma_1^2) + N(\mu_2, \sigma_2^2) = N(\mu_1 + \mu_2, \sigma_1^2 + \sig
 <span class="n">n1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">30000</span><span class="p">)</span>
 <span class="n">n2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">30000</span><span class="p">)</span>
 <span class="n">n_diff</span> <span class="o">=</span> <span class="n">n2</span> <span class="o">-</span> <span class="n">n1</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;N(4,3)&quot;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">n2</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;N(1,4)&quot;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">n_diff</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;NN(1,4) - (4,3) = N(-1, 5)&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$N(4,3^2)$&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">n2</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$N(1,4^2)$&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">n_diff</span><span class="p">,</span> <span class="n">hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$N(1,4^2) - (4,3^2) = N(-1, 5^2)$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -786,7 +786,7 @@ SE_{diff} = \sqrt{SE_1 + SE_2} = \sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-8.376410208363357, -1.4480327880904964)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-8.376410208363385, -1.4480327880905248)
 </pre></div>
 </div>
 </div>
@@ -796,8 +796,8 @@ SE_{diff} = \sqrt{SE_1 + SE_2} = \sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">diff_mu</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="n">diff_mu</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">diff_mu</span><span class="p">,</span> <span class="n">diff_se</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=.</span><span class="mi">05</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=.</span><span class="mi">05</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;95% CI&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">.05</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">ci</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;95% CI&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -807,13 +807,13 @@ SE_{diff} = \sqrt{SE_1 + SE_2} = \sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}
 <img alt="_images/03-Stats-Review-The-Most-Dangerous-Equation_23_0.png" src="_images/03-Stats-Review-The-Most-Dangerous-Equation_23_0.png" />
 </div>
 </div>
-<p>With this at hand, we can say that we are 95% confident that the true difference between the online and face to face group falls between -8.37 and -1.44. We can also construct a <strong>z statistic</strong> by dividing the difference in mean by the \(SE\) of the differences.</p>
+<p>With this at hand, we can say that we are 95% confident that the true difference between the online and face to face group falls between -8.37 and -1.44. We can also construct a <strong>z statistic</strong> by dividing the difference in mean by the $SE\$ of the differences.</p>
 <p><span class="math notranslate nohighlight">\(
 z = \dfrac{\mu_{diff} - H_{0}}{SE_{diff}} = \dfrac{(\mu_1 - \mu_2) - H_{0}}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}}
 \)</span></p>
-<p>Where \(H_0\) is the value which we want to test our difference against.</p>
-<p>The z statistic is a measure of how extreme the observed difference is. To test our hypothesis that the difference in the means is statistically different from zero, we will use contradiction. We will assume that the opposite is true, that is, we will assume that the difference is zero. This is called a null hypothesis, or \(H_0\). Then, we will ask ourselves “is it likely that we would observe such a difference if the true difference were indeed zero?” In statistical math terms, we can translate this question to checking how far from zero is our z statistic.</p>
-<p>Under \(H_0\), the z statistic follows a standard normal distribution. So, if the difference is indeed zero, we would see the z statistic within 2 standard deviations of the mean 95% of the time. The direct consequence of this is that if z falls above or below 2 standard deviations, we can reject the null hypothesis with 95% confidence.</p>
+<p>Where <span class="math notranslate nohighlight">\(H_0\)</span> is the value which we want to test our difference against.</p>
+<p>The z statistic is a measure of how extreme the observed difference is. To test our hypothesis that the difference in the means is statistically different from zero, we will use contradiction. We will assume that the opposite is true, that is, we will assume that the difference is zero. This is called a null hypothesis, or <span class="math notranslate nohighlight">\(H_0\)</span>. Then, we will ask ourselves “is it likely that we would observe such a difference if the true difference were indeed zero?” In statistical math terms, we can translate this question to checking how far from zero is our z statistic.</p>
+<p>Under <span class="math notranslate nohighlight">\(H_0\)</span>, the z statistic follows a standard normal distribution. So, if the difference is indeed zero, we would see the z statistic within 2 standard deviations of the mean 95% of the time. The direct consequence of this is that if z falls above or below 2 standard deviations, we can reject the null hypothesis with 95% confidence.</p>
 <p>Let’s see how this looks like in our classroom example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -823,7 +823,7 @@ z = \dfrac{\mu_{diff} - H_{0}}{SE_{diff}} = \dfrac{(\mu_1 - \mu_2) - H_{0}}{\sqr
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.7792810791031064
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.7792810791031224
 </pre></div>
 </div>
 </div>
@@ -833,7 +833,7 @@ z = \dfrac{\mu_{diff} - H_{0}}{SE_{diff}} = \dfrac{(\mu_1 - \mu_2) - H_{0}}{\sqr
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Standard Normal&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=.</span><span class="mi">05</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Z statistic&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">.05</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Z statistic&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -873,7 +873,7 @@ Diff 95% CI: (0.23461352820082482, 17.765386471799175)
 <h2>P-values<a class="headerlink" href="#p-values" title="Permalink to this headline">¶</a></h2>
 <p>I’ve said previously that there is less than 5% chance that we would observe such an extreme value if the difference between online and face to face groups were actually zero. But can we estimate exactly what is that chance? How likely are we to observe such an extreme value? Enters p-values!</p>
 <p>Just like with confidence intervals (and most frequentist statistics, as a matter of fact) the true definition of p-values can be very confusing. So, to not take any risks, I’ll copy the definition from Wikipedia: “the p-value is the probability of obtaining test results at least as extreme as the results actually observed during the test, assuming that the null hypothesis is correct”.</p>
-<p>To put it more succinctly, the p-value is the probability of seeing such data, given that the null-hypothesis is true. It measures how unlikely it is that you are seeing a measurement if the null-hypothesis is true. Naturally, this often gets confused with the probability of the null-hypothesis being true. Note the difference here. The p-value is NOT \(P(H_0|data)\), but rather \(P(data|H_0)\).</p>
+<p>To put it more succinctly, the p-value is the probability of seeing such data, given that the null-hypothesis is true. It measures how unlikely it is that you are seeing a measurement if the null-hypothesis is true. Naturally, this often gets confused with the probability of the null-hypothesis being true. Note the difference here. The p-value is NOT <span class="math notranslate nohighlight">\(P(H_0|data)\)</span>, but rather <span class="math notranslate nohighlight">\(P(data|H_0)\)</span>.</p>
 <p>But don’t let this complexity fool you. In practical terms, they are pretty straightforward to use.</p>
 <p><img alt="p_value" src="_images/p_value.png" /></p>
 <p>To get the p-value, we need to compute the area under the standard normal distribution before or after the z statistic. Fortunately, we have a computer to do this calculation for us. We can simply plug the z statistic in the CDF of the standard normal distribution.</p>
@@ -884,7 +884,7 @@ Diff 95% CI: (0.23461352820082482, 17.765386471799175)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P-value: 0.0027239680835564706
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P-value: 0.0027239680835563383
 </pre></div>
 </div>
 </div>
@@ -894,16 +894,16 @@ Diff 95% CI: (0.23461352820082482, 17.765386471799175)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diff_mu</span> <span class="o">=</span> <span class="n">online</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">face_to_face</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">diff_se</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">face_to_face</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">face_to_face</span><span class="p">)</span> <span class="o">+</span> <span class="n">online</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">online</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;95% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">diff_mu</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">975</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="n">diff_mu</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">975</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;99% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">diff_mu</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">995</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="n">diff_mu</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">995</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;99.9% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">diff_mu</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">9995</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="n">diff_mu</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="o">.</span><span class="mi">9995</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;95% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">diff_mu</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">.975</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="n">diff_mu</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">.975</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;99% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">diff_mu</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">.995</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="n">diff_mu</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">.995</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;99.9% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">diff_mu</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">.9995</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">,</span> <span class="n">diff_mu</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">.9995</span><span class="p">)</span><span class="o">*</span><span class="n">diff_se</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% CI: (-8.37634655308288, -1.4480964433709733)
-99% CI: (-9.464853535264012, -0.3595894611898425)
-99.9% CI: (-10.72804065824553, 0.9035976617916743)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>95% CI: (-8.376346553082909, -1.4480964433710017)
+99% CI: (-9.46485353526404, -0.3595894611898709)
+99.9% CI: (-10.728040658245558, 0.9035976617916459)
 </pre></div>
 </div>
 </div>
@@ -938,10 +938,10 @@ Diff 95% CI: (0.23461352820082482, 17.765386471799175)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test 95.0% CI: 73.63526308510637 +- 3.0127770572134565
-Control 95.0% CI: 78.5474845833333 +- 1.7097768273108
-Test-Control 95.0% CI: -4.912221498226927 +- 3.4641250548559537
-Z Statistic -2.7792810791031064
-P-Value 0.0027239680835564706
+Control 95.0% CI: 78.54748458333333 +- 1.7097768273108005
+Test-Control 95.0% CI: -4.912221498226955 +- 3.4641250548559537
+Z Statistic -2.7792810791031224
+P-Value 0.0027239680835563383
 </pre></div>
 </div>
 </div>
@@ -955,10 +955,10 @@ P-Value 0.0027239680835564706
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test 95.0% CI: 73.63526308510637 +- 3.0127770572134565
-Control 95.0% CI: 78.5474845833333 +- 1.7097768273108
-Test-Control 95.0% CI: -4.912221498226927 +- 3.4641250548559537
-Z Statistic -2.2134920404560723
-P-Value 0.013431870694630667
+Control 95.0% CI: 78.54748458333333 +- 1.7097768273108005
+Test-Control 95.0% CI: -4.912221498226955 +- 3.4641250548559537
+Z Statistic -2.2134920404560883
+P-Value 0.013431870694630114
 </pre></div>
 </div>
 </div>
@@ -1000,16 +1000,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "causal-glory"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "causal-glory",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'causal-glory'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

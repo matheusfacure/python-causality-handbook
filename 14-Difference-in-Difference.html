@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -33,19 +33,19 @@
     
   <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -90,7 +90,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +177,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -214,9 +214,9 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
-  Apendix
+  Appendix
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -394,16 +394,16 @@
         
               <div>
                 
-  <div class="section" id="difference-in-difference">
+  <div class="tex2jax_ignore mathjax_ignore section" id="difference-in-difference">
 <h1>14 - Difference-in-Difference<a class="headerlink" href="#difference-in-difference" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="three-billboards-in-the-south-of-brazil">
 <h2>Three Billboards in the South of Brazil<a class="headerlink" href="#three-billboards-in-the-south-of-brazil" title="Permalink to this headline">¶</a></h2>
 <p>I remember when I worked with marketing and a great way to do it was with internet advertisement. Not because it is very efficient (although it is), but because it is very easy to know if it’s effective or not. With online marketing, you have a way of knowing which customers saw the ad and you can track them with cookies to see if they ended up on your landing page or clicked some download button. You can also use machine learning to find prospects that are very similar to your customers and present the ad only to them. In this sense, online marketing is very precise: you target only those you want to and you can see if they respond as you would like them to.</p>
-<p>But not everyone is susceptible to online marketing. Sometimes you have to resort to less precise techniques, like a TV campaign or placing a billboard down the street. Usually, diversity of marketing channels is something marketing departments look for. But if online marketing is a professional fishing rod to catch that specific type of tuna, billboard and TV are giant nets you throw at a fish shoal and hope to catch at least some big ones. Another problem with billboard and TV ads is that it is much harder to know how effective they are. Sure, you could measure the purchase volume, or whatever you want to drive, before and after placing a billboard somewhere. If there is an increase, there is some evidence that the marketing is effective. But how would you know if this increase is not just some natural trend in the awareness of your product? In other words, how would you know the counterfactual \(Y_0\) of what would have happened if you didn’t set up the billboards in the first place?</p>
+<p>But not everyone is susceptible to online marketing. Sometimes you have to resort to less precise techniques, like a TV campaign or placing a billboard down the street. Usually, diversity of marketing channels is something marketing departments look for. But if online marketing is a professional fishing rod to catch that specific type of tuna, billboard and TV are giant nets you throw at a fish shoal and hope to catch at least some big ones. Another problem with billboard and TV ads is that it is much harder to know how effective they are. Sure, you could measure the purchase volume, or whatever you want to drive, before and after placing a billboard somewhere. If there is an increase, there is some evidence that the marketing is effective. But how would you know if this increase is not just some natural trend in the awareness of your product? In other words, how would you know the counterfactual <span class="math notranslate nohighlight">\(Y_0\)</span> of what would have happened if you didn’t set up the billboards in the first place?</p>
 <p><img alt="img" src="_images/secrets.png" /></p>
 <p>One technique to answer these types of questions is Difference-in-Difference, or diff-in-diff for close friends. Diff-in-diff is commonly used to assess the effect of macro interventions, like the effect of immigration on unemployment, the effect of gun law changes in crime rates or simply the difference in user engagement due to a marketing campaign. In all these cases, you have a period before and after the intervention and you wish to untangle the impact of the intervention from a general trend. As a motivating example, let’s look at a question similar to the one I had to answer.</p>
 <p>In order to figure out how good billboards were as a marketing channel, we placed 3 billboards in the city of Porto Alegre, the capital of the state of Rio Grande do Sul. We wanted to see if that boosted deposits into our savings account. As a note for those not very familiar with Brazilian geography, Rio Grande do Sul is part of the south of the country, one of the most developed regions.</p>
-<p>Having this in mind, we decided to also look at data from another capital from the south, Florianopolis, the capital city of the state of Santa Catarina. The idea is that we could use Florianopolis as a control sample to estimate the counterfactual \(Y_0\) when compared to Porto Alegre (by the way, this was not the true experiment, which is confidential, but the idea is very similar). We placed the billboard in Porto Alegre for the entire month of June. The data we have looks like this:</p>
+<p>Having this in mind, we decided to also look at data from another capital from the south, Florianopolis, the capital city of the state of Santa Catarina. The idea is that we could use Florianopolis as a control sample to estimate the counterfactual <span class="math notranslate nohighlight">\(Y_0\)</span> when compared to Porto Alegre (by the way, this was not the true experiment, which is confidential, but the idea is very similar). We placed the billboard in Porto Alegre for the entire month of June. The data we have looks like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
@@ -494,11 +494,11 @@
 </div>
 <div class="section" id="did-estimator">
 <h2>DID Estimator<a class="headerlink" href="#did-estimator" title="Permalink to this headline">¶</a></h2>
-<p>To avoid confusion between Time and Treatment, from now on, I’ll use D to denote treatment and T to denote time. Let \(Y_D(T)\) be the potential outcome for treatment D on period T. In an ideal world where we have the ability to observe the counterfactual, we would estimate the treatment effect of an intervention the following way:</p>
+<p>To avoid confusion between Time and Treatment, from now on, I’ll use D to denote treatment and T to denote time. Let <span class="math notranslate nohighlight">\(Y_D(T)\)</span> be the potential outcome for treatment D on period T. In an ideal world where we have the ability to observe the counterfactual, we would estimate the treatment effect of an intervention the following way:</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{ATET} = E[Y_1(1) - Y_0(1)|D=1]
 \)</span></p>
-<p>In words, the causal effect is the outcome in the period post intervention in case of a treatment minus the outcome in also in the period after the intervention, but in the case of no treatment. Of course, we can’t measure this because \(Y_0(1)\) is counterfactual.</p>
+<p>In words, the causal effect is the outcome in the period post intervention in case of a treatment minus the outcome in also in the period after the intervention, but in the case of no treatment. Of course, we can’t measure this because <span class="math notranslate nohighlight">\(Y_0(1)\)</span> is counterfactual.</p>
 <p>One way around this is a before and after comparison.</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{ATET} = E[Y(1)|D=1] - E[Y(0)|D=1]
@@ -521,8 +521,8 @@
 </div>
 </div>
 <p>This estimator is telling us that we should expect deposits to increase R$ 41,04 after the intervention. But can we trust this?</p>
-<p>Notice that \(E[Y(0)|D=1]=E[Y_0(0)|D=1]\), that is, the observed outcome for the treated unit <strong>before the intervention</strong> is equal to the counterfactual outcome for the treated unit also before the intervention. Since we are using, this to estimate the counterfactual <strong>after the intervention</strong>  \(E[Y_0(1)|D=1]\), this estimation above assumes that \(E[Y_0(1)|D=1] = E[Y_0(0)|D=1]\).</p>
-<p>It is saying that in the case of no intervention, the outcome in the latter period would be the same as the outcome from the starting period. This would obviously be false if your outcome variable follows any kind of trend. For example, if deposits are going up in POA, \(E[Y_0(1)|D=1] &gt; E[Y_0(0)|D=1]\), i.e. the outcome of the latter period would be greater than that of the starting period even in the absence of the intervention. With a similar argument, if the trend in Y is going down, \(E[Y_0(1)|D=1] &lt; E[Y_0(0)|D=1]\). This is to show that this before and after thing is not a great estimator.</p>
+<p>Notice that <span class="math notranslate nohighlight">\(E[Y(0)|D=1]=E[Y_0(0)|D=1]\)</span>, that is, the observed outcome for the treated unit <strong>before the intervention</strong> is equal to the counterfactual outcome for the treated unit also before the intervention. Since we are using, this to estimate the counterfactual <strong>after the intervention</strong>  <span class="math notranslate nohighlight">\(E[Y_0(1)|D=1]\)</span>, this estimation above assumes that <span class="math notranslate nohighlight">\(E[Y_0(1)|D=1] = E[Y_0(0)|D=1]\)</span>.</p>
+<p>It is saying that in the case of no intervention, the outcome in the latter period would be the same as the outcome from the starting period. This would obviously be false if your outcome variable follows any kind of trend. For example, if deposits are going up in POA, <span class="math notranslate nohighlight">\(E[Y_0(1)|D=1] &gt; E[Y_0(0)|D=1]\)</span>, i.e. the outcome of the latter period would be greater than that of the starting period even in the absence of the intervention. With a similar argument, if the trend in Y is going down, <span class="math notranslate nohighlight">\(E[Y_0(1)|D=1] &lt; E[Y_0(0)|D=1]\)</span>. This is to show that this before and after thing is not a great estimator.</p>
 <p>Another idea is to compare the treated group with an untreated group that didn’t get the intervention:</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{ATET} = E[Y(1)|D=1] - E[Y(1)|D=0]
@@ -542,17 +542,17 @@
 </div>
 </div>
 <p>This estimator is telling us that the campaign is detrimental and that customers will decrease deposits by R$ 119.10.</p>
-<p>Notice that \(E[Y(1)|D=0]=E[Y_0(1)|D=0]\). And since we are using \(E[Y(1)|D=0]\) to estimate the counterfactual for the treated after the intervention, we are assuming we can replace the missing counterfactual like this: \(E[Y_0(1)|D=0] = E[Y_0(1)|D=1]\). But notice that this would only be true if both groups have a very similar baseline level. For instance, if Florianopolis has way more deposits than Porto Alegre, this would not be true because \(E[Y_0(1)|D=0] &gt; E[Y_0(1)|D=1]\). On the other hand, if the level of deposits are lower in Florianopolis, we would have \(E[Y_0(1)|D=0] &lt; E[Y_0(1)|D=1]\).</p>
+<p>Notice that <span class="math notranslate nohighlight">\(E[Y(1)|D=0]=E[Y_0(1)|D=0]\)</span>. And since we are using <span class="math notranslate nohighlight">\(E[Y(1)|D=0]\)</span> to estimate the counterfactual for the treated after the intervention, we are assuming we can replace the missing counterfactual like this: <span class="math notranslate nohighlight">\(E[Y_0(1)|D=0] = E[Y_0(1)|D=1]\)</span>. But notice that this would only be true if both groups have a very similar baseline level. For instance, if Florianopolis has way more deposits than Porto Alegre, this would not be true because <span class="math notranslate nohighlight">\(E[Y_0(1)|D=0] &gt; E[Y_0(1)|D=1]\)</span>. On the other hand, if the level of deposits are lower in Florianopolis, we would have <span class="math notranslate nohighlight">\(E[Y_0(1)|D=0] &lt; E[Y_0(1)|D=1]\)</span>.</p>
 <p>Again, this is not a great idea. To solve this, we can use both space and time comparison. This is the idea of the difference in difference approach. It works by replacing the missing counterfactual the following way:</p>
 <p><span class="math notranslate nohighlight">\(
 E[Y_0(1)|D=1] = E[Y_1(0)|D=1] + (E[Y_0(1)|D=0] - E[Y_0(0)|D=0])
 \)</span></p>
-<p>What this does is take the treated unit <strong>before the intervention</strong> and adds a trend component to it, which is estimated using the control \(E[Y_0(1)|T=0] - E[Y_0(0)|T=0]\). In words, it is saying that the treated <strong>after the intervention</strong>, had it not been treated, would look like the <strong>treated before the treatment</strong> plus a growth factor that is the same as the growth of the control.</p>
+<p>What this does is take the treated unit <strong>before the intervention</strong> and adds a trend component to it, which is estimated using the control <span class="math notranslate nohighlight">\(E[Y_0(1)|T=0] - E[Y_0(0)|T=0]\)</span>. In words, it is saying that the treated <strong>after the intervention</strong>, had it not been treated, would look like the <strong>treated before the treatment</strong> plus a growth factor that is the same as the growth of the control.</p>
 <p>It is important to notice that this assumes that the trends in the treatment and control are the same:</p>
 <p><span class="math notranslate nohighlight">\(
 E[Y_0(1) − Y_0(0)|D=1] = E[Y_0(1) − Y_0(0)|D=0]
 \)</span></p>
-<p>where the left hand side is the counterfactual trend. Now, we can replace the estimated counterfactual in the treatment effect definition \(E[Y_1(1)|D=1] - E[Y_0(1)|D=1]\)</p>
+<p>where the left hand side is the counterfactual trend. Now, we can replace the estimated counterfactual in the treatment effect definition <span class="math notranslate nohighlight">\(E[Y_1(1)|D=1] - E[Y_0(1)|D=1]\)</span></p>
 <p><span class="math notranslate nohighlight">\(
 \hat{ATET} = E[Y(1)|D=1] - (E[Y(0)|D=1] + (E[Y(1)|D=0] - E[Y(0)|D=0])
 \)</span></p>
@@ -602,7 +602,7 @@ E[Y_0(1) − Y_0(0)|D=1] = E[Y_0(1) − Y_0(0)|D=0]
 <p><span class="math notranslate nohighlight">\(
 Y_i = \beta_0 + \beta_1 POA_i + \beta_2 Jul_i + \beta_3 POA_i*Jul_i + e_i
 \)</span></p>
-<p>Notice that \(\beta_0\) is the baseline of the control. In our case, is the level of deposits in Florianopolis in the month of May. If we turn on the treated city dummy, we get \(\beta_1\). So \(\beta_0 + \beta_1\) is the baseline of Porto Alegre in May, before the intervention, and \(\beta_1\) is the increase of Porto Alegre baseline on top of Florianopolis. If we turn the POA dummy off and turn the July dummy on, we get \(\beta_0 + \beta_2\), which is the level of Florianópolis in July, after the intervention period. \(\beta_2\) is then the trend of the control, since we add it on top of the baseline to get the level of the control at the period post intervention. As a recap, \(\beta_1\) is the increment we get by going from the treated to the control, \(\beta_2\) is the increment we get by going from the period before to the period after the intervention. Finally, if we turn both dummies on, we get \(\beta_3\). \(\beta_0 + \beta_1 + \beta_2 + \beta_3\) is the level in Porto Alegre after the intervention. So \(\beta_3\) is the incremental impact when you go from May to July and from Florianopolis to POA. In other words, it is the Difference in Difference estimator.</p>
+<p>Notice that <span class="math notranslate nohighlight">\(\beta_0\)</span> is the baseline of the control. In our case, is the level of deposits in Florianopolis in the month of May. If we turn on the treated city dummy, we get <span class="math notranslate nohighlight">\(\beta_1\)</span>. So <span class="math notranslate nohighlight">\(\beta_0 + \beta_1\)</span> is the baseline of Porto Alegre in May, before the intervention, and <span class="math notranslate nohighlight">\(\beta_1\)</span> is the increase of Porto Alegre baseline on top of Florianopolis. If we turn the POA dummy off and turn the July dummy on, we get <span class="math notranslate nohighlight">\(\beta_0 + \beta_2\)</span>, which is the level of Florianópolis in July, after the intervention period. <span class="math notranslate nohighlight">\(\beta_2\)</span> is then the trend of the control, since we add it on top of the baseline to get the level of the control at the period post intervention. As a recap, <span class="math notranslate nohighlight">\(\beta_1\)</span> is the increment we get by going from the treated to the control, <span class="math notranslate nohighlight">\(\beta_2\)</span> is the increment we get by going from the period before to the period after the intervention. Finally, if we turn both dummies on, we get <span class="math notranslate nohighlight">\(\beta_3\)</span>. <span class="math notranslate nohighlight">\(\beta_0 + \beta_1 + \beta_2 + \beta_3\)</span> is the level in Porto Alegre after the intervention. So <span class="math notranslate nohighlight">\(\beta_3\)</span> is the incremental impact when you go from May to July and from Florianopolis to POA. In other words, it is the Difference in Difference estimator.</p>
 <p>If you don’t believe me, check for yourself. You should get the exact same number we got above. And also notice how we get our much wanted standard errors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
