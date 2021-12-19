@@ -15,8 +15,8 @@ parts:
   - file: 10-Matching.ipynb
   - file: 11-Propensity-Score.ipynb
   - file: 12-Doubly-Robust-Estimation.ipynb
-  - file: 13-Panel-Data-and-Fixed-Effects.ipynb
-  - file: 14-Difference-in-Difference.ipynb
+  - file: 13-Difference-in-Differences.ipynb
+  - file: 14-Panel-Data-and-Fixed-Effects.ipynb
   - file: 15-Synthetic-Control.ipynb
   - file: 16-Regression-Discontinuity-Design.ipynb
 - caption: Part II - The Yin
