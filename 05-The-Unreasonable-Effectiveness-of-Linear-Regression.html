@@ -157,16 +157,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
-   13 - Panel Data and Fixed Effects
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Difference-in-Difference.html">
-   14 - Difference-in-Difference
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="15-Synthetic-Control.html">
    15 - Synthetic Control
   </a>
@@ -959,7 +949,7 @@ Wage_i = \alpha + \kappa \ Educ_i + A_i'\beta + u_i
 </div>
 <div class="section" id="key-ideas">
 <h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
-<p>We’ve covered a lot of ground with regression. We saw how regression can be used to perform A/B testing and how it conveniently gives us confidence intervals. Then, we moved to study how regression solves a prediction problem and it is the best linear approximation to the CEF. We’ve also discussed how, in the bivariate case, the regression treatment coefficient is the covariance between the treatment and the outcome divided by the variance of the treatment. Expanding to the multivariate case, we figured out how regression gives us a partialling out interpretation of the treatment coefficient: it can be interpreted as how the outcome would change with the treatment while keeping all other included variables constant. This is what economists love to refer as <em>ceteris paribus</em>.</p>
+<p>We’ve covered a lot of ground with regression. We saw how regression can be used to perform A/B testing and how it conveniently gives us confidence intervals. Then, we moved to study how regression solves a prediction problem and it is the best linear approximation to the conditional expectation function (CEF). We’ve also discussed how, in the bivariate case, the regression treatment coefficient is the covariance between the treatment and the outcome divided by the variance of the treatment. Expanding to the multivariate case, we figured out how regression gives us a partialling out interpretation of the treatment coefficient: it can be interpreted as how the outcome would change with the treatment while keeping all other included variables constant. This is what economists love to refer as <em>ceteris paribus</em>.</p>
 <p>Finally, we took a turn to understanding bias. We saw how <code class="docutils literal notranslate"><span class="pre">Short</span> <span class="pre">equals</span> <span class="pre">long</span> <span class="pre">plus</span> <span class="pre">the</span> <span class="pre">effect</span> <span class="pre">of</span> <span class="pre">omitted</span> <span class="pre">times</span> <span class="pre">the</span> <span class="pre">regression</span> <span class="pre">of</span> <span class="pre">omitted</span> <span class="pre">on</span> <span class="pre">included</span></code>. This shed some light to how bias comes to be. We discovered that the source of omitted variable bias is confounding: a variable that affects both the treatment and the outcome. Lastly, we used causal graphs to see how RCT and regression fixes confounding.</p>
 </div>
 <div class="section" id="references">

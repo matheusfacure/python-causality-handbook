@@ -157,16 +157,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
-   13 - Panel Data and Fixed Effects
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Difference-in-Difference.html">
-   14 - Difference-in-Difference
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="15-Synthetic-Control.html">
    15 - Synthetic Control
   </a>
@@ -591,7 +581,7 @@ Name: intervention, dtype: float64
 </tr>
 </table></div></div>
 </div>
-<p>Simply comparing those with and without the intervention, we can see that the treated have an achievement score that is, on average, 0.3185 (0.4723 - 0.1538) higher than the untreated. But is this big or small? I know that interpreting standardised outcomes can be challenging, but bear with me for a moment. I think it is worth going through this because it won’t be the last time you will encounter standardized scores.</p>
+<p>Simply comparing those with and without the intervention, we can see that the treated have an achievement score that is, on average, 0.6261 (0.4723 + 0.1538) higher than the untreated. But is this big or small? I know that interpreting standardised outcomes can be challenging, but bear with me for a moment. I think it is worth going through this because it won’t be the last time you will encounter standardized scores.</p>
 <p>The outcome variable being standardised means that it is measured in standard deviations. So, the treated are 0.3185 deviations above the untreated. That is what this means. As for if this is small or big, let’s remember some stuff about the normal distribution. We know that 95% of its mass is between 2 standard deviations, leaving 2.5% on one tail and 2.5% on another. This also means that if someone is 2 standard deviations above the mean, 97.5% (95% plus the left 2.5% tail) of all the individuals are below that person. By looking at the normal CDF, we also know that about 0.85% of its mass is below 1 standard deviation and that 70% of its mass is below 0.5 standard deviations. Since the treated group has an average standardized score of about 0.5, this means that they fall above 70% in terms of individual achievement. Or, in other words, they are in the top 30% who achieve more. Here is what this looks like in a picture.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

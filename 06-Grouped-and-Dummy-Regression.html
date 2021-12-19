@@ -157,16 +157,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
-   13 - Panel Data and Fixed Effects
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Difference-in-Difference.html">
-   14 - Difference-in-Difference
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="15-Synthetic-Control.html">
    15 - Synthetic Control
   </a>
@@ -651,7 +641,7 @@
 </tr>
 </table></div></div>
 </div>
-<p>Notice how the parameter estimate of <code class="docutils literal notranslate"><span class="pre">educ</span></code> in the grouped model is very close to the one in the ungrouped data (actually, they are the same in this case). Also, even with only 10 data points, we’ve managed to get a statistically significant coefficient. That’s because, although we have fewer points, grouping also lowers the variance by a lot. Also notice how the standard error is a bit larger, as is the t statistics. That’s because some information about the variance is lost, so we have to be more conservative. Once we group the data, we don’t know how large the variance is within each group. Compare the results above with what we would have with the non weighted model below.</p>
+<p>Notice how the parameter estimate of <code class="docutils literal notranslate"><span class="pre">educ</span></code> in the grouped model is very close to the one in the ungrouped data (actually, they are the same in this case). Also, even with only 10 data points, we’ve managed to get a statistically significant coefficient. That’s because, although we have fewer points, grouping also lowers the variance by a lot. Also notice how the standard error is a bit larger and the t statistics is a bit larger. That’s because some information about the variance is lost, so we have to be more conservative. Once we group the data, we don’t know how large the variance is within each group. Compare the results above with what we would have with the non weighted model below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_3</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="s1">&#39;lhwage ~ educ&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">group_wage</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>

@@ -157,16 +157,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
-   13 - Panel Data and Fixed Effects
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Difference-in-Difference.html">
-   14 - Difference-in-Difference
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="15-Synthetic-Control.html">
    15 - Synthetic Control
   </a>
@@ -374,8 +364,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#keys-ideas">
-   Keys Ideas
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -402,7 +392,7 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="stats-review-the-most-dangerous-equation">
 <h1>03 - Stats Review: The Most Dangerous Equation<a class="headerlink" href="#stats-review-the-most-dangerous-equation" title="Permalink to this headline">¶</a></h1>
 <p>In his famous article of 2007, Howard Wainer writes about very dangerous equations:</p>
-<p>“Some equations  are  dangerous  if you  know them, and others are dangerous if you do not. The first category may  pose  danger  because the secrets  within its bounds open  doors  behind which lies terrible peril. The obvious winner in this is Einstein’s ionic equation <span class="math notranslate nohighlight">\(E = MC^2\)</span>, for it  provides  a  measure of  the  enormous energy hidden  within  ordinary  matter. […] Instead I am interested in equations that unleash their danger not when we know about them, but rather when we do not. Kept close at hand, these equations allow us to understand things clearly, but their absence leaves us dangerously ignorant.”</p>
+<p>“Some equations  are  dangerous  if you  know them, and others are dangerous if you do not. The first category may  pose  danger  because the secrets  within its bounds open  doors  behind which lies terrible peril. The obvious winner in this is Einstein’s iconic equation <span class="math notranslate nohighlight">\(E = MC^2\)</span>, for it  provides  a  measure of  the  enormous energy hidden  within  ordinary  matter. […] Instead I am interested in equations that unleash their danger not when we know about them, but rather when we do not. Kept close at hand, these equations allow us to understand things clearly, but their absence leaves us dangerously ignorant.”</p>
 <p>The equation he talks about is Moivre’s equation:</p>
 <p><span class="math notranslate nohighlight">\(
 SE = \dfrac{\sigma}{\sqrt{n}} 
@@ -909,8 +899,8 @@ Diff 95% CI: (0.23461352820082482, 17.765386471799175)
 </div>
 </div>
 </div>
-<div class="section" id="keys-ideas">
-<h2>Keys Ideas<a class="headerlink" href="#keys-ideas" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
 <p>We’ve seen how important it is to know Moivre’s equation and we used it to place a degree of certainty around our estimates. Namely, we figured out that the online classes cause a decrease in academic performance compared to face to face classes. We also saw that this was a statistically significant result. We did it by comparing the Confidence Intervals of the means for the 2 groups, by looking at the confidence interval for the difference, by doing a hypothesis test and by looking at the p-value. Let’s wrap everything up in a single function that does A/B testing comparison like the one we did above</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

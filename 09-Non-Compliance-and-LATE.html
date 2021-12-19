@@ -157,16 +157,6 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="13-Panel-Data-and-Fixed-Effects.html">
-   13 - Panel Data and Fixed Effects
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Difference-in-Difference.html">
-   14 - Difference-in-Difference
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="15-Synthetic-Control.html">
    15 - Synthetic Control
   </a>
@@ -646,7 +636,7 @@ ATE = \dfrac{E[(Y_{i1}-Y_{i0})|T_{i1}&gt;T_{i0}]P(T_{i1}&gt;T_{i0})}{P(T_{i1}&gt
 </tr>
 </table></div></div>
 </div>
-<p>OLS is saying that the treatment effect is R\<span class="math notranslate nohighlight">\( 27.60, that is, the push increases in-app purchase by 27.6 reais. However, we have reasons to believe this is a biased estimate. We know that older phones are having trouble in receiving the push, so, probably, richer customers, with newer phones, are the compilers. Since the ones that get the treatment also have more money, we believe this bias is positive and the true impact of the push is lower. In other words, we probably have \)</span>E[Y_0|T=0] &lt; E[Y_0|T=1]$.</p>
+<p>OLS is saying that the treatment effect is BRL 27.60, that is, the push increases in-app purchase by 27.6 reais. However, we have reasons to believe this is a biased estimate. We know that older phones are having trouble in receiving the push, so, probably, richer customers, with newer phones, are the compilers. Since the ones that get the treatment also have more money, we believe this bias is positive and the true impact of the push is lower. In other words, we probably have <span class="math notranslate nohighlight">\(E[Y_0|T=0] &lt; E[Y_0|T=1]\)</span>.</p>
 <p>Now, let’s try to estimate this effect with Instrumental Variables. First, let’s run the first stage.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
