@@ -157,6 +157,16 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="13-Difference-in-Differences.html">
+   13 - Difference-in-Differences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Panel-Data-and-Fixed-Effects.html">
+   14 - Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="15-Synthetic-Control.html">
    15 - Synthetic Control
   </a>
@@ -497,7 +507,7 @@ T_1 \ \text{if } Z_i=1
 <p>Instrumental Variable assumptions can now be rewritten as follows</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(T_{0i}, T_{1i} \perp Z_i \)</span> and <span class="math notranslate nohighlight">\(Y_i(T_{1i},1), Y_i(T_{0i},0) \perp Z_i \)</span>. This is the independence Assumption. This says that the instrument is as good as randomly assigned. In other words, Z, the instrument, is not correlated with the potential treatments, which is the same as saying that people in different instrument groups are comparable.</p></li>
-<li><p><span class="math notranslate nohighlight">\(Y_i(1, 0)=Y_i(1, 1)=Y_{i1}\)</span> and <span class="math notranslate nohighlight">\(Y_i(1, 0)=Y_i(1, 1)=Y_{i0}\)</span>. This is the exclusion restriction. It says that if I’m looking at the potential outcome for the treated, it is the same for both instrument groups. In other words, the instrument does not affect the potential outcome, which is the same as saying that the instrument only affects the outcome through the treatment.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Y_i(1, 0)=Y_i(1, 1)=Y_{i1}\)</span> and <span class="math notranslate nohighlight">\(Y_i(0, 0)=Y_i(0, 1)=Y_{i0}\)</span>. This is the exclusion restriction. It says that if I’m looking at the potential outcome for the treated, it is the same for both instrument groups. In other words, the instrument does not affect the potential outcome, which is the same as saying that the instrument only affects the outcome through the treatment.</p></li>
 <li><p><span class="math notranslate nohighlight">\(E[T_{1i}-T_{0i}] \neq 0\)</span>. This is the existence of a 1st stage. It is saying that the potential outcome of the 1st stage, that is, the potential treatment, is NOT the same. Another way of saying this is that the instrument does affect the treatment.</p></li>
 <li><p><span class="math notranslate nohighlight">\(T_{i1} &gt; T_{i0}\)</span>. This is the monotonicity assumption. It is saying that if everyone had the instrument turned on, the treatment level would be higher than if everyone had the treatment turned off.</p></li>
 </ol>

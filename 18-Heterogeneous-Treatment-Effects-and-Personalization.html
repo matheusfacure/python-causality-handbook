@@ -157,6 +157,16 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="13-Difference-in-Differences.html">
+   13 - Difference-in-Differences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Panel-Data-and-Fixed-Effects.html">
+   14 - Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="15-Synthetic-Control.html">
    15 - Synthetic Control
   </a>
@@ -1035,7 +1045,7 @@ sales_i = \beta_0 + \beta_1 price_i + \pmb{\beta_2 X_i}*price_i + \pmb{\beta_3}X
 <img alt="_images/18-Heterogeneous-Treatment-Effects-and-Personalization_22_0.png" src="_images/18-Heterogeneous-Treatment-Effects-and-Personalization_22_0.png" />
 </div>
 </div>
-<p>As we can see, it looks like this partitioning scheme is useful. For the first partition, there is a high price sensitivity. Sales are going down by a lot as prices go up. However, for the second partition, sales remain roughly unganged as price goes up. In fact, it even looks like sales are going up as we increase price, but that’s probably noise.</p>
+<p>As we can see, it looks like this partitioning scheme is useful. For the first partition, there is a high price sensitivity. Sales are going down by a lot as prices go up. However, for the second partition, sales remain roughly unchanged as price goes up. In fact, it even looks like sales are going up as we increase price, but that’s probably noise.</p>
 <p>Contrast this with the partitions made using the ML prediction model:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1055,7 +1065,7 @@ sales_i = \beta_0 + \beta_1 price_i + \pmb{\beta_2 X_i}*price_i + \pmb{\beta_3}X
 <div class="section" id="key-ideas">
 <h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
 <p>We finally formalized the concept of Conditional Average Treatment Effect and how it can be useful for personalisation. Namely, if we can understand how each unit responds to a treatment, that is, if we can understand the heterogeneity of the treatment effect, we can give the best treatment depending on the unit’s individual characteristics.</p>
-<p>We’ve also contrates this goal with that of a predictive model. Namely, we are rethinking the estimation task, from predicting <span class="math notranslate nohighlight">\(Y\)</span> in it’s raw format to predicting how <span class="math notranslate nohighlight">\(Y\)</span> changes with <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(\frac{\delta y}{\delta t}\)</span>.</p>
+<p>We’ve also contrasted this goal with that of a predictive model. Namely, we are rethinking the estimation task, from predicting <span class="math notranslate nohighlight">\(Y\)</span> in it’s raw format to predicting how <span class="math notranslate nohighlight">\(Y\)</span> changes with <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(\frac{\delta y}{\delta t}\)</span>.</p>
 <p>Sadly, it’s not at all obvious how to build models for that. Since we can’t observe elasticity directly, it’s hard to make a model that predicts it. But linear regression came to our rescue. By using a regression model that is fitted to predict <span class="math notranslate nohighlight">\(Y\)</span>, we found a way to also predict <span class="math notranslate nohighlight">\(\frac{\delta y}{\delta t}\)</span>. We also had to include interaction terms of the treatment and the features. This made it so that our elasticity prediction was different for each customer. In other words, we were now estimating <span class="math notranslate nohighlight">\(E[T'(t) | X]\)</span>. Those elasticity predictions were then used to group our units into more or less sensitive to the treatment, ultimately helping us decide the treatment level for each group.</p>
 <p><img alt="img" src="_images/economists.png" /></p>
 <p>One natural question that arises from all this is if we can replace the linear regression by a generic machine learning model and use that to predict elasticity. The answer is yes, but there are some caveats. This chapter used a very simple CATE model because I think it’s easier to understand the concept behind them with linear regression. Don’t worry, though. We will see some more sophisticated models in the chapters to come. But before that, I first need to cover a very important topic, which is how can we compare two CATE models and decide which one is better.</p>

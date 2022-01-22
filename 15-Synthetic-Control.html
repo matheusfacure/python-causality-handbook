@@ -54,6 +54,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="16 - Regression Discontinuity Design" href="16-Regression-Discontinuity-Design.html" />
+    <link rel="prev" title="14 - Panel Data and Fixed Effects" href="14-Panel-Data-and-Fixed-Effects.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -153,6 +154,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
    12 - Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Difference-in-Differences.html">
+   13 - Difference-in-Differences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Panel-Data-and-Fixed-Effects.html">
+   14 - Panel Data and Fixed Effects
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -944,7 +955,7 @@ so on. Notice how the weights are sparse, exactly as we’ve predicted. Also, al
 </tr>
 </tbody>
 </table>
-<p>In the end, we will have one synthetic control and effect estimates for each state. So what this does is it pretends that the treatment actually happened for another state, not California, and see what would have been the estimated effect for this treatment that didn’t happen. Then, we see if the treatment in Califórnia is sufficiently larger when compared to the other fake treatment. The idea is that for states that weren’t actually treated, once we pretend they were, we won’t be able to find any significant treatment effect.</p>
+<p>In the end, we will have one synthetic control and effect estimates for each state. So what this does is it pretends that the treatment actually happened for another state, not California, and see what would have been the estimated effect for this treatment that didn’t happen. Then, we see if the treatment in California is sufficiently larger when compared to the other fake treatment. The idea is that for states that weren’t actually treated, once we pretend they were, we won’t be able to find any significant treatment effect.</p>
 <p>To implement this, I’ve built this function that takes as input a state and estimate the synthetic control for that state. This function returns a data frame with one column for the state, one for the year, one for the outcome <code class="docutils literal notranslate"><span class="pre">cigsale</span></code> and the synthetic outcome for that state.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1058,14 +1069,14 @@ so on. Notice how the weights are sparse, exactly as we’ve predicted. Also, al
 
 <span class="n">parallel_fn</span> <span class="o">=</span> <span class="n">delayed</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">synthetic_control</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span><span class="n">control_pool</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">cigar</span><span class="p">))</span>
 
-<span class="n">sinthetic_states</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">8</span><span class="p">)(</span><span class="n">parallel_fn</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">control_pool</span><span class="p">)</span>
+<span class="n">synthetic_states</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">8</span><span class="p">)(</span><span class="n">parallel_fn</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">control_pool</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sinthetic_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">synthetic_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1144,7 +1155,7 @@ so on. Notice how the weights are sparse, exactly as we’ve predicted. Also, al
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">sinthetic_states</span><span class="p">:</span>
+<span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">synthetic_states</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;synthetic&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C5&quot;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">calif_synth</span><span class="p">,</span>
@@ -1176,7 +1187,7 @@ MSE = \frac{1}{N}\sum\bigg(Y_t - \hat{Y}^{Synth}_t\bigg)^2
     <span class="k">return</span> <span class="n">pre_treat_error</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">sinthetic_states</span><span class="p">:</span>
+<span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">synthetic_states</span><span class="p">:</span>
     
     <span class="c1"># remove units with mean error above 80.</span>
     <span class="k">if</span> <span class="n">pre_treatment_error</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">80</span><span class="p">:</span>
@@ -1205,7 +1216,7 @@ MSE = \frac{1}{N}\sum\bigg(Y_t - \hat{Y}^{Synth}_t\bigg)^2
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calif_number</span> <span class="o">=</span> <span class="mi">3</span>
 
 <span class="n">effects</span> <span class="o">=</span> <span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;year==2000&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">state</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;year==2000&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;synthetic&quot;</span><span class="p">]</span>
-           <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">sinthetic_states</span>
+           <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">synthetic_states</span>
            <span class="k">if</span> <span class="n">pre_treatment_error</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">80</span><span class="p">]</span> <span class="c1"># filter out noise</span>
 
 <span class="n">calif_effect</span> <span class="o">=</span> <span class="n">cigar</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;california &amp; year==2000&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">calif_synth</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> 
@@ -1329,6 +1340,15 @@ If you found this book valuable and you want to support it, please go to <a clas
 
 <div class='prev-next-bottom'>
     
+    <div id="prev">
+        <a class="left-prev" href="14-Panel-Data-and-Fixed-Effects.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">14 - Panel Data and Fixed Effects</p>
+            </div>
+        </a>
+    </div>
      <div id="next">
         <a class="right-next" href="16-Regression-Discontinuity-Design.html" title="next page">
             <div class="prevnext-info">
