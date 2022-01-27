@@ -397,6 +397,11 @@
    Reference
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contribute">
+   Contribute
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -1385,17 +1390,22 @@ Pred Effect:  0.8544117647059067
 <div class="section" id="key-concepts">
 <h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Permalink to this headline">¶</a></h2>
 <p>I think it is safe to say that we’ve finally managed not only to understand, but to correct the functional form problem with TWFE. We traced the problem down to its roots (time heterogeneity) and fixed it by allowing for more flexibility. We can now grab ourselves a drink and relax, knowing that TWFE is once again safe to use. Or is it?!</p>
+<p><img alt="img" src="_images/twfeworking.png" /></p>
 <p>We can never forget that TWFE (and DiD more generally) is a mix of <strong>both functional form and independence assumptions</strong>. In this chapter, we’ve only tackled the functional form problems, but there is still a big elephant in the room: the parallel trend assumption. Parallel trends is the independence assumption DiD makes. This is very well known. But I feel we don’t really understand what this assumption implies. We just invoke it out of thin air as if that would make it true. Unfortunately, the parallel trend assumption requires much more than what most people realize. In the next chapters, we will see why that is and what or if we can do something about it.</p>
 </div>
 <div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
-<p><img alt="img" src="_images/twfeworking.png" /></p>
 <p>It took a (very) long time to write this chapter. The recent econometric literature has been sprouting with new ideas and insights on the problems related to DiD and how to solve them. There are multiple angles we can see those problems, which in turn leads to multiple approaches we can leverage to solve them. Brace yourselves because the reference list here will be long (and probably not very well organized).</p>
 <p>First, I took a lot from <em>Difference-in-Differences with Variation in Treatment Timing</em>, by Andrew Goodman-Bacon. His diagnosis of the problem is very neat and intuitive. Not to mention it comes with very nice pictures that gave me a clear understanding on how to understand what was happening with DiD. Some of the pictures in this chapter are almost a direct copy from those made by Goodman-Bacon.</p>
 <p>The second major source of inspiration was <em>Difference-in-Differences with Multiple Time Periods</em>, by Pedro H. C. Sant’Anna and Brantly Callaway. Notice that the Callaway and Sant’Anna solution to this problem goes on a different route than the one we took. Still, their solution shines a lot of light on the DiD problem, making it easy to understand. The paper aside, Pedro has a very nice blog post showing the problems with TWFE. The Data Generating Process on that blog post heavily inspired the ones that I’ve used here. I’ve basically translated Pedro’s code from R to Python. Pedro was also very kind in helping me with some questions I had about the DiD assumptions. He has another very interesting article tackling the problem of adding covariates to the DiD models, which we didn’t cover here because the chapter was already too long. The name of the paper is <em>Doubly Robust Difference-in-Differences Estimators</em> and I strongly recommend you read it if you plan to add covariates to your model.</p>
 <p>Last, but definitely not least, the functional form fix we employed here was inspired by <em>Two-Way Fixed Effects, the Two-Way Mundlak Regression, and Difference-in-Differences Estimators</em>, by Jeffrey Wooldridge. Although I’ve loved what Callaway and Sant’Anna did on their paper, their solution is a bit more complicated to implement. In contrast, Wooldridge’s solution involves nothing more than cleverly playing with interactions in a TWFE regression model, making it super easy to implement using nothing more than <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> and some formulas.</p>
-<p>Aside from the papers mentioned above, I’ve also relied on presentations given at the DiD Study Group, organized by Taylor Wright on Youtube. It is much easier to understand the articles mentioned above if you first watch the authors talk about them.</p>
-<p>Finally, I’m also very thankful for professor Yiqing Xu for tying all of this together in his amazing Causal Inference with Panel Data lecture series, also available on Youtube.</p>
+<p>Aside from the papers mentioned above, I’ve also relied on presentations given at the DiD Study Group, organized by Taylor Wright on Youtube. It is much easier to understand the articles mentioned above if you first watch the authors talk about them. I’m also very thankful for professor Yiqing Xu for tying all of this together in his amazing Causal Inference with Panel Data lecture series, also available on Youtube.</p>
+<p>Finally, keep in mind that I too am also learning, so, by all means, if you find something preposterous, open an issue and I’ll address it to the best of my efforts.</p>
+</div>
+<div class="section" id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
+<p>Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
+If you found this book valuable and you want to support it, please go to <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a>. If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn’t understand. Just go to the book’s repository and <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/issues">open an issue</a>. Finally, if you liked this content, please share it with others who might find it useful and give it a <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/stargazers">star on GitHub</a>.</p>
 </div>
 </div>
 
