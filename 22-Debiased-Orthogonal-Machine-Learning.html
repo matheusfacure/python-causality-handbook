@@ -854,7 +854,7 @@ Y_i = \hat{M}_y(X_i) + \tau(X_i) \big(T_i - \hat{M}_t(X)\big) + \hat{\epsilon}_i
 <ol class="simple">
 <li><p>Create weights <span class="math notranslate nohighlight">\(\tilde{T}_i^2\)</span></p></li>
 <li><p>Create a target <span class="math notranslate nohighlight">\(\dfrac{\tilde{Y}_i}{\tilde{T}_i}\)</span></p></li>
-<li><p>Use any prediction method to predict the target (1) while using the weights (2).</p></li>
+<li><p>Use any prediction method to predict the target (2) while using the weights (1).</p></li>
 </ol>
 <p>And here is the code. As you will see, it is incredibly simple.</p>
 <div class="cell docutils container">
@@ -1578,7 +1578,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 <h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
 <p>Double/Debiased/Orthogonal ML is a way to delegate estimating nuisance parameters which allows us to focus our attention on the causal parameter of interest. It first employes a two step orthogonalisation procedure:</p>
 <ol class="simple">
-<li><p>Fit a model <span class="math notranslate nohighlight">\(M_x(X)\)</span> to predict the treatment from the covariates X and get out of fold residuals <span class="math notranslate nohighlight">\(\tilde{t} = t - M_t(X)\)</span>. We called this the debiasing model because the residuals <span class="math notranslate nohighlight">\(\tilde{t}\)</span> are, by definition, orthogonal to the features used to construct it.</p></li>
+<li><p>Fit a model <span class="math notranslate nohighlight">\(M_t(X)\)</span> to predict the treatment from the covariates X and get out of fold residuals <span class="math notranslate nohighlight">\(\tilde{t} = t - M_t(X)\)</span>. We called this the debiasing model because the residuals <span class="math notranslate nohighlight">\(\tilde{t}\)</span> are, by definition, orthogonal to the features used to construct it.</p></li>
 <li><p>Fit a model <span class="math notranslate nohighlight">\(M_y(X)\)</span> to predict the outcome from the covariates X and get out of fold residuals <span class="math notranslate nohighlight">\(\tilde{y} = y - M_y(X)\)</span>. We called this the denoising model because the residual <span class="math notranslate nohighlight">\(\tilde{y}\)</span> can be seen as a version of the outcome where all the variance from the features got explained away.</p></li>
 </ol>
 <p>Once we have those residuals, provided there are no unmeasured confounders, we can regress <span class="math notranslate nohighlight">\(\tilde{y}\)</span> on <span class="math notranslate nohighlight">\(\tilde{t}\)</span> for a linear approximation to the ATE. We can also interact <span class="math notranslate nohighlight">\(\tilde{t}\)</span> with the covariates to estimate the CATE or use a weighting trick to allow for any generic ML model as our final CATE model.</p>
