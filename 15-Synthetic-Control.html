@@ -859,7 +859,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sum: 1.00000000000053
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sum: 1.000000000000424
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.    , 0.    , 0.    , 0.0852, 0.    , 0.    , 0.    , 0.    ,
@@ -964,7 +964,7 @@ so on. Notice how the weights are sparse, exactly as we’ve predicted. Also, al
 <p>To implement this, I’ve built this function that takes as input a state and estimate the synthetic control for that state. This function returns a data frame with one column for the state, one for the year, one for the outcome <code class="docutils literal notranslate"><span class="pre">cigsale</span></code> and the synthetic outcome for that state.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">synthetic_control</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pool</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">synthetic_control</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
     
     <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">,</span> <span class="s2">&quot;retprice&quot;</span><span class="p">]</span>
     
@@ -990,9 +990,7 @@ so on. Notice how the weights are sparse, exactly as we’ve predicted. Also, al
 <p>Here is the result of it when we apply it to the first state.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">control_pool</span> <span class="o">=</span> <span class="n">cigar</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-
-<span class="n">synthetic_control</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">control_pool</span><span class="p">,</span> <span class="n">cigar</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">synthetic_control</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cigar</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1072,7 +1070,9 @@ so on. Notice how the weights are sparse, exactly as we’ve predicted. Also, al
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
 
-<span class="n">parallel_fn</span> <span class="o">=</span> <span class="n">delayed</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">synthetic_control</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span><span class="n">control_pool</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">cigar</span><span class="p">))</span>
+<span class="n">control_pool</span> <span class="o">=</span> <span class="n">cigar</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="n">parallel_fn</span> <span class="o">=</span> <span class="n">delayed</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">synthetic_control</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">cigar</span><span class="p">))</span>
 
 <span class="n">synthetic_states</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">8</span><span class="p">)(</span><span class="n">parallel_fn</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">control_pool</span><span class="p">)</span>
 </pre></div>
@@ -1232,18 +1232,18 @@ MSE = \frac{1}{N}\sum\bigg(Y_t - \hat{Y}^{Synth}_t\bigg)^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>California Treatment Effect for the Year 2000: -24.830159735870673
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>California Treatment Effect for the Year 2000: -24.83015975607075
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  5.79715883,   0.89458995, -24.83015974,  -7.16628125,
-       -10.92204858,  37.11640555, -15.06971529,  -0.49805127,
-       -18.4579507 ,  21.1336644 ,  12.57782734,  -1.47547827,
-        10.49627369, -11.67012375,   4.29850821,   8.04811402,
-        14.02322408,   8.25002743,   0.32576355,  -8.40826904,
-        -2.12402708,  -7.42865008,   2.96157517,  24.10478141,
-         4.25211768, -17.75844574,   7.93334013,   2.81640136,
-        12.64955958, -17.47677516, -25.16040941, -12.26469131,
-        24.69067354,  10.36299575,  -8.59880349])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  5.79715887,   0.89458999, -24.83015976,  -7.16628121,
+       -10.92204855,  37.1164056 , -15.06971721,  -0.49805125,
+       -18.45795062,  21.13366447,  12.57782745,  -1.47547826,
+        10.49627373, -11.67012352,   4.29850832,   8.04811402,
+        14.023224  ,   8.25002775,   0.32576354,  -8.40826871,
+        -2.12402707,  -7.42865061,   2.96157551,  24.10478137,
+         4.25211766, -17.75844568,   7.93334017,   2.81640128,
+        12.64955962, -17.47677514, -25.16040949, -12.26469139,
+        24.69067386,  10.36299584,  -8.59880329])
 </pre></div>
 </div>
 </div>

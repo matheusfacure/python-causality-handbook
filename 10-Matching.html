@@ -502,7 +502,7 @@ ATE = \int(E[Y|X, T=1] - E[Y|X, T=0])dP(x)
 <p><span class="math notranslate nohighlight">\(
 \hat{ATE} = \sum^K_{i=0}(\bar{Y}_{k1} - \bar{Y}_{k0}) * \dfrac{N_k}{N}
 \)</span></p>
-<p>where the bar represent the mean of the outcome on the treated, <span class="math notranslate nohighlight">\(Y_{k1}\)</span>, and treated, <span class="math notranslate nohighlight">\(Y_{k0}\)</span>, cell k and <span class="math notranslate nohighlight">\(N_{k}\)</span> is the number of observations in that same cell. As you can see, we are computing a local ATE for each cell and combining them using a weighted average, where the weights are the sample size of the cell. In our medicine example above, this would be the first estimate, which gave us −2.6.</p>
+<p>where the bar represent the mean of the outcome on the treated, <span class="math notranslate nohighlight">\(Y_{k1}\)</span>, and non-treated, <span class="math notranslate nohighlight">\(Y_{k0}\)</span>, at cell k and <span class="math notranslate nohighlight">\(N_{k}\)</span> is the number of observations in that same cell. As you can see, we are computing a local ATE for each cell and combining them using a weighted average, where the weights are the sample size of the cell. In our medicine example above, this would be the first estimate, which gave us −2.6.</p>
 </div>
 <div class="section" id="matching-estimator">
 <h2>Matching Estimator<a class="headerlink" href="#matching-estimator" title="Permalink to this headline">¶</a></h2>

@@ -412,7 +412,7 @@
 <p><span class="math notranslate nohighlight">\(
 Y_i = Y_{0i} + T_i(Y_{1i} - Y_{0i}) = Y_{0i}(1-T_i) + T_i Y_{1i}
 \)</span></p>
-<p>So, for now, let’s focus, on the simpler task of estimating the average causal effect. With this in mind, we are accepting the fact that some people respond better than others to the treatment, but we are also accepting that we can’t know who they are. Instead, we will just try to see if the treatment works, <strong>on average</strong>.</p>
+<p>So, for now, let’s focus on the simpler task of estimating the average causal effect. With this in mind, we are accepting the fact that some people respond better than others to the treatment, but we are also accepting that we can’t know who they are. Instead, we will just try to see if the treatment works, <strong>on average</strong>.</p>
 <p><span class="math notranslate nohighlight">\(
 ATE = E[Y_1 - Y_0]
 \)</span></p>
@@ -430,7 +430,7 @@ exam_i = \beta_0 + \kappa \ Online_i + u_i
 \)</span></p>
 <p>This means we are modeling the exam outcome as a baseline <span class="math notranslate nohighlight">\(\beta_0\)</span> plus <span class="math notranslate nohighlight">\(\kappa\)</span> if the class is online.  Of course the exam result is driven by additional variables (like student’s mood on the exam day, hours studied and so on). But we don’t really care about understanding those relationships. So, instead, we use that <span class="math notranslate nohighlight">\(u_i\)</span> term to represent everything else we don’t care about. This is called the model error.</p>
 <p>Notice that <span class="math notranslate nohighlight">\(Online\)</span> is our treatment indication and hence, a dummy variable. It is zero when the treatment is face to face and 1 if it’s online. With that in mind, we can see that linear regression will recover <span class="math notranslate nohighlight">\(E[Y|T=0] = \beta_0\)</span> and <span class="math notranslate nohighlight">\(E[Y|T=1] = \beta_0 + \kappa \)</span>. <span class="math notranslate nohighlight">\(\kappa\)</span> will be our ATE.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
