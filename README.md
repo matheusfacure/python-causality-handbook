@@ -12,6 +12,9 @@ If you want to read the book in Chinese, @xieliaing was very kind to make a tran
 
 [因果推断：从概念到实践](https://github.com/xieliaing/CausalInferenceIntro)
 
+If you want to read the book in Spanish, @donelianc was very kind to make a translation:
+[Inferencia Causal para los Valientes y Verdaderos](https://github.com/donelianc/introduccion-inferencia-causal)
+
 Also, some really kind folks (@vietecon, @dinhtrang24 and @anhpham52) also translated this content into Vietnamese:
 
 [Nhân quả Python](https://github.com/vietecon/NhanQuaPython)
