@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>23 - The Difference-in-Differences Saga &#8212; Causal Inference for the Brave and True</title>
+    <title>24 - The Difference-in-Differences Saga &#8212; Causal Inference for the Brave and True</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Debiasing with Orthogonalization" href="Debiasing-with-Orthogonalization.html" />
-    <link rel="prev" title="22 - Debiased/Orthogonal Machine Learning" href="22-Debiased-Orthogonal-Machine-Learning.html" />
+    <link rel="prev" title="23 - Challenges with Effect Heterogeneity and Nonlinearity" href="23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -213,9 +213,14 @@
    22 - Debiased/Orthogonal Machine Learning
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html">
+   23 - Challenges with Effect Heterogeneity and Nonlinearity
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   23 - The Difference-in-Differences Saga
+   24 - The Difference-in-Differences Saga
   </a>
  </li>
 </ul>
@@ -298,7 +303,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/23-The-Diff-in-Diff-Saga.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/24-The-Diff-in-Diff-Saga.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -315,7 +320,7 @@
     <div class="dropdown-buttons sourcebuttons">
         
         <a class="issues-button"
-            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F23-The-Diff-in-Diff-Saga.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F24-The-Diff-in-Diff-Saga.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -336,7 +341,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/23-The-Diff-in-Diff-Saga.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/24-The-Diff-in-Diff-Saga.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -434,7 +439,7 @@
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="the-difference-in-differences-saga">
-<h1>23 - The Difference-in-Differences Saga<a class="headerlink" href="#the-difference-in-differences-saga" title="Permalink to this headline">¶</a></h1>
+<h1>24 - The Difference-in-Differences Saga<a class="headerlink" href="#the-difference-in-differences-saga" title="Permalink to this headline">¶</a></h1>
 <p>After discussing treatment effect heterogeneity, we will now switch gears a bit, back into average treatment effects. Over the next few chapters, we will cover some recent developments in panel data methods. A panel is a data structure that has repeated observations across time. The fact that we observe the same unit in multiple time periods allows us to see what happens before and after a treatment takes place. This makes panel data a promising alternative to identifying the causal effects when randomization is not possible.</p>
 <p>To motivate the use of panel data, we will mostly talk about causal inference applications to marketing. Marketing is particularly interesting for its notorious difficulty in running randomized experiments. In marketing, we often can’t control who receives the treatment, that is, who sees our advertisements. When a new user comes to our site or downloads our app, we have no good way of knowing if that user came because he or she saw one of our campaigns or due to some other factor.</p>
 <p>(OBS: For those more familiar with marketing attribution, I’m aware of the many attribution tools that aim at solving this problem. But I’m also aware of their many limitations).</p>
@@ -502,7 +507,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/23-The-Diff-in-Diff-Saga_3_0.png" src="_images/23-The-Diff-in-Diff-Saga_3_0.png" />
+<img alt="_images/24-The-Diff-in-Diff-Saga_3_0.png" src="_images/24-The-Diff-in-Diff-Saga_3_0.png" />
 </div>
 </div>
 <p>The dashed lines mark the moment a cohort got the treatment (the feature was rolled out). Take a moment to appreciate the richness of the data depicted in the above plot. First, we can see that each cohort has its own baseline level. That’s simply because different cities have different population sizes, leading to more or less installs depending on the city size. For instance, it looks like cities in the first cohort (treated in 06/01) have a higher baseline, compared to the cities in the other cohorts. Also, it looks like the control cohort has a lower baseline of intalls. This means that simply comparing treated cohorts against the control cohorts would yield a biased result, since <span class="math notranslate nohighlight">\(Y_{0}\)</span> for the control is lower than the <span class="math notranslate nohighlight">\(Y_{0}\)</span> for the treated, or <span class="math notranslate nohighlight">\(Y_{0}|G=Control &lt; Y_{0}|G=Treated\)</span>, where we use <span class="math notranslate nohighlight">\(G\)</span> to denote the cohort. Fortunately this won’t be a problem. Panel data allow us to compare across cities <strong>and</strong> time, which allows it to adjust for different baselines.</p>
@@ -638,7 +643,7 @@ Installs_{it} = \tau D_{it} + \gamma_i + \theta_t + e_{it}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/23-The-Diff-in-Diff-Saga_11_0.png" src="_images/23-The-Diff-in-Diff-Saga_11_0.png" />
+<img alt="_images/24-The-Diff-in-Diff-Saga_11_0.png" src="_images/24-The-Diff-in-Diff-Saga_11_0.png" />
 </div>
 </div>
 <p>This plot shows us how TWFE is projecting the trend it sees in the control units onto the treated units and it is also adjusting the levels. For example, if we look at the red cohort, the counterfactual <span class="math notranslate nohighlight">\(Y_0\)</span> is the average trend from the blue and purple cohorts (trend projection) but shifted to the level of the red cohort (level adjustment). This is why we see TWFE as a Difference-in-Differences method. It also does the trend projection and level adjustment, but it works for multiple time periods and multiple units (in the 2 units by 2 period case, TWFE and DiD are equivalent).</p>
@@ -724,7 +729,7 @@ y_{it} = \tau D_{it} + \gamma_i + e_{it}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/23-The-Diff-in-Diff-Saga_15_0.png" src="_images/23-The-Diff-in-Diff-Saga_15_0.png" />
+<img alt="_images/24-The-Diff-in-Diff-Saga_15_0.png" src="_images/24-The-Diff-in-Diff-Saga_15_0.png" />
 </div>
 </div>
 <p>What we see is that the installs still reach the same level as they did before, but it takes some time (10 days) for that. This seems reasonable right? Most of the data we see in real life works like that, with effects taking some time to mature. Ok, so let’s run TWFE model on this data to see what happens.</p>
@@ -797,7 +802,7 @@ True Effect:  0.8544117647058823
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/23-The-Diff-in-Diff-Saga_19_0.png" src="_images/23-The-Diff-in-Diff-Saga_19_0.png" />
+<img alt="_images/24-The-Diff-in-Diff-Saga_19_0.png" src="_images/24-The-Diff-in-Diff-Saga_19_0.png" />
 </div>
 </div>
 <p>The first three comparisons are no reason for concern, mostly because what they use as control is very well behaved. However, the fourth comparison, late vs early, is problematic. Notice that this comparison uses the early treated as a control. Also notice that this early treated control has a weird behavior. It climbs up sharply at the beginning. That is a reflection of our ATT not being instantaneous, but instead taking 10 days to mature. Intuitively, we can see that this will mess up the estimation of the counterfactual trend in the DiD, making it steeper than it should be. To visualize that, let’s plot the estimated counterfactual <span class="math notranslate nohighlight">\(Y_0\)</span> for the late treated in this 4th group.</p>
@@ -846,7 +851,7 @@ True Effect:  0.8544117647058823
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/23-The-Diff-in-Diff-Saga_21_0.png" src="_images/23-The-Diff-in-Diff-Saga_21_0.png" />
+<img alt="_images/24-The-Diff-in-Diff-Saga_21_0.png" src="_images/24-The-Diff-in-Diff-Saga_21_0.png" />
 </div>
 </div>
 <p>Just like we said, the counterfactuals have a much steeper trend than it should have. It is capturing that quick increase in the beginning of the early treatment and projecting that trend onto the late treated.</p>
@@ -903,7 +908,7 @@ plim_{x \to \infty} \hat{\tau}^{TWFE} = VWATT - \Delta ATT
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/23-The-Diff-in-Diff-Saga_24_0.png" src="_images/23-The-Diff-in-Diff-Saga_24_0.png" />
+<img alt="_images/24-The-Diff-in-Diff-Saga_24_0.png" src="_images/24-The-Diff-in-Diff-Saga_24_0.png" />
 </div>
 </div>
 <p>Looking at the plot above, we can clearly see that the ATT is negative right? The correct counterfactual should be a straight line at about 11. However, if we run the TWFE estimator, we get a positive effect!</p>
@@ -958,7 +963,7 @@ plim_{x \to \infty} \hat{\tau}^{TWFE} = VWATT - \Delta ATT
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/23-The-Diff-in-Diff-Saga_28_0.png" src="_images/23-The-Diff-in-Diff-Saga_28_0.png" />
+<img alt="_images/24-The-Diff-in-Diff-Saga_28_0.png" src="_images/24-The-Diff-in-Diff-Saga_28_0.png" />
 </div>
 </div>
 <p>Notice how the counterfactual level is pushed down from where it should be. The fact that the early treated group effect is decreasing pushed this level down from 10 to about 9.5. Not only that, the counterfactual also adjusts for a downward trend, which should not be there. It is pretty clear from the plot that the right counterfactual should be a straight line at 10, but instead, it is a downward sloping line, since that is what it sees in the early treated group it uses as a control.</p>
@@ -1141,7 +1146,7 @@ Y_{i,t} = \tau^{-K}~ D_{i,t}^{&lt;-K} + \sum_{k=-K}^{-2} \tau^{lead} D_{i,t}^{k}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/23-The-Diff-in-Diff-Saga_33_0.png" src="_images/23-The-Diff-in-Diff-Saga_33_0.png" />
+<img alt="_images/24-The-Diff-in-Diff-Saga_33_0.png" src="_images/24-The-Diff-in-Diff-Saga_33_0.png" />
 </div>
 </div>
 <p><img alt="img" src="_images/awful.jpeg" /></p>
@@ -1163,7 +1168,7 @@ Y_{i,t} = \tau^{-K}~ D_{i,t}^{&lt;-K} + \sum_{k=-K}^{-2} \tau^{lead} D_{i,t}^{k}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/23-The-Diff-in-Diff-Saga_35_0.png" src="_images/23-The-Diff-in-Diff-Saga_35_0.png" />
+<img alt="_images/24-The-Diff-in-Diff-Saga_35_0.png" src="_images/24-The-Diff-in-Diff-Saga_35_0.png" />
 </div>
 </div>
 <p>We can kind of see it is a bit better because at least the estimated effect after the treatment is 1) mostly negative and 2) mostly decreasing. But there are these weird spikes and what looks like a positive pre-treatment effect, which obviously doesn’t make any sense.</p>
@@ -1247,7 +1252,7 @@ Pred. Effect:  0.8544117647058977
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/23-The-Diff-in-Diff-Saga_41_0.png" src="_images/23-The-Diff-in-Diff-Saga_41_0.png" />
+<img alt="_images/24-The-Diff-in-Diff-Saga_41_0.png" src="_images/24-The-Diff-in-Diff-Saga_41_0.png" />
 </div>
 </div>
 <p>Once again, the plot above matches our expectations of the effects. They follow the exact pattern we described above.</p>
@@ -1327,7 +1332,7 @@ Pred Effect:  0.8544117647059067
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/23-The-Diff-in-Diff-Saga_47_0.png" src="_images/23-The-Diff-in-Diff-Saga_47_0.png" />
+<img alt="_images/24-The-Diff-in-Diff-Saga_47_0.png" src="_images/24-The-Diff-in-Diff-Saga_47_0.png" />
 </div>
 </div>
 <p>Notice that we could go even further, since the effect for both cohorts follow the same shape. Namely, we could restrict the model to have the same effect for both cohorts, changing only over time. To do that, we would need to create a column to represent days after the treatment, just like in the event study design. It would be something like this:</p>
@@ -1380,7 +1385,7 @@ Pred Effect:  0.8544117647059067
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/23-The-Diff-in-Diff-Saga_49_0.png" src="_images/23-The-Diff-in-Diff-Saga_49_0.png" />
+<img alt="_images/24-The-Diff-in-Diff-Saga_49_0.png" src="_images/24-The-Diff-in-Diff-Saga_49_0.png" />
 </div>
 </div>
 <p>As we can see, the counterfactual <span class="math notranslate nohighlight">\(Y_0\)</span> prediction falls right where we think it should fall, that is, pretty close to the control cohort. This is very comforting. We know that the TWFE model is estimating the treatment effect as <span class="math notranslate nohighlight">\(Y-\hat{Y_0}\)</span>. That is, it is simply comparing the outcome from the treated cohorts to that counterfactual. Since the counterfactual seems OK, we can rest assured that the treatment effect is also probably OK.</p>
@@ -1439,11 +1444,11 @@ If you found this book valuable and you want to support it, please go to <a clas
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="22-Debiased-Orthogonal-Machine-Learning.html" title="previous page">
+        <a class="left-prev" href="23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">22 - Debiased/Orthogonal Machine Learning</p>
+                <p class="prevnext-title">23 - Challenges with Effect Heterogeneity and Nonlinearity</p>
             </div>
         </a>
     </div>

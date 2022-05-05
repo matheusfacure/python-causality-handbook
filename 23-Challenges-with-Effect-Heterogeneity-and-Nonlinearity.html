@@ -1,0 +1,932 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>23 - Challenges with Effect Heterogeneity and Nonlinearity &#8212; Causal Inference for the Brave and True</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="24 - The Difference-in-Differences Saga" href="24-The-Diff-in-Diff-Saga.html" />
+    <link rel="prev" title="22 - Debiased/Orthogonal Machine Learning" href="22-Debiased-Orthogonal-Machine-Learning.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Causal Inference for The Brave and True
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Part I - The Yang
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   01 - Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   02 - Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   03 - Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   04 - Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   05 - The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   06 - Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   07 - Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   08 - Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   09 - Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   10 - Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   11 - Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   12 - Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Difference-in-Differences.html">
+   13 - Difference-in-Differences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Panel-Data-and-Fixed-Effects.html">
+   14 - Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   15 - Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   16 - Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Part II - The Yin
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-Predictive-Models-101.html">
+   17 - Predictive Models 101
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html">
+   18 - Heterogeneous Treatment Effects and Personalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-Evaluating-Causal-Models.html">
+   19 - Evaluating Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
+   20 - Plug-and-Play Estimators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-Meta-Learners.html">
+   21 - Meta Learners
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
+   22 - Debiased/Orthogonal Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   23 - Challenges with Effect Heterogeneity and Nonlinearity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="24-The-Diff-in-Diff-Saga.html">
+   24 - The Difference-in-Differences Saga
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
+   Debiasing with Orthogonalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
+   Debiasing with Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="When-Prediction-Fails.html">
+   When Prediction Fails
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Prediction-Metrics-For-Causal-Models.html">
+   Why Prediction Metrics are Dangerous For Causal Models
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Contribute
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">
+   Patreon
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   23 - Challenges with Effect Heterogeneity and Nonlinearity
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#treatment-effects-on-binary-outcomes">
+     Treatment Effects on Binary Outcomes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulating-some-data">
+     Simulating Some Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continues-treatment-and-non-linearity">
+   Continues Treatment and Non Linearity
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#key-concepts">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reference">
+     Reference
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contribute">
+     Contribute
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="challenges-with-effect-heterogeneity-and-nonlinearity">
+<h1>23 - Challenges with Effect Heterogeneity and Nonlinearity<a class="headerlink" href="#challenges-with-effect-heterogeneity-and-nonlinearity" title="Permalink to this headline">¶</a></h1>
+<p>Pretidting treatment effect at the unit level is extremely difficult due to the lack of ground truth. Since we only observe one potential outcome <span class="math notranslate nohighlight">\(T(t)\)</span>, we can’t directly estimate it. Rather, we have to relly on target tranformations (that can also be viwed as cleverly designed loss function) to estimate conditional treatment effects only in expecation. But that is not the only chalange. Because treatment effects are so slipery, its estimators are often quite noisy. This has huge practicle consequences for applications where we want to segment units by their treatment effect, like when we want to do personalized treatment allocation.</p>
+<p>We will now see that, sometimes, we can get a better treatment effect segmentation if we don’t directly try to estimate CATE, but istead focus on another proxy target, which usually has less variance. A common case when this happens is when the outcome variable of interest <span class="math notranslate nohighlight">\(Y\)</span> is binary.</p>
+<div class="section" id="treatment-effects-on-binary-outcomes">
+<h2>Treatment Effects on Binary Outcomes<a class="headerlink" href="#treatment-effects-on-binary-outcomes" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;ggplot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">toolz</span> <span class="kn">import</span> <span class="n">curry</span><span class="p">,</span> <span class="n">partial</span>
+
+<span class="nd">@curry</span>
+<span class="k">def</span> <span class="nf">avg_treatment_effect</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">treatment</span><span class="p">,</span> <span class="n">outcome</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">treatment</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">][</span><span class="n">outcome</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">treatment</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">][</span><span class="n">outcome</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    
+    
+
+<span class="nd">@curry</span>
+<span class="k">def</span> <span class="nf">cumulative_effect_curve</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+                            <span class="n">treatment</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                            <span class="n">outcome</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                            <span class="n">prediction</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                            <span class="n">min_rows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+                            <span class="n">steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+                            <span class="n">effect_fn</span> <span class="o">=</span> <span class="n">avg_treatment_effect</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    
+    <span class="n">size</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ordered_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">n_rows</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">min_rows</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span> <span class="o">//</span> <span class="n">steps</span><span class="p">))</span> <span class="o">+</span> <span class="p">[</span><span class="n">size</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">effect_fn</span><span class="p">(</span><span class="n">ordered_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="n">treatment</span><span class="p">,</span> <span class="n">outcome</span><span class="p">)</span> <span class="k">for</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">n_rows</span><span class="p">])</span>
+
+
+<span class="nd">@curry</span>
+<span class="k">def</span> <span class="nf">cumulative_gain_curve</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+                          <span class="n">treatment</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                          <span class="n">outcome</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                          <span class="n">prediction</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                          <span class="n">min_rows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+                          <span class="n">steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+                          <span class="n">effect_fn</span> <span class="o">=</span> <span class="n">avg_treatment_effect</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    
+
+    <span class="n">size</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n_rows</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">min_rows</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span> <span class="o">//</span> <span class="n">steps</span><span class="p">))</span> <span class="o">+</span> <span class="p">[</span><span class="n">size</span><span class="p">]</span>
+
+    <span class="n">cum_effect</span> <span class="o">=</span> <span class="n">cumulative_effect_curve</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">treatment</span><span class="o">=</span><span class="n">treatment</span><span class="p">,</span> <span class="n">outcome</span><span class="o">=</span><span class="n">outcome</span><span class="p">,</span> <span class="n">prediction</span><span class="o">=</span><span class="n">prediction</span><span class="p">,</span>
+                                         <span class="n">min_rows</span><span class="o">=</span><span class="n">min_rows</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="n">steps</span><span class="p">,</span> <span class="n">effect_fn</span><span class="o">=</span><span class="n">effect_fn</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">effect</span> <span class="o">*</span> <span class="p">(</span><span class="n">rows</span> <span class="o">/</span> <span class="n">size</span><span class="p">)</span> <span class="k">for</span> <span class="n">rows</span><span class="p">,</span> <span class="n">effect</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">n_rows</span><span class="p">,</span> <span class="n">cum_effect</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is an incredibly common problem you might face if you find yourself working for a tech company: management wants to boost customer conversion to your product by means of some sort of nudge. For example, they might want to increase the number of app installs by offering a 10 BRL voucher for customers to make in-app purchases. Or offer a free ride the first time you use their ride sharing app. Or decrease transaction fees in the first three months in their investment platform. Since nudges are often expensive, they would love to not have to do it for everyone. Rather, it would be great if we could use the conversion boosting nudge only on those customers who are most sensitive to it.</p>
+<p>In causal inference terms, you can probably tell by now that this type of business problem falls unde the treatment effect heterogeneity (TEH) umbrela. Specifically, you have a costly nudge as the treatment <span class="math notranslate nohighlight">\(T\)</span>, conversion as the binary outcome <span class="math notranslate nohighlight">\(Y\)</span> and customer specific pre-treatment features as <span class="math notranslate nohighlight">\(X\)</span>. You could then estimate the conditional average treatment effect <span class="math notranslate nohighlight">\(E[Y_1 - Y_0|X]\)</span> (or <span class="math notranslate nohighlight">\(E[Y'(T)|X]\)</span> if the treatment is continuous)$ with something like Double/Debiased ML and finally target with the nudge only the customers with the highest estimated treatment effect. In business terms, you would be personalizing your conversion strategy. You would be finding a segment of customers with high conversion incrementality and using nudges only in them.</p>
+<p>However, there is one complication here that makes the TEH approach not so obvious. The fact that the outcome is binary complicates things considerably. Because this is a bit counter intuitive, I rather show what happens first and then explain why it happens.</p>
+</div>
+<div class="section" id="simulating-some-data">
+<h2>Simulating Some Data<a class="headerlink" href="#simulating-some-data" title="Permalink to this headline">¶</a></h2>
+<p>Let’s keep this very simple, but still relatable. We will simulate the treatment, <code class="docutils literal notranslate"><span class="pre">nudge</span></code>, as being completely random, drawn from a Bernoulli with <span class="math notranslate nohighlight">\(p=0.5\)</span>. This means the treatment is assigned according to a fair coin. It also means there is no confounding we need to watch out for.</p>
+<p><span class="math notranslate nohighlight">\( nudge \sim \mathcal{B}(0.5) \)</span></p>
+<p>Next, let’s simulate the customers’ covariates <code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">income</span></code> following a Gamma distribution. These are the stuff you know about the customer and hence, you want to personalize based on them. In other words, you wish to find groups of customers defined by age and income in such a way that one group is highly responsive to the <code class="docutils literal notranslate"><span class="pre">nudge</span></code> treatment.</p>
+<p><span class="math notranslate nohighlight">\( age \sim G(10, 4) \)</span></p>
+<p><span class="math notranslate nohighlight">\( income \sim G(20, 2) \)</span></p>
+<p>Finally, we will simulate the conversion. For that, we will first <strong>create a latent variable that follows a linear model</strong> with random noise. Importantly, notice that <code class="docutils literal notranslate"><span class="pre">income</span></code> is highly predictive of <span class="math notranslate nohighlight">\(Y_{latent}\)</span>, but <strong>it does not modify the treatment effect</strong>. Put simply, nudge increases <span class="math notranslate nohighlight">\(Y_{latent}\)</span> the same for all levels of <code class="docutils literal notranslate"><span class="pre">income</span></code>. In contrast, <code class="docutils literal notranslate"><span class="pre">age</span></code> only affects <span class="math notranslate nohighlight">\(Y_{latent}\)</span> through its interaction with the <code class="docutils literal notranslate"><span class="pre">nudge</span></code> treatment.</p>
+<p><span class="math notranslate nohighlight">\(Y_{latent} \sim N(-4.5 + 0.001 \ income + nudge + 0.01 \ nudge \ age, 1)\)</span></p>
+<p>Once we have the <span class="math notranslate nohighlight">\(Y_{latent}\)</span>, we can simulate <code class="docutils literal notranslate"><span class="pre">conversion</span></code> by setting it to <span class="math notranslate nohighlight">\(Y_{latent}&gt;x\)</span>. First, let’s set <code class="docutils literal notranslate"><span class="pre">x=0</span></code> so that the conversion is roughly 50%. That is, on average 50% of customers convert to our product.</p>
+<p><span class="math notranslate nohighlight">\(conversion = 1\{Y_{latent} &gt; 0\}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">nudge</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">age</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">estimated_income</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+
+<span class="n">latent_outcome</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="o">-</span><span class="mf">4.5</span> <span class="o">+</span> <span class="n">estimated_income</span><span class="o">*</span><span class="mf">0.001</span> <span class="o">+</span> <span class="n">nudge</span> <span class="o">+</span> <span class="n">nudge</span><span class="o">*</span><span class="n">age</span><span class="o">*</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">conversion</span> <span class="o">=</span> <span class="p">(</span><span class="n">latent_outcome</span> <span class="o">&gt;</span> <span class="mf">.1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s also  store everything in a DataFrame for convenience. Also, check that, indeed, the average conversion is close to 50%.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">conversion</span><span class="o">=</span><span class="n">conversion</span><span class="p">,</span>
+                       <span class="n">nudge</span><span class="o">=</span><span class="n">nudge</span><span class="p">,</span>
+                       <span class="n">age</span><span class="o">=</span><span class="n">age</span><span class="p">,</span>
+                       <span class="n">estimated_income</span><span class="o">=</span><span class="n">estimated_income</span><span class="p">,</span>
+                       <span class="n">latent_outcome</span><span class="o">=</span><span class="n">latent_outcome</span><span class="p">))</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>conversion             0.518260
+nudge                  0.500940
+age                   40.013487
+estimated_income    3995.489527
+latent_outcome         0.197076
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>As for the average treatment effect, since the treatment was randomized, we can estimate it as the simple difference in means between treated and control groups: <span class="math notranslate nohighlight">\(E[Y|T=1] - E[Y|T=0]\)</span>. So, let’s see what those treatment averages look like. We will look at them for both the latent outcome and the conversion perspective. There is something importance to see here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;nudge&quot;</span><span class="p">)[[</span><span class="s2">&quot;latent_outcome&quot;</span><span class="p">,</span> <span class="s2">&quot;conversion&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>latent_outcome</th>
+      <th>conversion</th>
+    </tr>
+    <tr>
+      <th>nudge</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.505400</td>
+      <td>0.320503</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.896916</td>
+      <td>0.715275</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_treatment_effect</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;nudge&quot;</span><span class="p">,</span> <span class="s2">&quot;latent_outcome&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.4023163965477656
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_treatment_effect</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;nudge&quot;</span><span class="p">,</span> <span class="s2">&quot;conversion&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.39477273768476406
+</pre></div>
+</div>
+</div>
+</div>
+<p>The ATE for the latent outcome is pretty straightforward. From our data generating model, we know that this effect should be <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">avg(age)*0.01</span></code>. And since the average age is about 40, this gives us an ATE of about 1.4. Where things get a bit more interesting (and complicated) is in the ATE for conversion. <strong>Because conversion is bounded between 0 and 1, its ATE will not be linear</strong>. Hence, we can’t deduce it from an easy formula as we did with the latent outcome (there is a formula, but it is quite complicated). Let’s just say the effect is smaller. And this makes sense right? I mean, there is no way the treatment could increase conversion by 1.4 points, simply because conversion can’t go beyond 100% . Now, I want you to hold on to that fact because it is going to be crucial in understanding what we will see next.</p>
+<p>Let’s talk about conditional average treatment effects (CATE) now. Looking at our data generating process, we know for a fact that <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code> predicts conversion but does not modify the effect of the nudge on conversion. Therefore, segmenting our customers based on <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code> will generate segments with the same treatment effect. In contrast, <code class="docutils literal notranslate"><span class="pre">age</span></code> only affects conversion by its interaction with the nudge. So, different age segments will respond very differently to the treatment, while different different income segments won’t. In other words, <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code> should not be a good personalization variable while <code class="docutils literal notranslate"><span class="pre">age</span></code> should be.</p>
+<p>One way to see this is through the cumulative effect curve. The curve for <code class="docutils literal notranslate"><span class="pre">age</span></code> should start very far from the ATE and slowly converge to it, while the curve for <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code> should only fluctuate around the ATE. This is exactly what we see when we plot the cumulative effect curve for the nudge effect on the latent outcome.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cumulative_effect_fn</span> <span class="o">=</span> <span class="n">cumulative_effect_curve</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;nudge&quot;</span><span class="p">,</span> <span class="s2">&quot;latent_outcome&quot;</span><span class="p">,</span> <span class="n">min_rows</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="n">age_cumm_effect_latent</span> <span class="o">=</span> <span class="n">cumulative_effect_fn</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">)</span>
+<span class="n">inc_cumm_effect_latent</span> <span class="o">=</span> <span class="n">cumulative_effect_fn</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="s2">&quot;estimated_income&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">age_cumm_effect_latent</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inc_cumm_effect_latent</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;est. income&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Percentile&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Effect on Latet Outcome&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_12_0.png" src="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_12_0.png" />
+</div>
+</div>
+<p>Again, the latent outcome is very nice. Due to its linearity, our expectations match reality pretty closely. But in real life, we don’t care (nor have) the latent outcome. All we have is conversion. In conversion, things look a lot more complicated. If we plot the cumulative effect curves, <code class="docutils literal notranslate"><span class="pre">age</span></code> still shows some treatment effect heterogeneity, starting above the ATE and slowly converging towards it. This means that the higher the age, the higher the treatment effect. So far so good. This is what we would expect.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cumulative_effect_fn</span> <span class="o">=</span> <span class="n">cumulative_effect_curve</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;nudge&quot;</span><span class="p">,</span> <span class="s2">&quot;conversion&quot;</span><span class="p">,</span> <span class="n">min_rows</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="n">age_cumm_effect_latent</span> <span class="o">=</span> <span class="n">cumulative_effect_fn</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">)</span>
+<span class="n">inc_cumm_effect_latent</span> <span class="o">=</span> <span class="n">cumulative_effect_fn</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="s2">&quot;estimated_income&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">age_cumm_effect_latent</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inc_cumm_effect_latent</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;est. income&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Percentile&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Effect on Conversino&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_14_0.png" src="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_14_0.png" />
+</div>
+</div>
+<p>However, we also have A LOT of treatment effect heterogeneity by <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code>. Customers with higher <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code> have much lower treatment effect, which causes the cumulative effect curve to go all the way to zero at the beginning and then slowly converge to the ATE. This tells us that, as far as personalization is concerned, <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code> will generate segments that have more treatment effect heterogeneity (TEH) compared to the segments we would get with <code class="docutils literal notranslate"><span class="pre">age</span></code>.</p>
+<p>This is inconvenient right? How come the feature we know to drive effect heterogeneity, <code class="docutils literal notranslate"><span class="pre">age</span></code>, is worse for personalization when compared with a feature (<code class="docutils literal notranslate"><span class="pre">estimated_income</span></code>) we know not to modify the treatment effect? The answer lies in the <strong>non-linearity of the outcome function</strong>. Although <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code> does not modify the effect of the nudge on the latent outcome, it does once we transform that latent outcome to conversion (at least indirectly). Conversion is not linear. This means that <strong>its derivative changes depending on where you are</strong>. Since conversion can only go up to 1, if it is already very high, it will be hard to increase it. In other words, the derivative of high conversion is very low. But because conversion is also bounded at zero, it will also have a low derivative if it is already very low. Conversion follows an S shape, with low derivatives at both ends. We can see that by plotting the average conversion by estimated income bins (bins of 100 by 100).</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">df</span>
+ <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">estimated_income_bins</span><span class="o">=</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;estimated_income&quot;</span><span class="p">]</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;estimated_income_bins&quot;</span><span class="p">)</span>
+ <span class="p">[[</span><span class="s2">&quot;conversion&quot;</span><span class="p">]]</span>
+ <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+ <span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;estimated_income_bins&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_16_1.png" src="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_16_1.png" />
+</div>
+</div>
+<p>Notice how the slope (derivative) of this curve is very small when conversion is very high. It is also small when conversion is very low (although that is harder to see due to the small sample in that region). With this information, we can now explain why <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code> generates segments with high treatment effect heterogeneity.</p>
+<p>Since <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code> is highly predictive of conversion, we can say that customers with different <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code> fall in different places of the S shaped conversion curve. Customers with very high or very low <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code> fall at the extremes of the curve, where the derivative is lower, meaning that increasing conversion is harder, which in turns means that the treatment effect is likely to be small. On the other hand, customers with reported income in the middle of the range also fall in the middle of the conversion curve, where the derivative is higher and, hece, the treatment effect will likely also be higher. I say likely because, in theory, it is possible for a variable to have such a strong effect modification force that it dominates the change in derivative we see as we traverse the conversion curve. However, at least from my experience, the curvature of the S shaped conversion tends to dominate every other effect modification we have.</p>
+<p>This is not just me, though. Here is a slide I got from Susan Atheys’ presentation for the Columbia Data Science Institute. Here, she is discussing the effect of a nudge to get students to apply for federal financial aid in order to pay for college. It’s also a conversion problem. What she finds is that the best strategy is to target those students that are already likely to convert. She also says it is a bad idea to target those with low probability of conversion</p>
+<p><img alt="image.png" src="_images/slide-susan-athey.png" /></p>
+<p>Wait a minute! But that is not what you first said! You said that both very high and very low conversions have low derivative and hence, low treatment effect!</p>
+<p>Well, that is correct. However, in real life, conversion rarely spams the entire S shaped curve. What we usually have is everyone smooshed at one or the other end of the curve. In business terms, your average conversion is rarely 50%. More often than not, it is something like 70 to 90% or something like 1 to 20%. In these more likely situations, targeting those with a high baseline can be a good or a bad idea.</p>
+<p>Here is what I mean: Let’s take the same latent outcome from before, but now generate a situation where conversion is low on average, by setting it to <code class="docutils literal notranslate"><span class="pre">latent_outcome</span> <span class="pre">&gt;</span> <span class="pre">2</span></code>. Next, let’s craft a situation where conversion is high by setting <code class="docutils literal notranslate"><span class="pre">latent_outcome</span> <span class="pre">&gt;</span> <span class="pre">-2</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;conversion_low&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">conversion</span> <span class="o">=</span> <span class="p">(</span><span class="n">latent_outcome</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;conversion_high&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">conversion</span> <span class="o">=</span> <span class="p">(</span><span class="n">latent_outcome</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Avg. Low Conversion: &quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;conversion_low&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Avg. High Conversion: &quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;conversion_high&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Avg. Low Conversion:  0.12119
+Avg. High Conversion:  0.9275
+</pre></div>
+</div>
+</div>
+</div>
+<p>Based on what we know about the non linearity of conversion, we can already predict what will happen. For the low conversion situation, targeting those with high baseline conversion (high <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code>) will be much more effective. That’s because we are at the left side of the S shaped conversion curve, where the derivative will be smaller the lower the baseline conversion. In this region, <strong>high baseline conversion will translate to high treatment effect</strong>. Therefore, we should nudge those with high baseline conversion, which will be those with higher <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cumulative_effect_fn</span> <span class="o">=</span> <span class="n">cumulative_effect_curve</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;nudge&quot;</span><span class="p">,</span> <span class="s2">&quot;conversion_low&quot;</span><span class="p">,</span> <span class="n">min_rows</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="n">age_cumm_effect_latent</span> <span class="o">=</span> <span class="n">cumulative_effect_fn</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">)</span>
+<span class="n">inc_cumm_effect_latent</span> <span class="o">=</span> <span class="n">cumulative_effect_fn</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="s2">&quot;estimated_income&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">age_cumm_effect_latent</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inc_cumm_effect_latent</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;est. income&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Percentile&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Effect on Conversino&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_20_0.png" src="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_20_0.png" />
+</div>
+</div>
+<p>Just like we predicted, those with high <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code>, which translates to high baseline conversion, have a much higher treatment effect.</p>
+<p>Now, for the other situation where conversion is high, on average, those with <strong>high baseline conversion will have a lower treatment effect</strong>. Hence, it is a bad idea to target those with high <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code>. We can see this by the inverted cumulative effect curve, which shows those with high <code class="docutils literal notranslate"><span class="pre">estimated_income</span></code> as having a lower treatment effect.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cumulative_effect_fn</span> <span class="o">=</span> <span class="n">cumulative_effect_curve</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;nudge&quot;</span><span class="p">,</span> <span class="s2">&quot;conversion_high&quot;</span><span class="p">,</span> <span class="n">min_rows</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="n">age_cumm_effect_latent</span> <span class="o">=</span> <span class="n">cumulative_effect_fn</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">)</span>
+<span class="n">inc_cumm_effect_latent</span> <span class="o">=</span> <span class="n">cumulative_effect_fn</span><span class="p">(</span><span class="n">prediction</span><span class="o">=</span><span class="s2">&quot;estimated_income&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">age_cumm_effect_latent</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;age&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inc_cumm_effect_latent</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;est. income&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Percentile&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Effect on Conversino&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_22_0.png" src="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_22_0.png" />
+</div>
+</div>
+<p>To summarize, what we saw is that, when the outcome is binary, the treatment effect tends to be dominated by the curvature (derivative) of the logistic function.</p>
+<p><img alt="image.png" src="_images/logistic.png" /></p>
+<p>For instance, in our conversion problem, if the <strong>average conversion is low</strong>, we are at to the left of the logistic curve and the <strong>treatment effect will be higher at high baseline conversion</strong>. This would translate to a nudge policy that advocates for treating (nudging) those customers with an already high probability of conversion. On the other hand, if the <strong>average conversion is high</strong>, we will be to the right side of the logistic curve, where the derivative (and hence the treatment effect) will be <strong>higher for those customers with lower baseline conversion</strong>.</p>
+<p>This is certainly a lot to remember, but we can definitely simplify: <strong>just treat whomever is closer to a baseline conversion of 50%</strong>. The mathematical argument here is pretty solid: the derivative of the logistic is at its peak at 50%, so just treat units closer to that point.</p>
+<p>What is even nicer is that this is one of the rare cases where common knowledge matches the math. In marketing, where these conversion problems are very common, there is a belief that we should not target lost bets (those with very low conversion probability) nor sure wins (those with very high conversion probability). Instead, we should target those in the middle. This is pretty fascinating, since it is the exact same thing we figured using a more formal causal argument.</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="continues-treatment-and-non-linearity">
+<h1>Continues Treatment and Non Linearity<a class="headerlink" href="#continues-treatment-and-non-linearity" title="Permalink to this headline">¶</a></h1>
+<p>We’ve explored in depth just one example of binary outcome making Heterogeneous Treatment Effect analysis harder. But this phenomena goes beyond the conversion problem from marketing. For instance, in 2021, the world managed to deliver its first batch of approved COVID19 vaccines to the general public. Back then, a crucial question was who should receive the vaccine first. This is, not surprisingly, a Heterogeneous Treatment Effect problem. Policy makers would like to vaccinate those who would benefit the most first. In this situation, the treatment effect is avoiding death or hospitalization. So, whose death or hospitalization decreased the most when given a shot? In most countries, they were the elderly and those with prior health conditions (comorbidities). Now, these are the people that are <strong>more likely to die when getting COVID19</strong>. Also covid mortality rate is thankfully much lower than 50%, which puts us to the left of logistic function. In this region, by the same argument we made for marketing, it would make sense to treat those with a high baseline probability of death when getting COVID19, which are precisely the groups we’ve mentioned earlier. Is this a coincidence? Maybe. Keep in mind that I’m not a health expert, so I might be very wrong here. But the logic makes a lot of sense to me.</p>
+<p>In both cases, marketing nudges and COVID19 vaccines, <strong>the key complicating factor for Treatment Effect Heterogeneity is the non-linearity of the outcome function</strong> <span class="math notranslate nohighlight">\(Y(0)\)</span>. This nonlinearity makes it so that, as we go from <span class="math notranslate nohighlight">\(Y(0)\)</span> to <span class="math notranslate nohighlight">\(Y(1)\)</span>, the increase in the outcome is primarily due to the curvature in the outcome function. We saw how this happened in binary outcome, where <span class="math notranslate nohighlight">\(E[Y|X]\)</span> follows a logistic shape. But this is even more general. In fact, it is a problem that keeps popping up in business, especially if the treatment is a continuous variable. Let’s go through one last example to make this idea more clear.</p>
+<p>Let’s consider the classic pricing problem. You are working for a streaming company, like Netflix or HBO. A key question the company wants answered is what price to charge customers. In order to answer that, they run an experiment where they randomly assign customers to different priced deals: 5 BLR/month, 10 BRL/month, 15 BRL/month or 20 BRL/month. By doing so, they hope to answer not just how sensitive customers are to price increases, but also if some types of customers are more sensitive than others. In the plot below, you can see the results from that experiment broken down by two customer segments: <code class="docutils literal notranslate"><span class="pre">A</span></code>, customers with higher estimated income, and <code class="docutils literal notranslate"><span class="pre">B</span></code>, customers with lower estimated income.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">segment</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span>  <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,],</span>
+    <span class="n">price</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">sales</span><span class="o">=</span><span class="p">[</span><span class="mi">5100</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">4500</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span>  <span class="mi">5350</span><span class="p">,</span> <span class="mi">5300</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">4500</span><span class="p">]</span>
+<span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;segment&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Avg. Sales by Price (%) by Customer Segment&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_25_0.png" src="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_25_0.png" />
+</div>
+</div>
+<p>With this data, the company wishes to answer the following question: who is more sensitive to discounts? In other words, how can we <strong>rank customers by their sensitivity to price (price elasticity of sales)</strong>? By looking at the curve, we get a feeling that segment <code class="docutils literal notranslate"><span class="pre">A</span></code> is overall less sensitive to discount, even though it generates more revenues. However, we can also see that there is some curvature there. In fact, if we take this curvature into account, the ranking of the treatment effect is no longer just between <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> customers. The treatment effect will also depend on where they are in the treatment curve. For example, the treatment effect of going from 15 BRL to 10 BRL on customers of segment <code class="docutils literal notranslate"><span class="pre">A</span></code> is higher than the treatment effect of going from 5BRL to 10BRL on customers of segment <code class="docutils literal notranslate"><span class="pre">B</span></code>:</p>
+<div class="math notranslate nohighlight">
+\[
+E[Y(10) - Y(5) | Seg=B] &lt; E[Y(15) - Y(10) | Seg=A]
+\]</div>
+<p>If we where to order the resulting treatment effects for this experiment, it would look something like this:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;segment&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5350</span><span class="p">),</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round&quot;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5000</span><span class="p">),</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round&quot;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5100</span><span class="p">),</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round&quot;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">4700</span><span class="p">),</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round&quot;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">4800</span><span class="p">),</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round&quot;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">3900</span><span class="p">),</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round&quot;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Ordering of the Effect of Increasing Price&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_27_0.png" src="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_27_0.png" />
+</div>
+</div>
+<p>Just like in the case where the outcome was binary, in this example, <strong>the treatment effect is correlated with the outcome</strong>. The higher the sales (lower the price), the lower the absolute treatment effect; the lower the sales (higher the price) the lower the absolute treatment effect. But in this case, the situation is even more complicated because the <strong>effect is not only correlated with the outcome, but with the treatment level</strong>. This makes answering counterfactual questions trickier. For example, pretend for a moment that your experimental data actually looks like the following plot, where you test higher prices for the segment <code class="docutils literal notranslate"><span class="pre">A</span></code> (rich population) but only lower prices for the <code class="docutils literal notranslate"><span class="pre">A</span></code> population. This is very common, as firms often want to experiment around the treatment they think is more reasonable.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">segment</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span>  <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,],</span>
+    <span class="n">price</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">sales</span><span class="o">=</span><span class="p">[</span><span class="mi">5100</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">4500</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span>  <span class="mi">5350</span><span class="p">,</span> <span class="mi">5300</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">4500</span><span class="p">]</span>
+<span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;segment&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">)</span> <span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;segment&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Avg. Sales by Price (%) by Customer Segment&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_29_0.png" src="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_29_0.png" />
+</div>
+</div>
+<p>Now, if you naively aggregate the results of the treatment effect, it will look like segment <code class="docutils literal notranslate"><span class="pre">A</span></code> is much more elastic (has higher absolute treatment effect) to price increase than segment <code class="docutils literal notranslate"><span class="pre">B</span></code>. But that is only because, for segment <code class="docutils literal notranslate"><span class="pre">B</span></code>, you’ve explored the low treatment effect region.</p>
+<p>So what can you do when treatment effects change depending on where you are in terms of both treatment and outcome? To be honest, this is still an active area of research. In practical terms, the best thing you can do is to be <strong>very careful</strong> when trying to answer which type of customer is more sensitive to the treatment. Make sure that the compared customer types all had the same treatment distribution. And, if not, be very skeptical of extrapolating the treatment effect. For instance, in the example above, even though customer <code class="docutils literal notranslate"><span class="pre">B</span></code> looks less sensitive to price increase, you don’t know if that will still be the case if you assign higher prices beyond 10BRL to this segment.</p>
+<p>Another thing you can try to do is to linearize the response curve. The idea here is to get rid of the curvature by transforming the treatment or the outcome (or both) so that the relationship between them looks like a line. Since a line has constant derivative, this would get rid of the problem of the treatment effect changing depending on where you are in the curve. As an example, if we take our price variable and transform it by making it negative, exponentiating it by 4 and reversing the sign, we get a somewhat linear(ish) relationship. In this transformed data, the statement that <code class="docutils literal notranslate"><span class="pre">A</span></code> is less sensitive to price increases then <code class="docutils literal notranslate"><span class="pre">B</span></code> makes much more sense, since it now does not depend on where we are at the curve.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">price</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span><span class="o">**</span><span class="mi">4</span><span class="p">)),</span>
+             <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;segment&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Avg. Sales by -(-price^4)&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_31_0.png" src="_images/23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity_31_0.png" />
+</div>
+</div>
+<p>However, this approach has many drawbacks. First, it is not always possible to linearize a curve. In our example you can clearly see that this linearization is not perfect. But more importantly, sometimes it makes no business sense to discard the curvature. In our pricing example, it may very well be that we are fine in treating customer <code class="docutils literal notranslate"><span class="pre">A</span></code> at price 15 as more sensitive than customer <code class="docutils literal notranslate"><span class="pre">B</span></code> at price 5. This would lead us to a sound decision of decreasing price for customer <code class="docutils literal notranslate"><span class="pre">A</span></code> from 15 to 10, but not doing anything to the price of customer <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+<div class="section" id="key-concepts">
+<h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Permalink to this headline">¶</a></h2>
+<p>I realize I might have brought more questions than answers, but sometimes the best we can do about a problem is to be very aware of it. In this chapter, I hope I’ve managed to open your eyes to the complications that arise when the outcome we care about is non-linear.</p>
+<p>This is a common and more studied problem with binary outcomes. In this case, the treatment effect tends to be higher the closer we are to an average outcome of 0.5. Since the outcome is bounded at 0 and 1, effects tend to be very small if we are too close to 0 or 1.</p>
+<p>Things get more complicated with non-linearities arising in continuous outcome situations. Here, the best you can do is think very carefully about the problem. Try to answer if you care more about treatment effect regardless of treatment baseline or if the baseline is important. That alone will be a valuable guiding principle.</p>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<p>Most of the things written here are from my own experience with this problem. However, I did find one academic articles that touch on this subject: <em>Causal Classification: Treatment Effect Estimation vs. Outcome Prediction</em>, by Fernández-Loría and Provost talk about the case where treatment effect is correlated with the outcome variable.</p>
+</div>
+<div class="section" id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
+<p>Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
+If you found this book valuable and you want to support it, please go to <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a>. If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn’t understand. Just go to the book’s repository and <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/issues">open an issue</a>. Finally, if you liked this content, please share it with others who might find it useful and give it a <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/stargazers">star on GitHub</a>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "causal-glory"
+        },
+        kernelOptions: {
+            kernelName: "causal-glory",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'causal-glory'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="22-Debiased-Orthogonal-Machine-Learning.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">22 - Debiased/Orthogonal Machine Learning</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="24-The-Diff-in-Diff-Saga.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">24 - The Difference-in-Differences Saga</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Matheus Facure Alves<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-97848161-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </body>
+</html>
