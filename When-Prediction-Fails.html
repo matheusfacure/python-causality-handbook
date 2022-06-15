@@ -4,11 +4,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>When Prediction Fails &#8212; Causal Inference for the Brave and True</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,48 +20,74 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Why Prediction Metrics are Dangerous For Causal Models" href="Prediction-Metrics-For-Causal-Models.html" />
     <link rel="prev" title="Debiasing with Propensity Score" href="Debiasing-with-Propensity-Score.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="en">
     
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-97848161-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -68,9 +96,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
       
@@ -83,14 +112,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="landing-page.html">
-   Causal Inference for The Brave and True
-  </a>
- </li>
-</ul>
-<p class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="landing-page.html">
+                    Causal Inference for The Brave and True
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Part I - The Yang
  </span>
@@ -177,7 +207,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Part II - The Yin
  </span>
@@ -224,7 +254,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Appendix
  </span>
@@ -250,8 +280,13 @@
    Why Prediction Metrics are Dangerous For Causal Models
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Conformal-Inference-for-Synthetic-Control.html">
+   Conformal Inference for Synthetic Controls
+  </a>
+ </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Contribute
  </span>
@@ -265,104 +300,177 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/When-Prediction-Fails.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        
-        <a class="issues-button"
-            href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2FWhen-Prediction-Fails.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/When-Prediction-Fails.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/When-Prediction-Fails.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2FWhen-Prediction-Fails.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/When-Prediction-Fails.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#when-all-you-have-is-a-hammer">
    When all you have is a Hammer…
@@ -415,19 +523,87 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>When Prediction Fails</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#when-all-you-have-is-a-hammer">
+   When all you have is a Hammer…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#who-wants-a-coupon">
+   Who Wants a Coupon?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-policy">
+   Simple Policy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#policy-with-model">
+   Policy With Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hammering-your-thumb-with-predictions">
+   Hammering Your Thumb with Predictions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#when-might-prediction-helps">
+   When Might Prediction Helps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-graphical-explanation">
+   A Graphical Explanation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-ideas">
+   Key Ideas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contribute">
+   Contribute
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="when-prediction-fails">
-<h1>When Prediction Fails<a class="headerlink" href="#when-prediction-fails" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="when-all-you-have-is-a-hammer">
-<h2>When all you have is a Hammer…<a class="headerlink" href="#when-all-you-have-is-a-hammer" title="Permalink to this headline">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="when-prediction-fails">
+<h1>When Prediction Fails<a class="headerlink" href="#when-prediction-fails" title="Permalink to this headline">#</a></h1>
+<section id="when-all-you-have-is-a-hammer">
+<h2>When all you have is a Hammer…<a class="headerlink" href="#when-all-you-have-is-a-hammer" title="Permalink to this headline">#</a></h2>
 <p>Between 2015 and 2020, Machine Learning went through a massive surge. Its proven usefulness in the fields of computer vision and natural language understanding, coupled with an initial lack of professionals in the area, provided the perfect opportunity for a machine learning teaching industry. Figures like Andrew Ng and Sebastian Thrun managed to teach machine learning to the world at rock bottom prices. At the same time, on the software side, it became increasingly easier to fit a complex machine learning model (as you’ve already seen by the very few lines of code it took us to write an ML in the previous chapter). Tutorials about how to make intelligent systems sprung all over the internet. The cost of entry in ML plummeted.</p>
 <p><img alt="img" src="_images/ml-in-5.png" /></p>
 <p>Building ML became so simple that you didn’t even need to know how to code very well (and I’m living evidence of that), nor the math behind the algorithms. In fact, you could build wonders with the following 5 lines of Python.</p>
@@ -470,9 +646,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="who-wants-a-coupon">
-<h2>Who Wants a Coupon?<a class="headerlink" href="#who-wants-a-coupon" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="who-wants-a-coupon">
+<h2>Who Wants a Coupon?<a class="headerlink" href="#who-wants-a-coupon" title="Permalink to this headline">#</a></h2>
 <p>To make matters more relatable, let’s continue with the example we used in the previous chapter, but with a little twist to it. Before, we were trying to distinguish the profitable from the non profitable customers. We framed that as a prediction problem: predicting customer profitability. We could then build a machine learning model for this task and use it to choose who we would do business with: only the customers we predicted to be profitable. In other words, our goal was to separate the profitable from the non-profitable, which we could do with a predictive model.</p>
 <p>Now, you have a new task. You suspect that giving coupons to new customers increases their engagement with your business and makes them more profitable in the long run. That is, they spend more and for a longer period. Your new assignment is to figure out how much the coupon value should be (zero included). Notice that, with coupons, you are essentially giving away money for people to spend on your business. For this reason, they enter as a cost in your book account. Notice that if the coupon value is too high, you will probably lose money, since customers will buy all they need using only the coupons. That’s another way of saying that they will get your product for free. On the flip side, if coupon value is too low (or zero), you are not even giving coupons. This could be a valid answer, but it could also be that some discounts upfront, in the form of coupons, will be more profitable in the long run.</p>
 <p>For reasons you will see later, we will use a data generating function instead of loading a static dataset. The function <code class="docutils literal notranslate"><span class="pre">ltv_with_coupons</span></code> generates transaction data for us. As you can see, they have the same format as the one we saw previously, with one row per customer, a column for the cost of acquisition and columns for the transactions between day 1 and 30.</p>
@@ -917,9 +1093,9 @@ Name: customer_id, dtype: int64
 <p>At this point in the analysis, <strong>if this was a prediction problem</strong>, we would probably split the dataset into a training and a test set to build and evaluate some policies, respectively. But this is NOT a prediction problem. The final goal here is not to get a good prediction on customer profitability. Instead, it’s to figure out the optimal coupon strategy. To evaluate this optimization, we would have to know how things would have played out if we have given different coupons than the ones that were given. This is the sort of counterfactual “what if’’ question we’ve been studying under causality. Cross validation won’t help us here because we simply can’t observe counterfactuals. We can only see what happened for the coupons that were actually given, but we can’t know what would have happened if customers received a different coupon value. Unless, we have simulated data!</p>
 <p>If our data is simulated, we can generate the exact same data, only changing the coupon value parameters. This will allow us to see how <code class="docutils literal notranslate"><span class="pre">net_value</span></code> changes under different coupons strategies. We will then be able to calculate the treatment effect between different strategies <span class="math notranslate nohighlight">\(NetValue_{t=a} - NetValue_{t=b}\)</span>. With the power of simulated data, understanding this chapter will be much easier. Oh yes, and this will also render the bias problem irrelevant, because we will observe the causal effect directly.</p>
 <p>Nevertheless, always remember that this is a pedagogical artifact. In the real world, you don’t have simulated data and you certainly can’t see what would have happened under different treatment strategies. Individual causal effects remain hidden as they always have been. This poses an interesting problem. How can we evaluate our strategies for identifying causal effect if we can never see the actual causal effect? The real answer is very involved and so important that it deserves its own chapter. Rest assured that we will tackle it. For now, just enjoy the simplicity of simulated data. And speaking of simplicity…</p>
-</div>
-<div class="section" id="simple-policy">
-<h2>Simple Policy<a class="headerlink" href="#simple-policy" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="simple-policy">
+<h2>Simple Policy<a class="headerlink" href="#simple-policy" title="Permalink to this headline">#</a></h2>
 <p>As always, the first thing we should do whenever we encounter a new data problem is to ask ourselves “what is the simplest thing I can do that will already bring value?”. For this specific case, the simplest thing is to look back on the data that we have and estimate the <code class="docutils literal notranslate"><span class="pre">net_value</span></code> for each coupon value. Then, check which coupon value is generating the highest <code class="docutils literal notranslate"><span class="pre">net_value</span></code> and give only that coupon value for every customer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1037,9 +1213,9 @@ Name: customer_id, dtype: int64
 </div>
 </div>
 <p>As we can see, this simple policy is telling us we can get, on average, 253 BRL for each customer if we give them all a 5 BRL coupon. This is massive! But can we do better? What if we use our shiny machine learning hammer on this problem? Let’s try this next.</p>
-</div>
-<div class="section" id="policy-with-model">
-<h2>Policy With Model<a class="headerlink" href="#policy-with-model" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="policy-with-model">
+<h2>Policy With Model<a class="headerlink" href="#policy-with-model" title="Permalink to this headline">#</a></h2>
 <p>To use ML, we will adapt what we did in the previous chapter. The idea is to build a ML model that predicts <code class="docutils literal notranslate"><span class="pre">net_value</span></code>, just like before, take those predictions and bins them into a defined number of bands. Then, we will partition the data into those bands. Essentially, we are splitting the customer by their predicted <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. Customers that we think will generate roughly the same <code class="docutils literal notranslate"><span class="pre">net_value</span></code> will end up in the same bin or group. Finally, for each group, we will see which coupon value yields the maximum <code class="docutils literal notranslate"><span class="pre">net_value</span></code>. We are doing the same thing as in the simple policy, but now within the groups defined by a prediction band.</p>
 <p><img alt="img" src="_images/partitions.png" /></p>
 <p>The intuition behind this is the following: we know that, on average, 5 BRL coupons performed better. However, it is possible that for some group of customers, another value is even better than 5 BRL. Maybe 5 BRL is the optimal strategy for most of the customers, but not for all of them.</p>
@@ -1679,9 +1855,9 @@ Test Score:,  0.504563847410434
 </div>
 </div>
 <p>Here is where most Data Scientists fall off their chair. The policy with the model has an average <code class="docutils literal notranslate"><span class="pre">net_income</span></code> which is 20 BRL worse than a very simple policy. How can a model that is good at predicting <code class="docutils literal notranslate"><span class="pre">net_value</span></code> not be good for a strategy that aims to maximize <code class="docutils literal notranslate"><span class="pre">net_value</span></code>? Surely, there must be some bug in the code. You are clearly mistaken. This cannot be! Well, as it turns out, there is a perfectly reasonable and simple explanation for it. However, the answer to this question is so important that I think it’s worth going a bit deeper into it.</p>
-</div>
-<div class="section" id="hammering-your-thumb-with-predictions">
-<h2>Hammering Your Thumb with Predictions<a class="headerlink" href="#hammering-your-thumb-with-predictions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="hammering-your-thumb-with-predictions">
+<h2>Hammering Your Thumb with Predictions<a class="headerlink" href="#hammering-your-thumb-with-predictions" title="Permalink to this headline">#</a></h2>
 <p>The short answer lies in understanding what we want with this policy, namely, to optimize <code class="docutils literal notranslate"><span class="pre">net_value</span></code> by playing with the coupon values. If we were to put it in an image, it’s not crazy to think that <code class="docutils literal notranslate"><span class="pre">net_value</span></code> will have a quadratic shape on coupons: as we increase the coupon value <code class="docutils literal notranslate"><span class="pre">net_value</span></code> first increases, then it reaches a maximum point. After that, any additional coupon value will cost more than the value it brings.</p>
 <p><img alt="img" src="_images/opt-deriv.png" /></p>
 <p>Finding the optimal coupon value is then equivalent to finding the maximum of the <code class="docutils literal notranslate"><span class="pre">net_value</span></code> function. We can do this by differentiating the function and setting it to zero (second plot). Economists might recognize this as a pricing problem.  The way they (we) would tackle this problem would be to assume a functional form for <code class="docutils literal notranslate"><span class="pre">net_value</span></code>, differentiate it and optimize it.</p>
@@ -1694,9 +1870,9 @@ Test Score:,  0.504563847410434
 <p>To summarize it, whenever we want to optimise some <span class="math notranslate nohighlight">\(Y\)</span> variable using some <span class="math notranslate nohighlight">\(T\)</span> variable, predicting <span class="math notranslate nohighlight">\(Y\)</span> will not only not help, it will hurt our policy, since data partitions defined by the prediction will have limited <span class="math notranslate nohighlight">\(Y\)</span> variance, hindering our capacity to estimate how <span class="math notranslate nohighlight">\(T\)</span> changes <span class="math notranslate nohighlight">\(Y\)</span>, that is, the elasticity <span class="math notranslate nohighlight">\(\frac{\delta Y}{\delta T} \)</span>. This is the most important paragraph of this chapter. All of it is summarized here, so reread it if you didn’t understood at first.</p>
 <p>The key to fixing this mistake lies in adjusting our objective to what we really want. Instead of estimating <span class="math notranslate nohighlight">\(Y\)</span> out of <span class="math notranslate nohighlight">\(X\)</span>, which is what prediction does, we need to estimate <span class="math notranslate nohighlight">\(\frac{\delta Y}{\delta T} \)</span> out of <span class="math notranslate nohighlight">\(X\)</span>. Easier said than done. As you might have guessed already, this precisely what causal inference is all about. And, as it is natural of causal problems, we can’t observe our quantity of interest <span class="math notranslate nohighlight">\(\frac{\delta Y}{\delta T} \)</span>. You simply cannot observe how <code class="docutils literal notranslate"><span class="pre">net_income</span></code> would change if we changed the coupon value because we only observe one instance of a coupon per customer. We can never know what would have happened if some different coupon value had taken place (unless we use simulated data, of course. But that’s only useful for teaching purposes).</p>
 <p>This characteristic of causal problems leads to further questions: how can I know if my model is any good if I can’t see what it is supposedly estimating? How can I validate a model like that? Besides, what do we do when data is not random? How can we estimate the best policy under biased data? Those are fair questions and we shall answer them in time. Meanwhile, keep in mind that, as we change our focus from estimating <span class="math notranslate nohighlight">\(Y\)</span> to estimating <span class="math notranslate nohighlight">\(\frac{\delta Y}{\delta T}\)</span>, lots of things will have to change accordingly. The traditional ML toolkit will need some adaptation.</p>
-</div>
-<div class="section" id="when-might-prediction-helps">
-<h2>When Might Prediction Helps<a class="headerlink" href="#when-might-prediction-helps" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="when-might-prediction-helps">
+<h2>When Might Prediction Helps<a class="headerlink" href="#when-might-prediction-helps" title="Permalink to this headline">#</a></h2>
 <p>All this mess with machine learning hindering our ability to infer causal effects comes from mistaking the real goal. It comes from estimating <span class="math notranslate nohighlight">\(Y\)</span> instead of <span class="math notranslate nohighlight">\(\frac{\delta Y}{\delta T} \)</span>. But sometimes, you might actually get away when using a prediction model to achieve a causal inference goal. But for this to happen, <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(\frac{\delta Y}{\delta T} \)</span> must be somehow correlated. For example, consider the cases on the image below.</p>
 <p><img alt="img" src="_images/waiting-time.png" /></p>
 <p>The first one is the problem we’ve seen before of understanding how coupons impact profitability. First, as we increase coupon value, profitability increases. If they go up together, we can see that they are positively correlated. Moreover, in the derivative plot, at the beginning, as we increase the coupon value, the elasticity <span class="math notranslate nohighlight">\(\frac{\delta Y}{\delta T} \)</span> decreases. If we put both of them together, in the first region of the plot, as net value increases, elasticity will decrease. This means that they are negatively correlated.</p>
@@ -1707,9 +1883,9 @@ Test Score:,  0.504563847410434
 <p>This case is interesting because the relationship between <span class="math notranslate nohighlight">\(\frac{\delta Y}{\delta T} \)</span> and <span class="math notranslate nohighlight">\(Y\)</span> doesn’t change much. It is always negatively correlated. As waiting time increases, satisfaction decreases and satisfaction elasticity increases. Or, as <span class="math notranslate nohighlight">\(T\)</span> increases, <span class="math notranslate nohighlight">\(\frac{\delta Y}{\delta T} \)</span> also increases and  <span class="math notranslate nohighlight">\(Y\)</span> decreases. In this case, a prediction model can be useful. The reason being that, now, if we slice on the <span class="math notranslate nohighlight">\(Y\)</span> axis, we will group units that have similar elasticities.</p>
 <p><img alt="img" src="_images/slice-2.png" /></p>
 <p>More generally, whenever we have these sorts of functional forms where elasticity changes ruthly in the same direction as the outcome, you might get away with prediction models. Now, be careful here. This doesn’t mean they are your best bet nor that you should use them for causal problems. I’m simply stating this here so that when you come across a prediction model that works for a causal goal, you can understand what is happening.</p>
-</div>
-<div class="section" id="a-graphical-explanation">
-<h2>A Graphical Explanation<a class="headerlink" href="#a-graphical-explanation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="a-graphical-explanation">
+<h2>A Graphical Explanation<a class="headerlink" href="#a-graphical-explanation" title="Permalink to this headline">#</a></h2>
 <p>The fact that prediction models can be harmful for personalisation is so counterintuitive and strange that I feel I must tackle the problem from multiple perspectives. The following graphical explanation is thus a way of understanding what is happening from a different angle.</p>
 <p>Consider the causal leftmost graph on the image below. It’s a typical confounding graph, where we have features <span class="math notranslate nohighlight">\(X\)</span> causing both the outcome <span class="math notranslate nohighlight">\(Y\)</span> and the treatment <span class="math notranslate nohighlight">\(T\)</span>. What happens if you build a predictive model and use it to segment the units by its predictions?</p>
 <p><img alt="img" src="_images/graph-1.png" /></p>
@@ -1722,25 +1898,25 @@ Test Score:,  0.504563847410434
 <p><img alt="img" src="_images/graph-3.png" /></p>
 <p>When that happens, even if you control for <span class="math notranslate nohighlight">\(M(X)\)</span>, you are still allowing all the effect from <span class="math notranslate nohighlight">\(T\)</span> to flow onto <span class="math notranslate nohighlight">\(Y\)</span>. In other words, even if you look inside segments where <span class="math notranslate nohighlight">\(M(X)\)</span> is fixed, <span class="math notranslate nohighlight">\(Y\)</span> will still vary due to <span class="math notranslate nohighlight">\(T\)</span>. <span class="math notranslate nohighlight">\(M(X)\)</span> can no longer control that variability because it has no way of learning <span class="math notranslate nohighlight">\(T\)</span> anymore. Not only that, this sort of condition will actually help you figure out the Average Treatment Effect. We also saw that on Part I. If we control for variables that are good predictors of <span class="math notranslate nohighlight">\(Y\)</span> but that don’t cause <span class="math notranslate nohighlight">\(T\)</span>, we will reduce the variance of our causal estimates. The intuitive reason is that a lot of the variation on <span class="math notranslate nohighlight">\(Y\)</span> that is due to <span class="math notranslate nohighlight">\(X\)</span> is removed by conditioning on the model. Since <span class="math notranslate nohighlight">\(X\)</span> is then explained away, the reason why <span class="math notranslate nohighlight">\(Y\)</span> is still changing must be mostly due to <span class="math notranslate nohighlight">\(T\)</span> (or other unmeasured things, but you get the point that it helps).</p>
 <p>Again, this isn’t an argument in favor of using predictive models when the goal is causal inference. In fact, segments defined by a predictive model will help you identify the ATE, but that doesn’t mean each partition will have a different ATE (or elasticity). Remember that not only do you want to estimate the elasticity, but you also want to find segments where it is higher or lower than average so that you can personalise the treatment.</p>
-</div>
-<div class="section" id="key-ideas">
-<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="key-ideas">
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">#</a></h2>
 <p>We saw how there is a whole range of problems that are not solvable with traditional, predictive Machine Learning. Those problems are optimization ones, with a causal component, usually framed as “how should I set this thing I can control, T (price, number of phone calls, discount, …), in order to optimize this metric, Y (profits, customer satisfaction, conversion, costs…)”. When that is the case, predictive models can do more harm than good.</p>
 <p>To prove this point, we walked through an example where we needed to find the best coupon value. The first thing that we tried was to look at past data and see which coupon value led to the highest revenue. Then, we took that supposedly optimal value and gave it to every customer. This approach answers what is the best coupon value (treatment, in causal terms), on average. That is, if we were to pick only one fixed coupon value, what should it be. But we don’t have such a restriction. If it turns out to be the case that some customers respond better to lower valued coupons and some respond better to higher ones, we could personalise the coupon for each customer. To do so, we tried building a predictive ML model, a model that predicted the value each customer would bring. Then, we tried to personalise the coupon value based on the model’s predictions. We grouped the customers according to the predictions and for each group, we found which coupon value was the best one. Then, we tried using that learned value as a coupon strategy. However, we found that it performed worse than the simple strategy of giving the same coupon value for everyone. In other words, our ML model failed to separate customers that responded better or worse to coupon value.</p>
 <p>Notice that the problem we are trying to solve here is one of <strong>personalisation</strong>. In our case, it was trying to figure out which coupon value is best for each customer. More generally, it is framed as “which is the best decision <span class="math notranslate nohighlight">\(T\)</span> I can take for each customer <span class="math notranslate nohighlight">\(i\)</span> so that I can maximise <span class="math notranslate nohighlight">\(Y_i\)</span> across all customers”. This is not an easy problem to solve. But we can solve it with the help of causal inference.</p>
 <p>There is one important thing I want you to take out of this chapter. First, notice that causal inference as we saw it in part one helps you design policies like the simple one we’ve built. With them, we are trying to estimate the average causal effect for the treatment and find the treatment that works best on average. Now, we are getting more ambitious. We don’t want the best treatment on average, we want the best treatment for each individual customer. That’s what personalisation is all about and it relies heavily on causal inference methods.</p>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <p>The things I’ve written here are mostly stuff from my head. I’ve learned them through experience. This means there isn’t a direct reference I can point you to. It also means that the things I wrote here have <strong>not</strong> passed the academic scrutiny that good science often goes through. Instead, notice how I’m talking about things that work in practice, but I don’t spend too much time explaining why that is the case. It’s a sort of science from the streets, if you will. However, I am putting this up for public scrutiny, so, by all means, if you find something preposterous, open an issue and I’ll address it to the best of my efforts.</p>
 <p>For this chapter, there isn’t much I can point to. There is only this one great article that formulates the problem of personalisation that we are trying to solve with causal inference: <em>Recursive Partitioning for Heterogeneous Causal Effects, Susan Athey and Guido Imbens, 2016</em>. Aslo, the first image is from a YouTube video from Siraj Raval.</p>
-</div>
-<div class="section" id="contribute">
-<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">#</a></h2>
 <p>Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
 If you found this book valuable and you want to support it, please go to <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a>. If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn’t understand. Just go to the book’s repository and <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/issues">open an issue</a>. Finally, if you liked this content, please share it with others who might find it useful and give it a <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/stargazers">star on GitHub</a>.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1764,64 +1940,48 @@ If you found this book valuable and you want to support it, please go to <a clas
 
               </div>
               
-        
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="Debiasing-with-Propensity-Score.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Debiasing with Propensity Score</p>
-            </div>
-        </a>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Debiasing-with-Propensity-Score.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Debiasing with Propensity Score</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Prediction-Metrics-For-Causal-Models.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Why Prediction Metrics are Dangerous For Causal Models</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="Prediction-Metrics-For-Causal-Models.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Why Prediction Metrics are Dangerous For Causal Models</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Matheus Facure Alves<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Matheus Facure Alves<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-97848161-1', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
 
   </body>
 </html>

@@ -1,0 +1,1465 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Conformal Inference for Synthetic Controls &#8212; Causal Inference for the Brave and True</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Why Prediction Metrics are Dangerous For Causal Models" href="Prediction-Metrics-For-Causal-Models.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-97848161-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="landing-page.html">
+                    Causal Inference for The Brave and True
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part I - The Yang
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-Introduction-To-Causality.html">
+   01 - Introduction To Causality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-Randomised-Experiments.html">
+   02 - Randomised Experiments
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
+   03 - Stats Review: The Most Dangerous Equation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-Graphical-Causal-Models.html">
+   04 - Graphical Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
+   05 - The Unreasonable Effectiveness of Linear Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
+   06 - Grouped and Dummy Regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-Beyond-Confounders.html">
+   07 - Beyond Confounders
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-Instrumental-Variables.html">
+   08 - Instrumental Variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
+   09 - Non Compliance and LATE
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-Matching.html">
+   10 - Matching
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-Propensity-Score.html">
+   11 - Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
+   12 - Doubly Robust Estimation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13-Difference-in-Differences.html">
+   13 - Difference-in-Differences
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14-Panel-Data-and-Fixed-Effects.html">
+   14 - Panel Data and Fixed Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15-Synthetic-Control.html">
+   15 - Synthetic Control
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
+   16 - Regression Discontinuity Design
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part II - The Yin
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="17-Predictive-Models-101.html">
+   17 - Predictive Models 101
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html">
+   18 - Heterogeneous Treatment Effects and Personalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19-Evaluating-Causal-Models.html">
+   19 - Evaluating Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
+   20 - Plug-and-Play Estimators
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-Meta-Learners.html">
+   21 - Meta Learners
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
+   22 - Debiased/Orthogonal Machine Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html">
+   23 - Challenges with Effect Heterogeneity and Nonlinearity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="24-The-Diff-in-Diff-Saga.html">
+   24 - The Difference-in-Differences Saga
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
+   Debiasing with Orthogonalization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
+   Debiasing with Propensity Score
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="When-Prediction-Fails.html">
+   When Prediction Fails
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Prediction-Metrics-For-Causal-Models.html">
+   Why Prediction Metrics are Dangerous For Causal Models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Conformal Inference for Synthetic Controls
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contribute
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">
+   Patreon
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/Conformal-Inference-for-Synthetic-Control.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2FConformal-Inference-for-Synthetic-Control.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/Conformal-Inference-for-Synthetic-Control.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#synthetic-control-refresher">
+   Synthetic Control Refresher
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inference-for-grown-ups">
+   Inference for Grown Ups
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypothesis-test-and-p-values">
+     Hypothesis Test and P-Values
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#test-statistic">
+       Test Statistic
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#p-value">
+       P-Value
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confidence-intervals">
+     Confidence Intervals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contribute">
+   Contribute
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Conformal Inference for Synthetic Controls</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#synthetic-control-refresher">
+   Synthetic Control Refresher
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inference-for-grown-ups">
+   Inference for Grown Ups
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hypothesis-test-and-p-values">
+     Hypothesis Test and P-Values
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#test-statistic">
+       Test Statistic
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#p-value">
+       P-Value
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confidence-intervals">
+     Confidence Intervals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contribute">
+   Contribute
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">toolz</span> <span class="kn">import</span> <span class="n">curry</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+
+<span class="kn">import</span> <span class="nn">toolz</span> <span class="k">as</span> <span class="nn">f</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;ggplot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="conformal-inference-for-synthetic-controls">
+<h1>Conformal Inference for Synthetic Controls<a class="headerlink" href="#conformal-inference-for-synthetic-controls" title="Permalink to this headline">#</a></h1>
+<section id="synthetic-control-refresher">
+<h2>Synthetic Control Refresher<a class="headerlink" href="#synthetic-control-refresher" title="Permalink to this headline">#</a></h2>
+<p>Synthetic Control (SC) is a particularly useful causal inference technique for when you have a single treatment unit and very few control units, but you have repeated observation of each unit through time (although there are plenty of SC extensions in the Big Data world). The canonical use case is when you want to know the impact of the treatment in one geography (like a state) and you use the other untreated states as controls. In our Synthetic Control chapter, we’ve motivated the technique by trying to estimate the effect of Proposition 99 (a bill passed in 1988 that increased cigarette tax in California) in cigarette sales.</p>
+<p>In order to do that, we have to estimate what would have happened to California, had it not passed Proposition 99. This boils down to estimating the counterfactual <span class="math notranslate nohighlight">\(Y_{t}(0)\)</span> so that we can compare it to the observed outcome in the post intervention periods:</p>
+<div class="math notranslate nohighlight">
+\[
+ATT = Y_{t}(1) - Y_{t}(0) = Y_{t} - Y_{t}(0)  \text{ for } t \geq 1988
+\]</div>
+<p>There are many methods to do that, among which, we have Synthetic Controls. Synthetic Controls tries to model <span class="math notranslate nohighlight">\(Y(0)\)</span> for the treated unit by combining multiple control units in such a way that they mimic the pre-treatment behavior of the treated unit. In our case, this means finding a combination of states that, together,  approximate the cigarette sales trend in California prior to Proposition 99. This is done because we rarely have a control unit that follows the same pattern as the treatment unit. We can see that by plotting the cigarette sales trend for multiple states. Notice none of them have a trend that closely resembles that of California.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/smoking.csv&quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;cigsale&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;state_</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">})</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;state_3&quot;</span><span class="p">:</span> <span class="s2">&quot;california&quot;</span><span class="p">})</span>
+<span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(31, 39)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;california&quot;</span><span class="p">]),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;california&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;California&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Proposition 99&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cigarette Sales&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Cigarette Sales&#39;)
+</pre></div>
+</div>
+<img alt="_images/Conformal-Inference-for-Synthetic-Control_3_1.png" src="_images/Conformal-Inference-for-Synthetic-Control_3_1.png" />
+</div>
+</div>
+<p>That is why we combine multiple treated units. The goal is, if we don’t have a good enough control, we can craft a synthetic one that resembles the treated unit the way we want.</p>
+<p>In order to find the combination of states that better approximate the pretreatment trend of California, the Synthetic Control method runs a horizontal regression, where the rows are the time periods and the columns are the states. It tries to find the weights that, when multiplied by the control states, better approximate the treated state</p>
+<p><img alt="img" src="_images/regr_space.png" /></p>
+<p>Since we have more states (39, some were discarded from the analysis) than time periods, an unconstrained regression would simply overfit, which is why Synthetic Control imposes two restrictions:</p>
+<ol class="simple">
+<li><p>Weights must sum to 1;</p></li>
+<li><p>Weights must be non-negative;</p></li>
+</ol>
+<p>Or, in mathematical terms, let <span class="math notranslate nohighlight">\(\pmb{y}\)</span> be the vector of outcomes for the treated state in the pre-treated periods, <span class="math notranslate nohighlight">\(\pmb{X}\)</span> the <span class="math notranslate nohighlight">\(J\)</span> by <span class="math notranslate nohighlight">\(T0\)</span> matrix, where each column is a state <span class="math notranslate nohighlight">\(j\)</span> and each row is a period <span class="math notranslate nohighlight">\(t\)</span> prior to the intervention period, <span class="math notranslate nohighlight">\(T1 = T0 + 1\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\underset{w}{\mathrm{argmin}} \ ||\pmb{y} - \pmb{X} \pmb{w}|| \\
+\text{s.t } \ \sum w_j = 1 \text{ and } \ w_j &gt; 0 \ \forall \ j
+\end{split}\]</div>
+<p>Combined, these constraints means we are defining the synthetic control as a convex combination of the control units. It also means we are not doing any dangerous extrapolation and that our synthetic control will use only a small subset of control units.</p>
+<p><img alt="img" src="_images/extrapolation.png" /></p>
+<p>Here is what this looks like in code, as an Sklearn estimator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">RegressorMixin</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_X_y</span><span class="p">,</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">check_is_fitted</span>
+<span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+
+<span class="k">class</span> <span class="nc">SyntheticControl</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">RegressorMixin</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">check_X_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    
+        <span class="n">w</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">objective</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">sum_squares</span><span class="p">(</span><span class="n">X</span><span class="nd">@w</span> <span class="o">-</span> <span class="n">y</span><span class="p">))</span>
+        
+        <span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">w</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>
+        
+        <span class="n">problem</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
+        <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">X_</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w_</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">value</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="bp">self</span>
+        
+        
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+
+        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">X</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s apply this method to our data, fitting it in the pre-intervention period (prior to 1988).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">SyntheticControl</span><span class="p">()</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="mi">1988</span><span class="p">]</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;california&quot;</span><span class="p">]),</span> <span class="n">train</span><span class="p">[</span><span class="s2">&quot;california&quot;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now plot, side by side the trend for California and for the synthetic control we’ve just created. The difference between these two lines is the estimated effect of Proposition 99 in California.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;california&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;California&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;california&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;california&quot;</span><span class="p">])),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;SC&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Proposition 99&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Conformal-Inference-for-Synthetic-Control_9_0.png" src="_images/Conformal-Inference-for-Synthetic-Control_9_0.png" />
+</div>
+</div>
+<p>From the look of this plot, it looks like Proposition 99 had a pretty big effect on the reduction of cigarette sales.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;residuals&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;california&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;california&quot;</span><span class="p">]))})</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pred_data</span><span class="p">[</span><span class="s2">&quot;california&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">pred_data</span><span class="p">[</span><span class="s2">&quot;residuals&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Estimated Effect&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">1970</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=-</span><span class="mi">25</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Proposition 99&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Black&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Conformal-Inference-for-Synthetic-Control_11_0.png" src="_images/Conformal-Inference-for-Synthetic-Control_11_0.png" />
+</div>
+</div>
+</section>
+<section id="inference-for-grown-ups">
+<h2>Inference for Grown Ups<a class="headerlink" href="#inference-for-grown-ups" title="Permalink to this headline">#</a></h2>
+<p>In the Synthetic Control chapter, we showed an inference procedure where we’ve permuted units, pretending control units where treated. This is also referred to as a placebo test, where we check the effect of units that haven’t gone through the treatment. If the estimated effect in the treated unit is bigger than most of the placebo effects, we say that this effect estimate is significant.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    
+    <span class="n">model_ier</span> <span class="o">=</span> <span class="n">SyntheticControl</span><span class="p">()</span>
+    <span class="n">train_iter</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="mi">1988</span><span class="p">]</span>
+    <span class="n">model_ier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_iter</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">state</span><span class="p">]),</span> <span class="n">train_iter</span><span class="p">[</span><span class="n">state</span><span class="p">])</span>
+    
+    <span class="n">effect</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">-</span> <span class="n">model_ier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">state</span><span class="p">]))</span>
+    
+    <span class="n">is_california</span> <span class="o">=</span> <span class="n">state</span> <span class="o">==</span> <span class="s2">&quot;california&quot;</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">effect</span><span class="p">,</span>
+             <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span> <span class="k">if</span> <span class="n">is_california</span> <span class="k">else</span> <span class="s2">&quot;C1&quot;</span><span class="p">,</span>
+             <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span> <span class="k">if</span> <span class="n">is_california</span> <span class="k">else</span> <span class="mf">0.5</span><span class="p">,</span>
+             <span class="n">label</span><span class="o">=</span><span class="s2">&quot;California&quot;</span> <span class="k">if</span> <span class="n">is_california</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">1970</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=-</span><span class="mi">50</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Proposition 99&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Effect Estimate&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Conformal-Inference-for-Synthetic-Control_13_0.png" src="_images/Conformal-Inference-for-Synthetic-Control_13_0.png" />
+</div>
+</div>
+<p>In our example, we can see that the post-treatment difference for California is quite extreme, when compared to the other states. However, there are also some states with terrible pre-treatment fit, which then translates to a huge error in the post-intervention period. The guideline here is to remove units with high pretreatment error, but how high is a bit more complicated. Not only that, this procedure assumes a random assignment of the intervention, which is hard to believe for this kind of policy intervention (see Abadie, 2021)</p>
+<p>One alternative method for inference is to recast the problem of effect estimation as counterfactual prediction. If you think about it, all we are trying to do is predict the counterfactual <span class="math notranslate nohighlight">\(Y_{i, t}(0)\)</span> where <span class="math notranslate nohighlight">\(i\)</span> is the treated unit and <span class="math notranslate nohighlight">\(t \geq T1\)</span>, that is, in the post intervention period. If we do that, we can leverage the literature on <strong>Conformal Prediction for inference</strong>. Interestingly enough, this method is quite general and applies to other models of <span class="math notranslate nohighlight">\(Y_{i, t}(0)\)</span> but let’s focus just on Synthetic Controls here.</p>
+<p>To understand this procedure, let’s first look at how we would do Hypothesis Tests and get P-Values.</p>
+<section id="hypothesis-test-and-p-values">
+<h3>Hypothesis Test and P-Values<a class="headerlink" href="#hypothesis-test-and-p-values" title="Permalink to this headline">#</a></h3>
+<p>Let’s say we are interested in testing the Hypothesis about the trajectory of effects in the post treatment period <span class="math notranslate nohighlight">\(\theta = (\theta_{T0+1}, ..., \theta_{T})\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+H_0 : \theta = \theta^0
+\]</div>
+<p>For instance, if we wish to test for no effect whatsoever, we can set <span class="math notranslate nohighlight">\(\theta^0 = (0, ..., 0)\)</span>. Notice that this hypothesis fully determines the counterfactual outcome in the absence of treatment:</p>
+<div class="math notranslate nohighlight">
+\[
+Y_t(0) = Y_t(1) - \theta_t = Y_t - \theta_t
+\]</div>
+<p>The key idea is to then generate data following the null hypothesis we want to test and check the residuals of a model for <span class="math notranslate nohighlight">\(Y(0)\)</span> in this generated data. If the residuals are too extreme, we say that the data is unlikely to have come from the null hypothesis we’ve postulated. If this whole procedure sounds obscure at first, don’t worry, it will become clear as we walk through a step by step implementation of it.</p>
+<p>The first step is to generate data under the null hypothesis. This is achieved by simply subtracting the postulated null from the outcome of the treated unit, just like in the equation above. Here is the code to do that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">with_effect</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">null_hypothesis</span><span class="p">,</span> <span class="n">start_at</span><span class="p">,</span> <span class="n">window</span><span class="p">):</span>
+    <span class="n">window_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">start_at</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">start_at</span> <span class="o">+</span><span class="n">window</span><span class="p">))</span>
+    
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">window_mask</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">-</span> <span class="n">null_hypothesis</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">state</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">state</span><span class="p">:</span> <span class="n">y</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">with_effect</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;california&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1988</span><span class="p">,</span> <span class="mi">2000</span><span class="o">-</span><span class="mi">1988</span><span class="o">+</span><span class="mi">1</span><span class="p">)[</span><span class="s2">&quot;california&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;H0: 0&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">with_effect</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;california&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1988</span><span class="p">,</span> <span class="mi">2000</span><span class="o">-</span><span class="mi">1988</span><span class="o">+</span><span class="mi">1</span><span class="p">)[</span><span class="s2">&quot;california&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;H0: -4&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Y0 Under the Null&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Conformal-Inference-for-Synthetic-Control_16_0.png" src="_images/Conformal-Inference-for-Synthetic-Control_16_0.png" />
+</div>
+</div>
+<p>If we postulate the null of no effect, the data under that null means that <span class="math notranslate nohighlight">\(Y(0) = Y(1) = Y\)</span>, which is just the trajectory of observed outcome we see for the treated state of California. Now, if we postulate that the null is -4, that is, Proposition 99 decreases cigarette sales by 4 packs, then <span class="math notranslate nohighlight">\(Y(0) = Y(1) - (-4)\)</span>, which shifts the trajectory of the post treatment outcomes by +4. This is very intuitive. If we think the bill decreases cigarette sales, then, in the absence of it, we should see higher levels of cigarette sales than the one we have in our observed data.</p>
+<p>The next part of the inference procedure is to fit a model for the counterfactual <span class="math notranslate nohighlight">\(Y(0)\)</span> (which we get with the function we just created) in the entire data, pre <strong>and</strong> post-treatment period. This is an important distinction between how we usually fit synthetic controls. The idea here is that the model must be estimated with the entire data, under the postulated null hypothesis, to avoid huge post intervention residuals. With this model, we then compute the residuals <span class="math notranslate nohighlight">\(\hat{u_t} = Y_t - \hat{Y}_t(0)\)</span> for all time periods <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>The function to do that first uses the <code class="docutils literal notranslate"><span class="pre">with_effect</span></code> function we created earlier to generate data under then null. Then, it fits the model in this data under the null. Next, we estimate <span class="math notranslate nohighlight">\(Y(0)\)</span> by making predictions with the recently fit model. Finally, we compute the residuals <span class="math notranslate nohighlight">\(\hat{u}_t\)</span> and stores everything in a dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@curry</span>
+<span class="k">def</span> <span class="nf">residuals</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="n">intervention_start</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    
+    <span class="n">null_data</span> <span class="o">=</span> <span class="n">with_effect</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="n">intervention_start</span><span class="p">,</span> <span class="n">window</span><span class="p">)</span>
+            
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">null_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">state</span><span class="p">]),</span> <span class="n">null_data</span><span class="p">[</span><span class="n">state</span><span class="p">])</span>
+    
+    <span class="n">y0_est</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">null_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">state</span><span class="p">])),</span> <span class="n">index</span><span class="o">=</span><span class="n">null_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    
+    <span class="n">residuals</span> <span class="o">=</span> <span class="n">null_data</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">-</span> <span class="n">y0_est</span>
+    
+    <span class="n">test_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">null_data</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">intervention_start</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">null_data</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">intervention_start</span> <span class="o">+</span> <span class="n">window</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s2">&quot;y0&quot;</span><span class="p">:</span> <span class="n">null_data</span><span class="p">[</span><span class="n">state</span><span class="p">],</span>
+        <span class="s2">&quot;y0_est&quot;</span><span class="p">:</span> <span class="n">y0_est</span><span class="p">,</span>
+        <span class="s2">&quot;residuals&quot;</span><span class="p">:</span> <span class="n">residuals</span><span class="p">,</span>
+        <span class="s2">&quot;post_intervention&quot;</span><span class="p">:</span> <span class="n">test_mask</span>
+    <span class="p">})[</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">intervention_start</span> <span class="o">+</span> <span class="n">window</span><span class="p">)]</span>  <span class="c1"># just discard  points after the defined effect window</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With our data, to get the residuals for <span class="math notranslate nohighlight">\(H_0 : 0\)</span>, meaning Proposition 99 had no effect, we can simply pass 0 as the null for our function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">residuals_df</span> <span class="o">=</span> <span class="n">SyntheticControl</span><span class="p">()</span>
+
+<span class="n">residuals_df</span> <span class="o">=</span> <span class="n">residuals</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+                         <span class="s2">&quot;california&quot;</span><span class="p">,</span>
+                         <span class="n">null</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                         <span class="n">intervention_start</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span>
+                         <span class="n">window</span><span class="o">=</span><span class="mi">2000</span><span class="o">-</span><span class="mi">1988</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+
+<span class="n">residuals_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>y0</th>
+      <th>y0_est</th>
+      <th>residuals</th>
+      <th>post_intervention</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1970</th>
+      <td>123.000000</td>
+      <td>112.529475</td>
+      <td>10.470525</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1971</th>
+      <td>121.000000</td>
+      <td>114.315723</td>
+      <td>6.684277</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1972</th>
+      <td>123.500000</td>
+      <td>119.302289</td>
+      <td>4.197711</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1973</th>
+      <td>124.400002</td>
+      <td>121.265554</td>
+      <td>3.134447</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1974</th>
+      <td>126.699997</td>
+      <td>124.356696</td>
+      <td>2.343301</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The result is a dataframe containing the estimated residuals for each time period, something we will use going forward. Remember that the idea here is to see if that residual, in the post intervention period, is too high. If it is, the data is unlikely to have come from this null, where the effect is zero. To get a visual idea of what we are talking about, we can inspect the error of our model in the post intervention period.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">residuals_df</span><span class="p">[[</span><span class="s2">&quot;y0&quot;</span><span class="p">,</span> <span class="s2">&quot;y0_est&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Y0 under H0: 0&quot;</span><span class="p">);</span>
+<span class="n">residuals_df</span><span class="p">[[</span><span class="s2">&quot;residuals&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">);</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Residuals under H0: 0&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Conformal-Inference-for-Synthetic-Control_22_0.png" src="_images/Conformal-Inference-for-Synthetic-Control_22_0.png" />
+</div>
+</div>
+<p>We can already see that the model fitted under <span class="math notranslate nohighlight">\(H_0: 0\)</span> yields quite large and negative residuals, which is some evidence we might want to reject this null of no effect.</p>
+<section id="test-statistic">
+<h4>Test Statistic<a class="headerlink" href="#test-statistic" title="Permalink to this headline">#</a></h4>
+<p>This visual evidence is interesting for our own understanding, but we need to be a bit more precise here. This is done by the definition of a <strong>Test Statistic S</strong>, which summarizes how big are the residuals and hence, how unikly is the data we saw, under the null.</p>
+<div class="math notranslate nohighlight">
+\[
+S(\hat{u})_q = \bigg(\sum_{t=T0 + 1}^{T} |u_t|^q \bigg) ^{1/q}
+\]</div>
+<p>Here, we focus on <span class="math notranslate nohighlight">\(q=1\)</span>, which gives us <span class="math notranslate nohighlight">\(S(\hat{u}) = \sum_{t=T0 + 1}^{T} |u_t|\)</span>.</p>
+<p>Notice that this statistic is computed using only the post-intervention period, with <span class="math notranslate nohighlight">\(t \geq T0 + 1\)</span>. So, although we use all the data to fit our model for the counterfactual <span class="math notranslate nohighlight">\(Y(0)\)</span>, we check the residuals only for the outcome which concerns the formulated null hypothesis, that is, the post-intervention period.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_statistic</span><span class="p">(</span><span class="n">u_hat</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u_hat</span><span class="p">)</span> <span class="o">**</span> <span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H0:0 &quot;</span><span class="p">,</span> <span class="n">test_statistic</span><span class="p">(</span><span class="n">residuals_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;post_intervention&quot;</span><span class="p">)[</span><span class="s2">&quot;residuals&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>H0:0  12.602929955114083
+</pre></div>
+</div>
+</div>
+</div>
+<p>High values of this test statistic indicate poor post intervention fit and, hence rejection of the null. However, we could have pretty big test statistics in the post-intervention period if our model is poorly fitted, even if <span class="math notranslate nohighlight">\(H_0\)</span> is true. This means we can’t define high in absolute terms. Rather, we have to think about how high are the post intervention residuals - and test statistics - in comparison to the pre-intervention residuals.</p>
+</section>
+<section id="p-value">
+<h4>P-Value<a class="headerlink" href="#p-value" title="Permalink to this headline">#</a></h4>
+<p>To compute the P-value, we block-permute the residuals, calculating the test statistic in each permutation. This procedure is better understood by the following picture</p>
+<p><img alt="img" src="_images/block-perm.png" /></p>
+<p>Once we do that, we will end up with <span class="math notranslate nohighlight">\(T\)</span> test statistics, one for each of the block permutations.</p>
+<p>Let <span class="math notranslate nohighlight">\(\Pi\)</span> be the set of all block permutations, by the definition of P-value</p>
+<div class="math notranslate nohighlight">
+\[
+\text{P-value} = \frac{1}{|\Pi|}\sum_{\pi \in \Pi} \mathcal{1}\{S(\hat{u}_{\pi_0}) \leq S(\hat{u}_{\pi})\}
+\]</div>
+<p>and <span class="math notranslate nohighlight">\(\hat{u}_{\pi_0}\)</span> is the original (unpermuted) vector or residuals. In plain terms, we are simply finding the proportion of times that the unpermuted test statistic is higher (more extreme) than the test statistics obtained by all possible block permutations.</p>
+<p>To implement this, we will make use of the <code class="docutils literal notranslate"><span class="pre">np.roll</span></code> function, which takes an array and circles it, mujustch like we’ve represented in the image above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">p_value</span><span class="p">(</span><span class="n">resid_df</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    
+    <span class="n">u</span> <span class="o">=</span> <span class="n">resid_df</span><span class="p">[</span><span class="s2">&quot;residuals&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">post_intervention</span> <span class="o">=</span> <span class="n">resid_df</span><span class="p">[</span><span class="s2">&quot;post_intervention&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    
+    <span class="n">block_permutations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">permutation</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="n">post_intervention</span><span class="p">]</span>
+                                   <span class="k">for</span> <span class="n">permutation</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">))])</span>
+    
+    <span class="n">statistics</span> <span class="o">=</span> <span class="n">test_statistic</span><span class="p">(</span><span class="n">block_permutations</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">p_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">statistics</span> <span class="o">&gt;=</span> <span class="n">statistics</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">p_val</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now compute the P-value for <span class="math notranslate nohighlight">\(H_0: 0\)</span>. As we can see, it is a low P-value, but not extremely low. At <span class="math notranslate nohighlight">\(\alpha=0.1\)</span>, we would not reject this null of no effect.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_value</span><span class="p">(</span><span class="n">residuals_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.16129032258064516
+</pre></div>
+</div>
+</div>
+</div>
+<p>Remember, this is the P-value for the null hypothesis which states that the effect in all time periods is zero: <span class="math notranslate nohighlight">\(\theta = (\theta_{T0+1}=0, ..., \theta_{T}=0)\)</span>. From our effect plot from the Synthetic Control, we get the feeling that the effect of Proposition 99 is not a fixed number. We can see that it starts small, around -5, but gradually increases to -25. For this reason, it might be interesting to plot the confidence interval for effect each post treatment period individually, rather than just testing a null hypothesis about an entire affect trajectory.</p>
+</section>
+</section>
+<section id="confidence-intervals">
+<h3>Confidence Intervals<a class="headerlink" href="#confidence-intervals" title="Permalink to this headline">#</a></h3>
+<p>To understand how we can place a confidence interval around the effect of each post-treatment period, let’s first try to understand how we would define the confidence interval for a single time period. If we have a single period, then <span class="math notranslate nohighlight">\(H_0\)</span> is defined in terms of a scalar value, rather than a trajectory vector <span class="math notranslate nohighlight">\(\theta\)</span>. This means we can generate a fine line of <span class="math notranslate nohighlight">\(H_0s\)</span> and compute the P-value associated with each null. For example, Let’s say we think the effect of Proposition 99 in the year 1988 (the year it passed) is somewhere between -20 and 20. We can then build a table containing a bunch of <span class="math notranslate nohighlight">\(H_0\)</span>, from -20 to 20, and each associated P-value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span><span class="o">-</span><span class="n">value</span><span class="p">(</span><span class="n">H_0</span><span class="p">:</span> <span class="o">-</span><span class="mi">20</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">P</span><span class="o">-</span><span class="n">value</span><span class="p">(</span><span class="n">H_0</span><span class="p">:</span> <span class="o">-</span><span class="mi">19</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">P</span><span class="o">-</span><span class="n">value</span><span class="p">(</span><span class="n">H_0</span><span class="p">:</span> <span class="o">-</span><span class="mi">18</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.02</span>
+<span class="o">...</span>
+<span class="n">P</span><span class="o">-</span><span class="n">value</span><span class="p">(</span><span class="n">H_0</span><span class="p">:</span> <span class="mi">18</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.03</span>
+<span class="n">P</span><span class="o">-</span><span class="n">value</span><span class="p">(</span><span class="n">H_0</span><span class="p">:</span> <span class="mi">19</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.03</span>
+<span class="n">P</span><span class="o">-</span><span class="n">value</span><span class="p">(</span><span class="n">H_0</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.02</span>
+</pre></div>
+</div>
+<p>With the functions we’ve defined, this can be achieved by first appending the period of interest (1988 in this example) at the end of the pre-intervention period, creating what is called an augmented dataset. Then, we iterate over the fine line of nulls, computing the p-value of a post-intervention window of size 1, which starts at the period of interest</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">p_val_grid</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">nulls</span><span class="p">,</span> <span class="n">intervention_start</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    
+    <span class="n">df_aug</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">intervention_start</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">period</span><span class="p">])</span>
+    
+    <span class="n">p_vals</span> <span class="o">=</span>  <span class="p">{</span><span class="n">null</span><span class="p">:</span> <span class="n">p_value</span><span class="p">(</span><span class="n">residuals</span><span class="p">(</span><span class="n">df_aug</span><span class="p">,</span>
+                                       <span class="n">state</span><span class="p">,</span>
+                                       <span class="n">null</span><span class="o">=</span><span class="n">null</span><span class="p">,</span>
+                                       <span class="n">intervention_start</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+                                       <span class="n">window</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                       <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">))</span> <span class="k">for</span> <span class="n">null</span> <span class="ow">in</span> <span class="n">nulls</span><span class="p">}</span>        
+        
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">p_vals</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">period</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">SyntheticControl</span><span class="p">()</span>
+
+<span class="n">nulls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">p_values_df</span> <span class="o">=</span> <span class="n">p_val_grid</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="s2">&quot;california&quot;</span><span class="p">,</span>
+    <span class="n">nulls</span><span class="o">=</span><span class="n">nulls</span><span class="p">,</span>
+    <span class="n">intervention_start</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span>
+    <span class="n">period</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span>
+<span class="p">)</span>
+
+<span class="n">p_values_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1988</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>-20.000000</th>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>-19.595960</th>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>-19.191919</th>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>-18.787879</th>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>-18.383838</th>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>18.383838</th>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>18.787879</th>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>19.191919</th>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>19.595960</th>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>20.000000</th>
+      <td>0.052632</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 1 columns</p>
+</div></div></div>
+</div>
+<p>As you can see, the result is a table where the row index is the null hypothesis and the row values are the p-values.</p>
+<p>To build the confidence interval, all we need to do is filter out the <span class="math notranslate nohighlight">\(H_0\)</span>s that gave us a low P-value. Remember that low p-value means that the data we have is unlikely to have come from that null. For instance, if we define the significant level <span class="math notranslate nohighlight">\(\alpha\)</span> to be 0.1, we remove <span class="math notranslate nohighlight">\(H_0\)</span>s that have P-value lower than 0.1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">confidence_interval_from_p_values</span><span class="p">(</span><span class="n">p_values</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+    <span class="n">big_p_values</span> <span class="o">=</span> <span class="n">p_values</span><span class="p">[</span><span class="n">p_values</span><span class="o">.</span><span class="n">values</span> <span class="o">&gt;=</span> <span class="n">alpha</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="mi">100</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="si">}</span><span class="s2">_ci_lower&quot;</span><span class="p">:</span> <span class="n">big_p_values</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="mi">100</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="si">}</span><span class="s2">_ci_upper&quot;</span><span class="p">:</span> <span class="n">big_p_values</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">p_values</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">confidence_interval_from_p_values</span><span class="p">(</span><span class="n">p_values_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>90_ci_lower</th>
+      <th>90_ci_upper</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1988</th>
+      <td>-12.323232</td>
+      <td>8.686869</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This gives us the confidence interval for the effect in 1988.</p>
+<p>We can also plot the <span class="math notranslate nohighlight">\(H_0\)</span> by P-value to better understand how this confidence interval was obtained. In the figure below, the dashed line is the 0.1 line, which is the <span class="math notranslate nohighlight">\(\alpha\)</span> we’ve specified. The blue lines mark the confidence intervals. <span class="math notranslate nohighlight">\(H_0\)</span> outside these lines have a P-value lower than 0.1.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p_values_df</span><span class="p">[</span><span class="mi">1988</span><span class="p">],</span> <span class="n">p_values_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;P-Value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;H0&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">nulls</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">nulls</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;dotted&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">confidence_interval_from_p_values</span><span class="p">(</span><span class="n">p_values_df</span><span class="p">)[</span><span class="s2">&quot;90_ci_upper&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">confidence_interval_from_p_values</span><span class="p">(</span><span class="n">p_values_df</span><span class="p">)[</span><span class="s2">&quot;90_ci_lower&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;90% CI&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Confidence Interval for the Effect in 1988&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Conformal-Inference-for-Synthetic-Control_39_0.png" src="_images/Conformal-Inference-for-Synthetic-Control_39_0.png" />
+</div>
+</div>
+<p>All there’s left to do is repeat the procedure above for each time period. This means that, for each post intervention year, appending it to the end of the pre-intervention period to create the augmented dataset and then computing the confidence interval just like we’ve done above.</p>
+<p><img alt="img" src="_images/aug-data.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_period_ci</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">nulls</span><span class="p">,</span> <span class="n">intervention_start</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+    <span class="n">p_vals</span> <span class="o">=</span> <span class="n">p_val_grid</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+                        <span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">,</span>
+                        <span class="n">nulls</span><span class="o">=</span><span class="n">nulls</span><span class="p">,</span>
+                        <span class="n">intervention_start</span><span class="o">=</span><span class="n">intervention_start</span><span class="p">,</span>
+                        <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span>
+                        <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">confidence_interval_from_p_values</span><span class="p">(</span><span class="n">p_vals</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">confidence_interval</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">nulls</span><span class="p">,</span> <span class="n">intervention_start</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>    
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">compute_period_ci</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">nulls</span><span class="p">,</span> <span class="n">intervention_start</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+                     <span class="k">for</span> <span class="n">period</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">intervention_start</span><span class="p">,</span> <span class="n">intervention_start</span><span class="o">+</span><span class="n">window</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are now ready to compute the confidence interval for all the post-intervention periods</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">SyntheticControl</span><span class="p">()</span>
+
+<span class="n">nulls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">ci_df</span> <span class="o">=</span> <span class="n">confidence_interval</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="s2">&quot;california&quot;</span><span class="p">,</span>
+    <span class="n">nulls</span><span class="o">=</span><span class="n">nulls</span><span class="p">,</span>
+    <span class="n">intervention_start</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span>
+    <span class="n">window</span><span class="o">=</span><span class="mi">2000</span> <span class="o">-</span> <span class="mi">1988</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span>
+<span class="p">)</span>
+
+<span class="n">ci_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>90_ci_lower</th>
+      <th>90_ci_upper</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1988</th>
+      <td>-12.323232</td>
+      <td>8.686869</td>
+    </tr>
+    <tr>
+      <th>1989</th>
+      <td>-16.363636</td>
+      <td>2.222222</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>-17.171717</td>
+      <td>5.454545</td>
+    </tr>
+    <tr>
+      <th>1991</th>
+      <td>-19.595960</td>
+      <td>-5.858586</td>
+    </tr>
+    <tr>
+      <th>1992</th>
+      <td>-22.828283</td>
+      <td>-7.474747</td>
+    </tr>
+    <tr>
+      <th>1993</th>
+      <td>-32.525253</td>
+      <td>-12.323232</td>
+    </tr>
+    <tr>
+      <th>1994</th>
+      <td>-36.565657</td>
+      <td>-15.555556</td>
+    </tr>
+    <tr>
+      <th>1995</th>
+      <td>-43.030303</td>
+      <td>-14.747475</td>
+    </tr>
+    <tr>
+      <th>1996</th>
+      <td>-41.414141</td>
+      <td>-16.363636</td>
+    </tr>
+    <tr>
+      <th>1997</th>
+      <td>-48.686869</td>
+      <td>-13.131313</td>
+    </tr>
+    <tr>
+      <th>1998</th>
+      <td>-46.262626</td>
+      <td>-13.939394</td>
+    </tr>
+    <tr>
+      <th>1999</th>
+      <td>-46.262626</td>
+      <td>-16.363636</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>-51.111111</td>
+      <td>-17.979798</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">ci_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ci_df</span><span class="p">[</span><span class="s2">&quot;90_ci_lower&quot;</span><span class="p">],</span> <span class="n">ci_df</span><span class="p">[</span><span class="s2">&quot;90_ci_upper&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>  <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pred_data</span><span class="p">[</span><span class="s2">&quot;california&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">pred_data</span><span class="p">[</span><span class="s2">&quot;residuals&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;California&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">1970</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=-</span><span class="mi">50</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Black&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Proposition 99&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Gap in per-capita cigarette sales (in packs)&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Conformal-Inference-for-Synthetic-Control_44_0.png" src="_images/Conformal-Inference-for-Synthetic-Control_44_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">#</a></h2>
+<p>This Appendix based on the paper <em>An Exact and Robust Conformal Inference Method for Counterfactual and Synthetic Controls</em>, by Victor Chernozhukov, Kaspar Wüthrich, Yinchu Zhu. I would like to give special thanks to Kaspar, who clarified a lot of the questions I had.</p>
+<p>For additional resources on Synthetic Controls, check out <em>Using Synthetic Controls: Feasibility, Data Requirements, and Methodological Aspects</em>, by Alberto Abadie (2021).</p>
+</section>
+<section id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">#</a></h2>
+<p>Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
+If you found this book valuable and you want to support it, please go to <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a>. If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn’t understand. Just go to the book’s repository and <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/issues">open an issue</a>. Finally, if you liked this content, please share it with others who might find it useful and give it a <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/stargazers">star on GitHub</a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-rasputin-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-rasputin-py",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-rasputin-py'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Prediction-Metrics-For-Causal-Models.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Why Prediction Metrics are Dangerous For Causal Models</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Matheus Facure Alves<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
