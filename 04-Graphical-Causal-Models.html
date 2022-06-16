@@ -647,10 +647,10 @@ title="Print to PDF"
 <p>In the first graph, dependence flows in the direction of the arrows. To give a more concrete example, let’s say that knowing about causal inference is the only way to solve business problems and solving those problems is the only way to get a job promotion. So causal knowledge causes problem solving which causes job promotion. We can say here that job promotion is dependent on causal knowledge. The greater the causal knowledge, the greater your chances of getting a promotion. Notice that dependence is symmetric, although it is a little less intuitive. The greater your chances of promotion, the greater the chance you have causal knowledge, otherwise it would be difficult to get a promotion.</p>
 <p>Now, let’s say I condition on the intermediary variable. In this case, the dependence is blocked. So, X and Z are independent given Y. In the graph above, red indicates that Y is a conditioned variable.  By the same token, in our example, if I know that you are good at solving problems, knowing that you know causal inference doesn’t give any further information about your chances of getting a job promotion. In mathematical terms, <span class="math notranslate nohighlight">\(E[Promotion|Solve \ problems, Causal \ knowledge]=E[Promotion|Solve \ problems]\)</span>. The inverse is also true, once I know how good you are at solving problems, knowing about your job promotion status gives me no further information about how likely you are to know causal inference.</p>
 <p>As a general rule, the dependence flow in the direct path from A to C is blocked when we condition on an intermediary variable B. Or,</p>
-<p><span class="math notranslate nohighlight">\(A \not\!\perp\!\!\!\perp C\)</span></p>
+<p><span class="math notranslate nohighlight">\(A \not \perp C\)</span></p>
 <p>and</p>
 <p><span class="math notranslate nohighlight">\(
-A \!\perp\!\!\!\perp C | B
+A \perp C | B
 \)</span></p>
 <p>Now, let’s consider a fork structure. In this case, the same variable causes two other variables down the graph. In this case, the dependence flows backward through the arrows and we have what is called a <strong>backdoor path</strong>. We can close the backdoor path and shut down dependence by conditioning on the common cause.</p>
 <div class="cell tag_hide-input docutils container">
@@ -676,10 +676,10 @@ A \!\perp\!\!\!\perp C | B
 <p>As an example, let’s say your knowledge of statistics causes you to know more of causal inference and machine learning. If I don’t know your level of statistical knowledge, then knowing that you are good at causal inference makes it more likely that you are also good at machine learning. That is because even if I don’t know your level of statistical knowledge, I can infer it from your causal inference knowledge: if you are good at causal inference you are probably good at statistics, which also makes it more likely that you are good at machine learning.</p>
 <p>Now, if I condition on your knowledge about statistics, then how much you know about machine learning becomes independent of how much you know about causal inference. You see, knowing your level of statistics already gives me all the information I need to infer the level of your machine learning skills. Knowing your level of causal inference will give no further information in this case.</p>
 <p>As a general rule, two variables that share a common cause are dependent, but independent when we condition on the common cause. Or</p>
-<p><span class="math notranslate nohighlight">\(A \not\!\perp\!\!\!\perp B\)</span></p>
+<p><span class="math notranslate nohighlight">\(A \not \perp  B\)</span></p>
 <p>and</p>
 <p><span class="math notranslate nohighlight">\(
-A \!\perp\!\!\!\perp B | C
+A \perp B | C
 \)</span></p>
 <p>The only structure that is missing is the collider. A collider is when two arrows collide on a single variable. We can say that in this case both variables share a common effect.</p>
 <div class="cell tag_hide-input docutils container">
@@ -704,10 +704,10 @@ A \!\perp\!\!\!\perp B | C
 </div>
 <p>As an example, consider that there are two ways to get a job promotion. You can either be good at statistics or flatter your boss. If I don’t condition on your job promotion, that is, I know nothing if you will or won’t get it, then your level of statistics and flattering are independent. In other words, knowing how good you are at statistics tells me nothing about how good you are at flattering your boss. On the other hand, if you did get a job promotion, suddenly, knowing your level of statistics tells me about your level of flattering. If you are bad at statistics and you did get a promotion, it becomes more likely that you know how to flatter, otherwise you wouldn’t get a promotion. Conversely, if you are bad at flattering, it must be the case that you are good at statistics. This phenomenon is sometimes called <strong>explaining away</strong>, because one cause already explains the effect, making the other cause less likely.</p>
 <p>As a general rule, conditioning on a collider opens the dependence path. Not conditioning on it leaves it closed. Or</p>
-<p><span class="math notranslate nohighlight">\(A \!\perp\!\!\!\perp B\)</span></p>
+<p><span class="math notranslate nohighlight">\(A \perp B\)</span></p>
 <p>and</p>
 <p><span class="math notranslate nohighlight">\(
-A \not\!\perp\!\!\!\perp B | C
+A \not \perp B | C
 \)</span></p>
 <p>Knowing the three structures, we can derive an even more general rule. A path is blocked if and only if:</p>
 <ol class="simple">

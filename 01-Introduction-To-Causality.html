@@ -888,8 +888,7 @@ For us to say that tablets in the classroom increase academic performance, we wo
 <p><span class="math notranslate nohighlight">\(
 E[Y|T=1] - E[Y|T=0] = E[Y_1 - Y_0|T=1] = ATT
 \)</span></p>
-<p>Also, if the treated and the untreated only differ on the treatment itself, that is,  <span class="math notranslate nohighlight">\(E[Y_0|T=0] = E[Y_0|T=1]\)</span></p>
-<p>We have that the causal impact on the treated is the same as in the untreated (because they are very similar).</p>
+<p>Also, if the treated and the untreated only differ on the treatment itself, then, <span class="math notranslate nohighlight">\(E[Y_0|T=0] = E[Y_0|T=1]\)</span> and we have that the causal impact on the treated is the same as in the untreated (because they are very similar).</p>
 <p><span class="math notranslate nohighlight">\(
 \begin{align}
 E[Y_1 - Y_0|T=1] &amp;= E[Y_1|T=1] - E[Y_0|T=1] \\
@@ -901,7 +900,7 @@ E[Y_1 - Y_0|T=1] &amp;= E[Y_1|T=1] - E[Y_0|T=1] \\
 <p><span class="math notranslate nohighlight">\(
 E[Y|T=1] - E[Y|T=0] = ATT
 \)</span></p>
-<p>Additionally, if we also have <span class="math notranslate nohighlight">\(E[Y_1|T=0] = E[Y_1|T=1]\)</span>, we make sure that both treated and control groups respond similarly to the treatment. Now, besides being exchangeable prior to the treatment, treated and untreated are also exchangeable <strong>after the treatment</strong>. In this case, <span class="math notranslate nohighlight">\(E[Y_1 - Y_0|T=1]=E[Y_1 - Y_0|T=0]\)</span> and</p>
+<p>Additionally, if the treated and the untreated only differ on the treatment itself, we also have <span class="math notranslate nohighlight">\(E[Y_1|T=0] = E[Y_1|T=1]\)</span>, that is, we make sure that both treated and control groups respond similarly to the treatment. Now, besides being exchangeable prior to the treatment, treated and untreated are also exchangeable <strong>after the treatment</strong>. In this case, <span class="math notranslate nohighlight">\(E[Y_1 - Y_0|T=1]=E[Y_1 - Y_0|T=0]\)</span> and</p>
 <p><span class="math notranslate nohighlight">\(
 E[Y|T=1] - E[Y|T=0] = ATT = ATE
 \)</span></p>

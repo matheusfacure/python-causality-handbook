@@ -767,30 +767,16 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
 \)</span></p>
 <p>Here is the diagram of this learner</p>
 <p><img alt="img" src="_images/t-learner.png" /></p>
-<p>Another simple improvement we can do is use propensity score weighting to debias our models. This will result in a very similar model to the Doubly-Robust estimator but where the regression model is replaced by a general machine learning model.</p>
-<p><span class="math notranslate nohighlight">\(
-\hat{ATE} = \frac{1}{N}\sum \bigg( \dfrac{T_i(Y_i - \hat{M_1}(X_i))}{\hat{P}(X_i)} + \hat{M_1}(X_i) \bigg) - \frac{1}{N}\sum \bigg( \dfrac{(1-T_i)(Y_i - \hat{M_0}(X_i))}{1-\hat{P}(X_i)} + \hat{M_0}(X_i) \bigg)
-\)</span></p>
-<p>By the way, you can also do the same thing with the S-learner, I just didn’t do it earlier because I don’t want to throw at you too many new concepts at once. Now, enough about theory. Let’s code this up.</p>
+<p>Now, enough about theory. Let’s code this up.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
 
 <span class="n">m0</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">min_child_samples</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
 <span class="n">m1</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">min_child_samples</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
 
-<span class="c1"># fit the propensity score model</span>
-<span class="n">ps_m</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s2">&quot;lbfgs&quot;</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
-<span class="n">ps_m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="n">y</span><span class="p">])</span>
-<span class="n">ps_score</span> <span class="o">=</span> <span class="n">ps_m</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">])</span>
-
-<span class="n">m0</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">T</span><span class="si">}</span><span class="s2">==0&quot;</span><span class="p">)[</span><span class="n">X</span><span class="p">],</span> <span class="n">train</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">T</span><span class="si">}</span><span class="s2">==0&quot;</span><span class="p">)[</span><span class="n">y</span><span class="p">],</span>
-       <span class="n">sample_weight</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">ps_m</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">T</span><span class="si">}</span><span class="s2">==0&quot;</span><span class="p">)[</span><span class="n">X</span><span class="p">])[:,</span> <span class="mi">0</span><span class="p">])</span>
-
-<span class="n">m1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">T</span><span class="si">}</span><span class="s2">==1&quot;</span><span class="p">)[</span><span class="n">X</span><span class="p">],</span> <span class="n">train</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">T</span><span class="si">}</span><span class="s2">==1&quot;</span><span class="p">)[</span><span class="n">y</span><span class="p">],</span>
-       <span class="n">sample_weight</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">ps_m</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">T</span><span class="si">}</span><span class="s2">==1&quot;</span><span class="p">)[</span><span class="n">X</span><span class="p">])[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">m0</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">T</span><span class="si">}</span><span class="s2">==0&quot;</span><span class="p">)[</span><span class="n">X</span><span class="p">],</span> <span class="n">train</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">T</span><span class="si">}</span><span class="s2">==0&quot;</span><span class="p">)[</span><span class="n">y</span><span class="p">])</span>
+<span class="n">m1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">T</span><span class="si">}</span><span class="s2">==1&quot;</span><span class="p">)[</span><span class="n">X</span><span class="p">],</span> <span class="n">train</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">T</span><span class="si">}</span><span class="s2">==1&quot;</span><span class="p">)[</span><span class="n">y</span><span class="p">])</span>
 
 <span class="c1"># estimate the CATE</span>
 <span class="n">t_learner_cate_train</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">])</span> <span class="o">-</span> <span class="n">m0</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">])</span>
@@ -957,16 +943,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "causal-glory"
+            mode: "conda-env-rasputin-py"
         },
         kernelOptions: {
-            kernelName: "causal-glory",
+            kernelName: "conda-env-rasputin-py",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'causal-glory'</script>
+    <script>kernelName = 'conda-env-rasputin-py'</script>
 
               </div>
               
