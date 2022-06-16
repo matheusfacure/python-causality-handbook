@@ -35,6 +35,7 @@ parts:
   - file: Debiasing-with-Propensity-Score.ipynb
   - file: When-Prediction-Fails.ipynb
   - file: Prediction-Metrics-For-Causal-Models.ipynb
+  - file: Conformal-Inference-for-Synthetic-Control.ipynb
 - caption: Contribute
   chapters:
   - url: https://www.patreon.com/causal_inference_for_the_brave_and_true
