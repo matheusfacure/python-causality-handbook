@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Debiasing with Propensity Score" href="Debiasing-with-Propensity-Score.html" />
-    <link rel="prev" title="24 - The Difference-in-Differences Saga" href="24-The-Diff-in-Diff-Saga.html" />
+    <link rel="prev" title="25 - Synthetic Difference-in-Differences" href="25-Synthetic-Diff-in-Diff.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -251,6 +251,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="24-The-Diff-in-Diff-Saga.html">
    24 - The Difference-in-Differences Saga
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="25-Synthetic-Diff-in-Diff.html">
+   25 - Synthetic Difference-in-Differences
   </a>
  </li>
 </ul>
@@ -744,7 +749,7 @@ y_i = \beta_0 + \pmb{\beta_1 X}_{1i} + \pmb{\beta_2 X}_{2i} + e_i
 \[
 \hat{t}_i = t_i - M_t(X_i)
 \]</div>
-<p>You can think of this residual as a version of the treatment that is unbiased or, better yet, that is impossible to predict from the confounders <span class="math notranslate nohighlight">\(X\)</span>. Since the confounders were already used to predict <span class="math notranslate nohighlight">\(t\)</span>, the residual is by definition, unpredictable with <span class="math notranslate nohighlight">\(X\)</span>. Another way of saying this is that the bias has been explained away by the model <span class="math notranslate nohighlight">\(M_t(X_i)\)</span>, prudicing <span class="math notranslate nohighlight">\(\hat{t}_i\)</span> which is as good as randomly assigned. Of course this only works if we have in <span class="math notranslate nohighlight">\(X\)</span> all the confounders that cause both <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>You can think of this residual as a version of the treatment that is unbiased or, better yet, that is impossible to predict from the confounders <span class="math notranslate nohighlight">\(X\)</span>. Since the confounders were already used to predict <span class="math notranslate nohighlight">\(t\)</span>, the residual is by definition, unpredictable with <span class="math notranslate nohighlight">\(X\)</span>. Another way of saying this is that the bias has been explained away by the model <span class="math notranslate nohighlight">\(M_t(X_i)\)</span>, producing <span class="math notranslate nohighlight">\(\hat{t}_i\)</span> which is as good as randomly assigned. Of course this only works if we have in <span class="math notranslate nohighlight">\(X\)</span> all the confounders that cause both <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 <p>We can also plot this data to see what it looks like.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -987,7 +992,7 @@ y_i = \beta_0 + \pmb{\beta_1 X}_{1i} + \pmb{\beta_2 X}_{2i} + e_i
 \hat{t}_i &amp;= t_i - M_t(X_i)
 \end{align}
 \end{split}\]</div>
-<p>There is a catch, though. As we know very well, machine learning models are so powerful that they can fit the data perfectly, or rather, overfit. Just by looking at the equations above, we can know what will happen in that case. If <span class="math notranslate nohighlight">\(M_y\)</span> somehow overfitts, the residuals will all be very close to zero. If that happens, it will be hard to find how <span class="math notranslate nohighlight">\(t\)</span> affects it. Similarly, if <span class="math notranslate nohighlight">\(M_t\)</span> somehow overfitts, its residuals will also be close to zero. Hence, there won’t be variation in the treatment residual to see how it can impact the outcome.</p>
+<p>There is a catch, though. As we know very well, machine learning models are so powerful that they can fit the data perfectly, or rather, overfit. Just by looking at the equations above, we can know what will happen in that case. If <span class="math notranslate nohighlight">\(M_y\)</span> somehow overfits, the residuals will all be very close to zero. If that happens, it will be hard to find how <span class="math notranslate nohighlight">\(t\)</span> affects it. Similarly, if <span class="math notranslate nohighlight">\(M_t\)</span> somehow overfits, its residuals will also be close to zero. Hence, there won’t be variation in the treatment residual to see how it can impact the outcome.</p>
 <p>To account for that, we need to do sample splitting. That is, we estimate the model with one part of the dataset and we make predictions in the other part. The simplest way to do this is to split the test sample in half, make two models  in such a way that each one is estimated in one half of the dataset and makes predictions in the other half.</p>
 <p>A slightly more elegant implementation uses K-fold cross validation. The advantage being that we can train all the models on a sample which is bigger than half the test set.</p>
 <p><img alt="img" src="_images/kfold-cv.png" /></p>
@@ -1170,11 +1175,11 @@ If you found this book valuable and you want to support it, please go to <a clas
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="24-The-Diff-in-Diff-Saga.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="25-Synthetic-Diff-in-Diff.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">24 - The Difference-in-Differences Saga</p>
+            <p class="prev-next-title">25 - Synthetic Difference-in-Differences</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Debiasing-with-Propensity-Score.html" title="next page">
