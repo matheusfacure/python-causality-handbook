@@ -502,6 +502,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-concepts">
+   Key Concepts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -553,6 +558,11 @@ title="Print to PDF"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#placebo-variance-estimation">
    Placebo Variance Estimation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#key-concepts">
+   Key Concepts
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -2130,6 +2140,10 @@ Standard Error: 11.24193494897581
 <img alt="_images/25-Synthetic-Diff-in-Diff_69_0.png" src="_images/25-Synthetic-Diff-in-Diff_69_0.png" />
 </div>
 </div>
+</section>
+<section id="key-concepts">
+<h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Permalink to this headline">#</a></h2>
+<p>Synthetic-Diff-in-Diff (SDID) draws inspiration from both Diff-in-Diff and Synthetic Control, which brings advantages from both models.  Like SC, SDID still works with multiple periods when pre-treatment trends are not parallel. However, unlike SC, SDID estimate unit weights to build a control unit which is only parallel to the treated group (it doesn’t have to match its level). From DID, SDID leverages time and unit fixed effect, which helps to explain a way a lot of the variance in the outcome, which in turn reduces the variance of the SDID estimator. Synthetic-Diff-in-Diff also introduces some new ideas of its own. First, there is an additional <span class="math notranslate nohighlight">\(L2\)</span> penalty in the optimization of the unit weights which makes them more spread out across control units. Second, SDID allows for an intercept (and hence, extrapolation) when building sutch weights. Third, SDID introduces the use of time weights, which are not present in neither DID nor SC. For this reason, I would’t say SDID is just merging SC and SDID. It is rather building something new, inspired by these two approaches. I also wouldn’t say that SDID is better or worse than traditional Synthetic Control. Each of them have different properties that might be appropriate or not, depending on the situation. For example, you might find yourself in a situation where allowing the extrapolations from SDID is dangerous. In which case, SC might be a good alternative.</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>

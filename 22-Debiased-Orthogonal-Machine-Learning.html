@@ -761,7 +761,7 @@ Sales_i = \alpha + \tau price_i + \beta_1 temp_i + \beta_2 temp^2_i + \beta_3 co
 <p>Thinking about how to model nuisance parameters is already boring with just a few covariates. But what if we had tens or hundreds of them? With modern datasets, this is pretty common. So, what can we do about it? The answer lies the coolest Econometric theorem ever derived.</p>
 <section id="frisch-waugh-lovell">
 <h3>Frisch-Waugh-Lovell<a class="headerlink" href="#frisch-waugh-lovell" title="Permalink to this headline">#</a></h3>
-<p>Frisch, Waugh and Lovell were 19th century econometricians who noticed the coolest thing about linear regression. This isn’t new to you, as we’ve talked about it in the context of regression residuals and when talking about fixed effects. But since this theorem is key to understanding Orthogonal-ML, it’s very much worth recapping it.</p>
+<p>Frisch, Waugh and Lovell were 20th century econometricians who noticed the coolest thing about linear regression. This isn’t new to you, as we’ve talked about it in the context of regression residuals and when talking about fixed effects. But since this theorem is key to understanding Orthogonal-ML, it’s very much worth recapping it.</p>
 <p>Suppose you have a linear regression model with a set of features <span class="math notranslate nohighlight">\(X_1\)</span> and another set of features <span class="math notranslate nohighlight">\(X_2\)</span>. You then estimate that model’s parameters.</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{Y} = \hat{\beta_1} X_1 + \hat{\beta_2} X_2
@@ -1001,7 +1001,7 @@ Y_i - {M}_y(X_i)
 <img alt="_images/22-Debiased-Orthogonal-Machine-Learning_25_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_25_0.png" />
 </div>
 </div>
-<p>The Double/Debiased ML procedure with a final linear model is already very good, as we can see by the curve above. But, maybe we can do even better. As a matter of fact, this is a very general procedure that we can understand just like a meta-learner. Nie and Wager called it the R-Learner, as a way to recognise the work of Donald Rubin in the causal literature.</p>
+<p>The Double/Debiased ML procedure with a final linear model is already very good, as we can see by the curve above. But, maybe we can do even better. As a matter of fact, this is a very general procedure that we can understand just like a meta-learner. Nie and Wager called it the R-Learner, as a way to recognise the work of Robinson (1988) and to emphasize the role of residualization.</p>
 <p>This generalization comes from realizing that the Double/Debiased ML procedure defines a new loss function that we can minimize however we want. Next, we will see how to do that in a very similar fashion to what we’ve seen before when discussing target transformation method or F-learner.</p>
 </section>
 </section>

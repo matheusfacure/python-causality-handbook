@@ -1388,7 +1388,7 @@ Installs_{it} = \sum_{g=0}^G \sum_{t=0}^T \tau_{gt} D_{it} + \gamma_i + \theta_t
 </div>
 </div>
 </div>
-<p>To see if this model works, we can make counterfactual predictions for \(Y_0\) by forcing <code class="docutils literal notranslate"><span class="pre">treat</span></code> to be zero for everyone. Then, we can estimate the effect by taking the observed outcome for the treatment, which is \(Y_1\), and subtract \(\hat{Y}_0\) from it. Let’s see if that matches the true ATT.</p>
+<p>To see if this model works, we can make counterfactual predictions for <span class="math notranslate nohighlight">\(Y_0\)</span> by forcing <code class="docutils literal notranslate"><span class="pre">treat</span></code> to be zero for everyone. Then, we can estimate the effect by taking the observed outcome for the treatment, which is <span class="math notranslate nohighlight">\(Y_1\)</span>, and subtract <span class="math notranslate nohighlight">\(\hat{Y}_0\)</span> from it. Let’s see if that matches the true ATT.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_heter_str</span>
@@ -1598,16 +1598,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "causal-glory"
+            mode: "conda-root-py"
         },
         kernelOptions: {
-            kernelName: "causal-glory",
+            kernelName: "conda-root-py",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'causal-glory'</script>
+    <script>kernelName = 'conda-root-py'</script>
 
               </div>
               

@@ -868,7 +868,7 @@ Y_t(0) = Y_t(1) - \theta_t = Y_t - \theta_t
 <p>With our data, to get the residuals for <span class="math notranslate nohighlight">\(H_0 : 0\)</span>, meaning Proposition 99 had no effect, we can simply pass 0 as the null for our function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">residuals_df</span> <span class="o">=</span> <span class="n">SyntheticControl</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">SyntheticControl</span><span class="p">()</span>
 
 <span class="n">residuals_df</span> <span class="o">=</span> <span class="n">residuals</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
                          <span class="s2">&quot;california&quot;</span><span class="p">,</span>

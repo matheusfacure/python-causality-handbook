@@ -730,7 +730,7 @@ sales_i = G(X_i, price_i) + e_i
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Score: 0.9251704824568053
-Test Score: 0.7711074163447711
+Test Score: 0.7711074163447716
 </pre></div>
 </div>
 </div>
@@ -751,7 +751,7 @@ Test Score: 0.7711074163447711
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
 <span class="n">prices_rnd_pred</span> <span class="o">=</span> <span class="n">prices_rnd</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
     <span class="s2">&quot;elast_m_pred&quot;</span><span class="p">:</span> <span class="n">predict_elast</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">prices_rnd</span><span class="p">),</span> <span class="c1">## elasticity model</span>
-    <span class="s2">&quot;pred_m_pred&quot;</span><span class="p">:</span> <span class="n">m1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">prices_rnd</span><span class="p">[</span><span class="n">X</span><span class="p">]),</span> <span class="c1">## predictive model</span>
+    <span class="s2">&quot;pred_m_pred&quot;</span><span class="p">:</span> <span class="n">m2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">prices_rnd</span><span class="p">[</span><span class="n">X</span><span class="p">]),</span> <span class="c1">## predictive model</span>
     <span class="s2">&quot;rand_m_pred&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">prices_rnd</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="c1">## random model</span>
 <span class="p">})</span>
 
@@ -797,7 +797,7 @@ Test Score: 0.7711074163447711
       <td>7</td>
       <td>230</td>
       <td>-13.096964</td>
-      <td>220.922251</td>
+      <td>224.067406</td>
       <td>0.696469</td>
     </tr>
     <tr>
@@ -808,7 +808,7 @@ Test Score: 0.7711074163447711
       <td>4</td>
       <td>190</td>
       <td>1.054695</td>
-      <td>186.241407</td>
+      <td>189.889147</td>
       <td>0.286139</td>
     </tr>
     <tr>
@@ -819,7 +819,7 @@ Test Score: 0.7711074163447711
       <td>5</td>
       <td>237</td>
       <td>-17.362642</td>
-      <td>269.232654</td>
+      <td>237.255157</td>
       <td>0.226851</td>
     </tr>
     <tr>
@@ -830,7 +830,7 @@ Test Score: 0.7711074163447711
       <td>5</td>
       <td>193</td>
       <td>0.564985</td>
-      <td>188.229552</td>
+      <td>186.688619</td>
       <td>0.551315</td>
     </tr>
     <tr>
@@ -841,7 +841,7 @@ Test Score: 0.7711074163447711
       <td>3</td>
       <td>252</td>
       <td>-13.717946</td>
-      <td>275.259570</td>
+      <td>250.342203</td>
       <td>0.719469</td>
     </tr>
   </tbody>
@@ -1154,16 +1154,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "causal-glory"
+            mode: "conda-root-py"
         },
         kernelOptions: {
-            kernelName: "causal-glory",
+            kernelName: "conda-root-py",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'causal-glory'</script>
+    <script>kernelName = 'conda-root-py'</script>
 
               </div>
               

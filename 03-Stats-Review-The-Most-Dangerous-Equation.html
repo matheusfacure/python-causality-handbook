@@ -762,9 +762,10 @@ SE = \dfrac{\sigma}{\sqrt{n}}
 <p>Since this is just a review of statistics, I’ll take the liberty to go a bit faster now. If you are not familiar with distributions, variance, and standard errors, please read on, but keep in mind that you might need some additional resources. I suggest you google any MIT course on introduction to statistics. They are usually quite good.</p>
 <p>In the previous section, we estimated the average treatment effect <span class="math notranslate nohighlight">\(E[Y_1-Y_0]\)</span> as the difference in the means between the treated and the untreated <span class="math notranslate nohighlight">\(E[Y|T=1]-E[Y|T=0]\)</span>. We figured out the <span class="math notranslate nohighlight">\(ATE\)</span> for online classes as our motivating example. We also saw a negative impact; online classes made students perform about 5 points worse than the students with face-to-face classes. Now, we get to see if this impact is statistically significant.</p>
 <p>To do so, we need to estimate the <span class="math notranslate nohighlight">\(SE\)</span>. We already have <span class="math notranslate nohighlight">\(n\)</span>, our sample size. To get the estimate for the standard deviation, we can do the following</p>
-<p><span class="math notranslate nohighlight">\(
-\hat{\sigma}^2=\sqrt{\frac{1}{N-1}\sum_{i=0}^N (x-\bar{x})^2}
-\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\sigma}=\sqrt{\frac{1}{N-1}\sum_{i=1}^N (x_i-\bar{x})^2}
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(\bar{x}\)</span> is the mean of <span class="math notranslate nohighlight">\(x\)</span>. Fortunately for us, most programming software already implements this. In Pandas, we can use the method <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.std.html">std</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
