@@ -8,16 +8,21 @@ A light-hearted yet rigorous approach to learning impact estimation and sensitiv
 
 [Check out the book here!](https://matheusfacure.github.io/python-causality-handbook/landing-page.html)
 
-If you want to read the book in Chinese, @xieliaing was very kind to make a translation:
-
+If you want to read the book in Chinese, @xieliaing was very kind to make a translation:  
 [因果推断：从概念到实践](https://github.com/xieliaing/CausalInferenceIntro)
 
-If you want to read the book in Spanish, @donelianc was very kind to make a translation:
+If you want to read the book in Spanish, @donelianc was very kind to make a translation:  
 [Inferencia Causal para los Valientes y Verdaderos](https://github.com/donelianc/introduccion-inferencia-causal)
 
-Also, some really kind folks (@vietecon, @dinhtrang24 and @anhpham52) also translated this content into Vietnamese:
+If you want to read it in Korean, @jsshin2019 has put up a team to make the that translation possible:  
+[Python으로 하는 인과추론 : 개념부터 실습까지](https://github.com/TeamCausality/Causal-Inference-with-Python)
+ 
 
+Also, some really kind folks (@vietecon, @dinhtrang24 and @anhpham52) also translated this content into Vietnamese:  
 [Nhân quả Python](https://github.com/vietecon/NhanQuaPython)
+
+
+
 
 I like to think of this entire series as a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what is keeping me sane during this tough year of 2020.
 * [Cross-Section Econometrics](https://www.aeaweb.org/conference/cont-ed/2017-webcasts)
