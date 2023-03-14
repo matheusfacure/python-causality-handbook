@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -611,9 +611,9 @@ title="Print to PDF"
 <h2>Going Around Omitted Variable Bias<a class="headerlink" href="#going-around-omitted-variable-bias" title="Permalink to this headline">#</a></h2>
 <p>One way to control for OVB is, well, adding the omitted variable into our model. However, that is not always possible, mostly because we simply don’t have data on the omitted variables. For instance, let’s go back to our model for effect of education on wage:</p>
 <p><span class="math notranslate nohighlight">\(
-log(hwage)_i = \beta_0 + \kappa \ educ_i + \pmb{\beta}Ability_i + u_i
+\log(\mathrm{wage})_i = \beta_0 + \kappa \ \mathrm{educ}_i + \pmb{\beta}\mathrm{Ability}_i + u_i
 \)</span></p>
-<p>To figure out the causal effect of education <span class="math notranslate nohighlight">\(\kappa\)</span> on <span class="math notranslate nohighlight">\(log(hwage)\)</span> we need to control for ability factors <span class="math notranslate nohighlight">\(Ability_i\)</span>. If we don’t, we would likely have some bias, after all, ability is probably a confounder, causing both the treatment, education, and the outcome, earnings.</p>
+<p>To figure out the causal effect of education <span class="math notranslate nohighlight">\(\kappa\)</span> on <span class="math notranslate nohighlight">\(\log\mathrm{(wage)}\)</span> we need to control for ability factors <span class="math notranslate nohighlight">\(\mathrm{Ability}_i\)</span>. If we don’t, we would likely have some bias, after all, ability is probably a confounder, causing both the treatment, education, and the outcome, earnings.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
@@ -679,14 +679,14 @@ Y_i = \beta_0 + \kappa\ T_i + v_i
 <p><span class="math notranslate nohighlight">\(
 v_i = \pmb{\beta}W_i + u_i
 \)</span></p>
-<p>Since <span class="math notranslate nohighlight">\(W\)</span> is a confounder, <span class="math notranslate nohighlight">\(Cov(T, v) \neq 0\)</span>. We have a short, not long equation. In our example, this would be saying that ability is correlated with education. If this is the case, running the short regression would yield a biased estimator for <span class="math notranslate nohighlight">\(\kappa\)</span> due to omitted variables.</p>
-<p>Now, behold the magic of IV! Since the instrument Z is only correlated with the outcome through T, this implies that <span class="math notranslate nohighlight">\(Cov(Z,v) = 0\)</span>, otherwise there would be a second path from Z to Y through W. With this in mind, we can write</p>
+<p>Since <span class="math notranslate nohighlight">\(W\)</span> is a confounder, <span class="math notranslate nohighlight">\(\mathrm{Cov}(T, v) \neq 0\)</span>. We have a short, not long equation. In our example, this would be saying that ability is correlated with education. If this is the case, running the short regression would yield a biased estimator for <span class="math notranslate nohighlight">\(\kappa\)</span> due to omitted variables.</p>
+<p>Now, behold the magic of IV! Since the instrument Z is only correlated with the outcome through T, this implies that <span class="math notranslate nohighlight">\(\mathrm{Cov}(Z,v) = 0\)</span>, otherwise there would be a second path from Z to Y through W. With this in mind, we can write</p>
 <p><span class="math notranslate nohighlight">\(
-Cov(Z,Y) = Cov(Z,\beta_0 + \kappa\ T_i + v_i) = \kappa Cov(Z,T) + Cov(Z, v) = \kappa Cov(Z,T)
+\mathrm{Cov}(Z,Y) = \mathrm{Cov}(Z,\beta_0 + \kappa\ T_i + v_i) = \kappa \mathrm{Cov}(Z,T) + \mathrm{Cov}(Z, v) = \kappa \mathrm{Cov}(Z,T)
 \)</span></p>
 <p>Dividing each side by <span class="math notranslate nohighlight">\(V(Z_i)\)</span> and rearranging the terms, we get</p>
 <p><span class="math notranslate nohighlight">\(
-\kappa = \dfrac{Cov(Y_i, Z_i)/V(Z_i)}{Cov(T_i, Z_i)/V(Z_i)} = \dfrac{\text{Reduced Form}}{\text{1st Stage}} 
+\kappa = \dfrac{\mathrm{Cov}(Y_i, Z_i)/V(Z_i)}{\mathrm{Cov}(T_i, Z_i)/V(Z_i)} = \dfrac{\text{Reduced Form}}{\text{1st Stage}} 
 \)</span></p>
 <p>Notice that both the numerator and the denominator are regression coefficients (covariances divided by variances). The numerator is the result from the regression of Y on Z. In other words, it’s the “impact” of Z on Y. Remember that this is not to say that Z causes Y, since we have a requirement that Z impacts Y only through T. Rather, it is only capturing how big is this effect of Z on Y through T. This numerator is so famous it has its own name: the reduced form coefficient.</p>
 <p>The denominator is also a regression coefficient. This time, it is the regression of T on Z. This regression captures what is the impact of Z on T and it is also so famous that it is called the 1st Stage coefficient.</p>
@@ -808,10 +808,10 @@ Cov(Z,Y) = Cov(Z,\beta_0 + \kappa\ T_i + v_i) = \kappa Cov(Z,T) + Cov(Z, v) = \k
 <h2>The 1st Stage<a class="headerlink" href="#the-1st-stage" title="Permalink to this headline">#</a></h2>
 <p>Before we use quarter of birth as an instrument, we need to make sure it is a valid one. This implies arguing in favor of the two Instrumental Variables assumptions:</p>
 <ol class="simple">
-<li><p><span class="math notranslate nohighlight">\(Cov(Z, T) \neq 0\)</span>. This is saying that we should have a strong 1st stage, or that the instrument indeed impacts the treatment variable.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathrm{Cov}(Z, T) \neq 0\)</span>. This is saying that we should have a strong 1st stage, or that the instrument indeed impacts the treatment variable.</p></li>
 <li><p><span class="math notranslate nohighlight">\(Y \perp Z | T \)</span>. This is the exclusion restriction, stating that the instrument Z only affects the outcome Y through the treatment T.</p></li>
 </ol>
-<p>The first assumption is fortunately verifiable. We can see from data that <span class="math notranslate nohighlight">\(Cov(Z, T)\)</span> is not zero. In our example, if quarter of birth is indeed an instrument like we’ve said, we should expect individuals born in the last quarter of the year to have slightly more time of education than those born in the beginning of the year. Before running any statistical test to verify this, let’s just plot our data and see it with our own eyes.</p>
+<p>The first assumption is fortunately verifiable. We can see from data that <span class="math notranslate nohighlight">\(\mathrm{Cov}(Z, T)\)</span> is not zero. In our example, if quarter of birth is indeed an instrument like we’ve said, we should expect individuals born in the last quarter of the year to have slightly more time of education than those born in the beginning of the year. Before running any statistical test to verify this, let’s just plot our data and see it with our own eyes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span>
@@ -994,7 +994,7 @@ q4 p-value:,  0.0014949127183659584
 <h2>Instrumental Variables by Hand<a class="headerlink" href="#instrumental-variables-by-hand" title="Permalink to this headline">#</a></h2>
 <p>Having both our reduced form and our 1st stage, we can now scale the effect of the first stage by the reduced form. Since the first stage coefficient was something like 0.1, this will multiply the effect of the reduced form coefficient by almost 10. This will give us our unbiased IV estimate of the average causal effect:</p>
 <p><span class="math notranslate nohighlight">\(
-ATE_{IV} = \dfrac{\text{Reduced Form}}{\text{1st Stage}} 
+\mathrm{ATE}_{IV} = \dfrac{\text{Reduced Form}}{\text{1st Stage}} 
 \)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1011,13 +1011,13 @@ ATE_{IV} = \dfrac{\text{Reduced Form}}{\text{1st Stage}}
 <p>This means that we should expect each additional year of school to increase wages by 8%.</p>
 <p>Another way to get the IV estimates is by using 2 stages least squares, <strong>2SLS</strong>. With this procedure, we do the first stage like before and then run a second stage where we replace the treatment variable by the fitted values of the 1st stage</p>
 <p><span class="math notranslate nohighlight">\(
-educ_i = \gamma_0 + \gamma_1 * q4_i + \gamma_2 yob_i + \gamma_3 sob_i + v_i
+\mathrm{educ}_i = \gamma_0 + \gamma_1 \times \mathrm{q4}_i + \gamma_2\times \mathrm{yob}_i + \gamma_3\times \mathrm{sob}_i + v_i
 \)</span></p>
 <p><span class="math notranslate nohighlight">\(
-log(wage)_i = \beta_0 + \beta_1 educ_i + \beta_2 yob_i + \beta_3 sob_i + u_i
+\log(\mathrm{wage})_i = \beta_0 + \beta_1\times \mathrm{educ}_i + \beta_2\times \mathrm{yob}_i + \beta_3\times \mathrm{sob}_i + u_i
 \)</span></p>
 <p><span class="math notranslate nohighlight">\(
-log(wage)_i = \beta_0 + \beta_1 [\gamma_0 + \gamma_1 * q4_i + \gamma_2 yob_i + \gamma_3 sob_i + v_i ]  + \beta_2 yob_i + \beta_3 sob_i + u_i
+\log(\mathrm{wage})_i = \beta_0 + \beta_1 [\gamma_0 + \gamma_1 \times \mathrm{q4}_i + \gamma_2\times \mathrm{yob}_i + \gamma_3\times \mathrm{sob}_i + v_i ]  + \beta_2\times \mathrm{yob}_i + \beta_3\times \mathrm{sob}_i + u_i
 \)</span></p>
 <p>One thing to notice is that <strong>any additional control we add to the second stage should also be added to the first stage when doing IV</strong>.</p>
 <div class="cell docutils container">
@@ -1128,7 +1128,7 @@ Z \sim N(T, \sigma^2) \text{ for }\sigma^2 \text{ in 0.1 to 100}
 <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">X</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">U</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># outcome</span>
 
 <span class="n">stddevs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-<span class="n">Zs</span> <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s2">&quot;Z_</span><span class="si">{</span><span class="n">z</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">stddevs</span><span class="p">)}</span> <span class="c1"># instruments with decreasing Cov(Z, T)</span>
+<span class="n">Zs</span> <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s2">&quot;Z_</span><span class="si">{</span><span class="n">z</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">stddevs</span><span class="p">)}</span> <span class="c1"># instruments with decreasing \mathrm{Cov}(Z, T)</span>
 
 <span class="n">sim_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="p">))</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="n">Zs</span><span class="p">)</span>
 

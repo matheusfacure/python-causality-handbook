@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -588,7 +588,7 @@ E[Y|X, T]
 </section>
 <section id="from-ate-to-cate">
 <h2>From ATE to CATE<a class="headerlink" href="#from-ate-to-cate" title="Permalink to this headline">#</a></h2>
-<p>So far, we’ve every time we’ve estimated the causal impact of a treatment, it was the average treatment effect (or, sometime, the local average treatment effect):</p>
+<p>So far, every time we’ve estimated the causal impact of a treatment, it was the average treatment effect (or, sometime, the local average treatment effect):</p>
 <div class="math notranslate nohighlight">
 \[
 E[Y_1−Y_0]
@@ -613,7 +613,7 @@ E[Y_1−Y_0 | X] \ \text{or} \ E[y'(t)|X]
 <p>That would be wonderful because now we would be able to estimate different treatment effects or elasticities on each partition. And notice that the elasticity is just the slope of the line or function that goes from <span class="math notranslate nohighlight">\(T\)</span> to <span class="math notranslate nohighlight">\(Y\)</span>. So, if we can produce partitions where the slope or elasticity differs, it means that entities on those partitions have different responsiveness to the treatment.</p>
 <p><img alt="img" src="_images/elast-split.png" /></p>
 <p>In other words, what you want is to move away from predicting <span class="math notranslate nohighlight">\(Y\)</span> in its raw form and start to predict the derivative of <span class="math notranslate nohighlight">\(Y\)</span> on <span class="math notranslate nohighlight">\(T\)</span>,  <span class="math notranslate nohighlight">\(\frac{\delta Y}{ \delta T}\)</span> for each unit. For example, suppose that <span class="math notranslate nohighlight">\(Y\)</span> is ice cream sales, <span class="math notranslate nohighlight">\(T\)</span> is ice cream price and each unit <span class="math notranslate nohighlight">\(i\)</span> is a day. Let’s set moral issues aside, for the sake of the argument, and pretend that you can change the price of ice cream every day. If you can somehow find the days where <span class="math notranslate nohighlight">\(\frac{\delta Sales}{ \delta Price}\)</span> <strong>is low</strong>, you can <strong>increase prices</strong> without losing much sales on those days. Perhaps you do this already, say, when you increase them during the holiday season. The point being, it’s useful to differentiate days in terms of the price elasticity because it gives you some basis on how to set prices in an optimal way.</p>
-<p>Ok, you might say, but this is kind of tricky. How can I predict elasticity <span class="math notranslate nohighlight">\(\frac{\delta Sales}{ \delta Price}\)</span> if I can’t see it? That’s a very good point. Elasticity is essentially non observable on a unit level. Not only that, it’s a strange concept. We are much more accustomed to thinking in terms of raw quantities rather than in terms of change rates of those same quantities. So, to conceptualize elasticity better, here is a little trick. You can think about each entity as having a <span class="math notranslate nohighlight">\(Y_i\)</span> value, sales in our example, but also an individual elasticity <span class="math notranslate nohighlight">\(\frac{delta Y_i}{\delta T_i}\)</span>. The elasticity is how much <span class="math notranslate nohighlight">\(Y\)</span> changes with <span class="math notranslate nohighlight">\(T\)</span>, so you can think about each entity also having a slope coefficient associated to it <span class="math notranslate nohighlight">\(\frac{\delta Y}{ \delta T}_i\)</span>. In our example, we would say each day has a slope coefficient of price on sales.</p>
+<p>Ok, you might say, but this is kind of tricky. How can I predict elasticity <span class="math notranslate nohighlight">\(\frac{\delta Sales}{ \delta Price}\)</span> if I can’t see it? That’s a very good point. Elasticity is essentially non observable on a unit level. Not only that, it’s a strange concept. We are much more accustomed to thinking in terms of raw quantities rather than in terms of change rates of those same quantities. So, to conceptualize elasticity better, here is a little trick. You can think about each entity as having a <span class="math notranslate nohighlight">\(Y_i\)</span> value, sales in our example, but also an individual elasticity <span class="math notranslate nohighlight">\(\frac{\delta Y_i}{\delta T_i}\)</span>. The elasticity is how much <span class="math notranslate nohighlight">\(Y\)</span> changes with <span class="math notranslate nohighlight">\(T\)</span>, so you can think about each entity also having a slope coefficient associated to it <span class="math notranslate nohighlight">\(\frac{\delta Y}{ \delta T}_i\)</span>. In our example, we would say each day has a slope coefficient of price on sales.</p>
 <p><img alt="img" src="_images/elasticity.png" /></p>
 <p>Of course, we can’t see those individual slope coefficients. For us to see the individual slopes, we would have to observe each day under two different prices and calculate how the sales changes for each of those prices.</p>
 <div class="math notranslate nohighlight">

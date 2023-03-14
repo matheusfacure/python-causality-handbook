@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -638,8 +638,8 @@ E[(\tau(x)_i - \hat{\tau}(x)_i)^2] = E[(Y_i(1) - Y_i(0) - \hat{\tau}(x)_i)^2].
 Y^*_i = 2 Y_i * T_i - 2 Y_i*(1-T_i)
 \)</span></p>
 <p>So, if the unit was treated, you would take the outcome and multiply it by 2. If it wasn’t treated, you would take the outcome and multiply it by -2. For example, if one of your customers invested BRL 2000,00 and got the email, the transformed target would be 4000. However, if he or she didn’t get the email, it would be -4000.</p>
-<p>This seems very odd, because you are saying that the effect of the email can be a negative number, but bare with me. If we do a little bit of math, we can see that, on average or in expectation, this transformed target will be the treatment effect. This is nothing short of amazing. What I’m saying is that by applying this somewhat wacky transformation, I get to estimate something that I can’t even observe.</p>
-<p>To understand that, we need a bit of math. Because of random assignment, we have that <span class="math notranslate nohighlight">\(T \perp Y(1), Y(1)\)</span>, which is our old unconfoundedness friend. That implies that <span class="math notranslate nohighlight">\(E[T, Y(t)]=E[T]*E[Y(t)]\)</span>, which is the definition of independence.</p>
+<p>This seems very odd, because you are saying that the effect of the email can be a negative number, but bear with me. If we do a little bit of math, we can see that, on average or in expectation, this transformed target will be the treatment effect. This is nothing short of amazing. What I’m saying is that by applying this somewhat wacky transformation, I get to estimate something that I can’t even observe.</p>
+<p>To understand that, we need a bit of math. Because of random assignment, we have that <span class="math notranslate nohighlight">\(T \perp Y(0), Y(1)\)</span>, which is our old unconfoundedness friend. That implies that <span class="math notranslate nohighlight">\(E[T, Y(t)]=E[T]*E[Y(t)]\)</span>, which is the definition of independence.</p>
 <p>Also, we know that</p>
 <p><span class="math notranslate nohighlight">\(
 Y_i*T_i = Y(1)_i*T_i \text{ and }  Y_i*(1-T_i) = Y(0)_i*T_i
@@ -660,7 +660,7 @@ E[Y^*_i|X_i=x] &amp;= E[2 Y(1)_i * T_i - 2 Y(0)_i*(1-T_i)|X_i=x] \\
 E[(Y^*_i - \hat{\tau}(x)_i)^2]
 \)</span></p>
 <p>In simpler terms, all we have to do is use any regression machine learning model to predict <span class="math notranslate nohighlight">\(Y^*_i\)</span> and this model will output treatment effect predictions.</p>
-<p>Now that we’ve solved the simple case, what about the more complicated case, where treatment is not 50% 50%, or not even randomly assigned? As it turns out, the answer is a bit more complicated, but not much. First, if we don’t have random assignment, we need at least conditional independence <span class="math notranslate nohighlight">\(T \perp Y(1), Y(1) | X\)</span>. That is, controlling for <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(T\)</span> is as good as random. With that, we can generalize the transformed target to</p>
+<p>Now that we’ve solved the simple case, what about the more complicated case, where treatment is not 50% 50%, or not even randomly assigned? As it turns out, the answer is a bit more complicated, but not much. First, if we don’t have random assignment, we need at least conditional independence <span class="math notranslate nohighlight">\(T \perp Y(1), Y(0) | X\)</span>. That is, controlling for <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(T\)</span> is as good as random. With that, we can generalize the transformed target to</p>
 <p><span class="math notranslate nohighlight">\(
 Y^*_i = Y_i * \dfrac{T_i - e(X_i)}{e(X_i)(1-e(X_i))}
 \)</span></p>
@@ -1273,16 +1273,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "causal-glory"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "causal-glory",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'causal-glory'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

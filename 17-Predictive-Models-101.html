@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -988,7 +988,7 @@ E[Y|X]
 </div>
 <p>That’s a bummer… If we engage with everyone, we would lose about 30 reais for customers we do business with. Our first, very simple thing didn’t work and we better find something more promising if we don’t want to go out of business. Just a quick side note here, keep in mind that this is a pedagogical example. Although the very simple, “treat everyone the same” kind of policy didn’t work here, they often do in real life. It is usually the case that sending a marketing email to everyone is better than not sending it, or giving discounts coupons to everyone is often better than not giving them.</p>
 <p>Moving forward, what is the next simplest thing we can think of? One idea is taking our features and seeing if they alone distinguish the good from the bad customers. Take <code class="docutils literal notranslate"><span class="pre">income</span></code>, for instance. It’s intuitive that richer customers should be more profitable, right? What if we do business only with the top richest customers? Would that be a good idea?</p>
-<p>To figure this out we can partition our data into income quantiles (a quantile has the propriety of dividing the data into partitions of equal size, that’s why I like them). Then, for each income quantile, let’s compute the average net value. The hope here is that, although the average net value in negative, <span class="math notranslate nohighlight">\(E[NetValue]&lt;0\)</span>, there might be some subpopulation defined by income where the net value is positive, <span class="math notranslate nohighlight">\(E[NetValue|Income=x]&lt;0\)</span>, probably, higher income levels.</p>
+<p>To figure this out we can partition our data into income quantiles (a quantile has the propriety of dividing the data into partitions of equal size, that’s why I like them). Then, for each income quantile, let’s compute the average net value. The hope here is that, although the average net value in negative, <span class="math notranslate nohighlight">\(E[NetValue]&lt;0\)</span>, there might be some subpopulation defined by income where the net value is positive, <span class="math notranslate nohighlight">\(E[NetValue|Income=x]&gt;0\)</span>, probably, higher income levels.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>

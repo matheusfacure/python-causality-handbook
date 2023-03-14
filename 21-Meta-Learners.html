@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -809,7 +809,7 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
 <p>The T-learner also performs OK on this dataset. The test performance doesn’t look much different from what we got with the S-learner. Perhaps because the treatment is not that weak. Also, we can see that the training performance is much higher than the testing performance. This indicates the model is overfitting. This can happen because we are fitting each model on only a subset of the data. With less data points, the model is probably learning some noise.</p>
 <p>The T-Learner avoids the problem of not picking up on a weak treatment variable, but it can still suffer from regularization bias. Consider the following situation, taken from Kunzela et al, 2019. You have lots of data for the untreated and very few data for the treated, a pretty common case in many applications, as treatment is often expensive. Now suppose you have some non linearity in the outcome Y, but the <strong>treatment effect is constant</strong>. We can see what happens in the following image</p>
 <p><img alt="img" src="_images/t-learner-problem.png" /></p>
-<p>Here, since we have very few treated observations, <span class="math notranslate nohighlight">\(M_1\)</span> will be a very simple model (linear in this case) to avoid overfitting. <span class="math notranslate nohighlight">\(M_0\)</span> will be more complicated, but that’s OK because the abundance of data prevents overfitting. This is all reasonable from a Machine Learning perspective. However, if we use these models to compute the cate <span class="math notranslate nohighlight">\(\hat{\tau}=M_1(X) - M_0(X)\)</span>, the non linearity of <span class="math notranslate nohighlight">\(M_0(X)\)</span> minus the linearity of <span class="math notranslate nohighlight">\(M_1(X)\)</span> will result in a nonlinear CATE (blue line minus red line), which is wrong, since the CATE is constant and equal to 1 in this case.</p>
+<p>Here, since we have very few treated observations, <span class="math notranslate nohighlight">\(M_1\)</span> will be a very simple model (linear in this case) to avoid overfitting. <span class="math notranslate nohighlight">\(M_0\)</span> will be more complicated, but that’s OK because the abundance of data prevents overfitting. This is all reasonable from a Machine Learning perspective. However, if we use these models to compute the cate <span class="math notranslate nohighlight">\(\hat{\tau}=M_1(X) - M_0(X)\)</span>, the linearity of <span class="math notranslate nohighlight">\(M_1(X)\)</span> minus the non linearity of <span class="math notranslate nohighlight">\(M_0(X)\)</span> will result in a nonlinear CATE (blue line minus red line), which is wrong, since the CATE is constant and equal to 1 in this case.</p>
 <p>What happens here is that the model for the untreated can pick up the non linearity, but the model for the treated cannot, because we’ve used regularization to deal with a small sample size. Of course, you could use less regularization on that model, but then the small sample size will cause you to overfit. Seems like we are caught between a rock and a hard place. To solve this problem, we can use an X-learner, proposed in the same paper by Kunzela et al.</p>
 </section>
 <section id="x-learner">

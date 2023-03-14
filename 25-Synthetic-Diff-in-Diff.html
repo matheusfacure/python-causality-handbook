@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -588,7 +588,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="synthetic-difference-in-differences">
 <h1>25 - Synthetic Difference-in-Differences<a class="headerlink" href="#synthetic-difference-in-differences" title="Permalink to this headline">#</a></h1>
 <p>In previous chapters, we looked into both Difference-in-Differences and Synthetic Control methods for identifying the treatment effect with panel data (data where we have multiple units observed across multiple time periods). It turns out we can merge both approaches into a single estimator. This new Synthetic Difference-in-Differences estimation procedure manages to exploit advantages of both methods while also increasing the precision (decreasing the error bars) of the treatment effect estimate.</p>
-<p>We will discuss Synthetic Difference-in-Difference mostly in the case of <strong>block treatment assignment</strong>. This means we observe multiple units across time and, at the <strong>same</strong> time, some units are treated while other units remain untreated. We can visualize this by a matrix of treatment assignments <span class="math notranslate nohighlight">\(D\)</span>, where the <strong>columns of the matrix are units</strong> and <strong>rows of the matrix are time periods</strong>.</p>
+<p>We will discuss Synthetic Difference-in-Differences mostly in the case of <strong>block treatment assignment</strong>. This means we observe multiple units across time and, at the <strong>same</strong> time, some units are treated while other units remain untreated. We can visualize this by a matrix of treatment assignments <span class="math notranslate nohighlight">\(D\)</span>, where the <strong>columns of the matrix are units</strong> and <strong>rows of the matrix are time periods</strong>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 D = \begin{bmatrix}
@@ -610,7 +610,7 @@ D = \begin{bmatrix}
     0 &amp; 0 &amp; 0 &amp; \dots &amp; 0 &amp; 1 \\
 \end{bmatrix}
 \end{split}\]</div>
-<p>Notice that here we are only talking about the case where all treated units get the treatment <strong>at the same point in time</strong>. In the end, we will discuss how to handle the <strong>staggered addoption treatment assignment</strong>, where the treatment is gradually rolled out to units, causing them to get it at different points in time. The only thing we’ll require in that design is that, once a unit is treated, it doesn’t roll back to being untreated.</p>
+<p>Notice that here we are only talking about the case where all treated units get the treatment <strong>at the same point in time</strong>. In the end, we will discuss how to handle <strong>staggered addoption treatment assignment</strong>, where the treatment is gradually rolled out to units, causing them to get it at different points in time. The only thing we’ll require in that design is that, once a unit is treated, it doesn’t roll back to being untreated.</p>
 <p>Back to the simple case, where we have all units treated at the same time, we can simplify the treatment assignment matrix to four blocks, each represented by another matrix. In general, as we move down the matrix, we are moving forward in time. We will also group the treated units to the right of the matrix. As a result, the first block in our matrix (top left) correspond to the control units prior to the treatment period; the second one (top right) corresponds to the treated units prior to the treatment period; the third block (bottom left) contains the control units after the treatment period and the fourth block (bottom right) is the treated unit after the treatment period. The treatment indicator is zero everywhere except for the block with the treated units after the treatment period.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -629,7 +629,7 @@ Y = \begin{bmatrix}
 \end{split}\]</div>
 <p>Again, notice how the post-treatment period is on the bottom and the treated units are to the right.</p>
 <p>In our example of estimating the effect of Proposition 99, the outcome <span class="math notranslate nohighlight">\(Y\)</span> is cigarette sales. We use <span class="math notranslate nohighlight">\(pre\)</span> and <span class="math notranslate nohighlight">\(post\)</span> to represent the period prior and after the treatment respectively and <span class="math notranslate nohighlight">\(co\)</span> and <span class="math notranslate nohighlight">\(tr\)</span> to represent the control and treated unit respectively.</p>
-<p>We will use the above matrix representation whenever we talk about estimating the synthetic control weights, but there is also another data representation which is useful, especially if we are talking about DiD. In this representation, we have a table with 5 columns: one representing the units, one representing the time periods, the outcome column and two boolean columns flaggin the treated units and the treatment period. The number of rows in this table is the number of units <span class="math notranslate nohighlight">\(N\)</span> times the number of periods <span class="math notranslate nohighlight">\(T\)</span>. Here you can see what it looks like for the Proposition 99 data:</p>
+<p>We will use the above matrix representation whenever we talk about estimating the synthetic control weights, but there is also another data representation which is useful, especially if we are talking about DiD. In this representation, we have a table with 5 columns: one representing the units, one representing the time periods, the outcome column and two boolean columns flagging the treated units and the treatment period. The number of rows in this table is the number of units <span class="math notranslate nohighlight">\(N\)</span> times the number of periods <span class="math notranslate nohighlight">\(T\)</span>. Here you can see what it looks like for the Proposition 99 data:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -913,7 +913,7 @@ Y = \begin{bmatrix}
     \pmb{Y}(0)_{post, co} &amp; \pmb{Y}(1)_{post, tr} \\
 \end{bmatrix}
 \end{split}\]</div>
-<p>Our goal is to estimate the <span class="math notranslate nohighlight">\(ATT =  \pmb{Y}(1)_{post, tr} -  \pmb{Y}(0)_{post, tr}\)</span>. For that, we need to somehow estimate the missing potential outcome <span class="math notranslate nohighlight">\(\pmb{Y}(0)_{post, tr}\)</span>. In words, we need to know what would have happened to the treated unit at the post-treatment period had it not been treated. With that in mind, a good place to start is by reviewing both Diff-in-Diff and Synthetic Control. At first, it looks like they are each doing very different things to estimate that missing potential outcome. Combining them sure feels weird. However, both methods have more in common than we might think.</p>
+<p>Our goal is to estimate the <span class="math notranslate nohighlight">\(ATT =  \pmb{Y}(1)_{post, tr} -  \pmb{Y}(0)_{post, tr}\)</span>. For that, we need to somehow estimate the missing potential outcome <span class="math notranslate nohighlight">\(\pmb{Y}(0)_{post, tr}\)</span>. In words, we need to know what would have happened to the treated unit in the post-treatment period had it not been treated. With that in mind, a good place to start is by reviewing both Diff-in-Diff and Synthetic Control. At first, it looks like they are each doing very different things to estimate that missing potential outcome. Combining them sure feels weird. However, both methods have more in common than we might think.</p>
 <section id="diff-in-diff-revisited">
 <h2>Diff-in-Diff Revisited<a class="headerlink" href="#diff-in-diff-revisited" title="Permalink to this headline">#</a></h2>
 <p>In the Diff-in-Diff chapter, we got the treatment effect by estimating the following linear model.</p>
@@ -946,13 +946,13 @@ Y_{it} = \beta_0 + \beta_1 Post_t + \beta_2 Treated_i + \beta_3 Treated_i  Post_
 
 <span class="n">pre_treat_y</span> <span class="o">=</span> <span class="n">did_model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;Intercept&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">did_model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;treated[T.True]&quot;</span><span class="p">]</span>
 
-<span class="n">post_treat_y1</span> <span class="o">=</span> <span class="n">post_control_y</span> <span class="o">+</span> <span class="n">did_model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;treated[T.True]&quot;</span><span class="p">]</span>
+<span class="n">post_treat_y0</span> <span class="o">=</span> <span class="n">post_control_y</span> <span class="o">+</span> <span class="n">did_model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;treated[T.True]&quot;</span><span class="p">]</span>
 
-<span class="n">post_treat_y0</span> <span class="o">=</span> <span class="n">post_treat_y1</span> <span class="o">+</span> <span class="n">did_model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;after_treatment[T.True]:treated[T.True]&quot;</span><span class="p">]</span>
+<span class="n">post_treat_y1</span> <span class="o">=</span> <span class="n">post_treat_y0</span> <span class="o">+</span> <span class="n">did_model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;after_treatment[T.True]:treated[T.True]&quot;</span><span class="p">]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">pre_year</span><span class="p">,</span> <span class="n">post_year</span><span class="p">],</span> <span class="p">[</span><span class="n">pre_control_y</span><span class="p">,</span> <span class="n">post_control_y</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Control&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">pre_year</span><span class="p">,</span> <span class="n">post_year</span><span class="p">],</span> <span class="p">[</span><span class="n">pre_treat_y</span><span class="p">,</span> <span class="n">post_treat_y1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">pre_year</span><span class="p">,</span> <span class="n">post_year</span><span class="p">],</span> <span class="p">[</span><span class="n">pre_treat_y</span><span class="p">,</span> <span class="n">post_treat_y0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;California&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">pre_year</span><span class="p">,</span> <span class="n">post_year</span><span class="p">],</span> <span class="p">[</span><span class="n">pre_treat_y</span><span class="p">,</span> <span class="n">post_treat_y0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">pre_year</span><span class="p">,</span> <span class="n">post_year</span><span class="p">],</span> <span class="p">[</span><span class="n">pre_treat_y</span><span class="p">,</span> <span class="n">post_treat_y1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;California&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1988</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">140</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Proposition 99&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;DiD Estimation&quot;</span><span class="p">)</span>
@@ -983,10 +983,10 @@ Y_{it} = \beta_0 + \beta_1 Post_t + \beta_2 Treated_i + \beta_3 Treated_i  Post_
 <img alt="_images/25-Synthetic-Diff-in-Diff_11_0.png" src="_images/25-Synthetic-Diff-in-Diff_11_0.png" />
 </div>
 </div>
-<p>The problem of non-parallel trends is where Cynthetic Control comes into play in the Synthetic Diff-in-Diff model. But we are getting ahead of ourselves. Regardless of DiD being a valid model for the data above, what is interesting about it is that we can recast it into the Two-Way Fixed-Effects formulation. To frame DiD like this, we fit unit (<span class="math notranslate nohighlight">\(\alpha_i\)</span>) and time (<span class="math notranslate nohighlight">\(\beta_t\)</span>) averages, alongside the treatment indicator.</p>
+<p>The problem of non-parallel trends is where Synthetic Control comes into play in the Synthetic Diff-in-Diff model. But we are getting ahead of ourselves. Regardless of DiD being a valid model for the data above, what is interesting about it is that we can recast it into the Two-Way Fixed-Effects formulation. To frame DiD like this, we fit unit (<span class="math notranslate nohighlight">\(\alpha_i\)</span>) and time (<span class="math notranslate nohighlight">\(\beta_t\)</span>) averages, alongside the treatment indicator.</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\tau}^{did} = \underset{\mu, \alpha, \beta, \tau}{argmin} \bigg\{ \sum_{n=1}^N \sum_{t=1}^T \big(Y_{it} - (\mu + \alpha_i + \beta_t + \tau D_{it}\big)^2 \bigg\}
+\hat{\tau}^{did} = \underset{\mu, \alpha, \beta, \tau}{argmin} \bigg\{ \sum_{i=1}^N \sum_{t=1}^T \big(Y_{it} - (\mu + \alpha_i + \beta_t + \tau D_{it}\big)^2 \bigg\}
 \]</div>
 <p>In this formulation, the unit effects capture the difference in intercepts for each unit while the time effects capture the general trend across both treated and control units. To implement this, we could either add time and unit dummies to the model or demean the data. In this process, we subtract the average across both time and units from both treatment and outcome variables:</p>
 <div class="math notranslate nohighlight">
@@ -1043,8 +1043,8 @@ Y_{it} = \beta_0 + \beta_1 Post_t + \beta_2 Treated_i + \beta_3 Treated_i  Post_
 \hat{w}^{sc} = \underset{w}{\mathrm{argmin}} \ ||\pmb{\bar{y}}_{pre, tr} - \pmb{Y}_{pre, co} \pmb{w}_{co}||^2_2 \\
 \text{s.t } \ \sum w_i = 1 \text{ and } \ w_i &gt; 0 \ \forall \ i
 \end{split}\]</div>
-<p>where the outcome <span class="math notranslate nohighlight">\(\pmb{Y}_{pre, co}\)</span> is a <span class="math notranslate nohighlight">\(T_{pre}\)</span> by <span class="math notranslate nohighlight">\(N_{co}\)</span> matrix, where the columns are the units and the rows are the time periods. <span class="math notranslate nohighlight">\(\pmb{w}_{co}\)</span> is a <span class="math notranslate nohighlight">\(N_{co}\)</span> by 1 column vector, with one entry for each unit. Finally, <span class="math notranslate nohighlight">\(\pmb{\bar{y}}_{pre, tr}\)</span> is a <span class="math notranslate nohighlight">\(T_{pre}\)</span> by 1 column vector, where each entry is the time average of the treated units in the pre-treatment period. This is why we sometimes call Synthetic Control a horizontal regression. In most regression problems, the units are the rows of the matrix, but here, they are the columns. Hence, we are regressing the average outcome of the treated units on the control units.</p>
-<p>Once we find the weights that solves the problem above, we can multiply them by the control units at all time periods to get a synthetic control for the treated unit:</p>
+<p>where the outcome <span class="math notranslate nohighlight">\(\pmb{Y}_{pre, co}\)</span> is a <span class="math notranslate nohighlight">\(T_{pre}\)</span> by <span class="math notranslate nohighlight">\(N_{co}\)</span> matrix, where the columns are the units and the rows are the time periods. <span class="math notranslate nohighlight">\(\pmb{w}_{co}\)</span> is a <span class="math notranslate nohighlight">\(N_{co}\)</span> by 1 column vector, with one entry for each unit. Finally, <span class="math notranslate nohighlight">\(\pmb{\bar{y}}_{pre, tr}\)</span> is a <span class="math notranslate nohighlight">\(T_{pre}\)</span> by 1 column vector, where each entry is the time average of the treated units in the pre-treatment period. This is why we sometimes call Synthetic Control a horizontal regression. In most regression problems, the units are the rows of the matrix, but here they are the columns. Hence, we are regressing the average outcome of the treated units on the control units.</p>
+<p>Once we find the weights that solve the problem above, we can multiply them by the control units at all time periods to get a synthetic control for the treated unit:</p>
 <div class="math notranslate nohighlight">
 \[
 \pmb{y}_{sc} = \pmb{Y}_{co}\hat{\pmb{w}}^{sc}
@@ -1107,9 +1107,9 @@ Y_{it} = \beta_0 + \beta_1 Post_t + \beta_2 Treated_i + \beta_3 Treated_i  Post_
 <p>Interestingly enough, we can also recast the Synthetic Control estimator as solving the following optimization problem, which is quite similar to the Two-Way Fixed-Effects formulation we used for Diff-in-Diff</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\tau}^{sc} = \underset{\beta, \tau}{argmin}  \bigg\{ \sum_{n=1}^N \sum_{t=1}^T \big(Y_{it} - \beta_t - \tau D_{it}\big)^2 \hat{w}^{sc}_i \bigg\}
+\hat{\tau}^{sc} = \underset{\beta, \tau}{argmin}  \bigg\{ \sum_{i=1}^N \sum_{t=1}^T \big(Y_{it} - \beta_t - \tau D_{it}\big)^2 \hat{w}^{sc}_i \bigg\}
 \]</div>
-<p>where the <span class="math notranslate nohighlight">\(\hat{w}^{sc}_i\)</span> weights for the control units are estimated from the optimization problem we saw earlier. For the treated unit,  the weights are simply <span class="math notranslate nohighlight">\(1/N_{tr}\)</span> (unifor weighting).</p>
+<p>where the <span class="math notranslate nohighlight">\(\hat{w}^{sc}_i\)</span> weights for the control units are estimated from the optimization problem we saw earlier. For the treated unit,  the weights are simply <span class="math notranslate nohighlight">\(1/N_{tr}\)</span> (uniform weighting).</p>
 <p>Notice the difference between SC and DiD here. First, Synthetic Control adds unit weights <span class="math notranslate nohighlight">\(\hat{w}^{sc}_i\)</span> to the equation. Second, we have time fixed effects <span class="math notranslate nohighlight">\(\beta_t\)</span> but no unit fixed effect <span class="math notranslate nohighlight">\(\alpha_i\)</span>, nor an overall intercept  <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 <p>To verify that these two formulations are actually equivalent, here is the code for it, which yields the exact same <span class="math notranslate nohighlight">\(ATT\)</span> estimate.</p>
 <div class="cell docutils container">
@@ -1152,24 +1152,24 @@ Y_{it} = \beta_0 + \beta_1 Post_t + \beta_2 Treated_i + \beta_3 Treated_i  Post_
 <p>Before we jump right into the Synthetic Diff-in-Diff estimator, let me just reproduce the same equations we saw earlier for SC and DiD, which will ease the comparison.</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\tau}^{sc} = \underset{\beta, \tau}{argmin}  \bigg\{ \sum_{n=1}^N \sum_{t=1}^T \big(Y_{it} - \beta_t - \tau D_{it}\big)^2 \hat{w}^{sc}_i \bigg\}
+\hat{\tau}^{sc} = \underset{\beta, \tau}{argmin}  \bigg\{ \sum_{i=1}^N \sum_{t=1}^T \big(Y_{it} - \beta_t - \tau D_{it}\big)^2 \hat{w}^{sc}_i \bigg\}
 \]</div>
 <div class="math notranslate nohighlight">
 \[
-\hat{\tau}^{did} = \underset{\mu, \alpha, \beta, \tau}{argmin} \bigg\{ \sum_{n=1}^N \sum_{t=1}^T \big(Y_{it} - (\mu + \alpha_i + \beta_t + \tau D_{it}\big)^2 \bigg\}
+\hat{\tau}^{did} = \underset{\mu, \alpha, \beta, \tau}{argmin} \bigg\{ \sum_{i=1}^N \sum_{t=1}^T \big(Y_{it} - (\mu + \alpha_i + \beta_t + \tau D_{it}\big)^2 \bigg\}
 \]</div>
-<p>Next, just like I promised, we can easily merge the equations above into one which will contains elements from both of them:</p>
+<p>Next, just like I promised, we can easily merge the equations above into one which will contain elements from both of them:</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\tau}^{sdid} = \underset{\mu, \alpha, \beta, \tau}{argmin}  \bigg\{ \sum_{n=1}^N \sum_{t=1}^T \big(Y_{it} - (\mu + \alpha_i + \beta_t + \tau D_{it}\big)^2 \hat{w}^{sdid}_i \hat{\lambda}^{sdid}_t \bigg\}
+\hat{\tau}^{sdid} = \underset{\mu, \alpha, \beta, \tau}{argmin}  \bigg\{ \sum_{i=1}^N \sum_{t=1}^T \big(Y_{it} - (\mu + \alpha_i + \beta_t + \tau D_{it}\big)^2 \hat{w}^{sdid}_i \hat{\lambda}^{sdid}_t \bigg\}
 \]</div>
-<p>As you can see, we’ve added back the <span class="math notranslate nohighlight">\(\alpha_i\)</span> unit fixed effects. We’ve also kept the unit weights <span class="math notranslate nohighlight">\(\hat{w}_i\)</span>. But there is something new, which is the time weights <span class="math notranslate nohighlight">\(\hat{\lambda}_t\)</span>. Don’t worry. There is nothing fancy about them. Remember how the unit weights <span class="math notranslate nohighlight">\(w_i\)</span> minimized the difference between the control units and the average of treated units? In other words, we use them to match the pre-trend of the treated and control groups. The time weight does the same thing, but for the periods. That is, it minimizes the difference between the pre and post-treated periods.</p>
+<p>As you can see, we’ve added back the <span class="math notranslate nohighlight">\(\alpha_i\)</span> unit fixed effects. We’ve also kept the unit weights <span class="math notranslate nohighlight">\(\hat{w}_i\)</span>. But there is something new, which is the time weights <span class="math notranslate nohighlight">\(\hat{\lambda}_t\)</span>. Don’t worry. There is nothing fancy about them. Remember how the unit weights <span class="math notranslate nohighlight">\(w_i\)</span> minimized the difference between the control units and the average of treated units? In other words, we use them to match the pre-trend of the treated and control groups. The time weight does the same thing, but for the periods. That is, it minimizes the difference between the pre and post-treated periods for the controls.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \hat{\lambda}^{sdid} = \underset{\lambda}{\mathrm{argmin}} \ ||\bar{\pmb{y}}_{post, co} - (\pmb{\lambda}_{pre} \pmb{Y}_{pre, co} +  \lambda_0)||^2_2 \\
 \text{s.t } \ \sum \lambda_t = 1 \text{ and } \ \lambda_t &gt; 0 \ \forall \ t
 \end{split}\]</div>
-<p>Again, <span class="math notranslate nohighlight">\(\pmb{Y}_{pre, co}\)</span> is a <span class="math notranslate nohighlight">\(T_{pre}\)</span> by <span class="math notranslate nohighlight">\(N_{co}\)</span> matrix of outcomes where the rows represent time periods and the columns represent the units. But now <span class="math notranslate nohighlight">\(\bar{\pmb{y}}_{post, co}\)</span> is a 1 by <span class="math notranslate nohighlight">\(N_{co}\)</span> row vector, where each entry is the time average outcome for that control unit in the post-treatment period. Finally, <span class="math notranslate nohighlight">\(\pmb{\lambda}_{pre}\)</span> is a 1 by <span class="math notranslate nohighlight">\(T_{pre}\)</span> row vector, with one entry for each pretreatment period. Another way to see this is by noticing that the unit weights <span class="math notranslate nohighlight">\(w\)</span> where multiplying after the outcome matrix <span class="math notranslate nohighlight">\(\pmb{Y}_{pre, co} \pmb{w}_{co}\)</span>. This means we where regressing the average outcome <strong>for each unit</strong> for the treated group on the outcome of the units in the control group. Now, we are flipping that problem on its head, regressing the average outcome <strong>for each post-treatment time period</strong> for the control group on the outcome of the same control units, but on the pre-treatment period.</p>
+<p>Again, <span class="math notranslate nohighlight">\(\pmb{Y}_{pre, co}\)</span> is a <span class="math notranslate nohighlight">\(T_{pre}\)</span> by <span class="math notranslate nohighlight">\(N_{co}\)</span> matrix of outcomes where the rows represent time periods and the columns represent the units. But now <span class="math notranslate nohighlight">\(\bar{\pmb{y}}_{post, co}\)</span> is a 1 by <span class="math notranslate nohighlight">\(N_{co}\)</span> row vector, where each entry is the time average outcome for that control unit in the post-treatment period. Finally, <span class="math notranslate nohighlight">\(\pmb{\lambda}_{pre}\)</span> is a 1 by <span class="math notranslate nohighlight">\(T_{pre}\)</span> row vector, with one entry for each pretreatment period. Another way to see this is by noticing that the unit weights <span class="math notranslate nohighlight">\(w\)</span> were post-multiplying the outcome matrix <span class="math notranslate nohighlight">\(\pmb{Y}_{pre, co} \pmb{w}_{co}\)</span>. This means we were regressing the average outcome <strong>for each unit</strong> of the treated group on the outcome of the units in the control group. Now, we are flipping that problem on its head, regressing the average outcome <strong>for each post-treatment time period</strong> of the control group on the outcome of the same control units, but in the pre-treatment period.</p>
 <p>As for the time weights in the post-treated periods, we just set them to one over the number of post-treated periods <span class="math notranslate nohighlight">\(1/T_{post}\)</span> (again, doing uniform weighting). Notice that we also have an intercept <span class="math notranslate nohighlight">\(\lambda_0\)</span>. We do this to allow the post-treatment period to be above or below all the pre-treatment periods, which is the case in many applications with a clear positive or negative trend.</p>
 <p>If all of this seems a bit abstract, maybe code will help you understand what is going on.</p>
 <div class="cell docutils container">
@@ -1245,7 +1245,7 @@ Name: time_weights, dtype: float64
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;~treated&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;~after_treatment&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;~treated&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;after_treatment&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 
-<span class="n">intercep</span> <span class="o">=</span> <span class="o">-</span><span class="mf">15.023877689807628</span>
+<span class="n">intercept</span> <span class="o">=</span> <span class="o">-</span><span class="mf">15.023877689807628</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">((</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;~treated&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;~after_treatment&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="n">time_weights</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1986</span><span class="p">,</span> <span class="mi">1988</span><span class="p">,</span>
           <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;&quot;&quot; $\lambda_</span><span class="si">{pre}</span><span class="s2"> Y_{pre, co} + \lambda_0$&quot;&quot;&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;~treated&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;after_treatment&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">1988</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span>
@@ -1257,7 +1257,7 @@ Name: time_weights, dtype: float64
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cigarette Sales&quot;</span><span class="p">);</span>
 
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">time_weights</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">time_weights</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\lamba$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">time_weights</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">time_weights</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\lambda$&quot;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Time Weights&quot;</span><span class="p">);</span>
 </pre></div>
@@ -1289,6 +1289,7 @@ Name: time_weights, dtype: float64
     <span class="n">first_diff_std</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span>
                       <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;~</span><span class="si">{</span><span class="n">post_col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                       <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;~</span><span class="si">{</span><span class="n">treat_col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                      <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">year_col</span><span class="p">)</span>
                       <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">state_col</span><span class="p">)</span>
                       <span class="p">[</span><span class="n">outcome_col</span><span class="p">]</span>
                       <span class="o">.</span><span class="n">diff</span><span class="p">()</span>
@@ -1339,7 +1340,7 @@ Name: time_weights, dtype: float64
 </div>
 </div>
 </div>
-<p>First, we calculate <span class="math notranslate nohighlight">\(\zeta\)</span> using the functions we defined earlier and filter out the post-treatment period. Next, we pivot the pre-treatment data to get the <span class="math notranslate nohighlight">\(\bar{\pmb{y}}_{pre, tr}\)</span> matrix of outcomes. Then, we add a column full of ones to the beginning of the <span class="math notranslate nohighlight">\(\bar{\pmb{y}}_{pre, tr}\)</span> matrix. This column will allow us to estimate the intercept. With all of that, we define the optimization objective, which includes the <span class="math notranslate nohighlight">\(L_2\)</span> penalty on the weights. Finally, we toss the intercept away and store the estimated weights in a series.</p>
+<p>First, we calculate <span class="math notranslate nohighlight">\(\zeta\)</span> using the function we defined earlier and filter out the post-treatment period. Next, we pivot the pre-treatment data to get the <span class="math notranslate nohighlight">\(\bar{\pmb{y}}_{pre, tr}\)</span> matrix of outcomes. Then, we add a column full of ones to the beginning of the <span class="math notranslate nohighlight">\(\bar{\pmb{y}}_{pre, tr}\)</span> matrix. This column will allow us to estimate the intercept. With all of that, we define the optimization objective, which includes the <span class="math notranslate nohighlight">\(L_2\)</span> penalty on the weights. Finally, we toss the intercept away and store the estimated weights in a series.</p>
 <p>If we use this code to estimate the unit weights in the Proposition 99 problem, here is the result we get for the first 5 states:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1417,7 +1418,7 @@ Name: unit_weights, dtype: float64
 </div>
 </div>
 <p>This joining process will leave <code class="docutils literal notranslate"><span class="pre">null</span></code> for the unit weights in the treated group and for the time weights in the post-treatment period. Fortunately, because we use uniform weighting in both cases, it is pretty easy to fill out those <code class="docutils literal notranslate"><span class="pre">null</span></code>s. For the time weights, we fill with the average of the post-treatment dummy, which will be <span class="math notranslate nohighlight">\(1/T_{post}\)</span>; for the unit weights, we fill with the average of the treated dummy, which will be <span class="math notranslate nohighlight">\(1/N_{tr}\)</span>. Finally, we multiply both weights together.</p>
-<p>Here is result we get by running this code in the Proposition 99 data:</p>
+<p>Here is the result we get by running this code on the Proposition 99 data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">did_data</span> <span class="o">=</span> <span class="n">join_weights</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">unit_weights</span><span class="p">,</span> <span class="n">time_weights</span><span class="p">,</span>
@@ -1467,7 +1468,7 @@ Name: unit_weights, dtype: float64
       <td>89.800003</td>
       <td>0</td>
       <td>0</td>
-      <td>-4.600041e-14</td>
+      <td>-4.600034e-14</td>
       <td>-1.360835e-16</td>
       <td>0.0</td>
     </tr>
@@ -1478,7 +1479,7 @@ Name: unit_weights, dtype: float64
       <td>95.400002</td>
       <td>0</td>
       <td>0</td>
-      <td>-4.582326e-14</td>
+      <td>-4.582315e-14</td>
       <td>-1.360835e-16</td>
       <td>0.0</td>
     </tr>
@@ -1489,7 +1490,7 @@ Name: unit_weights, dtype: float64
       <td>101.099998</td>
       <td>0</td>
       <td>0</td>
-      <td>-5.274204e-14</td>
+      <td>-5.274190e-14</td>
       <td>-1.360835e-16</td>
       <td>0.0</td>
     </tr>
@@ -1500,7 +1501,7 @@ Name: unit_weights, dtype: float64
       <td>102.900002</td>
       <td>0</td>
       <td>0</td>
-      <td>-5.766365e-14</td>
+      <td>-5.766356e-14</td>
       <td>-1.360835e-16</td>
       <td>0.0</td>
     </tr>
@@ -1511,7 +1512,7 @@ Name: unit_weights, dtype: float64
       <td>108.199997</td>
       <td>0</td>
       <td>0</td>
-      <td>-5.617991e-14</td>
+      <td>-5.617979e-14</td>
       <td>-1.360835e-16</td>
       <td>0.0</td>
     </tr>
@@ -1549,7 +1550,7 @@ Name: unit_weights, dtype: float64
 </tr>
 </table></div></div>
 </div>
-<p>This estimate is much smaller than the one we get with Diff-in-Diff, but that is not surprising. As we’ve already discussed, the Diff-in-Diff estimator is probably biased in this case, since we have pretty good reasons to question the parallel trends assumption. What is perhaps less obvious is why the SDID estimate is smaller than the traditional SC estimate. If go back and look at the SC plot, we can see that cigarette sales in California started to fall below its synthetic control prior to Proposition 99. This is probably due to the fact that traditional Synthetic Control has to match treated and control units in the entire pre-treatment period, causing it to miss one year or the other. This is less of an issue in SDID, since the time weights allow us to focus just on the periods that are more similar to the post-intervention period. In this case, those were precisely the three years anteceding Proposition 99.</p>
+<p>This estimate is much smaller than the one we get with Diff-in-Diff, but that is not surprising. As we’ve already discussed, the Diff-in-Diff estimator is probably biased in this case, since we have pretty good reasons to question the parallel trends assumption. What is perhaps less obvious is why the SDID estimate is smaller than the traditional SC estimate. If we go back and look at the SC plot, we can see that cigarette sales in California started to fall below its synthetic control prior to Proposition 99. This is probably due to the fact that traditional Synthetic Control has to match treated and control units in the entire pre-treatment period, causing it to miss one year or the other. This is less of an issue in SDID, since the time weights allow us to focus just on the periods that are more similar to the post-intervention period. In this case, those were precisely the three years anteceding Proposition 99.</p>
 <p>To grasp what SDID is doing, we can plot the Diff-in-Diff lines for the treated (California) and the SDID Synthetic Control. Notice how we are projecting the trend we see in the synthetic control onto the treated unit to get the counterfactual <span class="math notranslate nohighlight">\(Y(0)_{tr, post}\)</span>. The difference between the two solid purple lines is the estimated <span class="math notranslate nohighlight">\(ATT\)</span>. We start those lines in 1987 to show how the time weights zero out all periods but 1986, 87 and 88. The time weights are also shown in the small plot down below.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -1588,7 +1589,7 @@ Name: unit_weights, dtype: float64
 </div>
 </div>
 <p>The above estimator estimates the <span class="math notranslate nohighlight">\(ATT\)</span> which is the effect of Propostion 99 on California averaged out across all post-treatment time periods. But, from the above plot, it looks like the effect increases over time. What if we want to take that into account? Fortunately, it is very straightforward to do that.</p>
-<p>Before we move on, just a word of caution about the above estimator. You should trust those standard error or confidence intervals, reported by the regression we just ran. They don’t consider the variance in estimating the weights. We will take a look at how to do proper inference briefly, but first, lets see how to deal with effect heterogeneity across time</p>
+<p>Before we move on, just a word of caution about the above estimator. You should <strong>not</strong> trust the standard errors or confidence intervals reported by the regression we just ran. They don’t reflect the variance in estimating the weights. We will take a look at how to do proper inference briefly, but first, let’s see how to deal with effect heterogeneity across time.</p>
 </section>
 <section id="time-effect-heterogeneity-and-staggered-adoption">
 <h2>Time Effect Heterogeneity and Staggered Adoption<a class="headerlink" href="#time-effect-heterogeneity-and-staggered-adoption" title="Permalink to this headline">#</a></h2>
@@ -1602,7 +1603,7 @@ D = \begin{bmatrix}
     0_4 &amp; 0_4 &amp; 1_4 \\
 \end{bmatrix}
 \end{split}\]</div>
-<p>Running SDID with the above matrix would give us the average <span class="math notranslate nohighlight">\(ATT\)</span> across periods 3 and 4. What we can do to estimate the effect on each period individually is simply to partition the problem into two, one for each post-treatment time period. Then, we run SDID on the data where we only keep post-treatment period 3 and again on the data where we only keep post-treatment period 4. That is, we run SDID on each of the following matrix individually.</p>
+<p>Running SDID with the above matrix would give us the average <span class="math notranslate nohighlight">\(ATT\)</span> across periods 3 and 4. What we can do to estimate the effect on each period individually is simply to partition the problem into two, one for each post-treatment time period. Then, we run SDID on the data where we only keep post-treatment period 3 and again on the data where we only keep post-treatment period 4. That is, we run SDID on each of the following matrices individually.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 D_1 = \begin{bmatrix}
@@ -1664,7 +1665,7 @@ D_2 = \begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-15.605398746342221
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-15.605398746342328
 </pre></div>
 </div>
 </div>
@@ -1698,7 +1699,7 @@ D_2 = \begin{bmatrix}
 </div>
 </div>
 <p>As expected, the effect gets bigger as time passes. It starts small, but it gradually increases to what seems like a decrease in consumption of 25 cigarette packs per capita in 2020.</p>
-<p>Conveniently, running multiple SDID will also be important to deal with the staggered adoption case. With staggered addoption design, we have multiple treated units, which get the treatment at different time periods. For example, goin back to our very simple assignment matrix, with 3 units and 4 time periods, let’s say unit 1 never get the treatment, unit 2 gets the treatment at period 4 and unit 3 gets the treatment at period 3. This would result in the following matrix</p>
+<p>Conveniently, running multiple SDID will also be important to deal with the staggered adoption case. With staggered addoption design, we have multiple treated units, which get the treatment at different time periods. For example, going back to our very simple assignment matrix, with 3 units and 4 time periods, let’s say unit 1 never gets the treatment, unit 2 gets the treatment at period 4 and unit 3 gets the treatment at period 3. This would result in the following matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 D = \begin{bmatrix}
@@ -1859,7 +1860,7 @@ ATT:  -16.70142352890003
 </section>
 <section id="placebo-variance-estimation">
 <h2>Placebo Variance Estimation<a class="headerlink" href="#placebo-variance-estimation" title="Permalink to this headline">#</a></h2>
-<p>This chapter is getting a bit too long, but there is one promise we haven’t fulfilled yet. Remember how we said, in the very beginning, that SDID has better precision (lower error bars) when compared to Synthetic Controls? The reason is that the time and unit fixed effects in SDID captures a tone of the variation in the outcome, which in turn, reduces the variance of the estimator.</p>
+<p>This chapter is getting a bit too long, but there is one promise we haven’t fulfilled yet. Remember how we said, in the very beginning, that SDID has better precision (lower error bars) when compared to Synthetic Controls? The reason is that the time and unit fixed effects in SDID capture a ton of the variation in the outcome, which in turn, reduces the variance of the estimator.</p>
 <p>Of course I wouldn’t ask you to take my word for it, so next, we’ll show how to place a confidence interval around the SDID estimate. It turns out there are many solutions to this problem, but only one that fits the case for a single treated unit, which is the case we have here since only California was treated. The idea is to run a series of placebo tests, where we pretend a unit from the control pool is treated, when it actually isn’t. Then, we use SDID to estimate the <span class="math notranslate nohighlight">\(ATT\)</span> of this placebo test and store its result. We re-run this step multiple times, sampling a control unit each time. In the end, we will have an array of placebo <span class="math notranslate nohighlight">\(ATT\)</span>s. The variance of this array is the placebo variance of the SDID effect estimate, which we can use to construct a confidence interval.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2106,7 +2107,7 @@ Standard Error: 11.24193494897581
 </div>
 </div>
 </div>
-<p>Notice how the error for synthetic control is higher than for SDID. Again, that is because SDID captures a lot of the variance in the outcome via its time and unit fixed effect. With this, we fulfill that promise we’ve made earlier. But, before we close, it is worth mentioning that we can also use the same procedure to estimate the variance to make a confidence interval around the effect we’ve estimated for each post-treatment time period. All we need to do is run the code above once for each time period. Just keep in mind that this might take some time to run, even with the parallelization we’ve implemented.</p>
+<p>Notice how the error for synthetic control is higher than for SDID. Again, that is because SDID captures a lot of the variance in the outcome via its time and unit fixed effects. With this, we fulfill the promise we made earlier. But, before we close, it is worth mentioning that we can also use the same procedure to estimate the variance to make a confidence interval around the effect we’ve estimated for each post-treatment time period. All we need to do is run the code above once for each time period. Just keep in mind that this might take some time to run, even with the parallelization we’ve implemented.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">standard_errors</span> <span class="o">=</span> <span class="p">{</span><span class="n">year</span><span class="p">:</span> <span class="n">estimate_se</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;~after_treatment|(year==</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">),</span> 
@@ -2118,6 +2119,33 @@ Standard Error: 11.24193494897581
                    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1989</span><span class="p">,</span> <span class="mi">2001</span><span class="p">)}</span>
 
 <span class="n">standard_errors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">standard_errors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [48],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">standard_errors</span> <span class="o">=</span> <span class="p">{</span><span class="n">year</span><span class="p">:</span> <span class="n">estimate_se</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;~after_treatment|(year==</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">),</span> 
+<span class="g g-Whitespace">      </span><span class="mi">2</span>                                      <span class="n">outcome_col</span><span class="o">=</span><span class="s2">&quot;cigsale&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                                      <span class="n">year_col</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>                                      <span class="n">state_col</span><span class="o">=</span><span class="s2">&quot;state&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                                      <span class="n">treat_col</span><span class="o">=</span><span class="s2">&quot;treated&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>                                      <span class="n">post_col</span><span class="o">=</span><span class="s2">&quot;after_treatment&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>                    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1989</span><span class="p">,</span> <span class="mi">2001</span><span class="p">)}</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">standard_errors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">standard_errors</span><span class="p">)</span>
+
+<span class="nn">Input In [48],</span> in <span class="ni">&lt;dictcomp&gt;</span><span class="nt">(.0)</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">standard_errors</span> <span class="o">=</span> <span class="p">{</span><span class="n">year</span><span class="p">:</span> <span class="n">estimate_se</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;~after_treatment|(year==</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">),</span> 
+<span class="g g-Whitespace">      </span><span class="mi">2</span>                                      <span class="n">outcome_col</span><span class="o">=</span><span class="s2">&quot;cigsale&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                                      <span class="n">year_col</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>                                      <span class="n">state_col</span><span class="o">=</span><span class="s2">&quot;state&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                                      <span class="n">treat_col</span><span class="o">=</span><span class="s2">&quot;treated&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>                                      <span class="n">post_col</span><span class="o">=</span><span class="s2">&quot;after_treatment&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>                    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1989</span><span class="p">,</span> <span class="mi">2001</span><span class="p">)}</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">standard_errors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">standard_errors</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;estimate_se&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -2143,7 +2171,7 @@ Standard Error: 11.24193494897581
 </section>
 <section id="key-concepts">
 <h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Permalink to this headline">#</a></h2>
-<p>Synthetic-Diff-in-Diff (SDID) draws inspiration from both Diff-in-Diff and Synthetic Control, which brings advantages from both models.  Like SC, SDID still works with multiple periods when pre-treatment trends are not parallel. However, unlike SC, SDID estimate unit weights to build a control unit which is only parallel to the treated group (it doesn’t have to match its level). From DID, SDID leverages time and unit fixed effect, which helps to explain a way a lot of the variance in the outcome, which in turn reduces the variance of the SDID estimator. Synthetic-Diff-in-Diff also introduces some new ideas of its own. First, there is an additional <span class="math notranslate nohighlight">\(L2\)</span> penalty in the optimization of the unit weights which makes them more spread out across control units. Second, SDID allows for an intercept (and hence, extrapolation) when building sutch weights. Third, SDID introduces the use of time weights, which are not present in neither DID nor SC. For this reason, I would’t say SDID is just merging SC and SDID. It is rather building something new, inspired by these two approaches. I also wouldn’t say that SDID is better or worse than traditional Synthetic Control. Each of them have different properties that might be appropriate or not, depending on the situation. For example, you might find yourself in a situation where allowing the extrapolations from SDID is dangerous. In which case, SC might be a good alternative.</p>
+<p>Synthetic-Diff-in-Diff (SDID) draws inspiration from both Diff-in-Diff and Synthetic Control, which brings advantages from both models.  Like SC, SDID still works with multiple periods when pre-treatment trends are not parallel. However, unlike SC, SDID estimates unit weights to build a control unit which is only parallel to the treated group (it doesn’t have to match its level). From DID, SDID leverages time and unit fixed effects, which helps to explain a lot of the variance in the outcome, which in turn reduces the variance of the SDID estimator. Synthetic-Diff-in-Diff also introduces some new ideas of its own. First, there is an additional <span class="math notranslate nohighlight">\(L2\)</span> penalty in the optimization of the unit weights which makes them more spread out across control units. Second, SDID allows for an intercept (and hence, extrapolation) when building such weights. Third, SDID introduces the use of time weights, which are not present in either DID nor SC. For this reason, I wouldn’t say SDID is just merging SC and SDID. It is rather building something new, inspired by these two approaches. I also wouldn’t say that SDID is better or worse than traditional Synthetic Control. Each of them have different properties that might be appropriate or not, depending on the situation. For example, you might find yourself in a situation where allowing the extrapolations from SDID is dangerous. In which case, SC might be a good alternative.</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
@@ -2165,16 +2193,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-rasputin-py"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "conda-env-rasputin-py",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-rasputin-py'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

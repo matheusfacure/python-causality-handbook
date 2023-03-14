@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -766,11 +766,11 @@ Sales_i = \alpha + \tau price_i + \beta_1 temp_i + \beta_2 temp^2_i + \beta_3 co
 <p><span class="math notranslate nohighlight">\(
 \hat{Y} = \hat{\beta_1} X_1 + \hat{\beta_2} X_2
 \)</span></p>
-<p>where <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_1\)</span> are feature matrices (one column per feature and one row per observation) and <span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span> and <span class="math notranslate nohighlight">\(\hat{\beta_2}\)</span> are row vectors. You can get the exact same <span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span> parameter by doing the following steps</p>
+<p>where <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span> are feature matrices (one column per feature and one row per observation) and <span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span> and <span class="math notranslate nohighlight">\(\hat{\beta_2}\)</span> are row vectors. You can get the exact same <span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span> parameter by doing the following steps</p>
 <ol class="simple">
 <li><p>regress the outcome <span class="math notranslate nohighlight">\(y\)</span> on the second set of features <span class="math notranslate nohighlight">\(\hat{y^*} = \hat{\gamma_1} X_2\)</span></p></li>
 <li><p>regress the first set of features on the second <span class="math notranslate nohighlight">\(\hat{X_1} = \hat{\gamma_2} X_2\)</span></p></li>
-<li><p>obtain the residuals <span class="math notranslate nohighlight">\(\tilde{X}_1 = X_1 - \hat{X_1}\)</span> and <span class="math notranslate nohighlight">\(\tilde{y}_1 = y_1 - \hat{y^*}\)</span></p></li>
+<li><p>obtain the residuals <span class="math notranslate nohighlight">\(\tilde{X}_1 = X_1 - \hat{X_1}\)</span> and <span class="math notranslate nohighlight">\(\tilde{y}_1 = y - \hat{y^*}\)</span></p></li>
 <li><p>regress the residuals of the outcome on the residuals of the features <span class="math notranslate nohighlight">\(\tilde{y} = \hat{\beta_1} \tilde{X}_1\)</span></p></li>
 </ol>
 <p>This is insanely cool. Here, we have a generic representation, but notice that one set of features can be just the treatment variable. This means you can estimate all the nuisance parameters separately. First, regress the outcome on the features to get outcome residuals. Then, regress the treatment on the features to get treatment residuals. Finally, regress the outcome residuals on the feature residuals. This will yield the exact same estimate as if we regress the outcome on the features and treatment at the same time.</p>
@@ -843,8 +843,8 @@ Y_i - \hat{M}_y(X_i)
 <p>Where <span class="math notranslate nohighlight">\(\hat{M}_y(X_i)\)</span> is estimating <span class="math notranslate nohighlight">\(E[Y|X]\)</span> and  <span class="math notranslate nohighlight">\(\hat{M}_t(X_i)\)</span> is estimating  <span class="math notranslate nohighlight">\(E[T|X]\)</span>.</p>
 <p>The idea is that ML models are super flexible, hence, they can capture interactions and non linearities when estimating the <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(T\)</span> residuals while still maintaining a FWL style orthogonalisation. This means we don’t have to make any parametric assumption about the relationship between the covariates <span class="math notranslate nohighlight">\(X\)</span> and the outcome <span class="math notranslate nohighlight">\(Y\)</span> nor between the covariates and the treatment in order to get the correct treatment effect. Provided we don’t have unobserved confounders, we can recover the ATE with the following orthogonalisation procedure:</p>
 <ol class="simple">
-<li><p>Estimate the outcome <span class="math notranslate nohighlight">\(Y\)</span> with features <span class="math notranslate nohighlight">\(X\)</span> using a flexible ML regression model M_y.</p></li>
-<li><p>Estimate the treatment <span class="math notranslate nohighlight">\(T\)</span> with features <span class="math notranslate nohighlight">\(X\)</span> using a flexible ML regression model M_t.</p></li>
+<li><p>Estimate the outcome <span class="math notranslate nohighlight">\(Y\)</span> with features <span class="math notranslate nohighlight">\(X\)</span> using a flexible ML regression model <span class="math notranslate nohighlight">\(M_y\)</span>.</p></li>
+<li><p>Estimate the treatment <span class="math notranslate nohighlight">\(T\)</span> with features <span class="math notranslate nohighlight">\(X\)</span> using a flexible ML regression model <span class="math notranslate nohighlight">\(M_t\)</span>.</p></li>
 <li><p>Obtain the residuals <span class="math notranslate nohighlight">\(\tilde{Y} = Y - M_y(X)\)</span> and <span class="math notranslate nohighlight">\(\tilde{T} = T - M_t(X)\)</span></p></li>
 <li><p>regress the residuals of the outcome on the residuals of the treatment <span class="math notranslate nohighlight">\(\tilde{Y} = \alpha + \tau \tilde{T}\)</span></p></li>
 </ol>
@@ -856,7 +856,7 @@ Y_i - \hat{M}_y(X_i)
 <p>Now to see the problem in overfitting <span class="math notranslate nohighlight">\(M_t\)</span>, notice that it will explain more of the variance in <span class="math notranslate nohighlight">\(T\)</span> than it should. As a result, the treatment residual will have less variance than it should. If there is less variance in the treatment, the variance of the final estimator will be high. It is as if the treatment is the same for almost everyone. And if everyone has the same treatment level, it becomes very difficult to estimate what would happen under different treatment levels. As a side note, this will also happen when <span class="math notranslate nohighlight">\(T\)</span> is a deterministic function of <span class="math notranslate nohighlight">\(X\)</span>, meaning positivity is being violated.</p>
 <p>Those are the problems we have when using ML models, but how can we correct them? The answer lies in what we will call cross prediction and out-of-fold residuals.</p>
 <p><img alt="img" src="_images/cross-prediction.png" /></p>
-<p>We will split out data into K parts of equal size. Then, for each part k, we will estimate the ML models on all the other K-k samples and make the residuals on the k part. Notice that these residuals are made using out-of-fold prediction. We fit the model on one part of the data, but make the predictions and residuals on another part.</p>
+<p>We will split out data into K parts of equal size. Then, for each part k, we will estimate the ML models on all the other K-1 samples and make the residuals on the k part. Notice that these residuals are made using out-of-fold prediction. We fit the model on one part of the data, but make the predictions and residuals on another part.</p>
 <p>so even if the model does overfit, it won’t drive the residuals to zero artificially. Finally, we combine the predictions on all the K parts to estimate the final causal model <span class="math notranslate nohighlight">\(\tilde{Y} = \alpha + \tau \tilde{T}\)</span>.</p>
 <p>OK, we’ve covered a lot of ground and it might be getting hard to keep up without an example. To go along with all that theory, let’s go through a step by step implementation of the Double/Debiased ML. As we do so, I’ll take the opportunity to explain what each step is doing.</p>
 <p>First, let’s estimate the nuisance relationship using ML models. I’ll start with the treatment model <span class="math notranslate nohighlight">\(M_t\)</span>. We will use a LGBM model to predict prices from the covariates <code class="docutils literal notranslate"><span class="pre">temp</span></code>, <code class="docutils literal notranslate"><span class="pre">weekday</span></code> and <code class="docutils literal notranslate"><span class="pre">cost</span></code>. These predictions will be cross predictions, which we can get from using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s <code class="docutils literal notranslate"><span class="pre">cross_val_predict</span></code> function. I’m also adding the average <span class="math notranslate nohighlight">\(\hat{\mu_t}\)</span> to the residuals just for visualization purposes.</p>

@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -585,8 +585,8 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="challenges-with-effect-heterogeneity-and-nonlinearity">
 <h1>23 - Challenges with Effect Heterogeneity and Nonlinearity<a class="headerlink" href="#challenges-with-effect-heterogeneity-and-nonlinearity" title="Permalink to this headline">#</a></h1>
-<p>Pretidting treatment effect at the unit level is extremely difficult due to the lack of ground truth. Since we only observe one potential outcome <span class="math notranslate nohighlight">\(T(t)\)</span>, we can’t directly estimate it. Rather, we have to relly on target tranformations (that can also be viwed as cleverly designed loss function) to estimate conditional treatment effects only in expecation. But that is not the only chalange. Because treatment effects are so slipery, its estimators are often quite noisy. This has huge practicle consequences for applications where we want to segment units by their treatment effect, like when we want to do personalized treatment allocation.</p>
-<p>We will now see that, sometimes, we can get a better treatment effect segmentation if we don’t directly try to estimate CATE, but istead focus on another proxy target, which usually has less variance. A common case when this happens is when the outcome variable of interest <span class="math notranslate nohighlight">\(Y\)</span> is binary.</p>
+<p>Predicting treatment effects at the unit level is extremely difficult due to the lack of ground truth. Since we only observe one potential outcome <span class="math notranslate nohighlight">\(T(t)\)</span>, we can’t directly estimate it. Rather, we have to rely on target transformations (that can also be viewed as cleverly designed loss function) to estimate conditional treatment effects only in expectation. But that is not the only challenge. Because treatment effects are so slippery, its estimators are often quite noisy. This has huge practical consequences for applications where we want to segment units by their treatment effect, like when we want to do personalized treatment allocation.</p>
+<p>We will now see that, sometimes, we can get a better treatment effect segmentation if we don’t directly try to estimate CATE, but instead focus on another proxy target, which usually has less variance. A common case when this happens is when the outcome variable of interest <span class="math notranslate nohighlight">\(Y\)</span> is binary.</p>
 <section id="treatment-effects-on-binary-outcomes">
 <h2>Treatment Effects on Binary Outcomes<a class="headerlink" href="#treatment-effects-on-binary-outcomes" title="Permalink to this headline">#</a></h2>
 <div class="cell tag_hide-input docutils container">
@@ -653,7 +653,7 @@ title="Print to PDF"
 </div>
 </div>
 <p>Here is an incredibly common problem you might face if you find yourself working for a tech company: management wants to boost customer conversion to your product by means of some sort of nudge. For example, they might want to increase the number of app installs by offering a 10 BRL voucher for customers to make in-app purchases. Or offer a free ride the first time you use their ride sharing app. Or decrease transaction fees in the first three months in their investment platform. Since nudges are often expensive, they would love to not have to do it for everyone. Rather, it would be great if we could use the conversion boosting nudge only on those customers who are most sensitive to it.</p>
-<p>In causal inference terms, you can probably tell by now that this type of business problem falls unde the treatment effect heterogeneity (TEH) umbrela. Specifically, you have a costly nudge as the treatment <span class="math notranslate nohighlight">\(T\)</span>, conversion as the binary outcome <span class="math notranslate nohighlight">\(Y\)</span> and customer specific pre-treatment features as <span class="math notranslate nohighlight">\(X\)</span>. You could then estimate the conditional average treatment effect <span class="math notranslate nohighlight">\(E[Y_1 - Y_0|X]\)</span> (or <span class="math notranslate nohighlight">\(E[Y'(T)|X]\)</span> if the treatment is continuous)$ with something like Double/Debiased ML and finally target with the nudge only the customers with the highest estimated treatment effect. In business terms, you would be personalizing your conversion strategy. You would be finding a segment of customers with high conversion incrementality and using nudges only in them.</p>
+<p>In causal inference terms, you can probably tell by now that this type of business problem falls under the treatment effect heterogeneity (TEH) umbrella. Specifically, you have a costly nudge as the treatment <span class="math notranslate nohighlight">\(T\)</span>, conversion as the binary outcome <span class="math notranslate nohighlight">\(Y\)</span> and customer specific pre-treatment features as <span class="math notranslate nohighlight">\(X\)</span>. You could then estimate the conditional average treatment effect <span class="math notranslate nohighlight">\(E[Y_1 - Y_0|X]\)</span> (or <span class="math notranslate nohighlight">\(E[Y'(T)|X]\)</span> if the treatment is continuous)$ with something like Double/Debiased ML and finally target with the nudge only the customers with the highest estimated treatment effect. In business terms, you would be personalizing your conversion strategy. You would be finding a segment of customers with high conversion incrementality and using nudges only in them.</p>
 <p>However, there is one complication here that makes the TEH approach not so obvious. The fact that the outcome is binary complicates things considerably. Because this is a bit counter intuitive, I rather show what happens first and then explain why it happens.</p>
 </section>
 <section id="simulating-some-data">

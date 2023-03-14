@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -651,9 +651,9 @@ E[Y|Z=1] - E[Y|Z=0] = 0
 </div>
 <p>OK, so we’ve ruled out using the causal effect of the assignment as a way to estimate the causal effect of the treatment. So, how about just using the treatment received?</p>
 <p><span class="math notranslate nohighlight">\(
-ATE = E[Y | push=1] - E[Y | push=0]
+\mathrm{ATE} = E[Y | \mathrm{push}=1] - E[Y | \mathrm{push}=0]
 \)</span></p>
-<p>Once again, we need to think if this is biased or not, or if <span class="math notranslate nohighlight">\(E[Y_0|push=0] = E[Y_0|push=1]\)</span>. Just by looking at the causal graph above, we know it is not the case. We have that unmeasured confounder, income, lurking around, and it is sure to mess things up. As we’ve said earlier, we know that failure in push delivery, in our case, is caused by customers having older phones. Which means that we probably have  <span class="math notranslate nohighlight">\(E[Y_0|push=0] &lt; E[Y_0|push=1]\)</span>. We think this is the case because customers with less money both have older phones which will lead to <span class="math notranslate nohighlight">\(push=0\)</span> and also a lower potential in app purchase <span class="math notranslate nohighlight">\(Y_0\)</span>.</p>
+<p>Once again, we need to think if this is biased or not, or if <span class="math notranslate nohighlight">\(E[Y_0|\mathrm{push}=0] = E[Y_0|\mathrm{push}=1]\)</span>. Just by looking at the causal graph above, we know it is not the case. We have that unmeasured confounder, income, lurking around, and it is sure to mess things up. As we’ve said earlier, we know that failure in push delivery, in our case, is caused by customers having older phones. Which means that we probably have  <span class="math notranslate nohighlight">\(E[Y_0|\mathrm{push}=0] &lt; E[Y_0|\mathrm{push}=1]\)</span>. We think this is the case because customers with less money both have older phones which will lead to <span class="math notranslate nohighlight">\(\mathrm{push}=0\)</span> and also a lower potential in app purchase <span class="math notranslate nohighlight">\(Y_0\)</span>.</p>
 <p>Bummer! We can’t use treatment assigned nor treatment received to estimate our ATE. But fortunately, we know what we can use: Instrumental Variables. Here, treatment assigned is the perfect instrument for the treatment. It is as good as random and it only causes in-app purchase by the virtue of the treatment.</p>
 </section>
 <section id="local-average-treatment-effect-late">
@@ -714,9 +714,9 @@ E[T|Z=1]-E[T|Z=0]=E[T_{i1}-T_{i0}]=P(T_{i1}&gt;T_{i0})
 <p><span class="math notranslate nohighlight">\(
 ATE = \dfrac{E[(Y_{i1}-Y_{i0})|T_{i1}&gt;T_{i0}]P(T_{i1}&gt;T_{i0})}{P(T_{i1}&gt;T_{i0})}=E[(Y_{i1}-Y_{i0})|T_{i1}&gt;T_{i0}]
 \)</span></p>
-<p>That is, the ATE as estimated by IV is the ATE on the subpopulation where <span class="math notranslate nohighlight">\(T_{i1}&gt;T_{i0}\)</span>. And if you think about compliance, which population is this? This is the population where those that get the instrument turned on have the treatment level higher than if they had the instrument turned off. In other words, this is the compiler population. Just so we can remember,</p>
+<p>That is, the ATE as estimated by IV is the ATE on the subpopulation where <span class="math notranslate nohighlight">\(T_{i1}&gt;T_{i0}\)</span>. And if you think about compliance, which population is this? This is the population where those that get the instrument turned on have the treatment level higher than if they had the instrument turned off. In other words, this is the complier population. Just so we can remember,</p>
 <ol class="simple">
-<li><p>Compilers means that <span class="math notranslate nohighlight">\(T_{i1}&gt;T_{i0}\)</span></p></li>
+<li><p>Compliers means that <span class="math notranslate nohighlight">\(T_{i1}&gt;T_{i0}\)</span></p></li>
 <li><p>Never Takers <span class="math notranslate nohighlight">\(T_{i1}=T_{i0}=0\)</span></p></li>
 <li><p>Always Takers <span class="math notranslate nohighlight">\(T_{i1}=T_{i0}=1\)</span></p></li>
 </ol>
@@ -817,7 +817,7 @@ ATE = \dfrac{E[(Y_{i1}-Y_{i0})|T_{i1}&gt;T_{i0}]P(T_{i1}&gt;T_{i0})}{P(T_{i1}&gt
 </tr>
 </table></div></div>
 </div>
-<p>OLS is saying that the treatment effect is BRL 27.60, that is, the push increases in-app purchase by 27.6 reais. However, we have reasons to believe this is a biased estimate. We know that older phones are having trouble in receiving the push, so, probably, richer customers, with newer phones, are the compilers. Since the ones that get the treatment also have more money, we believe this bias is positive and the true impact of the push is lower. In other words, we probably have <span class="math notranslate nohighlight">\(E[Y_0|T=0] &lt; E[Y_0|T=1]\)</span>.</p>
+<p>OLS is saying that the treatment effect is BRL 27.60, that is, the push increases in-app purchase by 27.6 reais. However, we have reasons to believe this is a biased estimate. We know that older phones are having trouble in receiving the push, so, probably, richer customers, with newer phones, are the compliers. Since the ones that get the treatment also have more money, we believe this bias is positive and the true impact of the push is lower. In other words, we probably have <span class="math notranslate nohighlight">\(E[Y_0|T=0] &lt; E[Y_0|T=1]\)</span>.</p>
 <p>Now, let’s try to estimate this effect with Instrumental Variables. First, let’s run the first stage.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -890,7 +890,7 @@ ATE = \dfrac{E[(Y_{i1}-Y_{i0})|T_{i1}&gt;T_{i0}]P(T_{i1}&gt;T_{i0})}{P(T_{i1}&gt
 </section>
 <section id="key-ideas">
 <h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">#</a></h2>
-<p>Here we’ve looked at a more modern view of Instrumental Variables. We saw how IV can be seen as a causal chain where the instrument causes the treatment which causes the outcome. In this view, we took a look at compliance to understand ATE in IV estimation and we’ve figured out that it was the LATE on compilers.</p>
+<p>Here we’ve looked at a more modern view of Instrumental Variables. We saw how IV can be seen as a causal chain where the instrument causes the treatment which causes the outcome. In this view, we took a look at compliance to understand ATE in IV estimation and we’ve figured out that it was the LATE on compliers.</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>

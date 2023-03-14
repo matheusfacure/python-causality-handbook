@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -751,7 +751,7 @@ Name: intervention, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3882219657560294
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.38822121767832457
 </pre></div>
 </div>
 </div>
@@ -778,7 +778,7 @@ Name: intervention, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ATE 95% CI: (0.3536550089788505, 0.41978380616491434)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ATE 95% CI: (0.35364752721776144, 0.41978441342477585)
 </pre></div>
 </div>
 </div>
@@ -828,7 +828,7 @@ Name: intervention, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.37970260273783474
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3797369830995927
 </pre></div>
 </div>
 </div>
@@ -854,8 +854,8 @@ Name: intervention, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original ATE 95% CI: (0.3536550089788505, 0.41978380616491434)
-Wrong PS ATE 95% CI: (0.33855288052541416, 0.432880812853544)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original ATE 95% CI: (0.35364752721776144, 0.41978441342477585)
+Wrong PS ATE 95% CI: (0.33806443306747086, 0.4335673822553228)
 </pre></div>
 </div>
 </div>
@@ -901,7 +901,7 @@ Wrong PS ATE 95% CI: (0.33855288052541416, 0.432880812853544)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.39812549716102724
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.39811864040982625
 </pre></div>
 </div>
 </div>
@@ -921,13 +921,13 @@ Wrong PS ATE 95% CI: (0.33855288052541416, 0.432880812853544)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original ATE 95% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">ates</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">ates</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wrong Mu ATE 95% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">wrong_mux</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">ates</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wrong Mu ATE 95% CI:&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">wrong_mux</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">wrong_mux</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original ATE 95% CI: (0.3536550089788505, 0.41978380616491434)
-Wrong Mu ATE 95% CI: (0.33870988300540034, 0.41978380616491434)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original ATE 95% CI: (0.35364752721776144, 0.41978441342477585)
+Wrong Mu ATE 95% CI: (0.33863822614929406, 0.433173164584189)
 </pre></div>
 </div>
 </div>
@@ -973,16 +973,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "causal-glory"
+            mode: "conda-root-py"
         },
         kernelOptions: {
-            kernelName: "causal-glory",
+            kernelName: "conda-root-py",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'causal-glory'</script>
+    <script>kernelName = 'conda-root-py'</script>
 
               </div>
               

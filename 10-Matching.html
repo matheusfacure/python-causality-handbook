@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -676,7 +676,7 @@ ATE = \int(E[Y|X, T=1] - E[Y|X, T=0])dP(x)
 \)</span></p>
 <p>What this integral does is it goes through all the space of the distribution of features X, computes the difference in means for all those tiny spaces and combines everything into the ATE. Another way to see this is to think about a discrete set of features. In this case, we can say that the features X takes on K different cells <span class="math notranslate nohighlight">\(\{X_1, X_2, ..., X_k\}\)</span> and what we are doing is computing the treatment effect in each cell and combining them into the ATE. In this discrete case, converting the integral to a sum, we can derive the subclassifications estimator</p>
 <p><span class="math notranslate nohighlight">\(
-\hat{ATE} = \sum^K_{i=0}(\bar{Y}_{k1} - \bar{Y}_{k0}) * \dfrac{N_k}{N}
+\hat{ATE} = \sum^K_{i=1}(\bar{Y}_{k1} - \bar{Y}_{k0}) * \dfrac{N_k}{N}
 \)</span></p>
 <p>where the bar represent the mean of the outcome on the treated, <span class="math notranslate nohighlight">\(Y_{k1}\)</span>, and non-treated, <span class="math notranslate nohighlight">\(Y_{k0}\)</span>, at cell k and <span class="math notranslate nohighlight">\(N_{k}\)</span> is the number of observations in that same cell. As you can see, we are computing a local ATE for each cell and combining them using a weighted average, where the weights are the sample size of the cell. In our medicine example above, this would be the first estimate, which gave us −2.6.</p>
 </section>
@@ -1198,7 +1198,7 @@ ATE = \int(E[Y|X, T=1] - E[Y|X, T=0])dP(x)
 <p>But this was a very contrived example, just to introduce matching. In reality, we usually have more than one feature and units don’t match perfectly. In this case, we have to define some measurement of proximity to compare how units are close to each other. One common metric for this is the euclidean norm <span class="math notranslate nohighlight">\(||X_i - X_j||\)</span>. This difference, however, is not invariant to the scale of the features. This means that features like age, that take values on the tenths, will be much less important when computing this norm compared to features like income, which take the order of hundreds. For this reason, before applying the norm, we need to scale the features so that they are on roughly the same scale.</p>
 <p>Having defined a distance measure, we can now define the match as the nearest neighbour to that sample we wish to match. In math terms, we can write the matching estimator the following way</p>
 <p><span class="math notranslate nohighlight">\(
-\hat{ATE} = \frac{1}{N} \sum^N_{i=0} (2T_i - 1)\big(Y_i - Y_{jm}(i)\big)
+\hat{ATE} = \frac{1}{N} \sum^N_{i=1} (2T_i - 1)\big(Y_i - Y_{jm}(i)\big)
 \)</span></p>
 <p>Where <span class="math notranslate nohighlight">\(Y_{jm}(i)\)</span> is the sample from the other treatment group which is most similar to <span class="math notranslate nohighlight">\(Y_i\)</span>. We do this <span class="math notranslate nohighlight">\(2T_i - 1\)</span> to match both ways: treated with controls and controls with the treatment.</p>
 <p>To test this estimator, let’s consider a medicine example. Once again, we want to find the effect of a medication on days until recovery. Unfortunately, this effect is confounded by severity, sex and age. We have reasons to believe that patients with more severe conditions have a higher chance of receiving the medicine.</p>
@@ -1479,7 +1479,7 @@ ATE = \int(E[Y|X, T=1] - E[Y|X, T=0])dP(x)
 </div>
 <p>With the matches, we can now apply the matching estimator formula</p>
 <p><span class="math notranslate nohighlight">\(
-\hat{ATE} = \frac{1}{N} \sum^N_{i=0} (2T_i - 1)\big(Y_i - Y_{jm}(i)\big)
+\hat{ATE} = \frac{1}{N} \sum^N_{i=1} (2T_i - 1)\big(Y_i - Y_{jm}(i)\big)
 \)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
