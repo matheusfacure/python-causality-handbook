@@ -756,13 +756,13 @@ title="Print to PDF"
 <h2>We have Time<a class="headerlink" href="#we-have-time" title="Permalink to this headline">#</a></h2>
 <p>To make matters a little bit more formal, suppose that we have <span class="math notranslate nohighlight">\(J+1\)</span> units. Without loss of generality, assume that unit 1 is the unit that gets affected by an intervention. Units <span class="math notranslate nohighlight">\(j=2,...,J+1\)</span> are a collection of untreated units that we will refer to as the “donor pool”. Also assume that the data we have span T time periods, with <span class="math notranslate nohighlight">\(T_0\)</span> periods before the intervention. For each unit j and each time t, we observe the outcome <span class="math notranslate nohighlight">\(Y_{jt}\)</span>. For each unit j and period t, define <span class="math notranslate nohighlight">\(Y^N_{jt}\)</span> as the potential outcome without intervention and <span class="math notranslate nohighlight">\(Y^I_{jt}\)</span>, the potential outcome with intervention. Then, the effect for the treated unit <span class="math notranslate nohighlight">\(j=1\)</span> at time t, for <span class="math notranslate nohighlight">\(t&gt;T_0\)</span> is defined as</p>
 <p><span class="math notranslate nohighlight">\(
-\tau_{1t} = Y^I_{jt} - Y^N_{jt}
+\tau_{1t} = Y^I_{1t} - Y^N_{1t}
 \)</span></p>
-<p>Since unit <span class="math notranslate nohighlight">\(j=1\)</span> is the treated one, <span class="math notranslate nohighlight">\(Y^I_{jt}\)</span> is factual but <span class="math notranslate nohighlight">\(Y^N_{jt}\)</span> is not. The challenge then becomes how do we estimate <span class="math notranslate nohighlight">\(Y^N_{jt}\)</span>. Notice how the treatment effect is defined for each period, which means it can change in time. It doesn’t need to be instantaneous. It can accumulate or dissipate. To put it in a picture, the problem of estimating the treatment effect boils down to the problem of <strong>estimating what would have happened to the outcome of unit <span class="math notranslate nohighlight">\(j=1\)</span> if it had not been treated</strong>.</p>
+<p>Since unit <span class="math notranslate nohighlight">\(j=1\)</span> is the treated one, <span class="math notranslate nohighlight">\(Y^I_{1t}\)</span> is factual but <span class="math notranslate nohighlight">\(Y^N_{1t}\)</span> is not. The challenge then becomes how do we estimate <span class="math notranslate nohighlight">\(Y^N_{1t}\)</span>. Notice how the treatment effect is defined for each period, which means it can change in time. It doesn’t need to be instantaneous. It can accumulate or dissipate. To put it in a picture, the problem of estimating the treatment effect boils down to the problem of <strong>estimating what would have happened to the outcome of unit <span class="math notranslate nohighlight">\(j=1\)</span> if it had not been treated</strong>.</p>
 <p><img alt="img" src="_images/synth_img.png" /></p>
-<p>To estimate <span class="math notranslate nohighlight">\(Y^N_{jt}\)</span>, we remember that a combination of units in the donor pool may approximate the characteristics of the treated unit much better than any untreated unit alone. Thus, a synthetic control is defined as a weighted average of the units in the control pool. Given the weights <span class="math notranslate nohighlight">\(\pmb{W}=(w_2, ..., w_{J+1})\)</span>, the synthetic control estimate of <span class="math notranslate nohighlight">\(Y^N_{jt}\)</span> is</p>
+<p>To estimate <span class="math notranslate nohighlight">\(Y^N_{1t}\)</span>, we remember that a combination of units in the donor pool may approximate the characteristics of the treated unit much better than any untreated unit alone. Thus, a synthetic control is defined as a weighted average of the units in the control pool. Given the weights <span class="math notranslate nohighlight">\(\pmb{W}=(w_2, ..., w_{J+1})\)</span>, the synthetic control estimate of <span class="math notranslate nohighlight">\(Y^N_{1t}\)</span> is</p>
 <p><span class="math notranslate nohighlight">\(
-\hat{Y}^N_{jt} = \sum^{J+1}_{j=2} w_j Y_{jt}
+\hat{Y}^N_{1t} = \sum^{J+1}_{j=2} w_j Y_{jt}
 \)</span></p>
 <p>If all this math makes your head hurt, you are not alone. But don’t worry, we have lots of examples to make it more intuitive. For once, I like to think about synthetic control as an upside down way of doing regression. As we know, linear regression is also a way of getting the prediction as a weighted average of the variables. Now, think about those regressions like the one in the diff-in-diff example where each variable is a dummy for a time period. In this case, regression can be represented as the following matrix multiplication</p>
 <p><img alt="img" src="_images/regr_time.png" /></p>
@@ -1501,16 +1501,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "causal-glory"
+            mode: "conda-root-py"
         },
         kernelOptions: {
-            kernelName: "causal-glory",
+            kernelName: "conda-root-py",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'causal-glory'</script>
+    <script>kernelName = 'conda-root-py'</script>
 
               </div>
               

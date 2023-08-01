@@ -578,7 +578,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="stats-review-the-most-dangerous-equation">
 <h1>03 - Stats Review: The Most Dangerous Equation<a class="headerlink" href="#stats-review-the-most-dangerous-equation" title="Permalink to this headline">#</a></h1>
 <p>In his famous article of 2007, Howard Wainer writes about very dangerous equations:</p>
-<p>“Some equations  are  dangerous  if you  know them, and others are dangerous if you do not. The first category may  pose  danger  because the secrets  within its bounds open  doors  behind which lies terrible peril. The obvious winner in this is Einstein’s iconic equation <span class="math notranslate nohighlight">\(E = MC^2\)</span>, for it  provides  a  measure of  the  enormous energy hidden  within  ordinary  matter. […] Instead I am interested in equations that unleash their danger not when we know about them, but rather when we do not. Kept close at hand, these equations allow us to understand things clearly, but their absence leaves us dangerously ignorant.”</p>
+<p>“Some equations  are  dangerous  if you  know them, and others are dangerous if you do not. The first category may  pose  danger  because the secrets  within its bounds open  doors  behind which lies terrible peril. The obvious winner in this is Einstein’s iconic equation <span class="math notranslate nohighlight">\(E = mc^2\)</span>, for it  provides  a  measure of  the  enormous energy hidden  within  ordinary  matter. […] Instead I am interested in equations that unleash their danger not when we know about them, but rather when we do not. Kept close at hand, these equations allow us to understand things clearly, but their absence leaves us dangerously ignorant.”</p>
 <p>The equation he talks about is Moivre’s equation:</p>
 <p><span class="math notranslate nohighlight">\(
 SE = \dfrac{\sigma}{\sqrt{n}} 
@@ -857,7 +857,7 @@ SE for Face to Face: 0.8723511456319106
 </div>
 </div>
 <p>Of course, we don’t need to restrict ourselves to the 95% confidence interval. We could generate the 99% interval by finding what we need to multiply the standard deviation by so the interval contains 99% of the mass of a normal distribution.</p>
-<p>The function <code class="docutils literal notranslate"><span class="pre">ppf</span></code> in python gives us the inverse of the CDF. Instead of multiplying the standard error by 2 like we did to find the 95% CI, we will multiply it by <code class="docutils literal notranslate"><span class="pre">z</span></code>, which will result in the 99% CI. So, <code class="docutils literal notranslate"><span class="pre">ppf(0.5)</span></code> will return 0.0, saying that 50% of the mass of the standard normal distribution is below 0.0. By the same token, if we plug 99.5%, we will have the value <code class="docutils literal notranslate"><span class="pre">z</span></code>, such that 99.5% of the distribution mass falls below this value. In other words, 0.5% of the mass falls above this value.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">ppf</span></code> in python gives us the inverse of the CDF. Instead of multiplying the standard error by 2 like we did to find the 95% CI, we will multiply it by <code class="docutils literal notranslate"><span class="pre">z</span></code>, which will result in the 99% CI. So, <code class="docutils literal notranslate"><span class="pre">ppf(0.5)</span></code> will return 0.0, saying that 50% of the mass of the standard normal distribution (mean 0 and 1 standard deviation) is below 0.0. By the same token, if we plug 99.5%, we will have the value <code class="docutils literal notranslate"><span class="pre">z</span></code>, such that 99.5% of the distribution mass falls below this value. In other words, 0.5% of the mass falls above this value.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
@@ -950,7 +950,7 @@ N(\mu_1, \sigma_1^2) + N(\mu_2, \sigma_2^2) = N(\mu_1 + \mu_2, \sigma_1^2 + \sig
 \mu_{diff} = \mu_1 - \mu_2
 \)</span></p>
 <p><span class="math notranslate nohighlight">\(
-SE_{diff} = \sqrt{SE_1 + SE_2} = \sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}
+SE_{diff} = \sqrt{SE^2_1 + SE^2_2} = \sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}
 \)</span></p>
 <p>Let’s return to our classroom example. We will construct this distribution of the difference. Of course, once we have it, building the 95% CI is straightforward.</p>
 <div class="cell docutils container">

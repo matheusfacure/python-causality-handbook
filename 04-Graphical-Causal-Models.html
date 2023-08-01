@@ -862,7 +862,7 @@ E[Y|T=1] - E[Y|T=0] = \underbrace{E[Y_1 - Y_0|T=1]}_{ATET} + \underbrace{\{ E[Y_
 <img alt="_images/04-Graphical-Causal-Models_19_0.svg" src="_images/04-Graphical-Causal-Models_19_0.svg" /></div>
 </div>
 <p>Imagine that investments and education take only 2 values to demonstrate why this is the case. Whether people invest or not. They are either educated or not. Initially, when we don’t control for investments, the bias term is zero: <span class="math notranslate nohighlight">\(E[Y_0|T=1] - E[Y_0|T=0] = 0\)</span> because the education was randomised. This means that the wage people would have if they didn’t receive education <span class="math notranslate nohighlight">\(Wage_0\)</span> is the same if they do or don’t receive the education treatment. But what happens if we condition on investments?</p>
-<p>Looking at those that invest, we probably have the case that <span class="math notranslate nohighlight">\(E[Y_0|T=0, I=1] &gt; E[Y_0|T=1, I=1]\)</span>. In words, among those that invest, those that manage to do so even without education are more independent of education to achieve high earnings. For this reason, the wage those people have, <span class="math notranslate nohighlight">\(Wage_0|T=0\)</span>, is probably higher than the wage the educated group would have if they didn’t have education, <span class="math notranslate nohighlight">\(Wage_0|T=1\)</span>. A similar reasoning can be applied to those that don’t invest, where we also probably have <span class="math notranslate nohighlight">\(E[Y_0|T=0, I=0] &gt; E[Y_0|T=1, I=0]\)</span>. Those who don’t invest even with education probably would have a lower wage, had they not got the education, than those who didn’t invest but didn’t have an education.</p>
+<p>Looking at those who invest, we probably have the case that <span class="math notranslate nohighlight">\(E[Y_0|T=0, I=1] &gt; E[Y_0|T=1, I=1]\)</span>. In words, among those who invest, the ones who manage to do so even without education are more likely to achieve high earnings, regardless of their education level. For this reason, the wage those people have, <span class="math notranslate nohighlight">\(Wage_0|T=0\)</span>, is probably higher than the wage the educated group would have if they didn’t have education, <span class="math notranslate nohighlight">\(Wage_0|T=1\)</span>. A similar reasoning can be applied to those who don’t invest, where we also probably have <span class="math notranslate nohighlight">\(E[Y_0|T=0, I=0] &gt; E[Y_0|T=1, I=0]\)</span>. Those who don’t invest even with education probably would have a lower wage, had they not got the education, than those who didn’t invest but didn’t have an education.</p>
 <p>To use a purely graphical argument, if someone invests, knowing that they have high education explains away the second cause, which is wage. Conditioned on investing, higher education is associated with low wages and we have a negative bias <span class="math notranslate nohighlight">\(E[Y_0|T=0, I=i] &gt; E[Y_0|T=1, I=i]\)</span>.</p>
 <p>As a side note, all of this we’ve discussed is true if we condition on any descendent of a common effect.</p>
 <div class="cell tag_hide-input docutils container">
@@ -944,16 +944,16 @@ If you found this book valuable and want to support it, please go to <a class="r
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "causal-glory"
+            mode: "conda-root-py"
         },
         kernelOptions: {
-            kernelName: "causal-glory",
+            kernelName: "conda-root-py",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'causal-glory'</script>
+    <script>kernelName = 'conda-root-py'</script>
 
               </div>
               

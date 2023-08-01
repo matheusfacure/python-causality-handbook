@@ -1402,17 +1402,16 @@ Name: unit_weights, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">join_weights</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">unit_w</span><span class="p">,</span> <span class="n">time_w</span><span class="p">,</span> <span class="n">year_col</span><span class="p">,</span> <span class="n">state_col</span><span class="p">,</span> <span class="n">treat_col</span><span class="p">,</span> <span class="n">post_col</span><span class="p">):</span>
-
     <span class="k">return</span> <span class="p">(</span>
         <span class="n">data</span>
         <span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="n">year_col</span><span class="p">,</span> <span class="n">state_col</span><span class="p">])</span>
         <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">time_w</span><span class="p">)</span>
         <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">unit_w</span><span class="p">)</span>
         <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-        <span class="o">.</span><span class="n">fillna</span><span class="p">({</span><span class="n">time_w</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="n">post_col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
-                 <span class="n">unit_w</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="n">treat_col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()})</span>
-        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;weights&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">time_w</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">*</span><span class="n">d</span><span class="p">[</span><span class="n">unit_w</span><span class="o">.</span><span class="n">name</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">10</span><span class="p">)})</span>
-        <span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="n">treat_col</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">post_col</span><span class="p">:</span><span class="nb">int</span><span class="p">}))</span>
+        <span class="o">.</span><span class="n">fillna</span><span class="p">({</span><span class="n">time_w</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">post_col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)[</span><span class="n">year_col</span><span class="p">])),</span>
+                 <span class="n">unit_w</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">treat_col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)[</span><span class="n">state_col</span><span class="p">]))})</span>
+        <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;weights&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">time_w</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="n">unit_w</span><span class="o">.</span><span class="n">name</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">10</span><span class="p">)})</span>
+        <span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="n">treat_col</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">post_col</span><span class="p">:</span> <span class="nb">int</span><span class="p">}))</span>
 </pre></div>
 </div>
 </div>
@@ -1520,6 +1519,30 @@ Name: unit_weights, dtype: float64
 </table>
 </div></div></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;after_treatment&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3870967741935484
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;after_treatment==1&quot;</span><span class="p">)[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.08333333333333333
+</pre></div>
+</div>
+</div>
+</div>
 <p>Finally, all we have to do is estimate a Diff-in-Diff model with the weights we’ve just defined. The parameter estimate associated with the interaction term for the post-treatment period and treated dummy will be the Synthetic Difference-in-Differences estimate for the <span class="math notranslate nohighlight">\(ATT\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1537,21 +1560,21 @@ Name: unit_weights, dtype: float64
              <td></td>                <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th>               <td>  120.4060</td> <td>    1.965</td> <td>   61.278</td> <td> 0.000</td> <td>  116.551</td> <td>  124.261</td>
+  <th>Intercept</th>               <td>  120.4060</td> <td>    1.272</td> <td>   94.665</td> <td> 0.000</td> <td>  117.911</td> <td>  122.901</td>
 </tr>
 <tr>
-  <th>after_treatment</th>         <td>  -19.1905</td> <td>    2.166</td> <td>   -8.859</td> <td> 0.000</td> <td>  -23.440</td> <td>  -14.941</td>
+  <th>after_treatment</th>         <td>  -19.1905</td> <td>    1.799</td> <td>  -10.669</td> <td> 0.000</td> <td>  -22.720</td> <td>  -15.661</td>
 </tr>
 <tr>
-  <th>treated</th>                 <td>  -25.2601</td> <td>   12.427</td> <td>   -2.033</td> <td> 0.042</td> <td>  -49.641</td> <td>   -0.879</td>
+  <th>treated</th>                 <td>  -25.2601</td> <td>    1.799</td> <td>  -14.043</td> <td> 0.000</td> <td>  -28.789</td> <td>  -21.731</td>
 </tr>
 <tr>
-  <th>after_treatment:treated</th> <td>  -15.6054</td> <td>   13.700</td> <td>   -1.139</td> <td> 0.255</td> <td>  -42.483</td> <td>   11.272</td>
+  <th>after_treatment:treated</th> <td>  -15.6054</td> <td>    2.544</td> <td>   -6.135</td> <td> 0.000</td> <td>  -20.596</td> <td>  -10.615</td>
 </tr>
 </table></div></div>
 </div>
 <p>This estimate is much smaller than the one we get with Diff-in-Diff, but that is not surprising. As we’ve already discussed, the Diff-in-Diff estimator is probably biased in this case, since we have pretty good reasons to question the parallel trends assumption. What is perhaps less obvious is why the SDID estimate is smaller than the traditional SC estimate. If we go back and look at the SC plot, we can see that cigarette sales in California started to fall below its synthetic control prior to Proposition 99. This is probably due to the fact that traditional Synthetic Control has to match treated and control units in the entire pre-treatment period, causing it to miss one year or the other. This is less of an issue in SDID, since the time weights allow us to focus just on the periods that are more similar to the post-intervention period. In this case, those were precisely the three years anteceding Proposition 99.</p>
-<p>To grasp what SDID is doing, we can plot the Diff-in-Diff lines for the treated (California) and the SDID Synthetic Control. Notice how we are projecting the trend we see in the synthetic control onto the treated unit to get the counterfactual <span class="math notranslate nohighlight">\(Y(0)_{tr, post}\)</span>. The difference between the two solid purple lines is the estimated <span class="math notranslate nohighlight">\(ATT\)</span>. We start those lines in 1987 to show how the time weights zero out all periods but 1986, 87 and 88. The time weights are also shown in the small plot down below.</p>
+<p>To grasp what SDID is doing, we can plot the Diff-in-Diff lines for the treated (California) and the SDID Synthetic Control. Notice how we are projecting the trend we see in the synthetic control onto the treated unit to get the counterfactual <span class="math notranslate nohighlight">\(Y(0)_{tr, post}\)</span>. The difference between the dashed purple line and the lower solid purple line is the <span class="math notranslate nohighlight">\(ATT\)</span>. We start those lines in 1987 to show how the time weights zero out all periods but 1986, 87 and 88. The time weights are also shown in the small plot down below.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">avg_pre_period</span> <span class="o">=</span> <span class="p">(</span><span class="n">time_weights</span> <span class="o">*</span> <span class="n">time_weights</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -1573,6 +1596,12 @@ Name: unit_weights, dtype: float64
 <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">avg_pre_period</span><span class="p">,</span> <span class="n">avg_post_period</span><span class="p">],</span> <span class="p">[</span><span class="n">pre_sc</span><span class="p">,</span> <span class="n">post_sc</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C2&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">avg_pre_period</span><span class="p">,</span> <span class="n">avg_post_period</span><span class="p">],</span> <span class="p">[</span><span class="n">pre_treat</span><span class="p">,</span> <span class="n">post_treat</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C2&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">avg_pre_period</span><span class="p">,</span> <span class="n">avg_post_period</span><span class="p">],</span> <span class="p">[</span><span class="n">pre_treat</span><span class="p">,</span> <span class="n">sc_did_y0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C2&quot;</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;ATT&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">1995</span><span class="p">,</span> <span class="mi">69</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">1996</span><span class="p">,</span> <span class="mf">66.5</span><span class="p">),</span> 
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+            <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;square&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">),</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-[, widthB=1.5, lengthB=0.5&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">))</span>
+
 <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Synthetic Diff-in-Diff&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Cigarette Sales&quot;</span><span class="p">)</span>
@@ -1585,7 +1614,7 @@ Name: unit_weights, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25-Synthetic-Diff-in-Diff_41_0.png" src="_images/25-Synthetic-Diff-in-Diff_41_0.png" />
+<img alt="_images/25-Synthetic-Diff-in-Diff_46_0.png" src="_images/25-Synthetic-Diff-in-Diff_46_0.png" />
 </div>
 </div>
 <p>The above estimator estimates the <span class="math notranslate nohighlight">\(ATT\)</span> which is the effect of Propostion 99 on California averaged out across all post-treatment time periods. But, from the above plot, it looks like the effect increases over time. What if we want to take that into account? Fortunately, it is very straightforward to do that.</p>
@@ -1665,7 +1694,7 @@ D_2 = \begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-15.605398746342328
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-15.605397234587002
 </pre></div>
 </div>
 </div>
@@ -1695,7 +1724,7 @@ D_2 = \begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25-Synthetic-Diff-in-Diff_46_0.png" src="_images/25-Synthetic-Diff-in-Diff_46_0.png" />
+<img alt="_images/25-Synthetic-Diff-in-Diff_51_0.png" src="_images/25-Synthetic-Diff-in-Diff_51_0.png" />
 </div>
 </div>
 <p>As expected, the effect gets bigger as time passes. It starts small, but it gradually increases to what seems like a decrease in consumption of 25 cigarette packs per capita in 2020.</p>
@@ -1764,7 +1793,7 @@ D_2 = \begin{bmatrix}
             <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;cigsale&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span> <span class="o">-</span> 
                                                              <span class="n">d</span><span class="p">[</span><span class="s2">&quot;cigsale&quot;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mf">0.03</span><span class="o">*</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1992</span><span class="p">))</span><span class="o">*</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;after_treatment&quot;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)}))</span>
 
-<span class="n">new_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data</span><span class="p">,</span> <span class="n">tr_state</span><span class="p">])</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;after_treatment&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;treated&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;after_treatment&quot;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)})</span>
+<span class="n">new_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data</span><span class="p">,</span> <span class="n">tr_state</span><span class="p">])</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;after_treatment&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;treated&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;after_treatment&quot;</span><span class="p">],</span> <span class="kc">False</span><span class="p">)})</span>
 </pre></div>
 </div>
 </div>
@@ -1791,7 +1820,7 @@ D_2 = \begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25-Synthetic-Diff-in-Diff_49_0.png" src="_images/25-Synthetic-Diff-in-Diff_49_0.png" />
+<img alt="_images/25-Synthetic-Diff-in-Diff_54_0.png" src="_images/25-Synthetic-Diff-in-Diff_54_0.png" />
 </div>
 </div>
 <p>We finally have this staggered adoption data. Now, we need to figure out how to filter out some states so we can break the problem into multiple block assignment cases. First, we can group states by when they passed the law. The following code does exactly that.</p>
@@ -1830,7 +1859,7 @@ D_2 = \begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1989: -15.605398746342221, 1993: -17.249435920178932}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1989: -15.605397234587002, 1993: -17.249435402003648}
 </pre></div>
 </div>
 </div>
@@ -1851,7 +1880,7 @@ D_2 = \begin{bmatrix}
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>weights:  {1989: 12, 1993: 24}
-ATT:  -16.70142352890003
+ATT:  -16.701422679531433
 </pre></div>
 </div>
 </div>
@@ -2017,9 +2046,9 @@ ATT:  -16.70142352890003
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Effect: -15.605398746342221
-Standard Error: 9.91208979219938
-90% CI: (-31.960346903471198, 0.7495494107867557)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Effect: -15.605397234587002
+Standard Error: 9.912089736240311
+90% CI: (-31.960345299383516, 0.7495508302095111)
 </pre></div>
 </div>
 </div>
@@ -2101,8 +2130,8 @@ Standard Error: 9.91208979219938
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Effect: -19.513629763998537
-Standard Error: 11.24193494897581
-90% CI: (-38.06282242980862, -0.9644370981884514)
+Standard Error: 11.2419349486209
+90% CI: (-38.06282242922302, -0.9644370987740523)
 </pre></div>
 </div>
 </div>
@@ -2122,33 +2151,6 @@ Standard Error: 11.24193494897581
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [48],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">standard_errors</span> <span class="o">=</span> <span class="p">{</span><span class="n">year</span><span class="p">:</span> <span class="n">estimate_se</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;~after_treatment|(year==</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">),</span> 
-<span class="g g-Whitespace">      </span><span class="mi">2</span>                                      <span class="n">outcome_col</span><span class="o">=</span><span class="s2">&quot;cigsale&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                                      <span class="n">year_col</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>                                      <span class="n">state_col</span><span class="o">=</span><span class="s2">&quot;state&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>                                      <span class="n">treat_col</span><span class="o">=</span><span class="s2">&quot;treated&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>                                      <span class="n">post_col</span><span class="o">=</span><span class="s2">&quot;after_treatment&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>                    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1989</span><span class="p">,</span> <span class="mi">2001</span><span class="p">)}</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">standard_errors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">standard_errors</span><span class="p">)</span>
-
-<span class="nn">Input In [48],</span> in <span class="ni">&lt;dictcomp&gt;</span><span class="nt">(.0)</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">standard_errors</span> <span class="o">=</span> <span class="p">{</span><span class="n">year</span><span class="p">:</span> <span class="n">estimate_se</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;~after_treatment|(year==</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">),</span> 
-<span class="g g-Whitespace">      </span><span class="mi">2</span>                                      <span class="n">outcome_col</span><span class="o">=</span><span class="s2">&quot;cigsale&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                                      <span class="n">year_col</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>                                      <span class="n">state_col</span><span class="o">=</span><span class="s2">&quot;state&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>                                      <span class="n">treat_col</span><span class="o">=</span><span class="s2">&quot;treated&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>                                      <span class="n">post_col</span><span class="o">=</span><span class="s2">&quot;after_treatment&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>                    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1989</span><span class="p">,</span> <span class="mi">2001</span><span class="p">)}</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">standard_errors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">standard_errors</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;estimate_se&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -2165,7 +2167,7 @@ Standard Error: 11.24193494897581
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/25-Synthetic-Diff-in-Diff_69_0.png" src="_images/25-Synthetic-Diff-in-Diff_69_0.png" />
+<img alt="_images/25-Synthetic-Diff-in-Diff_74_0.png" src="_images/25-Synthetic-Diff-in-Diff_74_0.png" />
 </div>
 </div>
 </section>

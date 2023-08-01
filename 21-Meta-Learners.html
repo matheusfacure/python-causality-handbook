@@ -702,6 +702,9 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
 \mu(x) = E[Y| T, X]
 \)</span></p>
 <p>To do so, we will simply include the treatment as a feature in the model that tries to predict the outcome Y.</p>
+<div class="highlight-note notranslate"><div class="highlight"><pre><span></span>Although I&#39;ll use a regressor to estimate $E[Y| T, X]$, since the outcome variable is binary, you could also use a classified. Just be sure to adapt the code so that the model outputs probabilities instead of the binary class, 0, 1.
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lightgbm</span> <span class="kn">import</span> <span class="n">LGBMRegressor</span>
@@ -754,7 +757,7 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
 <p>As we can see from the cumulative gain, the S-learner, although simple, can perform okay on this dataset. One thing to keep in mind is that this performance is highly particular to this dataset. Depending on the type of data that you have, the S-learner might do better or worse. In practice, I find that the S-learner is a good first bet for any causal problem, mostly due to its simplicity. Not only that, the S-learner can handle both continuous and discrete treatments, while the rest of the learners in this chapter can only deal with discrete treatments.</p>
 <p>The major disadvantage of the S-learner is that it tends to bias the treatment effect towards zero. Since the S-learner employs what is usually a regularized machine learning model, that regularization can restrict the estimated treatment effect. ‪Chernozhukov‬ et al (2016) outline this problem using simulated data:</p>
 <p><img alt="img" src="_images/zero-bias-s-learner.png" /></p>
-<p>Here, they plot the difference between the true causal effect (red outline) and the estimated causal effect, <span class="math notranslate nohighlight">\(\tau - \hat{\tau}\)</span>,  using an S-learner. The estimated causal effect is heavily downward biased (<span class="math notranslate nohighlight">\(\tau - \hat{\tau} &gt; 0\)</span> most of the time). In other words, the true causal effect is frequently bigger than the estimated one.</p>
+<p>Here, they plot the difference between the true causal effect (red outline) and the estimated causal effect, <span class="math notranslate nohighlight">\(\tau - \hat{\tau}\)</span>,  using an S-learner. The estimated causal effect is heavily biased.</p>
 <p>Even worse, if the treatment is very weak relative to the impact other covariates play in explaining the outcome, the S-learner can discard the treatment variable completely. Notice that this is highly related to the chosen ML model you employ. The greater the regularization, the greater the problem. One attempt to fix that is the next learner we will see.</p>
 </section>
 <section id="t-learner">
@@ -821,7 +824,7 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
 <p><span class="math notranslate nohighlight">\(
 \hat{M}_1(X) \approx E[Y| T=1, X]
 \)</span></p>
-<p>Now, things start to take a turn. For the second stage, we input the treatment effect for the control and for the treated using the models above</p>
+<p>Now, things start to take a turn. For the second stage, we impute the treatment effect for the control and for the treated using the models above</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{\tau}(X, T=0) = \hat{M}_1(X, T=0) - Y_{T=0}
 \)</span></p>
@@ -835,12 +838,16 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
 <p><span class="math notranslate nohighlight">\(
 \hat{M}_{\tau 1}(X) \approx E[\hat{\tau}(X)|T=1]
 \)</span></p>
-<p>If we apply this on the image we’ve shown before, <span class="math notranslate nohighlight">\(\hat{\tau}(X, T=0)\)</span>, the imputed treatment effect on the untreated, would be the red crosses and the red dashed line would be <span class="math notranslate nohighlight">\(\hat{M}_{\tau 0}(X)\)</span>. Notice that this model is wrong. Because <span class="math notranslate nohighlight">\(\hat{\tau}(X, T=0)\)</span> was made using the regularized, simple model, estimated on the treated, <span class="math notranslate nohighlight">\(\hat{M}_1\)</span>.  The treatment effect it inputs is non linear, since it <strong>doesn’t</strong> capture the non-linearity in the Y variable.</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{Y}
+\]</div>
+<p>If we apply this on the image we’ve shown before, <span class="math notranslate nohighlight">\(\hat{\tau}(X, T=0)\)</span>, the imputed treatment effect on the untreated, would be the red crosses and the red dashed line would be <span class="math notranslate nohighlight">\(\hat{M}_{\tau 0}(X)\)</span>. Notice that this model is wrong. Because <span class="math notranslate nohighlight">\(\hat{\tau}(X, T=0)\)</span> was made using the regularized, simple model, estimated on the treated, <span class="math notranslate nohighlight">\(\hat{M}_1\)</span>.  The treatment effect it imputes is non linear, since it <strong>doesn’t</strong> capture the non-linearity in the Y variable.</p>
 <p>In contrast, the blue dots are the imputed treatment effect for the treated, <span class="math notranslate nohighlight">\(\hat{\tau}(X, T=1)\)</span>. These effects are estimated using the correct model, <span class="math notranslate nohighlight">\(M_0\)</span>, trained in the untreated, large, sample. As a result, since its imputed treatment effects are correct, we are able to train a correct second stage model <span class="math notranslate nohighlight">\(\hat{M}_{\tau 1}(X)\)</span>, shown by the blue line.</p>
 <p><img alt="img" src="_images/second-stage-x.png" /></p>
-<p>So we have one model that is wrong because we’ve input the treatment effects wrongly and another model that is correct because we’ve imputed those values correctly. Now, we need a way to combine the two in a way that gives more weight to the correct model. Here is where the propensity score model comes to play. Let <span class="math notranslate nohighlight">\(\hat{e}(x)\)</span> be the propensity score model, we can combine the two second stage models as follows:</p>
+<p>So we have one model that is wrong because we’ve impute the treatment effects wrongly and another model that is correct because we’ve imputed those values correctly. Now, we need a way to combine the two in a way that gives more weight to the correct model. Here is where the propensity score model comes to play. Let <span class="math notranslate nohighlight">\(\hat{e}(x)\)</span> be the propensity score model, we can combine the two second stage models as follows:</p>
 <p><span class="math notranslate nohighlight">\(
-\hat{\tau(x)} = \hat{M}_{\tau 0}(X)(\hat{e}(x)) +  \hat{M}_{\tau 1}(X)(1-\hat{e}(x))
+\hat{\tau(x)} = \hat{M}_{\tau 0}(X)\hat{e}(x) +  \hat{M}_{\tau 1}(X)(1-\hat{e}(x))
 \)</span></p>
 <p>Since there are very few treated units, <span class="math notranslate nohighlight">\(\hat{e}(x)\)</span> is very small. This will give a very small weight to the wrong model <span class="math notranslate nohighlight">\(\hat{M}_{\tau 0}(X)\)</span>.</p>
 <p>In contrast, <span class="math notranslate nohighlight">\(1-\hat{e}(x)\)</span> is close to one, so we will give a high weight to the correct model <span class="math notranslate nohighlight">\(\hat{M}_{\tau 1}(X)\)</span>. More generally, weighted average using the propensity score will make sure we give more weight to the CATE model that was estimated where the assigned treatment was more likely. In other words, we will favor the model that was trained using more data. The following image shows the estimated CATE given by the X-learner and the T-learner.</p>
@@ -894,11 +901,11 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
     <span class="k">return</span> <span class="n">g</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">X</span><span class="p">])[:,</span> <span class="n">t</span><span class="p">]</span>
     
     
-<span class="n">x_cate_train</span> <span class="o">=</span> <span class="p">(</span><span class="n">ps_predict</span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">mx0</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">])</span> <span class="o">+</span>
-                <span class="n">ps_predict</span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">mx1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">]))</span>
+<span class="n">x_cate_train</span> <span class="o">=</span> <span class="p">(</span><span class="n">ps_predict</span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">mx0</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">])</span> <span class="o">+</span>
+                <span class="n">ps_predict</span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">mx1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">X</span><span class="p">]))</span>
 
-<span class="n">x_cate_test</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cate</span><span class="o">=</span><span class="p">(</span><span class="n">ps_predict</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">mx0</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">X</span><span class="p">])</span> <span class="o">+</span>
-                                <span class="n">ps_predict</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">mx1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">X</span><span class="p">])))</span>
+<span class="n">x_cate_test</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">cate</span><span class="o">=</span><span class="p">(</span><span class="n">ps_predict</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">mx0</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">X</span><span class="p">])</span> <span class="o">+</span>
+                                <span class="n">ps_predict</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">mx1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="n">X</span><span class="p">])))</span>
 </pre></div>
 </div>
 </div>
@@ -917,7 +924,11 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/21-Meta-Learners_24_0.png" src="_images/21-Meta-Learners_24_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/matheus.facure/Documents/python-causality-handbook/causal-inference-for-the-brave-and-true/nb21.py:10: RuntimeWarning: invalid value encountered in double_scalars
+  np.sum((data[t] - data[t].mean())**2))
+</pre></div>
+</div>
+<img alt="_images/21-Meta-Learners_24_1.png" src="_images/21-Meta-Learners_24_1.png" />
 </div>
 </div>
 <p>Once more, we have an OK performance on this dataset. Here, the S, T and X learners seem to perform pretty similarly. Still, I think it is worth knowing about all these meta learners so you can use whatever works best for you. Keep in mind that the performance is also highly dependent on the base machine learning model we choose. Here, we did everything using Gradient Boosted Trees, but maybe something else or even the same thing with different hyperparameters might work better.</p>
@@ -948,16 +959,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-rasputin-py"
+            mode: "conda-root-py"
         },
         kernelOptions: {
-            kernelName: "conda-env-rasputin-py",
+            kernelName: "conda-root-py",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-rasputin-py'</script>
+    <script>kernelName = 'conda-root-py'</script>
 
               </div>
               

@@ -803,9 +803,9 @@ Name: intervention, dtype: float64
 </section>
 <section id="id1">
 <h2>Propensity Score<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
-<p>Propensity score comes from the realisation that you don’t need to directly control for confounders X to achieve conditional independence <span class="math notranslate nohighlight">\((Y_1, Y_0) \perp T | X\)</span>. Instead, it is sufficient to control for a balancing score <span class="math notranslate nohighlight">\(E[T|X]\)</span>. This balancing score is often the conditional probability of the treatment, <span class="math notranslate nohighlight">\(P(T|X)\)</span>, also called the propensity score <span class="math notranslate nohighlight">\(P(x)\)</span>. The propensity score makes it so that you don’t have to condition on the entirety of X to achieve independence of the potential outcomes on the treatment. It is sufficient to condition on this single variable, which is the propensity score:</p>
+<p>Propensity score comes from the realisation that you don’t need to directly control for confounders X to achieve conditional independence <span class="math notranslate nohighlight">\((Y_1, Y_0) \perp T | X\)</span>. Instead, it is sufficient to control for a balancing score <span class="math notranslate nohighlight">\(E[T|X]\)</span>. This balancing score is often the conditional probability of the treatment, <span class="math notranslate nohighlight">\(P(T|X)\)</span>, also called the propensity score <span class="math notranslate nohighlight">\(e(x)\)</span>. The propensity score makes it so that you don’t have to condition on the entirety of X to achieve independence of the potential outcomes on the treatment. It is sufficient to condition on this single variable, which is the propensity score:</p>
 <p><span class="math notranslate nohighlight">\(
-(Y_1, Y_0) \perp T | P(x)
+(Y_1, Y_0) \perp T | e(x)
 \)</span></p>
 <p>There is a formal proof for why this is, but we can forget it for now and approach the matter in a more intuitive way. The propensity score is the conditional probability of receiving the treatment, right? So we can think of it as some sort of function that converts X into the treatment T. The propensity score makes this middle ground between the variable X and the treatment T. If we show this in a causal graph, this is what it would look like.</p>
 <div class="cell tag_hide-input docutils container">
@@ -813,8 +813,8 @@ Name: intervention, dtype: float64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;P(x)&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;P(x)&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;e(x)&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s2">&quot;e(x)&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">)</span>
 <span class="n">g</span>
 </pre></div>
 </div>
@@ -822,46 +822,53 @@ Name: intervention, dtype: float64
 <div class="cell_output docutils container">
 <img alt="_images/11-Propensity-Score_11_0.svg" src="_images/11-Propensity-Score_11_0.svg" /></div>
 </div>
-<p>If I know what P(x) is, X alone tells me nothing more that can help me learn what T would be. Which means that controlling for P(x) acts the same way as controlling for X directly. Think of it in terms of our mindset program. Treated and non treated are initially not comparable because the more ambitious are both more likely to take the treatment and of achieving more in life. However, if I take 2 individuals, one from the treated and one from the control, but with the same probability of receiving the treatment, they are comparable. Think about it. If they have the exact same probability of receiving the treatment, the only reason one of them received it and the other did not is pure chance. Holding the propensity score constant acts in a way of making the data look as good as random.</p>
-<p>Now that we got the intuition, let’s look at the mathematical proof. We want to show that <span class="math notranslate nohighlight">\((Y_1, Y_0) \perp T | P(x)\)</span> is equivalent to saying that</p>
+<p>If I know what e(x) is, X alone tells me nothing more that can help me learn what T would be. Which means that controlling for e(x) acts the same way as controlling for X directly. Think of it in terms of our mindset program. Treated and non treated are initially not comparable because the more ambitious are both more likely to take the treatment and of achieving more in life. However, if I take 2 individuals, one from the treated and one from the control, but with the same probability of receiving the treatment, they are comparable. Think about it. If they have the exact same probability of receiving the treatment, the only reason one of them received it and the other did not is pure chance. Holding the propensity score constant acts in a way of making the data look as good as random.</p>
+<p>Now that we got the intuition, let’s look at the mathematical proof. We want to show that <span class="math notranslate nohighlight">\((Y_1, Y_0) \perp T | e(x)\)</span> is equivalent to saying that</p>
 <p><span class="math notranslate nohighlight">\(
-E[T|P(x), X] = E[T|P(x)] 
+E[T|e(x), X] = E[T|e(x)] 
 \)</span></p>
-<p>This simply says that once I condition on P(x), X can give me no extra information about T. The proof of this is quite weird. We will show that the equation above is true by converting it to a trivial statement. First take a look at the left hand side <span class="math notranslate nohighlight">\(E[T|P(x), X]\)</span>.</p>
+<p>This simply says that once I condition on <span class="math notranslate nohighlight">\(e(x)\)</span>, X can give me no extra information about <span class="math notranslate nohighlight">\(T\)</span>. The proof of this is quite weird. We will show that the equation above is true by converting it to a trivial statement. First take a look at the left hand side <span class="math notranslate nohighlight">\(E[T|e(x), X]\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(
-E[T|P(x), X] = E[T|X] = P(x)
+E[T|e(x), X] = E[T|X] = e(x)
 \)</span></p>
-<p>We use the fact that P(x) is just a function of X, so conditioning on it gives no further information after we’ve conditioned on X itself. Then, we use the definition of the propensity score <span class="math notranslate nohighlight">\(E[T|X]\)</span>.</p>
+<p>We use the fact that <span class="math notranslate nohighlight">\(e(x)\)</span> is just a function of X, so conditioning on it gives no further information after we’ve conditioned on X itself. Then, we use the definition of the propensity score <span class="math notranslate nohighlight">\(E[T|X]\)</span>.</p>
 <p>For the right hand side, we will use the law of iterated expectations <span class="math notranslate nohighlight">\(E[A] = E[E[A|B]]\)</span>. This law says that we can compute the expected value of A by looking at the value of A broken down by B and then averaging that.</p>
 <p><span class="math notranslate nohighlight">\(
-E[T|P(x)] = E[E[T|P(x),X]|P(x)] = E[P(x)|P(x)] = P(x)
+E[T|e(x)] = E[E[T|e(x),X]|e(x)] = E[e(x)|e(x)] = e(x)
 \)</span></p>
-<p>The first equality comes from the law of iterated expectations. The second comes from what we’ve figured out when dealing with the left hand side. Since both the left and right hand side equals, <span class="math notranslate nohighlight">\(P(x)\)</span>, this equation is trivially true.</p>
+<p>The first equality comes from the law of iterated expectations. The second comes from what we’ve figured out when dealing with the left hand side. Since both the left and right hand side equals, <span class="math notranslate nohighlight">\(e(x)\)</span>, this equation is trivially true.</p>
 </section>
 <section id="propensity-weighting">
 <h2>Propensity Weighting<a class="headerlink" href="#propensity-weighting" title="Permalink to this headline">#</a></h2>
 <p><img alt="img" src="_images/balance.png" /></p>
 <p>OK, we got the propensity score. Now what? Like I’ve said, all we need to do is condition on it. For example, we could run a linear regression that conditions only on the propensity score, instead of all the Xs. For now, let’s look at a technique that just uses the propensity score and nothing else. The idea is to write the conditional difference in means with the propensity score</p>
 <p><span class="math notranslate nohighlight">\(
-E[Y|X,T=1]−E[Y|X,T=0] = E\bigg[\dfrac{Y}{P(x)}|X,T=1\bigg]P(x) - E\bigg[\dfrac{Y}{(1-P(x))}|X,T=0\bigg](1-P(x))
+E[Y|X,T=1]-E[Y|X,T=0] = E\bigg[\dfrac{Y}{e(x)}|X,T=1\bigg]P(T) - E\bigg[\dfrac{Y}{(1-e(x))}|X,T=0\bigg](1-P(T))
 \)</span></p>
-<p>We can simplify this further, but let’s take a look at it like this because it gives us some nice intuition of what the propensity score is doing. The first term is estimating <span class="math notranslate nohighlight">\(Y_1\)</span>. It is taking all those that are treated and scaling them by the inverse probability of treatment. What this does is it makes those with very low probability of treatment have a high weight. This makes sense, right? If someone has a low probability of treatment, that individual looks like the untreated. However, that same individual was treated. This must be interesting. We have a treated that looks like the untreated, so we will give that entity a high weight. This creates a population with the same size as the original, but where everyone is treated. By the same reasoning, the other term looks at the untreated and gives a high weight to those that look like the treated. This estimator is called the Inverse Probability of Treatment Weighting (IPTW), since it scales each unit by the probability of receiving some treatment other than the one it received.</p>
+<p>We can simplify this further, but let’s take a look at it like this because it gives us some nice intuition of what the propensity score is doing. The first term is estimating <span class="math notranslate nohighlight">\(Y_1\)</span>. It is taking all those that are treated and scaling them by the inverse probability of treatment. What this does is it makes those with very low probability of treatment have a high weight. This makes sense, right? If someone has a low probability of treatment, that individual looks like the untreated. However, that same individual was treated. This must be interesting. We have a treated that looks like the untreated, so we will give that entity a high weight. This creates a population with the same size as the original, but where everyone is treated. By the same reasoning, the other term looks at the untreated and gives a high weight to those that look like the treated. This estimator is called the Inverse Probability of Treatment Weighting (IPTW), since it scales each unit by the inverse probability of the treatment it received.</p>
 <p>In a picture, here is what this weighting does.</p>
 <p><img alt="img" src="_images/iptw.png" /></p>
-<p>The upper left plot shows the original data. The blue dots are the untreated and the red dots are the treated. The bottom plot shows the propensity score P(x). Notice how it is between 0 and 1 and it grows as X increases. Finally, the upper right plot is the data after weighting. Notice how the red (treated) that are more to the left (lower propensity score) have a higher weight. Similarly, the blue plots that are to the right have also a higher weight.</p>
+<p>The upper left plot shows the original data. The blue dots are the untreated and the red dots are the treated. The bottom plot shows the propensity score <span class="math notranslate nohighlight">\(e(x)\)</span>. Notice how it is between 0 and 1 and it grows as X increases. Finally, the upper right plot is the data after weighting. Notice how the red (treated) that are more to the left (lower propensity score) have a higher weight. Similarly, the blue plots that are to the right have also a higher weight.</p>
 <p>Now that we got the intuition, we can simplify the terms above to</p>
-<p><span class="math notranslate nohighlight">\(
-E\bigg[Y \dfrac{T-P(x)}{P(x)(1-P(x))}\bigg|X\bigg]
-\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+E[Y|X,T=1]-E[Y|X,T=0] &amp;= E\bigg[\dfrac{Y}{e(x)}|X,T=1\bigg]P(T) - E\bigg[\dfrac{Y}{(1-e(x))}|X,T=0\bigg](1-P(T)) \\
+&amp;=E\bigg[\dfrac{YT}{e(x)}\bigg|X\bigg] - E\bigg[\dfrac{Y(1-T)}{(1-e(x))}\bigg|X\bigg] \\
+&amp;=E\bigg[\dfrac{YT}{e(x)} - \dfrac{Y(1-T)}{(1-e(x))}\bigg|X\bigg] \\
+&amp;=E\bigg[Y\dfrac{T(1-e(x)) - e(x)(1-T)}{e(x)(1-e(x))}\bigg|X\bigg] \\
+&amp;=E\bigg[Y \dfrac{T-e(x)}{e(x)(1-e(x))}\bigg|X\bigg]
+\end{align}
+\end{split}\]</div>
 <p>which if we integrate over X becomes our propensity score weighting estimator.</p>
 <p><span class="math notranslate nohighlight">\(
-E\bigg[Y \dfrac{T-P(x)}{P(x)(1-P(x))}\bigg]
+E\bigg[Y \dfrac{T-e(x)}{e(x)(1-e(x))}\bigg]
 \)</span></p>
-<p>Notice that this estimator requires that <span class="math notranslate nohighlight">\(P(x)\)</span> and <span class="math notranslate nohighlight">\(1-P(x)\)</span> are larger than zero. In words, this means that everyone needs to have at least some chance of receiving the treatment and of not receiving it. Another way of stating this is that the treated and untreated distributions need to overlap. This is the <strong>positivity assumption</strong> of causal inference. It also makes intuitive sense. If treated and untreated don’t overlap, it means they are very different and I won’t be able to extrapolate the effect of one group to the other. This extrapolation is not impossible (regression does it), but it is very dangerous. It is like testing a new drug in an experiment where only men receive the treatment and then assume women will respond to it equally well.</p>
+<p>Notice that this estimator requires that <span class="math notranslate nohighlight">\(e(x)\)</span> and <span class="math notranslate nohighlight">\(1-e(x)\)</span> are larger than zero. In words, this means that everyone needs to have at least some chance of receiving the treatment and of not receiving it. Another way of stating this is that the treated and untreated distributions need to overlap. This is the <strong>positivity assumption</strong> of causal inference. It also makes intuitive sense. If treated and untreated don’t overlap, it means they are very different and I won’t be able to extrapolate the effect of one group to the other. This extrapolation is not impossible (regression does it), but it is very dangerous. It is like testing a new drug in an experiment where only men receive the treatment and then assume women will respond to it equally well.</p>
 </section>
 <section id="propensity-score-estimation">
 <h2>Propensity Score Estimation<a class="headerlink" href="#propensity-score-estimation" title="Permalink to this headline">#</a></h2>
-<p>In an ideal world, we would have the true propensity score <span class="math notranslate nohighlight">\(P(x)\)</span>. However, in practice, the mechanism that assigns the treatment is unknown and we need to replace the true propensity score by an estimation of it <span class="math notranslate nohighlight">\(\hat{P}(x)\)</span>. One common way of doing so is using logistic regression, but other machine learning methods, like gradient boosting, can be used as well (although it requires some additional steps to avoid overfitting).</p>
+<p>In an ideal world, we would have the true propensity score <span class="math notranslate nohighlight">\(e(x)\)</span>. However, in practice, the mechanism that assigns the treatment is unknown and we need to replace the true propensity score by an estimation of it <span class="math notranslate nohighlight">\(\hat{e}(x)\)</span>. One common way of doing so is using logistic regression, but other machine learning methods, like gradient boosting, can be used as well (although it requires some additional steps to avoid overfitting).</p>
 <p>Here, I’ll stick to logistic regression. This means that I’ll have to convert the categorical features in the dataset to dummies.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -929,37 +936,37 @@ E\bigg[Y \dfrac{T-P(x)}{P(x)(1-P(x))}\bigg]
       <th>0</th>
       <td>1</td>
       <td>0.277359</td>
-      <td>0.315518</td>
+      <td>0.315486</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1</td>
       <td>-0.449646</td>
-      <td>0.263754</td>
+      <td>0.263801</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1</td>
       <td>0.769703</td>
-      <td>0.344022</td>
+      <td>0.344024</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1</td>
       <td>-0.121763</td>
-      <td>0.344022</td>
+      <td>0.344024</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1</td>
       <td>1.526147</td>
-      <td>0.367792</td>
+      <td>0.367784</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p>First, we can make sure that the propensity score weight indeed reconstructs a population where everyone is treated. By producing weights <span class="math notranslate nohighlight">\(1/P(x)\)</span>, it creates the population where everyone is treated and by providing the weights  <span class="math notranslate nohighlight">\(1/(1-P(x))\)</span> it creates the population where everyone is untreated.</p>
+<p>First, we can make sure that the propensity score weight indeed reconstructs a population where everyone is treated. By producing weights <span class="math notranslate nohighlight">\(1/e(x)\)</span>, it creates the population where everyone is treated and by providing the weights  <span class="math notranslate nohighlight">\(1/(1-e(x))\)</span> it creates the population where everyone is untreated.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight_t</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">data_ps</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;intervention==1&quot;</span><span class="p">)[</span><span class="s2">&quot;propensity_score&quot;</span><span class="p">]</span>
@@ -972,8 +979,8 @@ E\bigg[Y \dfrac{T-P(x)}{P(x)(1-P(x))}\bigg]
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original Sample Size 10391
-Treated Population Sample Size 10388.525540116194
-Untreated Population Sample Size 10391.472598716025
+Treated Population Sample Size 10388.565115367259
+Untreated Population Sample Size 10391.440761283782
 </pre></div>
 </div>
 </div>
@@ -1022,9 +1029,9 @@ Untreated Population Sample Size 10391.472598716025
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Y1: 0.2595849320241899
-Y0: -0.12892922979477256
-ATE 0.38851416181896176
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Y1: 0.2595823130696891
+Y0: -0.1289241686986528
+ATE 0.38850648176834174
 </pre></div>
 </div>
 </div>
@@ -1046,7 +1053,7 @@ ATE 0.38851416181896176
 <span class="c1"># define function that computes the IPTW estimator</span>
 <span class="k">def</span> <span class="nf">run_ps</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="c1"># estimate the propensity score</span>
-    <span class="n">ps</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mf">1e6</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">T</span><span class="p">])</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">X</span><span class="p">])[:,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">ps</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mf">1e6</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">X</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">T</span><span class="p">])</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">X</span><span class="p">])[:,</span> <span class="mi">1</span><span class="p">]</span>
     
     <span class="n">weight</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">T</span><span class="p">]</span><span class="o">-</span><span class="n">ps</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ps</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ps</span><span class="p">))</span> <span class="c1"># define the weights</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">weight</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="n">y</span><span class="p">])</span> <span class="c1"># compute the ATE</span>
@@ -1070,8 +1077,8 @@ ATE 0.38851416181896176
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ATE: 0.38774413254011303
-95% C.I.: (0.3544208239697648, 0.4199217724550494)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ATE: 0.3877446247220722
+95% C.I.: (0.3545132414290843, 0.41992560836402076)
 </pre></div>
 </div>
 </div>
@@ -1227,13 +1234,13 @@ ATE 0.38851416181896176
           <td></td>            <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th>        <td>   -3.0760</td> <td>    0.065</td> <td>  -47.048</td> <td> 0.000</td> <td>   -3.204</td> <td>   -2.948</td>
+  <th>Intercept</th>        <td>   -3.0770</td> <td>    0.065</td> <td>  -47.061</td> <td> 0.000</td> <td>   -3.205</td> <td>   -2.949</td>
 </tr>
 <tr>
   <th>intervention</th>     <td>    0.3930</td> <td>    0.019</td> <td>   20.974</td> <td> 0.000</td> <td>    0.356</td> <td>    0.430</td>
 </tr>
 <tr>
-  <th>propensity_score</th> <td>    9.0522</td> <td>    0.200</td> <td>   45.300</td> <td> 0.000</td> <td>    8.660</td> <td>    9.444</td>
+  <th>propensity_score</th> <td>    9.0554</td> <td>    0.200</td> <td>   45.314</td> <td> 0.000</td> <td>    8.664</td> <td>    9.447</td>
 </tr>
 </table></div></div>
 </div>
@@ -1258,15 +1265,15 @@ ATE 0.38851416181896176
 
                      Est.       S.e.          z      P&gt;|z|      [95% Conf. int.]
 --------------------------------------------------------------------------------
-           ATE      0.384      0.025     15.232      0.000      0.334      0.433
-           ATC      0.382      0.028     13.767      0.000      0.328      0.437
-           ATT      0.387      0.027     14.476      0.000      0.334      0.439
+           ATE      0.389      0.025     15.579      0.000      0.340      0.438
+           ATC      0.382      0.027     13.921      0.000      0.328      0.435
+           ATT      0.405      0.027     15.175      0.000      0.353      0.457
 </pre></div>
 </div>
 </div>
 </div>
 <p>As we can see, we also get an ATE of 0.38, which is more in line with what we’ve seen before with propensity score weighting. Matching on the propensity score also gives us some intuition about why it is dangerous to have a small overlap in the propensity score between treated and untreated. If this happens, the matching on the propensity score discrepancy will be large, which will lead to bias, as we’ve seen on the matching chapter.</p>
-<p>One final word of caution here is that the above standard errors are wrong, as they don’t account for the uncertainty in the estimation of the propensity score. Unfortunately, <a class="reference external" href="https://economics.mit.edu/files/11862">bootstrap doesn’t work with matching</a>. Also, the theory above is so recent that there are no Python implementations of propensity score methods with the correct standard errors. For this reason, we don’t see a lot of propensity score matching in Python.</p>
+<p>One final word of caution here is that the above standard errors are wrong, as they don’t account for the uncertainty in the estimation of the propensity score. Unfortunately, <a class="reference external" href="https://economics.mit.edu/sites/default/files/publications/ON%20THE%20FAILURE%20OF%20THE%20BOOTSTRAP%20FOR.pdf">bootstrap doesn’t work with matching</a>. Also, the theory above is so recent that there are no Python implementations of propensity score methods with the correct standard errors. For this reason, we don’t see a lot of propensity score matching in Python.</p>
 </section>
 <section id="key-ideas">
 <h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">#</a></h2>

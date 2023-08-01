@@ -799,7 +799,7 @@ Sales_i = \alpha + \tau price_i + \beta_1 temp_i + \beta_2 temp^2_i + \beta_3 co
       <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
 </tr>
 <tr>
-  <th>Intercept</th> <td>-3.848e-13</td> <td>    0.111</td> <td>-3.48e-12</td> <td> 1.000</td> <td>   -0.217</td> <td>    0.217</td>
+  <th>Intercept</th> <td> -4.96e-13</td> <td>    0.111</td> <td>-4.49e-12</td> <td> 1.000</td> <td>   -0.217</td> <td>    0.217</td>
 </tr>
 <tr>
   <th>price_res</th> <td>   -4.0004</td> <td>    0.110</td> <td>  -36.428</td> <td> 0.000</td> <td>   -4.216</td> <td>   -3.785</td>
@@ -815,7 +815,7 @@ Sales_i = \alpha + \tau price_i + \beta_1 temp_i + \beta_2 temp^2_i + \beta_3 co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-4.000429145475403
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-4.000429145475454
 </pre></div>
 </div>
 </div>
@@ -1215,12 +1215,11 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
 
 <span class="k">def</span> <span class="nf">cv_estimate</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_params</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="n">cv</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">)</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">model_params</span><span class="p">)</span>
-    
+    <span class="n">cv</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">)</span>    
     <span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">cv_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">train_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">train_data</span><span class="p">):</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">model_params</span><span class="p">)</span>
         <span class="n">m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="n">X</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">],</span> <span class="n">train_data</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">])</span>
         <span class="n">cv_pred</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="n">X</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">])</span>
         <span class="n">models</span> <span class="o">+=</span> <span class="p">[</span><span class="n">m</span><span class="p">]</span>
@@ -1483,7 +1482,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
       <td>7</td>
       <td>230</td>
       <td>4.750</td>
-      <td>14.401401</td>
+      <td>16.093630</td>
     </tr>
     <tr>
       <th>3</th>
@@ -1516,7 +1515,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
       <td>7</td>
       <td>230</td>
       <td>7.375</td>
-      <td>-12.539291</td>
+      <td>-10.939867</td>
     </tr>
     <tr>
       <th>6</th>
@@ -1527,7 +1526,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
       <td>7</td>
       <td>230</td>
       <td>8.250</td>
-      <td>-23.332933</td>
+      <td>-21.655858</td>
     </tr>
     <tr>
       <th>7</th>
@@ -1605,7 +1604,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
       <td>7</td>
       <td>230</td>
       <td>3.000</td>
-      <td>255.459625</td>
+      <td>254.208352</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1616,7 +1615,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
       <td>7</td>
       <td>230</td>
       <td>3.875</td>
-      <td>252.019609</td>
+      <td>250.768336</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1627,7 +1626,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
       <td>7</td>
       <td>230</td>
       <td>4.750</td>
-      <td>245.558177</td>
+      <td>245.999133</td>
     </tr>
     <tr>
       <th>3</th>
@@ -1638,7 +1637,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
       <td>7</td>
       <td>230</td>
       <td>5.625</td>
-      <td>237.431371</td>
+      <td>236.180099</td>
     </tr>
     <tr>
       <th>4</th>
@@ -1649,7 +1648,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
       <td>7</td>
       <td>230</td>
       <td>6.500</td>
-      <td>229.532151</td>
+      <td>228.280878</td>
     </tr>
     <tr>
       <th>5</th>
@@ -1660,7 +1659,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
       <td>7</td>
       <td>230</td>
       <td>7.375</td>
-      <td>218.617485</td>
+      <td>218.965636</td>
     </tr>
     <tr>
       <th>6</th>
@@ -1671,7 +1670,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
       <td>7</td>
       <td>230</td>
       <td>8.250</td>
-      <td>207.823843</td>
+      <td>208.249645</td>
     </tr>
     <tr>
       <th>7</th>
@@ -1682,7 +1681,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
       <td>7</td>
       <td>230</td>
       <td>9.125</td>
-      <td>205.837602</td>
+      <td>204.586329</td>
     </tr>
     <tr>
       <th>8</th>
@@ -1693,7 +1692,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
       <td>7</td>
       <td>230</td>
       <td>10.000</td>
-      <td>205.837602</td>
+      <td>204.586329</td>
     </tr>
   </tbody>
 </table>
@@ -1804,16 +1803,16 @@ If you found this book valuable and you want to support it, please go to <a clas
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "causal-glory"
+            mode: "conda-root-py"
         },
         kernelOptions: {
-            kernelName: "causal-glory",
+            kernelName: "conda-root-py",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'causal-glory'</script>
+    <script>kernelName = 'conda-root-py'</script>
 
               </div>
               

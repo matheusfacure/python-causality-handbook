@@ -1111,13 +1111,16 @@ P-value: 0.0
 <p><img alt="img" src="_images/weak-iv.png" /></p>
 <p>When dealing with IV, we need to remember we are estimating the ATE indirectly. Our estimates depend on both the first stage and the second stage. If the impact of the treatment on the outcome is indeed strong, the second stage will also be strong. However, it doesn’t matter how strong the second stage is if we have a weak first stage. A weak first stage means that the instrument has only a very small correlation with the treatment. Therefore, we can’t learn much about the treatment from the instrument.</p>
 <p>The formulas for the IV standard errors are a bit complex and not so intuitive, so we will try something else to grasp this problem. We will simulate data where we have a treatment T with effect 2.0 on the outcome Y, an unobserved confounder U and an additional control X. We will also simulate multiple instruments with different strengths on the 1st stage.</p>
-<p><span class="math notranslate nohighlight">\(
-X \sim N(0, 2^2)\\
-U \sim N(0, 2^2)\\
-T \sim N(1+0.5U, 5^2)\\
-Y \sim N(2+ X - 0.5U + 2T, 5^2)\\
-Z \sim N(T, \sigma^2) \text{ for }\sigma^2 \text{ in 0.1 to 100}
-\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+X \sim &amp; N(0, 2^2)\\
+U \sim &amp; N(0, 2^2)\\
+T \sim &amp; N(1+0.5U, 5^2)\\
+Y \sim &amp; N(2+ X - 0.5U + 2T, 5^2)\\
+Z \sim &amp; N(T, \sigma^2) \text{ for }\sigma^2 \text{ in 0.1 to 100}
+\end{align}
+\end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
