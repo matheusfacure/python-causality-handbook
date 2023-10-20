@@ -4,7 +4,7 @@
 
 [![DOI](https://zenodo.org/badge/255903310.svg)](https://zenodo.org/badge/latestdoi/255903310)
 
-A light-hearted yet rigorous approach to learning impact estimation and sensitivity analysis. Everything in Python and with as many memes as I could find.
+A light-hearted yet rigorous approach to learning impact estimation and sensitivity analysis. All in Python and with as many memes as I could find.
 
 [Check out the book here!](https://matheusfacure.github.io/python-causality-handbook/landing-page.html)
 
@@ -14,7 +14,7 @@ If you want to read the book in Chinese, @xieliaing was very kind to make a tran
 If you want to read the book in Spanish, @donelianc was very kind to make a translation:  
 [Inferencia Causal para los Valientes y Verdaderos](https://github.com/donelianc/introduccion-inferencia-causal)
 
-If you want to read it in Korean, @jsshin2019 has put up a team to make the that translation possible:  
+If you want to read the book in Korean, @jsshin2019 has put together a team to make the that translation possible:  
 [Python으로 하는 인과추론 : 개념부터 실습까지](https://github.com/TeamCausality/Causal-Inference-with-Python)
  
 
@@ -28,12 +28,12 @@ I like to think of this entire series as a tribute to Joshua Angrist, Alberto Ab
 * [Cross-Section Econometrics](https://www.aeaweb.org/conference/cont-ed/2017-webcasts)
 * [Mastering Mostly Harmless Econometrics](https://www.aeaweb.org/conference/cont-ed/2020-webcasts)
 
-I'll also like to reference the amazing books from Angrist. They have shown me that Econometrics, or 'Metrics as they call it, is not only extremely useful but also profoundly fun.
+I'd also like to reference the amazing books from Angrist. They have shown me that Econometrics, or 'Metrics as they call it, is not only extremely useful but also profoundly fun.
 
 * [Mostly Harmless Econometrics](https://www.mostlyharmlesseconometrics.com/)
 * [Mastering 'Metrics](https://www.masteringmetrics.com/)
 
-My final reference is Miguel Hernan and Jamie Robins' book. It has been my trustworthy companion in the most thorny causal questions I had to answer.
+Finally, I'd like to reference Miguel Hernan and Jamie Robins' book. It has been my trustworthy companion in the most thorny causal inference questions I've had to answer.
 
 * [Causal Inference Book](https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/)
 
