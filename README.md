@@ -8,17 +8,17 @@ A light-hearted yet rigorous approach to learning impact estimation and sensitiv
 
 [Check out the book here!](https://matheusfacure.github.io/python-causality-handbook/landing-page.html)
 
-If you want to read the book in Chinese, @xieliaing was very kind to make a translation:  
+If you want to read the book in Chinese, @xieliaing was very kind to make a translation:
 [因果推断：从概念到实践](https://github.com/xieliaing/CausalInferenceIntro)
 
-If you want to read the book in Spanish, @donelianc was very kind to make a translation:  
+If you want to read the book in Spanish, @donelianc was very kind to make a translation:
 [Inferencia Causal para los Valientes y Verdaderos](https://github.com/donelianc/introduccion-inferencia-causal)
 
-If you want to read the book in Korean, @jsshin2019 has put together a team to make the that translation possible:  
+If you want to read it in Korean, @jsshin2019 has put up a team to make the that translation possible:
 [Python으로 하는 인과추론 : 개념부터 실습까지](https://github.com/TeamCausality/Causal-Inference-with-Python)
- 
 
-Also, some really kind folks (@vietecon, @dinhtrang24 and @anhpham52) also translated this content into Vietnamese:  
+
+Also, some really kind folks (@vietecon, @dinhtrang24 and @anhpham52) also translated this content into Vietnamese:
 [Nhân quả Python](https://github.com/vietecon/NhanQuaPython)
 
 
@@ -39,5 +39,5 @@ Finally, I'd like to reference Miguel Hernan and Jamie Robins' book. It has been
 
 ## How to Support This Work
 
-Causal Inference for the Brave and True is an open-source material on mostly econometrics and the statistics of science. It uses only free software, based in Python. Its goal is to be accessible, not only financially, but intellectually. I've tried my best to keep the writing entertaining while maintaining the necessary scientific rigor.  
-Recently, the book has been translated into Vietnamese by some very nice folks from the London School of Economics. Although I was thrilled by it, the translation process also revealed the insufficiencies of my english. For this reason, I'm looking for funds to hire professional proofreading services and sort that problem once and for all. To help me with that, go to https://www.patreon.com/causal_inference_for_the_brave_and_true
+Causal Inference for the Brave and True is an open-source material on mostly econometrics and the statistics of science. It uses only free software, based in Python. Its goal is to be accessible, not only financially, but intellectually. I've tried my best to keep the writing entertaining while maintaining the necessary scientific rigor.
+Recently, the book has been translated into Vietnamese by some very nice folks from the London School of Economics. Although I was thrilled by it, the translation process also revealed the insufficiencies of my English. For this reason, I'm looking for funds to hire professional proofreading services and sort that problem once and for all. To help me with that, go to https://www.patreon.com/causal_inference_for_the_brave_and_true
