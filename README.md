@@ -39,7 +39,7 @@ Finally, I'd like to reference Miguel Hernan and Jamie Robins' book. It has been
 
 ## How to Support This Work
 
-Causal Inference for the Brave and True" is an open-source resource primarily focused on econometrics and the statistics of science. It exclusively utilizes free software, grounded in Python. The primary objective is to ensure accessibility, not only from a financial standpoint but also from an intellectual perspective. I've tried my best to keep the content entertaining while maintaining the necessary scientific rigor.
+Causal Inference for the Brave and True is an open-source resource primarily focused on econometrics and the statistics of science. It exclusively utilizes free software, grounded in Python. The primary objective is to ensure accessibility, not only from a financial standpoint but also from an intellectual perspective. I've tried my best to keep the content entertaining while maintaining the necessary scientific rigor.
 
 
 If you want to show your appreciation for this work, consider  going to https://www.patreon.com/causal_inference_for_the_brave_and_true. Alternatively, you can purchase my book, [Causal Inference in Python](https://www.amazon.com/Causal-Inference-Python-Applying-Industry/dp/1098140257), which provides more insights into applying causal inference in the industry.
