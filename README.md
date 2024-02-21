@@ -8,6 +8,9 @@ A light-hearted yet rigorous approach to learning impact estimation and sensitiv
 
 [Check out the book here!](https://matheusfacure.github.io/python-causality-handbook/landing-page.html)
 
+If you want to read the book in Brazilian Portuguese, @rdemarqui made this awesome translation:
+[Inferência Causal para os Corajosos e Verdadeiros](https://github.com/rdemarqui/python-causality-handbook-ptbr)
+
 If you want to read the book in Chinese, @xieliaing was very kind to make a translation:
 [因果推断：从概念到实践](https://github.com/xieliaing/CausalInferenceIntro)
 
@@ -17,9 +20,10 @@ If you want to read the book in Spanish, @donelianc was very kind to make a tran
 If you want to read it in Korean, @jsshin2019 has put up a team to make the that translation possible:
 [Python으로 하는 인과추론 : 개념부터 실습까지](https://github.com/TeamCausality/Causal-Inference-with-Python)
 
-
 Also, some really kind folks (@vietecon, @dinhtrang24 and @anhpham52) also translated this content into Vietnamese:
 [Nhân quả Python](https://github.com/vietecon/NhanQuaPython)
+
+
 
 
 
