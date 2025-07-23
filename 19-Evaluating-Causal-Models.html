@@ -1102,7 +1102,7 @@ s_{\hat\beta_1}=\sqrt{\frac{\sum_i\hat\epsilon_i^2}{(n-2)\sum_i(t_i-\bar t)^2}}
 </div>
 </div>
 </div>
-<p>Here is what it looks like for the causal model. Notice that now, the CI starts small, even though the sample size is smaller at the beginning of the curve. The reason is that the normalization factor <span class="math notranslate nohighlight">\(\frac{k}{N}\)</span> shirks the ATE parameter and it’s CI along with it. Since this curve should be used to compare models, this shouldn’t be a problem, as the curve will apply this shirking factor equally to all the models being evaluated.</p>
+<p>Here is what it looks like for the causal model. Notice that now, the CI starts small, even though the sample size is smaller at the beginning of the curve. The reason is that the normalization factor <span class="math notranslate nohighlight">\(\frac{k}{N}\)</span> shrinks the ATE parameter and it’s CI along with it. Since this curve should be used to compare models, this shouldn’t be a problem, as the curve will apply this shrinking factor equally to all the models being evaluated.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>

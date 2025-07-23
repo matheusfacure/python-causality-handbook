@@ -668,7 +668,7 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <img alt="_images/08-Instrumental-Variables_4_0.svg" src="_images/08-Instrumental-Variables_4_0.svg" /></div>
 </div>
-<p>If we have such a variable, we can recover the causal effect <span class="math notranslate nohighlight">\(\kappa\)</span> with what we will see as the IV formula. To do so, let’s think about the ideal equation we want to run. Using more general terms like <span class="math notranslate nohighlight">\(T\)</span> for the treatment and <span class="math notranslate nohighlight">\(W\)</span> for the confounders, here is want we want:</p>
+<p>If we have such a variable, we can recover the causal effect <span class="math notranslate nohighlight">\(\kappa\)</span> with what we will see as the IV formula. To do so, let’s think about the ideal equation we want to run. Using more general terms like <span class="math notranslate nohighlight">\(T\)</span> for the treatment and <span class="math notranslate nohighlight">\(W\)</span> for the confounders, here is what we want:</p>
 <p><span class="math notranslate nohighlight">\(
 Y_i = \beta_0 + \kappa \ T_i + \pmb{\beta}W_i + u_i
 \)</span></p>
@@ -703,7 +703,7 @@ v_i = \pmb{\beta}W_i + u_i
 </section>
 <section id="quarter-of-birth-and-the-effect-of-education-on-wage">
 <h2>Quarter of Birth and the Effect of Education on Wage<a class="headerlink" href="#quarter-of-birth-and-the-effect-of-education-on-wage" title="Permalink to this headline">#</a></h2>
-<p>So far, we’ve been treating these instruments as some magical variable <span class="math notranslate nohighlight">\(Z\)</span> which have the miraculous propriety of only affecting the outcome through the treatment. To be honest, good instruments are so hard to come by that we might as well consider them miracles. Let’s just say it is not for the faint of heart. Rumor has it that the cool kids at Chicago School of Economics talk about how they come up with this or that instrument at the bar.</p>
+<p>So far, we’ve been treating these instruments as some magical variable <span class="math notranslate nohighlight">\(Z\)</span> which have the miraculous property of only affecting the outcome through the treatment. To be honest, good instruments are so hard to come by that we might as well consider them miracles. Let’s just say it is not for the faint of heart. Rumor has it that the cool kids at Chicago School of Economics talk about how they come up with this or that instrument at the bar.</p>
 <p><img alt="img" src="_images/good-iv.png" /></p>
 <p>Still, we do have some interesting examples of instruments to make things a little more concrete. We will again try to estimate the effect of education on wage. To do so, we will use the person’s quarter of birth as the instrument Z.</p>
 <p>This idea takes advantage of US compulsory attendance law. Usually, they state that a kid must have turned 6 years by January 1 of the year they enter school. For this reason, kids that are born at the beginning of the year will enter school at an older age. Compulsory attendance law also requires students to be in school until they turn 16, at which point they are legally allowed to drop out. The result is that people born later in the year have, on average, more years of education than those born in the beginning of the year.</p>
