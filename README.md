@@ -14,8 +14,11 @@ If you want to read the book in Brazilian Portuguese, @rdemarqui made this aweso
 If you want to read the book in French, Arthur Mello put a lot of effort into this beautiful translation:  
 [L'Inférence Causale pour les Courageux et les Vrais](https://github.com/arthurmello/python-causality-handbook)
 
-If you want to read the book in Chinese, @xieliaing was very kind to make a translation:  
+If you want to read the book in Chinese, @xieliaing was very kind to make a translation (Chapters 1-21):  
 [因果推断：从概念到实践](https://github.com/xieliaing/CausalInferenceIntro)
+
+There is also a more recent Chinese tralsation by 黄文喆（Wenzhe Huang) and 许文立（Wenli Xu) (All Chapters):  
+[因果推断：献给求真敢为者](https://github.com/Wenzhe-Huang/python-causality-handbook-zh)
 
 If you want to read the book in Spanish, @donelianc was very kind to make a translation:  
 [Inferencia Causal para los Valientes y Verdaderos](https://github.com/donelianc/introduccion-inferencia-causal)
