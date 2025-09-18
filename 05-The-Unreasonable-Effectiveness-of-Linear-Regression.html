@@ -1062,16 +1062,16 @@ log(hwage)_i = \beta_0 + \kappa \ educ_i + \pmb{\beta}X_i + u_i
 <section id="omitted-variable-or-confounding-bias">
 <h2>Omitted Variable or Confounding Bias<a class="headerlink" href="#omitted-variable-or-confounding-bias" title="Permalink to this headline">#</a></h2>
 <p>The question that remains is: is this parameter we’ve estimated causal? Unfortunately, we can’t say for sure. We can argue that the first simple model that regress wage on education probably isn’t. It omits important variables that are correlated both with education and with wages. Without controlling for them, the estimated impact of education is also capturing the impact of those other variables that were not included in the model.</p>
-<p>To better understand how this bias work, let’s suppose the true model for how education affects wage looks a bit like this</p>
+<p>To better understand how this bias works, let’s suppose the true model for how education affects wage looks a bit like this</p>
 <p><span class="math notranslate nohighlight">\(
-Wage_i = \alpha + \kappa \ Educ_i + A_i'\beta + u_i
+Wage_i = \alpha + \kappa \ Educ_i + \beta' A_i + u_i
 \)</span></p>
-<p>wage is affected by education, which is measured by the size of <span class="math notranslate nohighlight">\(\kappa\)</span> and by additional ability factors, denoted as the vector <span class="math notranslate nohighlight">\(A\)</span>. If we omit ability from our model, our estimate for <span class="math notranslate nohighlight">\(\kappa\)</span> will look like this:</p>
+<p>wage is affected by education, which is measured by the size of <span class="math notranslate nohighlight">\(\kappa\)</span> and by an additional ability factor, denoted as <span class="math notranslate nohighlight">\(A\)</span>. If we omit ability from our model, our estimate for <span class="math notranslate nohighlight">\(\kappa\)</span> will look like this:</p>
 <p><span class="math notranslate nohighlight">\(
-\dfrac{Cov(Wage_i, Educ_i)}{Var(Educ_i)} = \kappa + \beta'\delta_{Ability}
+\dfrac{Cov(Wage_i, Educ_i)}{Var(Educ_i)} = \kappa + \beta'\delta_{A}
 \)</span></p>
-<p>where <span class="math notranslate nohighlight">\(\delta_{A}\)</span> is the vector of coefficients from the regression of <span class="math notranslate nohighlight">\(Educ\)</span> on <span class="math notranslate nohighlight">\(A\)</span></p>
-<p>The key point here is that it won’t be exactly the <span class="math notranslate nohighlight">\(\kappa\)</span> that we want. Instead, it comes with this extra annoying term <span class="math notranslate nohighlight">\(\beta'\delta_{A}\)</span>. This term is the impact of the omitted <span class="math notranslate nohighlight">\(A\)</span> on <span class="math notranslate nohighlight">\(Wage\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span> times the impact of the omitted on the included <span class="math notranslate nohighlight">\(Educ\)</span>. This is important for economists that Joshua Angrist made a mantra out of it so that the students can recite it in meditation:</p>
+<p>where <span class="math notranslate nohighlight">\(\delta_{A}\)</span> is the coefficient from the regression of <span class="math notranslate nohighlight">\(A\)</span> on <span class="math notranslate nohighlight">\(Educ\)</span></p>
+<p>The key point here is that it won’t be exactly the <span class="math notranslate nohighlight">\(\kappa\)</span> that we want. Instead, it comes with this extra annoying term <span class="math notranslate nohighlight">\(\beta'\delta_{A}\)</span>. This term is the impact of the omitted <span class="math notranslate nohighlight">\(A\)</span> on <span class="math notranslate nohighlight">\(Wage\)</span>, <span class="math notranslate nohighlight">\(\beta'\)</span> times the impact of the omitted on the included <span class="math notranslate nohighlight">\(Educ\)</span>. This is so important for economists that Joshua Angrist made a mantra out of it so that the students can recite it in meditation:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Short equals long </span>
 <span class="n">plus</span> <span class="n">the</span> <span class="n">effect</span> <span class="n">of</span> <span class="n">omitted</span> 
 <span class="n">times</span> <span class="n">the</span> <span class="n">regression</span> <span class="n">of</span> <span class="n">omitted</span> <span class="n">on</span> <span class="n">included</span><span class="s2">&quot;</span>

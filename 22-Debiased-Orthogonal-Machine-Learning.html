@@ -1248,7 +1248,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 </div>
 </div>
 </div>
-<p>After the orthogonalisation, we will throw <span class="math notranslate nohighlight">\(\tilde{T}\)</span> along with <span class="math notranslate nohighlight">\(X\)</span> to a ML model that tries to precit <span class="math notranslate nohighlight">\(\tilde{Y}\)</span>. I’m using a LGBM model here, but you can pick any ML model. One cool thing about LGBM is that I can set monotonic constraints to it. Knowing what we know about prices, sales should decrease as price increases. We can take that into account and constrain our LGBM model <strong>to not increase</strong> it’s predictions as prices increase.</p>
+<p>After the orthogonalisation, we will throw <span class="math notranslate nohighlight">\(\tilde{T}\)</span> along with <span class="math notranslate nohighlight">\(X\)</span> to a ML model that tries to predict <span class="math notranslate nohighlight">\(\tilde{Y}\)</span>. I’m using a LGBM model here, but you can pick any ML model. One cool thing about LGBM is that I can set monotonic constraints to it. Knowing what we know about prices, sales should decrease as price increases. We can take that into account and constrain our LGBM model <strong>to not increase</strong> it’s predictions as prices increase.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -1 on price saying that the predictions should not increase as price increases</span>

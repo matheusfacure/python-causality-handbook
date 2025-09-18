@@ -1161,7 +1161,7 @@ Y_{it} = \beta_0 + \beta_1 Post_t + \beta_2 Treated_i + \beta_3 Treated_i  Post_
 <p>Next, just like I promised, we can easily merge the equations above into one which will contain elements from both of them:</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{\tau}^{sdid} = \underset{\mu, \alpha, \beta, \tau}{argmin}  \bigg\{ \sum_{i=1}^N \sum_{t=1}^T \big(Y_{it} - (\mu + \alpha_i + \beta_t + \tau D_{it}\big)^2 \hat{w}^{sdid}_i \hat{\lambda}^{sdid}_t \bigg\}
+\hat{\tau}^{sdid} = \underset{\mu, \alpha, \beta, \tau}{argmin}  \bigg\{ \sum_{i=1}^N \sum_{t=1}^T \big(Y_{it} - (\mu + \alpha_i + \beta_t + \tau D_{it})^2 \hat{w}^{sdid}_i \hat{\lambda}^{sdid}_t \big) \bigg\}
 \]</div>
 <p>As you can see, we’ve added back the <span class="math notranslate nohighlight">\(\alpha_i\)</span> unit fixed effects. We’ve also kept the unit weights <span class="math notranslate nohighlight">\(\hat{w}_i\)</span>. But there is something new, which is the time weights <span class="math notranslate nohighlight">\(\hat{\lambda}_t\)</span>. Don’t worry. There is nothing fancy about them. Remember how the unit weights <span class="math notranslate nohighlight">\(w_i\)</span> minimized the difference between the control units and the average of treated units? In other words, we use them to match the pre-trend of the treated and control groups. The time weight does the same thing, but for the periods. That is, it minimizes the difference between the pre and post-treated periods for the controls.</p>
 <div class="math notranslate nohighlight">

@@ -838,10 +838,6 @@ I’ll try to go over them, but keep in mind that this stuff is highly dependent
 <p><span class="math notranslate nohighlight">\(
 \hat{M}_{\tau 1}(X) \approx E[\hat{\tau}(X)|T=1]
 \)</span></p>
-<div class="math notranslate nohighlight">
-\[
-\hat{Y}
-\]</div>
 <p>If we apply this on the image we’ve shown before, <span class="math notranslate nohighlight">\(\hat{\tau}(X, T=0)\)</span>, the imputed treatment effect on the untreated, would be the red crosses and the red dashed line would be <span class="math notranslate nohighlight">\(\hat{M}_{\tau 0}(X)\)</span>. Notice that this model is wrong. Because <span class="math notranslate nohighlight">\(\hat{\tau}(X, T=0)\)</span> was made using the regularized, simple model, estimated on the treated, <span class="math notranslate nohighlight">\(\hat{M}_1\)</span>.  The treatment effect it imputes is non linear, since it <strong>doesn’t</strong> capture the non-linearity in the Y variable.</p>
 <p>In contrast, the blue dots are the imputed treatment effect for the treated, <span class="math notranslate nohighlight">\(\hat{\tau}(X, T=1)\)</span>. These effects are estimated using the correct model, <span class="math notranslate nohighlight">\(M_0\)</span>, trained in the untreated, large, sample. As a result, since its imputed treatment effects are correct, we are able to train a correct second stage model <span class="math notranslate nohighlight">\(\hat{M}_{\tau 1}(X)\)</span>, shown by the blue line.</p>
 <p><img alt="img" src="_images/second-stage-x.png" /></p>
