@@ -7,9 +7,11 @@ execute:
 
 repository:
   url: https://github.com/matheusfacure/python-causality-handbook
+
 html:
   use_issues_button: true
   google_analytics_id: UA-97848161-1
+  announcement: "Interested to learn more? Checkout <a href='http://example.com'>my causal inference course</a>!"
 
 exclude_patterns: [_build, .DS_Store, "**.ipynb_checkpoints"]
 
