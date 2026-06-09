@@ -11,7 +11,7 @@ repository:
 html:
   use_issues_button: true
   google_analytics_id: UA-97848161-1
-  announcement: "Interested to learn more? Checkout <a href='http://example.com'>my causal inference course</a>!"
+  announcement: "Interested to learn more? Checkout <a href='https://quentin-gallea.systeme.io/4e570836-fe47b441-aa536f8e-f9549395-2538b72b-5d19a3fb-47c7c909-ad3ed401'>my causal inference course</a>!"
 
 exclude_patterns: [_build, .DS_Store, "**.ipynb_checkpoints"]
 
