@@ -1,117 +1,177 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Debiasing with Propensity Score &#8212; Causal Inference for the Brave and True</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-97848161-1"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-97848161-1');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-97848161-1');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Debiasing-with-Propensity-Score';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="When Prediction Fails" href="When-Prediction-Fails.html" />
     <link rel="prev" title="Debiasing with Orthogonalization" href="Debiasing-with-Orthogonalization.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-97848161-1', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="container-fluid" id="banner"></div>
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
 
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">Interested to learn more? Checkout <a href='http://example.com'>my causal inference course</a>!</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+  
+    
+  
+
+<a class="navbar-brand logo" href="landing-page.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Causal Inference for the Brave and True</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -120,491 +180,235 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Part I - The Yang
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I - The Yang</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-Introduction-To-Causality.html">
-   01 - Introduction To Causality
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02-Randomised-Experiments.html">
-   02 - Randomised Experiments
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
-   03 - Stats Review: The Most Dangerous Equation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04-Graphical-Causal-Models.html">
-   04 - Graphical Causal Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
-   05 - The Unreasonable Effectiveness of Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
-   06 - Grouped and Dummy Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-Beyond-Confounders.html">
-   07 - Beyond Confounders
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-Instrumental-Variables.html">
-   08 - Instrumental Variables
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
-   09 - Non Compliance and LATE
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="10-Matching.html">
-   10 - Matching
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="11-Propensity-Score.html">
-   11 - Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
-   12 - Doubly Robust Estimation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="13-Difference-in-Differences.html">
-   13 - Difference-in-Differences
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Panel-Data-and-Fixed-Effects.html">
-   14 - Panel Data and Fixed Effects
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="15-Synthetic-Control.html">
-   15 - Synthetic Control
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
-   16 - Regression Discontinuity Design
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-Introduction-To-Causality.html">01 - Introduction To Causality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Randomised-Experiments.html">02 - Randomised Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">03 - Stats Review: The Most Dangerous Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Graphical-Causal-Models.html">04 - Graphical Causal Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">05 - The Unreasonable Effectiveness of Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">06 - Grouped and Dummy Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Beyond-Confounders.html">07 - Beyond Confounders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Instrumental-Variables.html">08 - Instrumental Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Non-Compliance-and-LATE.html">09 - Non Compliance and LATE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-Matching.html">10 - Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Propensity-Score.html">11 - Propensity Score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-Doubly-Robust-Estimation.html">12 - Doubly Robust Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-Difference-in-Differences.html">13 - Difference-in-Differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Panel-Data-and-Fixed-Effects.html">14 - Panel Data and Fixed Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Synthetic-Control.html">15 - Synthetic Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-Regression-Discontinuity-Design.html">16 - Regression Discontinuity Design</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Part II - The Yin
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II - The Yin</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="17-Predictive-Models-101.html">
-   17 - Predictive Models 101
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html">
-   18 - Heterogeneous Treatment Effects and Personalization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Evaluating-Causal-Models.html">
-   19 - Evaluating Causal Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
-   20 - Plug-and-Play Estimators
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="21-Meta-Learners.html">
-   21 - Meta Learners
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
-   22 - Debiased/Orthogonal Machine Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html">
-   23 - Challenges with Effect Heterogeneity and Nonlinearity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="24-The-Diff-in-Diff-Saga.html">
-   24 - The Difference-in-Differences Saga
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="25-Synthetic-Diff-in-Diff.html">
-   25 - Synthetic Difference-in-Differences
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="17-Predictive-Models-101.html">17 - Predictive Models 101</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html">18 - Heterogeneous Treatment Effects and Personalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-Evaluating-Causal-Models.html">19 - Evaluating Causal Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20-Plug-and-Play-Estimators.html">20 - Plug-and-Play Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-Meta-Learners.html">21 - Meta Learners</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">22 - Debiased/Orthogonal Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html">23 - Challenges with Effect Heterogeneity and Nonlinearity</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="24-The-Diff-in-Diff-Saga.html">24 - The Difference-in-Differences Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25-Synthetic-Diff-in-Diff.html">25 - Synthetic Difference-in-Differences</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendix
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
-   Debiasing with Orthogonalization
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Debiasing with Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="When-Prediction-Fails.html">
-   When Prediction Fails
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Prediction-Metrics-For-Causal-Models.html">
-   Why Prediction Metrics are Dangerous For Causal Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Conformal-Inference-for-Synthetic-Control.html">
-   Conformal Inference for Synthetic Controls
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="Debiasing-with-Orthogonalization.html">Debiasing with Orthogonalization</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Debiasing with Propensity Score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="When-Prediction-Fails.html">When Prediction Fails</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prediction-Metrics-For-Causal-Models.html">Why Prediction Metrics are Dangerous For Causal Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformal-Inference-for-Synthetic-Control.html">Conformal Inference for Synthetic Controls</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Contribute
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contribute</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">
-   Patreon
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/Debiasing-with-Propensity-Score.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-</div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2FDebiasing-with-Propensity-Score.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button"
+   title="Open an issue"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-<a href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2FDebiasing-with-Propensity-Score.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="bottom"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-lightbulb"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/Debiasing-with-Propensity-Score.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Debiasing-with-Propensity-Score.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
   </span>
 
-</label>
+</button>
 
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#inverse-probability-of-treatment-weighting">
-   Inverse Probability of Treatment Weighting
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stored-propensity-score">
-     Stored Propensity Score
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#estimated-propensity-score">
-     Estimated Propensity Score
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-weakness-of-propensity-score">
-   The Weakness of Propensity Score
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#positivity-or-common-support">
-   Positivity or Common Support
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#positivity-in-practice">
-     Positivity In Practice
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#key-ideas">
-   Key Ideas
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contribute">
-   Contribute
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Debiasing with Propensity Score</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#inverse-probability-of-treatment-weighting">
-   Inverse Probability of Treatment Weighting
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stored-propensity-score">
-     Stored Propensity Score
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#estimated-propensity-score">
-     Estimated Propensity Score
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-weakness-of-propensity-score">
-   The Weakness of Propensity Score
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#positivity-or-common-support">
-   Positivity or Common Support
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#positivity-in-practice">
-     Positivity In Practice
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#key-ideas">
-   Key Ideas
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contribute">
-   Contribute
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Debiasing with Propensity Score</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-probability-of-treatment-weighting">Inverse Probability of Treatment Weighting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stored-propensity-score">Stored Propensity Score</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimated-propensity-score">Estimated Propensity Score</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-weakness-of-propensity-score">The Weakness of Propensity Score</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#positivity-or-common-support">Positivity or Common Support</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#positivity-in-practice">Positivity In Practice</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-ideas">Key Ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contribute">Contribute</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="debiasing-with-propensity-score">
-<h1>Debiasing with Propensity Score<a class="headerlink" href="#debiasing-with-propensity-score" title="Permalink to this headline">#</a></h1>
+<h1>Debiasing with Propensity Score<a class="headerlink" href="#debiasing-with-propensity-score" title="Link to this heading">#</a></h1>
 <p>Previously, we saw how to go from a biased dataset to one where the treatment looked as good as randomly assigned. We used orthogonalization for that. That technique was based on predicting the treatment and the outcome and then replacing both with their predictions’ residuals.</p>
 <p><span class="math notranslate nohighlight">\(
 t^* = t - M_t(X)
@@ -620,14 +424,20 @@ y^* = y - M_y(X)
 <p>As a side note, this is the best way I know of that uses business expertise to target an audience while still allowing you to make valid inference about how effective the marketing strategy is. The marketing team not only assigned the email according to this probability function, but they actually stored each customers’ probability, which will be very handy later on.</p>
 <p>Here is what the data from this experiment looks like. We have data on four customer attributes: <code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">income</span></code>, how much they have on life <code class="docutils literal notranslate"><span class="pre">insurance</span></code> and how much they have <code class="docutils literal notranslate"><span class="pre">invested</span></code>. These are the attributes which the marketing team used to assign the probability of receiving each email. Those probabilities are stored in columns <code class="docutils literal notranslate"><span class="pre">em1_ps</span></code>, <code class="docutils literal notranslate"><span class="pre">em2_ps</span></code> and <code class="docutils literal notranslate"><span class="pre">em3_ps</span></code>. Then, we have information on whether the customer actually received the email on columns <code class="docutils literal notranslate"><span class="pre">em1</span></code>, <code class="docutils literal notranslate"><span class="pre">em2</span></code> and <code class="docutils literal notranslate"><span class="pre">em3</span></code>. These are our treatment variables. Finally, we have the outcome, <code class="docutils literal notranslate"><span class="pre">converted</span></code>, flags if the customer contracted the financial advisory service.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -845,7 +655,7 @@ y^* = y - M_y(X)
 </div></div></div>
 </div>
 <section id="inverse-probability-of-treatment-weighting">
-<h2>Inverse Probability of Treatment Weighting<a class="headerlink" href="#inverse-probability-of-treatment-weighting" title="Permalink to this headline">#</a></h2>
+<h2>Inverse Probability of Treatment Weighting<a class="headerlink" href="#inverse-probability-of-treatment-weighting" title="Link to this heading">#</a></h2>
 <p><img alt="img" src="_images/again.png" /></p>
 <p>Just to recap the idea behind propensity score debiasing (we’ve already seen it when we discussed propensity score), we are very interested in customers like the ones above. They look a lot like the ones that get <code class="docutils literal notranslate"><span class="pre">em1</span></code>, after all they had a high probability of getting that email. However, they didn’t get it. This makes them awesome candidates to estimate the counterfactual outcome <span class="math notranslate nohighlight">\(Y_0|em1=1\)</span>.</p>
 <p>Propensity score debiasing works by encoding this intuitive importance we want to give to customers that look like the treated, but didn’t get the treatment. It will also assign a high importance for those that look like the untreated, but got the treatment. The idea is pretty simple: just <strong>weight every unit by the inverse probability of the treatment they got</strong>. So, if a unit got the treatment, weigh it by <span class="math notranslate nohighlight">\(1/P(treatment=1)\)</span>. If a unit did not get the treatment, weigh it by <span class="math notranslate nohighlight">\(1/P(treatment=0)\)</span> or <span class="math notranslate nohighlight">\(1/P(control)\)</span>. In the case of binary treatment, this is simply</p>
@@ -935,6 +745,11 @@ W_i = \sum^K_{k=0} \dfrac{\mathcal{1}_{K=k} }{P(T=k|X)}
 <p>If we fail to account for this confounding bias, our causal estimates will be wrong. To give an example, consider the <code class="docutils literal notranslate"><span class="pre">invested</span></code> variable. Those that invest <strong>less</strong> are <strong>more</strong> likely to convert <strong>and</strong> also <strong>more</strong> likely to receive the email. Hence, if we don’t control for investments, it will look like <code class="docutils literal notranslate"><span class="pre">em1</span></code> increases the chance of conversion. But that could be just due to correlation, not causation, as lower levels of investments leads to both higher conversion and a higher chance of getting <code class="docutils literal notranslate"><span class="pre">em1</span></code>.</p>
 <p>Besides looking at the correlation with the confounders, we can also check how the distribution looks like for those that did and didn’t get the email <code class="docutils literal notranslate"><span class="pre">em1</span></code>.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">email</span><span class="p">[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">]],</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">],</span> <span class="n">confounders</span><span class="p">)</span>
 
@@ -949,12 +764,13 @@ W_i = \sum^K_{k=0} \dfrac{\mathcal{1}_{K=k} }{P(T=k|X)}
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/Debiasing-with-Propensity-Score_10_0.png" src="_images/Debiasing-with-Propensity-Score_10_0.png" />
+<img alt="_images/9928f65694b31f5386722ee2cb09ba2ef79ecc4996a9f804d883d478ef6b9648.png" src="_images/9928f65694b31f5386722ee2cb09ba2ef79ecc4996a9f804d883d478ef6b9648.png" />
 </div>
 </div>
 <section id="stored-propensity-score">
-<h3>Stored Propensity Score<a class="headerlink" href="#stored-propensity-score" title="Permalink to this headline">#</a></h3>
+<h3>Stored Propensity Score<a class="headerlink" href="#stored-propensity-score" title="Link to this heading">#</a></h3>
 <p>Now that we’ve confirmed that the assignment of <code class="docutils literal notranslate"><span class="pre">em1</span></code> is indeed biased, we can work on debiasing it with the propensity score. Now it’s a good time to answer a question that might be in your head: why can’t I just use orthogonalization? Or, more elegantly, when should I use the propensity score instead of orthogonalization. That’s a good question and one I confess I don’t have all the answers for. However, there is one clear case when there is a strong argument for the propensity score.</p>
 <p>When you’ve stored the probabilities of receiving the treatment while conducting your experiment, <strong>propensity score debiasing can be done without having to estimate a model</strong>. If the assignment of the emails was done in a probabilistic way and we’ve stored those probabilities, then we don’t have to rely on models. That’s a huge advantage, because models are never perfect, which means that debiasing with them is also never perfect. Here, we have this situation where we’ve stored the probabilities of the treatments in the columns <code class="docutils literal notranslate"><span class="pre">em1_ps</span></code>, <code class="docutils literal notranslate"><span class="pre">em2_ps</span></code> and <code class="docutils literal notranslate"><span class="pre">em3_ps</span></code>.</p>
 <p>Since we are dealing only with <code class="docutils literal notranslate"><span class="pre">em1</span></code>, we only need the probability in <code class="docutils literal notranslate"><span class="pre">em1_ps</span></code> to do the debiasing. Here is what we’ll do. First, we will generate the debiasing weights by using the formula we’ve seen above. Then, we will resample with replacement from this dataset, using the newly created weights. This means a unit with weight 2 will be resampled twice as often as a unit with weight 1.</p>
@@ -1156,6 +972,11 @@ W_i = \sum^K_{k=0} \dfrac{\mathcal{1}_{K=k} }{P(T=k|X)}
 </div>
 <p>Moreover, if we look at the confounders distributions by treatment assignment, we can see how nicely they align. This is not 100% proof that the debiasing worked, but it’s good evidence of it.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">em1_rnd</span><span class="p">[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">]],</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">],</span> <span class="n">confounders</span><span class="p">)</span>
 
@@ -1170,22 +991,23 @@ W_i = \sum^K_{k=0} \dfrac{\mathcal{1}_{K=k} }{P(T=k|X)}
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/Debiasing-with-Propensity-Score_17_0.png" src="_images/Debiasing-with-Propensity-Score_17_0.png" />
+<img alt="_images/f54d018b0e95c0478b0eaa81579f287c797b9137ee27e2e65b875f5746fd4f7a.png" src="_images/f54d018b0e95c0478b0eaa81579f287c797b9137ee27e2e65b875f5746fd4f7a.png" />
 </div>
 </div>
 <p>This new dataset we’ve created is now debiased. We can use it to do model evaluation or any other analys that requires the treatment to be randomly assigned. There is only one thing you need to watch out for. Notice how I’ve sampled 10000 points but the original dataset had only 5000? With this resampling method, I can make a debiased dataset as big as I wish. This means that confidence intervals that are computed in it are not valid, as they don’t take into account the fact that the sample size can be artificially inflated.</p>
 <p>Ok, so this technique was super effective because we had the stored probabilities in the first place, but what if we don’t? What if we only have access to the confounders and the treatment that got assigned, but not to how likely those units were to get the treatment?</p>
 </section>
 <section id="estimated-propensity-score">
-<h3>Estimated Propensity Score<a class="headerlink" href="#estimated-propensity-score" title="Permalink to this headline">#</a></h3>
+<h3>Estimated Propensity Score<a class="headerlink" href="#estimated-propensity-score" title="Link to this heading">#</a></h3>
 <p>If we don’t have the propensity score stored, we will have to estimate them. In this situation, it becomes less clear when you should use propensity score or orthogonalisation for debiasing.</p>
 <p>Since we don’t have the propensity score, we will use a machine learning model to estimate it. The propensity score is closely related to the probability of treatment, so this ML model must be calibrated to output a probability. Not only that, we need to do cross prediction to work around any sort of bias we might have due to overfitting.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.calibration</span> <span class="kn">import</span> <span class="n">CalibratedClassifierCV</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">cross_val_predict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.calibration</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalibratedClassifierCV</span>
 
 <span class="n">t</span> <span class="o">=</span> <span class="s2">&quot;em1&quot;</span>
 
@@ -1327,8 +1149,13 @@ W_i = \sum^K_{k=0} \dfrac{\mathcal{1}_{K=k} }{P(T=k|X)}
 </div>
 <p>Just out of curiosity, notice that the estimated propensity score, <code class="docutils literal notranslate"><span class="pre">ps_score_m1_est</span></code>, is close to the true one <code class="docutils literal notranslate"><span class="pre">em1_ps</span></code>, but not identical. Those errors in the estimation process will affect the final debiasing, but we hope it won’t affect much. We can also check how well calibrated our score is. For that, we can plot the mean score against the mean <code class="docutils literal notranslate"><span class="pre">em1</span></code>. If the score is well calibrated, 20% of those with a score of 0.2 should have received email-1, 30% of those with a score of 0.3 should have received email-1 and so on.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.calibration</span> <span class="kn">import</span> <span class="n">calibration_curve</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.calibration</span><span class="w"> </span><span class="kn">import</span> <span class="n">calibration_curve</span>
 
 <span class="n">prob_true</span><span class="p">,</span> <span class="n">prob_pred</span> <span class="o">=</span> <span class="n">calibration_curve</span><span class="p">(</span><span class="n">email</span><span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">],</span> <span class="n">ps_score_m1</span><span class="p">,</span> <span class="n">n_bins</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">prob_pred</span><span class="p">,</span> <span class="n">prob_true</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Calibrated RF&quot;</span><span class="p">)</span>
@@ -1339,8 +1166,9 @@ W_i = \sum^K_{k=0} \dfrac{\mathcal{1}_{K=k} }{P(T=k|X)}
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/Debiasing-with-Propensity-Score_22_0.png" src="_images/Debiasing-with-Propensity-Score_22_0.png" />
+<img alt="_images/299a16dc9f08cf5a89deee2a33a5fcefb020e5dba9011d276dd25d0b3812cdf0.png" src="_images/299a16dc9f08cf5a89deee2a33a5fcefb020e5dba9011d276dd25d0b3812cdf0.png" />
 </div>
 </div>
 <p>From here, we can proceed as if we had the true propensity score.</p>
@@ -1373,6 +1201,11 @@ Name: em1, dtype: float64
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">em1_rnd_est</span><span class="p">[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">]],</span> <span class="p">[</span><span class="s2">&quot;em1&quot;</span><span class="p">],</span> <span class="n">confounders</span><span class="p">)</span>
 
@@ -1387,15 +1220,16 @@ Name: em1, dtype: float64
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/Debiasing-with-Propensity-Score_27_0.png" src="_images/Debiasing-with-Propensity-Score_27_0.png" />
+<img alt="_images/ccc00b13820e11af704850c8d80d27bbe77282da198162a68f8fb63d84684c83.png" src="_images/ccc00b13820e11af704850c8d80d27bbe77282da198162a68f8fb63d84684c83.png" />
 </div>
 </div>
 <p>As for the distributions, we can see that they don’t align that well as before, specially for the variables <code class="docutils literal notranslate"><span class="pre">invested</span></code> and <code class="docutils literal notranslate"><span class="pre">income</span></code></p>
 </section>
 </section>
 <section id="the-weakness-of-propensity-score">
-<h2>The Weakness of Propensity Score<a class="headerlink" href="#the-weakness-of-propensity-score" title="Permalink to this headline">#</a></h2>
+<h2>The Weakness of Propensity Score<a class="headerlink" href="#the-weakness-of-propensity-score" title="Link to this heading">#</a></h2>
 <p>We’ve already talked a lot about this on the propensity score chapter, so I won’t spend much time on it, but it is recalling one of the main weaknesses with the propensity score debiasing. It has to do with propensities scores that are two high or too low.</p>
 <p><img alt="img" src="_images/fear-no-man.png" /></p>
 <p>To understand this, take a look at the following unit in our original dataset.</p>
@@ -1472,6 +1306,11 @@ Name: em1, dtype: float64
 <p>That’s a problem, because the debiased dataset is overpopulated with only one unit. If this unit wasn’t in the original dataset, the debiased dataset could look totally different. So, removing a single unit can affect a lot how a debiased dataset looks like. This is a problem of high variance.</p>
 <p>If we plot the number of replications for each unit in the debiased dataset, we see that a bunch of them appear more than 10 times. Those are treated units with low propensity score or untreated units with high propensity score.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
@@ -1485,8 +1324,9 @@ Name: em1, dtype: float64
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/Debiasing-with-Propensity-Score_33_0.png" src="_images/Debiasing-with-Propensity-Score_33_0.png" />
+<img alt="_images/57a820ea5e504bbecba4235c1e49c2353293bd98e59d148cacd194cf70572793.png" src="_images/57a820ea5e504bbecba4235c1e49c2353293bd98e59d148cacd194cf70572793.png" />
 </div>
 </div>
 <p>To avoid having overly important units, some scientists like to clip the weights, forcing them to be, let’s say, at most 20. It is true that this technique will remove some of the variance, but it will add bias back. Since the whole point of this was to remove bias, I feel like clipping the weights is not a good idea.</p>
@@ -1494,18 +1334,24 @@ Name: em1, dtype: float64
 <p>To be fair to the propensity weighting method, all causal inference methods will suffer whenever the probability of receiving either the treatment or the control is too low, for the entire sample or for a subpopulation. Intuitively, this means some units will almost never receive the treatment or the control, which will make it difficult to estimate counterfactuals for those units. This problem can be seen as almost violating the common support assumption, which we will explore next.</p>
 </section>
 <section id="positivity-or-common-support">
-<h2>Positivity or Common Support<a class="headerlink" href="#positivity-or-common-support" title="Permalink to this headline">#</a></h2>
+<h2>Positivity or Common Support<a class="headerlink" href="#positivity-or-common-support" title="Link to this heading">#</a></h2>
 <p>Besides high variance, we can also have problems with positivity. Positivity, or common support is a causal inference assumption which states that there must be sufficient overlap between the characteristics of the treated and the control units. Or, in other words, that everyone has a non zero probability of getting the treatment or the control. If this doesn’t happen, we won’t be able to estimate a causal effect that is valid for the entire population, only for those we have common support.</p>
 <p>To be clear, positivity issues are problems of the data itself, not a problem with the propensity score method. Propensity score method just makes it very clear when positivity problems exist. In that sense, this is an argument in favor of the propensity score. While most methods will not warn you when there are positivity problems, propensity score will show it to your face. All you have to do is plot the distribution of the propensity score for the treated and for the untreated.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;em1_ps&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em1&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Positivity Check&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/Debiasing-with-Propensity-Score_36_0.png" src="_images/Debiasing-with-Propensity-Score_36_0.png" />
+<img alt="_images/dc2eaaadf5239b13db5cc6fcda44fe7b71f6bb78601f95c32873359cd3fa6f33.png" src="_images/dc2eaaadf5239b13db5cc6fcda44fe7b71f6bb78601f95c32873359cd3fa6f33.png" />
 </div>
 </div>
 <p>If they have a nice overlap, like in the plot above, then you have common support.</p>
@@ -1625,13 +1471,19 @@ Name: em1, dtype: float64
 </div>
 <p>First thing that jumps the eye is that there are units with zero probability, which already indicates a violation to the positivity assumption. Now, let’s look at the features distributions by <code class="docutils literal notranslate"><span class="pre">em3</span></code></p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">email</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)[</span><span class="n">confounders</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;em3&quot;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;em3&quot;</span><span class="p">,</span> <span class="n">plot_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">));</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/Debiasing-with-Propensity-Score_40_0.png" src="_images/Debiasing-with-Propensity-Score_40_0.png" />
+<img alt="_images/365a82cdcecf120c8a7b9baf777e7ab345b6c62e07f68077c5b35ccf58870d48.png" src="_images/365a82cdcecf120c8a7b9baf777e7ab345b6c62e07f68077c5b35ccf58870d48.png" />
 </div>
 </div>
 <p>It looks like <code class="docutils literal notranslate"><span class="pre">em3</span></code> was only sent to customers that are older than 40 years. Thats a huge problem. If the control has younger folks, but the treatment doesn’t, there is no way we can estimate the counterfactual <span class="math notranslate nohighlight">\(Y_0|T=1, age&lt;40\)</span>. Simply because we have no idea how younger customers will respond to this email.</p>
@@ -1673,12 +1525,12 @@ Name: em3, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Debiasing-with-Propensity-Score_45_0.png" src="_images/Debiasing-with-Propensity-Score_45_0.png" />
+<img alt="_images/bb88ef1cb853b3a4cb0d3a780f5a0638dec9307a90ac16676035c8d3fe0a3a8a.png" src="_images/bb88ef1cb853b3a4cb0d3a780f5a0638dec9307a90ac16676035c8d3fe0a3a8a.png" />
 </div>
 </div>
 <p>Notice how poor the overlap is here. Units with propensity score below 0.4 almost never get the treatment. Not to mention that huge peak at zero.</p>
 <section id="positivity-in-practice">
-<h3>Positivity In Practice<a class="headerlink" href="#positivity-in-practice" title="Permalink to this headline">#</a></h3>
+<h3>Positivity In Practice<a class="headerlink" href="#positivity-in-practice" title="Link to this heading">#</a></h3>
 <p>Issues in positivity are very serious in the academic world because they treat the generalization of a conclusion or theory. If you only have treated individuals that are older, you have no way of generalizing whatever treatment effect that you find to a younger population. But in the industry, violations of the positivity assumption might not be so problematic.</p>
 <p>To give an example, if you are a lender wishing to estimate the elasticity of loan amount on probability of default, you will probably not give high loans to people with very low credit scores. Sure, this will violate the positivity assumption, but you are not very interested in estimating the loan amount elasticity for risky customers because you are not intending to give them loans anyway. Or, for a somewhat more exaggerated example, if you want to estimate the price elasticity of some product, you will probably not test prices from 0 to 1000000. That’s because you have some intuition on where the prices normally are. You will often test around that region.</p>
 <p>The point here is that you can (and probably should) use your intuition to exclude some part of the population from receiving the treatment (or the control). Doing random experiments is expensive, so you should focus your efforts on where things are more promising.</p>
@@ -1713,26 +1565,26 @@ Name: em3, dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x132656b70&gt;
 </pre></div>
 </div>
-<img alt="_images/Debiasing-with-Propensity-Score_49_1.png" src="_images/Debiasing-with-Propensity-Score_49_1.png" />
+<img alt="_images/ae6a04ec85639a3504380fd528f395c5fc72dac6bc17adf1ec496216bb1bcbf2.png" src="_images/ae6a04ec85639a3504380fd528f395c5fc72dac6bc17adf1ec496216bb1bcbf2.png" />
 </div>
 </div>
 <p>All of this to say that, yes, due to positivity violations, you can’t debias the entire sample with respect to <code class="docutils literal notranslate"><span class="pre">em3</span></code>. But you can do it for the population for which email-3 was designed for in the first place. That is good enough.</p>
 </section>
 </section>
 <section id="key-ideas">
-<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">#</a></h2>
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Link to this heading">#</a></h2>
 <p>This chapter presented another debiasing idea for when the treatment is binary or discrete. The idea is to resample the units using the inverse propensity score as a weight. This will upsample the units that look like the treated (high propensity score) but where not treated and those that look like the untreated (low propensity score) but where treated.</p>
 <p>The main advantage of propensity score debiasing is that it doesn’t require estimating a model, if you’ve stored the probabilities of treatment during the experiment. This doesn’t mean you can’t apply propensity reweighting if you don’t have those probabilities, but having to estimate them will add additional error to your debiasing process.</p>
 <p>As for the disadvantages, the propensity score reweighting can have a huge variance if the propensity score is either too high or too low, generating huge weights. Intuitively, this happens when there are very few untreated units that look like the treated and very few treated units that look like the untreated. To be fair to the propensity score weighting, this is a problem for all causal inference methods, but propensity weighting highlights this almost violation to the positivity assumption more clearly.</p>
 <p>Finally, we had a brief discussion about how much of a problem is violation in the positivity assumption. We ended up concluding that it is not a problem <strong>as long as you don’t wish to generalize your conclusions to the subset of the population where positivity doesn’t hold</strong>.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <p>The things I’ve written here are mostly stuff from my head. I’ve learned them through experience. This means that they have <strong>not</strong> passed the academic scrutiny that good science often goes through. Instead, notice how I’m talking about things that work in practice, but I don’t spend too much time explaining why that is the case. It’s a sort of science from the streets, if you will. However, I am putting this up for public scrutiny, so, by all means, if you find something preposterous, open an issue and I’ll address it to the best of my efforts.</p>
 <p>Most of this chapter draws from Guido W. Imbens, Causal Inference for Statistics, Social, and Biomedical Sciences, where you will find extensive discussions on the propensity score. The discussion on positivity is on me though, from countless debates I had at work with my colleagues.</p>
 </section>
 <section id="contribute">
-<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">#</a></h2>
+<h2>Contribute<a class="headerlink" href="#contribute" title="Link to this heading">#</a></h2>
 <p>Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
 If you found this book valuable and you want to support it, please go to <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a>. If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn’t understand. Just go to the book’s repository and <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/issues">open an issue</a>. Finally, if you liked this content, please share it with others who might find it useful and give it a <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/stargazers">star on GitHub</a>.</p>
 </section>
@@ -1750,7 +1602,7 @@ If you found this book valuable and you want to support it, please go to <a clas
             mode: "causal-glory"
         },
         kernelOptions: {
-            kernelName: "causal-glory",
+            name: "causal-glory",
             path: "./."
         },
         predefinedOutput: true
@@ -1758,50 +1610,117 @@ If you found this book valuable and you want to support it, please go to <a clas
     </script>
     <script>kernelName = 'causal-glory'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="Debiasing-with-Orthogonalization.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Debiasing with Orthogonalization</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Debiasing-with-Orthogonalization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Debiasing with Orthogonalization</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="When-Prediction-Fails.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="When-Prediction-Fails.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">When Prediction Fails</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-probability-of-treatment-weighting">Inverse Probability of Treatment Weighting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stored-propensity-score">Stored Propensity Score</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimated-propensity-score">Estimated Propensity Score</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-weakness-of-propensity-score">The Weakness of Propensity Score</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#positivity-or-common-support">Positivity or Common Support</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#positivity-in-practice">Positivity In Practice</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-ideas">Key Ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contribute">Contribute</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Matheus Facure Alves<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Matheus Facure Alves
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

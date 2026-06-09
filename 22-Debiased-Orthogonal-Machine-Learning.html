@@ -1,117 +1,177 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>22 - Debiased/Orthogonal Machine Learning &#8212; Causal Inference for the Brave and True</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-97848161-1"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-97848161-1');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-97848161-1');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '22-Debiased-Orthogonal-Machine-Learning';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="23 - Challenges with Effect Heterogeneity and Nonlinearity" href="23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html" />
     <link rel="prev" title="21 - Meta Learners" href="21-Meta-Learners.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-97848161-1', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="container-fluid" id="banner"></div>
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
 
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">Interested to learn more? Checkout <a href='http://example.com'>my causal inference course</a>!</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+  
+    
+  
+
+<a class="navbar-brand logo" href="landing-page.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Causal Inference for the Brave and True</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -120,533 +180,263 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Part I - The Yang
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I - The Yang</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-Introduction-To-Causality.html">
-   01 - Introduction To Causality
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02-Randomised-Experiments.html">
-   02 - Randomised Experiments
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
-   03 - Stats Review: The Most Dangerous Equation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04-Graphical-Causal-Models.html">
-   04 - Graphical Causal Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
-   05 - The Unreasonable Effectiveness of Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
-   06 - Grouped and Dummy Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-Beyond-Confounders.html">
-   07 - Beyond Confounders
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-Instrumental-Variables.html">
-   08 - Instrumental Variables
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
-   09 - Non Compliance and LATE
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="10-Matching.html">
-   10 - Matching
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="11-Propensity-Score.html">
-   11 - Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
-   12 - Doubly Robust Estimation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="13-Difference-in-Differences.html">
-   13 - Difference-in-Differences
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Panel-Data-and-Fixed-Effects.html">
-   14 - Panel Data and Fixed Effects
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="15-Synthetic-Control.html">
-   15 - Synthetic Control
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="16-Regression-Discontinuity-Design.html">
-   16 - Regression Discontinuity Design
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-Introduction-To-Causality.html">01 - Introduction To Causality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Randomised-Experiments.html">02 - Randomised Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">03 - Stats Review: The Most Dangerous Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Graphical-Causal-Models.html">04 - Graphical Causal Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">05 - The Unreasonable Effectiveness of Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">06 - Grouped and Dummy Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Beyond-Confounders.html">07 - Beyond Confounders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Instrumental-Variables.html">08 - Instrumental Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Non-Compliance-and-LATE.html">09 - Non Compliance and LATE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-Matching.html">10 - Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Propensity-Score.html">11 - Propensity Score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-Doubly-Robust-Estimation.html">12 - Doubly Robust Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-Difference-in-Differences.html">13 - Difference-in-Differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Panel-Data-and-Fixed-Effects.html">14 - Panel Data and Fixed Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Synthetic-Control.html">15 - Synthetic Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16-Regression-Discontinuity-Design.html">16 - Regression Discontinuity Design</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Part II - The Yin
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II - The Yin</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="17-Predictive-Models-101.html">
-   17 - Predictive Models 101
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html">
-   18 - Heterogeneous Treatment Effects and Personalization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Evaluating-Causal-Models.html">
-   19 - Evaluating Causal Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
-   20 - Plug-and-Play Estimators
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="21-Meta-Learners.html">
-   21 - Meta Learners
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   22 - Debiased/Orthogonal Machine Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html">
-   23 - Challenges with Effect Heterogeneity and Nonlinearity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="24-The-Diff-in-Diff-Saga.html">
-   24 - The Difference-in-Differences Saga
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="25-Synthetic-Diff-in-Diff.html">
-   25 - Synthetic Difference-in-Differences
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="17-Predictive-Models-101.html">17 - Predictive Models 101</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html">18 - Heterogeneous Treatment Effects and Personalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-Evaluating-Causal-Models.html">19 - Evaluating Causal Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20-Plug-and-Play-Estimators.html">20 - Plug-and-Play Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-Meta-Learners.html">21 - Meta Learners</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">22 - Debiased/Orthogonal Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html">23 - Challenges with Effect Heterogeneity and Nonlinearity</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="24-The-Diff-in-Diff-Saga.html">24 - The Difference-in-Differences Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25-Synthetic-Diff-in-Diff.html">25 - Synthetic Difference-in-Differences</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendix
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
-   Debiasing with Orthogonalization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
-   Debiasing with Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="When-Prediction-Fails.html">
-   When Prediction Fails
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Prediction-Metrics-For-Causal-Models.html">
-   Why Prediction Metrics are Dangerous For Causal Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Conformal-Inference-for-Synthetic-Control.html">
-   Conformal Inference for Synthetic Controls
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="Debiasing-with-Orthogonalization.html">Debiasing with Orthogonalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Debiasing-with-Propensity-Score.html">Debiasing with Propensity Score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="When-Prediction-Fails.html">When Prediction Fails</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prediction-Metrics-For-Causal-Models.html">Why Prediction Metrics are Dangerous For Causal Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformal-Inference-for-Synthetic-Control.html">Conformal Inference for Synthetic Controls</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Contribute
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contribute</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">
-   Patreon
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/22-Debiased-Orthogonal-Machine-Learning.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-</div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F22-Debiased-Orthogonal-Machine-Learning.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button"
+   title="Open an issue"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-<a href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F22-Debiased-Orthogonal-Machine-Learning.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="bottom"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-lightbulb"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/22-Debiased-Orthogonal-Machine-Learning.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/22-Debiased-Orthogonal-Machine-Learning.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
   </span>
 
-</label>
+</button>
 
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ml-for-nuisance-parameters">
-   ML for Nuisance Parameters
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#frisch-waugh-lovell">
-     Frisch-Waugh-Lovell
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#frisch-waugh-lovell-on-steroids">
-     Frisch-Waugh-Lovell on Steroids
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cate-estimation-with-double-ml">
-     CATE Estimation with Double-ML
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#non-parametric-double-debiased-ml">
-   Non Parametric Double/Debiased ML
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-non-parametric-about">
-     What is Non-Parametric About?
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#non-scientific-double-debiased-ml">
-   Non-Scientific Double/Debiased ML
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#more-econometrics-may-be-needed">
-     More Econometrics May be Needed!
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#key-ideas">
-   Key Ideas
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contribute">
-   Contribute
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>22 - Debiased/Orthogonal Machine Learning</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ml-for-nuisance-parameters">
-   ML for Nuisance Parameters
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#frisch-waugh-lovell">
-     Frisch-Waugh-Lovell
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#frisch-waugh-lovell-on-steroids">
-     Frisch-Waugh-Lovell on Steroids
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cate-estimation-with-double-ml">
-     CATE Estimation with Double-ML
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#non-parametric-double-debiased-ml">
-   Non Parametric Double/Debiased ML
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-non-parametric-about">
-     What is Non-Parametric About?
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#non-scientific-double-debiased-ml">
-   Non-Scientific Double/Debiased ML
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#more-econometrics-may-be-needed">
-     More Econometrics May be Needed!
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#key-ideas">
-   Key Ideas
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contribute">
-   Contribute
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>22 - Debiased/Orthogonal Machine Learning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-for-nuisance-parameters">ML for Nuisance Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frisch-waugh-lovell">Frisch-Waugh-Lovell</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frisch-waugh-lovell-on-steroids">Frisch-Waugh-Lovell on Steroids</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cate-estimation-with-double-ml">CATE Estimation with Double-ML</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-double-debiased-ml">Non Parametric Double/Debiased ML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-non-parametric-about">What is Non-Parametric About?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-scientific-double-debiased-ml">Non-Scientific Double/Debiased ML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-econometrics-may-be-needed">More Econometrics May be Needed!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-ideas">Key Ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contribute">Contribute</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="debiased-orthogonal-machine-learning">
-<h1>22 - Debiased/Orthogonal Machine Learning<a class="headerlink" href="#debiased-orthogonal-machine-learning" title="Permalink to this headline">#</a></h1>
+<h1>22 - Debiased/Orthogonal Machine Learning<a class="headerlink" href="#debiased-orthogonal-machine-learning" title="Link to this heading">#</a></h1>
 <p>The next meta-learner we will consider actually came before they were even called meta-learners. As far as I can tell, it came from an awesome 2016 paper that sprung a fruitful field in the causal inference literature. The paper was called <em>Double Machine Learning for Treatment and Causal Parameters</em> and it took a lot of people to write it: Victor Chernozhukov, Denis Chetverikov, Mert Demirer, Esther Duflo (which, by the way, won the 2019 Economics Nobel Prize along with Abhijit Banerjee and Michael Kremer “for their experimental approach to alleviating global poverty”), Christian Hansen, Whitney Newey and James Robins. No wonder it was a very good paper and I even took the liberty of representing its authors as the Avengers just because (credits to Paul Goldsmith-Pinkham who had this idea first).</p>
 <p><img alt="img" src="_images/avengers.png" /></p>
 <p>There is only one problem with the paper: it is incredibly difficult to read (which is expected, since it’s an econometric paper). And since this book is all about making causal inference mainstream, here we are, trying to make Debiased/Orthogonal Machine Learning intuitive.</p>
 <p>But what makes it so special as to deserve it’s own chapter, apart from the other meta-learners? The thing that caught my attention was how well justified this Debiased/Orthogonal ML is. The other methods that we’ve seen so far, the T-learner, S-Learner and X-learner, all seem a bit hackish. We can give an intuitive explanation about why they work, but they didn’t seem very general. In contrast, with Debiased/Orthogonal Machine Learning, we have a general framework we can apply, which is both very intuitive and also very rigorous. Another bonus is that Debiased/Orthogonal ML works for both continuous and discrete treatments, something that neither the T, not X learner could do. Not to mention that the papers describing it do an incredible job with the asymptotic analysis of this estimator. So without further ado, let’s get down to it.</p>
 <p>Once again, as a motivating example, we will resort to our ice cream sales dataset. Just as a reminder, here we are trying to find heterogeneity on the effect of price on sales. Our test set has randomly assigned prices but our training data has only observational prices, which is potentially biased.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">nb21</span> <span class="kn">import</span> <span class="n">cumulative_gain</span><span class="p">,</span> <span class="n">elast</span>
-<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nb21</span><span class="w"> </span><span class="kn">import</span> <span class="n">cumulative_gain</span><span class="p">,</span> <span class="n">elast</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">style</span>
 <span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;ggplot&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -728,22 +518,28 @@ title="Print to PDF"
 </div></div></div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;price&#39;, ylabel=&#39;sales&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_3_1.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_3_1.png" />
+<img alt="_images/1c54ee5c08732eec5d3d97ba17781fb1f397d41bb54485c6a47a76e25778cf60.png" src="_images/1c54ee5c08732eec5d3d97ba17781fb1f397d41bb54485c6a47a76e25778cf60.png" />
 </div>
 </div>
 <p>One source of bias is very clear. As we can see, prices are much higher on the weekend (weekdays 1 and 7), but we can also have other confounders, like temperature and cost. So, if we want to do any causal inference with it, we will need to correct this bias.</p>
 <section id="ml-for-nuisance-parameters">
-<h2>ML for Nuisance Parameters<a class="headerlink" href="#ml-for-nuisance-parameters" title="Permalink to this headline">#</a></h2>
+<h2>ML for Nuisance Parameters<a class="headerlink" href="#ml-for-nuisance-parameters" title="Link to this heading">#</a></h2>
 <p>One way we can try to remove this bias is by using a linear model to estimate the treatment effect of prices on sales while controlling for the confounders.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -760,14 +556,14 @@ Sales_i = \alpha + \tau price_i + \beta_1 temp_i + \beta_2 temp^2_i + \beta_3 co
 <p><img alt="img" src="_images/non-linear.png" /></p>
 <p>Thinking about how to model nuisance parameters is already boring with just a few covariates. But what if we had tens or hundreds of them? With modern datasets, this is pretty common. So, what can we do about it? The answer lies the coolest Econometric theorem ever derived.</p>
 <section id="frisch-waugh-lovell">
-<h3>Frisch-Waugh-Lovell<a class="headerlink" href="#frisch-waugh-lovell" title="Permalink to this headline">#</a></h3>
+<h3>Frisch-Waugh-Lovell<a class="headerlink" href="#frisch-waugh-lovell" title="Link to this heading">#</a></h3>
 <p>Frisch, Waugh and Lovell were 20th century econometricians who noticed the coolest thing about linear regression. This isn’t new to you, as we’ve talked about it in the context of regression residuals and when talking about fixed effects. But since this theorem is key to understanding Orthogonal-ML, it’s very much worth recapping it.</p>
 <p>Suppose you have a linear regression model with a set of features <span class="math notranslate nohighlight">\(X_1\)</span> and another set of features <span class="math notranslate nohighlight">\(X_2\)</span>. You then estimate that model’s parameters.</p>
 <p><span class="math notranslate nohighlight">\(
 \hat{Y} = \hat{\beta_1} X_1 + \hat{\beta_2} X_2
 \)</span></p>
 <p>where <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span> are feature matrices (one column per feature and one row per observation) and <span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span> and <span class="math notranslate nohighlight">\(\hat{\beta_2}\)</span> are row vectors. You can get the exact same <span class="math notranslate nohighlight">\(\hat{\beta_1}\)</span> parameter by doing the following steps</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>regress the outcome <span class="math notranslate nohighlight">\(y\)</span> on the second set of features <span class="math notranslate nohighlight">\(\hat{y^*} = \hat{\gamma_1} X_2\)</span></p></li>
 <li><p>regress the first set of features on the second <span class="math notranslate nohighlight">\(\hat{X_1} = \hat{\gamma_2} X_2\)</span></p></li>
 <li><p>obtain the residuals <span class="math notranslate nohighlight">\(\tilde{X}_1 = X_1 - \hat{X_1}\)</span> and <span class="math notranslate nohighlight">\(\tilde{y}_1 = y - \hat{y^*}\)</span></p></li>
@@ -834,7 +630,7 @@ Y_i - E[Y_i | X_i]
 <p><img alt="img" src="_images/drown-ols.png" /></p>
 </section>
 <section id="frisch-waugh-lovell-on-steroids">
-<h3>Frisch-Waugh-Lovell on Steroids<a class="headerlink" href="#frisch-waugh-lovell-on-steroids" title="Permalink to this headline">#</a></h3>
+<h3>Frisch-Waugh-Lovell on Steroids<a class="headerlink" href="#frisch-waugh-lovell-on-steroids" title="Link to this heading">#</a></h3>
 <p>Double/Debiased ML can be seen as Frisch, Waugh and Lovell theorem on steroids. The idea is very simple: use ML models when constructing the outcome and treatment residuals:</p>
 <p><span class="math notranslate nohighlight">\(
 Y_i - \hat{M}_y(X_i)
@@ -842,7 +638,7 @@ Y_i - \hat{M}_y(X_i)
 \)</span></p>
 <p>Where <span class="math notranslate nohighlight">\(\hat{M}_y(X_i)\)</span> is estimating <span class="math notranslate nohighlight">\(E[Y|X]\)</span> and  <span class="math notranslate nohighlight">\(\hat{M}_t(X_i)\)</span> is estimating  <span class="math notranslate nohighlight">\(E[T|X]\)</span>.</p>
 <p>The idea is that ML models are super flexible, hence, they can capture interactions and non linearities when estimating the <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(T\)</span> residuals while still maintaining a FWL style orthogonalisation. This means we don’t have to make any parametric assumption about the relationship between the covariates <span class="math notranslate nohighlight">\(X\)</span> and the outcome <span class="math notranslate nohighlight">\(Y\)</span> nor between the covariates and the treatment in order to get the correct treatment effect. Provided we don’t have unobserved confounders, we can recover the ATE with the following orthogonalisation procedure:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Estimate the outcome <span class="math notranslate nohighlight">\(Y\)</span> with features <span class="math notranslate nohighlight">\(X\)</span> using a flexible ML regression model <span class="math notranslate nohighlight">\(M_y\)</span>.</p></li>
 <li><p>Estimate the treatment <span class="math notranslate nohighlight">\(T\)</span> with features <span class="math notranslate nohighlight">\(X\)</span> using a flexible ML regression model <span class="math notranslate nohighlight">\(M_t\)</span>.</p></li>
 <li><p>Obtain the residuals <span class="math notranslate nohighlight">\(\tilde{Y} = Y - M_y(X)\)</span> and <span class="math notranslate nohighlight">\(\tilde{T} = T - M_t(X)\)</span></p></li>
@@ -862,8 +658,8 @@ Y_i - \hat{M}_y(X_i)
 <p>First, let’s estimate the nuisance relationship using ML models. I’ll start with the treatment model <span class="math notranslate nohighlight">\(M_t\)</span>. We will use a LGBM model to predict prices from the covariates <code class="docutils literal notranslate"><span class="pre">temp</span></code>, <code class="docutils literal notranslate"><span class="pre">weekday</span></code> and <code class="docutils literal notranslate"><span class="pre">cost</span></code>. These predictions will be cross predictions, which we can get from using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s <code class="docutils literal notranslate"><span class="pre">cross_val_predict</span></code> function. I’m also adding the average <span class="math notranslate nohighlight">\(\hat{\mu_t}\)</span> to the residuals just for visualization purposes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lightgbm</span> <span class="kn">import</span> <span class="n">LGBMRegressor</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lightgbm</span><span class="w"> </span><span class="kn">import</span> <span class="n">LGBMRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">cross_val_predict</span>
 
 <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;sales&quot;</span>
 <span class="n">T</span> <span class="o">=</span> <span class="s2">&quot;price&quot;</span>
@@ -881,14 +677,20 @@ Y_i - \hat{M}_y(X_i)
 <p>Notice that I’m calling the <span class="math notranslate nohighlight">\(M_t\)</span> model the debias model. That’s because the role this model is playing on the Double/Debias ML is one of debiasing the treatment. The residuals <span class="math notranslate nohighlight">\(\tilde{T} = T - M_t(X)\)</span> can be viewed as a version of the treatment where all the confounding bias from <span class="math notranslate nohighlight">\(X\)</span> has been removed by the model. In other words, <span class="math notranslate nohighlight">\(\tilde{T}\)</span> is orthogonal to <span class="math notranslate nohighlight">\(X\)</span>. Intuitively, <span class="math notranslate nohighlight">\(\tilde{T}\)</span> can no longer be explained by <span class="math notranslate nohighlight">\(X\)</span>, because it already was.</p>
 <p>To see that, we can show the same plot we’ve seen earlier but now replacing price with the price residuals. Remember that, before, weekends had higher prices? Now, that bias is gone. All the weekdays have the same price residual distribution.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train_pred</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price_res&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_13_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_13_0.png" />
+<img alt="_images/e00e247eeb09f7033ce087d8832635c9e0a00206a08aa58e4b2814229ee18868.png" src="_images/e00e247eeb09f7033ce087d8832635c9e0a00206a08aa58e4b2814229ee18868.png" />
 </div>
 </div>
 <p>The role of <span class="math notranslate nohighlight">\(M_t\)</span> is to debias the treatment, but what about <span class="math notranslate nohighlight">\(M_y\)</span>? Its role is to remove the variance from <span class="math notranslate nohighlight">\(Y\)</span>. Hence, I’ll call it the denoising model. Intuitively, <span class="math notranslate nohighlight">\(M_y\)</span> is creating a version of the outcome where all the variance due to <span class="math notranslate nohighlight">\(X\)</span> has been explained away. As a result, it becomes easier to do causal estimation in <span class="math notranslate nohighlight">\(\tilde{Y}\)</span>. Since it has less noise, the causal relationship becomes easier to see.</p>
@@ -905,14 +707,20 @@ Y_i - \hat{M}_y(X_i)
 </div>
 <p>If we plot the same graph as before, but now replacing sales with sales residual, we can see that the variance in <span class="math notranslate nohighlight">\(Y\)</span> is much smaller than it was before.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train_pred</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;price_res&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sales_res&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;weekday&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_17_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_17_0.png" />
+<img alt="_images/255e295ae2fd712fceeaf20e1ca56c11b869d7f758dcc906725f86bee1fad0e0.png" src="_images/255e295ae2fd712fceeaf20e1ca56c11b869d7f758dcc906725f86bee1fad0e0.png" />
 </div>
 </div>
 <p>It is now easy to see the negative relationship between prices and sales.</p>
@@ -961,7 +769,7 @@ Y_i - \hat{M}_y(X_i)
 </div>
 </section>
 <section id="cate-estimation-with-double-ml">
-<h3>CATE Estimation with Double-ML<a class="headerlink" href="#cate-estimation-with-double-ml" title="Permalink to this headline">#</a></h3>
+<h3>CATE Estimation with Double-ML<a class="headerlink" href="#cate-estimation-with-double-ml" title="Link to this heading">#</a></h3>
 <p>So far, we’ve seen how Double/Debiased ML allow us to focus on estimating the Average Treatment Effect (ATE), but it can also be used to estimate treatment effect heterogeneity or Conditional Average Treatment Effect (CATE). Essentially, we are now saying that the causal parameter <span class="math notranslate nohighlight">\(\tau\)</span> changes depending on the unit’s covariates.</p>
 <p><span class="math notranslate nohighlight">\(
 Y_i - {M}_y(X_i)
@@ -988,6 +796,11 @@ Y_i - {M}_y(X_i)
 </div>
 <p>To check how good this model is in terms of differentiating units with high price sensitivity from those with low price sensitivity, we will use the cumulative elasticity curve.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gain_curve_test</span> <span class="o">=</span> <span class="n">cumulative_gain</span><span class="p">(</span><span class="n">cate_test</span><span class="p">,</span> <span class="s2">&quot;cate&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gain_curve_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">)</span>
@@ -997,8 +810,9 @@ Y_i - {M}_y(X_i)
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_25_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_25_0.png" />
+<img alt="_images/b46301ae3ad054b164557059751eda8ad05cb6aab3e4f7c2c20ad4115feb3092.png" src="_images/b46301ae3ad054b164557059751eda8ad05cb6aab3e4f7c2c20ad4115feb3092.png" />
 </div>
 </div>
 <p>The Double/Debiased ML procedure with a final linear model is already very good, as we can see by the curve above. But, maybe we can do even better. As a matter of fact, this is a very general procedure that we can understand just like a meta-learner. Nie and Wager called it the R-Learner, as a way to recognise the work of Robinson (1988) and to emphasize the role of residualization.</p>
@@ -1006,7 +820,7 @@ Y_i - {M}_y(X_i)
 </section>
 </section>
 <section id="non-parametric-double-debiased-ml">
-<h2>Non Parametric Double/Debiased ML<a class="headerlink" href="#non-parametric-double-debiased-ml" title="Permalink to this headline">#</a></h2>
+<h2>Non Parametric Double/Debiased ML<a class="headerlink" href="#non-parametric-double-debiased-ml" title="Link to this heading">#</a></h2>
 <p>The nice thing about Double-ML is that it frees us from all the hassle of learning the nuisance parameters in a causal model. With that, we can focus all our attention to learning the causal parameter of interest, be it the ATE or the CATE. However, with the above specification, we were still using a linear model after the ML residualization, as the final causal model. In our example, this means we are assuming that price impacts sales linearly. That’s probably OK for a small range of prices, but we know from microeconomic theory that that’s not necessarily the case. It could be that, at low prices, a unit increase in price will lower demand by 2 units. But then, at higher prices, a unit increase in price will lower demand by just 1 unit. That’s not a linear relationship.</p>
 <p>We could leverage microeconomic theory here to speculate about the functional form of the outcome on the treatment, but maybe we can also delegate that to a ML model. In other words, let the machine learn that complicated function form. As it turns out, that’s totally possible if we make a few changes to our original Double/Debiased ML algorithm.</p>
 <p>First, we start exactly as before, orthogonalizing the treatment and the outcome with cross predictions from a ML model.</p>
@@ -1048,7 +862,7 @@ Y_i = \hat{M}_y(X_i) + \tau(X_i) \big(T_i - \hat{M}_t(X)\big) + \hat{\epsilon}_i
 \]</div>
 <p>Minimising the above loss is equivalent to minimising what is inside the parenthesis, but weighting each term by <span class="math notranslate nohighlight">\(\tilde{T}_i^2\)</span>. Minimising what’s inside the parenthesis is equivalent to predicting <span class="math notranslate nohighlight">\(\frac{\tilde{Y}_i}{\tilde{T}_i}\)</span>. This is what’s called the weight trick to get the non-parametric causal loss. Notice how similar this is to the target transformation idea we saw earlier. This is, indeed, a target transformation, but with the extra weighting trick.</p>
 <p>To summarise before we go to the code, now that we have the nuisance models and residualised versions of treatment and outcome, we will</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Create weights <span class="math notranslate nohighlight">\(\tilde{T}_i^2\)</span></p></li>
 <li><p>Create a target <span class="math notranslate nohighlight">\(\dfrac{\tilde{Y}_i}{\tilde{T}_i}\)</span></p></li>
 <li><p>Use any prediction method to predict the target (2) while using the weights (1).</p></li>
@@ -1082,6 +896,11 @@ Y_i = \hat{M}_y(X_i) + \tau(X_i) \big(T_i - \hat{M}_t(X)\big) + \hat{\epsilon}_i
 </div>
 <p>Next, we can plot the non-parametric cumulative elasticity curve side by side with the one we got from the parametric  (linear) version of Double/Orthogonal-ML.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gain_curve_test_non_param</span> <span class="o">=</span> <span class="n">cumulative_gain</span><span class="p">(</span><span class="n">cate_test_non_param</span><span class="p">,</span> <span class="s2">&quot;cate&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gain_curve_test_non_param</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Non-Parametric&quot;</span><span class="p">)</span>
@@ -1092,13 +911,14 @@ Y_i = \hat{M}_y(X_i) + \tau(X_i) \big(T_i - \hat{M}_t(X)\big) + \hat{\epsilon}_i
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_33_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_33_0.png" />
+<img alt="_images/47a5c819ab1f4fca62f0e7b80677ae73afb88f5e69b29a7bf4af4325ddeea0ce.png" src="_images/47a5c819ab1f4fca62f0e7b80677ae73afb88f5e69b29a7bf4af4325ddeea0ce.png" />
 </div>
 </div>
 <p>Not a huge improvement here, but it’s something. Plus, not having to specify the functional form of the treatment function is already a huge benefit.</p>
 <section id="what-is-non-parametric-about">
-<h3>What is Non-Parametric About?<a class="headerlink" href="#what-is-non-parametric-about" title="Permalink to this headline">#</a></h3>
+<h3>What is Non-Parametric About?<a class="headerlink" href="#what-is-non-parametric-about" title="Link to this heading">#</a></h3>
 <p>Before we move on, I just wanted to highlight a common misconception. When we think about using a non-parametric Double-ML model to estimate the CATE, it looks like we will get a nonlinear treatment effect. For instance, let’s assume a very simple data generating process (DGP) where discont affects sales non-linearly, but through a square root function.</p>
 <p><span class="math notranslate nohighlight">\(
 Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
@@ -1130,7 +950,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_37_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_37_0.png" />
+<img alt="_images/e71b4abc8421f161726be6e9e9b3cf288866ebf49ae421a64f6daa0a05cc0475.png" src="_images/e71b4abc8421f161726be6e9e9b3cf288866ebf49ae421a64f6daa0a05cc0475.png" />
 </div>
 </div>
 <p>Now, let’s apply the Non-Parametric Double/Debias ML to this data.</p>
@@ -1163,6 +983,11 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 <p><img alt="img" src="_images/linear-aprox.png" /></p>
 <p>This mean that, yes, Non-Parametric Double-ML will figure out that the treatment effect will be smaller as we increase the treatment. But, no, it won’t find the non-linear treatment effect, but rather the local linear treatment effect. We can even plot those linear approximations against the ground true non-linear causal effect and indeed, they are good approximations.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cate</span> <span class="o">=</span> <span class="n">non_param</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">discount</span><span class="p">)</span>
 
@@ -1183,8 +1008,9 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_41_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_41_0.png" />
+<img alt="_images/3f19ff5c6d0f5e6c37a542267c6306c523d45cdc889feeb68fbe6bde08a02370.png" src="_images/3f19ff5c6d0f5e6c37a542267c6306c523d45cdc889feeb68fbe6bde08a02370.png" />
 </div>
 </div>
 <p>This might sound like technicalities, but it has very practical consequences. For example, let’s say you find a treatment effect of 2 for a customer in the example above, meaning that if you increase the discount by 1 unit, your sales to that customer will increase by 2 units. You might look at that and think: “Great! I’ll give a lot of discounts to this unit! After all, for every 1 unit in discount, I’ll get 2 in sales”. However, that’s the wrong conclusion. The treatment effect is 2 only at that discount level. As soon as you increase the discount, the effect will fall. For example, say this hypothetical customer got only 5 in discount, which is why her treatment effect is so high. Say you see that huge treatment effect and use it to justify giving 20 in discount to that customer. But as you do so, the effect might go from 2 to something like 0.5. And a 20 discount that made sense at a treatment effect of 2 might no longer be profitable at a treatment effect of 0.5.</p>
@@ -1194,7 +1020,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 </section>
 </section>
 <section id="non-scientific-double-debiased-ml">
-<h2>Non-Scientific Double/Debiased ML<a class="headerlink" href="#non-scientific-double-debiased-ml" title="Permalink to this headline">#</a></h2>
+<h2>Non-Scientific Double/Debiased ML<a class="headerlink" href="#non-scientific-double-debiased-ml" title="Link to this heading">#</a></h2>
 <p>The final idea we will try is a fundamental shift in mentality. We will no longer try to estimate the linear approximation to the CATE. Instead, we will make counterfactual predictions.</p>
 <p><img alt="img" src="_images/cf-pred.png" /></p>
 <p>The CATE is the slope of the outcome function at the data point. It is how much we expect the outcome to change if we increase the treatment by a very small amount. More technically, it’s the derivative at the point. Counterfactual predictions, on the other hand, are an attempt to recreate the entire outcome curve from a single datapoint. We will predict what the outcome would be if the treatment were at some other level than the one it currently takes, hence the counterfactual.</p>
@@ -1212,9 +1038,9 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 <p>Since we will have to make <span class="math notranslate nohighlight">\(\tilde{T}\)</span>, we first need to implement our own version of the <code class="docutils literal notranslate"><span class="pre">cross_prediction</span></code> function. This function will return not only the cross prediction, but also the models used to make those predictions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">KFold</span>
 
-<span class="k">def</span> <span class="nf">cv_estimate</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_params</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cv_estimate</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">model_params</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="n">cv</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">)</span>    
     <span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">cv_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">train_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
@@ -1410,7 +1236,7 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 <p>Before making the counterfactual predictions, we need to get <span class="math notranslate nohighlight">\(\tilde{T}_i\)</span>, that is, the price residuals. We will get those residuals by first, making predictions will all our treatment models (remember that we’ve used a 5 fold cross prediction in the training step), then we will average the predictions from the five models into a single prediction and finally subtract the counterfactual price we’ve generated earlier from the predicted price using this ensemble of models.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ensamble_pred</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ensamble_pred</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">X</span><span class="p">])</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">t_res_test</span> <span class="o">=</span> <span class="n">pred_test</span><span class="p">[</span><span class="n">T</span><span class="p">]</span> <span class="o">-</span> <span class="n">ensamble_pred</span><span class="p">(</span><span class="n">pred_test</span><span class="p">,</span> <span class="n">models_t</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
@@ -1700,6 +1526,11 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 </div>
 <p>We can also plot the unit level sales curve. Let’s sample ten units and see how they would behave under different prices.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">sample_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pred_test</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="mi">10</span><span class="p">)</span>
@@ -1709,13 +1540,19 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_55_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_55_0.png" />
+<img alt="_images/c0393d8536ccb577721c47738d55b7541d95ba48716e20258545c2797e93fa1f.png" src="_images/c0393d8536ccb577721c47738d55b7541d95ba48716e20258545c2797e93fa1f.png" />
 </div>
 </div>
 <p>It is interesting to see that some units are very sensitive to price increases. In some cases, we expect sales to drop from 250 to almost 200 as we increase the price from 3 to 10. On the other hand, some units are very inelastic to price: as we increase prices from 3 to 10, we expect the sales to go from about 195 to about 185.</p>
 <p>It’s hard to see these differences in price sensitivity, so what I like to do is to make all the curves start from the same point (the average sales here). This will make it easier to see that some units have a sharp drop in sales as we increase prices, while others not so much.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">sample_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pred_test</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="mi">10</span><span class="p">)</span>
@@ -1728,17 +1565,23 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_57_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_57_0.png" />
+<img alt="_images/fa57c04219c175d8a495c3b08119d43ce13e118212ee783b3873c6162fe71b8d.png" src="_images/fa57c04219c175d8a495c3b08119d43ce13e118212ee783b3873c6162fe71b8d.png" />
 </div>
 </div>
 <section id="more-econometrics-may-be-needed">
-<h3>More Econometrics May be Needed!<a class="headerlink" href="#more-econometrics-may-be-needed" title="Permalink to this headline">#</a></h3>
+<h3>More Econometrics May be Needed!<a class="headerlink" href="#more-econometrics-may-be-needed" title="Link to this heading">#</a></h3>
 <p><img alt="img" src="_images/more-metrics.png" /></p>
 <p>I want to end this section on the non-scientific Double-ML with a word of caution. I didn’t call this approach non scientific for nothing. It is sort of a hack to get non linear counterfactual predictions. And since it’s a hack, I feel it is worth talking about its potential downsides.</p>
 <p>First and foremost, it has the same problems all ML techniques have when applied naively to causal inference: bias. Since the final model is a regularized ML model, this regularization can bias the causal estimate to zero.</p>
 <p>The second problem has to do with the ML algorithm you choose. Here, we choose boosted trees. Trees are not very good at making smooth predictions. As a consequence, we can have discontinuities in the prediction curve. You can see that in the plots above: a stepwise behavior here and there. Also, trees are not very good at extrapolating, so this model might output weird predictions for prices never seen before.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">test</span>
              <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;price&quot;</span><span class="p">:</span><span class="s2">&quot;factual_price&quot;</span><span class="p">})</span>
@@ -1763,17 +1606,18 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/22-Debiased-Orthogonal-Machine-Learning_59_0.png" src="_images/22-Debiased-Orthogonal-Machine-Learning_59_0.png" />
+<img alt="_images/833da0df7a0753fbeeb35928e4ae81570174c5e3952545f25cd13375ac840839.png" src="_images/833da0df7a0753fbeeb35928e4ae81570174c5e3952545f25cd13375ac840839.png" />
 </div>
 </div>
 <p>All this to say that this approach is highly dependent on the final ML model. If you regularize it too much, you will bias your causal estimates to zero. If you use this or that ML algorithm, you carry all its limitations to your final counterfactual predictions. Still, if you think this approach is worth a try, by all means give it a shot! Just don’t forget the downsides I’ve outlined here.</p>
 </section>
 </section>
 <section id="key-ideas">
-<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">#</a></h2>
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Link to this heading">#</a></h2>
 <p>Double/Debiased/Orthogonal ML is a way to delegate estimating nuisance parameters which allows us to focus our attention on the causal parameter of interest. It first employes a two step orthogonalisation procedure:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Fit a model <span class="math notranslate nohighlight">\(M_t(X)\)</span> to predict the treatment from the covariates X and get out of fold residuals <span class="math notranslate nohighlight">\(\tilde{t} = t - M_t(X)\)</span>. We called this the debiasing model because the residuals <span class="math notranslate nohighlight">\(\tilde{t}\)</span> are, by definition, orthogonal to the features used to construct it.</p></li>
 <li><p>Fit a model <span class="math notranslate nohighlight">\(M_y(X)\)</span> to predict the outcome from the covariates X and get out of fold residuals <span class="math notranslate nohighlight">\(\tilde{y} = y - M_y(X)\)</span>. We called this the denoising model because the residual <span class="math notranslate nohighlight">\(\tilde{y}\)</span> can be seen as a version of the outcome where all the variance from the features got explained away.</p></li>
 </ol>
@@ -1782,13 +1626,13 @@ Sales_i = 20 + 10*\sqrt{Discount_i} + e_i
 <p>Finally, I’ve argued that the orthogonalization steps is a general tool to facilitate causal learning. In that spirit, we’ve tried to feed the treatment and outcome residuals to a S-learner style ML algorithm. With that, we managed to get counterfactual predictions from simulated treatments. Indeed orthogonal ML serves as a pre-processing step in many causal inference applications.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <p>The things I’ve written here are mostly stuff from my head. I’ve learned them through experience. This means that they have <strong>not</strong> passed the academic scrutiny that good science often goes through. Instead, notice how I’m talking about things that work in practice, but I don’t spend too much time explaining why that is the case. It’s a sort of science from the streets, if you will. However, I am putting this up for public scrutiny, so, by all means, if you find something preposterous, open an issue and I’ll address it to the best of my efforts.</p>
 <p>To write this chapter, I’ve relied on Chernozhukov et al (2016), <em>Double/Debiased Machine Learning for Treatment and Causal Parameters</em>, D. Foster and V. Syrgkanis (2019) <em>Orthogonal Statistical Learning</em> and on the <em>econml</em> library documentation page. Orthogonal ML has gotten a lot of attention lately, so there are many other references on the subject. To name a few, Nie and Wager (Draft, 2020) have a nice discussion on the R-loss, Athey et al (2019) talk about it in the context of causal decision trees and there are many subsequent papers by Chernozhukov, which develop the subject further.</p>
 <p>I also stole an image from <a class="reference external" href="https://pedrohcgs.github.io/files/Callaway_SantAnna_2020_slides.pdf">Pedro Sant’Anna’s slides</a>.</p>
 </section>
 <section id="contribute">
-<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">#</a></h2>
+<h2>Contribute<a class="headerlink" href="#contribute" title="Link to this heading">#</a></h2>
 <p>Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
 If you found this book valuable and you want to support it, please go to <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a>. If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn’t understand. Just go to the book’s repository and <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/issues">open an issue</a>. Finally, if you liked this content, please share it with others who might find it useful and give it a <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/stargazers">star on GitHub</a>.</p>
 </section>
@@ -1806,7 +1650,7 @@ If you found this book valuable and you want to support it, please go to <a clas
             mode: "conda-root-py"
         },
         kernelOptions: {
-            kernelName: "conda-root-py",
+            name: "conda-root-py",
             path: "./."
         },
         predefinedOutput: true
@@ -1814,50 +1658,121 @@ If you found this book valuable and you want to support it, please go to <a clas
     </script>
     <script>kernelName = 'conda-root-py'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="21-Meta-Learners.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">21 - Meta Learners</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="21-Meta-Learners.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">21 - Meta Learners</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">23 - Challenges with Effect Heterogeneity and Nonlinearity</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-for-nuisance-parameters">ML for Nuisance Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frisch-waugh-lovell">Frisch-Waugh-Lovell</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#frisch-waugh-lovell-on-steroids">Frisch-Waugh-Lovell on Steroids</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cate-estimation-with-double-ml">CATE Estimation with Double-ML</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric-double-debiased-ml">Non Parametric Double/Debiased ML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-non-parametric-about">What is Non-Parametric About?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-scientific-double-debiased-ml">Non-Scientific Double/Debiased ML</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-econometrics-may-be-needed">More Econometrics May be Needed!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-ideas">Key Ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contribute">Contribute</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Matheus Facure Alves<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Matheus Facure Alves
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

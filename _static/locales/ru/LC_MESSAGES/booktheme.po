@@ -8,74 +8,68 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "repository"
-msgstr "хранилище"
+msgid "By the"
+msgstr "Посредством"
 
-msgid "open issue"
-msgstr "открытый вопрос"
+msgid "By"
+msgstr "Автор:"
 
 msgid "Contents"
 msgstr "Содержание"
 
-msgid "Fullscreen mode"
-msgstr "Полноэкранный режим"
+msgid "Copyright"
+msgstr "авторское право"
 
-msgid "Download this page"
-msgstr "Загрузите эту страницу"
+msgid "Download notebook file"
+msgstr "Скачать файл записной книжки"
 
 msgid "Download source file"
 msgstr "Скачать исходный файл"
 
-msgid "Launch"
-msgstr "Запуск"
+msgid "Download this page"
+msgstr "Загрузите эту страницу"
 
 msgid "Edit this page"
 msgstr "Редактировать эту страницу"
 
-msgid "Toggle navigation"
-msgstr "Переключить навигацию"
-
-msgid "Theme by the"
-msgstr "Тема от"
-
-msgid "Source repository"
-msgstr "Исходный репозиторий"
+msgid "Fullscreen mode"
+msgstr "Полноэкранный режим"
 
 msgid "Last updated on"
 msgstr "Последнее обновление"
 
-msgid "By the"
-msgstr "Посредством"
-
-msgid "Sphinx Book Theme"
-msgstr "Тема книги Сфинкс"
+msgid "Launch"
+msgstr "Запуск"
 
 msgid "Open an issue"
 msgstr "Открыть вопрос"
 
-msgid "next page"
-msgstr "Следующая страница"
-
-msgid "Copyright"
-msgstr "авторское право"
-
-msgid "Search this book..."
-msgstr "Искать в этой книге ..."
-
 msgid "Print to PDF"
 msgstr "Распечатать в PDF"
 
-msgid "By"
-msgstr "По"
+msgid "Source repository"
+msgstr "Исходный репозиторий"
+
+msgid "Sphinx Book Theme"
+msgstr "Тема книги Сфинкс"
+
+msgid "Theme by the"
+msgstr "Тема от"
+
+msgid "Toggle navigation"
+msgstr "Переключить навигацию"
+
+msgid "next page"
+msgstr "Следующая страница"
+
+msgid "open issue"
+msgstr "открытый вопрос"
 
 msgid "previous page"
 msgstr "Предыдущая страница"
 
-msgid "Search the docs ..."
-msgstr "Искать в документах ..."
-
-msgid "Download notebook file"
-msgstr "Скачать файл записной книжки"
+msgid "repository"
+msgstr "хранилище"
 
 msgid "suggest edit"
 msgstr "предложить редактировать"

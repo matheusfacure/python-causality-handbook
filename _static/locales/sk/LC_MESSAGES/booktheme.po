@@ -8,74 +8,68 @@ msgstr ""
 "Language: sk\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "repository"
-msgstr "Úložisko"
-
-msgid "open issue"
-msgstr "otvorené vydanie"
-
-msgid "Contents"
-msgstr "Obsah"
-
-msgid "Fullscreen mode"
-msgstr "Režim celej obrazovky"
-
-msgid "Download this page"
-msgstr "Stiahnite si túto stránku"
-
-msgid "Download source file"
-msgstr "Stiahnite si zdrojový súbor"
-
-msgid "Launch"
-msgstr "Spustiť"
-
-msgid "Edit this page"
-msgstr "Upraviť túto stránku"
-
-msgid "Toggle navigation"
-msgstr "Prepnúť navigáciu"
-
-msgid "Theme by the"
-msgstr "Téma od"
-
-msgid "Source repository"
-msgstr "Zdrojové úložisko"
-
-msgid "Last updated on"
-msgstr "Posledná aktualizácia dňa"
-
 msgid "By the"
 msgstr "Podľa"
-
-msgid "Sphinx Book Theme"
-msgstr "Téma knihy Sfinga"
-
-msgid "Open an issue"
-msgstr "Otvorte problém"
-
-msgid "next page"
-msgstr "ďalšia strana"
-
-msgid "Copyright"
-msgstr "Autorské práva"
-
-msgid "Search this book..."
-msgstr "Hľadať v tejto knihe ..."
-
-msgid "Print to PDF"
-msgstr "Tlač do PDF"
 
 msgid "By"
 msgstr "Autor:"
 
-msgid "previous page"
-msgstr "predchádzajúca strana"
+msgid "Contents"
+msgstr "Obsah"
 
-msgid "Search the docs ..."
-msgstr "Hľadať v dokumentoch ..."
+msgid "Copyright"
+msgstr "Autorské práva"
 
 msgid "Download notebook file"
 msgstr "Stiahnite si zošit"
+
+msgid "Download source file"
+msgstr "Stiahnite si zdrojový súbor"
+
+msgid "Download this page"
+msgstr "Stiahnite si túto stránku"
+
+msgid "Edit this page"
+msgstr "Upraviť túto stránku"
+
+msgid "Fullscreen mode"
+msgstr "Režim celej obrazovky"
+
+msgid "Last updated on"
+msgstr "Posledná aktualizácia dňa"
+
+msgid "Launch"
+msgstr "Spustiť"
+
+msgid "Open an issue"
+msgstr "Otvorte problém"
+
+msgid "Print to PDF"
+msgstr "Tlač do PDF"
+
+msgid "Source repository"
+msgstr "Zdrojové úložisko"
+
+msgid "Sphinx Book Theme"
+msgstr "Téma knihy Sfinga"
+
+msgid "Theme by the"
+msgstr "Téma od"
+
+msgid "Toggle navigation"
+msgstr "Prepnúť navigáciu"
+
+msgid "next page"
+msgstr "ďalšia strana"
+
+msgid "open issue"
+msgstr "otvorené vydanie"
+
+msgid "previous page"
+msgstr "predchádzajúca strana"
+
+msgid "repository"
+msgstr "Úložisko"
 
 msgid "suggest edit"
 msgstr "navrhnúť úpravu"

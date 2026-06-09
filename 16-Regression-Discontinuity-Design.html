@@ -1,117 +1,177 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>16 - Regression Discontinuity Design &#8212; Causal Inference for the Brave and True</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-97848161-1"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-97848161-1');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'UA-97848161-1');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '16-Regression-Discontinuity-Design';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="17 - Predictive Models 101" href="17-Predictive-Models-101.html" />
     <link rel="prev" title="15 - Synthetic Control" href="15-Synthetic-Control.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en">
-    
-
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script>
-                        window.ga = window.ga || function () {
-                            (ga.q = ga.q || []).push(arguments) };
-                        ga.l = +new Date;
-                        ga('create', 'UA-97848161-1', 'auto');
-                        ga('set', 'anonymizeIp', true);
-                        ga('send', 'pageview');
-                    </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
     
-    <div class="container-fluid" id="banner"></div>
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
 
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">Interested to learn more? Checkout <a href='http://example.com'>my causal inference course</a>!</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Causal Inference for the Brave and True</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+  
+    
+  
+
+<a class="navbar-brand logo" href="landing-page.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Causal Inference for the Brave and True</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -120,481 +180,234 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Part I - The Yang
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I - The Yang</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="01-Introduction-To-Causality.html">
-   01 - Introduction To Causality
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="02-Randomised-Experiments.html">
-   02 - Randomised Experiments
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">
-   03 - Stats Review: The Most Dangerous Equation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04-Graphical-Causal-Models.html">
-   04 - Graphical Causal Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">
-   05 - The Unreasonable Effectiveness of Linear Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">
-   06 - Grouped and Dummy Regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="07-Beyond-Confounders.html">
-   07 - Beyond Confounders
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="08-Instrumental-Variables.html">
-   08 - Instrumental Variables
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="09-Non-Compliance-and-LATE.html">
-   09 - Non Compliance and LATE
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="10-Matching.html">
-   10 - Matching
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="11-Propensity-Score.html">
-   11 - Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="12-Doubly-Robust-Estimation.html">
-   12 - Doubly Robust Estimation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="13-Difference-in-Differences.html">
-   13 - Difference-in-Differences
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="14-Panel-Data-and-Fixed-Effects.html">
-   14 - Panel Data and Fixed Effects
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="15-Synthetic-Control.html">
-   15 - Synthetic Control
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   16 - Regression Discontinuity Design
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="01-Introduction-To-Causality.html">01 - Introduction To Causality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-Randomised-Experiments.html">02 - Randomised Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-Stats-Review-The-Most-Dangerous-Equation.html">03 - Stats Review: The Most Dangerous Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Graphical-Causal-Models.html">04 - Graphical Causal Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-The-Unreasonable-Effectiveness-of-Linear-Regression.html">05 - The Unreasonable Effectiveness of Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-Grouped-and-Dummy-Regression.html">06 - Grouped and Dummy Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-Beyond-Confounders.html">07 - Beyond Confounders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-Instrumental-Variables.html">08 - Instrumental Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09-Non-Compliance-and-LATE.html">09 - Non Compliance and LATE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-Matching.html">10 - Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-Propensity-Score.html">11 - Propensity Score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-Doubly-Robust-Estimation.html">12 - Doubly Robust Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-Difference-in-Differences.html">13 - Difference-in-Differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14-Panel-Data-and-Fixed-Effects.html">14 - Panel Data and Fixed Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15-Synthetic-Control.html">15 - Synthetic Control</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">16 - Regression Discontinuity Design</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Part II - The Yin
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II - The Yin</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="17-Predictive-Models-101.html">
-   17 - Predictive Models 101
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html">
-   18 - Heterogeneous Treatment Effects and Personalization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="19-Evaluating-Causal-Models.html">
-   19 - Evaluating Causal Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="20-Plug-and-Play-Estimators.html">
-   20 - Plug-and-Play Estimators
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="21-Meta-Learners.html">
-   21 - Meta Learners
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">
-   22 - Debiased/Orthogonal Machine Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html">
-   23 - Challenges with Effect Heterogeneity and Nonlinearity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="24-The-Diff-in-Diff-Saga.html">
-   24 - The Difference-in-Differences Saga
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="25-Synthetic-Diff-in-Diff.html">
-   25 - Synthetic Difference-in-Differences
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="17-Predictive-Models-101.html">17 - Predictive Models 101</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18-Heterogeneous-Treatment-Effects-and-Personalization.html">18 - Heterogeneous Treatment Effects and Personalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19-Evaluating-Causal-Models.html">19 - Evaluating Causal Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20-Plug-and-Play-Estimators.html">20 - Plug-and-Play Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21-Meta-Learners.html">21 - Meta Learners</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22-Debiased-Orthogonal-Machine-Learning.html">22 - Debiased/Orthogonal Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23-Challenges-with-Effect-Heterogeneity-and-Nonlinearity.html">23 - Challenges with Effect Heterogeneity and Nonlinearity</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="24-The-Diff-in-Diff-Saga.html">24 - The Difference-in-Differences Saga</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25-Synthetic-Diff-in-Diff.html">25 - Synthetic Difference-in-Differences</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Appendix
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Debiasing-with-Orthogonalization.html">
-   Debiasing with Orthogonalization
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Debiasing-with-Propensity-Score.html">
-   Debiasing with Propensity Score
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="When-Prediction-Fails.html">
-   When Prediction Fails
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Prediction-Metrics-For-Causal-Models.html">
-   Why Prediction Metrics are Dangerous For Causal Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Conformal-Inference-for-Synthetic-Control.html">
-   Conformal Inference for Synthetic Controls
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="Debiasing-with-Orthogonalization.html">Debiasing with Orthogonalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Debiasing-with-Propensity-Score.html">Debiasing with Propensity Score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="When-Prediction-Fails.html">When Prediction Fails</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Prediction-Metrics-For-Causal-Models.html">Why Prediction Metrics are Dangerous For Causal Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Conformal-Inference-for-Synthetic-Control.html">Conformal Inference for Synthetic Controls</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Contribute
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contribute</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">
-   Patreon
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/matheusfacure/python-causality-handbook/master?urlpath=tree/16-Regression-Discontinuity-Design.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-</div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F16-Regression-Discontinuity-Design.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button"
+   title="Open an issue"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-<a href="https://github.com/matheusfacure/python-causality-handbook/issues/new?title=Issue%20on%20page%20%2F16-Regression-Discontinuity-Design.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="bottom"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-lightbulb"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/16-Regression-Discontinuity-Design.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/16-Regression-Discontinuity-Design.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
   </span>
 
-</label>
+</button>
 
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#is-alcohol-killing-you">
-   Is Alcohol Killing You?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rdd-estimation">
-   RDD Estimation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#kernel-weighting">
-     Kernel Weighting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sheepskin-effect-and-fuzzy-rdd">
-   Sheepskin Effect and Fuzzy RDD
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-mccrary-test">
-     The McCrary Test
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#key-ideas">
-   Key Ideas
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contribute">
-   Contribute
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>16 - Regression Discontinuity Design</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#is-alcohol-killing-you">
-   Is Alcohol Killing You?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rdd-estimation">
-   RDD Estimation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#kernel-weighting">
-     Kernel Weighting
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sheepskin-effect-and-fuzzy-rdd">
-   Sheepskin Effect and Fuzzy RDD
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-mccrary-test">
-     The McCrary Test
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#key-ideas">
-   Key Ideas
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contribute">
-   Contribute
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>16 - Regression Discontinuity Design</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#is-alcohol-killing-you">Is Alcohol Killing You?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rdd-estimation">RDD Estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-weighting">Kernel Weighting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sheepskin-effect-and-fuzzy-rdd">Sheepskin Effect and Fuzzy RDD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mccrary-test">The McCrary Test</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-ideas">Key Ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contribute">Contribute</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="regression-discontinuity-design">
-<h1>16 - Regression Discontinuity Design<a class="headerlink" href="#regression-discontinuity-design" title="Permalink to this headline">#</a></h1>
+<h1>16 - Regression Discontinuity Design<a class="headerlink" href="#regression-discontinuity-design" title="Link to this heading">#</a></h1>
 <p>We don’t stop to think about it much, but it is impressive how smooth nature is. You can’t grow a tree without first getting a bud, you can’t teleport from one place to another, a wound takes its time to heal. Even in the social realm, smoothness seems to be the norm. You can’t grow a business in one day, consistency and hard work are required to build wealth and it takes years before you learn how linear regression works. Under normal circumstances, nature is very cohesive and doesn’t jump around much.</p>
 <blockquote>
 <div><p>When the intelligent and animal souls are held together in one embrace, they can be kept from separating.</p>
@@ -606,28 +419,34 @@ title="Print to PDF"
 <p><span class="math notranslate nohighlight">\(
 D_i = \mathcal{1}\{R_i&gt;c\}
 \)</span></p>
-<p>In other words, this is saying that treatment is zero when <span class="math notranslate nohighlight">\(R\)</span> is below a threshold <span class="math notranslate nohighlight">\(c\)</span> and one otherwise. This means that we get to observe <span class="math notranslate nohighlight">\(Y_1\)</span> when <span class="math notranslate nohighlight">\(R&gt;c\)</span> and <span class="math notranslate nohighlight">\(Y_0\)</span> when <span class="math notranslate nohighlight">\(R&lt;c\)</span>. To wrap our head around this, think about the potential outcomes as 2 functions that we can’t observe entirely. Both <span class="math notranslate nohighlight">\(Y_0(R)\)</span> and <span class="math notranslate nohighlight">\(Y_1(R)\)</span> are there, we just can’t see that. The threshold acts as a switch that allows us to see one or the other of those function, but never both, much like in the image below:</p>
+<p>In other words, this is saying that treatment is zero when <span class="math notranslate nohighlight">\(R\)</span> is below a threshold <span class="math notranslate nohighlight">\(c\)</span> and one otherwise. This means that we get to observe <span class="math notranslate nohighlight">\(Y_1\)</span> when <span class="math notranslate nohighlight">\(R&gt;c\)</span> and <span class="math notranslate nohighlight">\(Y_0\)</span> when <span class="math notranslate nohighlight">\(R&lt;c\)</span>. To wrap our head around this, think about the potential outcomes as 2 functions that we can’t observe entirely. Both <span class="math notranslate nohighlight">\(Y_0(R)\)</span> and <span class="math notranslate nohighlight">\(Y_1(R)\)</span> are there, we just can’t see that. The threshold acts as a switch that allows us to see one or the other of those functions, but never both, much like in the image below:</p>
 <p><img alt="img" src="_images/rdd.png" /></p>
 <p>The idea of regression discontinuity is to compare the outcome just above and just below the threshold to identify the treatment effect at the threshold. This is called a <strong>sharp RD</strong> design, since the probability of getting the treatment jumps from 0 to 1 at the threshold, but we could also think about a <strong>fuzzy RD</strong> design, where the probability also jumps, but is a less dramatic manner.</p>
 <section id="is-alcohol-killing-you">
-<h2>Is Alcohol Killing You?<a class="headerlink" href="#is-alcohol-killing-you" title="Permalink to this headline">#</a></h2>
-<p>A very relevant public policy question is what should be the minimal drinking age. Most countries, Brazil included, set it to be 18 year, but in the US (most states) it is currently 21. So, is it the case that the US is being overly prudent and that they should lower their minimal drinking age? Or is it the case that other countries should make their legal drinking age higher?</p>
+<h2>Is Alcohol Killing You?<a class="headerlink" href="#is-alcohol-killing-you" title="Link to this heading">#</a></h2>
+<p>A very relevant public policy question is what should be the minimal drinking age. Most countries, Brazil included, set it to be 18 years, but in the US (most states) it is currently 21. So, is it the case that the US is being overly prudent and that they should lower their minimal drinking age? Or is it the case that other countries should make their legal drinking age higher?</p>
 <p>One way to look at this question is from a <a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/app.1.1.164">mortality rate perspective (Carpenter and Dobkin, 2009)</a>. From the public policy standpoint, one could argue that we should lower the mortality rate as much as possible. If alcohol consumption increases the mortality rate by a lot, we should avoid lowering the minimum drinking age. This would be consistent with the objective of lowering deaths caused by alcohol consumption.</p>
-<p>To estimate the impacts of alcohol on death, we could use the fact that legal drinking age imposes a discontinuity on nature. In the US, those just under 21 years don’t drink (or drink much less) while those just older than 21 do drink. This means that the probability of drinking jumps at 21 years and that is something we can explore with an RDD.</p>
-<div class="highlight-note notranslate"><div class="highlight"><pre><span></span>You could also argue that turning 21 increases the probability of drinking alcohol, since it is possible to drink it before that age, even though not legally. This would technically make this a case of Fuzzy RD Design, something we&#39;ll explore later in this chapter.
-</pre></div>
+<p>To estimate the impacts of alcohol on death, we could use the fact that legal drinking age imposes a discontinuity on nature. In the US, those just under 21 years old don’t drink (or drink much less) while those just older than 21 do drink. This means that the probability of drinking jumps at 21 years and that is something we can explore with an RDD.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You could also argue that turning 21 increases the probability of drinking alcohol, since it is possible to drink it before that age, even though not legally. This would technically make this a case of Fuzzy RD Design, something we’ll explore later in this chapter.</p>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">style</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
@@ -635,6 +454,7 @@ D_i = \mathcal{1}\{R_i&gt;c\}
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>To do so we can grab some mortality data aggregated by age. Each row is the average age of a group of people and the average mortality by all causes (<code class="docutils literal notranslate"><span class="pre">all</span></code>), by moving vehicle accident (<code class="docutils literal notranslate"><span class="pre">mva</span></code>) and by suicide (<code class="docutils literal notranslate"><span class="pre">suicide</span></code>).</p>
 <div class="cell docutils container">
@@ -734,13 +554,13 @@ D_i = \mathcal{1}\{R_i&gt;c\}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/16-Regression-Discontinuity-Design_7_0.png" src="_images/16-Regression-Discontinuity-Design_7_0.png" />
+<img alt="_images/497d6b6ff024ba9a81f6f51798a0615721e2f4bd7a63ab6c6edff33e7a292538.png" src="_images/497d6b6ff024ba9a81f6f51798a0615721e2f4bd7a63ab6c6edff33e7a292538.png" />
 </div>
 </div>
 <p>There are some cues, but we need more than that. What exactly is the effect of drinking on mortality at the threshold? And what is the standard error on that estimate?</p>
 </section>
 <section id="rdd-estimation">
-<h2>RDD Estimation<a class="headerlink" href="#rdd-estimation" title="Permalink to this headline">#</a></h2>
+<h2>RDD Estimation<a class="headerlink" href="#rdd-estimation" title="Link to this heading">#</a></h2>
 <p>The key assumption that RDD relies on is the smoothness of the potential outcome at the threshold. Formally, the limits of the potential outcomes as the running variable approaches the threshold from the right and from the left should be the same.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -751,8 +571,8 @@ D_i = \mathcal{1}\{R_i&gt;c\}
 \[\begin{split}
 \begin{align}
 \lim_{r \to c^+} E[Y_{ti}|R_i=r] - \lim_{r \to c^-} E[Y_{ti}|R_i=r]=&amp;\lim_{r \to c^+} E[Y_{1i}|R_i=r] - \lim_{r \to c^-} E[Y_{0i}|R_i=r] \\
-=&amp; E[Y_{1i}|R_i=r] - E[Y_{0i}|R_i=r] \\
-=&amp; E[Y_{1i} - Y_{0i}|R_i=r]
+=&amp; E[Y_{1i}|R_i=c] - E[Y_{0i}|R_i=c] \\
+=&amp; E[Y_{1i} - Y_{0i}|R_i=c]
 \end{align}
 \end{split}\]</div>
 <p>This is, in its own way, a sort of Local Average Treatment Effect (LATE), since we can only know it at the threshold. In this setting, we can think of RDD as a local randomized trial. For those at the threshold, the treatment could have gone either way and, by chance, some people fell below the threshold, and some people fell above. In our example, at the same point in time, some people are just above 21 years and some people are just below 21. What determines this is if someone was born some days later or not, which is pretty random. For this reason, RDD provides a very compelling causal story. It is not the golden standard of RCT, but it is close.</p>
@@ -767,7 +587,7 @@ y_i = \beta_0 + \beta_1 r_i + \beta_2 \mathcal{1}\{r_i&gt;c\} + \beta_3 \mathcal
 <p><span class="math notranslate nohighlight">\(
 \lim_{r \to c^+} E[Y_{ti}|R_i=r] - \lim_{r \to c^-} E[Y_{ti}|R_i=r]=\beta_2=E[ATE|R=c]
 \)</span></p>
-<p>Here is what this looks like in code for the case where we want to estimate the effect of alcohol consumption on death by all causes at 21 years.</p>
+<p>Here is what this looks like in code for the case where we want to estimate the effect of alcohol consumption on death by all causes at age 21.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rdd_df</span> <span class="o">=</span> <span class="n">drinking</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="p">(</span><span class="n">drinking</span><span class="p">[</span><span class="s2">&quot;agecell&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
@@ -808,7 +628,7 @@ y_i = \beta_0 + \beta_1 r_i + \beta_2 \mathcal{1}\{r_i&gt;c\} + \beta_3 \mathcal
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/16-Regression-Discontinuity-Design_11_0.png" src="_images/16-Regression-Discontinuity-Design_11_0.png" />
+<img alt="_images/4f14972aefb572d50541abf4983646a7071d5d386a3a290dba28ad9d0b232d84.png" src="_images/4f14972aefb572d50541abf4983646a7071d5d386a3a290dba28ad9d0b232d84.png" />
 </div>
 </div>
 <p>If we do the same for the other causes, this is what we get.</p>
@@ -822,29 +642,29 @@ y_i = \beta_0 + \beta_1 r_i + \beta_2 \mathcal{1}\{r_i&gt;c\} + \beta_3 \mathcal
     <span class="n">m</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">wls</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cause</span><span class="si">}</span><span class="s2">~agecell*threshold&quot;</span><span class="p">,</span> <span class="n">rdd_df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
     <span class="n">ate_pct</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="p">((</span><span class="n">m</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;threshold&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;Intercept&quot;</span><span class="p">])</span><span class="o">/</span><span class="n">m</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;Intercept&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">drinking</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">m</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;agecell&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;predictions&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Impact of Alcohol on Death: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ate_pct</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Impact of Alcohol on Death: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ate_pct</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/16-Regression-Discontinuity-Design_13_0.png" src="_images/16-Regression-Discontinuity-Design_13_0.png" />
+<img alt="_images/3c77e1af2aa958c61ad2375fdfd594ea0a598b36357463c059839f66ead873d9.png" src="_images/3c77e1af2aa958c61ad2375fdfd594ea0a598b36357463c059839f66ead873d9.png" />
 </div>
 </div>
 <p>RDD is telling us that alcohol increases the chance of death by suicide and car accidents by 15%, which is a pretty significant amount. These results are compelling arguments to not lower the drinking age, if we want to minimize mortality rates.</p>
 <section id="kernel-weighting">
-<h3>Kernel Weighting<a class="headerlink" href="#kernel-weighting" title="Permalink to this headline">#</a></h3>
-<p>Regression Discontinuity relies heavily on the extrapolations properties of linear regression. Since we are looking at the values at the beginning and end of 2 regression lines, we better get those limits right. What can happen is that regression might focus too much on fitting the other data points at the cost of a poor fit at the threshold. If this happens, we might get the wrong measure of the treatment effect.</p>
+<h3>Kernel Weighting<a class="headerlink" href="#kernel-weighting" title="Link to this heading">#</a></h3>
+<p>Regression Discontinuity relies heavily on the extrapolation properties of linear regression. Since we are looking at the values at the beginning and end of 2 regression lines, we better get those limits right. What can happen is that regression might focus too much on fitting the other data points at the cost of a poor fit at the threshold. If this happens, we might get the wrong measure of the treatment effect.</p>
 <p>One way to solve this is to give higher weights for the points that are closer to the threshold. There are many ways to do this, but a popular one is to reweight the samples with the <strong>triangular kernel</strong></p>
 <p><span class="math notranslate nohighlight">\(
 K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 \)</span></p>
 <p>The first part of this kernel is an indicator function to whether we are close to the threshold. How close? This is determined by a bandwidth parameter <span class="math notranslate nohighlight">\(h\)</span>. The second part of this kernel is a weighting function. As we move away from the threshold, the weights get smaller and smaller. These weights are divided by the bandwidth. If the bandwidth is large, the weights get smaller at a slower rate. If the bandwidth is small, the weights quickly go to zero.</p>
-<p>To make it easier to understand, here is what the weights look like for this kernel applied to our problem. I’ve set the bandwidth to be 1 here, meaning we will only consider data from people that are no older than 22 years and no younger than 20 years.</p>
+<p>To make it easier to understand, here is what the weights look like for this kernel applied to our problem. I’ve set the bandwidth to be 1 here, meaning we will only consider data from people that are no older than 22 and no younger than 20.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kernel</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">kernel</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
     <span class="n">indicator</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">R</span><span class="o">-</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">h</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">indicator</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">R</span><span class="o">-</span><span class="n">c</span><span class="p">)</span><span class="o">/</span><span class="n">h</span><span class="p">)</span>
 </pre></div>
@@ -861,7 +681,7 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/16-Regression-Discontinuity-Design_16_0.png" src="_images/16-Regression-Discontinuity-Design_16_0.png" />
+<img alt="_images/553cf8f0ce72b9b27b9cd0cc75995e1a1905f7e321d8ba1f542f0e0a8ccd3c19.png" src="_images/553cf8f0ce72b9b27b9cd0cc75995e1a1905f7e321d8ba1f542f0e0a8ccd3c19.png" />
 </div>
 </div>
 <p>If we apply these weights to our original problem, the impact of alcohol gets bigger, at least for all causes. It jumps from 7.6627 to 9.7004. The result remains very significant. Also, notice that I’m using <code class="docutils literal notranslate"><span class="pre">wls</span></code> instead of <code class="docutils literal notranslate"><span class="pre">ols</span></code></p>
@@ -902,10 +722,10 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/16-Regression-Discontinuity-Design_19_0.png" src="_images/16-Regression-Discontinuity-Design_19_0.png" />
+<img alt="_images/6fdac99a70a8870797ab910f663125d8e3b565e2aa57aa56fcce859fa35978d8.png" src="_images/6fdac99a70a8870797ab910f663125d8e3b565e2aa57aa56fcce859fa35978d8.png" />
 </div>
 </div>
-<p>And here is what it looks like for the other causes of death. Notice how the regression on the right is more negatively sloped since it disconsiders the right most points.</p>
+<p>And here is what it looks like for the other causes of death. Notice how the regression on the right is more negatively sloped since it disconsiders the rightmost points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
@@ -917,14 +737,14 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
     <span class="n">m</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">wls</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cause</span><span class="si">}</span><span class="s2">~agecell*threshold&quot;</span><span class="p">,</span> <span class="n">rdd_df</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
     <span class="n">ate_pct</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="p">((</span><span class="n">m</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;threshold&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;Intercept&quot;</span><span class="p">])</span><span class="o">/</span><span class="n">m</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;Intercept&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">drinking</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">m</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;agecell&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;predictions&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Impact of Alcohol on Death: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ate_pct</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Impact of Alcohol on Death: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ate_pct</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/16-Regression-Discontinuity-Design_21_0.png" src="_images/16-Regression-Discontinuity-Design_21_0.png" />
+<img alt="_images/8a897a9b77484a7394d45ca3afaeae0f3c2cdca0cc03ae54b561985f6b11fad4.png" src="_images/8a897a9b77484a7394d45ca3afaeae0f3c2cdca0cc03ae54b561985f6b11fad4.png" />
 </div>
 </div>
 <p>With the exception of suicide, it looks like adding the kernel weight made the negative impact on alcohol bigger. Once again, if we want to minimize the death rate, we should NOT recommend lowering the legal drinking age, since there is a clear impact of alcohol on the death rates.</p>
@@ -932,7 +752,7 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </section>
 </section>
 <section id="sheepskin-effect-and-fuzzy-rdd">
-<h2>Sheepskin Effect and Fuzzy RDD<a class="headerlink" href="#sheepskin-effect-and-fuzzy-rdd" title="Permalink to this headline">#</a></h2>
+<h2>Sheepskin Effect and Fuzzy RDD<a class="headerlink" href="#sheepskin-effect-and-fuzzy-rdd" title="Link to this heading">#</a></h2>
 <p>When it comes to the effect of education on earnings, there are two major views in economics. The first one is the widely known argument that education increases human capital, increasing productivity and thus, earnings. In this view, education actually changes you for the better. Another view is that education is simply a signaling mechanism. It just puts you through all these hard tests and academic tasks. If you can make it, it signals to the market that you are a good employee. In this way, education doesn’t make you more productive. It only tells the market how productive you have always been. What matters here is the diploma. If you have it, you will be paid more. We refer to this as the <strong>sheepskin effect</strong>, since diplomas were printed in sheepskin in the past.</p>
 <p>To test this hypothesis, <a class="reference external" href="https://faculty.smu.edu/millimet/classes/eco7321/papers/clark%20martorell%202014.pdf">Clark and Martorell</a> used regression discontinuity to measure the effect of graduating 12th grade on earnings. In order to do that, they had to think about some running variable where students that fall above it graduate and those who fall below it, don’t. They found such data in the Texas education system.</p>
 <p>In order to graduate in Texas, one has to pass an exam. Testing starts at 10th grade and students can do it multiple times, but eventually, they face a last chance exam at the end of 12th grade. The idea was to get data from students who took those last chance exams and compare those that had barely failed it to those that barely passed it. These students will have very similar human capital, but different signaling credentials. Namely, those that barely passed it, will receive a diploma.</p>
@@ -1020,22 +840,22 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/16-Regression-Discontinuity-Design_25_0.png" src="_images/16-Regression-Discontinuity-Design_25_0.png" />
+<img alt="_images/fcabfd8f6267682597dab266ae53dfbd8f1f8a5bbc18ee99a4a5deeb36db275f.png" src="_images/fcabfd8f6267682597dab266ae53dfbd8f1f8a5bbc18ee99a4a5deeb36db275f.png" />
 </div>
 </div>
 <p>We can think of fuzzy RD as a sort of non compliance. Passing the threshold should make everyone receive the diploma, but some students, the never takers, don’t get it. Likewise, being below the threshold should prevent you from getting a diploma, but some students, the always takers, manage to get it anyway.</p>
 <p>Just like when we have the potential outcome, we have the potential treatment status in this situation. <span class="math notranslate nohighlight">\(T_1\)</span> is the treatment everyone would have received had they been above the threshold. <span class="math notranslate nohighlight">\(T_0\)</span> is the treatment everyone would have received had they been below the threshold. As you’ve might have noticed, we can think of the <strong>threshold as an Instrumental Variable</strong>. Just as in IV, if we naively estimate the treatment effect, it will be biased towards zero.</p>
 <p><img alt="img" src="_images/rdd_fuzzy.png" /></p>
 <p>The probability of treatment being less than one, even above the threshold, makes the outcome we observe less than the true potential outcome <span class="math notranslate nohighlight">\(Y_1\)</span>. By the same token, the outcome we observe below the threshold is higher than the true potential outcome <span class="math notranslate nohighlight">\(Y_0\)</span>. This makes it look like the treatment effect at the threshold is smaller than it actually is and we will have to use IV techniques to correct for that.</p>
-<p>Just like when we’ve assumed smoothness on the potential outcome, we now assume it for the potential treatment. Also, we need to assume monotonicity, just like in IV. In case you don’t remember, it states that <span class="math notranslate nohighlight">\(T_{i1}&gt;T_{i0} \ \forall i\)</span>. This means that crossing the threshold from the left to the right only increases your chance of getting a diploma (or that there are no defiers). With these 2 assumptions, we have a Wald Estimator for LATE.</p>
+<p>Just like when we’ve assumed smoothness on the potential outcome, we now assume it for the potential treatment. Also, we need to assume monotonicity, just like in IV. In case you don’t remember, it states that <span class="math notranslate nohighlight">\(T_{i1} \geq T_{i0} \ \forall i\)</span>. This means that crossing the threshold from the left to the right only increases your chance of getting a diploma (or that there are no defiers). With these 2 assumptions, we have a Wald Estimator for LATE.</p>
 <div class="math notranslate nohighlight">
 \[
 \dfrac{\lim_{r \to c^+} E[Y_i|R_i=r] - \lim_{r \to c^-} E[Y_i|R_i=r]}{\lim_{r \to c^+} E[T_i|R_i=r] - \lim_{r \to c^-} E[T_i|R_i=r]} = E[Y_{1i} - Y_{0i} | T_{1i} &gt; T_{0i}, R_i=c]
 \]</div>
 <p>Notice how this is a local estimate in two senses. First, it is local because it only gives the treatment effect at the threshold <span class="math notranslate nohighlight">\(c\)</span>. This is the RD locality. Second, it is local because it only estimates the treatment effect for the compliers. This is the IV locality.</p>
-<p>To estimate this, we will use 2 linear regression. The numerator can be estimated just like we’ve done before. To get the denominator, we simply replace the outcome with the treatment. But first, let’s talk about a sanity check we need to run to make sure we can trust our RDD estimates.</p>
+<p>To estimate this, we will use 2 linear regressions. The numerator can be estimated just like we’ve done before. To get the denominator, we simply replace the outcome with the treatment. But first, let’s talk about a sanity check we need to run to make sure we can trust our RDD estimates.</p>
 <section id="the-mccrary-test">
-<h3>The McCrary Test<a class="headerlink" href="#the-mccrary-test" title="Permalink to this headline">#</a></h3>
+<h3>The McCrary Test<a class="headerlink" href="#the-mccrary-test" title="Link to this heading">#</a></h3>
 <p>One thing that could break our RDD argument is if people can manipulate where they stand at the threshold. In the sheepskin example this could happen if students just below the threshold found a way around the system to increase their test score by just a bit. Another example is when you need to be below a certain income level to get a government benefit. Some families might lower their income on purpose, just to be just eligible for the program.</p>
 <p>In these sorts of situations, we tend to see a phenomenon called bunching on the density of the running variable. This means that we will have a lot of entities just above or just below the threshold. To check for that, we can plot the density function of the running variable and see if there are any spikes around the threshold. For our case, the density is given by the <code class="docutils literal notranslate"><span class="pre">n</span></code> column in our data.</p>
 <div class="cell docutils container">
@@ -1055,7 +875,7 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/16-Regression-Discontinuity-Design_27_0.png" src="_images/16-Regression-Discontinuity-Design_27_0.png" />
+<img alt="_images/ca3fa9fa34cae0c3de4f51b05095b7fd3a96eba82db8cb8298aa69eef7b3f2e6.png" src="_images/ca3fa9fa34cae0c3de4f51b05095b7fd3a96eba82db8cb8298aa69eef7b3f2e6.png" />
 </div>
 </div>
 <p>The first plot shows how our data density looks like. As we can see, there are no spikes around the threshold, meaning there is no bunching. Students are not manipulating where they fall on the threshold. Just for illustrative purposes, the second plot shows what bunching would look like if students could manipulate where they fall on the threshold. We would see a spike in the density for the cells just above the threshold, since many students would be on that cell, barely passing the exam.</p>
@@ -1102,14 +922,14 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/16-Regression-Discontinuity-Design_31_0.png" src="_images/16-Regression-Discontinuity-Design_31_0.png" />
+<img alt="_images/e12145c68452d8c82571748d5b21a1ff4c9e1af70015246e196d2c99e76bb054.png" src="_images/e12145c68452d8c82571748d5b21a1ff4c9e1af70015246e196d2c99e76bb054.png" />
 </div>
 </div>
 <p>However, as we know from the way non compliance bias works, this result is biased towards zero. To correct for that, we need to scale it by the first stage and get the Wald estimator. Unfortunately, there isn’t a good Python implementation for this, so we will have to do it manually and use bootstrap to get the standard errors.</p>
 <p>The code below runs the numerator of the Wald estimator just like we did before and also constructs the denominator by replacing the target variable with the treatment variable <code class="docutils literal notranslate"><span class="pre">receivehsd</span></code>. The final step just divides the numerator by the denominator.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">wald_rdd</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">wald_rdd</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="n">weights</span><span class="o">=</span><span class="n">kernel</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;minscore&quot;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span><span class="o">*</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">]</span>
     <span class="n">denominator</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">wls</span><span class="p">(</span><span class="s2">&quot;receivehsd~minscore*threshold&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
     <span class="n">numerator</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">wls</span><span class="p">(</span><span class="s2">&quot;avgearnings~minscore*threshold&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -1120,7 +940,7 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">joblib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span> 
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
 <span class="n">bootstrap_sample</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -1144,19 +964,19 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/16-Regression-Discontinuity-Design_36_0.png" src="_images/16-Regression-Discontinuity-Design_36_0.png" />
+<img alt="_images/7672a65c3bf1afc4c8745cde6c865a9d68b450550dd7ac79d40fed7b8c3437fe.png" src="_images/7672a65c3bf1afc4c8745cde6c865a9d68b450550dd7ac79d40fed7b8c3437fe.png" />
 </div>
 </div>
 <p>As you can see, even when we scale the effect by the first stage, it is still not statistically different from zero. This means that education doesn’t increase earnings by a simple sheepskin effect, but rather by increasing one’s productivity.</p>
 </section>
 </section>
 <section id="key-ideas">
-<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Permalink to this headline">#</a></h2>
+<h2>Key Ideas<a class="headerlink" href="#key-ideas" title="Link to this heading">#</a></h2>
 <p>We learned how to take advantage of artificial discontinuities to estimate causal effects. The idea is that we will have some artificial threshold that makes the probability of treatment jump. One example that we saw was how age makes the probability of drinking jump at 21 years. We could use that to estimate the impact of drinking on mortality rate. We use the fact that very close to the threshold, we have something close to a randomized trial. Entities very close to the threshold could have gone either way and what determines where they’ve landed is essentially random. With this, we can compare those just above and just below to get the treatment effect. We saw how we could do that with weighted linear regression using a kernel and how this even gave us, for free, standard errors for our ATE.</p>
 <p>Then, we look at what would happen in the fuzzy RD design, where we have non compliance. We saw how we could approach the situation much like we did with IV.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <p>I like to think of this entire book as a tribute to Joshua Angrist, Alberto Abadie and Christopher Walters for their amazing Econometrics class. Most of the ideas here are taken from their classes at the American Economic Association. Watching them is what is keeping me sane during this tough year of 2020.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.aeaweb.org/conference/cont-ed/2017-webcasts">Cross-Section Econometrics</a></p></li>
@@ -1169,12 +989,12 @@ K(R, c, h) = \mathcal{1}\{|R-c| \leq h\} * \bigg(1-\frac{|R-c|}{h}\bigg)
 </ul>
 <p>Other important reference is Miguel Hernan and Jamie Robins’ book. It has been my trustworthy companion in the most thorny causal questions I had to answer.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">Causal Inference Book</a></p></li>
+<li><p><a class="reference external" href="https://miguelhernan.org/whatifbook">Causal Inference Book</a></p></li>
 </ul>
 <p><img alt="img" src="_images/poetry.png" /></p>
 </section>
 <section id="contribute">
-<h2>Contribute<a class="headerlink" href="#contribute" title="Permalink to this headline">#</a></h2>
+<h2>Contribute<a class="headerlink" href="#contribute" title="Link to this heading">#</a></h2>
 <p>Causal Inference for the Brave and True is an open-source material on causal inference, the statistics of science. It uses only free software, based in Python. Its goal is to be accessible monetarily and intellectually.
 If you found this book valuable and you want to support it, please go to <a class="reference external" href="https://www.patreon.com/causal_inference_for_the_brave_and_true">Patreon</a>. If you are not ready to contribute financially, you can also help by fixing typos, suggesting edits or giving feedback on passages you didn’t understand. Just go to the book’s repository and <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/issues">open an issue</a>. Finally, if you liked this content, please share it with others who might find it useful and give it a <a class="reference external" href="https://github.com/matheusfacure/python-causality-handbook/stargazers">star on GitHub</a>.</p>
 </section>
@@ -1192,7 +1012,7 @@ If you found this book valuable and you want to support it, please go to <a clas
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1200,50 +1020,116 @@ If you found this book valuable and you want to support it, please go to <a clas
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="15-Synthetic-Control.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">15 - Synthetic Control</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="15-Synthetic-Control.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">15 - Synthetic Control</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="17-Predictive-Models-101.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="17-Predictive-Models-101.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">17 - Predictive Models 101</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#is-alcohol-killing-you">Is Alcohol Killing You?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rdd-estimation">RDD Estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-weighting">Kernel Weighting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sheepskin-effect-and-fuzzy-rdd">Sheepskin Effect and Fuzzy RDD</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mccrary-test">The McCrary Test</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-ideas">Key Ideas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contribute">Contribute</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Matheus Facure Alves<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Matheus Facure Alves
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

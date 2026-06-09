@@ -8,74 +8,68 @@ msgstr ""
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "repository"
-msgstr "хранилище"
-
-msgid "open issue"
-msgstr "отворен брой"
-
-msgid "Contents"
-msgstr "Съдържание"
-
-msgid "Fullscreen mode"
-msgstr "Режим на цял екран"
-
-msgid "Download this page"
-msgstr "Изтеглете тази страница"
-
-msgid "Download source file"
-msgstr "Изтеглете изходния файл"
-
-msgid "Launch"
-msgstr "Стартиране"
-
-msgid "Edit this page"
-msgstr "Редактирайте тази страница"
-
-msgid "Toggle navigation"
-msgstr "Превключване на навигацията"
-
-msgid "Theme by the"
-msgstr "Тема от"
-
-msgid "Source repository"
-msgstr "Хранилище на източника"
-
-msgid "Last updated on"
-msgstr "Последна актуализация на"
-
 msgid "By the"
 msgstr "По"
-
-msgid "Sphinx Book Theme"
-msgstr "Тема на книгата Sphinx"
-
-msgid "Open an issue"
-msgstr "Отворете проблем"
-
-msgid "next page"
-msgstr "Следваща страница"
-
-msgid "Copyright"
-msgstr "Авторско право"
-
-msgid "Search this book..."
-msgstr "Търсене в тази книга ..."
-
-msgid "Print to PDF"
-msgstr "Печат в PDF"
 
 msgid "By"
 msgstr "От"
 
-msgid "previous page"
-msgstr "предишна страница"
+msgid "Contents"
+msgstr "Съдържание"
 
-msgid "Search the docs ..."
-msgstr "Търсене в документите ..."
+msgid "Copyright"
+msgstr "Авторско право"
 
 msgid "Download notebook file"
 msgstr "Изтеглете файла на бележника"
+
+msgid "Download source file"
+msgstr "Изтеглете изходния файл"
+
+msgid "Download this page"
+msgstr "Изтеглете тази страница"
+
+msgid "Edit this page"
+msgstr "Редактирайте тази страница"
+
+msgid "Fullscreen mode"
+msgstr "Режим на цял екран"
+
+msgid "Last updated on"
+msgstr "Последна актуализация на"
+
+msgid "Launch"
+msgstr "Стартиране"
+
+msgid "Open an issue"
+msgstr "Отворете проблем"
+
+msgid "Print to PDF"
+msgstr "Печат в PDF"
+
+msgid "Source repository"
+msgstr "Хранилище на източника"
+
+msgid "Sphinx Book Theme"
+msgstr "Тема на книгата Sphinx"
+
+msgid "Theme by the"
+msgstr "Тема от"
+
+msgid "Toggle navigation"
+msgstr "Превключване на навигацията"
+
+msgid "next page"
+msgstr "Следваща страница"
+
+msgid "open issue"
+msgstr "отворен брой"
+
+msgid "previous page"
+msgstr "предишна страница"
+
+msgid "repository"
+msgstr "хранилище"
 
 msgid "suggest edit"
 msgstr "предложи редактиране"

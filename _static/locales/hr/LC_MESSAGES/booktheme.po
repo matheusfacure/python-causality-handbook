@@ -8,74 +8,68 @@ msgstr ""
 "Language: hr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "repository"
-msgstr "spremište"
-
-msgid "open issue"
-msgstr "otvoreno izdanje"
-
-msgid "Contents"
-msgstr "Sadržaj"
-
-msgid "Fullscreen mode"
-msgstr "Način preko cijelog zaslona"
-
-msgid "Download this page"
-msgstr "Preuzmite ovu stranicu"
-
-msgid "Download source file"
-msgstr "Preuzmi izvornu datoteku"
-
-msgid "Launch"
-msgstr "Pokrenite"
-
-msgid "Edit this page"
-msgstr "Uredite ovu stranicu"
-
-msgid "Toggle navigation"
-msgstr "Uključi / isključi navigaciju"
-
-msgid "Theme by the"
-msgstr "Tema autora"
-
-msgid "Source repository"
-msgstr "Izvorno spremište"
-
-msgid "Last updated on"
-msgstr "Posljednje ažuriranje:"
-
 msgid "By the"
 msgstr "Od strane"
-
-msgid "Sphinx Book Theme"
-msgstr "Tema knjige Sphinx"
-
-msgid "Open an issue"
-msgstr "Otvorite izdanje"
-
-msgid "next page"
-msgstr "sljedeća stranica"
-
-msgid "Copyright"
-msgstr "Autorska prava"
-
-msgid "Search this book..."
-msgstr "Pretražite ovu knjigu ..."
-
-msgid "Print to PDF"
-msgstr "Ispis u PDF"
 
 msgid "By"
 msgstr "Po"
 
-msgid "previous page"
-msgstr "Prethodna stranica"
+msgid "Contents"
+msgstr "Sadržaj"
 
-msgid "Search the docs ..."
-msgstr "Pretražite dokumente ..."
+msgid "Copyright"
+msgstr "Autorska prava"
 
 msgid "Download notebook file"
 msgstr "Preuzmi datoteku bilježnice"
+
+msgid "Download source file"
+msgstr "Preuzmi izvornu datoteku"
+
+msgid "Download this page"
+msgstr "Preuzmite ovu stranicu"
+
+msgid "Edit this page"
+msgstr "Uredite ovu stranicu"
+
+msgid "Fullscreen mode"
+msgstr "Način preko cijelog zaslona"
+
+msgid "Last updated on"
+msgstr "Posljednje ažuriranje:"
+
+msgid "Launch"
+msgstr "Pokrenite"
+
+msgid "Open an issue"
+msgstr "Otvorite izdanje"
+
+msgid "Print to PDF"
+msgstr "Ispis u PDF"
+
+msgid "Source repository"
+msgstr "Izvorno spremište"
+
+msgid "Sphinx Book Theme"
+msgstr "Tema knjige Sphinx"
+
+msgid "Theme by the"
+msgstr "Tema autora"
+
+msgid "Toggle navigation"
+msgstr "Uključi / isključi navigaciju"
+
+msgid "next page"
+msgstr "sljedeća stranica"
+
+msgid "open issue"
+msgstr "otvoreno izdanje"
+
+msgid "previous page"
+msgstr "Prethodna stranica"
+
+msgid "repository"
+msgstr "spremište"
 
 msgid "suggest edit"
 msgstr "predloži uređivanje"
